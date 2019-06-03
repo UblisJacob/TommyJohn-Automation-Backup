@@ -1,76 +1,117 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="1" total="1" passed="0">
+<testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
     <line>
-      <![CDATA[All corosals are Displayed :: And by default not active]]>
+      <![CDATA[Product details page is Correct :: Product title is Displayed]]>
     </line>
     <line>
-      <![CDATA[Corosals gets active when respected option selected]]>
+      <![CDATA[Whats my size is Displayed :: Clickable]]>
+    </line>
+    <line>
+      <![CDATA[Review Stars Are Displayed :: Clickable :: Clicked]]>
+    </line>
+    <line>
+      <![CDATA[Rating and Reviews Displayed]]>
+    </line>
+    <line>
+      <![CDATA[Write A Review button Displayed :: Clickable :: Write Review portion is Displayed after click button :: Text Correct]]>
+    </line>
+    <line>
+      <![CDATA[Colors are present and changing correct]]>
+    </line>
+    <line>
+      <![CDATA[Quantity increased by 1]]>
+    </line>
+    <line>
+      <![CDATA[Quantity decreased by 1]]>
+    </line>
+    <line>
+      <![CDATA[Details button and Size Guide button is Displayed :: Clickable]]>
+    </line>
+    <line>
+      <![CDATA[ADD TO CART button is Displayed :: Clickable]]>
+    </line>
+    <line>
+      <![CDATA[Continue Shopping button is Displayed :: Enabled :: Text is correct ]]>
+    </line>
+    <line>
+      <![CDATA[View Cart link is Displayed :: Enabled :: Text is correct ]]>
+    </line>
+    <line>
+      <![CDATA[Inline Cart Title is Displayed :: Text is correct ]]>
+    </line>
+    <line>
+      <![CDATA[Shipping message text is Displayed ]]>
+    </line>
+    <line>
+      <![CDATA[Shipping message meter is Displayed]]>
     </line>
   </reporter-output>
-  <suite name="Regression Test Suite" duration-ms="39738" started-at="2019-05-29T14:31:59Z" finished-at="2019-05-29T14:32:39Z">
+  <suite name="Regression Test Suite" duration-ms="74526" started-at="2019-06-03T07:40:20Z" finished-at="2019-06-03T07:41:35Z">
     <groups>
     </groups>
-    <test name="Tests" duration-ms="39738" started-at="2019-05-29T14:31:59Z" finished-at="2019-05-29T14:32:39Z">
+    <test name="Tests" duration-ms="74526" started-at="2019-06-03T07:40:20Z" finished-at="2019-06-03T07:41:35Z">
+      <class name="TestScenario.ValidateFlyCartPage">
+        <test-method status="PASS" signature="TC_VerifyAllFieldsAndTextOnNonEmptyFlyCart()[pri:0, instance:TestScenario.ValidateFlyCartPage@18be83e4]" name="TC_VerifyAllFieldsAndTextOnNonEmptyFlyCart" duration-ms="74509" started-at="2019-06-03T13:10:20Z" finished-at="2019-06-03T13:11:35Z">
+          <reporter-output>
+            <line>
+              <![CDATA[Product details page is Correct :: Product title is Displayed]]>
+            </line>
+            <line>
+              <![CDATA[Whats my size is Displayed :: Clickable]]>
+            </line>
+            <line>
+              <![CDATA[Review Stars Are Displayed :: Clickable :: Clicked]]>
+            </line>
+            <line>
+              <![CDATA[Rating and Reviews Displayed]]>
+            </line>
+            <line>
+              <![CDATA[Write A Review button Displayed :: Clickable :: Write Review portion is Displayed after click button :: Text Correct]]>
+            </line>
+            <line>
+              <![CDATA[Colors are present and changing correct]]>
+            </line>
+            <line>
+              <![CDATA[Quantity increased by 1]]>
+            </line>
+            <line>
+              <![CDATA[Quantity decreased by 1]]>
+            </line>
+            <line>
+              <![CDATA[Details button and Size Guide button is Displayed :: Clickable]]>
+            </line>
+            <line>
+              <![CDATA[ADD TO CART button is Displayed :: Clickable]]>
+            </line>
+            <line>
+              <![CDATA[Continue Shopping button is Displayed :: Enabled :: Text is correct ]]>
+            </line>
+            <line>
+              <![CDATA[View Cart link is Displayed :: Enabled :: Text is correct ]]>
+            </line>
+            <line>
+              <![CDATA[Inline Cart Title is Displayed :: Text is correct ]]>
+            </line>
+            <line>
+              <![CDATA[Shipping message text is Displayed ]]>
+            </line>
+            <line>
+              <![CDATA[Shipping message meter is Displayed]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- TC_VerifyAllFieldsAndTextOnNonEmptyFlyCart -->
+      </class> <!-- TestScenario.ValidateFlyCartPage -->
       <class name="com.tommyjohn.automation.utils.CustomUtilities">
-        <test-method status="PASS" signature="launchtj()[pri:0, instance:com.tommyjohn.automation.utils.CustomUtilities@29ee9faa]" name="launchtj" is-config="true" duration-ms="28322" started-at="2019-05-29T20:01:31Z" finished-at="2019-05-29T20:01:59Z">
+        <test-method status="PASS" signature="launchtj()[pri:0, instance:com.tommyjohn.automation.utils.CustomUtilities@29ee9faa]" name="launchtj" is-config="true" duration-ms="19514" started-at="2019-06-03T13:10:01Z" finished-at="2019-06-03T13:10:20Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launchtj -->
-        <test-method status="PASS" signature="teardown()[pri:0, instance:com.tommyjohn.automation.utils.CustomUtilities@29ee9faa]" name="teardown" is-config="true" duration-ms="1166" started-at="2019-05-29T20:02:39Z" finished-at="2019-05-29T20:02:40Z">
+        <test-method status="PASS" signature="teardown()[pri:0, instance:com.tommyjohn.automation.utils.CustomUtilities@29ee9faa]" name="teardown" is-config="true" duration-ms="1136" started-at="2019-06-03T13:11:35Z" finished-at="2019-06-03T13:11:36Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
       </class> <!-- com.tommyjohn.automation.utils.CustomUtilities -->
-      <class name="TestScenario.ValidateCollectionPage">
-        <test-method status="FAIL" signature="TC_ValidateMegaCollectionAllPantiesInWomenCategory()[pri:0, instance:TestScenario.ValidateCollectionPage@18be83e4]" name="TC_ValidateMegaCollectionAllPantiesInWomenCategory" duration-ms="39705" started-at="2019-05-29T20:01:59Z" finished-at="2019-05-29T20:02:39Z">
-          <exception class="java.lang.Exception">
-            <message>
-              <![CDATA[Total displayed count is not same as all products on page]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.Exception: Total displayed count is not same as all products on page
-	at com.tommyjohn.automation.Components.CollectionPageComponent.methodToCheckAllFilters(CollectionPageComponent.java:332)
-	at com.tommyjohn.automation.Components.CollectionPageComponent.validateMegaCollectionAllPantiesInWomensCategory(CollectionPageComponent.java:248)
-	at com.tommyjohn.automation.Pages.CollectionPage.validateWomensAllPantiesOnCollectionPage(CollectionPage.java:43)
-	at TestScenario.ValidateCollectionPage.TC_ValidateMegaCollectionAllPantiesInWomenCategory(ValidateCollectionPage.java:52)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:80)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
-	at org.testng.TestRunner.privateRun(TestRunner.java:767)
-	at org.testng.TestRunner.run(TestRunner.java:617)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1198)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1123)
-	at org.testng.TestNG.run(TestNG.java:1031)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.Exception -->
-          <reporter-output>
-            <line>
-              <![CDATA[All corosals are Displayed :: And by default not active]]>
-            </line>
-            <line>
-              <![CDATA[Corosals gets active when respected option selected]]>
-            </line>
-          </reporter-output>
-        </test-method> <!-- TC_ValidateMegaCollectionAllPantiesInWomenCategory -->
-      </class> <!-- TestScenario.ValidateCollectionPage -->
     </test> <!-- Tests -->
   </suite> <!-- Regression Test Suite -->
 </testng-results>

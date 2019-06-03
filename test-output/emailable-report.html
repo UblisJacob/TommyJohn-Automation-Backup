@@ -31,26 +31,31 @@ div.shootout {padding:2em;border:3px #4854A8 solid}
 <body>
 <table cellspacing="0" cellpadding="0" class="result">
 <tr><th>Test</th><th class="numi">Methods<br/>Passed</th><th class="numi">Scenarios<br/>Passed</th><th class="numi"># skipped</th><th class="numi"># failed</th><th class="numi">Total<br/>Time</th><th class="numi">Included<br/>Groups</th><th class="numi">Excluded<br/>Groups</th></tr>
-<tr><td style="text-align:left;padding-right:2em">Tests</td><td class="numi">0</td><td class="numi">0</td><td class="numi">0</td><td class="numi_attn">1</td><td class="numi">39.7 seconds</td><td class="numi"></td><td class="numi"></td></tr>
+<tr><td style="text-align:left;padding-right:2em">Tests</td><td class="numi">1</td><td class="numi">1</td><td class="numi">0</td><td class="numi">0</td><td class="numi">74.5 seconds</td><td class="numi"></td><td class="numi"></td></tr>
 </table>
 <table cellspacing="0" cellpadding="0" class="passed" id="summary">
 <tr><th>Class</th><th>Method</th><th># of<br/>Scenarios</th><th>Start</th><th>Time<br/>(ms)</th></tr>
-<tr><th colspan="4">Tests &#8212; failed</th></tr>
-<tr class="failedodd"><td rowspan="1">TestScenario.ValidateCollectionPage</td><td><a href="#m1"><b>TC_ValidateMegaCollectionAllPantiesInWomenCategory</b>  </a></td><td class="numi">1</td><td>1559140319439</td><td class="numi">39705</td></tr>
+<tr><th colspan="4">Tests &#8212; passed</th></tr>
+<tr class="passedodd"><td rowspan="1">TestScenario.ValidateFlyCartPage</td><td><a href="#m1"><b>TC_VerifyAllFieldsAndTextOnNonEmptyFlyCart</b>  </a></td><td class="numi">1</td><td>1559547620650</td><td class="numi">74509</td></tr>
 </table>
 <h1>Tests</h1>
-<h2 id="m1">TestScenario.ValidateCollectionPage:TC_ValidateMegaCollectionAllPantiesInWomenCategory</h2>
+<h2 id="m1">TestScenario.ValidateFlyCartPage:TC_VerifyAllFieldsAndTextOnNonEmptyFlyCart</h2>
 <div style="padding-left:3em">
-<h3>Test Messages</h3>
-All corosals are Displayed :: And by default not active<br/>
-Corosals gets active when respected option selected<br/>
-<h3>Failure</h3>
-<p>Total displayed count is not same as all products on page</p>
-com.tommyjohn.automation.Components.CollectionPageComponent.methodToCheckAllFilters(CollectionPageComponent.java:332)
-<br/>at com.tommyjohn.automation.Components.CollectionPageComponent.validateMegaCollectionAllPantiesInWomensCategory(CollectionPageComponent.java:248)
-<br/>at com.tommyjohn.automation.Pages.CollectionPage.validateWomensAllPantiesOnCollectionPage(CollectionPage.java:43)
-<br/>at TestScenario.ValidateCollectionPage.TC_ValidateMegaCollectionAllPantiesInWomenCategory(ValidateCollectionPage.java:52)
-<br/>25 lines not shown
+Product details page is Correct :: Product title is Displayed<br/>
+Whats my size is Displayed :: Clickable<br/>
+Review Stars Are Displayed :: Clickable :: Clicked<br/>
+Rating and Reviews Displayed<br/>
+Write A Review button Displayed :: Clickable :: Write Review portion is Displayed after click button :: Text Correct<br/>
+Colors are present and changing correct<br/>
+Quantity increased by 1<br/>
+Quantity decreased by 1<br/>
+Details button and Size Guide button is Displayed :: Clickable<br/>
+ADD TO CART button is Displayed :: Clickable<br/>
+Continue Shopping button is Displayed :: Enabled :: Text is correct <br/>
+View Cart link is Displayed :: Enabled :: Text is correct <br/>
+Inline Cart Title is Displayed :: Text is correct <br/>
+Shipping message text is Displayed <br/>
+Shipping message meter is Displayed<br/>
 </div>
 <p class="totop"><a href="#summary">back to summary</a></p>
 </body></html>

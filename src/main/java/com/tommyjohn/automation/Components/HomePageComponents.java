@@ -554,7 +554,7 @@ public class HomePageComponents extends HomePageLocators {
 	}
 	
 	// nevigate to all underwear in men category 
-	public static void nevigateToAllUnderwearInMenCategory() throws Exception {
+	public static void navigateToAllUnderwearInMenCategory() throws Exception {
 		element = driver.findElement(MEN_CATEGORY);
 		action.moveToElement(element).perform();
 		driver.findElement(ALL_UNDERWEAR_IN_MEN_CATEGORY).click();	
@@ -578,7 +578,7 @@ public class HomePageComponents extends HomePageLocators {
 	}
 
 	// nevigate to all mens collections in men category
-	public void nevigateToAllMensCollectionsInMenCategory() throws Exception {
+	public static void navigateToAllMensCollectionsInMenCategory() throws Exception {
 		element = driver.findElement(MEN_CATEGORY);
 		action.moveToElement(element).perform();
 		driver.findElement(ALL_MENS_COLLECTIONS_IN_MEN_CATEGORY).click();
@@ -626,7 +626,7 @@ public class HomePageComponents extends HomePageLocators {
 	}
 
 	// nevigate to All Womens Packs in Packs category
-	public void nevigateToAllWomensPacksInPacksCategory() throws Exception {
+	public static void navigateToAllWomensPacksInPacksCategory() throws Exception {
 		element = driver.findElement(PACKS);
 		action.moveToElement(element).perform();
 		driver.findElement(ALL_WOMENS_PACKS_IN_PACKS_CATEGORY).click();
@@ -634,7 +634,7 @@ public class HomePageComponents extends HomePageLocators {
 	}
 	
 	// nevigate to single collection cool cotton
-	public static void nevigateToCoolCottonInMensCollection() throws Exception {
+	public static void navigateToCoolCottonInMensCollection() throws Exception {
 		element = driver.findElement(MEN_CATEGORY);
 		action.moveToElement(element).perform();
 		driver.findElement(COOL_COTTON_IN_MENS_COLLECTIONS).click();
@@ -662,6 +662,24 @@ public class HomePageComponents extends HomePageLocators {
 		element = driver.findElement(WOMEN_CATEGORY);
 		action.moveToElement(element).perform();
 		driver.findElement(ALL_PANTIES_IN_WOMEN_CATEGORY).click();
+		Thread.sleep(3000);	
+		
+	}
+
+	// navigate to cotton basics in shop by collections catagory
+	public static void navigateToCottonBasicsInShopByCollectionsCategory() throws Exception {
+		element = driver.findElement(SHOPBYCOLLECTION);
+		action.moveToElement(element).perform();
+		driver.findElement(COTTON_BASICS_SHOPBYCOLLECTION).click();
+		Thread.sleep(3000);	
+		
+	}
+
+	// navigate to cotton basics in shop by collections catagory
+	public static void navigateToAllUnderShirtsInMensCategory() throws Exception {
+		element = driver.findElement(MEN_CATEGORY);
+		action.moveToElement(element).perform();
+		driver.findElement(ALL_UNDERSHIRTS_IN_MEN_CATEGORY).click();
 		Thread.sleep(3000);	
 		
 	}

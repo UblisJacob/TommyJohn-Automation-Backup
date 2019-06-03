@@ -42,10 +42,32 @@ public class CollectionPage extends CollectionPageComponent{
 	public void validateWomensAllPantiesOnCollectionPage() throws Exception {
 		validateMegaCollectionAllPantiesInWomensCategory();
 	}
-
+	public void validateMensAllUnderwearOnCollectionPage() throws Exception {
+		validateMegaCollectionAllUnderwearInMensCategory();
+	}
+	public void validateMensAllUnderShirtsOnCollectionPage() throws Exception {
+		validateMegaCollectionAllUndershirtsInMensCategory();
+	}
+	public void validateMensAllCollectionsOnCollectionPage() throws Exception {
+		validateMegaCollectionAllCollectionsInMensCategory();
+	}
+	
+	
 //---------------------------validate single collections---------------------------
 	
 	public void validateSecondSkinOnSingleCollectionPage() throws Exception {
 		validateSingleCollectionSecondSkinInMenCategory();
 	}
+	
+	public void validateCoolCottonOnSingleCollectionPage() throws Exception {
+		validateSingleCollectionCoolCottonInMenCategory();
+	}
+	public void validatePacksOnSingleCollectionPage() throws Exception {
+		validateSingleCollectionPacksInWomenCategory();
+	}
+	
+	public void validateCottonBasicsOnSingleCollectionPage() throws Exception {
+		validateSingleCollectionCottonBasicsInShopByCollectionsCategory();
+	}
+
 }

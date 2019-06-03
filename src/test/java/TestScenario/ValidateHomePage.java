@@ -1,6 +1,7 @@
 package TestScenario;
 
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -43,7 +44,7 @@ public class ValidateHomePage {
 		new HomePage().validateCartIcon();
 	}
 	
-//	@AfterTest(alwaysRun = true)
+//	@AfterSuite(alwaysRun = true)
 //	void tearDown() {
 //		try {
 //			CustomUtilities.teardown();

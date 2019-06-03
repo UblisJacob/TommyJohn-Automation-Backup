@@ -2,13 +2,32 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Regression Test Suite">
   <test thread-count="1" name="Tests" verbose ="1" parallel="tests">
-  
   <classes>
- 	 <class name = "com.tommyjohn.automation.utils.CustomUtilities"/>
-  	 <class name = "TestScenario.ValidateProductDetailsPage"/>
-	 <class name = "TestScenario.ValidateAccountLoginFunctionality"/>
- 	 <class name = "TestScenario.ValidateHomePage"/>
-<!-- 	 <class name = "TestScenario.ValidateCollectionPage"/> -->
-   </classes>
+  	  <class name = "com.tommyjohn.automation.utils.CustomUtilities"/>
+  		 <!--  <class name = "TestScenario.ValidateFlyCartPage"/> -->
+   	 <class name = "TestScenario.ValidateProductDetailsPage"/>
+<!--   	 <class name = "TestScenario.ValidateAccountLoginFunctionality"/>
+ 	  <class name = "TestScenario.ValidateHomePage"/>
+ 	  <class name = "TestScenario.ValidateCollectionPage"/>
+  -->  </classes>
   </test> <!-- Test -->
+   
+    	<test thread-count="3" name="ValidateAccountLoginFunctionality" verbose ="1" parallel="tests">
+  		<classes>
+			 <class name = "TestScenario.ValidateAccountLoginFunctionality"/>
+   		</classes>
+ 	</test>
+  	 	<test thread-count="1" name="ValidateHomePage" verbose ="1" parallel="tests">
+  		<classes>
+			 <class name = "TestScenario.ValidateHomePage"/>
+   		</classes>
+ 	</test>
+ 	
+   	<test thread-count="1" name="ValidateCollectionPage" verbose ="1" parallel="tests">
+  		<classes>
+			 <class name = "TestScenario.ValidateCollectionPage"/>
+   		</classes>
+ 	</test>  
+   
+   
 </suite> <!-- Suite -->

@@ -9,11 +9,11 @@
           <include name="launchtj"/>
         </methods>
       </class> <!-- com.tommyjohn.automation.utils.CustomUtilities -->
-      <class name="TestScenario.ValidateCollectionPage">
+      <class name="TestScenario.ValidateFlyCartPage">
         <methods>
-          <include name="TC_ValidateMegaCollectionAllPantiesInWomenCategory"/>
+          <include name="TC_VerifyAllFieldsAndTextOnNonEmptyFlyCart"/>
         </methods>
-      </class> <!-- TestScenario.ValidateCollectionPage -->
+      </class> <!-- TestScenario.ValidateFlyCartPage -->
     </classes>
   </test> <!-- Tests(failed) -->
 </suite> <!-- Failed suite [Regression Test Suite] -->

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.omg.CORBA.portable.ValueOutputStream;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Reporter;
@@ -33,7 +34,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		String text = null;
 		
 		// nevigate to Collection page
-		HomePageComponents.nevigateToAllUnderwearInMenCategory();
+		HomePageComponents.navigateToAllUnderwearInMenCategory();
 		
 		// get product title and click on image if present
 		text = driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT).getText();
@@ -56,7 +57,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		String text = null;
 		
 		// nevigate to Collection page
-		HomePageComponents.nevigateToAllUnderwearInMenCategory();
+		HomePageComponents.navigateToAllUnderwearInMenCategory();
 		
 		// get product title and click on product heading text if present
 		if(!driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT).isDisplayed())
@@ -80,7 +81,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		String text = null;
 		
 		// nevigate to Collection page
-		HomePageComponents.nevigateToAllUnderwearInMenCategory();
+		HomePageComponents.navigateToAllUnderwearInMenCategory();
 		
 		// get product title and click on product heading text if present
 		try {
@@ -109,7 +110,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		String text = null;
 		
 		// nevigate to cool cotton Collection page
-		HomePageComponents.nevigateToCoolCottonInMensCollection();
+		HomePageComponents.navigateToAllUnderwearInMenCategory();
 		
 		// get product title and click on image if present
 		text = driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT).getText();
@@ -133,7 +134,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		String text = null;
 		
 		// nevigate to cool cotton Collection page
-		HomePageComponents.nevigateToCoolCottonInMensCollection();
+		HomePageComponents.navigateToAllUnderwearInMenCategory();
 		
 		// get product title and click on image if present
 		text = driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT).getText();
@@ -158,7 +159,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		String text = null;
 		
 		// nevigate to cool cotton Collection page
-		HomePageComponents.nevigateToCoolCottonInMensCollection();
+		HomePageComponents.navigateToAllUnderwearInMenCategory();
 		
 		// get product title and click on image if present
 		text = driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT).getText();
@@ -200,6 +201,74 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		methodToCheckAllFilters();
 		
 	}
+
+	public void validateSingleCollectionCoolCottonInMenCategory() throws Exception {
+		// call the method to nevigate to cool cotton in mens category
+		HomePageComponents.navigateToCoolCottonInMensCollection();
+		
+		// check the heading of selected category collection page
+		if(!driver.findElement(MAIN_HEADING_OF_SELECTED_CATEGORY).isDisplayed())
+			throw new Exception("Heading on collection page for selected category is not displayed");
+		
+		try {
+			// validate corosals if present on top of page
+			if(driver.findElement(STYLE_COROSALS).isDisplayed()) {
+				methodToCheckCorosalsOnTopOfPageIsActiveWhenRelatedStyleIsChecked();
+			}
+		}catch(Exception e) {
+			System.out.println("Corosals are not there");
+		}
+		
+		// call method to check all filters
+		methodToCheckAllFilters();
+		
+	}
+	
+	public void validateSingleCollectionPacksInWomenCategory() throws Exception {
+		// call the method to nevigate to packs in womens category
+		HomePageComponents.navigateToAllWomensPacksInPacksCategory();
+		
+		// check the heading of selected category collection page
+		if(!driver.findElement(MAIN_HEADING_OF_SELECTED_CATEGORY).isDisplayed())
+			throw new Exception("Heading on collection page for selected category is not displayed");
+		
+		try {
+			// validate corosals if present on top of page
+			if(driver.findElement(STYLE_COROSALS).isDisplayed()) {
+				methodToCheckCorosalsOnTopOfPageIsActiveWhenRelatedStyleIsChecked();
+			}
+		}catch(Exception e) {
+			System.out.println("Corosals are not there");
+		}
+		
+		// call method to check all filters
+		methodToCheckAllFilters();
+		
+	}
+	
+	public void validateSingleCollectionCottonBasicsInShopByCollectionsCategory() throws Exception {
+		// call the method to nevigate to cotton basics in shop by collection category
+		HomePageComponents.navigateToCottonBasicsInShopByCollectionsCategory();
+		
+		// check the heading of selected category collection page
+		if(!driver.findElement(MAIN_HEADING_OF_SELECTED_CATEGORY).isDisplayed())
+			throw new Exception("Heading on collection page for selected category is not displayed");
+		
+		try {
+			// validate corosals if present on top of page
+			if(driver.findElement(STYLE_COROSALS).isDisplayed()) {
+				methodToCheckCorosalsOnTopOfPageIsActiveWhenRelatedStyleIsChecked();
+			}
+		}catch(Exception e) {
+			System.out.println("Corosals are not there");
+		}
+		
+		// call method to check all filters
+		methodToCheckAllFilters();
+		
+	}
+
+
 	
 	//--------------------------------validate mega collections------------------------------------
 	
@@ -247,7 +316,71 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		// call method to check all filters
 		methodToCheckAllFilters();
 	}
+	
+	public void validateMegaCollectionAllUnderwearInMensCategory() throws Exception {
+		
+		// call the method to nevigate to all clothing in womens category
+		HomePageComponents.navigateToAllUnderwearInMenCategory();
+		
+		// check the heading of selected category collection page
+		if(!driver.findElement(MAIN_HEADING_OF_SELECTED_CATEGORY).isDisplayed())
+			throw new Exception("Heading on collection page for selected category is not displayed");
 
+		try {
+			// validate corosals if present on top of page
+			if(driver.findElement(STYLE_COROSALS).isDisplayed()) {
+				methodToCheckCorosalsOnTopOfPageIsActiveWhenRelatedStyleIsChecked();
+			}
+		}catch(Exception e) {
+			System.out.println("Corosals are not there");
+		}
+		
+		// call method to check all filters
+		methodToCheckAllFilters();
+	}
+	
+	public void validateMegaCollectionAllUndershirtsInMensCategory() throws Exception {
+		
+		// call the method to nevigate to all undershirts in mens category
+		HomePageComponents.navigateToAllUnderShirtsInMensCategory();
+		
+		// check the heading of selected category collection page
+		if(!driver.findElement(MAIN_HEADING_OF_SELECTED_CATEGORY).isDisplayed())
+			throw new Exception("Heading on collection page for selected category is not displayed");
+
+		try {
+			// validate corosals if present on top of page
+			if(driver.findElement(STYLE_COROSALS).isDisplayed()) {
+				methodToCheckCorosalsOnTopOfPageIsActiveWhenRelatedStyleIsChecked();
+			}
+		}catch(Exception e) {
+			System.out.println("Corosals are not there");
+		}
+		
+		// call method to check all filters
+		methodToCheckAllFilters();
+	}
+	public void validateMegaCollectionAllCollectionsInMensCategory() throws Exception {
+		
+		// call the method to nevigate to all undershirts in mens category
+		HomePageComponents.navigateToAllMensCollectionsInMenCategory();
+		
+		// check the heading of selected category collection page
+		if(!driver.findElement(MAIN_HEADING_OF_SELECTED_CATEGORY).isDisplayed())
+			throw new Exception("Heading on collection page for selected category is not displayed");
+
+		try {
+			// validate corosals if present on top of page
+			if(driver.findElement(STYLE_COROSALS).isDisplayed()) {
+				methodToCheckCorosalsOnTopOfPageIsActiveWhenRelatedStyleIsChecked();
+			}
+		}catch(Exception e) {
+			System.out.println("Corosals are not there");
+		}
+		
+		// call method to check all filters
+		methodToCheckAllFilters();
+	}
 	
 	//-------------------------------------------------------------------------------------------
 	
@@ -275,12 +408,17 @@ public class CollectionPageComponent extends CollectionPageLocator {
     		allElements = driver.findElements(By.cssSelector("div.mega-collection-filters > div:nth-child("+i+") > ul > li"));
     		optionsList = allElements.size();
             System.out.println("All options list :: "+ optionsList);
-            
             int ct = 0;
             //loop for clicking all the options in ith filter
             for(int j = 1; j <= optionsList; j++) {
+            	
             	// check if element is not displayed but present then continue at this step
             	System.out.println("i = "+i+" j = "+j);
+            	
+            	// check if not any option present
+                if(optionsList == 0)
+                	break;
+
             	if(!driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child("+i+") > ul > li:nth-child("+j+") > label > input")).isDisplayed())
             		continue;
             	count++;
@@ -315,17 +453,19 @@ public class CollectionPageComponent extends CollectionPageLocator {
                 totalDisplayedCount = driver.findElement(TOTAL_COUNTS_OF_ITEMS).getText();
                 allProductsOnPage = driver.findElements(FIRST_PRODUCT_IMAGE);
                 int allProductsOnPage1 = allProductsOnPage.size();
+                System.out.println("Out ddd :: "+allProductsOnPage1);
                 // check for hoverable class (if image is hoverable then it count two images for one image)
                 element = driver.findElement(FIRST_PRODUCT_IMAGE);
     			String classes = element.getAttribute("class");
-    			for (String c : classes.split(" ")) {
-    				System.out.println("C ::::: "+c);
-    				if (c.equals("product-image-container--has-hover")) {
-    					allProductsOnPage1 = (allProductsOnPage1)/2;
-    					System.out.println("In ddd :: "+allProductsOnPage1);
-    				}
-    			}
-                
+//    			System.out.println("Classes :: "+classes);
+//    			for (String c : classes.split(" ")) {
+//    				System.out.println("C ::::: "+c);
+//    				if (c.equals("product-image-container--has-hover")) {
+//    					allProductsOnPage1 = (allProductsOnPage1)/2;
+//    					System.out.println("In ddd :: "+allProductsOnPage1);
+//    				}
+//    			}
+//                
                 System.out.println("total displayed product on page :: "+allProductsOnPage1);
                 System.out.println("total displayed count of product :: "+totalDisplayedCount);
                 if(allProductsOnPage1 != (Integer.parseInt(totalDisplayedCount)))
@@ -334,17 +474,38 @@ public class CollectionPageComponent extends CollectionPageLocator {
             	ct++;
             	
             }
+
+            // check again any options are present or not
+            if(optionsList == 0)
+            	continue;
+            	
             // click on last item to remove it from list
             driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child("+i+") > a")).click();
             Thread.sleep(1000);
             System.out.println("last item :: "+driver.findElement(By.cssSelector("div.js-mega-collection-desktop-filter-tags > button:nth-child("+ct+")")).getText());
             driver.findElement(By.cssSelector("div.js-mega-collection-desktop-filter-tags > button:nth-child("+ct+")")).click();
+            Thread.sleep(1000);
             // after last element removed decrease ct by 1
+            System.out.println("Before ct::"+ct);
+            // decrease ct by 1 bcz when one element is removed from list
             ct--;
+            ct--; // for taking last element from list
+            System.out.println("After ct--::"+ct);
             // check when we click on item then it remove from list or not
-        	if((allElements.get(ct).getText()).equals(driver.findElement(By.cssSelector("div.js-mega-collection-desktop-filter-tags > button:nth-child("+ct+")")).getText()))
-        		throw new Exception("Item is not removed from displayed list when click on it");
+            System.out.println("allelements size:: "+allElements.size());
+            
+            
+            if(ct!=0 && ct!=-1) {
+            	System.out.println("ct :: "+allElements.get(ct).getText());
+            	System.out.println("ct :: "+driver.findElement(By.cssSelector("div.js-mega-collection-desktop-filter-tags > button:nth-child("+ct+")")).getText());
+            	if((allElements.get(ct).getText()).equals(driver.findElement(By.cssSelector("div.js-mega-collection-desktop-filter-tags > button:nth-child("+ct+")")).getText()))
+            		throw new Exception("Item is not removed from displayed list when click on it");
+            }
             ct = 0;
+            
+    		// scroll it top again
+    		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, -document.body.scrollHeight)");
+    		Thread.sleep(2000);
             
             // clear the filters
             driver.findElement(CLEAR_FILTER_BUTTON).click();
@@ -355,6 +516,12 @@ public class CollectionPageComponent extends CollectionPageLocator {
         Reporter.log("All filters are working correctly");
         Reporter.log("All selected items are displayed in list and removing from list");
         Reporter.log("Clear filters button works correctly");
+        
+        // scroll to last filter view
+        element = driver.findElement(LAST_FILTER);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();", element);
+        
         if(driver.findElement(LAST_FILTER).isDisplayed()) {
         	driver.findElement(LAST_FILTER).click();
         	
@@ -362,7 +529,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
         	driver.findElement(SORTBYPRICE_HIGH_TO_LOW_FILTER_OPTION).click();
         	Thread.sleep(3000);
         	allProductsOnPage = driver.findElements(FIRST_PRODUCT_IMAGE);
-        	System.out.println("All product on page :: "+allProductsOnPage);
+        	System.out.println("All product on page :: "+allProductsOnPage.size());
         	for(int i=1; i < allProductsOnPage.size(); i++) {
         		String text = null;
         		String text1 = null;

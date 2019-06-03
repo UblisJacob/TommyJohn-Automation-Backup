@@ -47,7 +47,7 @@ public class CustomUtilities {
 	public static void teardown()
 	{
 		 if (driver != null)
-		driver.quit();
+			 driver.quit();
 	}
 	
 	//method to load properties file

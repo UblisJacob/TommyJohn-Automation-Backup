@@ -27,7 +27,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		String text = null;
 		
 		// call method to navigate to collection page
-		HomePageComponents.nevigateToAllUnderwearInMenCategory();
+		HomePageComponents.navigateToAllUnderwearInMenCategory();
 		
 		// call method to nevigate product details page
 		text = CollectionPageComponent.navigateToProductDetailsPage();
@@ -294,6 +294,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 				jse = (JavascriptExecutor)driver;
 				jse.executeScript("arguments[0].click();", element);
 						
+				Thread.sleep(5000);
 				driver.get(CustomUtilities.baseUrl);
 			//	driver.findElement(ADD_TO_CART_BUTTON).click();
 				Thread.sleep(3000);
