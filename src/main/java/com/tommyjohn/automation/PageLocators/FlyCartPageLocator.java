@@ -12,5 +12,17 @@ public class FlyCartPageLocator {
 	public static By RECOMMENDED_PRODUCT_HEADING = By.cssSelector(".recommended-products__heading");
 	public static By RECOMMENDED_PRODUCTS = By.cssSelector(".recommended-products");
 	public static By RECOMMENDED_PRODUCTS_LIST = By.cssSelector(".recommended-products > a");
-	
+	public static By LIST_OF_ITEMS_IN_FLYCART = By.cssSelector(".line-item");
+	public static By LINE_ITEM_OPTION = By.cssSelector("div.inline-cart__col1 > div:nth-child(4) > article:nth-child(1) > div.line-item__summary > div.line-item__option");
+	public static By QUANTITY_PLUS_MINUS_BUTTON = By.cssSelector("article:nth-child(1) > div.line-item__summary > div.line-item__total > div.qty-selector.line-item__qty");
+	public static By ADD_GIFT_WRAP_BUTTON = By.cssSelector("div.inline-cart__gift-wrap > a > span:nth-child(2)");
+	public static By SUBTOTAL_TEXT = By.cssSelector(".inline-cart__subtotal--text");
+	public static By ESTIMATE_TOTAL = By.cssSelector("div.inline-cart__summary > div > div > span");
+	public static By ESTIMATE_TOTAL_SMALL = By.cssSelector("div.inline-cart__summary > div > div > small");
+	public static By CHECKOUT_BUTTON = By.cssSelector("div.inline-cart__action-btns > a.button.button--red.button--auto");
+	public static By FIRST_PRODUCT_TITLE_IN_CART = By.cssSelector("div.inline-cart__col1 > div:nth-child(4) > article > div.line-item__summary > a");
+	public static By PLUS_BUTTON = By.cssSelector(".qty-selector.line-item__qty > button:nth-child(3)");
+	public static By MINUS_BUTTON = By.cssSelector(".qty-selector.line-item__qty > button:nth-child(1)");
+	public static By QUANTITY = By.cssSelector(".qty-selector.line-item__qty > input");
+	public static By CROSS_CLOSE_BUTTON = By.cssSelector("article > div.line-item__summary > button");
 }

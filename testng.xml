@@ -4,15 +4,15 @@
   <test thread-count="1" name="Tests" verbose ="1" parallel="tests">
   <classes>
   	  <class name = "com.tommyjohn.automation.utils.CustomUtilities"/>
-  		 <!--  <class name = "TestScenario.ValidateFlyCartPage"/> -->
-   	 <class name = "TestScenario.ValidateProductDetailsPage"/>
-<!--   	 <class name = "TestScenario.ValidateAccountLoginFunctionality"/>
+  		   <class name = "TestScenario.ValidateFlyCartPage"/>
+<!--   	 <class name = "TestScenario.ValidateProductDetailsPage"/>
+   	 <class name = "TestScenario.ValidateAccountLoginFunctionality"/>
  	  <class name = "TestScenario.ValidateHomePage"/>
  	  <class name = "TestScenario.ValidateCollectionPage"/>
   -->  </classes>
   </test> <!-- Test -->
    
-    	<test thread-count="3" name="ValidateAccountLoginFunctionality" verbose ="1" parallel="tests">
+<!--     	<test thread-count="3" name="ValidateAccountLoginFunctionality" verbose ="1" parallel="tests">
   		<classes>
 			 <class name = "TestScenario.ValidateAccountLoginFunctionality"/>
    		</classes>
@@ -28,6 +28,12 @@
 			 <class name = "TestScenario.ValidateCollectionPage"/>
    		</classes>
  	</test>  
-   
+ -->   
+ <!--     	<test thread-count="1" name="AddToCartTestCase" verbose ="1" parallel="tests">
+  		<classes>
+			 <class name = "TestScenario.AddToCartTests"/>
+   		</classes>
+ 	</test>  
+ -->  
    
 </suite> <!-- Suite -->

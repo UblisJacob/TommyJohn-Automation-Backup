@@ -12,4 +12,8 @@ public class FlyCartPage extends FlyCartComponents {
 		verifyAllTextsAndFieldsOnNonEmptyFlyCart();
 	}
 
+	public void validateAllFieldsOnNonEmptyFlyCart() throws Exception {
+		validateNonEmptyFlyCart();
+	}
+
 }

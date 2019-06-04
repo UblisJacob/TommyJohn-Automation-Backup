@@ -4,12 +4,11 @@ bin/
 
 ### STS ###
 .apt_generated
-.classpath
+#.classpath
 .factorypath
-.project
+#.project
 .settings
 .springBeans
-*.class
 test-output/
 
 ### IntelliJ IDEA ###

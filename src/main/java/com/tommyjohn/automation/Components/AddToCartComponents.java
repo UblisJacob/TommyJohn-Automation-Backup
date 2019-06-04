@@ -23,23 +23,36 @@ public class AddToCartComponents extends AddToCartLocators{
 	int elementsCount;
 	
 
- public void selectSize() throws Exception {
-		String text1 = null;
+	public void addToCart() throws Exception {
+		String text = null;
+		
+		// navigate to any product collection page
+		HomePageComponents.navigateToAllPantiesInWomenCategory();
+		
+		// call method to nevigate product details page
+		text = CollectionPageComponent.navigateToProductDetailsPage();
+		
+		// call method to check correct PDP opend or not
+		ProductDetailsPageComponents.checkCorrectProductDetailsPageOpenedOrNot(text);
+		
+		// select size and add product to cart
+		selectSize();
+
+	}
+	
+	public void selectSize() throws Exception {
 		String allClasses = null;
 		boolean flag = false;
-		String colorAfterChange = null;
-		String colorBeforeChange = null;
-		String quantity = null;
-	 
- 
+		String text1 = null;
+		
 		// Select first size between available sizes
 		allElements = driver.findElements(ALL_SIZE_LIST);
-     elementsCount = allElements.size();
-     System.out.println("All sizes list :: "+ elementsCount);
-     
-     for(int i=1;i<=elementsCount;i++) {
-     	flag = false;
-     	element = driver.findElement(By.cssSelector(".product-option__variants.product-option__variants-size > ul > li:nth-child("+i+") > input"));
+        elementsCount = allElements.size();
+        System.out.println("All sizes list :: "+ elementsCount);
+        
+        for(int i=1;i<=elementsCount;i++) {
+        	flag = false;
+        	element = driver.findElement(By.cssSelector(".product-option__variants.product-option__variants-size > ul > li:nth-child("+i+") > input"));
 			allClasses = element.getAttribute("class");
 			// check size available or not
 			for (String c : allClasses.split(" ")) {
@@ -65,15 +78,15 @@ public class AddToCartComponents extends AddToCartLocators{
 			else {
 				// if flag is not true meanse size is available
 				driver.findElement(By.cssSelector(".product-option__variants.product-option__variants-size > ul > li:nth-child("+i+")")).click();
+				System.out.println(i+"th size is selected");
 				// check the button txt and click
 				element = driver.findElement(ADD_TO_CART_BUTTON);
 				text1 = element.getText();
 				System.out.println("Button text when Available size selected :: "+text1);
 				if(!(text1.equalsIgnoreCase("ADD TO CART"))) {
 					throw new Exception("Text change for 'ADD TO CART' ");
-				}
-								
-					
+				}				
+				
 				// click on Add To Cart Button
 				if(!driver.findElement(ADD_TO_CART_BUTTON).isEnabled())
 					throw new Exception("ADD TO CART button is not present");
@@ -88,6 +101,6 @@ public class AddToCartComponents extends AddToCartLocators{
 				Reporter.log("ADD TO CART button is Displayed :: Clickable");
 				break;
 			}
-     }
- }
+        }
+	}
 }

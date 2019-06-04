@@ -19,8 +19,6 @@ public class AccountLoginComponents extends AccountLoginLocators{
 	String invalidpassword = "123";
 	WebElement element;
 	Actions actions = new Actions(driver);
-	
-	// kd,fkjb dk
 
 	public String createAccount() throws Exception
 	{
