@@ -1,112 +1,112 @@
 package TestScenario;
 
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.tommyjohn.automation.Pages.CollectionPage;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
-	public class ValidateCollectionPage {
-//	@BeforeTest(alwaysRun = true)
-//	void setup() {
-//		try {
-//			CustomUtilities.launchtj();
-//
-//		} catch (Exception e1) {
-//			e1.printStackTrace();
-//		}
-//	}
+public class ValidateCollectionPage {
+
+	WebDriver driver;
+
+
+	@BeforeMethod(alwaysRun = true)
+	public void setup() {
+		try {
+			driver = new CustomUtilities().launchtj();
+
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+
 
 	@Test
 	public void TC_ValidateProductImageOnCollectionPage() throws Exception
 	{
-		new CollectionPage().validateProductImage();
+		new CollectionPage(driver).validateProductImage();
 	}
 
 	@Test
 	public void TC_ValidateProductHeadingTextOnCollectionPage() throws Exception
 	{
-		new CollectionPage().validateProductHeadingText();
+		new CollectionPage(driver).validateProductHeadingText();
 	}
 
 	@Test
 	public void TC_ValidateProductReviewStarsOnCollectionPage() throws Exception
 	{
-		new CollectionPage().validateProductReviewStars();
+		new CollectionPage(driver).validateProductReviewStars();
 	}
 
 	@Test
 	public void TC_ValidateProductImageOnSingleCollectionPage() throws Exception
 	{
-		new CollectionPage().validateProductImageOnSingleCollectionPage();
+		new CollectionPage(driver).validateProductImageOnSingleCollectionPage();
 	}
 
 	@Test
 	public void TC_ValidateProductHeadingTextOnSingleCollectionPage() throws Exception
 	{
-		new CollectionPage().validateProductHeadingTextOnSingleCollectionPage();
+		new CollectionPage(driver).validateProductHeadingTextOnSingleCollectionPage();
 	}
 	@Test
 	public void TC_ValidateProductReviewStarsOnSingleCollectionPage() throws Exception
 	{
-		new CollectionPage().validateProductReviewStarsOnSingleCollectionPage();
+		new CollectionPage(driver).validateProductReviewStarsOnSingleCollectionPage();
 	}
 
 	//--------------------------validate mega collections----------------------------
 
 	@Test
 	public void TC_ValidateMegaCollectionAllPantiesInWomenCategory() throws Exception {
-		new CollectionPage().validateWomensAllPantiesOnCollectionPage();
+		new CollectionPage(driver).validateWomensAllPantiesOnCollectionPage();
 	}
 
 	@Test
 	public void TC_ValidateMegaCollectionAllUnderwearInMenCategory() throws Exception {
-		new CollectionPage().validateMensAllUnderwearOnCollectionPage();
+		new CollectionPage(driver).validateMensAllUnderwearOnCollectionPage();
 	}
 
 	@Test
 	public void TC_ValidateMegaCollectionAllUnderShirtsInMenCategory() throws Exception {
-		new CollectionPage().validateMensAllUnderShirtsOnCollectionPage();
+		new CollectionPage(driver).validateMensAllUnderShirtsOnCollectionPage();
 	}
 
 	@Test
 	public void TC_ValidateMegaCollectionAllCollectionsInMenCategory() throws Exception {
-		new CollectionPage().validateMensAllCollectionsOnCollectionPage();
+		new CollectionPage(driver).validateMensAllCollectionsOnCollectionPage();
 	}
 
-		
+
 	//---------------------------validate single collections---------------
 	@Test
 	public void TC_ValidateSingleCollectionSecondSkinInMenCategory() throws Exception {
-		new CollectionPage().validateSecondSkinOnSingleCollectionPage();
+		new CollectionPage(driver).validateSecondSkinOnSingleCollectionPage();
 	}
 
 	@Test
 	public void TC_ValidateSingleCollectionCoolCottonInMenCategory() throws Exception {
-		new CollectionPage().validateCoolCottonOnSingleCollectionPage();
+		new CollectionPage(driver).validateCoolCottonOnSingleCollectionPage();
 	}
-	
+
 	@Test
 	public void TC_ValidateSingleCollectionPacksInWomenCategory() throws Exception {
-		new CollectionPage().validatePacksOnSingleCollectionPage();
+		new CollectionPage(driver).validatePacksOnSingleCollectionPage();
 	}
 
 	@Test
 	public void TC_ValidateSingleCottonBasicsInShopByCollectionCategory() throws Exception {
-		new CollectionPage().validateCottonBasicsOnSingleCollectionPage();
+		new CollectionPage(driver).validateCottonBasicsOnSingleCollectionPage();
 	}
 
-
-//	@AfterSuite(alwaysRun = true)
-//	void tearDown() {
-//		try {
-//			CustomUtilities.teardown();
-//
-//		} catch (Exception e1) {
-//			e1.printStackTrace();
-//		}
-//	}
-
+	@AfterMethod(alwaysRun = true)
+	void teardown () {
+		
+		driver.close();
+		driver.quit();
+	}
 }

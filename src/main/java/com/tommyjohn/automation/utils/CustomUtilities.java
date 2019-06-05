@@ -8,13 +8,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Reporter;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
 
 
 public class CustomUtilities {
 
-	public static WebDriver driver;
+	public WebDriver driver;
 	public static String baseUrl = "https://tommyjohn.com/";
 	public static BufferedReader reader;
 	public static Properties properties;
@@ -25,14 +23,14 @@ public class CustomUtilities {
 	 * 
 	 * @throws Exception
 	 */
-//	@BeforeSuite
-	public static WebDriver launchtj() throws Exception 
+	//	@BeforeSuite
+	public WebDriver launchtj() throws Exception 
 	{
 		// load properties file
 		loadPropertiesFile();
 
-	//	System.setProperty("webdriver.chrome.driver" ,"src\\main\\resources\\chromedriver.exe");
-	//	System.setProperty("webdriver.chrome.driver" ,"/tmp/chromedriver.exe");
+		//	System.setProperty("webdriver.chrome.driver" ,"src\\main\\resources\\chromedriver.exe");
+		//	System.setProperty("webdriver.chrome.driver" ,"/tmp/chromedriver.exe");
 		System.setProperty("webdriver.chrome.driver" ,properties.getProperty("chromeDriverPath"));
 		ChromeOptions chromeOptions = new ChromeOptions();
 		//chromeOptions.addArguments("--headless");
@@ -43,25 +41,25 @@ public class CustomUtilities {
 		driver.manage().window().maximize();
 		return driver;
 	}
-//	@AfterSuite
-	public static void teardown()
+	//	@AfterSuite
+	public void teardown()
 	{
-		 if (driver != null)
-			 driver.quit();
+		if (driver != null)
+			driver.quit();
 	}
-	
-	//method to load properties file
-		public static void loadPropertiesFile()throws Exception 
-		{
-			reader = new BufferedReader(new FileReader(propertiesFilePath));
-			properties = new Properties();
-			properties.load(reader);
-			reader.close();
-			if(properties.isEmpty()) {
-				Reporter.log("Properties file not loaded or empty..!");
-				System.exit(0);
-			}
 
+	//method to load properties file
+	public static void loadPropertiesFile()throws Exception 
+	{
+		reader = new BufferedReader(new FileReader(propertiesFilePath));
+		properties = new Properties();
+		properties.load(reader);
+		reader.close();
+		if(properties.isEmpty()) {
+			Reporter.log("Properties file not loaded or empty..!");
+			System.exit(0);
 		}
+
+	}
 
 }

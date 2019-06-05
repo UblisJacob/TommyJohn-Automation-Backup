@@ -1,8 +1,15 @@
 package com.tommyjohn.automation.Pages;
 
+import org.openqa.selenium.WebDriver;
+
 import com.tommyjohn.automation.Components.CollectionPageComponent;
 
 public class CollectionPage extends CollectionPageComponent{
+
+	public CollectionPage(WebDriver driver) {
+		super(driver);
+		// TODO Auto-generated constructor stub
+	}
 
 	public void validateProductImage() throws Exception
 	{

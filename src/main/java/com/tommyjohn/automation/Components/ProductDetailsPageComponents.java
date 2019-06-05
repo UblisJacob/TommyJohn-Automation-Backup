@@ -14,7 +14,7 @@ import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
 public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
-	public static WebDriver driver = CustomUtilities.driver;
+	public WebDriver driver;
 	public WebElement element;
 	public Actions action;
 	public JavascriptExecutor jse;
@@ -22,15 +22,18 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 	List<WebElement> allElements;
 	int elementsCount;
 
+	public ProductDetailsPageComponents(WebDriver driver) {
+		this.driver = driver;
+	}
 	
 	public void validateProductDetailsPage() throws Exception {
 		String text = null;
 		
 		// call method to navigate to collection page
-		HomePageComponents.navigateToAllUnderwearInMenCategory();
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 		
 		// call method to nevigate product details page
-		text = CollectionPageComponent.navigateToProductDetailsPage();
+		text = new CollectionPageComponent(driver).navigateToProductDetailsPage();
 		
 		// call method to check correct PDP opend or not
 		checkCorrectProductDetailsPageOpenedOrNot(text);
@@ -40,7 +43,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 	}
 	
-	public static void checkCorrectProductDetailsPageOpenedOrNot(String text1) throws Exception {
+	public void checkCorrectProductDetailsPageOpenedOrNot(String text1) throws Exception {
 		String text2 = null;
 		
 		if(!driver.findElement(PRODUCT_TITLE).isEnabled())
@@ -54,6 +57,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 	}
 	
+
+
 	public void validatePage() throws Exception {
 		String text1 = null;
 		String allClasses = null;

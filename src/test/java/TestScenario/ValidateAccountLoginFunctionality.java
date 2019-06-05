@@ -1,8 +1,8 @@
 package TestScenario;
 
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -10,36 +10,39 @@ import com.tommyjohn.automation.Pages.AccountLoginPage;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
 public class ValidateAccountLoginFunctionality {
-	public WebDriver driver;
+	 WebDriver driver;
 	String accountCreatedEmail;
 //	String accountCreatedEmail = "testaccount1558509824283@gmail.com";
 
-//	@BeforeTest(alwaysRun = true)
-//	void setup() {
-//		try {
-//			CustomUtilities.launchtj();
-//
-//		} catch (Exception e1) {
-//			e1.printStackTrace();
-//		}
-//	}
+		
+		
+	@BeforeMethod(alwaysRun = true)
+	public void setup() {
+		try {
+			driver = new CustomUtilities().launchtj();
+
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+
 
 	@Test
 	public void TC_FieldValidationsOnLoginPage() throws Exception
 	{
-		new AccountLoginPage().verifyAllFieldsOnLoginPage();
+		new AccountLoginPage(driver).verifyAllFieldsOnLoginPage();
 	}
 
 	@Test
 	public void TC_FieldValidationsOnCreateAccountPage() throws Exception
 	{
-		new AccountLoginPage().verifyfieldsandtextsoncreateaccountpage();
+		new AccountLoginPage(driver).verifyfieldsandtextsoncreateaccountpage();
 	}
 	
 	@Test
 	public void TC_FieldValidationsOnRecoverPasswordPage() throws Exception
 	{
-		new AccountLoginPage().verifyFieldsAndTextsOnRecoverPasswordPage();
+		new AccountLoginPage(driver).verifyFieldsAndTextsOnRecoverPasswordPage();
 	}
 
 
@@ -47,47 +50,43 @@ public class ValidateAccountLoginFunctionality {
 //	@Test(priority = 3)
 	public void TC_VerifyAccountLogin() throws Exception
 	{
-		new AccountLoginPage().loginCustomerAccount(accountCreatedEmail);
+		new AccountLoginPage(driver).loginCustomerAccount(accountCreatedEmail);
 	}
 
 	@Test
 	public void TC_VerifyCreateAccount() throws Exception
 	{
-		accountCreatedEmail = new AccountLoginPage().createCustomerAccount();
+		accountCreatedEmail = new AccountLoginPage(driver).createCustomerAccount();
 	}
 
 	@Test(dependsOnMethods = { "TC_VerifyCreateAccount" })
 //	@Test(priority = 2)
 	public void TC_VerifyRecoverPassword() throws Exception
 	{
-		new AccountLoginPage().recoverPasswordFunctionality(accountCreatedEmail);
+		new AccountLoginPage(driver).recoverPasswordFunctionality(accountCreatedEmail);
 	}
 		
 	@Test
 	public void TC_VerifyErrorScenariosForLogin() throws Exception
 	{
-		new AccountLoginPage().verifyErrorsOnLoginPage();
+		new AccountLoginPage(driver).verifyErrorsOnLoginPage();
 	}
 	@Test
 	public void TC_VerifyErrorScenariosForCreateAccount() throws Exception
 	{
-		new AccountLoginPage().verifyerrorsoncreateaccountpage();	
+		new AccountLoginPage(driver).verifyerrorsoncreateaccountpage();	
 	}
 	@Test
 	public void TC_VerifyErrorScenariosForRecoverPassword() throws Exception
 	{
-		new AccountLoginPage().verifyErrorsOnRecoverPasswordPage();
+		new AccountLoginPage(driver).verifyErrorsOnRecoverPasswordPage();
 	}
 
-//	@AfterSuite(alwaysRun = true)
-//	void tearDown() {
-//		try {
-//			CustomUtilities.teardown();
-//
-//		} catch (Exception e1) {
-//			e1.printStackTrace();
-//		}
-//	}
-
+	@AfterMethod(alwaysRun = true)
+	void teardown () {
+		
+		driver.close();
+		driver.quit();
+	}
 
 }

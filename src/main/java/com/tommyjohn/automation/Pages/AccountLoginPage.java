@@ -1,9 +1,17 @@
 package com.tommyjohn.automation.Pages;
 
+import org.openqa.selenium.WebDriver;
+
 import com.tommyjohn.automation.Components.AccountLoginComponents;
 
 public class AccountLoginPage extends AccountLoginComponents {
 	
+	public AccountLoginPage(WebDriver driver) {
+		super(driver);
+		this.driver=driver;
+		// TODO Auto-generated constructor stub
+	}
+
 	public String createCustomerAccount() throws Exception
 	{
 		return createAccount();

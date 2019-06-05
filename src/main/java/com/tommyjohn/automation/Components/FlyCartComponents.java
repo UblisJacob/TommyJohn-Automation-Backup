@@ -15,8 +15,8 @@ import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
 public class FlyCartComponents extends FlyCartPageLocator{
-	public static WebDriver driver = CustomUtilities.driver;
-	public Properties properties = CustomUtilities.properties;
+	public WebDriver driver;
+	Properties properties = CustomUtilities.properties;
 	WebElement element;
 	List<WebElement> allElements;
 
@@ -26,7 +26,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		String text = null;
 		
 		
-		new HomePageComponents().validateCartIcon();
+		new HomePageComponents(driver).validateCartIcon();
 		driver.findElement(HomePageLocators.CART_ICON).click();
 		
 		// check for continue shopping button text and is displayed, enabled or not		
@@ -92,7 +92,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		String text = null;
 		
 		// first add any product to cart
-		new AddToCartComponents().addToCart();
+		new AddToCartComponents(driver).addToCart();
 				
 //		new HomePageComponents().validateCartIcon();
 		driver.findElement(HomePageLocators.CART_ICON).click();
@@ -181,6 +181,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		
 	}
 	
+
 	public void validateNonEmptyFlyCart() throws Exception {
 		String text1 = null;
 		String text2 = null;
@@ -188,7 +189,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		SoftAssert softAssert = new SoftAssert();
 		
 		// first add any product to cart
-		new AddToCartComponents().addToCart();
+		new AddToCartComponents(driver).addToCart();
 			
 		driver.findElement(HomePageLocators.CART_ICON).click();
 		Thread.sleep(3000);
@@ -268,5 +269,9 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		Reporter.log("Item is able to remove from cart");
 	
 		softAssert.assertAll();
+	}
+
+	public FlyCartComponents(WebDriver driver) {
+		this.driver = driver;
 	}
 }

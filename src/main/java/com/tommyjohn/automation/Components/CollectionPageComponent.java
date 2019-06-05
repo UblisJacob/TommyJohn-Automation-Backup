@@ -2,22 +2,24 @@ package com.tommyjohn.automation.Components;
 
 import java.util.List;
 
-import org.omg.CORBA.portable.ValueOutputStream;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Reporter;
-import org.testng.asserts.SoftAssert;
+
 
 import com.tommyjohn.automation.PageLocators.CollectionPageLocator;
-import com.tommyjohn.automation.utils.CustomUtilities;
 
 public class CollectionPageComponent extends CollectionPageLocator {
-	public static WebDriver driver = CustomUtilities.driver;
+	
+	public CollectionPageComponent(WebDriver driver) {
+		this.driver = driver;
+	}
+	public WebDriver driver;
 	WebElement element;
 
-	public static String navigateToProductDetailsPage() throws Exception {
+	public String navigateToProductDetailsPage() throws Exception {
 		String text = null;
 		
 		// get text and click on the first product
@@ -34,7 +36,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		String text = null;
 		
 		// nevigate to Collection page
-		HomePageComponents.navigateToAllUnderwearInMenCategory();
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 		
 		// get product title and click on image if present
 		text = driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT).getText();
@@ -44,10 +46,10 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		Thread.sleep(3000);
 		
 		// check correct Product details page opened or not
-		new ProductDetailsPageComponents().checkCorrectProductDetailsPageOpenedOrNot(text);	
+		new ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);	
 
 		// validate product details page by calling the method
-		new ProductDetailsPageComponents().validatePage();
+		new ProductDetailsPageComponents(driver).validatePage();
 		
 		Reporter.log("Product image on collection page is Displayed :: Clickable and validated successfully");
 	}
@@ -57,7 +59,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		String text = null;
 		
 		// nevigate to Collection page
-		HomePageComponents.navigateToAllUnderwearInMenCategory();
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 		
 		// get product title and click on product heading text if present
 		if(!driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT).isDisplayed())
@@ -67,10 +69,10 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		Thread.sleep(3000);
 		
 		// check correct Product details page opened or not
-		new ProductDetailsPageComponents().checkCorrectProductDetailsPageOpenedOrNot(text);	
+		new ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);	
 
 		// validate product details page by calling the method
-		new ProductDetailsPageComponents().validatePage();
+		new ProductDetailsPageComponents(driver).validatePage();
 		
 		Reporter.log("Product head line text on collection page is Displayed :: Clickable and validated successfully");
 		
@@ -81,7 +83,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		String text = null;
 		
 		// nevigate to Collection page
-		HomePageComponents.navigateToAllUnderwearInMenCategory();
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 		
 		// get product title and click on product heading text if present
 		try {
@@ -91,10 +93,10 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			driver.findElement(THIRD_PRODUCT_REVIEW_STARS).click();
 			Thread.sleep(3000);
 		// check correct Product details page opened or not
-		new ProductDetailsPageComponents().checkCorrectProductDetailsPageOpenedOrNot(text);	
+		new ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);	
 
 		// validate product details page by calling the method
-		new ProductDetailsPageComponents().validatePage();
+		new ProductDetailsPageComponents(driver).validatePage();
 
 		Reporter.log("Product review stars on collection page is Displayed :: Clickable and validated successfully");
 		
@@ -110,7 +112,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		String text = null;
 		
 		// nevigate to cool cotton Collection page
-		HomePageComponents.navigateToAllUnderwearInMenCategory();
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 		
 		// get product title and click on image if present
 		text = driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT).getText();
@@ -120,10 +122,10 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		Thread.sleep(3000);
 		
 		// check correct Product details page opened or not
-		new ProductDetailsPageComponents().checkCorrectProductDetailsPageOpenedOrNot(text);	
+		new ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);	
 
 		// validate product details page by calling the method
-		new ProductDetailsPageComponents().validatePage();
+		new ProductDetailsPageComponents(driver).validatePage();
 		
 		Reporter.log("Product image on single collection page is Displayed :: Clickable and validated successfully");
 
@@ -134,7 +136,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		String text = null;
 		
 		// nevigate to cool cotton Collection page
-		HomePageComponents.navigateToAllUnderwearInMenCategory();
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 		
 		// get product title and click on image if present
 		text = driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT).getText();
@@ -144,10 +146,10 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		Thread.sleep(3000);
 		
 		// check correct Product details page opened or not
-		new ProductDetailsPageComponents().checkCorrectProductDetailsPageOpenedOrNot(text);	
+		new ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);	
 
 		// validate product details page by calling the method
-		new ProductDetailsPageComponents().validatePage();
+		new ProductDetailsPageComponents(driver).validatePage();
 		
 		Reporter.log("Product image on single collection page is Displayed :: Clickable and validated successfully");
 
@@ -159,7 +161,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		String text = null;
 		
 		// nevigate to cool cotton Collection page
-		HomePageComponents.navigateToAllUnderwearInMenCategory();
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 		
 		// get product title and click on image if present
 		text = driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT).getText();
@@ -169,10 +171,10 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		Thread.sleep(3000);
 		
 		// check correct Product details page opened or not
-		new ProductDetailsPageComponents().checkCorrectProductDetailsPageOpenedOrNot(text);	
+		new ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);	
 
 		// validate product details page by calling the method
-		new ProductDetailsPageComponents().validatePage();
+		new ProductDetailsPageComponents(driver).validatePage();
 		
 		Reporter.log("Product image on single collection page is Displayed :: Clickable and validated successfully");
 
@@ -182,7 +184,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	
 	public void validateSingleCollectionSecondSkinInMenCategory() throws Exception {
 		// call the method to nevigate to second skin in mens category
-		HomePageComponents.navigateToSecondSkinInMenCategory();
+		new HomePageComponents(driver).navigateToSecondSkinInMenCategory();
 		
 		// check the heading of selected category collection page
 		if(!driver.findElement(MAIN_HEADING_OF_SELECTED_CATEGORY).isDisplayed())
@@ -204,7 +206,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 	public void validateSingleCollectionCoolCottonInMenCategory() throws Exception {
 		// call the method to nevigate to cool cotton in mens category
-		HomePageComponents.navigateToCoolCottonInMensCollection();
+		new HomePageComponents(driver).navigateToCoolCottonInMensCollection();
 		
 		// check the heading of selected category collection page
 		if(!driver.findElement(MAIN_HEADING_OF_SELECTED_CATEGORY).isDisplayed())
@@ -226,7 +228,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	
 	public void validateSingleCollectionPacksInWomenCategory() throws Exception {
 		// call the method to nevigate to packs in womens category
-		HomePageComponents.navigateToAllWomensPacksInPacksCategory();
+		new HomePageComponents(driver).navigateToAllWomensPacksInPacksCategory();
 		
 		// check the heading of selected category collection page
 		if(!driver.findElement(MAIN_HEADING_OF_SELECTED_CATEGORY).isDisplayed())
@@ -248,7 +250,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	
 	public void validateSingleCollectionCottonBasicsInShopByCollectionsCategory() throws Exception {
 		// call the method to nevigate to cotton basics in shop by collection category
-		HomePageComponents.navigateToCottonBasicsInShopByCollectionsCategory();
+		new HomePageComponents(driver).navigateToCottonBasicsInShopByCollectionsCategory();
 		
 		// check the heading of selected category collection page
 		if(!driver.findElement(MAIN_HEADING_OF_SELECTED_CATEGORY).isDisplayed())
@@ -275,7 +277,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	public void validateMegaCollectionAllClothingInWomensCategory() throws Exception {
 		
 		// call the method to nevigate to all clothing in womens category
-		HomePageComponents.navigateToAllClothingInWomensCategory();
+		new HomePageComponents(driver).navigateToAllClothingInWomensCategory();
 		
 		// check the heading of selected category collection page
 		if(!driver.findElement(MAIN_HEADING_OF_SELECTED_CATEGORY).isDisplayed())
@@ -297,7 +299,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	public void validateMegaCollectionAllPantiesInWomensCategory() throws Exception {
 		
 		// call the method to nevigate to all clothing in womens category
-		HomePageComponents.navigateToAllPantiesInWomenCategory();
+		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
 		
 		// check the heading of selected category collection page
 		if(!driver.findElement(MAIN_HEADING_OF_SELECTED_CATEGORY).isDisplayed())
@@ -320,7 +322,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	public void validateMegaCollectionAllUnderwearInMensCategory() throws Exception {
 		
 		// call the method to nevigate to all clothing in womens category
-		HomePageComponents.navigateToAllUnderwearInMenCategory();
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 		
 		// check the heading of selected category collection page
 		if(!driver.findElement(MAIN_HEADING_OF_SELECTED_CATEGORY).isDisplayed())
@@ -342,7 +344,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	public void validateMegaCollectionAllUndershirtsInMensCategory() throws Exception {
 		
 		// call the method to nevigate to all undershirts in mens category
-		HomePageComponents.navigateToAllUnderShirtsInMensCategory();
+		new HomePageComponents(driver).navigateToAllUnderShirtsInMensCategory();
 		
 		// check the heading of selected category collection page
 		if(!driver.findElement(MAIN_HEADING_OF_SELECTED_CATEGORY).isDisplayed())
@@ -363,7 +365,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	public void validateMegaCollectionAllCollectionsInMensCategory() throws Exception {
 		
 		// call the method to nevigate to all undershirts in mens category
-		HomePageComponents.navigateToAllMensCollectionsInMenCategory();
+		new HomePageComponents(driver).navigateToAllMensCollectionsInMenCategory();
 		
 		// check the heading of selected category collection page
 		if(!driver.findElement(MAIN_HEADING_OF_SELECTED_CATEGORY).isDisplayed())
@@ -456,7 +458,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
                 System.out.println("Out ddd :: "+allProductsOnPage1);
                 // check for hoverable class (if image is hoverable then it count two images for one image)
                 element = driver.findElement(FIRST_PRODUCT_IMAGE);
-    			String classes = element.getAttribute("class");
+ //   			String classes = element.getAttribute("class");
 //    			System.out.println("Classes :: "+classes);
 //    			for (String c : classes.split(" ")) {
 //    				System.out.println("C ::::: "+c);

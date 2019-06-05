@@ -1,9 +1,8 @@
 package TestScenario;
 
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.tommyjohn.automation.Pages.FlyCartPage;
@@ -11,10 +10,13 @@ import com.tommyjohn.automation.utils.CustomUtilities;
 
 public class ValidateFlyCartPage {
 	
+	 WebDriver driver;
+	
+	
 	@BeforeMethod(alwaysRun = true)
-	void setup() {
+	public void setup() {
 		try {
-			CustomUtilities.launchtj();
+			driver = new CustomUtilities().launchtj();
 
 		} catch (Exception e1) {
 			e1.printStackTrace();
@@ -23,27 +25,28 @@ public class ValidateFlyCartPage {
 
 	
 	@Test
-	public void TC_VerifyAllFieldsAndTextOnEmptyFlyCart() throws Exception {
-		new FlyCartPage().verifyAllFields();
+	public void TC_ValidateEmptyFlyCart() throws Exception {
+		
+		new FlyCartPage(driver).verifyAllFields();
 	}
 	@Test
-	public void TC_VerifyAllFieldsAndTextOnNonEmptyFlyCart() throws Exception {
-		new FlyCartPage().verifyAllFieldsOnNonEmptyFlyCart();
+	public void TC_ValidateTextAndLinksonFlyCart() throws Exception {
+		
+		new FlyCartPage(driver).verifyAllFieldsOnNonEmptyFlyCart();
 	}
 
 	@Test
-	public void TC_ValidateAllFieldsOnNonEmptyFlyCart() throws Exception {
-		new FlyCartPage().validateAllFieldsOnNonEmptyFlyCart();
+	public void TC_ValidateFlyCartwithProductsInIt() throws Exception {
+		
+		new FlyCartPage(driver).validateAllFieldsOnNonEmptyFlyCart();
 	}
 
 	@AfterMethod(alwaysRun = true)
 	void tearDown() {
-		try {
-			CustomUtilities.teardown();
-
-		} catch (Exception e1) {
-			e1.printStackTrace();
+		
+		this.driver.close();
+		this.driver.quit();
+		
 		}
 	}
 
-}

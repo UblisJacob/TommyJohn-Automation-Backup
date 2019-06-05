@@ -11,17 +11,24 @@ import com.tommyjohn.automation.utils.CustomUtilities;
 
 public class AccountLoginComponents extends AccountLoginLocators{
 
-	public WebDriver driver = CustomUtilities.driver;
+	public WebDriver driver;
 	String testemail;
 	String password;
 	String currentUrl;
 	String invalidemail = "abc@xyz.ui";
 	String invalidpassword = "123";
 	WebElement element;
-	Actions actions = new Actions(driver);
+	public Actions actions;
+	
+	
+
+	public AccountLoginComponents(WebDriver driver) {
+		this.driver = driver;
+	}
 
 	public String createAccount() throws Exception
 	{
+		actions = new Actions(driver);
 		testemail = "testaccount" + System.currentTimeMillis() +"@gmail.com";
 		password = CustomUtilities.properties.getProperty("password");
 		driver.findElement(HomePageLocators.ACCOUNT_ICON).click();
@@ -334,6 +341,7 @@ public class AccountLoginComponents extends AccountLoginLocators{
 	
 	public void verifyAccountLoginFuctionality(String createdAccountEmail) throws Exception {
 		
+		actions = new Actions(driver);
 		// click on accout icon from home page
 		driver.findElement(HomePageLocators.ACCOUNT_ICON).click();
 		Thread.sleep(3000);

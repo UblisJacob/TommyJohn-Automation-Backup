@@ -14,7 +14,12 @@ import com.tommyjohn.automation.PageLocators.AddToCartLocators;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
 public class AddToCartComponents extends AddToCartLocators{
-	public static WebDriver driver = CustomUtilities.driver;
+	
+	public AddToCartComponents(WebDriver driver) {
+		this.driver = driver;
+	}
+
+	public WebDriver driver;
 	public WebElement element;
 	public Actions action;
 	public JavascriptExecutor jse;
@@ -27,13 +32,13 @@ public class AddToCartComponents extends AddToCartLocators{
 		String text = null;
 		
 		// navigate to any product collection page
-		HomePageComponents.navigateToAllPantiesInWomenCategory();
+		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
 		
 		// call method to nevigate product details page
-		text = CollectionPageComponent.navigateToProductDetailsPage();
+		text = new CollectionPageComponent(driver).navigateToProductDetailsPage();
 		
 		// call method to check correct PDP opend or not
-		ProductDetailsPageComponents.checkCorrectProductDetailsPageOpenedOrNot(text);
+		new ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);
 		
 		// select size and add product to cart
 		selectSize();
