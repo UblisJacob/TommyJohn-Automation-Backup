@@ -114,6 +114,9 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			Thread.sleep(3000);
 			Reporter.log("Review Stars Are Displayed :: Clickable :: Clicked");
 			// check for Rating and Reviews are present or not
+			System.out.println("rating: " + driver.findElement(RATING_NUMBER).getText());
+			if(!driver.findElement(RATING_NUMBER).getText().equals("(0)"))
+			{
 			if(driver.findElement(RATING_AND_REVIEWS_BOX).isDisplayed()) {
 				if(!driver.findElement(FIRST_BOX_IN_RATING_AND_REVIEWS).isDisplayed())
 					throw new Exception("In first box Review Stars not present in Rating and Reviews section");
@@ -121,6 +124,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			else {
 				text1 = driver.findElement(STAR_RATINGS).getText();
 				System.out.println("Ratings :: "+text1);
+				
 				if(text1.equals(properties.getProperty("reviewsRating"))) {
 					if(!driver.findElement(BE_THE_FIRST_TO_WRITE_REVIEW).isEnabled())
 						throw new Exception("'BE THE FIRST TO WRITE A REVIEW' button is not displayed");
@@ -129,10 +133,10 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 				}
 			}
 			Reporter.log("Rating and Reviews Displayed");
-			
+			}
 		}else
 			throw new Exception("Rating Stars are not clickable");
-
+		
 		
 		// check for write a review button
 		if(!driver.findElement(WRITE_REVIEW_BUTTON).isEnabled())

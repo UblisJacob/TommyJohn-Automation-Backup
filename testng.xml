@@ -2,6 +2,20 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Regression Test Suite">
 
+	<test thread-count="1" name="SingleCollectionTests" verbose="1"
+		parallel="tests">
+		<classes>
+			<class name="TestScenario.ValidateSingleCollectionPages" />
+		</classes>
+	</test>
+	
+	<test thread-count="1" name="MegaCollectionTests" verbose="1"
+		parallel="tests">
+		<classes>
+			<class name="TestScenario.ValidateMegaCollectionPages" />
+		</classes>
+	</test>
+
 	<test thread-count="1" name="HomePageTests" verbose="1"
 		parallel="tests">
 		<classes>
@@ -20,13 +34,6 @@
 		verbose="1" parallel="tests">
 		<classes>
 			<class name="TestScenario.ValidateAccountLoginFunctionality" />
-		</classes>
-	</test>
-
-	<test thread-count="1" name="CollectionPageTests" verbose="1"
-		parallel="tests">
-		<classes>
-			<class name="TestScenario.ValidateCollectionPage" />
 		</classes>
 	</test>
 

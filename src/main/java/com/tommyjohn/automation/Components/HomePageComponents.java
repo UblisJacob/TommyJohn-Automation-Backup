@@ -715,4 +715,13 @@ public class HomePageComponents extends HomePageLocators {
 		
 	}
 
+	// navigate to cotton basics in shop by collections catagory
+	public void navigateToAllWomensCollectionInWomensCategory() throws Exception {
+		action = new Actions(driver);
+		element = driver.findElement(WOMEN_CATEGORY);
+		action.moveToElement(element).perform();
+		driver.findElement(ALL_WOMENS_COLLECTIONS_IN_WOMEN_CATEGORY).click();
+		Thread.sleep(3000);	
+		
+	}
 }

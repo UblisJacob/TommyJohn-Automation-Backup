@@ -10,6 +10,7 @@ public class ProductDetailsPageLocators {
 	public static By PRODUCT_PRICE = By.cssSelector("div.product-info__inner-top > span > span:nth-child(2)");
 //	public static By RATING_STARS = By.cssSelector("div.yotpo-bottomline.star-clickable");
 	public static By RATING_STARS = By.cssSelector("div.yotpo-bottomline > span");
+	public static By RATING_NUMBER = By.cssSelector("div.yotpo-bottomline > a");
 	public static By RATING_AND_REVIEWS_BOX = By.cssSelector(".yotpo-regular-box.yotpo-bottomline.yotpo-bottomline-3-boxes");
 	public static By FIRST_BOX_IN_RATING_AND_REVIEWS = By.cssSelector(".yotpo-bottomline-box-1.yotpo-stars-and-sum-reviews");
 	public static By STAR_RATINGS = By.cssSelector(".yotpo-stars-and-sum-reviews > span > span.sr-only");
