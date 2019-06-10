@@ -24,6 +24,7 @@ public class ProductDetailsPageLocators {
 	public static By SECOND_COLOR = By.cssSelector(".product-option__variants.product-option__variants-color > ul > li:nth-child(2) > label");
 	public static By THIRD_COLOR = By.cssSelector(".product-option__variants.product-option__variants-color > ul > li:nth-child(3) > label");
 	public static By COLOR_TEXT = By.cssSelector(".product-info__header > span:nth-child(1)");
+	public static By SIZE_TEXT = By.cssSelector(".product-info__header > span:nth-child(2)");
 	public static By ALL_SIZE_LIST = By.cssSelector(".product-option__variants.product-option__variants-size > ul > li");
 	public static By ALL_COLOR_LIST = By.cssSelector(".product-option__variants.product-option__variants-color > ul > li");
 	public static By PRODUCT_DETAILS_BUTTON = By.cssSelector(".product-details__controls--inner > button:nth-child(1)");
@@ -38,6 +39,7 @@ public class ProductDetailsPageLocators {
 	public static By PAIR_GUARANTEE_LINK = By.cssSelector(".product-info__inner-bottom > div:nth-child(1) > button");
 	public static By SHIPING_AND_RETURNS_LINK = By.cssSelector(".product-info__inner-bottom > div:nth-child(2) > button");
 	public static By CHECKOUT_BUTTON = By.cssSelector(".inline-cart__action-btns > a:nth-child(3)");
+	public static By COLOR_AND_SIZE = By.cssSelector("div.product-info__variant-select > div:nth-child(1) > div.product-info__header.hide > span");
 	
 	
 	

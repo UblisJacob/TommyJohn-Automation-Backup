@@ -573,6 +573,7 @@ public class HomePageComponents extends HomePageLocators {
 		action = new Actions(driver);
 		element = driver.findElement(MEN_CATEGORY);
 		action.moveToElement(element).perform();
+		
 		driver.findElement(ALL_UNDERWEAR_IN_MEN_CATEGORY).click();	
 		Thread.sleep(3000);
 	}

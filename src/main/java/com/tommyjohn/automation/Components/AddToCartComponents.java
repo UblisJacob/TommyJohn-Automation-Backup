@@ -81,8 +81,11 @@ public class AddToCartComponents extends AddToCartLocators{
 			if(flag == true)
 				continue;
 			else {
-				// if flag is not true meanse size is available
-				driver.findElement(By.cssSelector(".product-option__variants.product-option__variants-size > ul > li:nth-child("+i+")")).click();
+				Thread.sleep(2000);
+				// if flag is not true means size is available
+				WebElement ele = driver.findElement(By.cssSelector(".product-option__variants.product-option__variants-size > ul > li:nth-child("+i+") > label"));
+				jse = (JavascriptExecutor)driver;
+				jse.executeScript("arguments[0].click();", ele);
 				System.out.println(i+"th size is selected");
 				// check the button txt and click
 				element = driver.findElement(ADD_TO_CART_BUTTON);
@@ -90,7 +93,8 @@ public class AddToCartComponents extends AddToCartLocators{
 				System.out.println("Button text when Available size selected :: "+text1);
 				if(!(text1.equalsIgnoreCase("ADD TO CART"))) {
 					throw new Exception("Text change for 'ADD TO CART' ");
-				}				
+				}			
+				Thread.sleep(2000);
 				
 				// click on Add To Cart Button
 				if(!driver.findElement(ADD_TO_CART_BUTTON).isEnabled())

@@ -9,10 +9,10 @@ import com.tommyjohn.automation.Pages.FlyCartPage;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
 public class ValidateFlyCartPage {
-	
-	 WebDriver driver;
-	
-	
+
+	WebDriver driver;
+
+
 	@BeforeMethod(alwaysRun = true)
 	public void setup() {
 		try {
@@ -23,30 +23,30 @@ public class ValidateFlyCartPage {
 		}
 	}
 
-	
+
 	@Test
 	public void TC_ValidateEmptyFlyCart() throws Exception {
-		
+
 		new FlyCartPage(driver).verifyAllFields();
 	}
 	@Test
 	public void TC_ValidateTextAndLinksonFlyCart() throws Exception {
-		
+
 		new FlyCartPage(driver).verifyAllFieldsOnNonEmptyFlyCart();
 	}
 
 	@Test
 	public void TC_ValidateFlyCartwithProductsInIt() throws Exception {
-		
+
 		new FlyCartPage(driver).validateAllFieldsOnNonEmptyFlyCart();
 	}
 
 	@AfterMethod(alwaysRun = true)
 	void tearDown() {
-		
+
 		this.driver.close();
 		this.driver.quit();
-		
-		}
+
 	}
+}
 

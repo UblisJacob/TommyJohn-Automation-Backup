@@ -25,4 +25,13 @@ public class FlyCartPageLocator {
 	public static By MINUS_BUTTON = By.cssSelector(".qty-selector.line-item__qty > button:nth-child(1)");
 	public static By QUANTITY = By.cssSelector(".qty-selector.line-item__qty > input");
 	public static By CROSS_CLOSE_BUTTON = By.cssSelector("article > div.line-item__summary > button");
+	public static By COLOR_AND_SIZE_IN_CART = By.cssSelector("article:nth-child(1) > div.line-item__summary > div:nth-child(2)");
+	public static By PRICE_IN_QUANTITY_LINE = By.cssSelector("article:nth-child(1) > div.line-item__summary > div.line-item__total > div.line-item__subtotal > span");
+	public static By GIFT_WRAP = By.cssSelector("div.inline-cart__gift-wrap > a");
+	public static By GIFT_WRAP_POPUP = By.cssSelector(".modal-overlay.gift-option.active");
+	public static By GIFT_BOX_$5 = By.cssSelector("div.gift-option__input-group.gift-option__gift-box > div");
+	public static By GIFT_WRAP_APPLY = By.cssSelector("button.gift-option__btn.button.button--red");
+	public static By GIFT_WRAP_PRICE = By.cssSelector("div.inline-cart__gift-wrap > span:nth-child(2)");
+	public static By ESTIMATE_TOTAL_PRICE = By.cssSelector("div.inline-cart__summary > div > span");
+	
 }

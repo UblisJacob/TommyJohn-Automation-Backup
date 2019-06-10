@@ -6,6 +6,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 
 
@@ -21,7 +24,8 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 	public String navigateToProductDetailsPage() throws Exception {
 		String text = null;
-
+		WebDriverWait wait = new WebDriverWait(driver, 20);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(THIRD_PRODUCT_HEAD_LINE_TEXT));
 		// get text and click on the first product
 		if(!driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT).isDisplayed())
 			throw new Exception("Product head line text is not displayed");
@@ -35,7 +39,8 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	public void validateProductImageOnCollectionPage() throws Exception {
 		String text = null;
 
-
+		WebDriverWait wait = new WebDriverWait(driver, 20);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(THIRD_PRODUCT_HEAD_LINE_TEXT));
 		// get product title and click on image if present
 		text = driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT).getText();
 		if(!driver.findElement(THIRD_PRODUCT_IMAGE).isDisplayed())
@@ -58,7 +63,8 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	@SuppressWarnings("static-access")
 	public void validateProductHeadingTextOnCollectionPage() throws Exception {
 		String text = null;
-
+		WebDriverWait wait = new WebDriverWait(driver, 20);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(THIRD_PRODUCT_HEAD_LINE_TEXT));
 		// get product title and click on product heading text if present
 		if(!driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT).isDisplayed())
 			throw new Exception("Product heading text is not present");
@@ -241,15 +247,22 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		Reporter.log("Clear filters button works correctly");
 
 		// scroll to last filter view
-		//        element = driver.findElement(LAST_FILTER);
-		//        JavascriptExecutor js = (JavascriptExecutor) driver;
-		//        js.executeScript("arguments[0].scrollIntoView();", element);
-		//        
-		if(driver.findElement(LAST_FILTER).isDisplayed()) {
-			driver.findElement(LAST_FILTER).click();
+//		        element = driver.findElement(LAST_FILTER);
+//		        JavascriptExecutor js = (JavascriptExecutor) driver;
+//		        js.executeScript("arguments[0].scrollIntoView();", element);
+//		        
+		WebDriverWait wait = new WebDriverWait(driver, 20);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(LAST_FILTER));
+		if(driver.findElement(LAST_FILTER).isDisplayed()) 
+		{
+			//driver.findElement(LAST_FILTER).click();
+			Select selectElement = new Select(driver.findElement(LAST_FILTER));
+		    selectElement.selectByValue("price:desc");
 
 			// click on second option
-			driver.findElement(SORTBYPRICE_HIGH_TO_LOW_FILTER_OPTION).click();
+
+			//wait.until(ExpectedConditions.visibilityOfElementLocated(SORTBYPRICE_HIGH_TO_LOW_FILTER_OPTION));
+			//driver.findElement(SORTBYPRICE_HIGH_TO_LOW_FILTER_OPTION).click();
 			Thread.sleep(3000);
 			allProductsOnPage = driver.findElements(FIRST_PRODUCT_IMAGE);
 			System.out.println("All product on page :: "+allProductsOnPage.size());
@@ -307,6 +320,8 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		}
 		Reporter.log("All corosals are Displayed :: And by default not active");
 		// check selected option in style and respected corosal is active or not
+		WebDriverWait wait = new WebDriverWait(driver, 20);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.mega-collection-filters > div:nth-child("+i+") > a")));
 		driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child("+i+") > a")).click();
 
 		// get all the options list available in ith filter
@@ -342,8 +357,10 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			}
 		}	    
 		// clear all filters
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CLEAR_FILTER_BUTTON));
 		driver.findElement(CLEAR_FILTER_BUTTON).click();
-		Reporter.log("Corosals gets active when respected option selected");
+		Reporter.log("Corosals gets active when respective option selected");
 	}
 }
 

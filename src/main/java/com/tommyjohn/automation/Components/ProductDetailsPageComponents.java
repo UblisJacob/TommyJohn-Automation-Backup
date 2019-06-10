@@ -8,6 +8,8 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 
 import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
@@ -75,7 +77,10 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		// check for whats my size
 		if(!driver.findElement(WHATS_MY_SIZE).isEnabled())
 			throw new Exception("Whats my size button is not present");
-		driver.findElement(WHATS_MY_SIZE).click();
+		WebElement ele = driver.findElement(WHATS_MY_SIZE);
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();", ele);
+	//	driver.findElement(WHATS_MY_SIZE).click();
 		Thread.sleep(3000);
 		allClasses = driver.findElement(SIZE_GUIDE_BUTTON).getAttribute("class");
 		for (String c : allClasses.split(" ")) {
@@ -109,7 +114,10 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			jse.executeScript("window.scrollBy(0,-250)", "");
 			Thread.sleep(4000);
 		//	driver.findElement(By.cssSelector(".yotpo-stars")).click();
-			driver.findElement(RATING_STARS).click();
+			//driver.findElement(RATING_STARS).click();
+			WebElement elem = driver.findElement(RATING_STARS);
+			JavascriptExecutor executore = (JavascriptExecutor)driver;
+			executore.executeScript("arguments[0].click();", elem);
 			// wait for scroll it down
 			Thread.sleep(3000);
 			Reporter.log("Review Stars Are Displayed :: Clickable :: Clicked");
@@ -149,6 +157,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 				throw new Exception("Write Review portion should not be visible before Write Review button is clicked");
 			}
 		}
+		WebDriverWait wait = new WebDriverWait(driver, 20);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(WRITE_REVIEW_BUTTON));	
 		driver.findElement(WRITE_REVIEW_BUTTON).click();
 		// check Write Review portion should be visible by clicking Write A Review button
 		element = driver.findElement(WRITE_REVIEW_HEADING);
