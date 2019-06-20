@@ -48,8 +48,11 @@ public class HomePageLocators{
 	public static By HELP_ICON_HELP_OPTION = By.cssSelector(".header-nav-dropdown > ul >li:nth-child(1) > a");
 	public static By CHAT_WITH_US = By.cssSelector(".header-nav-dropdown > ul >li:nth-child(2) > a");
 	public static By CHAT_WITH_US_IFRAME = By.cssSelector(".zopim:nth-child(2) > iframe");
-	public static By CHAT_WITH_US_POPUP = By.cssSelector(".desktop.sf_large.scroll_top.scroll_bottom > div.scrollable_inner.jx_ui_Widget > div:nth-child(2) > a");
-	public static By CHAT_WITH_US_POPUP_MINIMIZE = By.cssSelector(".button_container.last_child.jx_ui_Widget > div > div");
+	//public static By CHAT_WITH_US_POPUP = By.cssSelector(".desktop.sf_large.scroll_top.scroll_bottom > div.scrollable_inner.jx_ui_Widget > div:nth-child(2) > a");
+	public static By CHAT_WITH_US_POPUP = By.cssSelector(".jx_ui_Widget");
+	public static By CHAT_WITH_US_POPUP_MINIMIZE = By.cssSelector(".meshim_widget_widgets_titleBar_MinimizeButton");
+
+	//public static By CHAT_WITH_US_POPUP_MINIMIZE = By.cssSelector(".button_container.last_child.jx_ui_Widget > div > div");
 	public static By CALL_US_OPTION = By.cssSelector(".header-nav-dropdown > ul > li:nth-child(3) > a");
 	public static By EMAIL_US = By.cssSelector(".header-nav-dropdown > ul > li:nth-child(4) > a");
 	

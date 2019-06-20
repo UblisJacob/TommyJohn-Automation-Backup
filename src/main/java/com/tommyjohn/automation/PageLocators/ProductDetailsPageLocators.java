@@ -24,7 +24,8 @@ public class ProductDetailsPageLocators {
 	public static By SECOND_COLOR = By.cssSelector(".product-option__variants.product-option__variants-color > ul > li:nth-child(2) > label");
 	public static By THIRD_COLOR = By.cssSelector(".product-option__variants.product-option__variants-color > ul > li:nth-child(3) > label");
 	public static By COLOR_TEXT = By.cssSelector(".product-info__header > span:nth-child(1)");
-	public static By SIZE_TEXT = By.cssSelector(".product-info__header > span:nth-child(2)");
+	//public static By SIZE_TEXT = By.cssSelector(".product-info__header > span:nth-child(2)");
+	public static By SIZE_TEXT = By.xpath("//*[@class='product-info__variant-select ']/div[2]/div[1]/span");
 	public static By ALL_SIZE_LIST = By.cssSelector(".product-option__variants.product-option__variants-size > ul > li");
 	public static By ALL_COLOR_LIST = By.cssSelector(".product-option__variants.product-option__variants-color > ul > li");
 	public static By PRODUCT_DETAILS_BUTTON = By.cssSelector(".product-details__controls--inner > button:nth-child(1)");

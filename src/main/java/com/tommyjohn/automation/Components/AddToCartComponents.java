@@ -14,7 +14,7 @@ import com.tommyjohn.automation.PageLocators.AddToCartLocators;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
 public class AddToCartComponents extends AddToCartLocators{
-	
+
 	public AddToCartComponents(WebDriver driver) {
 		this.driver = driver;
 	}
@@ -26,38 +26,40 @@ public class AddToCartComponents extends AddToCartLocators{
 	Properties properties = CustomUtilities.properties;
 	List<WebElement> allElements;
 	int elementsCount;
-	
 
-	public void addToCart() throws Exception {
+
+	public String addToCart() throws Exception {
 		String text = null;
-		
+
 		// navigate to any product collection page
 		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
-		
-		// call method to nevigate product details page
+
+		// call method to navigate product details page
 		text = new CollectionPageComponent(driver).navigateToProductDetailsPage();
-		
-		// call method to check correct PDP opend or not
+
+		// call method to check correct PDP opened or not
 		new ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);
-		
+
+
 		// select size and add product to cart
 		selectSize();
-
+		 atc();
+		return text;
 	}
-	
+
 	public void selectSize() throws Exception {
 		String allClasses = null;
 		boolean flag = false;
 		String text1 = null;
-		
+
 		// Select first size between available sizes
 		allElements = driver.findElements(ALL_SIZE_LIST);
-        elementsCount = allElements.size();
-        System.out.println("All sizes list :: "+ elementsCount);
-        
-        for(int i=1;i<=elementsCount;i++) {
-        	flag = false;
-        	element = driver.findElement(By.cssSelector(".product-option__variants.product-option__variants-size > ul > li:nth-child("+i+") > input"));
+		elementsCount = allElements.size();
+		System.out.println("All sizes list :: "+ elementsCount);
+
+		for(int i=1;i<=elementsCount;i++) {
+			flag = false;
+			element = driver.findElement(By.cssSelector(".product-option__variants.product-option__variants-size > ul > li:nth-child("+i+") > input"));
 			allClasses = element.getAttribute("class");
 			// check size available or not
 			for (String c : allClasses.split(" ")) {
@@ -95,21 +97,25 @@ public class AddToCartComponents extends AddToCartLocators{
 					throw new Exception("Text change for 'ADD TO CART' ");
 				}			
 				Thread.sleep(2000);
-				
-				// click on Add To Cart Button
-				if(!driver.findElement(ADD_TO_CART_BUTTON).isEnabled())
-					throw new Exception("ADD TO CART button is not present");
-				element = driver.findElement(ADD_TO_CART_BUTTON);
-				jse = (JavascriptExecutor)driver;
-				jse.executeScript("arguments[0].click();", element);
-						
-				Thread.sleep(5000);
-				driver.get(CustomUtilities.baseUrl);
-			//	driver.findElement(ADD_TO_CART_BUTTON).click();
-				Thread.sleep(3000);
-				Reporter.log("ADD TO CART button is Displayed :: Clickable");
 				break;
 			}
-        }
+		}
+	}
+
+	public void atc() throws Exception
+	{
+		// click on Add To Cart Button
+		if(!driver.findElement(ADD_TO_CART_BUTTON).isEnabled())
+			throw new Exception("ADD TO CART button is not present");
+		element = driver.findElement(ADD_TO_CART_BUTTON);
+		jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].click();", element);
+
+		Thread.sleep(5000);
+		driver.get(CustomUtilities.baseUrl);
+		//	driver.findElement(ADD_TO_CART_BUTTON).click();
+		Thread.sleep(3000);
+		Reporter.log("ADD TO CART button is Displayed :: Clickable");
+
 	}
 }

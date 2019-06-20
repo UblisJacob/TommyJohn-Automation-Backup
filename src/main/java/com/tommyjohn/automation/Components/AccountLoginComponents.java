@@ -236,7 +236,7 @@ public class AccountLoginComponents extends AccountLoginLocators{
 		driver.findElement(SUBMIT_BUTTON).click();
 		Thread.sleep(3000);
 		
-		// check email recieve message is displayed or not
+		// check email receive message is displayed or not
 		if(!driver.findElement(EMAIL_RECIEVED_SUCCESS_MESSAGE).isEnabled())
 			throw new Exception("Email recieved message is not present");
 		text = driver.findElement(EMAIL_RECIEVED_SUCCESS_MESSAGE).getText();
@@ -342,7 +342,7 @@ public class AccountLoginComponents extends AccountLoginLocators{
 	public void verifyAccountLoginFuctionality(String createdAccountEmail) throws Exception {
 		
 		actions = new Actions(driver);
-		// click on accout icon from home page
+		// click on account icon from home page
 		driver.findElement(HomePageLocators.ACCOUNT_ICON).click();
 		Thread.sleep(3000);
 
