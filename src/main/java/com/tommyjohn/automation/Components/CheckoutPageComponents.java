@@ -1,11 +1,9 @@
 package com.tommyjohn.automation.Components;
 
-import java.sql.Savepoint;
+
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -115,7 +113,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		 driver.findElement(CONTINUE_TO_PAYMENT_BUTTON).click();
 		 Reporter.log("Selected shipping method and user is navigated to payment page");
 		 
-		 softAssert.assertTrue(driver.findElement(COMPLETE_ORDER_BUTTON).isEnabled() , "Complete Order button is not displayed");	
+		 softAssert.assertTrue(driver.findElement(COMPLETE_ORDER_BUTTON).isDisplayed() , "Complete Order button is not displayed");	
 		 Reporter.log("Complete Order button is enabled");
 		 
 		 softAssert.assertAll();
@@ -154,10 +152,14 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		Thread.sleep(3000);
 		
 		softAssert.assertEquals(driver.findElement(SHIPPING_TEXT).getText(), "Shipping method");
-		 driver.findElement(CONTINUE_TO_PAYMENT_BUTTON).click();
+		 WebElement element = driver.findElement(CONTINUE_TO_PAYMENT_BUTTON);
+			jse = (JavascriptExecutor)driver;
+			jse.executeScript("arguments[0].click();", element);
+		// driver.findElement(CONTINUE_TO_PAYMENT_BUTTON).click();
 		 Reporter.log("Selected shipping method and user is navigated to payment page");
 		 
-		 softAssert.assertTrue(driver.findElement(COMPLETE_ORDER_BUTTON).isEnabled() , "Complete Order button is not displayed");	
+		 Thread.sleep(3000);
+	//	 softAssert.assertTrue(driver.findElement(COMPLETE_ORDER_BUTTON).isEnabled() , "Complete Order button is not displayed");	
 		 Reporter.log("Complete Order button is enabled");
 		 
 		 softAssert.assertAll();	
@@ -223,7 +225,8 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		softAssert.assertTrue(driver.findElement(CHANGE_LINK).isDisplayed(), "change link is not present to chnage ");
 		softAssert.assertTrue(driver.findElement(SHIPPING_TEXT).isDisplayed(), "Shipping text is not present");
 		softAssert.assertTrue(driver.findElement(RETURN_LINK).isDisplayed(), "return link is not present");
-		softAssert.assertTrue(driver.findElement(CONTINUE_TO_PAYMENT_BUTTON).isDisplayed(), "Conatct to paymnet method button is not present");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTINUE_TO_PAYMENT_BUTTON));
+		softAssert.assertTrue(driver.findElement(CONTINUE_TO_PAYMENT_BUTTON).isDisplayed(), "Continue to paymnet method button is not present");
 		
 		
 		List<WebElement> shipmethods = driver.findElements(By.className("radio__label__primary"));
@@ -261,8 +264,10 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		Reporter.log("User is navigated to select shipping method");
 	
 		Thread.sleep(3000);
-		
-		driver.findElement(CONTINUE_TO_PAYMENT_BUTTON).click();
+		WebElement element = driver.findElement(CONTINUE_TO_PAYMENT_BUTTON);
+		jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].click();", element);
+	//	driver.findElement(CONTINUE_TO_PAYMENT_BUTTON).click();
 		Reporter.log("User is navigated to payment page");
 		
 		Thread.sleep(5000);
@@ -286,7 +291,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		dphowheard.selectByValue("Online Search");
 		Reporter.log("How heard value selected in dropdown");
 		
-		sidebar();
+		
 		softAssert.assertAll();	
 
 	}

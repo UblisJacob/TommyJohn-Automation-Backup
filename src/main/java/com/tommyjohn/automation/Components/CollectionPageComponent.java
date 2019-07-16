@@ -24,7 +24,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 	public String navigateToProductDetailsPage() throws Exception {
 		String text = null;
-		WebDriverWait wait = new WebDriverWait(driver, 20);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(THIRD_PRODUCT_HEAD_LINE_TEXT));
 		// get text and click on the first product
 		if(!driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT).isDisplayed())
@@ -32,6 +32,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		text = driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT).getText();
 		driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT).click();
 		Thread.sleep(3000);
+		Reporter.log(driver.getCurrentUrl());
 		return text;
 	}
 
@@ -50,6 +51,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		executor.executeScript("arguments[0].click();", ele);
 		//	driver.findElement(THIRD_PRODUCT_IMAGE).click();
 		Thread.sleep(3000);
+		Reporter.log(driver.getCurrentUrl());
 
 		// check correct Product details page opened or not
 		new ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);	
@@ -71,6 +73,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		text = driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT).getText();
 		driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT).click();
 		Thread.sleep(3000);
+		Reporter.log(driver.getCurrentUrl());
 
 		// check correct Product details page opened or not
 		new ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);	
@@ -94,6 +97,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			text = driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT).getText();
 			driver.findElement(THIRD_PRODUCT_REVIEW_STARS).click();
 			Thread.sleep(3000);
+			Reporter.log(driver.getCurrentUrl());
 			// check correct Product details page opened or not
 			new ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);	
 
@@ -297,6 +301,8 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		int i = 2;
 		List<WebElement> allElements = null;
 		List<WebElement> allCorosals = null;
+		
+		Thread.sleep(8000);
 
 		// check carosals are displayed on top of page or not
 		if(!driver.findElement(STYLE_COROSALS).isDisplayed())
@@ -320,7 +326,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		}
 		Reporter.log("All corosals are Displayed :: And by default not active");
 		// check selected option in style and respected corosal is active or not
-		WebDriverWait wait = new WebDriverWait(driver, 20);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.mega-collection-filters > div:nth-child("+i+") > a")));
 		driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child("+i+") > a")).click();
 
@@ -359,7 +365,11 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		// clear all filters
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CLEAR_FILTER_BUTTON));
-		driver.findElement(CLEAR_FILTER_BUTTON).click();
+		WebElement ele = driver.findElement(CLEAR_FILTER_BUTTON);
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();", ele);
+		
+		//driver.findElement(CLEAR_FILTER_BUTTON).click();
 		Reporter.log("Corosals gets active when respective option selected");
 	}
 }

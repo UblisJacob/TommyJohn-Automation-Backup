@@ -15,7 +15,7 @@ public class AccountLoginComponents extends AccountLoginLocators{
 	String testemail;
 	String password;
 	String currentUrl;
-	String invalidemail = "abc@xyz.ui";
+	String invalidemail = "abcdd@xyz.gmail";
 	String invalidpassword = "123";
 	WebElement element;
 	public Actions actions;
@@ -62,7 +62,7 @@ public class AccountLoginComponents extends AccountLoginLocators{
 		String text=null;
 		String currentUrl;
 		driver.findElement(HomePageLocators.ACCOUNT_ICON).click();
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		text = driver.findElement(CREATEACCOUNT_TEXT1).getText();
 		if(!text.equals(CustomUtilities.properties.getProperty("createaccountetxt1")))
 			throw new Exception("Expected text is" + CustomUtilities.properties.getProperty("createaccountetxt1") + "but actual is "+text);
@@ -160,9 +160,9 @@ public class AccountLoginComponents extends AccountLoginLocators{
 
 		// click on accout icon from home page
 		driver.findElement(HomePageLocators.ACCOUNT_ICON).click();
-		Thread.sleep(3000);
+		Thread.sleep(6000);
 		// check for forgot your password link
-		if(!driver.findElement(FORGOT_YOUR_PASSWORD_LINK).isEnabled())
+		if(!driver.findElement(FORGOT_YOUR_PASSWORD_LINK).isDisplayed())
 			throw new Exception("Forgot your password link is not Present");
 		
 		driver.findElement(FORGOT_YOUR_PASSWORD_LINK).click();						
@@ -215,7 +215,7 @@ public class AccountLoginComponents extends AccountLoginLocators{
 		driver.findElement(HomePageLocators.ACCOUNT_ICON).click();
 		Thread.sleep(3000);
 		// check for forgot your password link
-		if(!driver.findElement(FORGOT_YOUR_PASSWORD_LINK).isEnabled())
+		if(!driver.findElement(FORGOT_YOUR_PASSWORD_LINK).isDisplayed())
 			throw new Exception("Forgot your password link is not Present");
 		
 		driver.findElement(FORGOT_YOUR_PASSWORD_LINK).click();						
@@ -272,7 +272,7 @@ public class AccountLoginComponents extends AccountLoginLocators{
 		if(!driver.findElement(SUBMIT_BUTTON).isEnabled())
 			throw new Exception("Submit button is not present");
 		driver.findElement(SUBMIT_BUTTON).click();
-		Thread.sleep(3000);
+		Thread.sleep(6000);
 		
 		text = driver.findElement(ERROR_MESSAGE).getText();
 		if(!text.equals(CustomUtilities.properties.getProperty("errorMessageRecoverEmail")))

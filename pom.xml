@@ -105,7 +105,7 @@
 						<inherited>true</inherited>
 						<configuration>
 							<!-- From Email address -->
-							<from>noreply@tommyjohnwear.com</from>
+							<from>noreplymw@tommyjohnwear.com</from>
 							<!-- Email subject -->
 							<subject>Test Automation Report</subject>
 							<!-- Fail the build if the mail doesn't reach -->
@@ -131,8 +131,6 @@
 							<receivers>
 								<!-- To Email address -->
 								<receiver>vijeta@tommyjohnwear.com</receiver>
-								<receiver>vijeta.juneja@aretove.com</receiver>
-								<receiver>ashish.jain@aretove.com</receiver>
 							</receivers>
 							<fileSets>
 								<fileSet>

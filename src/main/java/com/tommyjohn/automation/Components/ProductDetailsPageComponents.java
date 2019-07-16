@@ -1,5 +1,6 @@
 package com.tommyjohn.automation.Components;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Properties;
 
@@ -11,6 +12,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
+import org.testng.asserts.SoftAssert;
 
 import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
 import com.tommyjohn.automation.utils.CustomUtilities;
@@ -29,6 +31,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 	public  static String productcolor;
 	public  static String productprice;
 	public static String productquant;
+	public String price;
+	double installment;
 
 	public ProductDetailsPageComponents(WebDriver driver) {
 		this.driver = driver;
@@ -54,7 +58,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 	public void checkCorrectProductDetailsPageOpenedOrNot(String text1) throws Exception {
 		String text2 = null;
 
-		if(!driver.findElement(PRODUCT_TITLE).isEnabled())
+		if(!driver.findElement(PRODUCT_TITLE).isDisplayed())
 			throw new Exception("Product title is not displayed on product details page");
 		text2 = driver.findElement(PRODUCT_TITLE).getText();
 
@@ -76,7 +80,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		pdp.productprice = driver.findElement(PRODUCT_PRICE).getText();
 		pdp.productcolor = driver.findElement(COLOR_TEXT).getText();
 		pdp.productsize = driver.findElement(SIZE_TEXT).getText();
-		pdp.productquant =  driver.findElement(QUANTITY).getText();
+		pdp.productquant =  driver.findElement(QUANTITY).getAttribute("data-add-qty");
 		pdp.prodsize = driver.findElement(SIZE_TEXT).getAttribute("textContent");
 
 		new AddToCartComponents(driver).selectSize();
@@ -89,10 +93,11 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		String text1 = null;
 		String allClasses = null;
 		boolean flag = false;
-		String colorAfterChange = null;
-		String colorBeforeChange = null;
-		String quantity = null;
+		String colornew = null;
+		String colortext = null;
+		String quantity;
 
+		SoftAssert softAssert =  new SoftAssert();
 
 		// check product price is displayed or not
 		if(!driver.findElement(PRODUCT_PRICE).isEnabled())
@@ -181,7 +186,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 				throw new Exception("Write Review portion should not be visible before Write Review button is clicked");
 			}
 		}
-		WebDriverWait wait = new WebDriverWait(driver, 20);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(WRITE_REVIEW_BUTTON));	
 		driver.findElement(WRITE_REVIEW_BUTTON).click();
 		// check Write Review portion should be visible by clicking Write A Review button
@@ -205,24 +210,58 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		elementsCount = allElements.size();
 		System.out.println("Color Element count :: "+elementsCount);
 
-		// change second color if present
-		if(elementsCount > 1) {
-			colorBeforeChange = driver.findElement(COLOR_TEXT).getText();
-			driver.findElement(SECOND_COLOR).click();
-			Thread.sleep(2000);
-			colorAfterChange = driver.findElement(COLOR_TEXT).getText();
-			if(colorBeforeChange.equals(colorAfterChange))
-				throw new Exception("Second color not changing");
+		if(elementsCount > 1)
+		{
+			if(elementsCount<5)
+			{
+				for(int i=1;i<elementsCount;i++)
+				{
+					colortext = driver.findElement(COLOR_TEXT).getText();
+					if(driver.getCurrentUrl().contains("product"))
+						colornew = driver.findElement(By.cssSelector(".product-option__variants.product-option__variants-color > ul > li:nth-child("+ i +") > input")).getAttribute("data-color-variant");
+					else
+						colornew = driver.findElement(By.cssSelector(".product-option__variants.product-option__variants-color > ul > li:nth-child("+ i +") > input")).getAttribute("data-option-name");
+					System.out.println(colornew);
+					if(!colornew.contentEquals(colortext))	
+					{
+						driver.findElement(By.cssSelector(".product-option__variants.product-option__variants-color > ul > li:nth-child(" + i + ") > label")).click();
+						softAssert.assertEquals(driver.findElement(COLOR_TEXT).getText() , colornew , "Color not changing");
+					}
+				}
+				elementsCount++;
+			}
+
 		}
-		// change third color if present
-		if(elementsCount > 2) {
-			colorBeforeChange = driver.findElement(COLOR_TEXT).getText();
-			driver.findElement(THIRD_COLOR).click();
-			Thread.sleep(2000);
-			colorAfterChange = driver.findElement(COLOR_TEXT).getText();
-			if(colorBeforeChange.equals(colorAfterChange))
-				throw new Exception("Third color not changing");
-		}
+
+
+
+
+
+
+
+
+
+
+		//		// change second color if present
+		//		if(elementsCount > 1) {
+		//			colorBeforeChange = driver.findElement(COLOR_TEXT).getText();
+		//			
+		//			
+		//			driver.findElement(SECOND_COLOR).click();
+		//			Thread.sleep(2000);
+		//			colorAfterChange = driver.findElement(COLOR_TEXT).getText();
+		//			if(colorBeforeChange.equals(colorAfterChange))
+		//				throw new Exception("Second color not changing");
+		//		}
+		//		// change third color if present
+		//		if(elementsCount > 2) {
+		//			colorBeforeChange = driver.findElement(COLOR_TEXT).getText();
+		//			driver.findElement(THIRD_COLOR).click();
+		//			Thread.sleep(2000);
+		//			colorAfterChange = driver.findElement(COLOR_TEXT).getText();
+		//			if(colorBeforeChange.equals(colorAfterChange))
+		//				throw new Exception("Third color not changing");
+		//		}
 		Reporter.log("Colors are present and changing correct");
 
 
@@ -238,16 +277,34 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			// check size available or not
 			for (String c : allClasses.split(" ")) {
 				if (c.equals("unavailable")) {
-
-					// click on the unavailable item and check the button text
-					driver.findElement(By.cssSelector(".product-option__variants.product-option__variants-size > ul > li:nth-child("+i+")")).click();
-					System.out.println("Unavailable size clicked");
-					element = driver.findElement(EMAIL_WHEN_IN_STOCK_BUTTON);
-					text1 = element.getText();
-					System.out.println("Text of button when Unavailable size selected :: "+text1);
-					if(!(text1.equalsIgnoreCase("EMAIL WHEN IN STOCK")))
-						throw new Exception("Text change for 'EMAIL WHEN IN STOCK' ");
-					flag = true;
+					if(!driver.findElement(PRODUCT_TITLE).getText().contains("Pack"))
+					{
+						// click on the unavailable item and check the button text
+						driver.findElement(By.cssSelector(".product-option__variants.product-option__variants-size > ul > li:nth-child("+i+")")).click();
+						System.out.println("Unavailable size clicked");
+						element = driver.findElement(EMAIL_WHEN_IN_STOCK_BUTTON);
+						text1 = element.getText();
+						System.out.println("Text of button when Unavailable size selected :: "+text1);
+						if(!(text1.equalsIgnoreCase("JOIN THE WAITLIST")))
+							throw new Exception("Text change for 'JOIN THE WAITLIST' ");
+						flag = true;
+					}
+					else 
+					{
+						driver.findElement(By.cssSelector(".product-option__variants.product-option__variants-size > ul > li:nth-child("+i+")")).click();
+						System.out.println("Unavailable size clicked");
+						driver.findElement(ADD_TO_CART_BUTTON).click();
+						System.out.println(driver.findElement(ADD_TO_CART_BUTTON).getText());
+						if (!driver.findElement(ADD_TO_CART_BUTTON).getText().contentEquals("Out of Stock"))
+						{
+							element = driver.findElement(EMAIL_WHEN_IN_STOCK_BUTTON);
+							System.out.println("Text of button when Unavailable size selected :: "+text1);
+							if(!(text1.equalsIgnoreCase("JOIN THE WAITLIST")))
+								throw new Exception("Text change for 'JOIN THE WAITLIST' for Packs");
+							text1 = element.getText();
+						}
+						flag = true;
+					}
 					//break;
 				}
 				else if (driver.findElement(ADD_TO_CART_BUTTON).getText().contentEquals("Out of Stock"))
@@ -277,11 +334,14 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 				}
 				// check if we are able to add and minus quantity
 				quantity = driver.findElement(QUANTITY).getAttribute("data-add-qty");
+
 				driver.findElement(PLUS_BUTTON).click();
 				Thread.sleep(3000);
-				String quantity1 = driver.findElement(UPDATED_QUANTITY).getAttribute("data-add-qty");
+				String quantity1 = driver.findElement(QUANTITY).getAttribute("data-add-qty");
 				// check quantity added by 1 or not 
 				if(Integer.parseInt(quantity1)!=Integer.parseInt(quantity)+1) 
+					//if(!quantity1.equals(quantity + 1) )
+					//if(quantity1)
 					throw new Exception("Quantity not increased by 1");
 
 				Reporter.log("Quantity increased by 1");
@@ -293,7 +353,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 				//		jse = (JavascriptExecutor)driver;
 				//		jse.executeScript("arguments[0].click();", element);
 
-				String quantity2 = driver.findElement(UPDATED_QUANTITY).getAttribute("data-add-qty");
+				String quantity2 = driver.findElement(QUANTITY).getAttribute("data-add-qty");
 				if(Integer.parseInt(quantity2)!=Integer.parseInt(quantity1)-1)
 					throw new Exception("Quantity not decreased by 1");
 				Reporter.log("Quantity decreased by 1");
@@ -338,24 +398,89 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 				jse.executeScript("arguments[0].scrollIntoView(true);", element);
 				Thread.sleep(3000); 
 
-
-				// click on Add To Cart Button
-				if(!driver.findElement(ADD_TO_CART_BUTTON).getText().equalsIgnoreCase("Out Of Stock"))
+				if (!driver.findElement(PRODUCT_TITLE).getText().contains("Pack"))
 				{
-				if(!driver.findElement(ADD_TO_CART_BUTTON).isEnabled())
-					throw new Exception("ADD TO CART button is not present");
-				element = driver.findElement(ADD_TO_CART_BUTTON);
-				jse = (JavascriptExecutor)driver;
-				jse.executeScript("arguments[0].click();", element);
+					// click on Add To Cart Button
+					if(!driver.findElement(ADD_TO_CART_BUTTON).getText().equalsIgnoreCase("Out Of Stock"))
+					{
+						if(!driver.findElement(ADD_TO_CART_BUTTON).isEnabled())
+							throw new Exception("ADD TO CART button is not present");
+						element = driver.findElement(ADD_TO_CART_BUTTON);
+						jse = (JavascriptExecutor)driver;
+						jse.executeScript("arguments[0].click();", element);
 
-				Thread.sleep(5000);
-				driver.get(CustomUtilities.baseUrl);
-				//	driver.findElement(ADD_TO_CART_BUTTON).click();
-				Thread.sleep(3000);
-				Reporter.log("ADD TO CART button is Displayed :: Clickable");
+						Thread.sleep(5000);
+						driver.get(CustomUtilities.baseUrl);
+						//	driver.findElement(ADD_TO_CART_BUTTON).click();
+						Thread.sleep(3000);
+						Reporter.log("ADD TO CART button is Displayed :: Clickable");
+					}
+				}
+				else
+				{
+					if(!driver.findElement(ADD_TO_CART_BUTTON).isEnabled())
+						throw new Exception("ADD TO CART button is not present");
+					element = driver.findElement(ADD_TO_CART_BUTTON);
+					jse = (JavascriptExecutor)driver;
+					jse.executeScript("arguments[0].click();" , element);
+
+					Reporter.log("ADD TO CART button is Displayed :: Clickable");
+
+
 				}
 				break;
 			}
 		}
 	}
+
+	public void validateafterpayonpdp() throws Exception {
+		String text = null;
+		SoftAssert softAssert = new SoftAssert();
+
+		// call method to navigate to collection page
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
+
+		// call method to nevigate product details page
+		text = new CollectionPageComponent(driver).navigateToProductDetailsPage();
+
+		// call method to check correct PDP opend or not
+		checkCorrectProductDetailsPageOpenedOrNot(text);
+
+		driver.navigate().to("https://tommyjohn.com/products/mothers-day-blush-pajama-top-short-set");
+		//afterpay validation
+		if(!driver.findElement(AFTERPAY).isDisplayed())
+			throw new Exception("AfterPay Message not present on PDP");
+
+		price= driver.findElement(PRODUCT_PRICE).getText();
+		String[] price1 = price.split("\\$");
+		String price2 = price1[price1.length-1];
+
+		if(Float.parseFloat(price2)<35 || Float.parseFloat(price2)>1000 )
+		{
+			softAssert.assertEquals(driver.findElement(AFTERPAY_TEXT).getText(), "available for orders between $35 - $1000" , "Wrong afterpay message displayed for product price");
+			softAssert.assertTrue(driver.findElement(AFTERPAY_LOGO).isDisplayed(), "Afterpay logo not present on PDP");
+		}
+
+		else
+		{
+			//installment =Double.parseDouble(price2)/4;
+			installment =Float.parseFloat(price2)/4;
+			String inst = String.format("%.2f",installment );
+			//DecimalFormat df = new DecimalFormat("0.00");
+			//df.format(installment);
+
+
+			String expectedmessage = "or 4 interest-free installments of $" + inst + " by"; 
+			System.out.println("expected" + expectedmessage);
+			System.out.println("Actual " +driver.findElement(AFTERPAY_TEXT).getText());
+			softAssert.assertEquals(driver.findElement(AFTERPAY_TEXT).getText(), expectedmessage , "Wrong afterpay message displayed for product price");
+			softAssert.assertTrue(driver.findElement(AFTERPAY_LOGO).isDisplayed(), "Afterpay logo not present on PDP");
+
+		}
+
+		softAssert.assertAll();
+
+	}
+	
+	
 }

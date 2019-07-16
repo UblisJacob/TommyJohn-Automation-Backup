@@ -21,6 +21,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 	WebElement element;
 	List<WebElement> allElements;
 	SoftAssert softAssert = new SoftAssert();
+	public String price;
 
 	public FlyCartComponents(WebDriver driver) {
 		this.driver = driver;
@@ -52,12 +53,12 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		text = driver.findElement(VIEW_CART_LINK).getText();
 		System.out.println("Text :: "+text);
 		softAssert.assertTrue(text.equals(properties.get("viewCart")), "Text for view cart link is changed");	
-		
-	Reporter.log("View Cart link is Displayed :: Enabled :: Text is correct ");
-		
-	Thread.sleep(3000);
-		
-	// check inline cart title
+
+		Reporter.log("View Cart link is Displayed :: Enabled :: Text is correct ");
+
+		Thread.sleep(3000);
+
+		// check inline cart title
 		softAssert.assertTrue(driver.findElement(INLINE_CART_TITLE).isDisplayed(), "Inline cart title is not displayed");
 		text = driver.findElement(INLINE_CART_TITLE).getText();
 		System.out.println("Text :: "+text);
@@ -65,19 +66,24 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		Reporter.log("Inline Cart Title is Displayed :: Text is correct ");
 
 		Thread.sleep(3000);
-		
+try {
 		// check for shipping message text
 		softAssert.assertTrue(driver.findElement(SHIPING_MESSAGE_TEXT).isDisplayed(), "Shipping message text is not displayed");
 		Reporter.log("Shipping message text is Displayed ");
 
 		Thread.sleep(3000);
-		
+
 		// check for shipping message meter
 		softAssert.assertTrue(driver.findElement(SHIPING_MESSAGE_METER).isDisplayed(), "Shipping message meter is not displayed");
 		Reporter.log("Shipping message meter is Displayed");
-		
 		Thread.sleep(3000);
+}
+catch(Exception e)
+{
+	Reporter.log("Shipping message and meter absent");
+}
 		
+
 		// check for empty cart text
 		softAssert.assertTrue(driver.findElement(INLINE_CART_EMPTY_TEXT).isDisplayed(), "Shipping 'Your cart is empty' is not displayed");
 		text = driver.findElement(INLINE_CART_EMPTY_TEXT).getText();
@@ -117,7 +123,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		driver.findElement(HomePageLocators.CART_ICON).click();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		Thread.sleep(3000);
-		
+
 		// check for continue shopping button text and is displayed, enabled or not		
 		softAssert.assertTrue(driver.findElement(INLINE_CART_CLOSE_BUTTON).isDisplayed(), "Inline cart close button is not displayed");
 		softAssert.assertTrue(driver.findElement(INLINE_CART_CLOSE_BUTTON).isEnabled(), "Inline cart close button is not enable");
@@ -126,7 +132,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		softAssert.assertTrue(text.equals(properties.get("continueShoppingButton")), "Text for inline cart close button is changed");	
 		Reporter.log("Continue Shopping button is Displayed :: Enabled :: Text is correct ");
 		Thread.sleep(3000);
-		
+
 		// check for inline cart link
 		softAssert.assertTrue(driver.findElement(VIEW_CART_LINK).isDisplayed(), "View cart link is not displayed");
 		softAssert.assertTrue(driver.findElement(VIEW_CART_LINK).isEnabled(), "View cart link is not enable");
@@ -135,7 +141,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		softAssert.assertTrue(text.equals(properties.get("viewCart")), "Text for view cart link is changed");	
 		Reporter.log("View Cart link is Displayed :: Enabled :: Text is correct ");
 		Thread.sleep(3000);
-		
+
 		// check inline cart title
 		softAssert.assertTrue(driver.findElement(INLINE_CART_TITLE).isDisplayed(), "Inline cart title is not displayed");
 		text = driver.findElement(INLINE_CART_TITLE).getText();
@@ -143,42 +149,48 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		softAssert.assertTrue(text.equals(properties.get("inlineCartTitle")), "Text for inline cart title is changed");
 		Reporter.log("Inline Cart Title is Displayed :: Text is correct ");
 		Thread.sleep(3000);
-		
+try
+{
 		// check for shipping message text
 		softAssert.assertTrue(driver.findElement(SHIPING_MESSAGE_TEXT).isDisplayed(), "Shipping message text is not displayed");
 		Reporter.log("Shipping message text is Displayed ");
 		Thread.sleep(3000);
-		
+
 		// check for shipping message meter
 		softAssert.assertTrue(driver.findElement(SHIPING_MESSAGE_METER).isDisplayed(), "Shipping message meter is not displayed");
 		Reporter.log("Shipping message meter is Displayed");
 		Thread.sleep(3000);
-		
+
 		element = driver.findElement(SHIPING_MESSAGE_METER);
 		int width = element.getSize().getWidth();
 		System.out.println("width :: "+element.getSize().getWidth());
 		softAssert.assertTrue(width > 0, "Element is added but, shipping message meter is showing empty");
 		Thread.sleep(3000);
-		
+
 		Reporter.log("Shipping message meter is displayed correctly");
-		allElements = driver.findElements(LIST_OF_ITEMS_IN_FLYCART);
+		
+}catch(Exception e)
+{
+	Reporter.log("Shipping bar message and title not present, Please check if disabled from DY");
+}
+allElements = driver.findElements(LIST_OF_ITEMS_IN_FLYCART);
 
 		// check all fields for all items in flycart
 		for(int i=1; i<=allElements.size();i++) {
 			// check for product image
-			softAssert.assertTrue(driver.findElement(By.cssSelector("div.inline-cart__col1 > div:nth-child(4) > article:nth-child("+i+") > div.line-item__image")).isDisplayed(), "First item image is not displayed");
+			softAssert.assertTrue(driver.findElement(By.cssSelector("div.inline-cart__col1 > div:nth-child(3) > article:nth-child("+i+") > div.line-item__image")).isDisplayed(), "First item image is not displayed");
 
 			// check for product heading
-			softAssert.assertTrue(driver.findElement(By.cssSelector("div.inline-cart__col1 > div:nth-child(4) > article:nth-child("+i+") > div.line-item__summary > a")).isDisplayed(), "First item heading is not displayed");	
+			softAssert.assertTrue(driver.findElement(By.cssSelector("div.inline-cart__col1 > div:nth-child(3) > article:nth-child("+i+") > div.line-item__summary > a")).isDisplayed(), "First item heading is not displayed");	
 
 			// check for remove item from cart button
-			softAssert.assertTrue(driver.findElement(By.cssSelector("div.inline-cart__col1 > div:nth-child(4) > article:nth-child("+i+") > div.line-item__summary > button")).isDisplayed(), "First item remove button is not displayed");
+			softAssert.assertTrue(driver.findElement(By.cssSelector("div.inline-cart__col1 > div:nth-child(3) > article:nth-child("+i+") > div.line-item__summary > button")).isDisplayed(), "First item remove button is not displayed");
 
 			// check for line item option
-			softAssert.assertTrue(driver.findElement(By.cssSelector("div.inline-cart__col1 > div:nth-child(4) > article:nth-child("+i+") > div.line-item__summary > div.line-item__option")).isDisplayed(), "Line item option is not displayed");
+			softAssert.assertTrue(driver.findElement(By.cssSelector("div.inline-cart__col1 > div:nth-child(3) > article:nth-child("+i+") > div.line-item__summary > div.line-item__option")).isDisplayed(), "Line item option is not displayed");
 
 			// check for price
-			softAssert.assertTrue(driver.findElement(By.cssSelector("div.inline-cart__col1 > div:nth-child(4) > article:nth-child("+i+") > div.line-item__summary > div.line-item__price > span")).isDisplayed(), "Price is not displayed");
+			softAssert.assertTrue(driver.findElement(By.cssSelector("div.inline-cart__col1 > div:nth-child(3) > article:nth-child("+i+") > div.line-item__summary > div.line-item__price > span")).isDisplayed(), "Price is not displayed");
 
 			// check for plus minus and quantity
 			softAssert.assertTrue(driver.findElement(QUANTITY_PLUS_MINUS_BUTTON).isDisplayed(), "plus or minus button is not displayed");
@@ -191,22 +203,22 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		// check for Add Gift Wrap button
 		softAssert.assertTrue(driver.findElement(ADD_GIFT_WRAP_BUTTON).isDisplayed(), "Add Gift Wrap button is not displayed");
 		Thread.sleep(3000);
-		
+
 		text = driver.findElement(ESTIMATE_TOTAL).getText();
 		System.out.println("Estimate total text :: "+text);
 		softAssert.assertTrue(text.equals(properties.get("totalEstimateText")), "Expected text is "+properties.get("totalEstimateText")+" but actual is "+text);
-//		text = driver.findElement(ESTIMATE_TOTAL_SMALL).getText();
-//		System.out.println("Estimate total small text :: "+text);
-//		softAssert.assertTrue(text.equals(properties.get("totalEstimateSmallText")), "Expected text is "+properties.get("totalEstimateSmallText")+" but actual is "+text);
+		//		text = driver.findElement(ESTIMATE_TOTAL_SMALL).getText();
+		//		System.out.println("Estimate total small text :: "+text);
+		//		softAssert.assertTrue(text.equals(properties.get("totalEstimateSmallText")), "Expected text is "+properties.get("totalEstimateSmallText")+" but actual is "+text);
 
 		Thread.sleep(3000);
-		
+
 		softAssert.assertTrue(driver.findElement(ESTIMATE_TOTAL).isDisplayed(), "Estimate total amount is not displayed");
 
 		// check for checkout button
 		softAssert.assertTrue(driver.findElement(CHECKOUT_BUTTON).isDisplayed(), "Checkout button is not displayed");
 		Thread.sleep(3000);
-		
+
 		softAssert.assertAll();
 		driver.get(CustomUtilities.baseUrl);
 
@@ -223,7 +235,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 
 		// first add any product to cart
 		new AddToCartComponents(driver).addToCart();
-	
+
 		driver.findElement(HomePageLocators.CART_ICON).click();
 		Thread.sleep(3000);
 
@@ -232,7 +244,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		text1 = driver.getCurrentUrl();
 		softAssert.assertTrue(text1.equals(CustomUtilities.baseUrl), "Continue shopping button is not working correctly");
 		Thread.sleep(2000);
-		
+
 		driver.findElement(HomePageLocators.CART_ICON).click();
 		Thread.sleep(2000);
 
@@ -265,7 +277,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		colorAndSize2 = driver.findElement(COLOR_AND_SIZE_IN_CART).getText();
 		System.out.println("color and size2 :: "+colorAndSize2);
 
-		softAssert.assertTrue(colorAndSize.equals(colorAndSize2), "Color and size is miss mach from PDP and Cart");
+		softAssert.assertTrue(colorAndSize.equals(colorAndSize2), "Color and size is mismatch from PDP and Cart");
 
 		// check price before adding more item
 		price1 = driver.findElement(PRICE_IN_QUANTITY_LINE).getText();
@@ -391,14 +403,39 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		System.out.println("price1  :: "+price1);
 
 
-//		double p = Float.parseFloat(price);
-//		double p2 = Float.parseFloat(price2);
-//		double p1 = Float.parseFloat(price1);
-//		// check the total estimated price is displayed correctly when added gift wrap price
-//		softAssert.assertTrue(p1 == p2+p, "Total estimated price is not correct");
+		//		double p = Float.parseFloat(price);
+		//		double p2 = Float.parseFloat(price2);
+		//		double p1 = Float.parseFloat(price1);
+		//		// check the total estimated price is displayed correctly when added gift wrap price
+		//		softAssert.assertTrue(p1 == p2+p, "Total estimated price is not correct");
 
 		driver.get(CustomUtilities.baseUrl);
 
 		softAssert.assertAll();
+	}
+
+	public void validateafterpayoninlinecart() throws Exception
+	{
+		new AddToCartComponents(driver).addToCart();
+		driver.findElement(HomePageLocators.CART_ICON).click();
+		Thread.sleep(3000);
+		softAssert.assertTrue(driver.findElement(AFTERPAYTEXT).isDisplayed(), "Afterpay Message is not present");
+		softAssert.assertTrue(driver.findElement(AFTERPAYLOGO).isDisplayed(), "Afterpay Logo is not present");
+		price = driver.findElement(ESTIMATE_TOTAL_PRICE).getText();
+		String[] price1 = price.split("\\$");
+		String price2 = price1[price1.length-1];
+		if(Float.parseFloat(price2)<35 || Float.parseFloat(price2)>1000 )
+		{
+			softAssert.assertEquals(driver.findElement(AFTERPAYTEXT).getText(), "available for orders between $35 - $1000" , "Wrong afterpay message displayed for product price");
+			softAssert.assertTrue(driver.findElement(AFTERPAYLOGO).isDisplayed(), "Afterpay logo not present on PDP");	
+		}
+
+
+
+
+
+
+
+
 	}
 }

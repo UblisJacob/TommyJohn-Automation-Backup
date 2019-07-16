@@ -130,6 +130,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		Thread.sleep(3000);
 		driver.findElement(CONTINUE_SHOPPING).click();
+		Thread.sleep(3000);
 		softAssert.assertTrue(driver.findElement(HomePageLocators.ACCOUNT_ICON).isDisplayed(), "Continue Shopping redirects user to wrong page");
 		
 		softAssert.assertAll();
@@ -151,12 +152,14 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CART_TITLE));
 		
-		System.out.println("cart" + driver.findElement(PRODUCT_COLOR_SIZE).getText());
-		System.out.println("pdp" + pdp1.productcolor + " / " + pdp1.prodsize);
+		System.out.println("cart " + driver.findElement(PRODUCT_COLOR_SIZE).getText());
+		System.out.println("pdp " + pdp1.productcolor + " / " + pdp1.prodsize);
+		System.out.println("ex " + driver.findElement(PRODUCT_QUANTITY).getText());
+		System.out.println("ac " + pdp1.productquant);
 		
 		
 		softAssert.assertEquals(driver.findElement(PRODUCT_TITLE).getText(), pdp1.productname, "Wrong product title displayed in cart");
-		softAssert.assertEquals(driver.findElement(PRODUCT_QUANTITY).getText(), pdp1.productquant, "Wrong quantity added to cart");
+		softAssert.assertEquals(driver.findElement(PRODUCT_QUANTITY).getAttribute("value"), pdp1.productquant, "Wrong quantity added to cart");
 		softAssert.assertEquals(driver.findElement(PRODUCT_PRICE).getText(), pdp1.productprice, "Wrong product price displayed in cart");
 		softAssert.assertEquals(driver.findElement(PRODUCT_COLOR_SIZE).getText(), pdp1.productcolor + " / " + pdp1.prodsize, "Wrong color & size added to cart");
 		

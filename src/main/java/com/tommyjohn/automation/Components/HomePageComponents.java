@@ -566,6 +566,7 @@ public class HomePageComponents extends HomePageLocators {
 		action.moveToElement(element).perform();
 		driver.findElement(NEW_ARRIVALS_IN_MEN_CATEGORY).click();
 		Thread.sleep(3000);
+		Reporter.log(driver.getCurrentUrl());
 	}
 	
 	// nevigate to all underwear in men category 
@@ -576,6 +577,7 @@ public class HomePageComponents extends HomePageLocators {
 		
 		driver.findElement(ALL_UNDERWEAR_IN_MEN_CATEGORY).click();	
 		Thread.sleep(3000);
+		Reporter.log(driver.getCurrentUrl());
 	}
 	
 	// nevigate to tank in men category
@@ -585,6 +587,7 @@ public class HomePageComponents extends HomePageLocators {
 		action.moveToElement(element).perform();
 		driver.findElement(TANK_IN_MEN_CATEGORY).click();
 		Thread.sleep(3000);
+		Reporter.log(driver.getCurrentUrl());
 	}
 	
 	// nevigate to dress shirts in men category
@@ -603,6 +606,7 @@ public class HomePageComponents extends HomePageLocators {
 		action.moveToElement(element).perform();
 		driver.findElement(ALL_MENS_COLLECTIONS_IN_MEN_CATEGORY).click();
 		Thread.sleep(3000);
+		Reporter.log(driver.getCurrentUrl());
 	}
 
 	// nevigate to New Arrivals in Women category
@@ -612,6 +616,7 @@ public class HomePageComponents extends HomePageLocators {
 		action.moveToElement(element).perform();
 		driver.findElement(NEW_ARRIVALS_IN_WOMEN_CATEGORY).click();
 		Thread.sleep(3000);
+		Reporter.log(driver.getCurrentUrl());
 	}
 
 	// nevigate to All Panties in Women category
@@ -621,6 +626,7 @@ public class HomePageComponents extends HomePageLocators {
 		action.moveToElement(element).perform();
 		driver.findElement(ALL_PANTIES_IN_WOMEN_CATEGORY).click();
 		Thread.sleep(3000);
+		Reporter.log(driver.getCurrentUrl());
 	}
 
 	// nevigate to Tees and Polos in Women category
@@ -630,6 +636,7 @@ public class HomePageComponents extends HomePageLocators {
 		action.moveToElement(element).perform();
 		driver.findElement(TEES_AND_POLOS_IN_WOMEN_CATEGORY).click();
 		Thread.sleep(3000);
+		Reporter.log(driver.getCurrentUrl());
 	}
 	
 	// nevigate to All Womens Collections in Women category
@@ -639,6 +646,7 @@ public class HomePageComponents extends HomePageLocators {
 		action.moveToElement(element).perform();
 		driver.findElement(ALL_WOMENS_COLLECTIONS_IN_WOMEN_CATEGORY).click();
 		Thread.sleep(3000);
+		Reporter.log(driver.getCurrentUrl());
 	}
 
 	// nevigate to All Mens Packs in Packs category
@@ -648,6 +656,7 @@ public class HomePageComponents extends HomePageLocators {
 		action.moveToElement(element).perform();
 		driver.findElement(ALL_MENS_PACKS_IN_PACKS_CATEGORY).click();
 		Thread.sleep(3000);
+		Reporter.log(driver.getCurrentUrl());
 	}
 
 	// nevigate to All Womens Packs in Packs category
@@ -657,6 +666,7 @@ public class HomePageComponents extends HomePageLocators {
 		action.moveToElement(element).perform();
 		driver.findElement(ALL_WOMENS_PACKS_IN_PACKS_CATEGORY).click();
 		Thread.sleep(3000);
+		Reporter.log(driver.getCurrentUrl());
 	}
 	
 	// nevigate to single collection cool cotton
@@ -666,6 +676,7 @@ public class HomePageComponents extends HomePageLocators {
 		action.moveToElement(element).perform();
 		driver.findElement(COOL_COTTON_IN_MENS_COLLECTIONS).click();
 		Thread.sleep(3000);
+		Reporter.log(driver.getCurrentUrl());
 	}
 	
 	// navigate to All Clothing in womens categories
@@ -675,6 +686,7 @@ public class HomePageComponents extends HomePageLocators {
 		action.moveToElement(element).perform();
 		driver.findElement(ALL_CLOTHING_IN_WOMEN_CATEGORY).click();
 		Thread.sleep(3000);	
+		Reporter.log(driver.getCurrentUrl());
 	}
 	
 	// navigate to second skin in men catagory
@@ -684,6 +696,7 @@ public class HomePageComponents extends HomePageLocators {
 		action.moveToElement(element).perform();
 		driver.findElement(SECOND_SKIN_IN_MEN_CATEGORY).click();
 		Thread.sleep(3000);	
+		Reporter.log(driver.getCurrentUrl());
 		
 	}
 	// navigate to all panties in women catagory
@@ -693,6 +706,7 @@ public class HomePageComponents extends HomePageLocators {
 		action.moveToElement(element).perform();
 		driver.findElement(ALL_PANTIES_IN_WOMEN_CATEGORY).click();
 		Thread.sleep(3000);	
+		Reporter.log(driver.getCurrentUrl());
 		
 	}
 
@@ -703,6 +717,7 @@ public class HomePageComponents extends HomePageLocators {
 		action.moveToElement(element).perform();
 		driver.findElement(COTTON_BASICS_SHOPBYCOLLECTION).click();
 		Thread.sleep(3000);	
+		Reporter.log(driver.getCurrentUrl());
 		
 	}
 
@@ -713,6 +728,7 @@ public class HomePageComponents extends HomePageLocators {
 		action.moveToElement(element).perform();
 		driver.findElement(ALL_UNDERSHIRTS_IN_MEN_CATEGORY).click();
 		Thread.sleep(3000);	
+		Reporter.log(driver.getCurrentUrl());
 		
 	}
 
@@ -722,7 +738,8 @@ public class HomePageComponents extends HomePageLocators {
 		element = driver.findElement(WOMEN_CATEGORY);
 		action.moveToElement(element).perform();
 		driver.findElement(ALL_WOMENS_COLLECTIONS_IN_WOMEN_CATEGORY).click();
-		Thread.sleep(3000);	
+		Thread.sleep(3000);
+		Reporter.log(driver.getCurrentUrl());
 		
 	}
 }
