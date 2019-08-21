@@ -1,14 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-  <name>shopify-script</name>
-  <comment>NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
-  <projects/>
-  <buildSpec>
-    <buildCommand>
-      <name>org.eclipse.jdt.core.javabuilder</name>
-    </buildCommand>
-  </buildSpec>
-  <natures>
-    <nature>org.eclipse.jdt.core.javanature</nature>
-  </natures>
+	<name>shopify-script</name>
+	<comment>NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>src/main/java/com/tommyjohn/automation/Components/GiftCardPageComponents.java</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/Downloads/GiftCardPageComponents.java</locationURI>
+		</link>
+		<link>
+			<name>src/main/java/com/tommyjohn/automation/PageLocators/GiftCardPageLocators.java</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/Downloads/GiftCardPageLocators.java</locationURI>
+		</link>
+		<link>
+			<name>src/main/java/com/tommyjohn/automation/Pages/GiftCardPage.java</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/Downloads/GiftCardPage.java</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>

@@ -178,19 +178,19 @@ allElements = driver.findElements(LIST_OF_ITEMS_IN_FLYCART);
 		// check all fields for all items in flycart
 		for(int i=1; i<=allElements.size();i++) {
 			// check for product image
-			softAssert.assertTrue(driver.findElement(By.cssSelector("div.inline-cart__col1 > div:nth-child(3) > article:nth-child("+i+") > div.line-item__image")).isDisplayed(), "First item image is not displayed");
+			softAssert.assertTrue(driver.findElement(By.cssSelector("div.inline-cart__col1 > div:nth-child(5) > article:nth-child("+i+") > div.line-item__image")).isDisplayed(), "First item image is not displayed");
 
 			// check for product heading
-			softAssert.assertTrue(driver.findElement(By.cssSelector("div.inline-cart__col1 > div:nth-child(3) > article:nth-child("+i+") > div.line-item__summary > a")).isDisplayed(), "First item heading is not displayed");	
+			softAssert.assertTrue(driver.findElement(By.cssSelector("div.inline-cart__col1 > div:nth-child(5) > article:nth-child("+i+") > div.line-item__summary > a")).isDisplayed(), "First item heading is not displayed");	
 
 			// check for remove item from cart button
-			softAssert.assertTrue(driver.findElement(By.cssSelector("div.inline-cart__col1 > div:nth-child(3) > article:nth-child("+i+") > div.line-item__summary > button")).isDisplayed(), "First item remove button is not displayed");
+			softAssert.assertTrue(driver.findElement(By.cssSelector("div.inline-cart__col1 > div:nth-child(5) > article:nth-child("+i+") > div.line-item__summary > button")).isDisplayed(), "First item remove button is not displayed");
 
 			// check for line item option
-			softAssert.assertTrue(driver.findElement(By.cssSelector("div.inline-cart__col1 > div:nth-child(3) > article:nth-child("+i+") > div.line-item__summary > div.line-item__option")).isDisplayed(), "Line item option is not displayed");
+			softAssert.assertTrue(driver.findElement(By.cssSelector("div.inline-cart__col1 > div:nth-child(5) > article:nth-child("+i+") > div.line-item__summary > div.line-item__option")).isDisplayed(), "Line item option is not displayed");
 
 			// check for price
-			softAssert.assertTrue(driver.findElement(By.cssSelector("div.inline-cart__col1 > div:nth-child(3) > article:nth-child("+i+") > div.line-item__summary > div.line-item__price > span")).isDisplayed(), "Price is not displayed");
+			softAssert.assertTrue(driver.findElement(By.cssSelector("div.inline-cart__col1 > div:nth-child(5) > article:nth-child("+i+") > div.line-item__summary > div.line-item__price > span")).isDisplayed(), "Price is not displayed");
 
 			// check for plus minus and quantity
 			softAssert.assertTrue(driver.findElement(QUANTITY_PLUS_MINUS_BUTTON).isDisplayed(), "plus or minus button is not displayed");

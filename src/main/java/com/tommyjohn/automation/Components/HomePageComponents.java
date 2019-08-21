@@ -53,8 +53,8 @@ public class HomePageComponents extends HomePageLocators {
 			
 			element = driver.findElement(NEWARRIVALS_CATEGORY);
 			action.moveToElement(element).perform();
-			if(!driver.findElement(MEN_IN_NEWARRIVALS_CATEGORY).isEnabled())
-				throw new Exception("New Arrivals category not hoverable"); 
+//			if(!driver.findElement(MEN_IN_NEWARRIVALS_CATEGORY).isEnabled())
+//				throw new Exception("New Arrivals category not hoverable"); 
 		}
 		else
 			throw new Exception("New Arrivals category is not present");
@@ -285,11 +285,11 @@ public class HomePageComponents extends HomePageLocators {
 		
 		// check Teacher Discount  link
 		text = driver.findElement(TEACHER_DISCOUNT_LINK).getText();
-		if(!text.equals("Teacher Discount"))
+		if(!text.equals("Student & Teacher Discount"))
 			throw new Exception("Teacher Discount link text is changed");	
 		driver.findElement(TEACHER_DISCOUNT_LINK).click();
 		Thread.sleep(3000);
-		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn-teacher.sheerid.com/")) 
+		if(driver.getCurrentUrl().equalsIgnoreCase("https://offers.sheerid.com/tommy-john-landing-page/")) 
 			driver.navigate().back();
 		else
 			throw new Exception("Wrong page opened after Teacher Discount footer link clicked");
@@ -543,18 +543,18 @@ public class HomePageComponents extends HomePageLocators {
 		Reporter.log("YouTube footer link is Displayed :: Clickable");
 
 		// check Google+ link
-		text = driver.findElement(GOOGLE_PLUS_LINK).getText();
-		if(!text.equals("Google+"))
-			throw new Exception("Google+ link text changed");
-		driver.findElement(GOOGLE_PLUS_LINK).click();
-		Thread.sleep(3000);
-		handles = driver.getWindowHandles();
-		list = new ArrayList<String>(handles);
-		driver.switchTo().window(list.get(6));
-		if(!driver.getCurrentUrl().contains("https://accounts.google.com"))
-			throw new Exception("Wrong page opened after clicked on Google+ link");
-		driver.switchTo().window(list.get(0));
-		Reporter.log("Google+ footer link is Displayed :: Clickable");
+//		text = driver.findElement(GOOGLE_PLUS_LINK).getText();
+//		if(!text.equals("Google+"))
+//			throw new Exception("Google+ link text changed");
+//		driver.findElement(GOOGLE_PLUS_LINK).click();
+//		Thread.sleep(3000);
+//		handles = driver.getWindowHandles();
+//		list = new ArrayList<String>(handles);
+//		driver.switchTo().window(list.get(6));
+//		if(!driver.getCurrentUrl().contains("https://accounts.google.com"))
+//			throw new Exception("Wrong page opened after clicked on Google+ link");
+//		driver.switchTo().window(list.get(0));
+//		Reporter.log("Google+ footer link is Displayed :: Clickable");
 		
 	}
 	

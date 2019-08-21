@@ -76,6 +76,13 @@
 		</classes>
 	</test>
 
+	<test thread-count="1" name="GiftCardPageTests" verbose="1"
+		parallel="tests">
+		<classes>
+			<class name="TestScenario.ValidateGiftCardFunctionality" />
+		</classes>
+	</test>
+
 	<test thread-count="1" name="AfterPayTests" verbose="1"
 		parallel="tests">
 		<classes>

@@ -50,13 +50,13 @@ public class HomePageLocators{
 	public static By CHAT_WITH_US_IFRAME = By.cssSelector(".zopim:nth-child(2) > iframe");
 	//public static By CHAT_WITH_US_POPUP = By.cssSelector(".desktop.sf_large.scroll_top.scroll_bottom > div.scrollable_inner.jx_ui_Widget > div:nth-child(2) > a");
 	public static By CHAT_WITH_US_POPUP = By.cssSelector(".jx_ui_Widget");
-	public static By CHAT_WITH_US_POPUP_MINIMIZE = By.cssSelector(".meshim_widget_widgets_titleBar_MinimizeButton");
+	public static By CHAT_WITH_US_POPUP_MINIMIZE = By.cssSelector(".meshim_widget_widgets_titleBar_MinimizeButton > div");
 
 	//public static By CHAT_WITH_US_POPUP_MINIMIZE = By.cssSelector(".button_container.last_child.jx_ui_Widget > div > div");
 	public static By CALL_US_OPTION = By.cssSelector(".header-nav-dropdown > ul > li:nth-child(3) > a");
 	public static By EMAIL_US = By.cssSelector(".header-nav-dropdown > ul > li:nth-child(4) > a");
 	
-	public static By ACCOUNT_ICON = By.cssSelector("i.icon-account");
+	public static By ACCOUNT_ICON = By.xpath("//a[@title='Account/Login']");
 	public static By REORDER = By.cssSelector("header-desktop-right > li:nth-child(3) >div > ul > li:nth-child(2) > a ");
 //	public static By CART_ICON = By.cssSelector("i.icon-shopping-cart");
 	public static By CART_ICON = By.cssSelector(".header-main__inner.container > ul > li:nth-child(4) > button > i");
@@ -65,7 +65,7 @@ public class HomePageLocators{
 	public static By ABOUT_LINK = By.linkText("About");
 	public static By PRESS_LINK = By.linkText("Press");
 	public static By MILITARY_DISCOUNT_LINK = By.linkText("Military Discount");
-	public static By TEACHER_DISCOUNT_LINK = By.linkText("Teacher Discount");
+	public static By TEACHER_DISCOUNT_LINK = By.linkText("Student & Teacher Discount");
 	public static By JOBS_LINK = By.linkText("Jobs");
 	public static By PRIVACY_POLICY_LINK = By.linkText("Privacy Policy");
 	public static By TERMS_AND_CONDITION_LINK = By.linkText("Terms & Conditions");

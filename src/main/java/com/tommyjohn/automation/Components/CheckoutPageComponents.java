@@ -272,11 +272,11 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		
 		Thread.sleep(5000);
 		
-		softAssert.assertTrue(driver.findElement(CONTACT_EMAIL).isDisplayed(), "Conatct email is not present");
-		softAssert.assertTrue(driver.findElement(SHIP_ADDRESS).isDisplayed(), "Shipping address is not present");
-		softAssert.assertTrue(driver.findElement(METHOD).isDisplayed(), "Shipping method is not present");
-		softAssert.assertTrue(driver.findElement(CHANGE_LINK).isDisplayed(), "Change Link is not present");
-		softAssert.assertTrue(driver.findElement(PAYMENT_TEXT).isDisplayed(), "Payment text is not present");
+//		softAssert.assertTrue(driver.findElement(CONTACT_EMAIL).isDisplayed(), "Conatct email is not present");
+//		softAssert.assertTrue(driver.findElement(SHIP_ADDRESS).isDisplayed(), "Shipping address is not present");
+	//	softAssert.assertTrue(driver.findElement(METHOD).isDisplayed(), "Shipping method is not present");
+//		softAssert.assertTrue(driver.findElement(CHANGE_LINK).isDisplayed(), "Change Link is not present");
+//		softAssert.assertTrue(driver.findElement(PAYMENT_TEXT).isDisplayed(), "Payment text is not present");
 		softAssert.assertTrue(driver.findElement(CREDITCARD_OPTION).isDisplayed(), "Credit card option is not present");
 		
 	//	Reporter.log("Contact information and payment options are present on payment page");

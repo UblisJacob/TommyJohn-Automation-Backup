@@ -1,6 +1,5 @@
 package com.tommyjohn.automation.Components;
 
-import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Properties;
 
@@ -57,7 +56,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 	public void checkCorrectProductDetailsPageOpenedOrNot(String text1) throws Exception {
 		String text2 = null;
-
+		Thread.sleep(5000);
 		if(!driver.findElement(PRODUCT_TITLE).isDisplayed())
 			throw new Exception("Product title is not displayed on product details page");
 		text2 = driver.findElement(PRODUCT_TITLE).getText();
@@ -104,12 +103,12 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			throw new Exception("Product price is not displayed");
 
 		// check for whats my size
-		if(!driver.findElement(WHATS_MY_SIZE).isEnabled())
-			throw new Exception("Whats my size button is not present");
-		WebElement ele = driver.findElement(WHATS_MY_SIZE);
+		if(!driver.findElement(SIZEGUIDE).isEnabled())
+			throw new Exception("Size Guide button is not present");
+		WebElement ele = driver.findElement(SIZEGUIDE);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", ele);
-		//	driver.findElement(WHATS_MY_SIZE).click();
+		//	driver.findElement(SIZEGUIDE).click();
 		Thread.sleep(3000);
 		allClasses = driver.findElement(SIZE_GUIDE_BUTTON).getAttribute("class");
 		for (String c : allClasses.split(" ")) {
@@ -188,7 +187,10 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		}
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(WRITE_REVIEW_BUTTON));	
-		driver.findElement(WRITE_REVIEW_BUTTON).click();
+		//driver.findElement(WRITE_REVIEW_BUTTON).click();
+		WebElement elem = driver.findElement(WRITE_REVIEW_BUTTON);
+		JavascriptExecutor executore = (JavascriptExecutor)driver;
+		executore.executeScript("arguments[0].click();", elem);
 		// check Write Review portion should be visible by clicking Write A Review button
 		element = driver.findElement(WRITE_REVIEW_HEADING);
 		allClasses = element.getAttribute("class");
@@ -210,36 +212,34 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		elementsCount = allElements.size();
 		System.out.println("Color Element count :: "+elementsCount);
 
+		
 		if(elementsCount > 1)
 		{
-			if(elementsCount<5)
-			{
+			
+			
 				for(int i=1;i<elementsCount;i++)
 				{
+					if(i<4)
+					{
 					colortext = driver.findElement(COLOR_TEXT).getText();
 					if(driver.getCurrentUrl().contains("product"))
-						colornew = driver.findElement(By.cssSelector(".product-option__variants.product-option__variants-color > ul > li:nth-child("+ i +") > input")).getAttribute("data-color-variant");
+						colornew = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper > ul  > li:nth-child("+ i +") > input")).getAttribute("data-color-variant");
 					else
-						colornew = driver.findElement(By.cssSelector(".product-option__variants.product-option__variants-color > ul > li:nth-child("+ i +") > input")).getAttribute("data-option-name");
+						colornew = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper > ul > li:nth-child("+ i +") > input")).getAttribute("data-option-name");
 					System.out.println(colornew);
 					if(!colornew.contentEquals(colortext))	
 					{
-						driver.findElement(By.cssSelector(".product-option__variants.product-option__variants-color > ul > li:nth-child(" + i + ") > label")).click();
+						WebElement elemen = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper > ul  > li:nth-child(" + i + ") > label"));
+						//elem.click();
+						executore.executeScript("arguments[0].click();", elemen);
 						softAssert.assertEquals(driver.findElement(COLOR_TEXT).getText() , colornew , "Color not changing");
 					}
+					}
 				}
-				elementsCount++;
-			}
+			//	elementsCount++;
+			
 
 		}
-
-
-
-
-
-
-
-
 
 
 		//		// change second color if present
@@ -264,7 +264,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		//		}
 		Reporter.log("Colors are present and changing correct");
 
-
+		//driver.findElement(SIZE_DROPDOWN).click();
 		// Select first size between available sizes
 		allElements = driver.findElements(ALL_SIZE_LIST);
 		elementsCount = allElements.size();
@@ -272,7 +272,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 		for(int i=1;i<=elementsCount;i++) {
 			flag = false;
-			element = driver.findElement(By.cssSelector(".product-option__variants.product-option__variants-size > ul > li:nth-child("+i+") > input"));
+			driver.findElement(SIZE_DROPDOWN).click();
+			element = driver.findElement(By.cssSelector(".select--options__list > li:nth-child("+i+") > span"));
 			allClasses = element.getAttribute("class");
 			// check size available or not
 			for (String c : allClasses.split(" ")) {
@@ -280,9 +281,9 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 					if(!driver.findElement(PRODUCT_TITLE).getText().contains("Pack"))
 					{
 						// click on the unavailable item and check the button text
-						driver.findElement(By.cssSelector(".product-option__variants.product-option__variants-size > ul > li:nth-child("+i+")")).click();
+						driver.findElement(By.cssSelector(".select--options__list > li:nth-child("+i+")")).click();
 						System.out.println("Unavailable size clicked");
-						element = driver.findElement(EMAIL_WHEN_IN_STOCK_BUTTON);
+						element = driver.findElement(JOIN_THE_WAITLIST);
 						text1 = element.getText();
 						System.out.println("Text of button when Unavailable size selected :: "+text1);
 						if(!(text1.equalsIgnoreCase("JOIN THE WAITLIST")))
@@ -291,13 +292,14 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 					}
 					else 
 					{
-						driver.findElement(By.cssSelector(".product-option__variants.product-option__variants-size > ul > li:nth-child("+i+")")).click();
+						driver.findElement(By.cssSelector(".select--options__list> li:nth-child("+i+")")).click();
 						System.out.println("Unavailable size clicked");
-						driver.findElement(ADD_TO_CART_BUTTON).click();
+					//	driver.findElement(ADD_TO_CART_BUTTON).click();
 						System.out.println(driver.findElement(ADD_TO_CART_BUTTON).getText());
 						if (!driver.findElement(ADD_TO_CART_BUTTON).getText().contentEquals("Out of Stock"))
 						{
-							element = driver.findElement(EMAIL_WHEN_IN_STOCK_BUTTON);
+							element = driver.findElement(JOIN_THE_WAITLIST);
+							text1 = element.getText();
 							System.out.println("Text of button when Unavailable size selected :: "+text1);
 							if(!(text1.equalsIgnoreCase("JOIN THE WAITLIST")))
 								throw new Exception("Text change for 'JOIN THE WAITLIST' for Packs");
@@ -307,11 +309,15 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 					}
 					//break;
 				}
-				else if (driver.findElement(ADD_TO_CART_BUTTON).getText().contentEquals("Out of Stock"))
+				else 
 				{
-					flag=true;
-					break;
+					element.click();
 				}
+//				else if (driver.findElement(ADD_TO_CART_BUTTON).getText().contentEquals("Out of Stock"))
+//				{
+//					flag=true;
+//					break;
+//				}
 			}
 			if(i==elementsCount) {
 				Reporter.log("No any size available");
@@ -321,7 +327,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 				continue;
 			else {
 				// if flag is not true means size is available
-				driver.findElement(By.cssSelector(".product-option__variants.product-option__variants-size > ul > li:nth-child("+i+")")).click();
+			//	driver.findElement(By.cssSelector(".select--options__list > li:nth-child("+i+")")).click();
 				// check the button txt and click
 				element = driver.findElement(ADD_TO_CART_BUTTON);
 				text1 = element.getText();

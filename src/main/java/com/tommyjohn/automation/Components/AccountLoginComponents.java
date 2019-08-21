@@ -15,7 +15,7 @@ public class AccountLoginComponents extends AccountLoginLocators{
 	String testemail;
 	String password;
 	String currentUrl;
-	String invalidemail = "abcdd@xyz.gmail";
+	String invalidemail = "drewstrr@tre.vik";
 	String invalidpassword = "123";
 	WebElement element;
 	public Actions actions;
