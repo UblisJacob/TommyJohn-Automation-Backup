@@ -3,6 +3,8 @@ package com.tommyjohn.automation.Components;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 
 import com.tommyjohn.automation.PageLocators.AccountLoginLocators;
@@ -136,6 +138,11 @@ public class AccountLoginComponents extends AccountLoginLocators{
 
 	public void verifyErrosForCreateAccount() throws Exception
 	{
+
+		
+		WebDriverWait wait = new WebDriverWait (driver, 30);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HomePageLocators.ACCOUNT_ICON));
+		
 		driver.findElement(HomePageLocators.ACCOUNT_ICON).click();
 		Thread.sleep(3000);
 		driver.findElement(CREATEACCOUNT_BTN).click();
@@ -272,7 +279,7 @@ public class AccountLoginComponents extends AccountLoginLocators{
 		if(!driver.findElement(SUBMIT_BUTTON).isEnabled())
 			throw new Exception("Submit button is not present");
 		driver.findElement(SUBMIT_BUTTON).click();
-		Thread.sleep(6000);
+		Thread.sleep(9000);
 		
 		text = driver.findElement(ERROR_MESSAGE).getText();
 		if(!text.equals(CustomUtilities.properties.getProperty("errorMessageRecoverEmail")))

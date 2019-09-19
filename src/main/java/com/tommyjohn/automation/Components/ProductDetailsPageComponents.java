@@ -110,39 +110,45 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		executor.executeScript("arguments[0].click();", ele);
 		//	driver.findElement(SIZEGUIDE).click();
 		Thread.sleep(3000);
-		allClasses = driver.findElement(SIZE_GUIDE_BUTTON).getAttribute("class");
-		for (String c : allClasses.split(" ")) {
-			if (c.equals("active")) {
-				flag = true;
-			}
-		}
-		if(!flag)
-			throw new Exception("Sizes table is not displayed after Whats my size button clicked");
-		Reporter.log("Whats my size is Displayed :: Clickable");
+		
+		if (!driver.findElement(By.cssSelector(".size-chart-content")).isDisplayed())
+//		allClasses = driver.findElement(SIZE_GUIDE_BUTTON).getAttribute("class");
+//		for (String c : allClasses.split(" ")) {
+//			if (c.equals("active")) {
+//				flag = true;
+//			}
+//		}
+//		if(!flag)
+			throw new Exception("Sizes chart overlay is not displayed after Size guide button was clicked");
+		Reporter.log("Size guide is Displayed :: Clickable");
+		
+		driver.findElement(By.cssSelector(".close_chart_modal")).click();
 
 		// scroll it top again
-		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, -document.body.scrollHeight)");
+		
 		Thread.sleep(3000);
 
 		// Check review stars are clickable and visible or not
-		if(!driver.findElement(RATING_STARS).isEnabled())
-			throw new Exception("Rating Stars are not displayed on product details page");
-		element = driver.findElement(RATING_STARS);
-		// get all classes from specified path
-		allClasses = element.getAttribute("class");
-		// check stars are clickable or not by using star-clickable class name
-		for (String c : allClasses.split(" ")) {
-			if (c.equals("star-clickable")) {
-				flag = true;
-			}
-		}
-		if(flag == true) {
-			Thread.sleep(3000);
-			jse = (JavascriptExecutor)driver;
-			jse.executeScript("window.scrollBy(0,-250)", "");
-			Thread.sleep(4000);
-			//	driver.findElement(By.cssSelector(".yotpo-stars")).click();
-			//driver.findElement(RATING_STARS).click();
+		
+		//	throw new Exception("Star rating not present");
+		
+//		element = driver.findElement(RATING_STARS);
+//		// get all classes from specified path
+//		allClasses = element.getAttribute("class");
+//		// check stars are clickable or not by using star-clickable class name
+//		for (String c : allClasses.split(" ")) {
+//			if (c.equals("star-clickable")) {
+				
+//			}
+//		}
+		if(driver.findElement(RATING_STARS).isDisplayed()) {
+			
+//			Thread.sleep(3000);
+//			jse = (JavascriptExecutor)driver;
+//			jse.executeScript("window.scrollBy(0,-250)", "");
+//			Thread.sleep(4000);
+//			//	driver.findElement(By.cssSelector(".yotpo-stars")).click();
+//			//driver.findElement(RATING_STARS).click();
 			WebElement elem = driver.findElement(RATING_STARS);
 			JavascriptExecutor executore = (JavascriptExecutor)driver;
 			executore.executeScript("arguments[0].click();", elem);
@@ -367,42 +373,21 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 				// check 'Best PairGuarantee' and 'Shopping And Returns' are clickable or not
 				flag = false;
 
-				if(!driver.findElement(PAIR_GUARANTEE_LINK).isEnabled())
-					throw new Exception("Pair gaurantee link is Displayed :: Clickable");
-				if(!driver.findElement(SHIPING_AND_RETURNS_LINK).isEnabled())
-					throw new Exception("Shiping and returns link is Displayed :: Clickable");
+				
+		if (driver.findElement(PRODUCT_DETAILS).isDisplayed())
+			driver.findElement(PRODUCT_DETAILS).click();
+		else throw new Exception("Product details accordion not present or not clikable ");
+		
+		if (driver.findElement(PAIR_GUARANTEE).isDisplayed())
+			driver.findElement(PAIR_GUARANTEE).click();
+		else throw new Exception("PAIR_GUARANTEE accordion not present or not clikable");
+			
+		if (driver.findElement(SHIPING_AND_RETURNS).isDisplayed())
+			driver.findElement(SHIPING_AND_RETURNS).click();
+		else throw new Exception("SHIPING_AND_RETURNS accordion not present or not clikable");	
 
 
-				// check for Details and Side Guid button
-				flag = false;
-				if(!driver.findElement(PRODUCT_DETAILS_BUTTON).isEnabled())
-					throw new Exception("Details button is not Displayed");
-				driver.findElement(PRODUCT_DETAILS_BUTTON).click();
-				allClasses = driver.findElement(PRODUCT_DETAILS_BUTTON).getAttribute("class");
-				for (String c : allClasses.split(" ")) {
-					if (c.equals("active")) {
-						flag = true;
-					}
-				}
-				if(!flag)
-					throw new Exception("Details button is not clickable");
-
-				if(!driver.findElement(SIZE_GUIDE_BUTTON).isEnabled())
-					throw new Exception("Size Guide button is not Displayed");
-				driver.findElement(SIZE_GUIDE_BUTTON).click();
-				allClasses = driver.findElement(SIZE_GUIDE_BUTTON).getAttribute("class");
-				for (String c : allClasses.split(" ")) {
-					if (c.equals("active")) {
-						flag = true;
-					}
-				}
-				if(!flag)
-					throw new Exception("Size Guide button is not Clickable");
-				Reporter.log("Details button and Size Guide button is Displayed :: Clickable");
-
-				element = driver.findElement(RATING_STARS);
-				jse.executeScript("arguments[0].scrollIntoView(true);", element);
-				Thread.sleep(3000); 
+	 
 
 				if (!driver.findElement(PRODUCT_TITLE).getText().contains("Pack"))
 				{

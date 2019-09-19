@@ -56,7 +56,7 @@ public class HomePageLocators{
 	public static By CALL_US_OPTION = By.cssSelector(".header-nav-dropdown > ul > li:nth-child(3) > a");
 	public static By EMAIL_US = By.cssSelector(".header-nav-dropdown > ul > li:nth-child(4) > a");
 	
-	public static By ACCOUNT_ICON = By.xpath("//a[@title='Account/Login']");
+	public static By ACCOUNT_ICON = By.cssSelector("i.icon-account");
 	public static By REORDER = By.cssSelector("header-desktop-right > li:nth-child(3) >div > ul > li:nth-child(2) > a ");
 //	public static By CART_ICON = By.cssSelector("i.icon-shopping-cart");
 	public static By CART_ICON = By.cssSelector(".header-main__inner.container > ul > li:nth-child(4) > button > i");

@@ -37,7 +37,7 @@ public class ProductDetailsPageLocators {
 	
 	
 	public static By ALL_COLOR_LIST = By.cssSelector(".product-option__color-swatches-wrapper > ul >li");
-	public static By PRODUCT_DETAILS_BUTTON = By.cssSelector(".product-details__controls--inner > button:nth-child(1)");
+	public static By PRODUCT_DETAILS = By.cssSelector("div.product-accordion.container> ul > li:nth-child(1) > div:nth-child(1) > a");
 	public static By SIZEGUIDE = By.cssSelector(".product-info__header--desktop > button");
 	public static By SIZE_GUIDE_BUTTON = By.cssSelector(".product-details__controls--inner > button:nth-child(2)");
 	public static By ADD_TO_CART_BUTTON = By.cssSelector("button.product-info__atc.button.button--red.button--full.js-loop-atc");
@@ -47,8 +47,8 @@ public class ProductDetailsPageLocators {
 	public static By PLUS_BUTTON = By.cssSelector(".pdp.plusBtn");
 	public static By UPDATED_QUANTITY = By.cssSelector(".pdp.updatedQty");
 	public static By MINUS_BUTTON = By.cssSelector(".pdp.minusBtn");
-	public static By PAIR_GUARANTEE_LINK = By.cssSelector(".product-info__inner-bottom > div:nth-child(1) > button");
-	public static By SHIPING_AND_RETURNS_LINK = By.cssSelector(".product-info__inner-bottom > div:nth-child(2) > button");
+	public static By PAIR_GUARANTEE = By.cssSelector("div.product-accordion.container> ul > li:nth-child(2) > div:nth-child(1) > a");
+	public static By SHIPING_AND_RETURNS = By.cssSelector("div.product-accordion.container> ul > li:nth-child(3) > div:nth-child(1) > a");
 	public static By CHECKOUT_BUTTON = By.cssSelector(".inline-cart__action-btns > a");
 	//public static By COLOR_AND_SIZE = By.cssSelector("div.product-info__variant-select > div:nth-child(1) > div.product-info__header.hide > span");
 	
