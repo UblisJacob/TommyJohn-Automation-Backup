@@ -20,7 +20,7 @@ public class FlyCartPageLocator {
 	public static By ESTIMATE_TOTAL = By.cssSelector("div.inline-cart__summary > div > div > span");
 	public static By ESTIMATE_TOTAL_SMALL = By.cssSelector("div.inline-cart__summary > div > div > small");
 	public static By CHECKOUT_BUTTON = By.cssSelector("div.inline-cart__action-btns > a.button.button--red.button--auto");
-	public static By FIRST_PRODUCT_TITLE_IN_CART = By.cssSelector("div.inline-cart__col1 > div:nth-child(5) > article > div.line-item__summary > a");
+	public static By FIRST_PRODUCT_TITLE_IN_CART = By.cssSelector("div.inline-cart__col1 > div:nth-child(7) > article > div.line-item__summary > a");
 	public static By PLUS_BUTTON = By.cssSelector(".qty-selector.line-item__qty > button:nth-child(3)");
 	public static By MINUS_BUTTON = By.cssSelector(".qty-selector.line-item__qty > button:nth-child(1)");
 	public static By QUANTITY = By.cssSelector(".qty-selector.line-item__qty > input");

@@ -407,7 +407,7 @@ public class HomePageComponents extends HomePageLocators {
 
 		// check Shipping & Returns  link
 		text = driver.findElement(SHIPPING_AND_RETURNS_LINK).getText();
-		if(!text.equals("Shipping & Returns"))
+		if(!text.equals("Shipping & Returns Policy"))
 			throw new Exception("Shipping & Returns link text is changed");	
 		driver.findElement(SHIPPING_AND_RETURNS_LINK).click();
 		Thread.sleep(3000);
