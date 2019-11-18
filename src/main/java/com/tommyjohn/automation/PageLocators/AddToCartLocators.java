@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 
 public class AddToCartLocators {
 	
-	public static By ALL_SIZE_LIST = By.cssSelector(".product-option__variants.product-option__variants-size > ul > li");
+	public static By ALL_SIZE_LIST = By.cssSelector(".option-dropdown__option--size > div > ul > li"); //(".product-option__variants.product-option__variants-size > ul > li")
 	public static By ADD_TO_CART_BUTTON = By.cssSelector("button.product-info__atc.button.button--red.button--full.js-loop-atc");
 	public static By EMAIL_WHEN_IN_STOCK_BUTTON = By.cssSelector("button.product-info__atc.button.button--red.button--full.js-loop-atc.email-when-in-stock");
 	public static By QUANTITY = By.cssSelector("#updatedQty.pdp.prodQty");

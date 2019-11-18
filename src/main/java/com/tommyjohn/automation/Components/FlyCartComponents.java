@@ -5,6 +5,7 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Reporter;
@@ -178,19 +179,19 @@ allElements = driver.findElements(LIST_OF_ITEMS_IN_FLYCART);
 		// check all fields for all items in flycart
 		for(int i=1; i<=allElements.size();i++) {
 			// check for product image
-			softAssert.assertTrue(driver.findElement(By.cssSelector("div.inline-cart__col1 > div:nth-child(5) > article:nth-child("+i+") > div.line-item__image")).isDisplayed(), "First item image is not displayed");
+			softAssert.assertTrue(driver.findElement(By.cssSelector("div.inline-cart__col1 > div[data-inline-cart-contents] > article:nth-child("+i+") > div.line-item__image")).isDisplayed(), "First item image is not displayed");
 
 			// check for product heading
-			softAssert.assertTrue(driver.findElement(By.cssSelector("div.inline-cart__col1 > div:nth-child(5) > article:nth-child("+i+") > div.line-item__summary > a")).isDisplayed(), "First item heading is not displayed");	
+			softAssert.assertTrue(driver.findElement(By.cssSelector("div.inline-cart__col1 > div[data-inline-cart-contents] > article:nth-child("+i+") > div.line-item__summary > a")).isDisplayed(), "First item heading is not displayed");	
 
 			// check for remove item from cart button
-			softAssert.assertTrue(driver.findElement(By.cssSelector("div.inline-cart__col1 > div:nth-child(5) > article:nth-child("+i+") > div.line-item__summary > button")).isDisplayed(), "First item remove button is not displayed");
+			softAssert.assertTrue(driver.findElement(By.cssSelector("div.inline-cart__col1 > div[data-inline-cart-contents] > article:nth-child("+i+") > div.line-item__summary > button")).isDisplayed(), "First item remove button is not displayed");
 
 			// check for line item option
-			softAssert.assertTrue(driver.findElement(By.cssSelector("div.inline-cart__col1 > div:nth-child(5) > article:nth-child("+i+") > div.line-item__summary > div.line-item__option")).isDisplayed(), "Line item option is not displayed");
+			softAssert.assertTrue(driver.findElement(By.cssSelector("div.inline-cart__col1 > div[data-inline-cart-contents] > article:nth-child("+i+") > div.line-item__summary > div.line-item__option")).isDisplayed(), "Line item option is not displayed");
 
 			// check for price
-			softAssert.assertTrue(driver.findElement(By.cssSelector("div.inline-cart__col1 > div:nth-child(5) > article:nth-child("+i+") > div.line-item__summary > div.line-item__price > span")).isDisplayed(), "Price is not displayed");
+			softAssert.assertTrue(driver.findElement(By.cssSelector("div.inline-cart__col1 > div[data-inline-cart-contents] > article:nth-child("+i+") > div.line-item__summary > div.line-item__price > span")).isDisplayed(), "Price is not displayed");
 
 			// check for plus minus and quantity
 			softAssert.assertTrue(driver.findElement(QUANTITY_PLUS_MINUS_BUTTON).isDisplayed(), "plus or minus button is not displayed");
@@ -268,7 +269,11 @@ allElements = driver.findElements(LIST_OF_ITEMS_IN_FLYCART);
 		colorAndSize = driver.findElement(ProductDetailsPageLocators.COLOR_TEXT).getText();
 		System.out.println("color and size :: "+colorAndSize);
 		colorAndSize = colorAndSize+" / ";
-		colorAndSize = colorAndSize.concat(driver.findElement(ProductDetailsPageLocators.SIZE_TEXT).getText());
+		
+String size = 	driver.findElement(ProductDetailsPageLocators.SIZE_TEXT).getText();
+String[] b = size.split(",") ;
+	size = b[0];
+		colorAndSize = colorAndSize.concat(size);
 		System.out.println("color and size :: "+colorAndSize);
 
 		driver.findElement(HomePageLocators.CART_ICON).click();
@@ -288,7 +293,9 @@ allElements = driver.findElements(LIST_OF_ITEMS_IN_FLYCART);
 		// check for plus minus button
 		String quantity = driver.findElement(QUANTITY).getAttribute("data-item-qty");
 		System.out.println("quantity :: "+quantity);
-		driver.findElement(PLUS_BUTTON).click();
+		
+		
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", driver.findElement(PLUS_BUTTON));
 		Thread.sleep(3000);
 		String quantity1 = driver.findElement(QUANTITY).getAttribute("data-item-qty");
 		System.out.println("quantity1 :: "+quantity1);
@@ -306,7 +313,7 @@ allElements = driver.findElements(LIST_OF_ITEMS_IN_FLYCART);
 		// check price changed or not
 		softAssert.assertFalse(price1.equals(price2), "Total price not changing after adding more items");
 
-		driver.findElement(MINUS_BUTTON).click();
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", driver.findElement(MINUS_BUTTON));
 		Thread.sleep(2000);
 
 		String quantity2 = driver.findElement(QUANTITY).getAttribute("data-item-qty");

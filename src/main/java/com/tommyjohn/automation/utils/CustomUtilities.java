@@ -4,9 +4,13 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Properties;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 
 
@@ -24,6 +28,7 @@ public class CustomUtilities {
 	 * @throws Exception
 	 */
 	//	@BeforeSuite
+	@SuppressWarnings("finally")
 	public WebDriver launchtj() throws Exception 
 	{
 		// load properties file
@@ -37,9 +42,26 @@ public class CustomUtilities {
 		chromeOptions.addArguments("window-size=1366,768");
 		driver= new ChromeDriver(chromeOptions);
 		driver.get(baseUrl);
-		driver.navigate().refresh();
+		
+		//driver.navigate().refresh();
 		driver.manage().window().maximize();
-		return driver;
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		try {
+		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.id("bcx_local_storage_frame")));
+		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".bx-close-xsvg")));
+		driver.findElement(By.cssSelector(".bx-close-xsvg")).click();
+		driver.switchTo().defaultContent();
+		}
+		catch (ElementNotVisibleException e)
+		{
+			System.out.println("Overlay not displayed");
+		}
+		finally {
+		
+			driver.get(baseUrl);
+			return driver;
+		}
+		
 	}
 	//	@AfterSuite
 	public void teardown()

@@ -29,10 +29,10 @@ public class AccountLoginLocators {
 	public static By PASSWORD_LABEL = By.cssSelector("#create_customer > div:nth-child(7) > label");
 	public static By SWELLOPTIN_LABEL = By.cssSelector("#accepts_loyalty-member > label");
 	public static By SWELLOPTIN_CHCKBOX = By.cssSelector("#loyalty-member");
-	public static By CREATEACCOUNT_DISCLAIMER = By.cssSelector("#create_customer > div.account-disclaimer.disclaimer");
-	public static By PRIVACYPOLICY_LINK = By.cssSelector("#create_customer > div.account-disclaimer.disclaimer >a");
-	public static By TERMS_LINK = By.cssSelector("#create_customer > div.account-disclaimer.disclaimer > a:nth-child(2)");
-	public static By ERRORMESSAGES = By.cssSelector("#create_customer > div.error-container-create-account.reset-fail");
+	public static By CREATEACCOUNT_DISCLAIMER = By.cssSelector(".disclaimer.gdpr_Privacy_Policy");
+	public static By PRIVACYPOLICY_LINK = By.cssSelector(".disclaimer.gdpr_Privacy_Policy > a.privacyPolicy_Textlink");
+	public static By TERMS_LINK = By.cssSelector(".disclaimer.gdpr_Privacy_Policy> a:nth-child(2)");
+	public static By ERRORMESSAGES = By.cssSelector(".error-container-create-account");
 	public static By LOGOUT_OPTION_IN_ACCOUNT_ICON = By.cssSelector("div.header-main__inner.container > ul > li:nth-child(3) > div > ul > li:nth-child(3) > a");
 	public static By CUSTOMER_EMAIL_MESSAGE = By.cssSelector("#customer_login > div:nth-child(5)");
 	public static By CUSTOMER_PASSWORD_MESSAGE = By.cssSelector("#customer_login > div:nth-child(7)");

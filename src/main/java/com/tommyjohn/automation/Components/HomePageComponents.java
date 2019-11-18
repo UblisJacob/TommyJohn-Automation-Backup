@@ -14,7 +14,7 @@ import com.tommyjohn.automation.PageLocators.HomePageLocators;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
 public class HomePageComponents extends HomePageLocators {
-	
+
 	public WebDriver driver;
 	public static String baseUrl = CustomUtilities.baseUrl;
 	public String currentUrl1;
@@ -22,24 +22,26 @@ public class HomePageComponents extends HomePageLocators {
 	boolean flag = false;
 	public static WebElement element;
 	public Actions action;
-	
-	
+	JavascriptExecutor executor = (JavascriptExecutor)driver;
+
 	String text;
-	
+
 	public HomePageComponents(WebDriver driver) {
-		
+
 		this.driver = driver;
 	}
-	
+
 	//Verify logo and all category
 	public void ValidateLogoAndCategoriesPresence() throws Exception
 	{
 		action = new Actions(driver);
 		if(driver.findElement(HOMEPAGE_LOGO).isDisplayed())
 		{
-			
+
 			currentUrl1 = driver.getCurrentUrl();
-			driver.findElement(HOMEPAGE_LOGO).click();
+			WebElement element = driver.findElement(HOMEPAGE_LOGO);
+			JavascriptExecutor executor = (JavascriptExecutor)driver;
+			executor.executeScript("arguments[0].click();", element);		
 			String currentUrl2 = driver.getCurrentUrl();
 			if(!currentUrl1.equals(currentUrl2))
 				throw new Exception("HomePage logo not working correctly");
@@ -47,21 +49,21 @@ public class HomePageComponents extends HomePageLocators {
 		}
 		else
 			throw new Exception("HomePage logo is not present");
-		
+
 		//Verify new arrivals
 		if(driver.findElement(NEWARRIVALS_CATEGORY).isDisplayed()) {
-			
+
 			element = driver.findElement(NEWARRIVALS_CATEGORY);
 			action.moveToElement(element).perform();
-//			if(!driver.findElement(MEN_IN_NEWARRIVALS_CATEGORY).isEnabled())
-//				throw new Exception("New Arrivals category not hoverable"); 
+			//			if(!driver.findElement(MEN_IN_NEWARRIVALS_CATEGORY).isEnabled())
+			//				throw new Exception("New Arrivals category not hoverable"); 
 		}
 		else
 			throw new Exception("New Arrivals category is not present");
 		Reporter.log("New Arrivals category is Displayed :: Hoverable");
 		Thread.sleep(3000);
-		
-		// Verifiy Men category
+
+		// Verify Men category
 		if(!driver.findElement(MEN_CATEGORY).isDisplayed())
 			throw new Exception("Men category is not present");		
 		element = driver.findElement(MEN_CATEGORY);
@@ -71,10 +73,12 @@ public class HomePageComponents extends HomePageLocators {
 		driver.findElement(MEN_CATEGORY).click();
 		Thread.sleep(3000);
 		currentUrl2 = driver.getCurrentUrl();
-		if(!currentUrl2.equalsIgnoreCase("https://tommyjohn.com/collections/mens"))
+		if(!currentUrl2.equalsIgnoreCase("https://tommyjohn.com/pages/mens-category"))
 			throw new Exception("Men category clicked but not opened correct page");
 		Reporter.log("Men category is Displayed :: Hoverable :: Clickable");
 		Thread.sleep(3000);
+
+
 		// Verify Women category
 		if(!driver.findElement(WOMEN_CATEGORY).isDisplayed())
 			throw new Exception("Women category is not displayed");
@@ -85,7 +89,7 @@ public class HomePageComponents extends HomePageLocators {
 		driver.findElement(WOMEN_CATEGORY).click();
 		Thread.sleep(3000);
 		currentUrl2 = driver.getCurrentUrl();
-		if(!currentUrl2.equalsIgnoreCase("https://tommyjohn.com/collections/womens"))
+		if(!currentUrl2.equalsIgnoreCase("https://tommyjohn.com/pages/womens-category"))
 			throw new Exception("Women category is clicked but not opened correct page");
 		Reporter.log("Women category is Displayed :: Hoverable :: Clickable");
 
@@ -96,21 +100,20 @@ public class HomePageComponents extends HomePageLocators {
 		action.moveToElement(element).perform();
 		if(!driver.findElement(MEN_IN_UNDERWEAR_CATEGORY).isDisplayed())
 			throw new Exception("Underwear Category is not hoverable");
-
 		Reporter.log("Underwear category is Displayed :: Hoverable");
 
 		Thread.sleep(3000);
-		// Verify Shop by collection category
-		if(!driver.findElement(SHOPBYCOLLECTION).isDisplayed())
-			throw new Exception("Shop By Collection category is not displayed");
-		element = driver.findElement(SHOPBYCOLLECTION);
+		// Verify Shop by Bras category
+		if(!driver.findElement(BRAS).isDisplayed())
+			throw new Exception("Bras category is not displayed");
+		element = driver.findElement(BRAS);
 		action.moveToElement(element).perform();
-		if(!driver.findElement(MEN_IN_SHOPBYCOLLECTION).isDisplayed())
-			throw new Exception("Shop By Collection category is not hoverable");
-
-		Reporter.log("Shop By Collection category is Displayed :: Hoverable");
+		if(!driver.findElement(BRAS_TITLE).isDisplayed())
+			throw new Exception("Bras category is not hoverable");
+		Reporter.log("Bras category is Displayed :: Hoverable");
 
 		Thread.sleep(3000);
+		
 		// Verify Packs category
 		if(!driver.findElement(PACKS).isDisplayed())
 			throw new Exception("Packs category is not displayed");
@@ -119,12 +122,18 @@ public class HomePageComponents extends HomePageLocators {
 		if(!driver.findElement(MEN_IN_PACKS).isDisplayed())
 			throw new Exception("Packs category is not hoverable");
 		Reporter.log("Packs category is Displayed :: Hoverable");
-	}
-	
 	
 
-
-
+	// Verify Gift Guide category
+			if(!driver.findElement(GIFT_GUIDE).isDisplayed())
+				throw new Exception("Gift guide category is not displayed");
+			element = driver.findElement(GIFT_GUIDE);
+			action.moveToElement(element).perform();
+			if(!driver.findElement(GIFTCARDS).isDisplayed())
+				throw new Exception("Gift Guide category is not hoverable");
+			Reporter.log("Gift Guide category is Displayed :: Hoverable");
+		}
+	
 
 	// validate search icon
 	public void validateSearchIcon() throws Exception {
@@ -132,7 +141,9 @@ public class HomePageComponents extends HomePageLocators {
 		action = new Actions(driver);
 		if(!driver.findElement(SEARCH_ICON).isDisplayed())
 			throw new Exception("Search icon is not present");
-		driver.findElement(SEARCH_ICON).click();
+		WebElement element = driver.findElement(SEARCH_ICON);
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();", element);
 		// check searchbox is opened or not using active class
 		flag = false;
 		element = driver.findElement(SEARCH_ICON_FORM_TAG);
@@ -146,14 +157,14 @@ public class HomePageComponents extends HomePageLocators {
 			throw new Exception("Search input box is not opened");
 		Reporter.log("Search Icon is Displayed :: Clickable :: Search textbox is Opened after click");
 	}
-	
-	
+
+
 	// check for Help icon
 	public void validateHelpIcon() throws Exception {
 		action = new Actions(driver);
 		if(!driver.findElement(HELP_ICON).isDisplayed())
 			throw new Exception("Help icon is not present");
-		
+
 		currentUrl1 = driver.getCurrentUrl();
 		element = driver.findElement(HELP_ICON);
 		action.moveToElement(element).perform();
@@ -166,7 +177,7 @@ public class HomePageComponents extends HomePageLocators {
 		if(!currentUrl2.equalsIgnoreCase("https://help.tommyjohn.com/hc/en-us"))
 			throw new Exception("Wrong page opened after clicked on help option");
 		Reporter.log("Help option is Displayed :: Clickable");
-		
+
 		// check chat with us option
 		driver.get(baseUrl);
 		element = driver.findElement(HELP_ICON);
@@ -174,7 +185,7 @@ public class HomePageComponents extends HomePageLocators {
 		if(!driver.findElement(CHAT_WITH_US).isDisplayed())
 			throw new Exception("Chat With Us Option is not present");
 		driver.findElement(CHAT_WITH_US).click();
-		Thread.sleep(3000);
+		Thread.sleep(6000);
 		// switch to another frame
 		element = driver.findElement(CHAT_WITH_US_IFRAME);
 		driver.switchTo().frame(element);
@@ -182,26 +193,29 @@ public class HomePageComponents extends HomePageLocators {
 		if(!element.isEnabled())
 			throw new Exception("Chat With Us Popup is not opened");
 		if(element.isEnabled()) {
-			if(!driver.findElement(CHAT_WITH_US_POPUP_MINIMIZE).isDisplayed())
-				throw new Exception("Chat With Us Popup Minimize button is not present");
-			driver.findElement(CHAT_WITH_US_POPUP_MINIMIZE).click();
+			//			if(!driver.findElement(CHAT_WITH_US_POPUP_MINIMIZE).isDisplayed())
+			//				throw new Exception("Chat With Us Popup Minimize button is not present");
+
+			WebElement element = driver.findElement(CHAT_WITH_US_POPUP_MINIMIZE);
+			JavascriptExecutor executor = (JavascriptExecutor)driver;
+			executor.executeScript("arguments[0].click();", element);
 			driver.get(baseUrl);
 		}
 		else
 			throw new Exception("Chat With Us Popup is not opened");
 		Reporter.log("Chat With Us Popup is Displayed :: Minimize Button working");
-		
+
 		// Validating Call Us option
 		element = driver.findElement(HELP_ICON);
 		action.moveToElement(element).perform();
-		
+
 		if(!driver.findElement(CALL_US_OPTION).isDisplayed())
 			throw new Exception("Call US Option is not present");
-		
+
 		text = driver.findElement(CALL_US_OPTION).getText();
 		if(!text.equals("Call Us: 1-800-708-3490"))
 			throw new Exception("Text or Number for Call Us changed");
-		
+
 		// valaditing Email Us option
 		driver.get(baseUrl);
 		element = driver.findElement(HELP_ICON);
@@ -214,15 +228,15 @@ public class HomePageComponents extends HomePageLocators {
 			throw new Exception("Wrong page opened after clicked on Emails Us");
 		Reporter.log("Call Us option and Email Us is Displayed :: Clickable");
 	}
-	
-	
+
+
 	// check Account/Login icon
 	public void validateAccountIcon() throws Exception {
 		if(!driver.findElement(ACCOUNT_ICON).isDisplayed())
 			throw new Exception("Account Icon is not present");
 		driver.findElement(ACCOUNT_ICON).click();
-		Thread.sleep(4000);
-		if(!driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/account/login"))
+		Thread.sleep(5000);
+		if(!driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/account/login?return_url=%2Faccount"))
 			throw new Exception("Wrong page opened after clicked on Account Icon");
 		Reporter.log("Account Icon is Displayed :: Clickable");
 
@@ -238,12 +252,12 @@ public class HomePageComponents extends HomePageLocators {
 		driver.get(baseUrl);
 		Reporter.log("Cart Icon is Displayed :: Clickable :: Mini Cart is Opened");	
 	}
-	
+
 	// validate homepage links
 	public void validateFooterLinks() throws Exception {
 		Set<String> handles = null;
 		List<String> list = null;
-		
+
 		driver.get(baseUrl);
 		// scroll the page at bottom to test all the footer links
 		((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
@@ -258,7 +272,7 @@ public class HomePageComponents extends HomePageLocators {
 		else
 			throw new Exception("Wrong page opened after About footer link clicked");
 		Reporter.log("About link is Displayed :: Clickable");
-		
+
 		// check Press link
 		text = driver.findElement(PRESS_LINK).getText();
 		if(!text.equals("Press"))
@@ -270,7 +284,7 @@ public class HomePageComponents extends HomePageLocators {
 		else
 			throw new Exception("Wrong page opened after Press footer link clicked");
 		Reporter.log("Press fotter link is Displayed :: Clickable");
-		
+
 		// check military discount link
 		text = driver.findElement(MILITARY_DISCOUNT_LINK).getText();
 		if(!text.equals("Military Discount"))
@@ -282,7 +296,7 @@ public class HomePageComponents extends HomePageLocators {
 		else
 			throw new Exception("Wrong page opened after Military Discount footer link clicked");
 		Reporter.log("Military Discount fotter link is Displayed :: Clickable");
-		
+
 		// check Teacher Discount  link
 		text = driver.findElement(TEACHER_DISCOUNT_LINK).getText();
 		if(!text.equals("Student & Teacher Discount"))
@@ -331,6 +345,20 @@ public class HomePageComponents extends HomePageLocators {
 		else
 			throw new Exception("Wrong page opened after Terms & Conditions footer link clicked");
 		Reporter.log("Terms & Conditions footer link is Displayed :: Clickable");
+		
+		
+		// check  Terms & Conditions  link
+		text = driver.findElement(BLOG_LINK).getText();
+		if(!text.equals("Blog"))
+			throw new Exception("Terms & Conditions link text is changed");	
+		driver.findElement(BLOG_LINK).click();
+		Thread.sleep(3000);
+		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/blogs/news")) 
+			driver.navigate().back();
+		else
+			throw new Exception("Wrong page opened after Blog footer link clicked");
+		Reporter.log("Blog footer link is Displayed :: Clickable");
+		
 
 		// check  Help  link
 		text = driver.findElement(HELP_LINK).getText();
@@ -369,29 +397,41 @@ public class HomePageComponents extends HomePageLocators {
 		Reporter.log("Retailers footer link is Displayed :: Clickable");
 
 		// check  King of Prussia Store  link
-		text = driver.findElement(KING_OF_PURSSIA_STORE_LINK).getText();
-		if(!text.equals("King of Prussia Store"))
-			throw new Exception("King of Prussia Store link text is changed");	
-		driver.findElement(KING_OF_PURSSIA_STORE_LINK).click();
-		Thread.sleep(3000);
-		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/king-of-prussia")) 
-			driver.navigate().back();
-		else
-			throw new Exception("Wrong page opened after King of Prussia Store footer link clicked");
-		Reporter.log("King of Prussia Store footer link is Displayed :: Clickable");
+		//		text = driver.findElement(KING_OF_PURSSIA_STORE_LINK).getText();
+		//		if(!text.equals("King of Prussia Store"))
+		//			throw new Exception("King of Prussia Store link text is changed");	
+		//		driver.findElement(KING_OF_PURSSIA_STORE_LINK).click();
+		//		Thread.sleep(3000);
+		//		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/king-of-prussia")) 
+		//			driver.navigate().back();
+		//		else
+		//			throw new Exception("Wrong page opened after King of Prussia Store footer link clicked");
+		//		Reporter.log("King of Prussia Store footer link is Displayed :: Clickable");
 
-		
-		// check Charlotte Store Store  link
-		text = driver.findElement(CHARLOTTE_STORE_LINK).getText();
-		if(!text.equals("Charlotte Store"))
-			throw new Exception("Charlotte Store link text is changed");	
-		driver.findElement(CHARLOTTE_STORE_LINK).click();
+
+		// Check  Tommy John Store link
+		text = driver.findElement(TOMMY_JOHN_STORES).getText();
+		if(!text.equals("Tommy John Stores"))
+			throw new Exception("Tommy John Stores link text is changed");	
+		driver.findElement(TOMMY_JOHN_STORES).click();
 		Thread.sleep(3000);
-		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/south-park-landing-page")) 
+		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/store-directory")) 
 			driver.navigate().back();
 		else
-			throw new Exception("Wrong page opened after Charlotte Store footer link clicked");
-		Reporter.log("Charlotte Store footer link is Displayed :: Clickable");
+			throw new Exception("Wrong page opened after Tommy John Stores footer link clicked");
+		Reporter.log("Tommy John Stores footer link is Displayed :: Clickable");
+
+		// check Charlotte Store Store  link
+		//		text = driver.findElement(CHARLOTTE_STORE_LINK).getText();
+		//		if(!text.equals("Charlotte Store"))
+		//			throw new Exception("Charlotte Store link text is changed");	
+		//		driver.findElement(CHARLOTTE_STORE_LINK).click();
+		//		Thread.sleep(3000);
+		//		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/south-park-landing-page")) 
+		//			driver.navigate().back();
+		//		else
+		//			throw new Exception("Wrong page opened after Charlotte Store footer link clicked");
+		//		Reporter.log("Charlotte Store footer link is Displayed :: Clickable");
 
 		// check Store Locator  link
 		text = driver.findElement(STORE_LOCATOR_LINK).getText();
@@ -407,7 +447,7 @@ public class HomePageComponents extends HomePageLocators {
 
 		// check Shipping & Returns  link
 		text = driver.findElement(SHIPPING_AND_RETURNS_LINK).getText();
-		if(!text.equals("Shipping & Returns Policy"))
+		if(!text.equals("Shipping & Return Policy"))
 			throw new Exception("Shipping & Returns link text is changed");	
 		driver.findElement(SHIPPING_AND_RETURNS_LINK).click();
 		Thread.sleep(3000);
@@ -417,13 +457,13 @@ public class HomePageComponents extends HomePageLocators {
 			throw new Exception("Wrong page opened after Shipping & Returns footer link clicked");
 		Reporter.log("Shipping & Returns footer link is Displayed :: Clickable");
 
-		
+
 		// check 1-800-708-3490  link
 		text = driver.findElement(NUMBER_LINK).getText();
 		if(!text.equals("1-800-708-3490"))
 			throw new Exception("1-800-708-3490 link text is changed");	
 		Reporter.log("1-800-708-3490 footer link is Displayed");
-		
+
 		// check Loyalty  link
 		text = driver.findElement(LOYALTY_LINK).getText();
 		if(!text.equals("Loyalty"))
@@ -485,7 +525,7 @@ public class HomePageComponents extends HomePageLocators {
 			throw new Exception("Wrong page opened after clicked on Facebook link");
 		driver.switchTo().window(list.get(0));
 		Reporter.log("Facebook footer link is Displayed :: Clickable");
-		
+
 		// check Twitter link
 		text = driver.findElement(TWITTER_LINK).getText();
 		if(!text.equals("Twitter"))
@@ -543,22 +583,22 @@ public class HomePageComponents extends HomePageLocators {
 		Reporter.log("YouTube footer link is Displayed :: Clickable");
 
 		// check Google+ link
-//		text = driver.findElement(GOOGLE_PLUS_LINK).getText();
-//		if(!text.equals("Google+"))
-//			throw new Exception("Google+ link text changed");
-//		driver.findElement(GOOGLE_PLUS_LINK).click();
-//		Thread.sleep(3000);
-//		handles = driver.getWindowHandles();
-//		list = new ArrayList<String>(handles);
-//		driver.switchTo().window(list.get(6));
-//		if(!driver.getCurrentUrl().contains("https://accounts.google.com"))
-//			throw new Exception("Wrong page opened after clicked on Google+ link");
-//		driver.switchTo().window(list.get(0));
-//		Reporter.log("Google+ footer link is Displayed :: Clickable");
-		
+		//		text = driver.findElement(GOOGLE_PLUS_LINK).getText();
+		//		if(!text.equals("Google+"))
+		//			throw new Exception("Google+ link text changed");
+		//		driver.findElement(GOOGLE_PLUS_LINK).click();
+		//		Thread.sleep(3000);
+		//		handles = driver.getWindowHandles();
+		//		list = new ArrayList<String>(handles);
+		//		driver.switchTo().window(list.get(6));
+		//		if(!driver.getCurrentUrl().contains("https://accounts.google.com"))
+		//			throw new Exception("Wrong page opened after clicked on Google+ link");
+		//		driver.switchTo().window(list.get(0));
+		//		Reporter.log("Google+ footer link is Displayed :: Clickable");
+
 	}
-	
-	
+
+
 	// nevigate new arrival in men category
 	public void nevigateToNewArrivalsInMenCategory() throws Exception {
 		action = new Actions(driver);
@@ -568,18 +608,18 @@ public class HomePageComponents extends HomePageLocators {
 		Thread.sleep(3000);
 		Reporter.log(driver.getCurrentUrl());
 	}
-	
+
 	// nevigate to all underwear in men category 
 	public void navigateToAllUnderwearInMenCategory() throws Exception {
 		action = new Actions(driver);
 		element = driver.findElement(MEN_CATEGORY);
 		action.moveToElement(element).perform();
-		
+
 		driver.findElement(ALL_UNDERWEAR_IN_MEN_CATEGORY).click();	
 		Thread.sleep(3000);
 		Reporter.log(driver.getCurrentUrl());
 	}
-	
+
 	// nevigate to tank in men category
 	public void nevigateToTankInMenCategory() throws Exception {
 		action = new Actions(driver);
@@ -589,7 +629,7 @@ public class HomePageComponents extends HomePageLocators {
 		Thread.sleep(3000);
 		Reporter.log(driver.getCurrentUrl());
 	}
-	
+
 	// nevigate to dress shirts in men category
 	public void nevigateToDressShirtsInMenCategory() throws Exception {
 		action = new Actions(driver);
@@ -604,7 +644,7 @@ public class HomePageComponents extends HomePageLocators {
 		action = new Actions(driver);
 		element = driver.findElement(MEN_CATEGORY);
 		action.moveToElement(element).perform();
-		driver.findElement(ALL_MENS_COLLECTIONS_IN_MEN_CATEGORY).click();
+		driver.findElement(ALL_CLOTHING_IN_MEN_CATEGORY).click();
 		Thread.sleep(3000);
 		Reporter.log(driver.getCurrentUrl());
 	}
@@ -634,11 +674,11 @@ public class HomePageComponents extends HomePageLocators {
 		action = new Actions(driver);
 		element = driver.findElement(WOMEN_CATEGORY);
 		action.moveToElement(element).perform();
-		driver.findElement(TEES_AND_POLOS_IN_WOMEN_CATEGORY).click();
+		driver.findElement(BOYSHORT_IN_WOMEN_CATEGORY).click();
 		Thread.sleep(3000);
 		Reporter.log(driver.getCurrentUrl());
 	}
-	
+
 	// nevigate to All Womens Collections in Women category
 	public void nevigateToAllWomensCollectionsInWomenCategory() throws Exception {
 		action = new Actions(driver);
@@ -668,17 +708,17 @@ public class HomePageComponents extends HomePageLocators {
 		Thread.sleep(3000);
 		Reporter.log(driver.getCurrentUrl());
 	}
-	
+
 	// nevigate to single collection cool cotton
 	public void navigateToCoolCottonInMensCollection() throws Exception {
 		action = new Actions(driver);
 		element = driver.findElement(MEN_CATEGORY);
 		action.moveToElement(element).perform();
-		driver.findElement(COOL_COTTON_IN_MENS_COLLECTIONS).click();
+		driver.findElement(COOL_COTTON_IN_MENS_CATEGORY).click();
 		Thread.sleep(3000);
 		Reporter.log(driver.getCurrentUrl());
 	}
-	
+
 	// navigate to All Clothing in womens categories
 	public void navigateToAllClothingInWomensCategory() throws Exception {
 		action = new Actions(driver);
@@ -688,7 +728,7 @@ public class HomePageComponents extends HomePageLocators {
 		Thread.sleep(3000);	
 		Reporter.log(driver.getCurrentUrl());
 	}
-	
+
 	// navigate to second skin in men catagory
 	public void navigateToSecondSkinInMenCategory() throws Exception {
 		action = new Actions(driver);
@@ -697,7 +737,7 @@ public class HomePageComponents extends HomePageLocators {
 		driver.findElement(SECOND_SKIN_IN_MEN_CATEGORY).click();
 		Thread.sleep(3000);	
 		Reporter.log(driver.getCurrentUrl());
-		
+
 	}
 	// navigate to all panties in women catagory
 	public void navigateToAllPantiesInWomenCategory() throws Exception {
@@ -707,18 +747,18 @@ public class HomePageComponents extends HomePageLocators {
 		driver.findElement(ALL_PANTIES_IN_WOMEN_CATEGORY).click();
 		Thread.sleep(3000);	
 		Reporter.log(driver.getCurrentUrl());
-		
+
 	}
 
 	// navigate to cotton basics in shop by collections catagory
-	public void navigateToCottonBasicsInShopByCollectionsCategory() throws Exception {
+	public void navigateToCottonBasicsInMensCategory() throws Exception {
 		action = new Actions(driver);
-		element = driver.findElement(SHOPBYCOLLECTION);
+		element = driver.findElement(MEN_CATEGORY);
 		action.moveToElement(element).perform();
-		driver.findElement(COTTON_BASICS_SHOPBYCOLLECTION).click();
+		driver.findElement(COTTON_BASICS_IN_MENS_CATEGORY).click();
 		Thread.sleep(3000);	
 		Reporter.log(driver.getCurrentUrl());
-		
+
 	}
 
 	// navigate to cotton basics in shop by collections catagory
@@ -729,7 +769,7 @@ public class HomePageComponents extends HomePageLocators {
 		driver.findElement(ALL_UNDERSHIRTS_IN_MEN_CATEGORY).click();
 		Thread.sleep(3000);	
 		Reporter.log(driver.getCurrentUrl());
-		
+
 	}
 
 	// navigate to cotton basics in shop by collections catagory
@@ -740,6 +780,6 @@ public class HomePageComponents extends HomePageLocators {
 		driver.findElement(ALL_WOMENS_COLLECTIONS_IN_WOMEN_CATEGORY).click();
 		Thread.sleep(3000);
 		Reporter.log(driver.getCurrentUrl());
-		
+
 	}
 }

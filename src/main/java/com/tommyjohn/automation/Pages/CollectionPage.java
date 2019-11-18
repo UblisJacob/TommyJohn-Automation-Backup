@@ -187,25 +187,25 @@ public class CollectionPage extends CollectionPageComponent{
 	
 	public void validateproductimageonOnCottonBasics() throws Exception {
 
-		new HomePageComponents(driver).navigateToCottonBasicsInShopByCollectionsCategory();
+		new HomePageComponents(driver).navigateToCottonBasicsInMensCategory();
 		validateProductImageOnCollectionPage();
 	}
 
 	public void validateproductnameonOnCottonBasics() throws Exception 
 	{
-		new HomePageComponents(driver).navigateToCottonBasicsInShopByCollectionsCategory();
+		new HomePageComponents(driver).navigateToCottonBasicsInMensCategory();
 		validateProductHeadingTextOnCollectionPage();
 	}
 
 	public void validateproductreviewstarsonOnCottonBasics() throws Exception
 	{
-		new HomePageComponents(driver).navigateToCottonBasicsInShopByCollectionsCategory();
+		new HomePageComponents(driver).navigateToCottonBasicsInMensCategory();
 		validateProductReviewStarsOnCollectionPage();
 	}
 
 	public void validatefilterandsortonOnCottonBasics() throws Exception
 	{
-		new HomePageComponents(driver).navigateToCottonBasicsInShopByCollectionsCategory();
+		new HomePageComponents(driver).navigateToCottonBasicsInMensCategory();
 		methodToCheckAllFilters();
 	}
 	

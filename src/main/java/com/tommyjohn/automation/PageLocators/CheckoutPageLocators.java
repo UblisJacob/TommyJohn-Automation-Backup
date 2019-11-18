@@ -59,7 +59,7 @@ public class CheckoutPageLocators {
 	
 	public static By METHOD =  By.cssSelector(".review-block__content > .emphasis");
 	public static By PAYMENT_TEXT = By.cssSelector("#main-header");
-	public static By CREDITCARD_OPTION = By.xpath("//*[@data-gateway-group='direct']");
+	public static By CREDITCARD_OPTION = By.xpath("//fieldset[@class='content-box']/div[@data-gateway-group='direct']");
 	public static By PAYPAL_OPTION = By.xpath("//*[@data-gateway-group='express']");
 	public static By AFTERPAY_OPTION = By.xpath("//*[@data-gateway-group='offsite']");
 	public static By BILLING_TEXT = By.cssSelector(".section--billing-address > div.section__header > h2");

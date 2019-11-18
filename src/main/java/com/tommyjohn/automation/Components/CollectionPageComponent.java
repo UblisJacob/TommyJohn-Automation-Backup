@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 
 
+
 import com.tommyjohn.automation.PageLocators.CollectionPageLocator;
 
 public class CollectionPageComponent extends CollectionPageLocator {
@@ -44,7 +45,10 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(THIRD_PRODUCT_HEAD_LINE_TEXT));
 		// get product title and click on image if present
 		text = driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT).getText();
-		if(!driver.findElement(THIRD_PRODUCT_IMAGE).isDisplayed())
+		Thread.sleep(5000);
+		WebElement Prod_Image = driver.findElement(THIRD_PRODUCT_IMAGE);
+		if(!Prod_Image.isDisplayed())
+//#		if(!driver.findElement(THIRD_PRODUCT_IMAGE).isDisplayed())
 			throw new Exception("Product image is not present");
 		WebElement ele = driver.findElement(THIRD_PRODUCT_IMAGE);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
@@ -130,8 +134,9 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 		// loop for total not of filters
 		for(int i = 2; i <= filterList+1; i++) {
-			driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child("+i+") > a")).click();
-
+			element=driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child("+i+") > a"));
+			JavascriptExecutor jse = (JavascriptExecutor)driver;
+			jse.executeScript("arguments[0].click();", element);
 			// get all the options list available in ith filter
 			allElements = driver.findElements(By.cssSelector("div.mega-collection-filters > div:nth-child("+i+") > ul > li"));
 			optionsList = allElements.size();
@@ -208,10 +213,18 @@ public class CollectionPageComponent extends CollectionPageLocator {
 				continue;
 
 			// click on last item to remove it from list
-			driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child("+i+") > a")).click();
+			Thread.sleep(5000);
+			element=driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child("+i+") > a"));
+			jse = (JavascriptExecutor)driver;
+			jse.executeScript("arguments[0].click();", element);
 			Thread.sleep(1000);
 			System.out.println("last item :: "+driver.findElement(By.cssSelector("div.js-mega-collection-desktop-filter-tags > button:nth-child("+ct+")")).getText());
-			driver.findElement(By.cssSelector("div.js-mega-collection-desktop-filter-tags > button:nth-child("+ct+")")).click();
+			element=driver.findElement(By.cssSelector("div.js-mega-collection-desktop-filter-tags > button:nth-child("+ct+")"));
+			jse = (JavascriptExecutor)driver;
+			jse.executeScript("arguments[0].click();", element);
+			//driver.findElement(PLUS_BUTTON).click();
+			Thread.sleep(5000);
+
 			Thread.sleep(1000);
 			// after last element removed decrease ct by 1
 			System.out.println("Before ct::"+ct);
@@ -261,7 +274,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		{
 			//driver.findElement(LAST_FILTER).click();
 			Select selectElement = new Select(driver.findElement(LAST_FILTER));
-		    selectElement.selectByValue("price:desc");
+		    selectElement.selectByValue("price:asc");
 
 			// click on second option
 
@@ -286,8 +299,8 @@ public class CollectionPageComponent extends CollectionPageLocator {
 				for (String a : driver.findElement(By.cssSelector(".mega-collection-grid__row > div.product-item:nth-child("+j+") > div.product-meta__prices")).getText().split("\\$")) 
 					text2 = a;
 				System.out.println("text2 :: "+text2);
-				if(Float.parseFloat(text1) < Float.parseFloat(text2))
-					throw new Exception("Product is not sorted by price");
+				if(Float.parseFloat(text1) > Float.parseFloat(text2))
+					throw new Exception("Products are not sorted by price correctly");
 
 			}
 			Reporter.log("All Products are sorted as selected option");
@@ -302,7 +315,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		List<WebElement> allElements = null;
 		List<WebElement> allCorosals = null;
 		
-		Thread.sleep(8000);
+		Thread.sleep(20000);
 
 		// check carosals are displayed on top of page or not
 		if(!driver.findElement(STYLE_COROSALS).isDisplayed())

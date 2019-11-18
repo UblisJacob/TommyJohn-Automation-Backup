@@ -11,13 +11,16 @@ public class ProductDetailsPageLocators {
 	public static By PRODUCT_PRICE = By.cssSelector("div.multi-pdp-title-wrap.desktop-view > div.product-info__price-wrap >span > span:nth-child(2)");
 //	public static By RATING_STARS = By.cssSelector("div.yotpo-bottomline.star-clickable");
 	//public static By RATING_STARS = By.cssSelector("div.yotpo-bottomline > span");
-		public static By RATING_STARS = By.cssSelector("div.multi-pdp-title-wrap.desktop-view > div.product-info__price-wrap > div.yotpo-star-wrapper > div > div > span");
+		public static By RATING_STARS = By.cssSelector("div.multi-pdp-title-wrap.desktop-view > div.product-info__price-wrap > div.yotpo-star-wrapper > div > div > span.yotpo-stars");
 
 	public static By RATING_NUMBER = By.cssSelector("div.multi-pdp-title-wrap.desktop-view > div.product-info__price-wrap > div.yotpo-star-wrapper > div > div > a");
-	public static By RATING_AND_REVIEWS_BOX = By.cssSelector(".yotpo-regular-box.yotpo-bottomline.yotpo-bottomline-3-boxes");
-	public static By FIRST_BOX_IN_RATING_AND_REVIEWS = By.cssSelector(".yotpo-bottomline-box-1.yotpo-stars-and-sum-reviews");
+	public static By RATING_AND_REVIEWS_BOX = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container ");
+	public static By FIRST_BOX_IN_RATING_AND_REVIEWS = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div > div.yotpo-review-bottomline-rating");
+	public static By SECOND_BOX_IN_RATING_AND_REVIEWS = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div:nth-child(2) > ul.yotpo-revew-bottomline-list");
+	public static By THIRD_BOX_IN_RATING_AND_REVIEWS = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div > div.yotpo-review-bottomline-customer-say-container");
+	
 	public static By STAR_RATINGS = By.cssSelector(".yotpo-stars-and-sum-reviews > span > span.sr-only");
-	public static By BE_THE_FIRST_TO_WRITE_REVIEW = By.cssSelector(".yotpo-first-review-content > input");
+	public static By NO_REVIEW_WRITE_REVIEW = By.cssSelector("div.yotpo-no-reviews-container > div.no-review-write-button");
 	public static By WRITE_REVIEW_BUTTON = By.cssSelector(".yotpo-label.yotpo-small-box > div:nth-child(2)");
 	public static By WRITE_REVIEW_HEADING = By.cssSelector("#pdpReviews > div > div > form > div");
 	public static By WRITE_REVIEW_HEADING1 = By.cssSelector(".y-label.yotpo-header-title");
@@ -26,7 +29,7 @@ public class ProductDetailsPageLocators {
 	public static By FIRST_COLOR = By.cssSelector(".product-option__color-swatches-wrapper > ul > li:nth-child(1) > label");
 	public static By SECOND_COLOR = By.cssSelector(".product-option__color-swatches-wrapper > ul > li:nth-child(2) > label");
 	public static By THIRD_COLOR = By.cssSelector(".product-option__color-swatches-wrapper > ul > li:nth-child(3) > label");
-	public static By COLOR_TEXT = By.xpath("//div[@class= 'multi-pdp-info__header'] /span[text()]");
+	public static By COLOR_TEXT = By.xpath("//div[@title = 'Color'] /span");       //("//div[@class= 'multi-pdp-info__header'] /span]");
 	//public static By SIZE_TEXT = By.cssSelector(".product-info__header > span:nth-child(2)");
 	
 	public static By SIZE_DROPDOWN = By.cssSelector(".option-dropdown__option >div>a");

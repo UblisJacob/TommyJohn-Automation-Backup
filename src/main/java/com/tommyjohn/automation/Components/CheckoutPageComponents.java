@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -107,7 +108,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		driver.findElement(CONTINUE_TO_SHIPPING_BUTTON).click();
 		Reporter.log("User is navigated to select shipping method");
 	
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		
 		softAssert.assertEquals(driver.findElement(SHIPPING_TEXT).getText(), "Shipping method");
 		 driver.findElement(CONTINUE_TO_PAYMENT_BUTTON).click();
@@ -151,7 +152,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	
 		Thread.sleep(3000);
 		
-		softAssert.assertEquals(driver.findElement(SHIPPING_TEXT).getText(), "Shipping method");
+	//	softAssert.assertEquals(driver.findElement(SHIPPING_TEXT).getText(), "Shipping method");
 		 WebElement element = driver.findElement(CONTINUE_TO_PAYMENT_BUTTON);
 			jse = (JavascriptExecutor)driver;
 			jse.executeScript("arguments[0].click();", element);
@@ -263,20 +264,36 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		driver.findElement(CONTINUE_TO_SHIPPING_BUTTON).click();
 		Reporter.log("User is navigated to select shipping method");
 	
-		Thread.sleep(3000);
+		Thread.sleep(6000);
 		WebElement element = driver.findElement(CONTINUE_TO_PAYMENT_BUTTON);
 		jse = (JavascriptExecutor)driver;
 		jse.executeScript("arguments[0].click();", element);
 	//	driver.findElement(CONTINUE_TO_PAYMENT_BUTTON).click();
 		Reporter.log("User is navigated to payment page");
 		
-		Thread.sleep(5000);
+		Thread.sleep(60000);
 		
 //		softAssert.assertTrue(driver.findElement(CONTACT_EMAIL).isDisplayed(), "Conatct email is not present");
 //		softAssert.assertTrue(driver.findElement(SHIP_ADDRESS).isDisplayed(), "Shipping address is not present");
 	//	softAssert.assertTrue(driver.findElement(METHOD).isDisplayed(), "Shipping method is not present");
 //		softAssert.assertTrue(driver.findElement(CHANGE_LINK).isDisplayed(), "Change Link is not present");
 //		softAssert.assertTrue(driver.findElement(PAYMENT_TEXT).isDisplayed(), "Payment text is not present");
+		
+//		WebDriverWait waits = new WebDriverWait(driver, 60);
+//		try {
+//		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.id("_hjRemoteVarsFrame")));
+//		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".bx-close-xsvg")));
+//		driver.findElement(By.cssSelector(".bx-close-xsvg")).click();
+//		driver.switchTo().defaultContent();
+//		}
+//		catch (ElementNotVisibleException e)
+//		{
+//			System.out.println("Overlay not displayed");
+//		}
+//		
+		driver.navigate().refresh();
+		Thread.sleep(6000);
+		
 		softAssert.assertTrue(driver.findElement(CREDITCARD_OPTION).isDisplayed(), "Credit card option is not present");
 		
 	//	Reporter.log("Contact information and payment options are present on payment page");

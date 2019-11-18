@@ -17,13 +17,10 @@ public class ValidateAccountLoginFunctionality {
 		
 		
 	@BeforeMethod(alwaysRun = true)
-	public void setup() {
-		try {
+	public void setup() throws Exception {
 			driver = new CustomUtilities().launchtj();
 
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
+		
 	}
 
 

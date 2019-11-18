@@ -29,6 +29,8 @@
 		parallel="tests">
 		<classes>
 			<class name="TestScenario.ValidateMegaCollectionPages" />
+	
+			
 		</classes>
 	</test>
 
