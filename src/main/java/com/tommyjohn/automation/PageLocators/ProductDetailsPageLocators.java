@@ -12,7 +12,7 @@ public class ProductDetailsPageLocators {
 //	public static By RATING_STARS = By.cssSelector("div.yotpo-bottomline.star-clickable");
 	//public static By RATING_STARS = By.cssSelector("div.yotpo-bottomline > span");
 		public static By RATING_STARS = By.cssSelector("div.multi-pdp-title-wrap.desktop-view > div.product-info__price-wrap > div.yotpo-star-wrapper > div > div > span.yotpo-stars");
-
+		public static By AFTERPAY_DIV = By.cssSelector(".multi-pdp-title-wrap.desktop-view>span>.afterpay-paragraph");
 	public static By RATING_NUMBER = By.cssSelector("div.multi-pdp-title-wrap.desktop-view > div.product-info__price-wrap > div.yotpo-star-wrapper > div > div > a");
 	public static By RATING_AND_REVIEWS_BOX = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container ");
 	public static By FIRST_BOX_IN_RATING_AND_REVIEWS = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div > div.yotpo-review-bottomline-rating");
@@ -57,9 +57,9 @@ public class ProductDetailsPageLocators {
 	
 	//afterpay
 	
-	public static By AFTERPAY = By.cssSelector(".afterpay-text1");
-	public static By AFTERPAY_TEXT = By.cssSelector(".afterpay-text1");
-	public static By AFTERPAY_LOGO = By.cssSelector(".afterpay-pdp-container > p > span > .afterpay-logo");
+	public static By AFTERPAY_PDP = By.cssSelector("div.desktop-view > .afterpay-pdp-container > p > span");
+	public static By AFTERPAY_PDP_AFTERMESSAGE_LOGO = By.cssSelector("div.desktop-view > .afterpay-pdp-container > p > span.afterpay-logo-link");
+	public static By AFTERPAY_PDP_BEFOREMESSAGE_LOGO = By.cssSelector("div.desktop-view > .afterpay-pdp-container > p> img ");
 	
 	
 	

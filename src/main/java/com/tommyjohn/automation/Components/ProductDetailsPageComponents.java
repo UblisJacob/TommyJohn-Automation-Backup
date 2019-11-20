@@ -3,6 +3,7 @@ package com.tommyjohn.automation.Components;
 import static org.junit.Assume.assumeNoException;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Properties;
 
 import org.openqa.selenium.By;
@@ -15,6 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
 
+import com.tommyjohn.automation.PageLocators.FlyCartPageLocator;
 import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
@@ -497,51 +499,74 @@ driver.navigate().refresh();
 	public void validateafterpayonpdp() throws Exception {
 		String text = null;
 		SoftAssert softAssert = new SoftAssert();
-
+		
 		// call method to navigate to collection page
-		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
+		new HomePageComponents(driver).navigateToBraCategory();
 
-		// call method to nevigate product details page
+		// call method to navigate product details page
 		text = new CollectionPageComponent(driver).navigateToProductDetailsPage();
 
 		// call method to check correct PDP opend or not
 		checkCorrectProductDetailsPageOpenedOrNot(text);
-
-		driver.navigate().to("https://tommyjohn.com/products/mothers-day-blush-pajama-top-short-set");
-		//afterpay validation
-		if(!driver.findElement(AFTERPAY).isDisplayed())
+		
+		//Check afterpay message display
+		if(!driver.findElement(AFTERPAY_PDP).isDisplayed())
 			throw new Exception("AfterPay Message not present on PDP");
-
+		Reporter.log("After pay Message on PDP is displayed :: Displayed");
+		
+		//Check message with calculated installment and icon display
 		price= driver.findElement(PRODUCT_PRICE).getText();
 		String[] price1 = price.split("\\$");
 		String price2 = price1[price1.length-1];
-
 		if(Float.parseFloat(price2)<35 || Float.parseFloat(price2)>1000 )
 		{
-			softAssert.assertEquals(driver.findElement(AFTERPAY_TEXT).getText(), "available for orders between $35 - $1000" , "Wrong afterpay message displayed for product price");
-			softAssert.assertTrue(driver.findElement(AFTERPAY_LOGO).isDisplayed(), "Afterpay logo not present on PDP");
+			softAssert.assertEquals(driver.findElement(AFTERPAY_PDP).getText(), "available for orders between $35 - $1000" , "Wrong afterpay message displayed for product price");
+			Reporter.log("After pay message is correct On PDP :: Displayed and Correct message is displayed");
+			softAssert.assertTrue(driver.findElement(AFTERPAY_PDP_BEFOREMESSAGE_LOGO).isDisplayed(), "Afterpay logo not present on PDP");
+			Reporter.log("After pay logo icon is displayed on PDP :: Displayed");
 		}
 
 		else
 		{
-			//installment =Double.parseDouble(price2)/4;
+			
 			installment =Float.parseFloat(price2)/4;
 			String inst = String.format("%.2f",installment );
-			//DecimalFormat df = new DecimalFormat("0.00");
-			//df.format(installment);
-
-
-			String expectedmessage = "or 4 interest-free installments of $" + inst + " by"; 
-			System.out.println("expected" + expectedmessage);
-			System.out.println("Actual " +driver.findElement(AFTERPAY_TEXT).getText());
-			softAssert.assertEquals(driver.findElement(AFTERPAY_TEXT).getText(), expectedmessage , "Wrong afterpay message displayed for product price");
-			softAssert.assertTrue(driver.findElement(AFTERPAY_LOGO).isDisplayed(), "Afterpay logo not present on PDP");
+			String expectedmessage = "In 4 interest-free installments of $" + inst + " by"; 
+			System.out.println("expected message is: " + expectedmessage);
+			System.out.println("Actual message is: " +driver.findElement(AFTERPAY_PDP).getText());
+			softAssert.assertEquals(driver.findElement(AFTERPAY_PDP).getText(), expectedmessage , "Wrong afterpay message displayed for product price");
+			Reporter.log("After pay message with calculated installment is correct :: Displayed and correct");
+			softAssert.assertTrue(driver.findElement(AFTERPAY_PDP_AFTERMESSAGE_LOGO).isDisplayed(), "Afterpay logo not present on PDP");
+			Reporter.log("After pay logo icon is displayed on PDP :: Displayed");
 
 		}
 
+//	//Gift Card Added To Cart
+//	new GiftCardPageComponents(driver).AddGiftCardTocart();
+//		// Navigate to any normal PDP
+//	Thread.sleep(3000);
+//	element = driver.findElement(FlyCartPageLocator.INLINE_CART_CLOSE_BUTTON);
+//	jse = (JavascriptExecutor)driver;
+//	jse.executeScript("arguments[0].click();", element);
+//	Thread.sleep(5000);
+//		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
+//		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+//		Thread.sleep(5000);
+//		//Check AfterPay message displayed or not on PDP
+//		try{
+//			System.out.println("Verifying for AfterPay Message .......");
+//			if(driver.findElement(AFTERPAY_TEXT).isDisplayed())
+//				throw new Exception("AfterPay Message is displayed on PDP with Gift Card.");
+//			Reporter.log("AfterPay Message is displayed on PDP with Gift Card");
+//		}
+//		catch(NoSuchElementException e){
+//			System.out.println("After Pay Message is not displayed on normal PDP with Gift Card.");
+//			Reporter.log("After Pay Message is not displayed on normal PDP with Gift Card");
+//		}
+		
 		softAssert.assertAll();
-
 	}
+
 	
 	
 }

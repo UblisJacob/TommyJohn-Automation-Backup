@@ -113,7 +113,7 @@ public class HomePageComponents extends HomePageLocators {
 		Reporter.log("Bras category is Displayed :: Hoverable");
 
 		Thread.sleep(3000);
-		
+
 		// Verify Packs category
 		if(!driver.findElement(PACKS).isDisplayed())
 			throw new Exception("Packs category is not displayed");
@@ -122,18 +122,18 @@ public class HomePageComponents extends HomePageLocators {
 		if(!driver.findElement(MEN_IN_PACKS).isDisplayed())
 			throw new Exception("Packs category is not hoverable");
 		Reporter.log("Packs category is Displayed :: Hoverable");
-	
 
-	// Verify Gift Guide category
-			if(!driver.findElement(GIFT_GUIDE).isDisplayed())
-				throw new Exception("Gift guide category is not displayed");
-			element = driver.findElement(GIFT_GUIDE);
-			action.moveToElement(element).perform();
-			if(!driver.findElement(GIFTCARDS).isDisplayed())
-				throw new Exception("Gift Guide category is not hoverable");
-			Reporter.log("Gift Guide category is Displayed :: Hoverable");
-		}
-	
+
+		// Verify Gift Guide category
+		if(!driver.findElement(GIFT_GUIDE).isDisplayed())
+			throw new Exception("Gift guide category is not displayed");
+		element = driver.findElement(GIFT_GUIDE);
+		action.moveToElement(element).perform();
+		if(!driver.findElement(GIFTCARDS).isDisplayed())
+			throw new Exception("Gift Guide category is not hoverable");
+		Reporter.log("Gift Guide category is Displayed :: Hoverable");
+	}
+
 
 	// validate search icon
 	public void validateSearchIcon() throws Exception {
@@ -345,8 +345,8 @@ public class HomePageComponents extends HomePageLocators {
 		else
 			throw new Exception("Wrong page opened after Terms & Conditions footer link clicked");
 		Reporter.log("Terms & Conditions footer link is Displayed :: Clickable");
-		
-		
+
+
 		// check  Terms & Conditions  link
 		text = driver.findElement(BLOG_LINK).getText();
 		if(!text.equals("Blog"))
@@ -358,7 +358,7 @@ public class HomePageComponents extends HomePageLocators {
 		else
 			throw new Exception("Wrong page opened after Blog footer link clicked");
 		Reporter.log("Blog footer link is Displayed :: Clickable");
-		
+
 
 		// check  Help  link
 		text = driver.findElement(HELP_LINK).getText();
@@ -780,6 +780,27 @@ public class HomePageComponents extends HomePageLocators {
 		driver.findElement(ALL_WOMENS_COLLECTIONS_IN_WOMEN_CATEGORY).click();
 		Thread.sleep(3000);
 		Reporter.log(driver.getCurrentUrl());
+
+	}
+
+	// navigate to Gift Card category
+	public void navigateToGiftCard() throws Exception {
+		action = new Actions(driver);
+		element = driver.findElement(NEWARRIVALS_CATEGORY);
+		action.moveToElement(element).perform();
+		driver.findElement(GIFT_CARD_IN_NEWARRIVALS_CATEGORY).click();
+		Thread.sleep(3000);	
+		//Reporter.log(driver.getCurrentUrl());
+
+	}
+	// navigate to Bra category
+	public void navigateToBraCategory() throws Exception {
+		action = new Actions(driver);
+		element = driver.findElement(BRA_CATEGORY);
+		action.moveToElement(element).perform();
+		driver.findElement(SHOP_ALL_BRAS).click();
+		Thread.sleep(3000);	
+		//Reporter.log(driver.getCurrentUrl());
 
 	}
 }

@@ -29,25 +29,30 @@ public class ValidateAfterPay {
 		new AfterPay(driver).AfterPayOnPDP();
 	}
 	
-//	@Test
-//	public void TC_ValidateAfterPayOnInlineCart() throws Exception
-//	{
-//		
-//	}
-//	
-//	@Test
-//	public void TC_ValidateAfterPayOnShoppingCart() throws Exception
-//	{
-//		
-//	}
-//	
-//	@Test
-//	public void TC_ValidateAfterPayOnCheckoutPage() throws Exception
-//	{
-//		
-//	}
+	@Test
+	public void TC_ValidateAfterPayOnInlineCart() throws Exception
+	{
+		new AfterPay(driver).AfterPayOnInlineCart();
+	}
 	
+	@Test
+	public void TC_ValidateAfterPayOnShoppingCart() throws Exception
+	{
+		new AfterPay(driver).AfterPayOnShoppingCart();
+	}
 	
+	@Test
+	public void TC_ValidateAfterPayOnCheckoutPage() throws Exception
+	{
+		new AfterPay(driver).AfterPayOnCheckoutPage();
+	}
+	
+	@Test
+	public void TC_ValidateAfterPayWithGiftCard() throws Exception
+	{
+		new AfterPay(driver).AfterPayOnGiftCardPage();
+	}
+
 
 	@AfterMethod(alwaysRun = true)
 	void teardown () {

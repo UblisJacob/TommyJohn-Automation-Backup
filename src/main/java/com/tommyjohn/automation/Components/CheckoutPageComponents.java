@@ -3,6 +3,7 @@ package com.tommyjohn.automation.Components;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Set;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotVisibleException;
@@ -26,7 +27,11 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	
 	public WebDriver driver;
 	public JavascriptExecutor jse;
-	
+
+	List<WebElement> allElements;
+	double	installment;
+	String price;
+	SoftAssert softAssert=new SoftAssert();
 
 	public CheckoutPageComponents(WebDriver driver) {
 		this.driver = driver;
@@ -314,7 +319,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	}
 	
 	
-	public void entershippingdetails()
+	public void entershippingdetails() throws Exception
 	{
 		driver.findElement(FIRSTNAME_TEXTBOX).sendKeys("Test");
 		driver.findElement(LASTNAME_TEXTBOX).sendKeys("Test");
@@ -331,6 +336,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 			
 		
 		driver.findElement(PINCODE_TEXTBOX).sendKeys("10001");
+		Thread.sleep(3000);
 		driver.findElement(PHONE_TEXTBOX).sendKeys("8889996667");
 	}
 	
@@ -348,6 +354,113 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	}
 	
 	
+	
+	public void AfterpayonCheckout() throws Exception
+	{
+		//product add to cart
+		new HomePageComponents(driver).navigateToBraCategory();
+		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		new ProductDetailsPageComponents(driver).validatePage();
+
+		//navigate to Checkout page
+		driver.findElement(HomePageLocators.CART_ICON).click();
+		WebDriverWait wait = new WebDriverWait(driver, 20);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.CHECKOUT_BUTTON));
+		driver.findElement(FlyCartPageLocator.CHECKOUT_BUTTON).click();
+		Thread.sleep(5000);
+		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
+		entershippingdetails();
+		Thread.sleep(3000);
+		driver.findElement(CONTINUE_TO_SHIPPING_BUTTON).click();
+		Thread.sleep(5000);
+		System.out.println("payment page");
+		Thread.sleep(10000);
+		wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTINUE_TO_PAYMENT_BUTTON));
+		WebElement element = driver.findElement(CONTINUE_TO_PAYMENT_BUTTON);
+		if(!element.isDisplayed())
+			throw new Exception("Continue to payment button is not displayed.");
+		jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].click();", element);
+		Thread.sleep(10000);
+		
+		//Check AfterPay message is display
+		wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(AFTERPAY_OPTION));
+		if(!driver.findElement(AFTERPAY_OPTION).isDisplayed())
+			throw new Exception("After pay option is not displayed on checkout page.");
+		Reporter.log("After pay Message is displayed on Checkout page :: Displayed");
+
+		//Check message with calculated installment and icon display
+		price = driver.findElement(TOTAL).getText();
+		String[] price1 = price.split("\\$");
+		String price2 = price1[price1.length-1];
+		System.out.println("Estimate total is: "+price);
+		if(Float.parseFloat(price2)<35 || Float.parseFloat(price2)>1000 )
+		{
+			String Available_Between = driver.findElement(AVAILABLE_BETWEEN_TEXT).getText();
+			String Amount = driver.findElement(AFTERPAY_INSTALLMENTS).getText();
+			String expectedmessage= Available_Between+ " " +Amount;
+			System.out.println("Message with availability is: "+expectedmessage);
+			softAssert.assertEquals(expectedmessage, "available between $35 - $1000" , "Wrong afterpay message displayed for product price");
+			Reporter.log("After pay message is correct On Checkout page :: Displayed and Correct");
+			softAssert.assertTrue(driver.findElement(AFTERPAYLOGO_WITH_AVAILABLE).isDisplayed(), "Afterpay logo not present on Shopping cart.");	
+			Reporter.log("After pay logo icon is displayed on Checkout Page :: Displayed");
+		}
+		else
+		{
+
+			installment =Float.parseFloat(price2)/4;
+			String inst = String.format("%.2f",installment );
+			String afterInstallmentText = driver.findElement(AFTERPAYLOGO_WITH_INSTALLMENT).getText();
+			String expectedmessage = "4 interest-free installments of $" + inst +" "+ afterInstallmentText ; 
+			String actualMessage = driver.findElement(AFTERPAYTEXT_WITH_INSTALLMENT).getText();
+			System.out.println("Icon text is: "+afterInstallmentText);
+			System.out.println("expected message is: " + expectedmessage);
+			System.out.println("Actual message is: " +actualMessage);
+			softAssert.assertEquals(actualMessage, expectedmessage , "Wrong afterpay message displayed for product price with installment.");
+			Reporter.log("After pay message with calculated installment is correct on Checkout page :: Displayed and correct");
+			softAssert.assertTrue(driver.findElement(AFTERPAYLOGO_WITH_INSTALLMENT).isDisplayed(), "Afterpay logo not present on Shopping cart");
+			Reporter.log("After pay logo icon is displayed on Checkout page :: Displayed");
+		}
+		driver.findElement(By.cssSelector(".breadcrumb > li:nth-child(1) > a")).click();
+		Thread.sleep(5000);
+		
+//		//Gift Card Added To Cart
+//  		new GiftCardPageComponents(driver).AddGiftCardTocart();
+//  		Thread.sleep(3000);
+//  		
+//  		wait = new WebDriverWait(driver, 20);
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.CHECKOUT_BUTTON));
+//		driver.findElement(FlyCartPageLocator.CHECKOUT_BUTTON).click();
+//		Thread.sleep(5000);
+//		
+//		//Check gift cart with normal product in CheckOut Page
+//		allElements = driver.findElements(LIST_OF_ITEM_IN_PAYMENT_PAGE);
+//		System.out.println("Total item in cart is: "+allElements.size());
+//		for(int i=1; i<=allElements.size();i++)
+//		{
+//			String title = driver.findElement(By.cssSelector("tbody > tr:nth-child("+i+") > td.product__description > span.product__description__name.order-summary__emphasis")).getText();
+//			System.out.println("product title in fly cart is: " +title);
+//			if(title.equalsIgnoreCase("E-Gift Card"))
+//			{
+//				try{
+//					System.out.println("Verifying for AfterPay Message .......");
+//					if(!driver.findElement(AFTERPAY_OPTION).getAttribute("style").equalsIgnoreCase("display: none;"))
+//						throw new Exception("AfterPay Message is displayed on payment page with Gift Card.");
+//					Reporter.log("AfterPay Message is displayed on Checkout page with Gift Card");
+//				}
+//				catch(NoSuchElementException e){
+//					System.out.println("After Pay Message is not displayed on payment page with Gift Card.");
+//					Reporter.log("After Pay Message is not displayed on Checkout page with Gift Card");
+//				}
+//			}
+//			
+//		}
+		
+		softAssert.assertAll();
+	}
+
  }
 
 //softAssert.assertTrue(driver.findElement(CREDITCARD_OPTION).isDisplayed(), "Credit card option is not ");

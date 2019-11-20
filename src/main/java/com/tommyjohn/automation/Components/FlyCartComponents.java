@@ -1,6 +1,7 @@
 package com.tommyjohn.automation.Components;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -17,6 +18,10 @@ import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
 public class FlyCartComponents extends FlyCartPageLocator{
+	
+
+	double installment;
+	public JavascriptExecutor jse;
 	public WebDriver driver;
 	Properties properties = CustomUtilities.properties;
 	WebElement element;
@@ -423,26 +428,84 @@ String[] b = size.split(",") ;
 
 	public void validateafterpayoninlinecart() throws Exception
 	{
-		new AddToCartComponents(driver).addToCart();
+		//product add to cart
+	
+		// call method to navigate to collection page
+		new HomePageComponents(driver).navigateToBraCategory();
+
+		// call method to navigate product details page
+		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		new ProductDetailsPageComponents(driver).validatePage();
+
 		driver.findElement(HomePageLocators.CART_ICON).click();
 		Thread.sleep(3000);
-		softAssert.assertTrue(driver.findElement(AFTERPAYTEXT).isDisplayed(), "Afterpay Message is not present");
-		softAssert.assertTrue(driver.findElement(AFTERPAYLOGO).isDisplayed(), "Afterpay Logo is not present");
+
+		//Check AfterPay message display
+
+		if(!driver.findElement(AFTERPAYTEXT).isDisplayed())
+			throw new Exception("AfterPay Message not present on Fly cart.");
+		Reporter.log("After pay Message is displayed on Inline Cart :: Displayed");
+		
+		//Check message with calculated installment and icon display
 		price = driver.findElement(ESTIMATE_TOTAL_PRICE).getText();
 		String[] price1 = price.split("\\$");
 		String price2 = price1[price1.length-1];
+		System.out.println("Estimate total is: "+price);
 		if(Float.parseFloat(price2)<35 || Float.parseFloat(price2)>1000 )
 		{
 			softAssert.assertEquals(driver.findElement(AFTERPAYTEXT).getText(), "available for orders between $35 - $1000" , "Wrong afterpay message displayed for product price");
-			softAssert.assertTrue(driver.findElement(AFTERPAYLOGO).isDisplayed(), "Afterpay logo not present on PDP");	
+			Reporter.log("After pay message is correct On Inline cart :: Displayed and Correct");
+			softAssert.assertTrue(driver.findElement(AFTERPAYLOGO_ICON).isDisplayed(), "Afterpay logo not present on Fly-out cart.");
+			Reporter.log("After pay logo icon is displayed on Inline cart :: Displayed");
 		}
+		else
+		{
+
+			installment =Float.parseFloat(price2)/4;
+			String inst = String.format("%.2f",installment );
+			String expectedmessage = "or 4 interest-free installments of $" + inst + " by"; 
+			System.out.println("expected message is: " + expectedmessage);
+			System.out.println("Actual message is: " +driver.findElement(AFTERPAYTEXT).getText());
+			softAssert.assertEquals(driver.findElement(AFTERPAYTEXT).getText(), expectedmessage , "Wrong afterpay message displayed for product price");
+			Reporter.log("After pay message with calculated installment is correct on Inline cart :: Displayed and correct");
+			softAssert.assertTrue(driver.findElement(AFTERPAYLOGO_ICON).isDisplayed(), "Afterpay logo not present on PDP");
+			Reporter.log("After pay logo icon is displayed on Inline cart :: Displayed");
+		}
+		Thread.sleep(3000);
+		// Close Fly cart
+		element = driver.findElement(FlyCartPageLocator.INLINE_CART_CLOSE_BUTTON);
+		jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].click();", element);
+		Thread.sleep(3000);
+
+//		//Gift Card Added To Cart
+//		new GiftCardPageComponents(driver).AddGiftCardTocart();
+//		Thread.sleep(3000);
+
+//		//Check gift cart with normal product in fly cart
+//		allElements = driver.findElements(FlyCartPageLocator.LIST_OF_ITEMS_IN_FLYCART);
+//		System.out.println("Total item in cart is: "+allElements.size());
+//		for(int i=1; i<=allElements.size();i++)
+//		{
+//			String title = driver.findElement(By.cssSelector("div.inline-cart__col1 > div:nth-child(6) > article:nth-child("+i+") > div.line-item__summary > a")).getText();
+//			System.out.println("product title in fly cart is: " +title);
+//			if(title.equalsIgnoreCase("E-Gift Card"))
+//			{
+//				try{
+//					System.out.println("Verifying for AfterPay Message .......");
+//					if(driver.findElement(AFTERPAYTEXT).isDisplayed())
+//						throw new Exception("AfterPay Message is displayed on Fly cart with Gift Card.");
+//					Reporter.log("AfterPay Message is displayed on Inline cart with Gift Card");
+//				}
+//				catch(NoSuchElementException e){
+//					System.out.println("After Pay Message is not displayed on Fly cart with Gift Card.");
+//					Reporter.log("After Pay Message is not displayed on Inline cart with Gift Card");
+//				}
+//			}
+//			
+//		}
 
 
-
-
-
-
-
-
+		softAssert.assertAll();
 	}
 }

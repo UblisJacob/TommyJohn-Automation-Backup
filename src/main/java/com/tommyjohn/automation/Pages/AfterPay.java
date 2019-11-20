@@ -2,8 +2,11 @@ package com.tommyjohn.automation.Pages;
 
 import org.openqa.selenium.WebDriver;
 
+import com.tommyjohn.automation.Components.CheckoutPageComponents;
 import com.tommyjohn.automation.Components.FlyCartComponents;
+import com.tommyjohn.automation.Components.GiftCardPageComponents;
 import com.tommyjohn.automation.Components.ProductDetailsPageComponents;
+import com.tommyjohn.automation.Components.ShoppingCartComponents;
 
 public class AfterPay {
 	
@@ -23,4 +26,20 @@ public class AfterPay {
 	{
 		new FlyCartComponents(driver).validateafterpayoninlinecart();
 	}
+	
+	public void AfterPayOnShoppingCart() throws Exception
+	{
+		new ShoppingCartComponents(driver).validateafterpayonShoppingCart();
+	}
+	
+	public void AfterPayOnCheckoutPage() throws Exception
+	{
+		new CheckoutPageComponents(driver).AfterpayonCheckout();
+	}
+	
+	public void AfterPayOnGiftCardPage() throws Exception
+	{
+		new GiftCardPageComponents(driver).CheckAfterPayMessageonGC();
+	}
 }
+
