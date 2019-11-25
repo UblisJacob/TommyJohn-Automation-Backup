@@ -101,7 +101,7 @@ public class HomePageLocators{
 	
 	public static By GIFT_GUIDE = By.cssSelector(".header-desktop-left >ul >li:nth-child(7) >a");
 	public static By GIFTCARDS = By.cssSelector(".header-desktop-left >ul >li:nth-child(7) > div > ul > li:nth-child(3) > ul >li >a");
-	
+	//public static By GIFT_CARD_IN_NEWARRIVALS_CATEGORY = By.cssSelector(".header-desktop-left > ul > li:nth-child(1) > div > ul > li:nth-child(5) > ul > li:nth-child(1) > a");
 	public static By GIFT_CARD_IN_NEWARRIVALS_CATEGORY = By.cssSelector(".header-desktop-left > ul > li:nth-child(1) > div > ul > li:nth-child(5) > ul > li > a");
 	public static By BRA_CATEGORY = By.cssSelector(".header-desktop-left > ul > li:nth-child(5) > a");
 	public static By SHOP_ALL_BRAS = By.cssSelector(".header-desktop-left > ul > li:nth-child(5) > div > ul > li:nth-child(1) > ul > li:nth-child(1) > a");

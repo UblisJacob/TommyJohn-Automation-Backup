@@ -233,6 +233,11 @@ public class CollectionPage extends CollectionPageComponent{
 		methodToCheckAllFilters();
 	}
 
+	// All collection URLs
+	public void validateallcollectionurls() throws Exception
+	{
+		validateallurls();
+	}
 
 }
 

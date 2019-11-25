@@ -1,7 +1,13 @@
 package com.tommyjohn.automation.Components;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.List;
 
+import org.apache.poi.sl.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -385,283 +391,48 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		//driver.findElement(CLEAR_FILTER_BUTTON).click();
 		Reporter.log("Corosals gets active when respective option selected");
 	}
+	
+	public void validateallurls()
+	
+	{
+		try
+		{
+			File src=new File("src/main/resources/AllCollectionPages.xlsx");
+
+			// load file
+			FileInputStream fis=new FileInputStream(src);
+
+			// Load workbook
+			XSSFWorkbook wb=new XSSFWorkbook(fis);
+
+			// Load sheet- Here we are loading first sheet only
+			XSSFSheet sh1= wb.getSheetAt(0);
+			System.out.println(sh1.getRow(0).getCell(0).getStringCellValue());
+			
+			
+			int rowCount = sh1.getLastRowNum()-sh1.getFirstRowNum();
+			
+			for (int i = 1; i < rowCount+1; i++) {
+		String url= sh1.getRow(i).getCell(0).getStringCellValue();
+				checkurl(url);
+				
+			}
+			
+			
+		}
+		catch (Exception e)
+		{
+			Reporter.log("File not found");
+		}
+	}
+
+	private void checkurl(String url) throws InterruptedException {
+		
+		driver.get(url);
+		Thread.sleep(7000);
+	List<WebElement> items =driver.findElements(By.cssSelector(".product-item"));
+	Reporter.log("No. of items present in " + url + " is " + items.size());
+	
+	}
 }
-
-//	@SuppressWarnings("static-access")
-//	public void validateProductImageForSingleCollection() throws Exception {
-//		String text = null;
-//		
-//		// nevigate to cool cotton Collection page
-//		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
-//		
-//		// get product title and click on image if present
-//		text = driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT).getText();
-//		if(!driver.findElement(THIRD_PRODUCT_IMAGE).isDisplayed())
-//			throw new Exception("Product image is not present");
-//		driver.findElement(THIRD_PRODUCT_IMAGE).click();
-//		Thread.sleep(3000);
-//		
-//		// check correct Product details page opened or not
-//		new ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);	
-//
-//		// validate product details page by calling the method
-//		new ProductDetailsPageComponents(driver).validatePage();
-//		
-//		Reporter.log("Product image on single collection page is Displayed :: Clickable and validated successfully");
-//
-//	}
-//	// validate product headline text for single collection
-//	@SuppressWarnings("static-access")
-//	public void validateProductHeadlineTextForSingleCollection() throws Exception {
-//		String text = null;
-//		
-//		// nevigate to cool cotton Collection page
-//		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
-//		
-//		// get product title and click on image if present
-//		text = driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT).getText();
-//		if(!driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT).isDisplayed())
-//			throw new Exception("Product image is not present");
-//		driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT).click();
-//		Thread.sleep(3000);
-//		
-//		// check correct Product details page opened or not
-//		new ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);	
-//
-//		// validate product details page by calling the method
-//		new ProductDetailsPageComponents(driver).validatePage();
-//		
-//		Reporter.log("Product image on single collection page is Displayed :: Clickable and validated successfully");
-//
-//	}
-//
-//	// validate product review stars for single collection
-//	@SuppressWarnings("static-access")
-//	public void validateProductReviewStarsForSingleCollection() throws Exception {
-//		String text = null;
-//		
-//		// nevigate to cool cotton Collection page
-//		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
-//		
-//		// get product title and click on image if present
-//		text = driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT).getText();
-//		if(!driver.findElement(THIRD_PRODUCT_REVIEW_STARS).isDisplayed())
-//			throw new Exception("Product image is not present");
-//		driver.findElement(THIRD_PRODUCT_REVIEW_STARS).click();
-//		Thread.sleep(3000);
-//		
-//		// check correct Product details page opened or not
-//		new ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);	
-//
-//		// validate product details page by calling the method
-//		new ProductDetailsPageComponents(driver).validatePage();
-//		
-//		Reporter.log("Product image on single collection page is Displayed :: Clickable and validated successfully");
-//
-//	}
-//	
-//	//----------------------------validate single collections----------------------------------
-//	
-//	public void validateSingleCollectionSecondSkinInMenCategory() throws Exception {
-//		// call the method to nevigate to second skin in mens category
-//		new HomePageComponents(driver).navigateToSecondSkinInMenCategory();
-//		
-//		// check the heading of selected category collection page
-//		if(!driver.findElement(MAIN_HEADING_OF_SELECTED_CATEGORY).isDisplayed())
-//			throw new Exception("Heading on collection page for selected category is not displayed");
-//		
-//		try {
-//			// validate corosals if present on top of page
-//			if(driver.findElement(STYLE_COROSALS).isDisplayed()) {
-//				methodToCheckCorosalsOnTopOfPageIsActiveWhenRelatedStyleIsChecked();
-//			}
-//		}catch(Exception e) {
-//			System.out.println("Corosals are not there");
-//		}
-//		
-//		// call method to check all filters
-//		methodToCheckAllFilters();
-//		
-//	}
-//
-//	public void validateSingleCollectionCoolCottonInMenCategory() throws Exception {
-//		// call the method to nevigate to cool cotton in mens category
-//		new HomePageComponents(driver).navigateToCoolCottonInMensCollection();
-//		
-//		// check the heading of selected category collection page
-//		if(!driver.findElement(MAIN_HEADING_OF_SELECTED_CATEGORY).isDisplayed())
-//			throw new Exception("Heading on collection page for selected category is not displayed");
-//		
-//		try {
-//			// validate corosals if present on top of page
-//			if(driver.findElement(STYLE_COROSALS).isDisplayed()) {
-//				methodToCheckCorosalsOnTopOfPageIsActiveWhenRelatedStyleIsChecked();
-//			}
-//		}catch(Exception e) {
-//			System.out.println("Corosals are not there");
-//		}
-//		
-//		// call method to check all filters
-//		methodToCheckAllFilters();
-//		
-//	}
-//	
-//	public void validateSingleCollectionPacksInWomenCategory() throws Exception {
-//		// call the method to nevigate to packs in womens category
-//		new HomePageComponents(driver).navigateToAllWomensPacksInPacksCategory();
-//		
-//		// check the heading of selected category collection page
-//		if(!driver.findElement(MAIN_HEADING_OF_SELECTED_CATEGORY).isDisplayed())
-//			throw new Exception("Heading on collection page for selected category is not displayed");
-//		
-//		try {
-//			// validate corosals if present on top of page
-//			if(driver.findElement(STYLE_COROSALS).isDisplayed()) {
-//				methodToCheckCorosalsOnTopOfPageIsActiveWhenRelatedStyleIsChecked();
-//			}
-//		}catch(Exception e) {
-//			System.out.println("Corosals are not there");
-//		}
-//		
-//		// call method to check all filters
-//		methodToCheckAllFilters();
-//		
-//	}
-//	
-//	public void validateSingleCollectionCottonBasicsInShopByCollectionsCategory() throws Exception {
-//		// call the method to nevigate to cotton basics in shop by collection category
-//		new HomePageComponents(driver).navigateToCottonBasicsInShopByCollectionsCategory();
-//		
-//		// check the heading of selected category collection page
-//		if(!driver.findElement(MAIN_HEADING_OF_SELECTED_CATEGORY).isDisplayed())
-//			throw new Exception("Heading on collection page for selected category is not displayed");
-//		
-//		try {
-//			// validate corosals if present on top of page
-//			if(driver.findElement(STYLE_COROSALS).isDisplayed()) {
-//				methodToCheckCorosalsOnTopOfPageIsActiveWhenRelatedStyleIsChecked();
-//			}
-//		}catch(Exception e) {
-//			System.out.println("Corosals are not there");
-//		}
-//		
-//		// call method to check all filters
-//		methodToCheckAllFilters();
-//		
-//	}
-//
-//
-//	
-//	//--------------------------------validate mega collections------------------------------------
-//	
-//	public void validateMegaCollectionAllClothingInWomensCategory() throws Exception {
-//		
-//		// call the method to nevigate to all clothing in womens category
-//		new HomePageComponents(driver).navigateToAllClothingInWomensCategory();
-//		
-//		// check the heading of selected category collection page
-//		if(!driver.findElement(MAIN_HEADING_OF_SELECTED_CATEGORY).isDisplayed())
-//			throw new Exception("Heading on collection page for selected category is not displayed");
-//
-//		try {
-//			// validate corosals if present on top of page
-//			if(driver.findElement(STYLE_COROSALS).isDisplayed()) {
-//				methodToCheckCorosalsOnTopOfPageIsActiveWhenRelatedStyleIsChecked();
-//			}
-//		}catch(Exception e) {
-//			System.out.println("Corosals are not there");
-//		}
-//		
-//		// call method to check all filters
-//		methodToCheckAllFilters();
-//	}
-//	
-//	public void validateMegaCollectionAllPantiesInWomensCategory() throws Exception {
-//		
-//		// call the method to nevigate to all clothing in womens category
-//		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
-//		
-//		// check the heading of selected category collection page
-//		if(!driver.findElement(MAIN_HEADING_OF_SELECTED_CATEGORY).isDisplayed())
-//			throw new Exception("Heading on collection page for selected category is not displayed");
-//
-//		try {
-//			// validate corosals if present on top of page
-//			if(driver.findElement(STYLE_COROSALS).isDisplayed()) {
-//				methodToCheckCorosalsOnTopOfPageIsActiveWhenRelatedStyleIsChecked();
-//			}
-//		}catch(Exception e) {
-//			System.out.println("Corosals are not there");
-//		}
-//
-//		
-//		// call method to check all filters
-//		methodToCheckAllFilters();
-//	}
-//	
-//	public void validateMegaCollectionAllUnderwearInMensCategory() throws Exception {
-//		
-//		// call the method to nevigate to all clothing in womens category
-//		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
-//		
-//		// check the heading of selected category collection page
-//		if(!driver.findElement(MAIN_HEADING_OF_SELECTED_CATEGORY).isDisplayed())
-//			throw new Exception("Heading on collection page for selected category is not displayed");
-//
-//		try {
-//			// validate corosals if present on top of page
-//			if(driver.findElement(STYLE_COROSALS).isDisplayed()) {
-//				methodToCheckCorosalsOnTopOfPageIsActiveWhenRelatedStyleIsChecked();
-//			}
-//		}catch(Exception e) {
-//			System.out.println("Corosals are not there");
-//		}
-//		
-//		// call method to check all filters
-//		methodToCheckAllFilters();
-//	}
-//	
-//	public void validateMegaCollectionAllUndershirtsInMensCategory() throws Exception {
-//		
-//		// call the method to nevigate to all undershirts in mens category
-//		new HomePageComponents(driver).navigateToAllUnderShirtsInMensCategory();
-//		
-//		// check the heading of selected category collection page
-//		if(!driver.findElement(MAIN_HEADING_OF_SELECTED_CATEGORY).isDisplayed())
-//			throw new Exception("Heading on collection page for selected category is not displayed");
-//
-//		try {
-//			// validate corosals if present on top of page
-//			if(driver.findElement(STYLE_COROSALS).isDisplayed()) {
-//				methodToCheckCorosalsOnTopOfPageIsActiveWhenRelatedStyleIsChecked();
-//			}
-//		}catch(Exception e) {
-//			System.out.println("Corosals are not there");
-//		}
-//		
-//		// call method to check all filters
-//		methodToCheckAllFilters();
-//	}
-//	public void validateMegaCollectionAllCollectionsInMensCategory() throws Exception {
-//		
-//		// call the method to nevigate to all undershirts in mens category
-//		new HomePageComponents(driver).navigateToAllMensCollectionsInMenCategory();
-//		
-//		// check the heading of selected category collection page
-//		if(!driver.findElement(MAIN_HEADING_OF_SELECTED_CATEGORY).isDisplayed())
-//			throw new Exception("Heading on collection page for selected category is not displayed");
-//
-//		try {
-//			// validate corosals if present on top of page
-//			if(driver.findElement(STYLE_COROSALS).isDisplayed()) {
-//				methodToCheckCorosalsOnTopOfPageIsActiveWhenRelatedStyleIsChecked();
-//			}
-//		}catch(Exception e) {
-//			System.out.println("Corosals are not there");
-//		}
-//		
-//		// call method to check all filters
-//		methodToCheckAllFilters();
-//	}
-
 
