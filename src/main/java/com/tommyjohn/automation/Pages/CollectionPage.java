@@ -243,17 +243,6 @@ public class CollectionPage extends CollectionPageComponent{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 //	public void validateProductImage() throws Exception
 //	{
 //		validateProductImageOnCollectionPage();

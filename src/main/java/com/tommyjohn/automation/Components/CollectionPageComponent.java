@@ -2,7 +2,22 @@ package com.tommyjohn.automation.Components;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.List;
+import java.util.Properties;
+
+import javax.mail.Authenticator;
+import javax.mail.BodyPart;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 import org.apache.poi.sl.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Row;
@@ -54,7 +69,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		Thread.sleep(5000);
 		WebElement Prod_Image = driver.findElement(THIRD_PRODUCT_IMAGE);
 		if(!Prod_Image.isDisplayed())
-//#		if(!driver.findElement(THIRD_PRODUCT_IMAGE).isDisplayed())
+			//#		if(!driver.findElement(THIRD_PRODUCT_IMAGE).isDisplayed())
 			throw new Exception("Product image is not present");
 		WebElement ele = driver.findElement(THIRD_PRODUCT_IMAGE);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
@@ -260,7 +275,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			WebElement ele = driver.findElement(CLEAR_FILTER_BUTTON);
 			JavascriptExecutor executor = (JavascriptExecutor)driver;
 			executor.executeScript("arguments[0].click();", ele);
-		//	driver.findElement(CLEAR_FILTER_BUTTON).click();
+			//	driver.findElement(CLEAR_FILTER_BUTTON).click();
 			Thread.sleep(3000);
 			allElements = null;
 			count = 0;
@@ -270,17 +285,17 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		Reporter.log("Clear filters button works correctly");
 
 		// scroll to last filter view
-//		        element = driver.findElement(LAST_FILTER);
-//		        JavascriptExecutor js = (JavascriptExecutor) driver;
-//		        js.executeScript("arguments[0].scrollIntoView();", element);
-//		        
+		//		        element = driver.findElement(LAST_FILTER);
+		//		        JavascriptExecutor js = (JavascriptExecutor) driver;
+		//		        js.executeScript("arguments[0].scrollIntoView();", element);
+		//		        
 		WebDriverWait wait = new WebDriverWait(driver, 20);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(LAST_FILTER));
 		if(driver.findElement(LAST_FILTER).isDisplayed()) 
 		{
 			//driver.findElement(LAST_FILTER).click();
 			Select selectElement = new Select(driver.findElement(LAST_FILTER));
-		    selectElement.selectByValue("price:asc");
+			selectElement.selectByValue("price:asc");
 
 			// click on second option
 
@@ -320,7 +335,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		int i = 2;
 		List<WebElement> allElements = null;
 		List<WebElement> allCorosals = null;
-		
+
 		Thread.sleep(20000);
 
 		// check carosals are displayed on top of page or not
@@ -382,18 +397,18 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			}
 		}	    
 		// clear all filters
-		
+
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CLEAR_FILTER_BUTTON));
 		WebElement ele = driver.findElement(CLEAR_FILTER_BUTTON);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", ele);
-		
+
 		//driver.findElement(CLEAR_FILTER_BUTTON).click();
 		Reporter.log("Corosals gets active when respective option selected");
 	}
-	
+
 	public void validateallurls()
-	
+
 	{
 		try
 		{
@@ -408,17 +423,17 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			// Load sheet- Here we are loading first sheet only
 			XSSFSheet sh1= wb.getSheetAt(0);
 			System.out.println(sh1.getRow(0).getCell(0).getStringCellValue());
-			
-			
+
+
 			int rowCount = sh1.getLastRowNum()-sh1.getFirstRowNum();
-			
+
 			for (int i = 1; i < rowCount+1; i++) {
-		String url= sh1.getRow(i).getCell(0).getStringCellValue();
+				String url= sh1.getRow(i).getCell(0).getStringCellValue();
 				checkurl(url);
-				
+
 			}
-			
-			
+
+
 		}
 		catch (Exception e)
 		{
@@ -427,12 +442,100 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	}
 
 	private void checkurl(String url) throws InterruptedException {
-		
+
 		driver.get(url);
-		Thread.sleep(7000);
-	List<WebElement> items =driver.findElements(By.cssSelector(".product-item"));
-	Reporter.log("No. of items present in " + url + " is " + items.size());
-	
+		Thread.sleep(10000);
+		List<WebElement> items =driver.findElements(By.cssSelector(".product-item"));
+		Reporter.log("No. of items present in " + url + " is " + items.size());
+		if(items.size()==0)
+		{
+			sendmail(url);
+		}
+	}
+
+	private void sendmail(String url) {
+
+		
+
+		// Recipient's email ID needs to be mentioned.
+		String to1 = "vijeta@tommyjohnwear.com";
+		String to2 = "saurabh.agarwal@tommyjohnwear.com";
+		String to3 = "manoj.konale@tommyjohnwear.com";
+		String to4 = "vipul@tommyjohnwear.com";
+		String to5 = "anjali.pathak@tommyjohnwear.com";
+		String to6 = "jubin@tommyjohnwear.com";
+		String to7 = "akshata@tommyjohnwear.com";
+		String to8 = "anil@tommyjohnwear.com";
+		
+		// Sender's email ID needs to be mentioned
+		String from = "noreplymw@tommyjohnwear.com";
+		// Assuming you are sending email from localhost
+		String host = "secure.emailsrvr.com";
+		// Get system properties
+		Properties properties = System.getProperties();
+		// Setup mail server
+		properties.setProperty("mail.smtp.host", host);
+		properties.setProperty("mail.smtp.port", "587");
+		properties.setProperty("mail.smtp.auth", "true");
+		
+		Authenticator auth = new Authenticator()
+				{
+				protected PasswordAuthentication getPasswordAuthentication() {
+			return new PasswordAuthentication("edw_job_alerts@aretove.com", "RedBook2018");
+				}
+				};
+		
+		// Get the default Session object.
+		Session session = Session.getDefaultInstance(properties, auth);
+		System.out.println("Session Created");
+
+		try{
+			// Create a default MimeMessage object.
+			MimeMessage message = new MimeMessage(session);
+			// Set From: header field of the header.
+			message.setFrom(new InternetAddress(from));
+			// Set To: header field of the header.
+			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to1));
+			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to2));
+			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to3));
+			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to4));
+			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to5));
+			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to6));
+			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to7));
+			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to8));
+			
+			// Set Subject: header field
+			message.setSubject("URGENT! Collection Page is down");
+
+			// Create the message part 
+			BodyPart messageBodyPart = new MimeBodyPart();
+
+			// Fill the message
+			messageBodyPart.setText("Please check for collection as it may be down or taking more than 10 seconds to load : " + url);
+			
+			// Create a multipar message
+			Multipart multipart = new MimeMultipart();
+
+			// Set text message part
+			multipart.addBodyPart(messageBodyPart);
+
+			// Part two is attachment
+			//		         messageBodyPart = new MimeBodyPart();
+			//		         String filename = "<Enter File Path of Emailable Report>";
+			//		         DataSource source = new FileDataSource(filename);
+			//		         messageBodyPart.setDataHandler(new DataHandler(source));
+			//		         messageBodyPart.setFileName(filename);
+			//		         multipart.addBodyPart(messageBodyPart);
+
+			// Send the complete message parts
+			message.setContent(multipart );
+			System.out.println(message.getSubject());
+			// Send message
+			Transport.send(message);
+			System.out.println("Sent message successfully....");
+		}catch (MessagingException mex) {
+			mex.printStackTrace();
+		}
 	}
 }
 

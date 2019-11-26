@@ -42,26 +42,26 @@ public class CustomUtilities {
 		chromeOptions.addArguments("window-size=1366,768");
 		driver= new ChromeDriver(chromeOptions);
 		driver.get(baseUrl);
-		
+
 		//driver.navigate().refresh();
 		driver.manage().window().maximize();
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		try {
-		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.id("bcx_local_storage_frame")));
-		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".bx-close-xsvg")));
-		driver.findElement(By.cssSelector(".bx-close-xsvg")).click();
-		driver.switchTo().defaultContent();
+			wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.id("bcx_local_storage_frame")));
+			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".bx-close-xsvg")));
+			driver.findElement(By.cssSelector(".bx-close-xsvg")).click();
+			driver.switchTo().defaultContent();
 		}
 		catch (ElementNotVisibleException e)
 		{
 			System.out.println("Overlay not displayed");
 		}
 		finally {
-		
+
 			driver.get(baseUrl);
 			return driver;
 		}
-		
+
 	}
 	//	@AfterSuite
 	public void teardown()
@@ -83,5 +83,7 @@ public class CustomUtilities {
 		}
 
 	}
+	
+	
 
 }
