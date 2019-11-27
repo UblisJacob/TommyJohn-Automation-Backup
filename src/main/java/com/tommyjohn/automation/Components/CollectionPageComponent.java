@@ -2,6 +2,7 @@ package com.tommyjohn.automation.Components;
 
 import java.io.File;
 import java.io.FileInputStream;
+
 import java.util.List;
 import java.util.Properties;
 
@@ -461,7 +462,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		String to5 = "anjali.pathak@tommyjohnwear.com";
 		String to6 = "jubin@tommyjohnwear.com";
 		String to7 = "akshata@tommyjohnwear.com";
-		String to8 = "anil@tommyjohnwear.com";
+//		String to8 = "anil@tommyjohnwear.com";
 		
 		// Sender's email ID needs to be mentioned
 		String from = "noreplymw@tommyjohnwear.com";
@@ -498,10 +499,10 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to5));
 			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to6));
 			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to7));
-			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to8));
+	//		message.addRecipient(Message.RecipientType.TO,new InternetAddress(to8));
 			
 			// Set Subject: header field
-			message.setSubject("URGENT! Collection Page is down");
+			message.setSubject("Collection Page may be down ");
 
 			// Create the message part 
 			BodyPart messageBodyPart = new MimeBodyPart();
