@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 
 import com.tommyjohn.automation.Components.CheckoutPageComponents;
 import com.tommyjohn.automation.Components.FlyCartComponents;
-import com.tommyjohn.automation.Components.GiftCardPageComponents;
+//import com.tommyjohn.automation.Components.GiftCardPageComponents;
 import com.tommyjohn.automation.Components.ProductDetailsPageComponents;
 import com.tommyjohn.automation.Components.ShoppingCartComponents;
 
@@ -37,9 +37,9 @@ public class AfterPay {
 		new CheckoutPageComponents(driver).AfterpayonCheckout();
 	}
 	
-	public void AfterPayOnGiftCardPage() throws Exception
-	{
-		new GiftCardPageComponents(driver).CheckAfterPayMessageonGC();
-	}
+//	public void AfterPayOnGiftCardPage() throws Exception
+//	{
+//		new GiftCardPageComponents(driver).CheckAfterPayMessageonGC();
+//	}
 }
 

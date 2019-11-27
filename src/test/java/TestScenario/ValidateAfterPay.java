@@ -47,11 +47,11 @@ public class ValidateAfterPay {
 		new AfterPay(driver).AfterPayOnCheckoutPage();
 	}
 	
-	@Test
-	public void TC_ValidateAfterPayWithGiftCard() throws Exception
-	{
-		new AfterPay(driver).AfterPayOnGiftCardPage();
-	}
+//	@Test
+//	public void TC_ValidateAfterPayWithGiftCard() throws Exception
+//	{
+//		new AfterPay(driver).AfterPayOnGiftCardPage();
+//	}
 
 
 	@AfterMethod(alwaysRun = true)
