@@ -192,20 +192,22 @@ public class HomePageComponents extends HomePageLocators {
 		element = driver.findElement(CHAT_WITH_US_POPUP);
 		if(!element.isEnabled())
 			throw new Exception("Chat With Us Popup is not opened");
-		if(element.isEnabled()) {
-			//			if(!driver.findElement(CHAT_WITH_US_POPUP_MINIMIZE).isDisplayed())
-			//				throw new Exception("Chat With Us Popup Minimize button is not present");
-
-			WebElement element = driver.findElement(CHAT_WITH_US_POPUP_MINIMIZE);
-			JavascriptExecutor executor = (JavascriptExecutor)driver;
-			executor.executeScript("arguments[0].click();", element);
-			driver.get(baseUrl);
-		}
-		else
-			throw new Exception("Chat With Us Popup is not opened");
+//		if(element.isEnabled()) {
+//			//			if(!driver.findElement(CHAT_WITH_US_POPUP_MINIMIZE).isDisplayed())
+//			//				throw new Exception("Chat With Us Popup Minimize button is not present");
+//
+//			WebElement element = driver.findElement(CHAT_WITH_US_POPUP_MINIMIZE);
+//			JavascriptExecutor executor = (JavascriptExecutor)driver;
+//			executor.executeScript("arguments[0].click();", element);
+//			
+//		}
+//		else
+//			throw new Exception("Chat With Us Popup is not opened");
 		Reporter.log("Chat With Us Popup is Displayed :: Minimize Button working");
-
+		
+driver.switchTo().defaultContent();
 		// Validating Call Us option
+driver.get(baseUrl);
 		element = driver.findElement(HELP_ICON);
 		action.moveToElement(element).perform();
 

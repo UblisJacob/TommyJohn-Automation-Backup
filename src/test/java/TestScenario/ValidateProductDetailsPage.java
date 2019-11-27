@@ -27,10 +27,23 @@ public class ValidateProductDetailsPage {
 	}
 
 
+//	@Test
+//	public void TC_verifyProductDetailsPage() throws Exception {	
+//		new ProductDetailsPage(driver).verifyProductDetailsPage();
+//	}
 	@Test
-	public void TC_verifyProductDetailsPage() throws Exception {	
-		new ProductDetailsPage(driver).verifyProductDetailsPage();
+	public void TC_verifyReviewsSectionOnPDP() throws Exception {	
+		new ProductDetailsPage(driver).verifyReviewsSectionOnPDP();
 	}
+	@Test
+	public void TC_verifyWriteAReviewFunctionalityOnPDP() throws Exception {	
+		new ProductDetailsPage(driver).verifyWriteReviewsFunctionalityOnPDP();
+	}
+	@Test
+	public void TC_verifyErrorMessagesForWriteReviewFieldsOnPDP() throws Exception {	
+		new ProductDetailsPage(driver).verifyReviewsFieldErrorOnPDP();
+	}
+	
 
 	@AfterMethod(alwaysRun = true)
 	void teardown () {
