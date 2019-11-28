@@ -24,17 +24,17 @@
 		<link>
 			<name>src/main/java/com/tommyjohn/automation/Components/GiftCardPageComponents.java</name>
 			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Downloads/GiftCardPageComponents.java</locationURI>
+			<location>C:/Users/Vijeta/git/TJAutomation/src/main/java/com/tommyjohn/automation/Components/GiftCardPageComponents.java</location>
 		</link>
 		<link>
 			<name>src/main/java/com/tommyjohn/automation/PageLocators/GiftCardPageLocators.java</name>
 			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Downloads/GiftCardPageLocators.java</locationURI>
+			<location>C:/Users/Vijeta/git/TJAutomation/src/main/java/com/tommyjohn/automation/PageLocators/GiftCardPageLocators.java</location>
 		</link>
 		<link>
 			<name>src/main/java/com/tommyjohn/automation/Pages/GiftCardPage.java</name>
 			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Downloads/GiftCardPage.java</locationURI>
+			<location>C:/Users/Vijeta/git/TJAutomation/src/main/java/com/tommyjohn/automation/Pages/GiftCardPage.java</location>
 		</link>
 	</linkedResources>
 </projectDescription>
