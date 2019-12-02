@@ -32,7 +32,7 @@ public class AddToCartComponents extends AddToCartLocators{
 		String text = null;
 
 		// navigate to any product collection page
-		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
+		new HomePageComponents(driver).navigateToAllWomensCollectionInWomensCategory();
 
 		// call method to navigate product details page
 		text = new CollectionPageComponent(driver).navigateToProductDetailsPage();

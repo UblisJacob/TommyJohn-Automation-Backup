@@ -23,7 +23,8 @@ public class ProductDetailsPageLocators {
 
 	public static By SIZE_DROPDOWN = By.cssSelector(".option-dropdown__option >div>a");
 	public static By ALL_SIZE_LIST = By.cssSelector(".select--options__list >li");
-
+	public static By SIZE_DROPDOWN_MENS = By.cssSelector(".option-dropdown__option >div[data-option-name = 'Mens Size'] >a");
+	public static By SIZE_DROPDOWN_WOMENS = By.cssSelector(".option-dropdown__option >div[data-option-name = 'Womens Size'] >a");
 	public static By SIZE_TEXT = By.cssSelector(".select--options__label");
 	//public static By ALL_SIZE_LIST = By.cssSelector(".product-option__variants.product-option__variants-size > ul > li");
 
@@ -83,9 +84,9 @@ public class ProductDetailsPageLocators {
 	
 	public static By REVIEWER_NAME = By.cssSelector(".yotpo-reviews-widget > ul.review-list > li.review-item> .yotpo-review-box > div.yotpo-review-buyer-info > .reviewer-name-type > .reviewer-user-name");
 	public static By REVIEWER_TYPE = By.cssSelector(".yotpo-reviews-widget > ul.review-list > li.review-item> .yotpo-review-box > div.yotpo-review-buyer-info > .reviewer-name-type > .reviewer-user-type");
-	public static By USER_REVIEW_FIT = By.cssSelector(".yotpo-reviews-widget > ul.review-list > li.review-item> .yotpo-review-box > div.yotpo-review-buyer-info > p:nth-child(4)");
+	public static By USER_REVIEW_FIT = By.cssSelector(".yotpo-reviews-widget > ul.review-list > li.review-item> .yotpo-review-box > div.yotpo-review-buyer-info > p:nth-child(3)");
 	public static By USER_REVIEW_DATE = By.cssSelector(".yotpo-reviews-widget > ul.review-list > li.review-item> .yotpo-review-box > div.yotpo-review-buyer-info > p:nth-child(2)");
-	public static By USER_REVIEW_LOCATION = By.cssSelector(".yotpo-reviews-widget > ul.review-list > li.review-item> .yotpo-review-box > div.yotpo-review-buyer-info > p:nth-child(3)");
+	public static By USER_REVIEW_LOCATION = By.cssSelector(".yotpo-reviews-widget > ul.review-list > li.review-item> .yotpo-review-box > div.yotpo-review-buyer-info > p:nth-child(4)");
 	
 	public static By USER_REVIEW_STARS = By.cssSelector(".yotpo-reviews-widget > ul.review-list > li.review-item> .yotpo-review-box > .yotpo-review-main-content >.yotpo-review-header> p>.yotpo-review-stars");
 	public static By USER_REVIEW_TITLE = By.cssSelector(".yotpo-reviews-widget > ul.review-list > li.review-item> .yotpo-review-box > .yotpo-review-main-content >.yotpo-review-header >.yotpo-review-title");
@@ -121,8 +122,23 @@ public class ProductDetailsPageLocators {
 	public static By HEADLINE_ERROR = By.cssSelector("input#yotpo_input_review_headline  ~ span.error-message");
 	public static By REVIEW_ERROR = By.cssSelector("#yotpo_input_review_content  ~ span.error-message");
 	
+	public static By EMAIL_WHEN_IN_STOCK_TITLE = By.cssSelector(".swym-title > h2");
+	public static By JOINTHEWAITLIST_REMINDER_DESC = By.cssSelector(".swym-remind-description");
+	public static By JOINTHEWAITLIST_EMAILTEXTBOX = By.cssSelector("#swym-remind-email-auth-input");
+	public static By JOINTHEWAITLIST_NOTIFYBUTTON = By.cssSelector("#swym-remind-email-auth-button");
+	public static By JOINTHEWAITLIST_PRIVACYINFO = By.cssSelector(".swym-privacy-info");
+	public static By JOINTHEWAITLIST_CLOSEBTN = By.cssSelector(".swym-remind-me > .swym-tab-modal-close");
+	public static By JOINTHEWAITLIST_SUCCESS = By.cssSelector(".swym-success");
 	
+//	Recommneded for you (RFY)
+	public static By RFY_TITLE = By.cssSelector(".dy-rec--title");
+	public static By RFY_SECTION = By.cssSelector(".dy-rec--products");
+	public static By RFY_PRODUCT_IMAGE = By.cssSelector(".dy-rec--product-tile > img");
+	public static By RFY_PRODUCT_TITLE = By.cssSelector(".dy-rec--product-tile > .dy-product-info > .dy-rec--product-title");
+	public static By RFY_PRODUCT_REVIEWS = By.cssSelector(".dy-rec--product-tile > .dy-product-info > .yotpo");
+	public static By RFY_PRODUCT_PRICE = By.cssSelector(".dy-rec--product-price");
 	
-	
+	//Mystery packs
+	public static By MYSTERPACK_PRMOMSG = By.cssSelector(".multi-pdp-title-wrap.desktop-view >.product-info_promo.show");
 	
 }

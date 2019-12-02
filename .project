@@ -20,21 +20,4 @@
 		<nature>org.eclipse.m2e.core.maven2Nature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>src/main/java/com/tommyjohn/automation/Components/GiftCardPageComponents.java</name>
-			<type>1</type>
-			<location>C:/Users/Vijeta/git/TJAutomation/src/main/java/com/tommyjohn/automation/Components/GiftCardPageComponents.java</location>
-		</link>
-		<link>
-			<name>src/main/java/com/tommyjohn/automation/PageLocators/GiftCardPageLocators.java</name>
-			<type>1</type>
-			<location>C:/Users/Vijeta/git/TJAutomation/src/main/java/com/tommyjohn/automation/PageLocators/GiftCardPageLocators.java</location>
-		</link>
-		<link>
-			<name>src/main/java/com/tommyjohn/automation/Pages/GiftCardPage.java</name>
-			<type>1</type>
-			<location>C:/Users/Vijeta/git/TJAutomation/src/main/java/com/tommyjohn/automation/Pages/GiftCardPage.java</location>
-		</link>
-	</linkedResources>
 </projectDescription>

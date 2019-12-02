@@ -88,6 +88,20 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		 driver.close();
 		 driver.switchTo().window(mainWindow);
 		 Reporter.log("GPay option is present on checkout page and is functional");
+		 
+		 //verify amz pay
+		 WebElement element1 = driver.findElement(AMZ_PAY);
+			jse.executeScript("arguments[0].click();", element1);
+		 
+			text = driver.getTitle();
+			 softAssert.assertEquals(text, "Amazon Sign in using our secure server");
+			
+			 
+			Reporter.log("Amazon Pay option is present on checkout page and is functional"); 
+			 Thread.sleep(3000);
+		
+		 
+		 
 	}
 	
 	public void guestcheckoutflow() throws Exception
@@ -148,14 +162,14 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		driver.findElement(AccountLoginLocators.LOGIN_BUTTON).click();
 		Reporter.log("User logged in successfully");
 		
-		Thread.sleep(3000);
+		Thread.sleep(6000);
 		entershippingdetails();
 		Reporter.log("Shipping Address Details entered");
 		
 		driver.findElement(CONTINUE_TO_SHIPPING_BUTTON).click();
 		Reporter.log("User is navigated to select shipping method");
 	
-		Thread.sleep(3000);
+		Thread.sleep(8000);
 		
 	//	softAssert.assertEquals(driver.findElement(SHIPPING_TEXT).getText(), "Shipping method");
 		 WebElement element = driver.findElement(CONTINUE_TO_PAYMENT_BUTTON);

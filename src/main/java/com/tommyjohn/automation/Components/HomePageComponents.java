@@ -23,6 +23,7 @@ public class HomePageComponents extends HomePageLocators {
 	public static WebElement element;
 	public Actions action;
 	JavascriptExecutor executor = (JavascriptExecutor)driver;
+	
 
 	String text;
 
@@ -144,7 +145,7 @@ public class HomePageComponents extends HomePageLocators {
 		WebElement element = driver.findElement(SEARCH_ICON);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", element);
-		// check searchbox is opened or not using active class
+		// check search box is opened or not using active class
 		flag = false;
 		element = driver.findElement(SEARCH_ICON_FORM_TAG);
 		allClasses = element.getAttribute("class");
@@ -157,6 +158,12 @@ public class HomePageComponents extends HomePageLocators {
 			throw new Exception("Search input box is not opened");
 		Reporter.log("Search Icon is Displayed :: Clickable :: Search textbox is Opened after click");
 	}
+	
+	//verify search functionality
+	public void verifysearchfunctionality() throws Exception {
+	
+	}
+	
 
 
 	// check for Help icon
@@ -779,7 +786,10 @@ driver.get(baseUrl);
 		action = new Actions(driver);
 		element = driver.findElement(WOMEN_CATEGORY);
 		action.moveToElement(element).perform();
-		driver.findElement(ALL_WOMENS_COLLECTIONS_IN_WOMEN_CATEGORY).click();
+		
+		WebElement element = driver.findElement(ALL_WOMENS_COLLECTIONS_IN_WOMEN_CATEGORY);
+		executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();", element);
 		Thread.sleep(3000);
 		Reporter.log(driver.getCurrentUrl());
 
@@ -805,4 +815,15 @@ driver.get(baseUrl);
 		//Reporter.log(driver.getCurrentUrl());
 
 	}
+	
+	// navigate to all panties in women catagory
+		public void navigateToMysteryPacksinPacksCategory() throws Exception {
+			action = new Actions(driver);
+			element = driver.findElement(PACKS);
+			action.moveToElement(element).perform();
+			driver.findElement(MYSTERYPACK_IN_PACKS).click();
+			Thread.sleep(3000);	
+			Reporter.log(driver.getCurrentUrl());
+
+		}
 }

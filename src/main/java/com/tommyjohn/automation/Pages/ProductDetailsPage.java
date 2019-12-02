@@ -33,6 +33,28 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 		new ProductDetailsPageComponents(driver).verifyWriteReviewErrorMsgs();
 	
 	}
-	
+	public void verifyBundlePDP() throws Exception {
 
-}
+		new ProductDetailsPageComponents(driver).verifybundlepages();
+	
+	}
+	
+	public void verifyjointhewaitlist() throws Exception {
+
+		new ProductDetailsPageComponents(driver).VerifyJoinTheWaitlist();
+	
+	}
+
+	public void verifyrecommendedforyou() throws Exception {
+		
+		new ProductDetailsPageComponents(driver).verifyRecommendedForU();
+		
+	}
+	
+	public void verifymysterypack() throws Exception {
+		
+		new ProductDetailsPageComponents(driver).verifyMysteryPacks();
+		
+	}
+		
+	}

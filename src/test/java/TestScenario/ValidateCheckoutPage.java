@@ -23,17 +23,17 @@ public class ValidateCheckoutPage {
 		}
 	}
 	
-//	@Test
-//	public void ValidateExpressCheckoutoptionsAreFunctional() throws Exception
-//	{
-//		new CheckoutPage(driver).ValidateExpressCheckoutOptions();
-//	}
-//	
-//	@Test
-//	public void ValidateGuestCheckoutFlow() throws Exception
-//	{
-//		new CheckoutPage(driver).Validateguestcheckout();
-//	}
+	@Test
+	public void ValidateExpressCheckoutoptionsAreFunctional() throws Exception
+	{
+		new CheckoutPage(driver).ValidateExpressCheckoutOptions();
+	}
+	
+	@Test
+	public void ValidateGuestCheckoutFlow() throws Exception
+	{
+		new CheckoutPage(driver).Validateguestcheckout();
+	}
 	
 	@Test
 	public void ValidateRegisteredUserCheckoutFlow() throws Exception

@@ -21,9 +21,9 @@ public class HomePage extends HomePageComponents {
 		validateFooterLinks();
 	}
 
-	public void verifysearchandhelp() throws Exception
+	public void verifyhelp() throws Exception
 	{
-		validateSearchIcon();
+		
 		validateHelpIcon();
 	}
 
@@ -37,4 +37,5 @@ public class HomePage extends HomePageComponents {
 		validateAccountIcon();
 
 	}
+	
 }

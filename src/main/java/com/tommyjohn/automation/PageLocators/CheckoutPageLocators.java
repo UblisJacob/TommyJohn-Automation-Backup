@@ -11,6 +11,7 @@ public class CheckoutPageLocators {
 	public static By EXPRESS_CHECKOUT_TEXT = By.cssSelector(".dynamic-checkout__title");
 	public static By PAYPAL_BUTTON = By.cssSelector(".paypal-button");
 	public static By GPAY_BUTTON = By.xpath("//div[@data-testid = 'GooglePay-button']");
+	public static By AMZ_PAY = By.xpath("//form[@action = 'https://payments.amazon.com/checkout/signin'] /button" );
 
 	//Contact info 
 	public static By CONTACTINFO_TEXT = By.cssSelector("#main-header");

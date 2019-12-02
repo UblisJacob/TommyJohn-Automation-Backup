@@ -34,9 +34,9 @@ public class ValidateHomePage {
 		new HomePage(driver).validateFooterLinks();
 	}
 	@Test
-	public void TC_verifySearchAndHelpOnHomePage() throws Exception {
+	public void TC_verifyHelpOnHomePage() throws Exception {
 		
-		new HomePage(driver).verifysearchandhelp();
+		new HomePage(driver).verifyhelp();
 	}
 
 	@Test
@@ -44,6 +44,12 @@ public class ValidateHomePage {
 		
 		new HomePage(driver).validateAccountIcon();
 		new HomePage(driver).validateCartIcon();
+	}
+	
+	@Test
+	public void TC_ValidateSearchPage() throws Exception {
+		
+		new HomePage(driver).validateSearchIcon();
 	}
 	
 	@AfterMethod(alwaysRun = true)

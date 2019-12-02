@@ -27,10 +27,10 @@ public class ValidateProductDetailsPage {
 	}
 
 
-//	@Test
-//	public void TC_verifyProductDetailsPage() throws Exception {	
-//		new ProductDetailsPage(driver).verifyProductDetailsPage();
-//	}
+	@Test
+	public void TC_verifyProductDetailsPage() throws Exception {	
+		new ProductDetailsPage(driver).verifyProductDetailsPage();
+	}
 	@Test
 	public void TC_verifyReviewsSectionOnPDP() throws Exception {	
 		new ProductDetailsPage(driver).verifyReviewsSectionOnPDP();
@@ -42,6 +42,25 @@ public class ValidateProductDetailsPage {
 	@Test
 	public void TC_verifyErrorMessagesForWriteReviewFieldsOnPDP() throws Exception {	
 		new ProductDetailsPage(driver).verifyReviewsFieldErrorOnPDP();
+	}
+	@Test
+	public void TC_VerifyBundlePDP() throws Exception {	
+		new ProductDetailsPage(driver).verifyBundlePDP();
+	}
+	
+	@Test
+	public void TC_VerifyJoinTheWaitlistFunctionality() throws Exception {	
+		new ProductDetailsPage(driver).verifyjointhewaitlist();
+	}
+	
+	@Test
+	public void TC_VerifyRecommendedForYouSection() throws Exception {	
+		new ProductDetailsPage(driver).verifyrecommendedforyou();
+	}
+	
+	@Test
+	public void TC_VerifyMysterPackPDP() throws Exception {	
+		new ProductDetailsPage(driver).verifymysterypack();
 	}
 	
 
