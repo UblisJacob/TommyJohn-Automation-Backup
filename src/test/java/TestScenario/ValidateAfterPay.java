@@ -50,6 +50,13 @@ public class ValidateAfterPay {
 	{
 		new AfterPay(driver).AfterPayOnGiftCardPage();
 	}
+	
+	@Test
+	public void ValidateAfterpayForAddressOtherThanUS() throws Exception
+	{
+		new AfterPay(driver).ValidateAfterPayforAddressotherThanUS();
+	
+	}
 
 
 	@AfterMethod(alwaysRun = true)

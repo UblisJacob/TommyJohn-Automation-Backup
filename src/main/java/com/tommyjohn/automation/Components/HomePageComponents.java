@@ -4,13 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Reporter;
+import org.testng.asserts.SoftAssert;
 
 import com.tommyjohn.automation.PageLocators.HomePageLocators;
+import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
 public class HomePageComponents extends HomePageLocators {
@@ -23,7 +26,7 @@ public class HomePageComponents extends HomePageLocators {
 	public static WebElement element;
 	public Actions action;
 	JavascriptExecutor executor = (JavascriptExecutor)driver;
-	
+
 
 	String text;
 
@@ -135,9 +138,34 @@ public class HomePageComponents extends HomePageLocators {
 		Reporter.log("Gift Guide category is Displayed :: Hoverable");
 	}
 
+	
+	public void validateSearchFunction() throws Exception {
 
-	// validate search icon
-	public void validateSearchIcon() throws Exception {
+		SoftAssert softAssert = new SoftAssert();
+		
+		WebElement element = driver.findElement(SEARCH_ICON);
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();", element);
+		driver.findElement(SEARCH_TEXTBOX).sendKeys("Boxer Brief");
+		Thread.sleep(3000);
+		softAssert.assertTrue(driver.findElement(POPULAR_SEARCHES).isDisplayed(), "Popular searches section not displayed ");
+		softAssert.assertTrue(driver.findElement(PRODUCT_MATCHES).isDisplayed(), "Product matches section is not displayed");
+		
+		driver.findElement(PRODUCT_MATCHES).click();
+		Thread.sleep(7000);
+		if(driver.findElement(ProductDetailsPageLocators.PRODUCT_DETAILS).getText().contains("Pack"))
+		new ProductDetailsPageComponents(driver).verifybundlepages();
+		else
+		new ProductDetailsPageComponents(driver).validatePage();
+		
+		softAssert.assertAll();
+	
+	}
+	
+
+	public void validateSearchFunctionality() throws Exception {
+
+		SoftAssert softAssert = new SoftAssert();
 		String allClasses = null;
 		action = new Actions(driver);
 		if(!driver.findElement(SEARCH_ICON).isDisplayed())
@@ -157,13 +185,54 @@ public class HomePageComponents extends HomePageLocators {
 		if(!flag)
 			throw new Exception("Search input box is not opened");
 		Reporter.log("Search Icon is Displayed :: Clickable :: Search textbox is Opened after click");
+
+
+		driver.findElement(SEARCH_TEXTBOX).sendKeys("Boxer Brief");
+		Thread.sleep(3000);
+		softAssert.assertTrue(driver.findElement(POPULAR_SEARCHES).isDisplayed(), "Popular searches section not displayed ");
+		softAssert.assertTrue(driver.findElement(PRODUCT_MATCHES).isDisplayed(), "Product matches section is not displayed");
+
+		driver.findElement(SEARCHRESULT_KEYWORD).click();
+		Thread.sleep(9000);
+		
+		softAssert.assertEquals(driver.findElement(SEARCHPAGE_TITLE).getText(), "Refine Search" , "Refine search title is not displayed on search page");
+		softAssert.assertTrue(driver.findElement(SEARCHPAGE_DESC).isDisplayed(), "Showing results description not displayed on search page");
+		softAssert.assertTrue(driver.findElement(SEARCHPAGE_ITEMCOUNT).isDisplayed(), "Item count not displayed on search page");
+		softAssert.assertTrue(driver.findElement(SEARCHPAGE_FILTER).isDisplayed(), "Filter section not present on search page");
+		
+		List<WebElement> products = driver.findElements(SEARCHPAGE_PRODUCTS);
+		int count = products.size();
+		
+		softAssert.assertEquals(driver.findElement(SEARCHPAGE_ITEMCOUNT).getText(), count + " Items" , "Number of products displayed does not match the count displayed on search page");
+		
+		softAssert.assertTrue(driver.findElement(SEARCHPAGE_PRODUCT_IMAGE).isDisplayed(), "Product image not present on search page");
+		softAssert.assertTrue(driver.findElement(SEARCHPAGE_PRODUCT_NAME).isDisplayed(), "Product name not present on search page");
+	//	softAssert.assertTrue(driver.findElement(SEARCHPAGE_PRODUCT_REVIEWS).isDisplayed(), "Product reviews not present on search page");
+		softAssert.assertTrue(driver.findElement(SEARCHPAGE_PRODUCT_SWATCHES).isDisplayed(), "Product swatches not present on search page");
+		softAssert.assertTrue(driver.findElement(SEARCHPAGE_PRODUCT_PRICE).isDisplayed(), "Product price not present on search page");
+		
+		String productname = driver.findElement(By.cssSelector(".product-meta__title")).getText();
+		
+		driver.findElement(SEARCHPAGE_PRODUCT_IMAGE).click();
+		Thread.sleep(6000);
+		softAssert.assertEquals(driver.findElement(ProductDetailsPageLocators.PRODUCT_TITLE).getText(), productname , "correct PDP page not displayed after clicking on image of product on search page" );
+		
+		driver.navigate().back();
+		Thread.sleep(6000);
+		driver.findElement(SEARCHPAGE_PRODUCT_NAME).click();
+		Thread.sleep(6000);
+		softAssert.assertEquals(driver.findElement(ProductDetailsPageLocators.PRODUCT_TITLE).getText(), productname , "correct PDP page not displayed after clicking on name of product on search page" );
+		
+		driver.navigate().back();
+		Thread.sleep(6000);
+//		driver.findElement(SEARCHPAGE_PRODUCT_REVIEWS).click();
+//		Thread.sleep(6000);
+//		softAssert.assertEquals(driver.findElement(ProductDetailsPageLocators.PRODUCT_TITLE).getText(), productname , "correct PDP page not displayed after clicking on reviews of product on search page" );
+//		
+		softAssert.assertAll();
+		
 	}
-	
-	//verify search functionality
-	public void verifysearchfunctionality() throws Exception {
-	
-	}
-	
+
 
 
 	// check for Help icon
@@ -199,22 +268,22 @@ public class HomePageComponents extends HomePageLocators {
 		element = driver.findElement(CHAT_WITH_US_POPUP);
 		if(!element.isEnabled())
 			throw new Exception("Chat With Us Popup is not opened");
-//		if(element.isEnabled()) {
-//			//			if(!driver.findElement(CHAT_WITH_US_POPUP_MINIMIZE).isDisplayed())
-//			//				throw new Exception("Chat With Us Popup Minimize button is not present");
-//
-//			WebElement element = driver.findElement(CHAT_WITH_US_POPUP_MINIMIZE);
-//			JavascriptExecutor executor = (JavascriptExecutor)driver;
-//			executor.executeScript("arguments[0].click();", element);
-//			
-//		}
-//		else
-//			throw new Exception("Chat With Us Popup is not opened");
+		//		if(element.isEnabled()) {
+		//			//			if(!driver.findElement(CHAT_WITH_US_POPUP_MINIMIZE).isDisplayed())
+		//			//				throw new Exception("Chat With Us Popup Minimize button is not present");
+		//
+		//			WebElement element = driver.findElement(CHAT_WITH_US_POPUP_MINIMIZE);
+		//			JavascriptExecutor executor = (JavascriptExecutor)driver;
+		//			executor.executeScript("arguments[0].click();", element);
+		//			
+		//		}
+		//		else
+		//			throw new Exception("Chat With Us Popup is not opened");
 		Reporter.log("Chat With Us Popup is Displayed :: Minimize Button working");
-		
-driver.switchTo().defaultContent();
+
+		driver.switchTo().defaultContent();
 		// Validating Call Us option
-driver.get(baseUrl);
+		driver.get(baseUrl);
 		element = driver.findElement(HELP_ICON);
 		action.moveToElement(element).perform();
 
@@ -786,7 +855,7 @@ driver.get(baseUrl);
 		action = new Actions(driver);
 		element = driver.findElement(WOMEN_CATEGORY);
 		action.moveToElement(element).perform();
-		
+
 		WebElement element = driver.findElement(ALL_WOMENS_COLLECTIONS_IN_WOMEN_CATEGORY);
 		executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", element);
@@ -815,15 +884,39 @@ driver.get(baseUrl);
 		//Reporter.log(driver.getCurrentUrl());
 
 	}
-	
-	// navigate to all panties in women catagory
-		public void navigateToMysteryPacksinPacksCategory() throws Exception {
-			action = new Actions(driver);
-			element = driver.findElement(PACKS);
-			action.moveToElement(element).perform();
-			driver.findElement(MYSTERYPACK_IN_PACKS).click();
-			Thread.sleep(3000);	
-			Reporter.log(driver.getCurrentUrl());
 
-		}
+	// navigate to all panties in women catagory
+	public void navigateToMysteryPacksinPacksCategory() throws Exception {
+		action = new Actions(driver);
+		element = driver.findElement(PACKS);
+		action.moveToElement(element).perform();
+		driver.findElement(MYSTERYPACK_IN_PACKS).click();
+		Thread.sleep(3000);	
+		Reporter.log(driver.getCurrentUrl());
+
+	}
+	// navigate to Contact Us Page
+	public void navigateToContactUsPage() throws Exception {
+		text = driver.findElement(CONTACT_US_LINK).getText();
+		if(!text.equals("Contact Us"))
+			throw new Exception("Contact Us link text is changed");	
+		driver.findElement(CONTACT_US_LINK).click();
+		Thread.sleep(3000);
+		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/contact-us")) 
+			driver.navigate().back();
+		else
+			throw new Exception("Wrong page opened after Contact Us footer link clicked");
+		Reporter.log("Contact Us footer link is Displayed :: Clickable");
+										
+	}
+	
+	// navigate to mix & match in Bra Category
+	public void navigateToMixAndMatchInBrasCategory() throws Exception {
+		action = new Actions(driver);
+		element = driver.findElement(BRA_CATEGORY);
+		action.moveToElement(element).perform();
+		driver.findElement(MIXANDMATCH).click();
+		Thread.sleep(3000);
+		Reporter.log(driver.getCurrentUrl());
+	}
 }

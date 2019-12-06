@@ -369,6 +369,8 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	
 	
 	
+	
+	
 	public void AfterpayonCheckout() throws Exception
 	{
 		//product add to cart
@@ -474,6 +476,83 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		
 		softAssert.assertAll();
 	}
+	
+	
+	
+	public void CheckAfterPayForAddressOtherThanUS() throws Exception
+	{
+		//add product to cart
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		new HomePageComponents(driver).navigateToBraCategory();
+		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		new ProductDetailsPageComponents(driver).validatePage();
+
+	
+		driver.findElement(HomePageLocators.CART_ICON).click();
+		
+		//Click on Checkout button in inline cart
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.CHECKOUT_BUTTON));
+		driver.findElement(FlyCartPageLocator.CHECKOUT_BUTTON).click();
+		Thread.sleep(5000);
+				
+		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
+		//Enter shipping Address with other than US 
+		entershippingAddressOtherThanUS();
+		Thread.sleep(3000);
+		
+		//navigate to checkout page
+		driver.findElement(CONTINUE_TO_SHIPPING_BUTTON).click();
+		Thread.sleep(5000);
+		System.out.println("payment page");
+		Thread.sleep(10000);
+		wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTINUE_TO_PAYMENT_BUTTON));
+		WebElement element = driver.findElement(CONTINUE_TO_PAYMENT_BUTTON);
+		if(!element.isDisplayed())
+			throw new Exception("Continue to payment button is not displayed.");
+		jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].click();", element);
+		Thread.sleep(10000);
+		
+		//Check after pay for address other than US
+		try{
+			System.out.println("Verifying for AfterPay Message .......");
+			if(!driver.findElement(AFTERPAY_OPTION).getAttribute("style").equalsIgnoreCase("display: none;"))
+				throw new Exception("AfterPay Message is displayed on Checkout page for address other than US.");
+			Reporter.log("AfterPay Message is displayed on Checkout page for address other than US");
+		}
+		catch(NoSuchElementException e){
+			System.out.println("After Pay Message is not displayed on checkout page for address other than US.");
+			Reporter.log("After Pay Message is not displayed on Checkout page for address other than US.");
+		}
+		
+		
+		
+		
+	}
+	public void entershippingAddressOtherThanUS()
+	{
+		
+		
+		driver.findElement(ADDRESS1_TEXTBOX).sendKeys("123 Test Adress");
+		
+		driver.findElement(ADDRESS2_TEXTBOX).sendKeys("Suite1");
+		
+		driver.findElement(CITY_TEXTBOX).sendKeys("Perth");
+		WebElement countrydp = driver.findElement(COUNTRY_DROPDOWN);
+		Select country = new Select(countrydp);
+		country.selectByValue("Australia");
+
+		WebElement statedp = driver.findElement(STATE_DROPDOWN);
+		Select state = new Select(statedp);
+		state.selectByValue("WA");
+
+		
+		driver.findElement(PINCODE_TEXTBOX).sendKeys("6000");
+		
+		driver.findElement(PHONE_TEXTBOX).sendKeys("8889996667");
+	}
+
 
  }
 

@@ -143,7 +143,7 @@ public class GiftCard_PageComponents extends GiftCard_PageLocators {
 		System.out.println("Gift card successfully added to the cart.");
 		Reporter.log("Gift card successfully added to the cart.");
 		System.out.println("selected price is: "+GC_price);
-		Thread.sleep(3000);
+		Thread.sleep(7000);
 
 		//Check Gift card title on inline cart
 		softAssert.assertEquals(driver.findElement(GIFT_CARD_TITLE_INLINE_CART).getText(), "E-Gift Card" , "Wrong title is displayed for Gift cart on inline cart.");

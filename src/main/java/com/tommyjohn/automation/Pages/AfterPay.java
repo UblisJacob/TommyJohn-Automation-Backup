@@ -42,5 +42,10 @@ public class AfterPay {
 	{
 		new GiftCard_PageComponents(driver).CheckAfterPayMessageonGC();
 	}
+	
+	public void ValidateAfterPayforAddressotherThanUS() throws Exception
+	{
+		new CheckoutPageComponents(driver).CheckAfterPayForAddressOtherThanUS();
+	}
 }
 

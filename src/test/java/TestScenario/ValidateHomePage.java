@@ -47,9 +47,15 @@ public class ValidateHomePage {
 	}
 	
 	@Test
-	public void TC_ValidateSearchPage() throws Exception {
+	public void TC_ValidateSearchFunctionalityviaPopularSearches() throws Exception {
 		
-		new HomePage(driver).validateSearchIcon();
+		new HomePage(driver).validateSearch();
+	}
+	
+	@Test
+	public void TC_ValidateSearchFunctionalityviaProductMatches() throws Exception {
+		
+		new HomePage(driver).validateSearchPM();
 	}
 	
 	@AfterMethod(alwaysRun = true)

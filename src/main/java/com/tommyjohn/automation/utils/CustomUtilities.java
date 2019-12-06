@@ -38,7 +38,7 @@ public class CustomUtilities {
 		//	System.setProperty("webdriver.chrome.driver" ,"/tmp/chromedriver.exe");
 		System.setProperty("webdriver.chrome.driver" ,properties.getProperty("chromeDriverPath"));
 		ChromeOptions chromeOptions = new ChromeOptions();
-//		chromeOptions.addArguments("--headless");
+		chromeOptions.addArguments("--headless");
 		chromeOptions.addArguments("window-size=1366,768");
 		driver= new ChromeDriver(chromeOptions);
 		driver.get(baseUrl);

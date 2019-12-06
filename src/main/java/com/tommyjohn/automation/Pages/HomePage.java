@@ -37,5 +37,18 @@ public class HomePage extends HomePageComponents {
 		validateAccountIcon();
 
 	}
+	public void validateSearch() throws Exception
+	{
+		validateSearchFunctionality();
+
+	}
+	public void validateSearchPM() throws Exception
+	{
+		validateSearchFunction();
+
+	}
+	
+	
+	
 	
 }

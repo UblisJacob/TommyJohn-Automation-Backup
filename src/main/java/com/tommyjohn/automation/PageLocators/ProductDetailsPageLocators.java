@@ -141,4 +141,12 @@ public class ProductDetailsPageLocators {
 	//Mystery packs
 	public static By MYSTERPACK_PRMOMSG = By.cssSelector(".multi-pdp-title-wrap.desktop-view >.product-info_promo.show");
 	
+	//Quick Shop on Buy With
+		public static By FIRST_PRODUCT_IMAGE_BUYWITH = By.cssSelector(".product-image-container");
+		public static By PRODUCT_TITLE_ON_COLLECTION = By.cssSelector(".product-meta__title");
+		public static By PRODUCT_ITEM_SWATCH_CIRCLE = By.cssSelector(".product-item__swatch-wrapper>div");
+		public static By PRODUCT_AMOUNT_ON_Collection = By.cssSelector(".product-meta__price");
+		public static By PRODUCT_TITLE_ON_FLYCART = By.cssSelector("div.inline-cart__col1 > div:nth-child(6) > .line-item >.line-item__summary>a");
+	    public static By PRODUCT_LINE_ITEM_OPTION = By.cssSelector(" div.line-item__summary > div.line-item__option");
+	    public static By PRODUCT_AMOUNT_ON_FLYCART = By.cssSelector(".line-item__price>span");
 }

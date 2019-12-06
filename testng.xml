@@ -29,8 +29,7 @@
 		parallel="tests">
 		<classes>
 			<class name="TestScenario.ValidateMegaCollectionPages" />
-	
-			
+
 		</classes>
 	</test>
 
@@ -91,18 +90,57 @@
 			<class name="TestScenario.ValidateAfterPay" />
 		</classes>
 	</test>
-	
-	  <test thread-count="1" name="SizeGuideTests" verbose="1"
+
+	<test thread-count="1" name="SizeGuideTests" verbose="1"
 		parallel="tests">
 		<classes>
 			<class name="TestScenario.ValidateSizeGuide" />
 		</classes>
 	</test>
-	
-	  <test thread-count="1" name="CollectionPageTests" verbose="1"
+
+	<test thread-count="1" name="CollectionPageTests" verbose="1"
 		parallel="tests">
 		<classes>
 			<class name="TestScenario.ValidateCollectionPage" />
+		</classes>
+	</test>
+
+	<test thread-count="1" name="LoyaltyOptInTests" verbose="1"
+		parallel="tests">
+		<classes>
+			<class name="TestScenario.ValidateLoyaltyOptIn" />
+		</classes>
+	</test>
+
+	<test thread-count="1" name="CompareTool" verbose="1"
+		parallel="tests">
+		<classes>
+			<class name="TestScenario.ValidateComapreTool" />
+		</classes>
+	</test>
+
+	<test thread-count="1" name="ContactUs" verbose="1"
+		parallel="tests">
+		<classes>
+			<class name="TestScenario.ValidateContactUsPage" />
+		</classes>
+	</test>
+	<test thread-count="1" name="MixAndMatch" verbose="1"
+		parallel="tests">
+		<classes>
+			<class name="TestScenario.ValidateMixAndMatchPage" />
+		</classes>
+	</test>
+	<test thread-count="1" name="QuickShop" verbose="1"
+		parallel="tests">
+		<classes>
+			<class name="TestScenario.ValidateQuickShop" />
+		</classes>
+	</test>
+	<test thread-count="1" name="StoreLocator" verbose="1"
+		parallel="tests">
+		<classes>
+			<class name="TestScenario.ValidateStoreLocator" />
 		</classes>
 	</test>
 

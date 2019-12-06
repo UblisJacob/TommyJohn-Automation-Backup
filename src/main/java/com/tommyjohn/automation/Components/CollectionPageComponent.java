@@ -24,14 +24,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
-
-
+import org.testng.asserts.SoftAssert;
 
 import com.tommyjohn.automation.PageLocators.CollectionPageLocator;
+import com.tommyjohn.automation.PageLocators.FlyCartPageLocator;
 
 public class CollectionPageComponent extends CollectionPageLocator {
 
@@ -40,6 +41,9 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	}
 	public WebDriver driver;
 	WebElement element;
+	SoftAssert softAssert = new SoftAssert();
+	String text;
+	String Selected_size;
 
 	public String navigateToProductDetailsPage() throws Exception {
 		String text = null;
@@ -452,7 +456,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 	private void sendmail(String url) {
 
-		
+
 
 		// Recipient's email ID needs to be mentioned.
 		String to1 = "vijeta@tommyjohnwear.com";
@@ -462,8 +466,8 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		String to5 = "anjali.pathak@tommyjohnwear.com";
 		String to6 = "jubin@tommyjohnwear.com";
 		String to7 = "akshata@tommyjohnwear.com";
-//		String to8 = "anil@tommyjohnwear.com";
-		
+		//		String to8 = "anil@tommyjohnwear.com";
+
 		// Sender's email ID needs to be mentioned
 		String from = "noreplymw@tommyjohnwear.com";
 		// Assuming you are sending email from localhost
@@ -474,14 +478,14 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		properties.setProperty("mail.smtp.host", host);
 		properties.setProperty("mail.smtp.port", "587");
 		properties.setProperty("mail.smtp.auth", "true");
-		
+
 		Authenticator auth = new Authenticator()
-				{
-				protected PasswordAuthentication getPasswordAuthentication() {
-			return new PasswordAuthentication("edw_job_alerts@aretove.com", "RedBook2018");
-				}
-				};
-		
+		{
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication("edw_job_alerts@aretove.com", "RedBook2018");
+			}
+		};
+
 		// Get the default Session object.
 		Session session = Session.getDefaultInstance(properties, auth);
 		System.out.println("Session Created");
@@ -499,8 +503,8 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to5));
 			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to6));
 			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to7));
-	//		message.addRecipient(Message.RecipientType.TO,new InternetAddress(to8));
-			
+			//		message.addRecipient(Message.RecipientType.TO,new InternetAddress(to8));
+
 			// Set Subject: header field
 			message.setSubject("Collection Page may be down ");
 
@@ -509,7 +513,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 			// Fill the message
 			messageBodyPart.setText("Please check for collection as it may be down or taking more than 10 seconds to load : " + url);
-			
+
 			// Create a multipar message
 			Multipart multipart = new MimeMultipart();
 
@@ -533,6 +537,117 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		}catch (MessagingException mex) {
 			mex.printStackTrace();
 		}
+	}
+
+
+	public void QuickShopOnMegaCollection() throws Exception
+	{
+		Actions action = new Actions(driver);
+		Thread.sleep(3000);
+
+		//Hover On product image on collection page
+		element = driver.findElement(FIRST_PRODUCT_IMAGE);
+		action.moveToElement(element).build().perform();
+		Thread.sleep(3000);
+		AddproductToCartByQuickShop();
+	}
+
+	public void AddproductToCartByQuickShop() throws Exception
+	{
+		String prod_title = driver.findElement(PRODUCT_TITLE_ON_COLLECTION).getText();
+		String color_name = driver.findElement(PRODUCT_ITEM_SWATCH_CIRCLE).getAttribute("title");
+		String amount = driver.findElement(PRODUCT_AMOUNT_ON_Collection).getText();
+
+		//If Quick shop ATC is displayed
+		if(driver.findElement(QUICK_SHOP_ATC).isDisplayed())
+		{
+			Reporter.log("Quick shop ATC button is displayed on hover.");
+			System.out.println("Quick shop ATC text is: "+driver.findElement(QUICK_SHOP_ATC).getText());
+			softAssert.assertEquals(driver.findElement(QUICK_SHOP_ATC).getText(), "Add To Cart","Text changed for Quick shop ATC button.");
+			driver.findElement(QUICK_SHOP_ATC).click();
+			Reporter.log("Quick shop ATC button text is validated :: Clickable.");
+
+			//size overlay Field validation
+			softAssert.assertTrue(driver.findElement(QUICK_SHOP_SIZE_OVERLAY).isDisplayed(), "On collection page Quick shop select size overlay is not displayed after click on ATC button.");
+			Reporter.log("Quick shop size overlay is displayed.");
+			softAssert.assertTrue(driver.findElement(QUICK_SHOP_SIZE_OVERLAY_CLOSE).isDisplayed(), "Quick shop select size overlay close btn is not displayed after click on ATC button.");
+			Reporter.log("Quick shop size overlay is close button is displayed.");
+			softAssert.assertTrue(driver.findElement(QUICK_SHOP_SIZE_OVERLAY_HEADING).isDisplayed(), "Quick shop select size overlay's heading is not displayed.");
+			softAssert.assertEquals(driver.findElement(QUICK_SHOP_SIZE_OVERLAY_HEADING).getText(), "Choose Your Size","Text changed for Quick shop Size overlay heading.");
+			Reporter.log("Quick shop size overlay heading is displayed ::Correct.");
+			softAssert.assertTrue(driver.findElement(QUICK_SHOP_SIZE_LIST).isDisplayed(), "Quick shop size labels are not displayed.");
+			Reporter.log("Quick shop size labels are displayed.");
+			softAssert.assertTrue(!driver.findElement(QUICK_SHOP_SIZE_OVERLAY_ATC).isEnabled(), "Quick shop size overlay ATC is enabled before size selection. ");
+			Reporter.log("Quick shop size overlay ATC is disable before size selection.");
+
+			//select sizes from quick shop size overlay
+			List<WebElement> allElements;	
+			allElements = driver.findElements(QUICK_SHOP_SIZE_LIST);
+			System.out.println("All sizes list :: "+ allElements.size());
+			for(int i=0;i<allElements.size();i++) 
+			{
+				element = driver.findElement(By.cssSelector("div.inline-quick-shop > ul > li:nth-child("+(i+1)+")"));
+				element.click();
+				Selected_size=allElements.get(i).getText();
+				System.out.println("Selected size is: "+Selected_size);
+				Thread.sleep(3000);
+			}
+			Reporter.log("Quick shop size labels are Clickable.");
+
+
+			//Add available size to the cart
+			if(driver.findElement(QUICK_SHOP_SIZE_OVERLAY_ATC).isEnabled()){
+				text= driver.findElement(QUICK_SHOP_SIZE_OVERLAY_ATC).getText();
+				if(text.equalsIgnoreCase("Out Of Stock"))
+					throw new Exception("Quick shop size overlay ATC btn is enabled for OOS product size.");
+
+				else if(text.equalsIgnoreCase("Add To Cart"))
+					driver.findElement(QUICK_SHOP_SIZE_OVERLAY_ATC).click();
+				Thread.sleep(3000);
+
+				//field validation for added product on fly cart	
+				String actual = driver.findElement(PRODUCT_TITLE_ON_FLYCART).getText();
+				System.out.println("Actual product name is: "+actual+" and Expected product name is: "+prod_title);
+				softAssert.assertEquals(actual,prod_title ,"Product name on flycart is incorrect.");
+
+				actual = driver.findElement(PRODUCT_LINE_ITEM_OPTION).getText();
+				String expected = color_name+" / "+Selected_size;
+				System.out.println("Actual Color name is: "+actual+" and Expected color name is: "+expected);
+				softAssert.assertEquals(actual,expected ,"Product Line item option on flycart is incorrect.");
+
+				actual = driver.findElement(PRODUCT_AMOUNT_ON_FLYCART).getText();
+				//Product amount is displayed without ".00" suffix in Buy with section
+				String new_amount = null;
+				String new_actual_amount = null;
+				for (String a : amount.split("\\.00")) 
+					new_amount = a;
+				for (String a : amount.split("\\.00")) 
+					new_actual_amount = a;
+				System.out.println("Actual product amount is: "+new_actual_amount+" and Expected product amount is: "+new_amount);
+				softAssert.assertEquals(new_actual_amount,new_amount,"Product amount on flycart is incorrect.");
+
+				System.out.println("product details are correct on Fly cart.");
+				Thread.sleep(3000);
+				Reporter.log("Product details are validated on Fly cart.");
+				driver.findElement(FlyCartPageLocator.INLINE_CART_CLOSE_BUTTON).click();
+			}
+			//If selected size is OOS/Unavailable
+			else{
+				text= driver.findElement(QUICK_SHOP_SIZE_OVERLAY_ATC).getText();
+				System.out.println("Text of ATC on Quick shop overlay for OOS size is: "+text);
+				if(!text.equalsIgnoreCase("Out Of Stock")){
+					if(!text.equalsIgnoreCase("Unavilable"))
+						throw new Exception("Text change of ATC on Quick shop overlay for OOS/Unavailable size.");
+				}
+
+				driver.findElement(QUICK_SHOP_SIZE_OVERLAY_CLOSE).click();
+				System.out.println("OOS/Unavaiable size is selected.");
+			}
+			Reporter.log("Quick shop ATC button is displayed :: Clickable.");
+		}
+		else
+			throw new Exception("Quick Shop ATC button is not displayed on hover.");
+		softAssert.assertAll();
 	}
 }
 

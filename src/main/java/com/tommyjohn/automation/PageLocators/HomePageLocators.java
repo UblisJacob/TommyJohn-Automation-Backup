@@ -44,6 +44,28 @@ public class HomePageLocators{
 	public static By SEARCH_ICON = By.id("searchMenuBtn");
 	public static By SEARCH_ICON_FORM_TAG = By.cssSelector(".header-search-form");
 	public static By SEARCH_TEXTBOX = By.cssSelector(".nextopia-search");
+	public static By POPULAR_SEARCHES = By.cssSelector(".nxt-ac-section-container");
+	public static By PRODUCT_MATCHES = By.cssSelector(".nxt-ac-products-container");
+	public static By SEARCHRESULT_KEYWORD = By.cssSelector(".nxt-ac-section-container > .nxt-ac-item");
+	public static By SEARCHRESULT_PRODUCT = By.cssSelector(".nxt-ac-products-container > .nxt-ac-item");
+	
+	public static By SEARCHPAGE_TITLE = By.cssSelector(".collection-title-bar__title");
+	public static By SEARCHPAGE_DESC= By.cssSelector(".collection-title-bar__description");
+	public static By SEARCHPAGE_ITEMCOUNT= By.cssSelector(".collection-filters__active-count");
+	public static By SEARCHPAGE_FILTER= By.cssSelector(".collection-filter");
+	
+	public static By SEARCHPAGE_PRODUCTS = By.cssSelector(".product-item");
+	public static By SEARCHPAGE_PRODUCT_IMAGE = By.cssSelector(".product-image-container > a > img");
+	public static By SEARCHPAGE_PRODUCT_SWATCHES = By.cssSelector(".product-item__swatches");
+	public static By SEARCHPAGE_PRODUCT_NAME = By.cssSelector(".product-meta >a:nth-child(1)");
+	public static By SEARCHPAGE_PRODUCT_REVIEWS = By.cssSelector(".product-meta >a:nth-child(2)");
+	public static By SEARCHPAGE_PRODUCT_PRICE = By.cssSelector(".product-meta__price");
+	
+	
+	
+	
+	
+	
 	
 
 	public static By HELP_ICON = By.cssSelector("i.icon-help");
@@ -100,11 +122,11 @@ public class HomePageLocators{
 	public static By COTTON_BASICS_IN_MENS_CATEGORY = By.cssSelector(".header-desktop-left > ul > li:nth-child(2) > div > ul > li:nth-child(6) > ul > li:nth-child(8) > a");
 	//public static By SHOPBYCOLLECTION = By.cssSelector(".header-desktop-left > ul > li:nth-child(2) > a");
 	
-	
+	public static By MIXANDMATCH = By.cssSelector(".header-desktop-left > ul > li:nth-child(5) > div > ul > li:nth-child(1) > ul > li:nth-child(3) > a");
 	public static By GIFT_GUIDE = By.cssSelector(".header-desktop-left >ul >li:nth-child(7) >a");
 	public static By GIFTCARDS = By.cssSelector(".header-desktop-left >ul >li:nth-child(7) > div > ul > li:nth-child(3) > ul >li >a");
 	//public static By GIFT_CARD_IN_NEWARRIVALS_CATEGORY = By.cssSelector(".header-desktop-left > ul > li:nth-child(1) > div > ul > li:nth-child(5) > ul > li:nth-child(1) > a");
-	public static By GIFT_CARD_IN_NEWARRIVALS_CATEGORY = By.cssSelector(".header-desktop-left > ul > li:nth-child(1) > div > ul > li:nth-child(5) > ul > li > a");
+	public static By GIFT_CARD_IN_NEWARRIVALS_CATEGORY = By.cssSelector(".header-desktop-left > ul > li:nth-child(1) > div > ul > li:nth-child(3) > ul > li:nth-child(1) > a");
 	public static By BRA_CATEGORY = By.cssSelector(".header-desktop-left > ul > li:nth-child(5) > a");
 	public static By SHOP_ALL_BRAS = By.cssSelector(".header-desktop-left > ul > li:nth-child(5) > div > ul > li:nth-child(1) > ul > li:nth-child(1) > a");
 	

@@ -107,11 +107,60 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		String quantity;
 
 		SoftAssert softAssert =  new SoftAssert();
+
+
+
 		System.out.println(driver.getCurrentUrl());
 		driver.navigate().refresh();
 		// check product price is displayed or not
 		if(!driver.findElement(PRODUCT_PRICE).isEnabled())
 			throw new Exception("Product price is not displayed");
+
+
+		//Check Breadcrumbs
+		WebElement BREADCRUMBS = driver.findElement(By.cssSelector(".breadcrumbs"));
+		softAssert.assertTrue(BREADCRUMBS.isDisplayed(), "Breadcrumb is not displayed on PDP.");
+		System.out.println("Breadcrumb is displayed on PDP.");
+		Reporter.log("Breadcrumb is displayed on PDP.");
+
+
+		//Check Badging
+		try{
+			System.out.println("Verifying for Badging .......");
+			WebElement BADGE =driver.findElement(By.cssSelector("div.product-info__inner-top > div > div.product-info__title-wrap > span"));
+			if(!BADGE.isDisplayed())
+				throw new Exception("Badging is not displayed on PDP.");
+			else {
+				System.out.println("Badging is displayed on PDP.");
+				Reporter.log("Badge is displayed on PDP.");
+			}
+		}
+		catch(Exception e){
+			System.out.println("Badging is not applicable for this product.");
+		}
+
+		//Check Promo Message
+		try{
+			System.out.println("Verifying for Promo Message .......");
+			WebElement PROMO_MESSAGE =driver.findElement(By.cssSelector("div.product-info__inner-top > div > div.product-info_promo> span"));
+			if(!PROMO_MESSAGE.isDisplayed())
+				throw new Exception("Promo Message is not displayed on PDP.");
+			else
+				System.out.println("Promo Message is displayed on PDP.");
+			Reporter.log("Promo Message is displayed on PDP.");
+		}
+		catch(Exception e){
+			System.out.println("Promo Message is not applicable for this product.");
+		}
+
+
+		//Check vertical image(carousel)
+		WebElement VERTICAL_IMAGE = driver.findElement(By.cssSelector(".slick-vertical > div > div > div.product_image.slick-slide.slick-current.slick-active"));
+		softAssert.assertTrue(VERTICAL_IMAGE.isDisplayed(), "Vertical images are not displayed on PDP.");
+		System.out.println("Vertical images are displayed on PDP.");
+		Reporter.log("Vertical images are displayed on PDP.");
+
+
 
 		// check for whats my size
 		if(!driver.findElement(SIZEGUIDE).isEnabled())
@@ -137,7 +186,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 		// scroll it top again
 
-		Thread.sleep(3000);
+		Thread.sleep(8000);
 
 		// Check review stars are clickable and visible or not
 
@@ -161,6 +210,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			//			//	driver.findElement(By.cssSelector(".yotpo-stars")).click();
 			//			//driver.findElement(RATING_STARS).click();
 			driver.navigate().refresh();
+			Thread.sleep(15000);
 			WebElement elem = driver.findElement(RATING_STARS);
 			JavascriptExecutor executore = (JavascriptExecutor)driver;
 			executore.executeScript("arguments[0].click();", elem);
@@ -490,6 +540,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 				break;
 			}
 		}
+
+		softAssert.assertAll();
 	}
 
 	public void validateafterpayonpdp() throws Exception {
@@ -1025,7 +1077,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		// call method to navigate product details page
 		new CollectionPageComponent(driver).navigateToProductDetailsPage();
 		//driver.get("https://tommyjohn.com/collections/cool-cotton-boxer-brief/?variant=29882858340397");
-		Thread.sleep(7000);
+		Thread.sleep(15000);
 		softAssert.assertEquals(driver.findElement(RFY_TITLE).getText() , "Recommended For You" , "Recommended for you title name change");
 		softAssert.assertTrue(driver.findElement(RFY_SECTION).isDisplayed(), "Recommended for you section not present");
 		softAssert.assertTrue(driver.findElement(RFY_PRODUCT_TITLE).isDisplayed(), "Recommended for you product title not present");
@@ -1201,13 +1253,13 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		}
 		if(!driver.findElement(PAIR_GUARANTEE).getText().contentEquals("Free Shipping & Returns"))
 		{
-		if (driver.findElement(SHIPING_AND_RETURNS).isDisplayed()) {
-			element = driver.findElement(SHIPING_AND_RETURNS);
-			jse = (JavascriptExecutor)driver;
-			jse.executeScript("arguments[0].click();", element);
-			//driver.findElement(SHIPING_AND_RETURNS).click();
-		}		
-		else throw new Exception("SHIPING_AND_RETURNS accordion not present or not clikable");	
+			if (driver.findElement(SHIPING_AND_RETURNS).isDisplayed()) {
+				element = driver.findElement(SHIPING_AND_RETURNS);
+				jse = (JavascriptExecutor)driver;
+				jse.executeScript("arguments[0].click();", element);
+				//driver.findElement(SHIPING_AND_RETURNS).click();
+			}		
+			else throw new Exception("SHIPING_AND_RETURNS accordion not present or not clikable");	
 		}
 
 		if(!driver.findElement(ADD_TO_CART_BUTTON).isEnabled())
@@ -1219,6 +1271,21 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		Reporter.log("ADD TO CART button is Displayed :: Clickable");
 		softAssert.assertAll();
 
+	}
+
+	public void QuickShopOnBuyWith() throws Exception
+	{
+		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
+		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		Actions action = new Actions(driver);
+		Thread.sleep(3000);
+
+		//Hover On product image under buy with section on PDP
+		element = driver.findElement(FIRST_PRODUCT_IMAGE_BUYWITH);
+		action.moveToElement(element).build().perform();
+		Thread.sleep(3000);
+		System.out.println("Product image is hovered.");
+		new CollectionPageComponent(driver).AddproductToCartByQuickShop();
 	}
 
 }
