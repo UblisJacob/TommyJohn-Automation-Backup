@@ -39,7 +39,7 @@ public class MixAndMatchComponents extends MixAndMatchLocators
 	public void Validate_MixAndMatch_Page() throws Exception
 	{
 		new HomePageComponents(driver).navigateToMixAndMatchInBrasCategory();
-
+        Reporter.log("Mix & Match link is Displayed :: Clickable");
 		softassert.assertTrue(driver.findElement(MIX_MATCH_HEADER).isDisplayed(), "Mix & Match Heading is not displayed.");
 		System.out.println("Mix & Match heading is: "+driver.findElement(MIX_MATCH_HEADER).getText());
 		softassert.assertEquals(driver.findElement(MIX_MATCH_HEADER).getText(), properties.getProperty("Mix&MatchHeading"),"Text changed for Mix & Match Heading.");
@@ -107,7 +107,7 @@ public class MixAndMatchComponents extends MixAndMatchLocators
 		if(!actual.equalsIgnoreCase(text))
 			throw new Exception("Slick prev arrow is not working.");
 
-		Reporter.log("Top slider slick arrows are displayed :: Clickable");
+		Reporter.log("Top slide slick arrows are displayed :: Clickable");
 		softassert.assertTrue(driver.findElement(TOP_SLIDE_CENTER_PRODUCT_IMG).isDisplayed(), "Top slider center product image is not displayed.");
 		softassert.assertTrue(driver.findElement(TOP_SLIDE_CENTER_PRODUCT_NAME).isDisplayed(), "Top slider center product title is not displayed.");
 		Reporter.log("Top slide center product image and title is displayed :: correct.");
@@ -128,7 +128,7 @@ public class MixAndMatchComponents extends MixAndMatchLocators
 		if(!actual.equalsIgnoreCase(text))
 			throw new Exception("Bottom Slick prev arrow is not working.");
 
-		Reporter.log("Bottom slider slick arrows are displayed :: Clickable");
+		Reporter.log("Bottom slide slick arrows are displayed :: Clickable");
 		softassert.assertTrue(driver.findElement(BOTTOM_SLIDE_CENTER_PRODUCT_IMG).isDisplayed(), "Bottom slider center product image is not displayed.");
 		softassert.assertTrue(driver.findElement(BOTTOM_SLIDE_CENTER_PRODUCT_NAME).isDisplayed(), "Bottom slider center product title is not displayed.");
 		Reporter.log("Bottom slide center product image and title is displayed :: correct.");
@@ -235,10 +235,12 @@ public class MixAndMatchComponents extends MixAndMatchLocators
 			Top_center_prodTitle = SLIDE_CENTER_PRODUCT_NAME.getText().replaceAll("\n", " ");
 			System.out.println("Top slide centered prod title is: "+Top_center_prodTitle+ " Right rail title is: "+text);
 			softassert.assertEquals(text, Top_center_prodTitle,"Right rail top product title is mismatched with top slide centerd product title.");
-			Reporter.log("Right rail top product title is displayed :: Correct.");
+			Reporter.log("Right rail product title is displayed :: Correct.");
+			
 			softassert.assertTrue(RIGHT_RAIL_PRODUCT_PRICE.isDisplayed(), "Right rail top product price is not displayed.");
-
-			// Check we can select color or not
+			Reporter.log("Right rail product price is displayed.");
+			
+			//Check we can select color or not
 			elementsCount = ALL_COLOR_LIST.size();
 			System.out.println("Right rail Color Element count :: "+elementsCount);
 			if(elementsCount > 1)
@@ -260,7 +262,7 @@ public class MixAndMatchComponents extends MixAndMatchLocators
 					}
 				}
 			}
-			Reporter.log("Colors are changing correctly.");
+			Reporter.log("Color swatches are changing correctly.");
 
 			//validate size guide
 			if(!SIZE_GUIDE.isEnabled())
@@ -284,9 +286,9 @@ public class MixAndMatchComponents extends MixAndMatchLocators
 	{
 		for(int i=2;i<=3;i++)
 		{
-			WebElement TOP_SLIDE_CENTER_PRODUCT_NAME =driver.findElement(By.cssSelector(".mixmatch-container>div:nth-child("+i+") > div.mixmatch_slidesection > div > div > div > div.slick-slide.slick-current.slick-active.slick-center > div > div.mm-mobile > a > h4"));
-			text=TOP_SLIDE_CENTER_PRODUCT_NAME.getText().replaceAll("\n", " ");
-			TOP_SLIDE_CENTER_PRODUCT_NAME.click();
+			WebElement SLIDE_CENTER_PRODUCT_NAME =driver.findElement(By.cssSelector(".mixmatch-container>div:nth-child("+i+") > div.mixmatch_slidesection > div > div > div > div.slick-slide.slick-current.slick-active.slick-center > div > div.mm-mobile > a > h4"));
+			text=SLIDE_CENTER_PRODUCT_NAME.getText().replaceAll("\n", " ");
+			SLIDE_CENTER_PRODUCT_NAME.click();
 			Thread.sleep(3000);
 			ArrayList<String> tabs=new ArrayList<String>(driver.getWindowHandles());
 			driver.switchTo().window(tabs.get(1));
@@ -295,13 +297,15 @@ public class MixAndMatchComponents extends MixAndMatchLocators
 			System.out.println("PDP title is: "+actual+" and slide product title is: "+text);
 			if(!text.equalsIgnoreCase(actual))
 				throw new Exception("Wrong page opened after click on 'slide center product title.'");
+			Reporter.log("Slide center product title is Displayed :: Clickable.");
+			
 			driver.close();
 			driver.switchTo().window(tabs.get(0));
 			Thread.sleep(5000);
 			
-			WebElement RIGHT_RAIL_TOP_PRODUCT_TITLE = driver.findElement(By.cssSelector(".mixmatch-container>div:nth-child("+i+") > div.mixmatch_selection > div > div > div.multi-pdp-title-wrap > div.product-info__title-wrap > a > h3"));
-			text=RIGHT_RAIL_TOP_PRODUCT_TITLE.getText();
-			TOP_SLIDE_CENTER_PRODUCT_NAME.click();
+			WebElement RIGHT_RAIL_PRODUCT_TITLE = driver.findElement(By.cssSelector(".mixmatch-container>div:nth-child("+i+") > div.mixmatch_selection > div > div > div.multi-pdp-title-wrap > div.product-info__title-wrap > a > h3"));
+			text=RIGHT_RAIL_PRODUCT_TITLE.getText();
+			RIGHT_RAIL_PRODUCT_TITLE.click();
 			Thread.sleep(3000);
 			tabs=new ArrayList<String>(driver.getWindowHandles());
 			driver.switchTo().window(tabs.get(1));

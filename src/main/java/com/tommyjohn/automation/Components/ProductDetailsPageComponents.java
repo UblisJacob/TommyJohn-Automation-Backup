@@ -8,6 +8,8 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
 
@@ -63,7 +65,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 		// check correct PDP opened
 		if(!text1.equals(text2))
-			throw new Exception("Wrog product details page opened");
+			throw new Exception("Wrong product details page opened");
 		Reporter.log("Product details page is Correct :: Product title is Displayed");
 
 	}
@@ -105,443 +107,450 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		String colornew = null;
 		String colortext = null;
 		String quantity;
+		List<WebElement> l = driver.findElements(By.cssSelector(".product-info__header"));
+		if(l.size()==1)
+		{
+			SoftAssert softAssert =  new SoftAssert();
 
-		SoftAssert softAssert =  new SoftAssert();
-
-
-
-		System.out.println(driver.getCurrentUrl());
-		driver.navigate().refresh();
-		// check product price is displayed or not
-		if(!driver.findElement(PRODUCT_PRICE).isEnabled())
-			throw new Exception("Product price is not displayed");
-
-
-		//Check Breadcrumbs
-		WebElement BREADCRUMBS = driver.findElement(By.cssSelector(".breadcrumbs"));
-		softAssert.assertTrue(BREADCRUMBS.isDisplayed(), "Breadcrumb is not displayed on PDP.");
-		System.out.println("Breadcrumb is displayed on PDP.");
-		Reporter.log("Breadcrumb is displayed on PDP.");
+			System.out.println(driver.getCurrentUrl());
+			driver.navigate().refresh();
+			// check product price is displayed or not
+			if(!driver.findElement(PRODUCT_PRICE).isEnabled())
+				throw new Exception("Product price is not displayed");
 
 
-		//Check Badging
-		try{
-			System.out.println("Verifying for Badging .......");
-			WebElement BADGE =driver.findElement(By.cssSelector("div.product-info__inner-top > div > div.product-info__title-wrap > span"));
-			if(!BADGE.isDisplayed())
-				throw new Exception("Badging is not displayed on PDP.");
-			else {
-				System.out.println("Badging is displayed on PDP.");
-				Reporter.log("Badge is displayed on PDP.");
+			//Check Breadcrumbs
+			WebElement BREADCRUMBS = driver.findElement(By.cssSelector(".breadcrumbs"));
+			softAssert.assertTrue(BREADCRUMBS.isDisplayed(), "Breadcrumb is not displayed on PDP.");
+			System.out.println("Breadcrumb is displayed on PDP.");
+			Reporter.log("Breadcrumb is displayed on PDP.");
+
+
+			//Check Badging
+			try{
+				System.out.println("Verifying for Badging .......");
+				WebElement BADGE =driver.findElement(By.cssSelector("div.product-info__inner-top > div > div.product-info__title-wrap > span"));
+				if(!BADGE.isDisplayed())
+					throw new Exception("Badging is not displayed on PDP.");
+				else {
+					System.out.println("Badging is displayed on PDP.");
+					Reporter.log("Badge is displayed on PDP.");
+				}
 			}
-		}
-		catch(Exception e){
-			System.out.println("Badging is not applicable for this product.");
-		}
+			catch(Exception e){
+				System.out.println("Badging is not applicable for this product.");
+			}
 
-		//Check Promo Message
-		try{
-			System.out.println("Verifying for Promo Message .......");
-			WebElement PROMO_MESSAGE =driver.findElement(By.cssSelector("div.product-info__inner-top > div > div.product-info_promo> span"));
-			if(!PROMO_MESSAGE.isDisplayed())
-				throw new Exception("Promo Message is not displayed on PDP.");
-			else
-				System.out.println("Promo Message is displayed on PDP.");
-			Reporter.log("Promo Message is displayed on PDP.");
-		}
-		catch(Exception e){
-			System.out.println("Promo Message is not applicable for this product.");
-		}
-
-
-		//Check vertical image(carousel)
-		WebElement VERTICAL_IMAGE = driver.findElement(By.cssSelector(".slick-vertical > div > div > div.product_image.slick-slide.slick-current.slick-active"));
-		softAssert.assertTrue(VERTICAL_IMAGE.isDisplayed(), "Vertical images are not displayed on PDP.");
-		System.out.println("Vertical images are displayed on PDP.");
-		Reporter.log("Vertical images are displayed on PDP.");
+			//Check Promo Message
+			try{
+				System.out.println("Verifying for Promo Message .......");
+				WebElement PROMO_MESSAGE =driver.findElement(By.cssSelector("div.product-info__inner-top > div > div.product-info_promo> span"));
+				if(!PROMO_MESSAGE.isDisplayed())
+					throw new Exception("Promo Message is not displayed on PDP.");
+				else
+					System.out.println("Promo Message is displayed on PDP.");
+				Reporter.log("Promo Message is displayed on PDP.");
+			}
+			catch(Exception e){
+				System.out.println("Promo Message is not applicable for this product.");
+			}
 
 
+			//Check vertical image(carousel)
+			WebElement VERTICAL_IMAGE = driver.findElement(By.cssSelector(".slick-vertical > div > div > div.product_image.slick-slide.slick-current.slick-active"));
+			softAssert.assertTrue(VERTICAL_IMAGE.isDisplayed(), "Vertical images are not displayed on PDP.");
+			System.out.println("Vertical images are displayed on PDP.");
+			Reporter.log("Vertical images are displayed on PDP.");
 
-		// check for whats my size
-		if(!driver.findElement(SIZEGUIDE).isEnabled())
-			throw new Exception("Size Guide button is not present");
-		WebElement ele = driver.findElement(SIZEGUIDE);
-		JavascriptExecutor executor = (JavascriptExecutor)driver;
-		executor.executeScript("arguments[0].click();", ele);
-		//	driver.findElement(SIZEGUIDE).click();
-		Thread.sleep(3000);
 
-		if (!driver.findElement(By.cssSelector(".size-chart-content")).isDisplayed())
-			//		allClasses = driver.findElement(SIZE_GUIDE_BUTTON).getAttribute("class");
+
+			// check for whats my size
+			if(!driver.findElement(SIZEGUIDE).isEnabled())
+				throw new Exception("Size Guide button is not present");
+			WebElement ele = driver.findElement(SIZEGUIDE);
+			JavascriptExecutor executor = (JavascriptExecutor)driver;
+			executor.executeScript("arguments[0].click();", ele);
+			//	driver.findElement(SIZEGUIDE).click();
+			Thread.sleep(3000);
+
+			if (!driver.findElement(By.cssSelector(".size-chart-content")).isDisplayed())
+				//		allClasses = driver.findElement(SIZE_GUIDE_BUTTON).getAttribute("class");
+				//		for (String c : allClasses.split(" ")) {
+				//			if (c.equals("active")) {
+				//				flag = true;
+				//			}
+				//		}
+				//		if(!flag)
+				throw new Exception("Sizes chart overlay is not displayed after Size guide button was clicked");
+			Reporter.log("Size guide is Displayed :: Clickable");
+
+			driver.findElement(By.cssSelector(".close_chart_modal")).click();
+
+			// scroll it top again
+
+			Thread.sleep(8000);
+
+			// Check review stars are clickable and visible or not
+
+			//	throw new Exception("Star rating not present");
+
+			//		element = driver.findElement(RATING_STARS);
+			//		// get all classes from specified path
+			//		allClasses = element.getAttribute("class");
+			//		// check stars are clickable or not by using star-clickable class name
 			//		for (String c : allClasses.split(" ")) {
-			//			if (c.equals("active")) {
+			//			if (c.equals("star-clickable")) {
+
+			//			}
+			//		}
+			if(driver.findElement(RATING_STARS).isDisplayed()) {
+
+				//			Thread.sleep(3000);
+				//			jse = (JavascriptExecutor)driver;
+				//			jse.executeScript("window.scrollBy(0,-250)", "");
+				//			Thread.sleep(4000);
+				//			//	driver.findElement(By.cssSelector(".yotpo-stars")).click();
+				//			//driver.findElement(RATING_STARS).click();
+				driver.navigate().refresh();
+				Thread.sleep(15000);
+				WebElement elem = driver.findElement(RATING_STARS);
+				JavascriptExecutor executore = (JavascriptExecutor)driver;
+				executore.executeScript("arguments[0].click();", elem);
+				// wait for scroll it down
+				Thread.sleep(6000);
+				Reporter.log("Review Stars Are Displayed :: Clickable :: Clicked");
+				// check for Rating and Reviews are present or not
+				System.out.println("rating: " + driver.findElement(RATING_NUMBER).getText());
+				if(!driver.findElement(RATING_NUMBER).getText().equals("(0)"))
+				{
+
+					if(driver.findElement(RATING_AND_REVIEWS_BOX).isDisplayed()) {
+						if(!driver.findElement(FIRST_BOX_IN_RATING_AND_REVIEWS).isDisplayed())
+							throw new Exception("In first box Review Stars not present in Rating and Reviews section");
+						if(!driver.findElement(SECOND_BOX_IN_RATING_AND_REVIEWS).isDisplayed())
+							throw new Exception("In second box rating list not present in Rating and Reviews section");
+						if(!driver.findElement(THIRD_BOX_IN_RATING_AND_REVIEWS).isDisplayed())
+							throw new Exception("In third box fit status not present in Rating and Reviews section");
+					}
+
+					else 
+
+						throw new Exception("Rating box is not present");
+
+				}
+
+				else 
+				{
+					if(!driver.findElement(NO_REVIEW_WRITE_REVIEW).isEnabled())
+
+						throw new Exception("'WRITE A REVIEW' button is not displayed");
+					driver.findElement(NO_REVIEW_WRITE_REVIEW).click();
+					Reporter.log("'WRITE A REVIEW' button is Displayed :: Clickable");
+
+				}
+				Reporter.log("Rating and Reviews Displayed");
+			}
+			else
+				throw new Exception("Rating Stars are not clickable");
+
+
+			// check for write a review button
+			//		if(!driver.findElement(WRITE_REVIEW_BUTTON).isEnabled())
+			//			throw new Exception("Write Review Button is not displayed");
+			//		// check Write Review portion should not be visible before click button to Write Review
+			//		element = driver.findElement(WRITE_REVIEW_HEADING);
+			//		allClasses = element.getAttribute("class");
+			//		for (String c : allClasses.split(" ")) {
+			//			if (c.equals("visible")) {
+			//				throw new Exception("Write Review portion should not be visible before Write Review button is clicked");
+			//			}
+			//		}
+			//		WebDriverWait wait = new WebDriverWait(driver, 30);
+			//		wait.until(ExpectedConditions.visibilityOfElementLocated(WRITE_REVIEW_BUTTON));	
+			//		//driver.findElement(WRITE_REVIEW_BUTTON).click();
+			//		WebElement elem = driver.findElement(WRITE_REVIEW_BUTTON);
+			//		JavascriptExecutor executore = (JavascriptExecutor)driver;
+			//		executore.executeScript("arguments[0].click();", elem);
+			//		// check Write Review portion should be visible by clicking Write A Review button
+			//		element = driver.findElement(WRITE_REVIEW_HEADING);
+			//		allClasses = element.getAttribute("class");
+			//		for (String c : allClasses.split(" ")) {
+			//			if (c.equals("visible")) {
 			//				flag = true;
 			//			}
 			//		}
 			//		if(!flag)
-			throw new Exception("Sizes chart overlay is not displayed after Size guide button was clicked");
-		Reporter.log("Size guide is Displayed :: Clickable");
+			//			throw new Exception("Write Review portion is not visible after click Write Review button");
+			//		Reporter.log("Write A Review button Displayed :: Clickable :: Write Review portion is Displayed after click button :: Text Correct");
 
-		driver.findElement(By.cssSelector(".close_chart_modal")).click();
+			// scroll it top again
+			((JavascriptExecutor) driver).executeScript("window.scrollTo(0, -document.body.scrollHeight)");
+			Thread.sleep(3000);
 
-		// scroll it top again
-
-		Thread.sleep(8000);
-
-		// Check review stars are clickable and visible or not
-
-		//	throw new Exception("Star rating not present");
-
-		//		element = driver.findElement(RATING_STARS);
-		//		// get all classes from specified path
-		//		allClasses = element.getAttribute("class");
-		//		// check stars are clickable or not by using star-clickable class name
-		//		for (String c : allClasses.split(" ")) {
-		//			if (c.equals("star-clickable")) {
-
-		//			}
-		//		}
-		if(driver.findElement(RATING_STARS).isDisplayed()) {
-
-			//			Thread.sleep(3000);
-			//			jse = (JavascriptExecutor)driver;
-			//			jse.executeScript("window.scrollBy(0,-250)", "");
-			//			Thread.sleep(4000);
-			//			//	driver.findElement(By.cssSelector(".yotpo-stars")).click();
-			//			//driver.findElement(RATING_STARS).click();
-			driver.navigate().refresh();
-			Thread.sleep(15000);
-			WebElement elem = driver.findElement(RATING_STARS);
+			// Check we can select color or not
 			JavascriptExecutor executore = (JavascriptExecutor)driver;
-			executore.executeScript("arguments[0].click();", elem);
-			// wait for scroll it down
-			Thread.sleep(6000);
-			Reporter.log("Review Stars Are Displayed :: Clickable :: Clicked");
-			// check for Rating and Reviews are present or not
-			System.out.println("rating: " + driver.findElement(RATING_NUMBER).getText());
-			if(!driver.findElement(RATING_NUMBER).getText().equals("(0)"))
+			allElements = driver.findElements(ALL_COLOR_LIST);
+			elementsCount = allElements.size();
+			System.out.println("Color Element count :: "+elementsCount);
+
+
+			if(elementsCount > 1)
 			{
 
-				if(driver.findElement(RATING_AND_REVIEWS_BOX).isDisplayed()) {
-					if(!driver.findElement(FIRST_BOX_IN_RATING_AND_REVIEWS).isDisplayed())
-						throw new Exception("In first box Review Stars not present in Rating and Reviews section");
-					if(!driver.findElement(SECOND_BOX_IN_RATING_AND_REVIEWS).isDisplayed())
-						throw new Exception("In second box rating list not present in Rating and Reviews section");
-					if(!driver.findElement(THIRD_BOX_IN_RATING_AND_REVIEWS).isDisplayed())
-						throw new Exception("In third box fit status not present in Rating and Reviews section");
-				}
 
-				else 
-
-					throw new Exception("Rating box is not present");
-
-			}
-
-			else 
-			{
-				if(!driver.findElement(NO_REVIEW_WRITE_REVIEW).isEnabled())
-
-					throw new Exception("'WRITE A REVIEW' button is not displayed");
-				driver.findElement(NO_REVIEW_WRITE_REVIEW).click();
-				Reporter.log("'WRITE A REVIEW' button is Displayed :: Clickable");
-
-			}
-			Reporter.log("Rating and Reviews Displayed");
-		}
-		else
-			throw new Exception("Rating Stars are not clickable");
-
-
-		// check for write a review button
-		//		if(!driver.findElement(WRITE_REVIEW_BUTTON).isEnabled())
-		//			throw new Exception("Write Review Button is not displayed");
-		//		// check Write Review portion should not be visible before click button to Write Review
-		//		element = driver.findElement(WRITE_REVIEW_HEADING);
-		//		allClasses = element.getAttribute("class");
-		//		for (String c : allClasses.split(" ")) {
-		//			if (c.equals("visible")) {
-		//				throw new Exception("Write Review portion should not be visible before Write Review button is clicked");
-		//			}
-		//		}
-		//		WebDriverWait wait = new WebDriverWait(driver, 30);
-		//		wait.until(ExpectedConditions.visibilityOfElementLocated(WRITE_REVIEW_BUTTON));	
-		//		//driver.findElement(WRITE_REVIEW_BUTTON).click();
-		//		WebElement elem = driver.findElement(WRITE_REVIEW_BUTTON);
-		//		JavascriptExecutor executore = (JavascriptExecutor)driver;
-		//		executore.executeScript("arguments[0].click();", elem);
-		//		// check Write Review portion should be visible by clicking Write A Review button
-		//		element = driver.findElement(WRITE_REVIEW_HEADING);
-		//		allClasses = element.getAttribute("class");
-		//		for (String c : allClasses.split(" ")) {
-		//			if (c.equals("visible")) {
-		//				flag = true;
-		//			}
-		//		}
-		//		if(!flag)
-		//			throw new Exception("Write Review portion is not visible after click Write Review button");
-		//		Reporter.log("Write A Review button Displayed :: Clickable :: Write Review portion is Displayed after click button :: Text Correct");
-
-		// scroll it top again
-		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, -document.body.scrollHeight)");
-		Thread.sleep(3000);
-
-		// Check we can select color or not
-		JavascriptExecutor executore = (JavascriptExecutor)driver;
-		allElements = driver.findElements(ALL_COLOR_LIST);
-		elementsCount = allElements.size();
-		System.out.println("Color Element count :: "+elementsCount);
-
-
-		if(elementsCount > 1)
-		{
-
-
-			for(int i=1;i<elementsCount;i++)
-			{
-				if(i<4)
+				for(int i=1;i<elementsCount;i++)
 				{
-					colortext = driver.findElement(COLOR_TEXT).getText();
-					if(driver.getCurrentUrl().contains("product"))
-						colornew = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper > ul  > li:nth-child("+ i +") > input")).getAttribute("data-color-variant");
-					else
-						colornew = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper > ul > li:nth-child("+ i +") > input")).getAttribute("data-option-name");
-					System.out.println(colornew);
-					if(!colornew.contentEquals(colortext))	
+					if(i<4)
 					{
-						WebElement elemen = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper > ul  > li:nth-child(" + i + ") > label"));
-						//elem.click();
-						executore.executeScript("arguments[0].click();", elemen);
-						softAssert.assertEquals(driver.findElement(COLOR_TEXT).getText() , colornew , "Color not changing");
+						colortext = driver.findElement(COLOR_TEXT).getText();
+						if(driver.getCurrentUrl().contains("product"))
+							colornew = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper > ul  > li:nth-child("+ i +") > input")).getAttribute("data-color-variant");
+						else
+							colornew = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper > ul > li:nth-child("+ i +") > input")).getAttribute("data-option-name");
+						System.out.println(colornew);
+						if(!colornew.contentEquals(colortext))	
+						{
+							WebElement elemen = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper > ul  > li:nth-child(" + i + ") > label"));
+							//elem.click();
+							executore.executeScript("arguments[0].click();", elemen);
+							softAssert.assertEquals(driver.findElement(COLOR_TEXT).getText() , colornew , "Color not changing");
+						}
 					}
 				}
+				//	elementsCount++;
+
+
 			}
-			//	elementsCount++;
 
 
-		}
+			//		// change second color if present
+			//		if(elementsCount > 1) {
+			//			colorBeforeChange = driver.findElement(COLOR_TEXT).getText();
+			//			
+			//			
+			//			driver.findElement(SECOND_COLOR).click();
+			//			Thread.sleep(2000);
+			//			colorAfterChange = driver.findElement(COLOR_TEXT).getText();
+			//			if(colorBeforeChange.equals(colorAfterChange))
+			//				throw new Exception("Second color not changing");
+			//		}
+			//		// change third color if present
+			//		if(elementsCount > 2) {
+			//			colorBeforeChange = driver.findElement(COLOR_TEXT).getText();
+			//			driver.findElement(THIRD_COLOR).click();
+			//			Thread.sleep(2000);
+			//			colorAfterChange = driver.findElement(COLOR_TEXT).getText();
+			//			if(colorBeforeChange.equals(colorAfterChange))
+			//				throw new Exception("Third color not changing");
+			//		}
+			Reporter.log("Colors are present and changing correct");
 
-
-		//		// change second color if present
-		//		if(elementsCount > 1) {
-		//			colorBeforeChange = driver.findElement(COLOR_TEXT).getText();
-		//			
-		//			
-		//			driver.findElement(SECOND_COLOR).click();
-		//			Thread.sleep(2000);
-		//			colorAfterChange = driver.findElement(COLOR_TEXT).getText();
-		//			if(colorBeforeChange.equals(colorAfterChange))
-		//				throw new Exception("Second color not changing");
-		//		}
-		//		// change third color if present
-		//		if(elementsCount > 2) {
-		//			colorBeforeChange = driver.findElement(COLOR_TEXT).getText();
-		//			driver.findElement(THIRD_COLOR).click();
-		//			Thread.sleep(2000);
-		//			colorAfterChange = driver.findElement(COLOR_TEXT).getText();
-		//			if(colorBeforeChange.equals(colorAfterChange))
-		//				throw new Exception("Third color not changing");
-		//		}
-		Reporter.log("Colors are present and changing correct");
-
-		//driver.findElement(SIZE_DROPDOWN).click();
-		// Select first size between available sizes
-		allElements = driver.findElements(ALL_SIZE_LIST);
-		elementsCount = allElements.size();
-		System.out.println("All sizes list :: "+ elementsCount);
-
-		for(int i=1;i<=elementsCount;i++) {
-			flag = false;
 			//driver.findElement(SIZE_DROPDOWN).click();
-			executore.executeScript("arguments[0].click();", driver.findElement(SIZE_DROPDOWN));
-			element = driver.findElement(By.cssSelector(".select--options__list > li:nth-child("+i+") > div"));
+			// Select first size between available sizes
+			//if(driver.getCurrentUrl().contains("product")){
+			allElements = driver.findElements(ALL_SIZE_LIST);
+			elementsCount = allElements.size();
+			System.out.println("All sizes list :: "+ elementsCount);
 
-			allClasses = element.getAttribute("class");
-			// check size available or not
-			for (String c : allClasses.split(" ")) {
-				if (c.equals("unavailable")) {
-					if(!driver.findElement(PRODUCT_TITLE).getText().contains("Pack"))
-					{
-						Thread.sleep(3000);
-						// click on the unavailable item and check the button text
-						//driver.findElement(By.cssSelector(".select--options__list > li:nth-child("+i+")")).click();
-						jse = (JavascriptExecutor)driver;
-						jse.executeScript("arguments[0].click();", element);
-						//element.click();
-						Thread.sleep(4000);
+			for(int i=1;i<=elementsCount;i++) {
+				flag = false;
+				//driver.findElement(SIZE_DROPDOWN).click();
+				executore.executeScript("arguments[0].click();", driver.findElement(SIZE_DROPDOWN));
+				element = driver.findElement(By.cssSelector(".select--options__list > li:nth-child("+i+") > div"));
 
-						driver.navigate().refresh();
-						//						driver.findElement(By.cssSelector(".swym-tab-modal-close")).click();
-						//						}		
-						//						catch (Exception e)
-						//						{
-						//							Reporter.log("Join the waitlist not functional at the moment");
-						//							
-						//						}
-
-						System.out.println("Unavailable size clicked");
-						element = driver.findElement(JOIN_THE_WAITLIST);
-						text1 = element.getText();
-						System.out.println("Text of button when Unavailable size selected :: "+text1);
-						if(!(text1.equalsIgnoreCase("JOIN THE WAITLIST")))
-							throw new Exception("Text change for 'JOIN THE WAITLIST' ");
-
-						flag = true;
-					}
-					else 
-					{
-						driver.findElement(By.cssSelector(".select--options__list> li:nth-child("+i+")")).click();
-						System.out.println("Unavailable size clicked");
-						//	driver.findElement(ADD_TO_CART_BUTTON).click();
-						System.out.println(driver.findElement(ADD_TO_CART_BUTTON).getText());
-						if (!driver.findElement(ADD_TO_CART_BUTTON).getText().contentEquals("Out of Stock"))
+				allClasses = element.getAttribute("class");
+				// check size available or not
+				for (String c : allClasses.split(" ")) {
+					if (c.equals("unavailable")) {
+						if(!driver.findElement(PRODUCT_TITLE).getText().contains("Pack"))
 						{
+
+							Thread.sleep(3000);
+							// click on the unavailable item and check the button text
+							//driver.findElement(By.cssSelector(".select--options__list > li:nth-child("+i+")")).click();
+							jse = (JavascriptExecutor)driver;
+							jse.executeScript("arguments[0].click();", element);
+							//element.click();
+							Thread.sleep(4000);
+
+							driver.navigate().refresh();
+							//						driver.findElement(By.cssSelector(".swym-tab-modal-close")).click();
+							//						}		
+							//						catch (Exception e)
+							//						{
+							//							Reporter.log("Join the waitlist not functional at the moment");
+							//							
+							//						}
+
+							System.out.println("Unavailable size clicked");
 							element = driver.findElement(JOIN_THE_WAITLIST);
 							text1 = element.getText();
 							System.out.println("Text of button when Unavailable size selected :: "+text1);
 							if(!(text1.equalsIgnoreCase("JOIN THE WAITLIST")))
-								throw new Exception("Text change for 'JOIN THE WAITLIST' for Packs");
-							text1 = element.getText();
+								throw new Exception("Text change for 'JOIN THE WAITLIST' ");
+
+							flag = true;
+
 						}
-						flag = true;
+						else 
+						{
+							driver.findElement(By.cssSelector(".select--options__list> li:nth-child("+i+")")).click();
+							System.out.println("Unavailable size clicked");
+							//	driver.findElement(ADD_TO_CART_BUTTON).click();
+							System.out.println(driver.findElement(ADD_TO_CART_BUTTON).getText());
+							if (!driver.findElement(ADD_TO_CART_BUTTON).getText().contentEquals("Out of Stock"))
+							{
+								element = driver.findElement(JOIN_THE_WAITLIST);
+								text1 = element.getText();
+								System.out.println("Text of button when Unavailable size selected :: "+text1);
+								if(!(text1.equalsIgnoreCase("JOIN THE WAITLIST")))
+									throw new Exception("Text change for 'JOIN THE WAITLIST' for Packs");
+								text1 = element.getText();
+							}
+							flag = true;
+						}
+						//break;
 					}
-					//break;
-				}
-				else 
-				{
-					jse = (JavascriptExecutor)driver;
-					jse.executeScript("arguments[0].click();" , element);
-					//	element.click();
-				}
-				//				else if (driver.findElement(ADD_TO_CART_BUTTON).getText().contentEquals("Out of Stock"))
-				//				{
-				//					flag=true;
-				//					break;
-				//				}
-			}
-			if(i==elementsCount) {
-				Reporter.log("No any size available");
-				break;
-			}			
-			if(flag == true)
-				continue;
-			else {
-				// if flag is not true means size is available
-				//	driver.findElement(By.cssSelector(".select--options__list > li:nth-child("+i+")")).click();
-				// check the button txt and click
-				element = driver.findElement(ADD_TO_CART_BUTTON);
-				text1 = element.getText();
-				System.out.println("Button text when Available size selected :: "+text1);
-				if(!text1.equalsIgnoreCase("OUT OF STOCK"))
-				{
-					if(!(text1.equalsIgnoreCase("ADD TO CART"))) {
-						throw new Exception("Text change for 'ADD TO CART' ");
+					else 
+					{
+						jse = (JavascriptExecutor)driver;
+						jse.executeScript("arguments[0].click();" , element);
+						//	element.click();
 					}
+					//				else if (driver.findElement(ADD_TO_CART_BUTTON).getText().contentEquals("Out of Stock"))
+					//				{
+					//					flag=true;
+					//					break;
+					//				}
 				}
-				// check if we are able to add and minus quantity
-				quantity = driver.findElement(QUANTITY).getAttribute("data-add-qty");
-				Thread.sleep(3000);
-				element = driver.findElement(PLUS_BUTTON);
-				jse = (JavascriptExecutor)driver;
-				jse.executeScript("arguments[0].click();", element);
-				//	driver.findElement(PLUS_BUTTON).click();
-				Thread.sleep(3000);
-				String quantity1 = driver.findElement(QUANTITY).getAttribute("data-add-qty");
-				// check quantity added by 1 or not 
-				if(Integer.parseInt(quantity1)!=Integer.parseInt(quantity)+1) 
-					//if(!quantity1.equals(quantity + 1) )
-					//if(quantity1)
-					throw new Exception("Quantity not increased by 1");
-
-				Reporter.log("Quantity increased by 1");
-				element = driver.findElement(MINUS_BUTTON);
-				jse = (JavascriptExecutor)driver;
-				jse.executeScript("arguments[0].click();", element);
-				//driver.findElement(MINUS_BUTTON).click();
-
-				// some times .click() not clicking the element then that time use JavascriptExecutor
-				//		element = driver.findElement(By.id("minusBtn"));
-				//		jse = (JavascriptExecutor)driver;
-				//		jse.executeScript("arguments[0].click();", element);
-
-				String quantity2 = driver.findElement(QUANTITY).getAttribute("data-add-qty");
-				if(Integer.parseInt(quantity2)!=Integer.parseInt(quantity1)-1)
-					throw new Exception("Quantity not decreased by 1");
-				Reporter.log("Quantity decreased by 1");
-
-				// check 'Best PairGuarantee' and 'Shopping And Returns' are clickable or not
-				flag = false;
-
-
-				if (driver.findElement(PRODUCT_DETAILS).isDisplayed())
-				{
-					element = driver.findElement(PRODUCT_DETAILS);
+				if(i==elementsCount) {
+					Reporter.log("No any size available");
+					break;
+				}			
+				if(flag == true)
+					continue;
+				else {
+					// if flag is not true means size is available
+					//	driver.findElement(By.cssSelector(".select--options__list > li:nth-child("+i+")")).click();
+					// check the button txt and click
+					element = driver.findElement(ADD_TO_CART_BUTTON);
+					text1 = element.getText();
+					System.out.println("Button text when Available size selected :: "+text1);
+					if(!text1.equalsIgnoreCase("OUT OF STOCK"))
+					{
+						if(!(text1.equalsIgnoreCase("ADD TO CART"))) {
+							throw new Exception("Text change for 'ADD TO CART' ");
+						}
+					}
+					// check if we are able to add and minus quantity
+					quantity = driver.findElement(QUANTITY).getAttribute("data-add-qty");
+					Thread.sleep(3000);
+					element = driver.findElement(PLUS_BUTTON);
 					jse = (JavascriptExecutor)driver;
 					jse.executeScript("arguments[0].click();", element);
-				}
-				else throw new Exception("Product details accordion not present or not clikable ");
-				try
-				{
-					if (driver.findElement(PAIR_GUARANTEE).isDisplayed())
+					//	driver.findElement(PLUS_BUTTON).click();
+					Thread.sleep(3000);
+					String quantity1 = driver.findElement(QUANTITY).getAttribute("data-add-qty");
+					// check quantity added by 1 or not 
+					if(Integer.parseInt(quantity1)!=Integer.parseInt(quantity)+1) 
+						//if(!quantity1.equals(quantity + 1) )
+						//if(quantity1)
+						throw new Exception("Quantity not increased by 1");
+
+					Reporter.log("Quantity increased by 1");
+					element = driver.findElement(MINUS_BUTTON);
+					jse = (JavascriptExecutor)driver;
+					jse.executeScript("arguments[0].click();", element);
+					//driver.findElement(MINUS_BUTTON).click();
+
+					// some times .click() not clicking the element then that time use JavascriptExecutor
+					//		element = driver.findElement(By.id("minusBtn"));
+					//		jse = (JavascriptExecutor)driver;
+					//		jse.executeScript("arguments[0].click();", element);
+
+					String quantity2 = driver.findElement(QUANTITY).getAttribute("data-add-qty");
+					if(Integer.parseInt(quantity2)!=Integer.parseInt(quantity1)-1)
+						throw new Exception("Quantity not decreased by 1");
+					Reporter.log("Quantity decreased by 1");
+
+					// check 'Best PairGuarantee' and 'Shopping And Returns' are clickable or not
+					flag = false;
+
+
+					if (driver.findElement(PRODUCT_DETAILS).isDisplayed())
 					{
-						element = driver.findElement(PAIR_GUARANTEE);
+						element = driver.findElement(PRODUCT_DETAILS);
 						jse = (JavascriptExecutor)driver;
 						jse.executeScript("arguments[0].click();", element);
 					}
-					else throw new Exception("PAIR_GUARANTEE accordion not present or not clikable");
-				}
-				catch(Exception e )
-				{
-					Reporter.log("Pair guarantee link is not present for this particular product");
-				}
-				if (driver.findElement(SHIPING_AND_RETURNS).isDisplayed()) {
-					element = driver.findElement(SHIPING_AND_RETURNS);
-					jse = (JavascriptExecutor)driver;
-					jse.executeScript("arguments[0].click();", element);
-					//driver.findElement(SHIPING_AND_RETURNS).click();
-				}		
-				else throw new Exception("SHIPING_AND_RETURNS accordion not present or not clikable");	
+					else throw new Exception("Product details accordion not present or not clikable ");
+					try
+					{
+						if (driver.findElement(PAIR_GUARANTEE).isDisplayed())
+						{
+							element = driver.findElement(PAIR_GUARANTEE);
+							jse = (JavascriptExecutor)driver;
+							jse.executeScript("arguments[0].click();", element);
+						}
+						else throw new Exception("PAIR_GUARANTEE accordion not present or not clikable");
+					}
+					catch(Exception e )
+					{
+						Reporter.log("Pair guarantee link is not present for this particular product");
+					}
+					if (driver.findElement(SHIPING_AND_RETURNS).isDisplayed()) {
+						element = driver.findElement(SHIPING_AND_RETURNS);
+						jse = (JavascriptExecutor)driver;
+						jse.executeScript("arguments[0].click();", element);
+						//driver.findElement(SHIPING_AND_RETURNS).click();
+					}		
+					else throw new Exception("SHIPING_AND_RETURNS accordion not present or not clikable");	
 
-				//Buywithcode
+					//Buywithcode
 
-				//driver.findElement())
+					//driver.findElement())
 
 
 
-				if (!driver.findElement(PRODUCT_TITLE).getText().contains("Pack"))
-				{
-					// click on Add To Cart Button
-					if(!driver.findElement(ADD_TO_CART_BUTTON).getText().equalsIgnoreCase("Out Of Stock"))
+					if (!driver.findElement(PRODUCT_TITLE).getText().contains("Pack"))
+					{
+						// click on Add To Cart Button
+						if(!driver.findElement(ADD_TO_CART_BUTTON).getText().equalsIgnoreCase("Out Of Stock"))
+						{
+							if(!driver.findElement(ADD_TO_CART_BUTTON).isEnabled())
+								throw new Exception("ADD TO CART button is not present");
+							element = driver.findElement(ADD_TO_CART_BUTTON);
+							jse = (JavascriptExecutor)driver;
+							jse.executeScript("arguments[0].click();", element);
+
+							Thread.sleep(5000);
+							driver.get(CustomUtilities.baseUrl);
+							//	driver.findElement(ADD_TO_CART_BUTTON).click();
+							Thread.sleep(3000);
+							Reporter.log("ADD TO CART button is Displayed :: Clickable");
+						}
+					}
+					else
 					{
 						if(!driver.findElement(ADD_TO_CART_BUTTON).isEnabled())
 							throw new Exception("ADD TO CART button is not present");
 						element = driver.findElement(ADD_TO_CART_BUTTON);
 						jse = (JavascriptExecutor)driver;
-						jse.executeScript("arguments[0].click();", element);
+						jse.executeScript("arguments[0].click();" , element);
 
-						Thread.sleep(5000);
-						driver.get(CustomUtilities.baseUrl);
-						//	driver.findElement(ADD_TO_CART_BUTTON).click();
-						Thread.sleep(3000);
 						Reporter.log("ADD TO CART button is Displayed :: Clickable");
+
+
 					}
+					break;
 				}
-				else
-				{
-					if(!driver.findElement(ADD_TO_CART_BUTTON).isEnabled())
-						throw new Exception("ADD TO CART button is not present");
-					element = driver.findElement(ADD_TO_CART_BUTTON);
-					jse = (JavascriptExecutor)driver;
-					jse.executeScript("arguments[0].click();" , element);
-
-					Reporter.log("ADD TO CART button is Displayed :: Clickable");
-
-
-				}
-				break;
 			}
+			//}
+			softAssert.assertAll();
 		}
-
-		softAssert.assertAll();
+		else {
+			Reporter.log("Bundle page opened and it is validated separately");
+		}
 	}
 
 	public void validateafterpayonpdp() throws Exception {
@@ -1077,7 +1086,10 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		// call method to navigate product details page
 		new CollectionPageComponent(driver).navigateToProductDetailsPage();
 		//driver.get("https://tommyjohn.com/collections/cool-cotton-boxer-brief/?variant=29882858340397");
-		Thread.sleep(15000);
+		Thread.sleep(20000);
+		jse = (JavascriptExecutor)driver;
+		jse.executeScript("window.scrollBy(0,1000)");
+		
 		softAssert.assertEquals(driver.findElement(RFY_TITLE).getText() , "Recommended For You" , "Recommended for you title name change");
 		softAssert.assertTrue(driver.findElement(RFY_SECTION).isDisplayed(), "Recommended for you section not present");
 		softAssert.assertTrue(driver.findElement(RFY_PRODUCT_TITLE).isDisplayed(), "Recommended for you product title not present");
@@ -1125,21 +1137,27 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		softAssert.assertTrue(driver.findElement(PRODUCT_TITLE).isDisplayed() , "Product Title is not displayed");
 		softAssert.assertTrue(driver.findElement(PRODUCT_PRICE).isDisplayed() ,"Product price is not displayed");	
 		softAssert.assertEquals(driver.findElement(MYSTERPACK_PRMOMSG).getText(), "All Mystery Packs are both mysterious and non-refundable" , "Promo message not displayed for mystery pack");
-		softAssert.assertTrue(driver.findElement(SIZEGUIDE).isDisplayed() ,"Size Guide button is not present");
+		try{
+			softAssert.assertTrue(driver.findElement(SIZEGUIDE).isDisplayed() ,"Size Guide button is not present");
 
-		WebElement ele = driver.findElement(SIZEGUIDE);
-		JavascriptExecutor executor = (JavascriptExecutor)driver;
-		executor.executeScript("arguments[0].click();", ele);
-		Thread.sleep(3000);
+			WebElement ele = driver.findElement(SIZEGUIDE);
+			JavascriptExecutor executor = (JavascriptExecutor)driver;
+			executor.executeScript("arguments[0].click();", ele);
+			Thread.sleep(3000);
 
-		if (!driver.findElement(By.cssSelector(".size-chart-content")).isDisplayed())
-			throw new Exception("Sizes chart overlay is not displayed after Size guide button was clicked");
-		Reporter.log("Size guide link is Displayed :: Clickable");
-		//Close first size guide window
-		driver.findElement(By.cssSelector(".close_chart_modal")).click();
+			if (!driver.findElement(By.cssSelector(".size-chart-content")).isDisplayed())
+				throw new Exception("Sizes chart overlay is not displayed after Size guide button was clicked");
+			Reporter.log("Size guide link is Displayed :: Clickable");
+			//Close first size guide window
+			driver.findElement(By.cssSelector(".close_chart_modal")).click();
 
-		Thread.sleep(3000);
-
+			Thread.sleep(3000);
+		}
+		catch(Exception e)
+		{
+			System.out.println("Size guide link is not Displayed");
+			Reporter.log("Size guide link is not Displayed.");
+		}
 		if(driver.findElement(RATING_STARS).isDisplayed()) {
 
 			WebElement elem = driver.findElement(RATING_STARS);
@@ -1192,7 +1210,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 		element = driver.findElement(ADD_TO_CART_BUTTON);
 
-		String text1 = element.getText();
+		//String text1 = element.getText();
+		String text1 = element.getAttribute("innerText");
 		System.out.println("Button text when Available size selected :: "+text1);
 		if(!text1.equalsIgnoreCase("OUT OF STOCK"))
 		{
@@ -1229,14 +1248,19 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		// check 'Best PairGuarantee' and 'Shopping And Returns' are clickable or not
 		flag = false;
 
-
-		if (driver.findElement(PRODUCT_DETAILS).isDisplayed())
-		{
-			element = driver.findElement(PRODUCT_DETAILS);
-			jse = (JavascriptExecutor)driver;
-			jse.executeScript("arguments[0].click();", element);
+		try{
+			if (driver.findElement(PRODUCT_DETAILS).isDisplayed())
+			{
+				element = driver.findElement(PRODUCT_DETAILS);
+				jse = (JavascriptExecutor)driver;
+				jse.executeScript("arguments[0].click();", element);
+			}
+			else throw new Exception("Product details accordion not present or not clikable ");
 		}
-		else throw new Exception("Product details accordion not present or not clikable ");
+		catch(Exception e )
+		{
+			Reporter.log("Product details accordion is not present for this particular product");
+		}
 		try
 		{
 			if (driver.findElement(PAIR_GUARANTEE).isDisplayed())
@@ -1251,7 +1275,9 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		{
 			Reporter.log("Pair guarantee link is not present for this particular product");
 		}
-		if(!driver.findElement(PAIR_GUARANTEE).getText().contentEquals("Free Shipping & Returns"))
+		
+		try{
+		if(!driver.findElement(SHIPING_AND_RETURNS).getText().contentEquals("Free Shipping & Returns"))
 		{
 			if (driver.findElement(SHIPING_AND_RETURNS).isDisplayed()) {
 				element = driver.findElement(SHIPING_AND_RETURNS);
@@ -1260,6 +1286,11 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 				//driver.findElement(SHIPING_AND_RETURNS).click();
 			}		
 			else throw new Exception("SHIPING_AND_RETURNS accordion not present or not clikable");	
+		}
+		}
+		catch(Exception e )
+		{
+			Reporter.log("SHIPING_AND_RETURNS link is not present for this particular product");
 		}
 
 		if(!driver.findElement(ADD_TO_CART_BUTTON).isEnabled())
@@ -1277,15 +1308,28 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 	{
 		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
 		new CollectionPageComponent(driver).navigateToProductDetailsPage();
-		Actions action = new Actions(driver);
-		Thread.sleep(3000);
 
-		//Hover On product image under buy with section on PDP
-		element = driver.findElement(FIRST_PRODUCT_IMAGE_BUYWITH);
-		action.moveToElement(element).build().perform();
-		Thread.sleep(3000);
-		System.out.println("Product image is hovered.");
-		new CollectionPageComponent(driver).AddproductToCartByQuickShop();
+
+		try{
+			if(driver.findElement(By.cssSelector(".product-gallery>.buy-with-products")).isDisplayed())
+			{
+				Actions action = new Actions(driver);
+				Thread.sleep(3000);
+
+				//Hover On product image under buy with section on PDP
+				element = driver.findElement(FIRST_PRODUCT_IMAGE_BUYWITH);
+				action.moveToElement(element).build().perform();
+				Thread.sleep(3000);
+				System.out.println("Product image is hovered.");
+				new CollectionPageComponent(driver).AddproductToCartByQuickShop();
+			}
+			else
+				throw new Exception("Buy with section is not displayed on PDP");
+		}
+		catch(Exception e)
+		{
+			throw new Exception("Buy with section is not displayed on PDP");
+		}
 	}
 
 }

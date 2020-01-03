@@ -130,8 +130,8 @@ public class ProductDetailsPageLocators {
 	public static By JOINTHEWAITLIST_CLOSEBTN = By.cssSelector(".swym-remind-me > .swym-tab-modal-close");
 	public static By JOINTHEWAITLIST_SUCCESS = By.cssSelector(".swym-success");
 	
-//	Recommneded for you (RFY)
-	public static By RFY_TITLE = By.cssSelector(".dy-rec--title");
+   //Recommended for you (RFY)
+	public static By RFY_TITLE = By.cssSelector("#dy-widget-grid-title-9929808");
 	public static By RFY_SECTION = By.cssSelector(".dy-rec--products");
 	public static By RFY_PRODUCT_IMAGE = By.cssSelector(".dy-rec--product-tile > img");
 	public static By RFY_PRODUCT_TITLE = By.cssSelector(".dy-rec--product-tile > .dy-product-info > .dy-rec--product-title");

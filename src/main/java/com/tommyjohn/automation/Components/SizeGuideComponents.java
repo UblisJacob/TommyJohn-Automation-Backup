@@ -54,38 +54,132 @@ public class SizeGuideComponents extends SizeGuideLocators
 		// call method for Size Guide validation
 		validateMenUnderwearSizeGuide();
 	}
+
 	public void validateMenDressShirtSizeGuidePage() throws Exception
 	{
+		new HomePageComponents(driver).navigateToButtonDownShirtInMenCategory();
+		List<WebElement> producttitle = driver.findElements(By.cssSelector(".product-meta__title"));
+		for (WebElement title : producttitle)
+		{
+			if(title.getText().contains("Dress Shirt"))
+			{
+				title.click();
+				break;
+			}
+
+		}
+
 		validateMenDressShirtSizeGuide();
 	}
 	public void validateMenUnderShirtSizeGuidePage() throws Exception
 	{
+		new HomePageComponents(driver).navigateToAllUnderShirtsInMensCategory();
+		navigateToProductDetailsPage();
 		validateMenUnderShirtSizeGuide();
 	}
 	public void validateMen_GoAnyWhere_SizeGuidePage() throws Exception
 	{
+		new HomePageComponents(driver).navigateToButtonDownShirtInMenCategory();
+		navigateToProductDetailsPage();
 		validateMen_GoAnywhereShirt();
 	}
 	public void validateMen_StretchedWovenBottom_SizeGuidePage() throws Exception
 	{
+		new HomePageComponents(driver).navigateToPantsAndShortsInMensCategory();
+		navigateToProductDetailsPage();
 		validateMen_StrtchedWovenBottom();
-	}
-	public void validateMen_StretchedWovenBlazer_SizeGuidePage() throws Exception
-	{
-		validateMen_StrtchedWovenBlazer();
 	}
 	public void validateWomenUnderwearSizeGuidePage() throws Exception
 	{
+		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
+		navigateToProductDetailsPage();
 		validateWomenUnderwearSizeGuide();
 	}
 	public void validateWomenUnderShirtSizeGuidePage() throws Exception
 	{
+		new HomePageComponents(driver).navigateToCamisoleInwomensCategory();
+		navigateToProductDetailsPage();
 		validateWomenUnderShirtsSizeGuide();
 	}
 	public void validateWomenT_ShirtsSizeGuidePage() throws Exception
 	{
+		new HomePageComponents(driver).navigateToTopsAndTeesInwomensCategory();
+		List<WebElement> producttitle = driver.findElements(By.cssSelector(".product-meta__title"));
+		for (WebElement title : producttitle)
+		{
+			if(!title.getText().contains("Go Anywhere®"))
+			{
+				title.click();
+				break;
+			}
+
+		}
 		validateWomenT_ShirtsSizeGuide();
 	}
+	public void validate_WomensTop_SizeGuidePage() throws Exception
+	{
+		new HomePageComponents(driver).navigateToTopsAndTeesInwomensCategory();
+		List<WebElement> producttitle = driver.findElements(By.cssSelector(".product-meta__title"));
+		for (WebElement title : producttitle)
+		{
+			if(title.getText().contains("Go Anywhere®"))
+			{
+				title.click();
+				break;
+			}
+
+		}
+		validate_Womens_Top();
+	}	
+	public void validate_Womens_WovenBlazer_SizeGuidePage() throws Exception
+	{
+		new HomePageComponents(driver).navigateToHoodiesandJacketsInwomensCategory();
+		List<WebElement> producttitle = driver.findElements(By.cssSelector(".product-meta__title"));
+		for (WebElement title : producttitle)
+		{
+			if(title.getText().contains("Blazer"))
+			{
+				title.click();
+				break;
+			}
+
+		}
+		validate_Womens_Woven_Blazer();	
+	}	
+	public void validate_WomensBottom_SizeGuidePage() throws Exception
+	{
+		new HomePageComponents(driver).navigateToPantsandShortsInwomensCategory();
+		List<WebElement> producttitle = driver.findElements(By.cssSelector(".product-meta__title"));
+		for (WebElement title : producttitle)
+		{
+			if(title.getText().contains("Go Anywhere®"))
+			{
+				title.click();
+				break;
+			}
+
+		}
+		validate_Womens_Bottoms();
+	}	
+	public void validate_pack_SizeGuidePage() throws Exception
+	{
+		new HomePageComponents(driver).nevigateToAllMensPacksInPacksCategory();
+		navigateToProductDetailsPage();
+		validate_pack();
+	}
+
+
+
+
+
+
+	public void validateMen_StretchedWovenBlazer_SizeGuidePage() throws Exception
+	{
+		validateMen_StrtchedWovenBlazer();
+	}
+
+
+
 	public void validateBraSizeGuidePage() throws Exception {
 
 		navigateToBraPDP();
@@ -105,23 +199,6 @@ public class SizeGuideComponents extends SizeGuideLocators
 		validateTriangleBraletteSizeGuide();
 	}
 
-
-	public void validate_WomensTop_SizeGuidePage() throws Exception
-	{
-		validate_Womens_Top();
-	}	
-	public void validate_Womens_WovenBlazer_SizeGuidePage() throws Exception
-	{
-		validate_Womens_Woven_Blazer();	
-	}	
-	public void validate_WomensBottom_SizeGuidePage() throws Exception
-	{
-		validate_Womens_Bottoms();
-	}	
-	public void validate_pack_SizeGuidePage() throws Exception
-	{
-		validate_pack();
-	}
 	public void validate_bundle_SizeGuidePage() throws Exception
 	{
 		validate_bundle();
@@ -179,25 +256,25 @@ public class SizeGuideComponents extends SizeGuideLocators
 		if(!driver.findElement(SECOND_SIZE_GUIDE_FITMETER_TITLE).isDisplayed())
 			throw new Exception("Product's second size guide fit-meter title is not displayed");
 		String Review_status_In_PDP = driver.findElement(CUSTOMER_REVIEW_STATUS_TEXT).getText();
-try {
-		String Review_status_In_SizeGuide = driver.findElement(SECOND_SIZE_GUIDE_CUSTOMER_SAY_REVIEW_TEXT).getText();
+		try {
+			String Review_status_In_SizeGuide = driver.findElement(SECOND_SIZE_GUIDE_CUSTOMER_SAY_REVIEW_TEXT).getText();
 
-		//If product have some reviews
-		if(!Review_status_In_PDP.equals("")){
-			System.out.println("Review Status title is " +Review_status_In_PDP);
-			if(!Review_status_In_PDP.equalsIgnoreCase(Review_status_In_SizeGuide))
-				throw new Exception("Customer Say" +Review_status_In_SizeGuide+ " is not equal to " +Review_status_In_PDP);}
+			//If product have some reviews
+			if(!Review_status_In_PDP.equals("")){
+				System.out.println("Review Status title is " +Review_status_In_PDP);
+				if(!Review_status_In_PDP.equalsIgnoreCase(Review_status_In_SizeGuide))
+					throw new Exception("Customer Say" +Review_status_In_SizeGuide+ " is not equal to " +Review_status_In_PDP);}
 
-		// If product have no reviews
-		else{
-			String P_Title = driver.findElement(PRODUCT_TITLE).getText();
-			System.out.println(P_Title+" have no reviews yet.");
+			// If product have no reviews
+			else{
+				String P_Title = driver.findElement(PRODUCT_TITLE).getText();
+				System.out.println(P_Title+" have no reviews yet.");
+			}
 		}
-}
-catch (Exception e)
-{
-	Reporter.log("Rating meter shows - No ratings Yet");
-}
+		catch (Exception e)
+		{
+			Reporter.log("Rating meter shows - No ratings Yet");
+		}
 		driver.findElement(SECOND_SIZE_GUIDE_FITMETER_TITLE).click();
 		jse = (JavascriptExecutor)driver;
 
@@ -652,20 +729,20 @@ catch (Exception e)
 		Thread.sleep(2000);
 		try {
 			String Review_status_In_SizeGuide = driver.findElement(SIZE_GUIDE_CUSTOMER_SAY_REVIEW_TEXT).getText();
-	
-		//If product have some reviews
-		if(!Review_status_In_PDP.equals("")){
-			System.out.println("Review Status title is " +Review_status_In_PDP);
-			if(!Review_status_In_PDP.equalsIgnoreCase(Review_status_In_SizeGuide))
-				throw new Exception("Customer Say" +Review_status_In_SizeGuide+ " is not equal to " +Review_status_In_PDP);}
-		
 
-	
-		// If product have no reviews
-		else{
-			String P_Title = driver.findElement(PRODUCT_TITLE).getText();
-			System.out.println(P_Title+" have no reviews yet.");
-		}
+			//If product have some reviews
+			if(!Review_status_In_PDP.equals("")){
+				System.out.println("Review Status title is " +Review_status_In_PDP);
+				if(!Review_status_In_PDP.equalsIgnoreCase(Review_status_In_SizeGuide))
+					throw new Exception("Customer Say" +Review_status_In_SizeGuide+ " is not equal to " +Review_status_In_PDP);}
+
+
+
+			// If product have no reviews
+			else{
+				String P_Title = driver.findElement(PRODUCT_TITLE).getText();
+				System.out.println(P_Title+" have no reviews yet.");
+			}
 		}
 		catch (Exception e){
 			Reporter.log("Rating meter shows - No ratings Yet");
@@ -719,11 +796,11 @@ catch (Exception e)
 		if(!driver.findElement(SIZE_GUIDE_FITMETER_TITLE).isDisplayed())
 			throw new Exception("Product size guide fit-meter title is not displayed");
 		String Review_status_In_PDP = driver.findElement(CUSTOMER_REVIEW_STATUS_TEXT).getText();
-		System.out.println("Review Status title is " +Review_status_In_PDP+ " of product");
-		String Review_status_In_SizeGuide = driver.findElement(SIZE_GUIDE_CUSTOMER_SAY_REVIEW_TEXT).getText();
-
+		
 		//If product have some reviews
 		if(!Review_status_In_PDP.equals("")){
+			String Review_status_In_SizeGuide = driver.findElement(SIZE_GUIDE_CUSTOMER_SAY_REVIEW_TEXT).getText();
+			System.out.println("Review Status title is " +Review_status_In_PDP+ " of product");	
 			if(!Review_status_In_PDP.equalsIgnoreCase(Review_status_In_SizeGuide))
 				throw new Exception("Customer Say" +Review_status_In_SizeGuide+ " is not equal to " +Review_status_In_PDP);}
 		// If product have no reviews

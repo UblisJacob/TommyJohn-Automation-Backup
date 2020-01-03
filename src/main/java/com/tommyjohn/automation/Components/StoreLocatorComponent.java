@@ -52,24 +52,24 @@ public class StoreLocatorComponent extends StoreLocatorPageLocators
 		 //Field validation
 			softassert.assertTrue(driver.findElement(OURSTORES_HEADING).isDisplayed(), "'Our Stores' heading is not displayed on Store locator page.");
 			softassert.assertEquals(driver.findElement(OURSTORES_HEADING).getText(),properties.getProperty("StoreLocatorHeading"),"Text changed for 'Our Stores' heading on store Locator page." );
-			Reporter.log("Store Intro Heading is Displayed :: Correct.");
+			Reporter.log("Our Stores Heading is Displayed :: Correct.");
 			
 			softassert.assertTrue(driver.findElement(STORES_INTRO_CONTENT).isDisplayed(), "Stores intro content is not displayed on Store locator page.");
 			System.out.println("Store intro content is: "+driver.findElement(STORES_INTRO_CONTENT).getText());
 			softassert.assertEquals(driver.findElement(STORES_INTRO_CONTENT).getText(),properties.getProperty("StoreIntroContent"),"Text changed for 'Store intro content' on store Locator page." );
-			Reporter.log("Store Intro Heading is Displayed :: Correct.");
+			Reporter.log("Store Intro Content is Displayed :: Correct.");
 			
 			softassert.assertTrue(driver.findElement(STORES_INDIVIDUAL_TITLE).isDisplayed(), "Stores individual title is not displayed.");
 	         allElements= driver.findElements(STORES_INDIVIDUAL_TITLE);
 	        int count = allElements.size();
 	        System.out.println("Total count of store individual title is: "+count);
-	        Reporter.log("Stores Individual Title is Displayed .");
+	        Reporter.log("Individual Store name is Displayed .");
 	
 	        softassert.assertTrue(driver.findElement(STORES_INDIVIDUAL_CONTENT).isDisplayed(), "Stores individual Content is not displayed.");
 	         allElements= driver.findElements(STORES_INDIVIDUAL_CONTENT);
 	        count = allElements.size();
 	        System.out.println("Total count of store individual Content is: "+count);
-	        Reporter.log("Stores Individual Content is Displayed .");
+	        Reporter.log("Stores City and Country name is Displayed .");
 	        
 	        //validate 'More Info' link
 	        softassert.assertTrue(driver.findElement(MORE_INFO_LINK).isDisplayed(), "'More Info' link is not displayed.");
@@ -84,6 +84,7 @@ public class StoreLocatorComponent extends StoreLocatorPageLocators
 				throw new Exception("Wrong page opened after More Info link clicked");
 			Reporter.log("More Info link is Displayed :: Clickable.");
 			Thread.sleep(3000);
+			
 			softassert.assertTrue(driver.findElement(FIND_A_RETAILER_TITLE).isDisplayed(), "Find a Retailer Heading is not displayed.");
 			softassert.assertEquals(driver.findElement(FIND_A_RETAILER_TITLE).getText(),properties.getProperty("FindARetailerHeading"),"Text changed for 'Find A Retailer' on store Locator page." );
 			Reporter.log("Find A Retailer Heading is Displayed :: Correct.");
@@ -102,12 +103,12 @@ public class StoreLocatorComponent extends StoreLocatorPageLocators
                         softassert.assertTrue(driver.findElement(MAP_TEXT).isDisplayed(), "Map button is not displayed on Find a retailer section.");
 			System.out.println("Map button text is: "+driver.findElement(MAP_TEXT).getText());
 			softassert.assertEquals(driver.findElement(MAP_TEXT).getText(),"Map","Text changed for 'Map' button on Find a retailer section." );
-			Reporter.log("Map Button is Displayed.");
+			Reporter.log("Map Button is Displayed ::Correct.");
 			
 			softassert.assertTrue(driver.findElement(SATELLITE_TEXT).isDisplayed(), "Satellite button is not displayed on Find a retailer section.");
 			System.out.println("Satellite button text is: "+driver.findElement(SATELLITE_TEXT).getText());
 			softassert.assertEquals(driver.findElement(SATELLITE_TEXT).getText(),"Satellite","Text changed for 'Satellite' button on Find a retailer section." );
-			Reporter.log("Satellite Button is Displayed.");
+			Reporter.log("Satellite Button is Displayed :: Correct.");
 			
 			//validate User Location Input box 
 			softassert.assertTrue(driver.findElement(USER_LOCATION_INPUT).isDisplayed(), "User location input box is not displayed.");
