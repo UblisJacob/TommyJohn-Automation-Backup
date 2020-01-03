@@ -128,7 +128,7 @@ public class GiftCard_PageComponents extends GiftCard_PageLocators {
 
 		DateTimeFormatter formatter = new DateTimeFormatterBuilder().appendPattern("MMMM d, yyyy").toFormatter();
 		LocalDate parseDate = LocalDate.parse(Delivery_date, formatter);
-		DateTimeFormatter formatter2= DateTimeFormatter.ofPattern("MM/d/yyyy");
+		DateTimeFormatter formatter2= DateTimeFormatter.ofPattern("MM/dd/yyyy");
 		newDelivery_Date = parseDate.format(formatter2);
 		System.out.println("Converted date is: "+newDelivery_Date);
 		Reporter.log("User is able to select date from date picker :: Clickable");

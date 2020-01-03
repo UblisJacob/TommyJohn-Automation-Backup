@@ -697,8 +697,82 @@ public class HomePageComponents extends HomePageLocators {
 		Thread.sleep(3000);
 		Reporter.log(driver.getCurrentUrl());
 	}
+	
+	//navigate to Button down shirts
+		public void navigateToButtonDownShirtInMenCategory() throws Exception {
+			action = new Actions(driver);
+			element = driver.findElement(MEN_CATEGORY);
+			action.moveToElement(element).perform();
+			driver.findElement(BUTTON_DOWN_SHIRT_IN_MEN_CATEGORY).click();
+			Thread.sleep(3000);
+			Reporter.log(driver.getCurrentUrl());
+		}
 
-	// nevigate to tank in men category
+	// navigate to Pants and shorts in Men's category
+			public void navigateToPantsAndShortsInMensCategory() throws Exception {
+				action = new Actions(driver);
+				element = driver.findElement(MEN_CATEGORY);
+				action.moveToElement(element).perform();
+				driver.findElement(PANTS_AND_SHORTS_IN_MEN_CATEGORY).click();
+				Thread.sleep(3000);	
+				Reporter.log(driver.getCurrentUrl());
+
+			}
+
+	// navigate to Hoodies & Jackets in Men's category
+					public void navigateToHoodiesandJacketsInMensCategory() throws Exception {
+						action = new Actions(driver);
+						element = driver.findElement(MEN_CATEGORY);
+						action.moveToElement(element).perform();
+						driver.findElement(HOODIES_AND_JACKETS_IN_MEN_CATEGORY).click();
+						Thread.sleep(3000);	
+						Reporter.log(driver.getCurrentUrl());
+
+					}
+
+	// navigate to Camisole in womens category
+					public void navigateToCamisoleInwomensCategory() throws Exception {
+						action = new Actions(driver);
+						element = driver.findElement(WOMEN_CATEGORY);
+						action.moveToElement(element).perform();
+						driver.findElement(CAMISOLE_IN_WOMEN_CATEGORY).click();
+						Thread.sleep(3000);	
+						Reporter.log(driver.getCurrentUrl());
+
+					}	
+
+	// navigate to Tops & Tees in womens category
+					public void navigateToTopsAndTeesInwomensCategory() throws Exception {
+						action = new Actions(driver);
+						element = driver.findElement(WOMEN_CATEGORY);
+						action.moveToElement(element).perform();
+						driver.findElement(TOPS_AND_TEES_IN_WOMEN_CATEGORY).click();
+						Thread.sleep(3000);	
+						Reporter.log(driver.getCurrentUrl());
+
+					}		
+	// navigate to Hoodies and Jackets in womens category
+					public void navigateToHoodiesandJacketsInwomensCategory() throws Exception {
+						action = new Actions(driver);
+						element = driver.findElement(WOMEN_CATEGORY);
+						action.moveToElement(element).perform();
+						driver.findElement(HOODIES_AND_JACKETS_IN_WOMEN_CATEGORY).click();
+						Thread.sleep(3000);	
+						Reporter.log(driver.getCurrentUrl());
+
+					}		
+	// navigate to Pants & Shorts in womens category
+					public void navigateToPantsandShortsInwomensCategory() throws Exception {
+						action = new Actions(driver);
+						element = driver.findElement(WOMEN_CATEGORY);
+						action.moveToElement(element).perform();
+						driver.findElement(PANTS_AND_SHORTS_IN_WOMEN_CATEGORY).click();
+						Thread.sleep(3000);	
+						Reporter.log(driver.getCurrentUrl());
+
+					}	
+
+	// navigate to tank in men category
 	public void nevigateToTankInMenCategory() throws Exception {
 		action = new Actions(driver);
 		element = driver.findElement(MEN_CATEGORY);
@@ -896,19 +970,20 @@ public class HomePageComponents extends HomePageLocators {
 
 	}
 	// navigate to Contact Us Page
-	public void navigateToContactUsPage() throws Exception {
-		text = driver.findElement(CONTACT_US_LINK).getText();
-		if(!text.equals("Contact Us"))
-			throw new Exception("Contact Us link text is changed");	
-		driver.findElement(CONTACT_US_LINK).click();
-		Thread.sleep(3000);
-		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/contact-us")) 
-			driver.navigate().back();
-		else
-			throw new Exception("Wrong page opened after Contact Us footer link clicked");
-		Reporter.log("Contact Us footer link is Displayed :: Clickable");
-										
-	}
+		public void navigateToContactUsPage() throws Exception {
+			text = driver.findElement(CONTACT_US_LINK).getText();
+			if(!text.equals("Contact Us"))
+				throw new Exception("Contact Us link text is changed");	
+			driver.findElement(CONTACT_US_LINK).click();
+			Thread.sleep(3000);
+			if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/contact-us")) 
+				//driver.navigate().back();
+				System.out.println("Contact Us footer link is Displayed :: Clickable");
+			else
+				throw new Exception("Wrong page opened after Contact Us footer link clicked");
+			Reporter.log("Contact Us footer link is Displayed :: Clickable");
+											
+		}
 	
 	// navigate to mix & match in Bra Category
 	public void navigateToMixAndMatchInBrasCategory() throws Exception {

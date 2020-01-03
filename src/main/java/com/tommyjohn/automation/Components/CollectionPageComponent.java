@@ -2,7 +2,6 @@ package com.tommyjohn.automation.Components;
 
 import java.io.File;
 import java.io.FileInputStream;
-
 import java.util.List;
 import java.util.Properties;
 
@@ -18,6 +17,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
@@ -72,9 +72,12 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		if(!Prod_Image.isDisplayed())
 			//#		if(!driver.findElement(THIRD_PRODUCT_IMAGE).isDisplayed())
 			throw new Exception("Product image is not present");
+		
 		WebElement ele = driver.findElement(THIRD_PRODUCT_IMAGE);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", ele);
+		
+		
 		//	driver.findElement(THIRD_PRODUCT_IMAGE).click();
 		Thread.sleep(3000);
 		Reporter.log(driver.getCurrentUrl());
@@ -341,7 +344,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 		// check carosals are displayed on top of page or not
 		if(!driver.findElement(STYLE_COROSALS).isDisplayed())
-			throw new Exception("Corosals are not displayed on top of page");
+			throw new Exception("Carousels are not displayed on top of page");
 
 		allCorosals = driver.findElements(TOTAL_NO_OF_COROSALS);
 		System.out.println("Total no of corosals :: "+allCorosals.size());
@@ -578,7 +581,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			softAssert.assertTrue(driver.findElement(QUICK_SHOP_SIZE_LIST).isDisplayed(), "Quick shop size labels are not displayed.");
 			Reporter.log("Quick shop size labels are displayed.");
 			softAssert.assertTrue(!driver.findElement(QUICK_SHOP_SIZE_OVERLAY_ATC).isEnabled(), "Quick shop size overlay ATC is enabled before size selection. ");
-			Reporter.log("Quick shop size overlay ATC is disable before size selection.");
+			Reporter.log("Quick shop size overlay ATC is disabled before size selection.");
 
 			//select sizes from quick shop size overlay
 			List<WebElement> allElements;	
@@ -603,6 +606,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 				else if(text.equalsIgnoreCase("Add To Cart"))
 					driver.findElement(QUICK_SHOP_SIZE_OVERLAY_ATC).click();
+				Reporter.log("Quick Shop size overlay ATC button is Displayed :: Clickable.");
 				Thread.sleep(3000);
 
 				//field validation for added product on fly cart	
@@ -628,7 +632,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 				System.out.println("product details are correct on Fly cart.");
 				Thread.sleep(3000);
-				Reporter.log("Product details are validated on Fly cart.");
+				Reporter.log("Product details are validated on Inline cart.");
 				driver.findElement(FlyCartPageLocator.INLINE_CART_CLOSE_BUTTON).click();
 			}
 			//If selected size is OOS/Unavailable
@@ -642,8 +646,9 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 				driver.findElement(QUICK_SHOP_SIZE_OVERLAY_CLOSE).click();
 				System.out.println("OOS/Unavaiable size is selected.");
+				Reporter.log("Quick shop size overlay OOS/unavailable button is disabled.");
 			}
-			Reporter.log("Quick shop ATC button is displayed :: Clickable.");
+			
 		}
 		else
 			throw new Exception("Quick Shop ATC button is not displayed on hover.");
