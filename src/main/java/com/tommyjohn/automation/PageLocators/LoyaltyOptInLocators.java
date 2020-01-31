@@ -13,7 +13,7 @@ public class LoyaltyOptInLocators {
 	public static By ACCOUNTPAGE_SWELLJOINNOWMSG = By.cssSelector(".swell-account-rewards > h2");
 	public static By REWARDS_POPUP_CLOSE = By.cssSelector(".close");
 	
-	public static By JOIN_SWELL = By.cssSelector(".swell-link-login");
+	public static By JOIN_SWELL = By.cssSelector(".swell-link>.swell-link-login");
 	public static By SWELLBOX_ICON = By.cssSelector("div.list-box> .swell-icon");
 	public static By SWELLBOX_HEADER = By.cssSelector(".work-box-holder > li:nth-child(2) >div> h3");
 	public static By SWELLBOX_DESCRIPTION = By.cssSelector(".work-box-holder > li:nth-child(3) >div> div.list-content> p");

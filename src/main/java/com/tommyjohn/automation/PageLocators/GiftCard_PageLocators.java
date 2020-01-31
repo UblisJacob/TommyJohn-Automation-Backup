@@ -25,9 +25,9 @@ public class GiftCard_PageLocators {
 	public static By DELIVERY_DATE_GIFT_BOX = By.cssSelector("#gift-card-section >div:nth-child(8)");
 	public static By DELIVERY_MESSAGE_LABEL = By.cssSelector(".time-label");
 	public static By GIFT_CARD_MESSAGE_LABEL = By.cssSelector("#gift-card-section >div:nth-child(14)");
-	public static By GIFT_CARD_DISPLAY_IMAGE = By.cssSelector(".product-gallery >div:nth-child(2) >div >div >div:nth-child(1) >img");
-	public static By GIFT_CARD_DISPLAY_IMAGE_SMALL_1 = By.cssSelector(".product-gallery >div:nth-child(1) >div >div >div:nth-child(1) >img");
-	public static By GIFT_CARD_DISPLAY_IMAGE_SMALL_2 = By.cssSelector(".product-gallery >div:nth-child(1) >div >div >div:nth-child(2) >img");
+	public static By GIFT_CARD_DISPLAY_IMAGE = By.cssSelector("div.pdpImageSlides> div > div > div.product_image.slick-active > img");
+	public static By GIFT_CARD_DISPLAY_IMAGE_SMALL_1 = By.cssSelector(" div.slick-vertical > div > div > div:nth-child(1) > img");
+	public static By GIFT_CARD_DISPLAY_IMAGE_SMALL_2 = By.cssSelector(" div.slick-vertical > div > div > div:nth-child(2) > img");
 	public static By GIFT_CARD_MESSAGE_TEXTBOX = By.cssSelector("#gift-card-section >textarea");
 	public static By GIFT_CARD_MESSAGE_LIMIT = By.cssSelector(".limit-label");
 	public static By ATC_BUTTON = By.cssSelector(".product-info-quant-atc-container>div>button");

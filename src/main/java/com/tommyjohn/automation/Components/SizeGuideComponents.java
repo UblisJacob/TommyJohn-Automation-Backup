@@ -168,17 +168,10 @@ public class SizeGuideComponents extends SizeGuideLocators
 		validate_pack();
 	}
 
-
-
-
-
-
 	public void validateMen_StretchedWovenBlazer_SizeGuidePage() throws Exception
 	{
 		validateMen_StrtchedWovenBlazer();
 	}
-
-
 
 	public void validateBraSizeGuidePage() throws Exception {
 
@@ -224,14 +217,12 @@ public class SizeGuideComponents extends SizeGuideLocators
 
 	public void validate_bundle() throws Exception
 	{
-		//driver.navigate().to("https://tommyjohn.com/collections/mens-lounge-packs/products/lounge-pants-and-henley-pack");
 		navigateToBundlePDP();
-
 		Thread.sleep(3000);
 		Open_SizeGuide();
 		Thread.sleep(3000);
 		CommonContentsInAllSizeGuide();
-		validate_SizeGuideInstructions();
+		//validate_SizeGuideInstructions();
 		Thread.sleep(3000);
 		if (!driver.findElement(By.cssSelector(".size-chart-content")).isDisplayed())
 			throw new Exception("Sizes chart overlay is not displayed after Size guide button was clicked");
@@ -796,7 +787,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 		if(!driver.findElement(SIZE_GUIDE_FITMETER_TITLE).isDisplayed())
 			throw new Exception("Product size guide fit-meter title is not displayed");
 		String Review_status_In_PDP = driver.findElement(CUSTOMER_REVIEW_STATUS_TEXT).getText();
-		
+
 		//If product have some reviews
 		if(!Review_status_In_PDP.equals("")){
 			String Review_status_In_SizeGuide = driver.findElement(SIZE_GUIDE_CUSTOMER_SAY_REVIEW_TEXT).getText();
@@ -859,6 +850,8 @@ public class SizeGuideComponents extends SizeGuideLocators
 
 	public String navigateToProductDetailsPage() throws Exception {
 		String text = null;
+		jse = (JavascriptExecutor)driver;
+		jse.executeScript("window.scrollBy(0,250)");
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(THIRD_PRODUCT_HEAD_LINE_TEXT));
 		// get text and click on the first product
@@ -895,7 +888,9 @@ public class SizeGuideComponents extends SizeGuideLocators
 	public void navigateToTriangleBralettePDP() throws Exception 
 	{
 
-		new HomePageComponents(driver).navigateToBraCategory();
+		new HomePageComponents(driver).navigateToTriangleBraletteCategory();
+		jse = (JavascriptExecutor)driver;
+		jse.executeScript("window.scrollBy(0,250)");
 		Thread.sleep(5000);
 
 		List<WebElement> producttitle = driver.findElements(By.cssSelector(".product-meta__title"));
@@ -915,9 +910,10 @@ public class SizeGuideComponents extends SizeGuideLocators
 	public void navigateToScoopBralettePDP() throws Exception 
 	{
 
-		new HomePageComponents(driver).navigateToBraCategory();
+		new HomePageComponents(driver).navigateToScoopBraletteCategory();
 		Thread.sleep(3000);
-
+		jse=(JavascriptExecutor)driver;
+		jse.executeScript("window.scrollBy(0,250)");
 		List<WebElement> producttitle = driver.findElements(By.cssSelector(".product-meta__title"));
 		for (WebElement title : producttitle)
 		{
@@ -957,13 +953,13 @@ public class SizeGuideComponents extends SizeGuideLocators
 	public void navigateToBundlePDP() throws Exception 
 	{
 
-		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
+		new HomePageComponents(driver).navigateToAllWomensPacksInPacksCategory();
 		Thread.sleep(3000);
 
 		List<WebElement> producttitle = driver.findElements(By.cssSelector(".product-meta__title"));
 		for (WebElement title : producttitle)
 		{
-			if(title.getText().startsWith("His & Hers"))
+			if(title.getText().contains("Set"))
 			{
 				Thread.sleep(3000);
 				System.out.println(title.getText());

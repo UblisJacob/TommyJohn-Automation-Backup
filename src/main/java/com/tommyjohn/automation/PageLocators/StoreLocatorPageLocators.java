@@ -9,7 +9,7 @@ public class StoreLocatorPageLocators
 		public static By STORES_INTRO_CONTENT = By.cssSelector(".stores__intro-content");
 		public static By STORES_INDIVIDUAL_TITLE = By.cssSelector(".stores__individual-title");
 		public static By STORES_INDIVIDUAL_CONTENT = By.cssSelector(".stores__individual-content");
-		public static By MORE_INFO_LINK = By.cssSelector(".stores__individual-link");
+		public static By STORE_GET_DIRECTION_LINK = By.cssSelector("#storeDirection");
 		public static By FIND_A_RETAILER_TITLE = By.cssSelector(".bh-sl-heading");
 		public static By USER_LOCATION_INPUT = By.cssSelector(".user-location-input");
 		public static By FIND_A_STORE_BUTTON =By.cssSelector(".form-input>button:nth-child(3)");

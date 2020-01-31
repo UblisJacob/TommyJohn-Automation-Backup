@@ -958,6 +958,28 @@ public class HomePageComponents extends HomePageLocators {
 		//Reporter.log(driver.getCurrentUrl());
 
 	}
+	
+	// navigate to Triangle Bralette category
+		public void navigateToTriangleBraletteCategory() throws Exception {
+			action = new Actions(driver);
+			element = driver.findElement(BRA_CATEGORY);
+			action.moveToElement(element).perform();
+			driver.findElement(TRIANGLE_BRALETTE).click();
+			Thread.sleep(3000);	
+			//Reporter.log(driver.getCurrentUrl());
+
+		}
+		
+		// navigate to Scoop Bralette category
+				public void navigateToScoopBraletteCategory() throws Exception {
+					action = new Actions(driver);
+					element = driver.findElement(BRA_CATEGORY);
+					action.moveToElement(element).perform();
+					driver.findElement(SCOOP_BRALETTE).click();
+					Thread.sleep(3000);	
+					//Reporter.log(driver.getCurrentUrl());
+
+				}
 
 	// navigate to all panties in women catagory
 	public void navigateToMysteryPacksinPacksCategory() throws Exception {
