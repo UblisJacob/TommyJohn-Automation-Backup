@@ -54,7 +54,7 @@ public class SizeGuideLocators
 	public static By SECOND_SIZE_GUIDE_CHART_TABLE = By.xpath("//div[@class='size-chart-overlay' ][@style='display: flex;']//table[@class='size-chart-table']");
 	public static By CUP_SIZE_INCHES_TEXT = By.cssSelector(".product-fit-guide>table.size-chart-table>tr:nth-child(4)>td:nth-child(1)");
 	public static By BAND_SIZE_INCHES_TEXT = By.cssSelector(".product-fit-guide>table.size-chart-table>tr:nth-child(1)>td");
-	public static By SIZE_GUIDE_INSTRUCTION_CONTENT = By.cssSelector(".size-guide-instructions>div.size-guide-instructions-content");
+	public static By SIZE_GUIDE_INSTRUCTION_CONTENT = By.cssSelector(".instruction-text");
 	public static By SECOND_SIZE_GUIDE_INSTRUCTION_CONTENT = By.xpath("//div[@class='size-chart-overlay' ][@style='display: flex;']//*[@class='size-guide-instructions-content']");
     public static By FIND_YOUR_SIZE_TEXT = By.cssSelector(".size-guide-split-item:nth-child(2)>h2");
     public static By BRA_BAND_SIZE_DROPDOWN = By.cssSelector(".size-guide-size-finder-dropdowns>span:nth-child(1)>select");

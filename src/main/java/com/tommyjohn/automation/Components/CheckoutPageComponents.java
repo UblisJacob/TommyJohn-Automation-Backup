@@ -283,7 +283,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		driver.findElement(CONTINUE_TO_SHIPPING_BUTTON).click();
 		Reporter.log("User is navigated to select shipping method");
 	
-		Thread.sleep(6000);
+		Thread.sleep(10000);
 		WebElement element = driver.findElement(CONTINUE_TO_PAYMENT_BUTTON);
 		jse = (JavascriptExecutor)driver;
 		jse.executeScript("arguments[0].click();", element);

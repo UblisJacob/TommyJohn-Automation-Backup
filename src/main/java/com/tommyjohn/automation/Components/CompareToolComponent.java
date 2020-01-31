@@ -37,7 +37,8 @@ public class CompareToolComponent extends CompareToolLocators
 	{
 		Actions action = new Actions(driver);
 		Thread.sleep(3000);
-
+		jse = (JavascriptExecutor)driver;
+		jse.executeScript("window.scrollBy(0,250)");
 		//Hover On product image on collection page
 		element = driver.findElement(CollectionPageLocator.FIRST_PRODUCT_IMAGE);
 		action.moveToElement(element).build().perform();
@@ -151,7 +152,7 @@ public class CompareToolComponent extends CompareToolLocators
 					if(a.equals("active"))
 					{
 						System.out.println("Modal overlay is displayed.");
-						Reporter.log("Compare Tool Modal overlay is displayes.");
+						Reporter.log("Compare Tool Modal overlay is displayed.");
 
 						softAssert.assertEquals(driver.findElement(COMPARE_ITEMS_TITLE).getText(), properties.getProperty("CompareItems"),"Text changed for 'Compare Items' title in modal-overlay.");
 						//Close button
