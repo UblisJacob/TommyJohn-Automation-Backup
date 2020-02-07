@@ -64,7 +64,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		text2 = driver.findElement(PRODUCT_TITLE).getText();
 
 		// check correct PDP opened
-		if(!text1.equals(text2))
+		if(!text2.contains(text1))
 			throw new Exception("Wrong product details page opened");
 		Reporter.log("Product details page is Correct :: Product title is Displayed");
 
@@ -157,7 +157,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 
 			//Check vertical image(carousel)
-			WebElement VERTICAL_IMAGE = driver.findElement(By.cssSelector(".slick-vertical > div > div > div.product_image.slick-slide.slick-current.slick-active"));
+			WebElement VERTICAL_IMAGE = driver.findElement(By.cssSelector(".slick-vertical > div > div > div.slick-slide.slick-current.slick-active"));
 			softAssert.assertTrue(VERTICAL_IMAGE.isDisplayed(), "Vertical images are not displayed on PDP.");
 			System.out.println("Vertical images are displayed on PDP.");
 			Reporter.log("Vertical images are displayed on PDP.");
@@ -745,8 +745,10 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		executore.executeScript("arguments[0].click();", elem);
 		// wait for scroll it down
 		Thread.sleep(6000);
-
-		driver.findElement(WRITE_REVIEW_BUTTON).click();
+		elem = driver.findElement(WRITE_REVIEW_BUTTON);
+		executore = (JavascriptExecutor)driver;
+		executore.executeScript("arguments[0].click();", elem);
+		//driver.findElement(WRITE_REVIEW_BUTTON).click();
 		Thread.sleep(4000);
 		driver.findElement(SUBMIT_BTN).click();
 		softAssert.assertEquals(driver.findElement(NAME_ERROR).getText(), "Please enter a name for this review.", "Laguage mismatch for error message for Name");

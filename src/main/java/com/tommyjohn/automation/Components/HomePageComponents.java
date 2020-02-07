@@ -687,7 +687,7 @@ public class HomePageComponents extends HomePageLocators {
 		Reporter.log(driver.getCurrentUrl());
 	}
 
-	// nevigate to all underwear in men category 
+	// navigate to all underwear in men category 
 	public void navigateToAllUnderwearInMenCategory() throws Exception {
 		action = new Actions(driver);
 		element = driver.findElement(MEN_CATEGORY);
@@ -696,6 +696,9 @@ public class HomePageComponents extends HomePageLocators {
 		driver.findElement(ALL_UNDERWEAR_IN_MEN_CATEGORY).click();	
 		Thread.sleep(3000);
 		Reporter.log(driver.getCurrentUrl());
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0, 250)", "");
+		
 	}
 	
 	//navigate to Button down shirts
@@ -899,7 +902,14 @@ public class HomePageComponents extends HomePageLocators {
 		driver.findElement(ALL_PANTIES_IN_WOMEN_CATEGORY).click();
 		Thread.sleep(3000);	
 		Reporter.log(driver.getCurrentUrl());
-
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0, 250)", "");
+		/*JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		Thread.sleep(8000);
+		js.executeScript("window.scrollTo(0, -document.body.scrollHeight);");
+		js.executeScript("window.scrollBy(0, 500)", "");
+		Thread.sleep(3000);*/
 	}
 
 	// navigate to cotton basics in shop by collections catagory
@@ -921,7 +931,14 @@ public class HomePageComponents extends HomePageLocators {
 		driver.findElement(ALL_UNDERSHIRTS_IN_MEN_CATEGORY).click();
 		Thread.sleep(3000);	
 		Reporter.log(driver.getCurrentUrl());
-
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0, 250)", "");
+		/*JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		Thread.sleep(3000);
+		js.executeScript("window.scrollTo(0, -document.body.scrollHeight);");
+		js.executeScript("window.scrollBy(0, 500)", "");
+		Thread.sleep(3000);*/
 	}
 
 	// navigate to cotton basics in shop by collections catagory
@@ -935,8 +952,8 @@ public class HomePageComponents extends HomePageLocators {
 		executor.executeScript("arguments[0].click();", element);
 		Thread.sleep(3000);
 		Reporter.log(driver.getCurrentUrl());
-
-	}
+		
+		}
 
 	// navigate to Gift Card category
 	public void navigateToGiftCard() throws Exception {
