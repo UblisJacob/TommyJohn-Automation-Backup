@@ -89,7 +89,7 @@ public class AccountLoginComponents extends AccountLoginLocators{
 		if(!driver.findElement(CREATEACCOUNT_BTN).isEnabled())
 			throw new Exception("Create account button is not enabled");
 		driver.findElement(CREATEACCOUNT_BTN).click();
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		currentUrl = driver.getCurrentUrl();
 		if(!currentUrl.equals(CustomUtilities.properties.getProperty("createaccountpage"))) 
 			throw new Exception("Create account page is not displayed");
@@ -119,12 +119,12 @@ public class AccountLoginComponents extends AccountLoginLocators{
 		if(!driver.findElement(CREATEACCOUNT_PASSWORD).isDisplayed())
 			throw new Exception("Password textbox is not present");
 
-		text = driver.findElement(SWELLOPTIN_LABEL).getText();
-		if(!text.equals(CustomUtilities.properties.getProperty("swelloptinlabel")))
-			throw new Exception("Expected text is" + CustomUtilities.properties.getProperty("swelloptinlabel") + " but actual text is "+ text);
+//		text = driver.findElement(SWELLOPTIN_LABEL).getText();
+//		if(!text.equals(CustomUtilities.properties.getProperty("swelloptinlabel")))
+//			throw new Exception("Expected text is" + CustomUtilities.properties.getProperty("swelloptinlabel") + " but actual text is "+ text);
 
-		if(!driver.findElement(SWELLOPTIN_CHCKBOX).isDisplayed())
-			throw new Exception("Swell optin checkbox not present");
+//		if(!driver.findElement(SWELLOPTIN_CHCKBOX).isDisplayed())
+//			throw new Exception("Swell optin checkbox not present");
 
 		if(!driver.findElement(CREATEACCOUNT_BUTTON).isDisplayed())
 			throw new Exception("Create account button is not present on create account page");
@@ -174,7 +174,7 @@ public class AccountLoginComponents extends AccountLoginLocators{
 		driver.findElement(CREATEACCOUNT_EMAIL).sendKeys(invalidemail);
 		driver.findElement(CREATEACCOUNT_PASSWORD).sendKeys(invalidpassword);
 		driver.findElement(CREATEACCOUNT_BUTTON).click();
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		currentUrl = driver.getCurrentUrl();
 		if(currentUrl.equals(CustomUtilities.properties.getProperty("accountpage")))
 			throw new Exception("account created by invalid details");

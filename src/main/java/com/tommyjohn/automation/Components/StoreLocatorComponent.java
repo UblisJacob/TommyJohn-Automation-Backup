@@ -97,7 +97,9 @@ public class StoreLocatorComponent extends StoreLocatorPageLocators
 
 		//Scroll down
 		JavascriptExecutor jse=(JavascriptExecutor)driver;
-		jse.executeScript("window.scrollBy(0,250)");			
+		jse.executeScript("window.scrollBy(0,250)");
+		
+		Thread.sleep(5000);
 
 		softassert.assertTrue(driver.findElement(MAP).isDisplayed(), "Map is not displayed.");
 		Reporter.log("Map is displayed on store locator page.");
@@ -124,7 +126,7 @@ public class StoreLocatorComponent extends StoreLocatorPageLocators
 
 		//validate location list
 		driver.findElement(FIND_A_STORE_BUTTON).click();
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		text = driver.findElement(By.cssSelector(".bh-sl-loc-list>ul>li:nth-child(1)>div>div>div:nth-child(5)>span:nth-child(1)")).getText();
 		System.out.println("First displayed city location is: "+text);
 		if(!text.contains("New York"))
@@ -136,7 +138,7 @@ public class StoreLocatorComponent extends StoreLocatorPageLocators
 		System.out.println("Get Direction text is: "+driver.findElement(GET_DIRECTION_BUTTON).getText());
 		softassert.assertEquals(driver.findElement(GET_DIRECTION_BUTTON).getText(),properties.getProperty("GetDirectionsButton"),"Text changed for 'Get Directions' button on store Locator page." );
 		driver.findElement(GET_DIRECTION_BUTTON).click();
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		//check google map
 		Set<String> handles = null;
 		List<String> list = null;

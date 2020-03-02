@@ -38,7 +38,8 @@ public class HomePage extends HomePageComponents {
 
 	}
 	public void validateSearch() throws Exception
-	{
+	{	
+
 		validateSearchFunctionality();
 
 	}

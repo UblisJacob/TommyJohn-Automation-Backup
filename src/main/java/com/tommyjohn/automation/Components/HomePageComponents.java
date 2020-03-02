@@ -72,12 +72,12 @@ public class HomePageComponents extends HomePageLocators {
 			throw new Exception("Men category is not present");		
 		element = driver.findElement(MEN_CATEGORY);
 		action.moveToElement(element).perform();
-		if(!driver.findElement(WHATS_NEW_IN_MEN_CATEGORY).isEnabled())
+		if(!driver.findElement(NEW_ARRIVALS_IN_MEN_CATEGORY).isEnabled())
 			throw new Exception("Men Category is not hoverable");
 		driver.findElement(MEN_CATEGORY).click();
 		Thread.sleep(3000);
 		currentUrl2 = driver.getCurrentUrl();
-		if(!currentUrl2.equalsIgnoreCase("https://tommyjohn.com/pages/mens-category"))
+		if(!(currentUrl2.equalsIgnoreCase("https://tommyjohn.com/pages/mens-category")||currentUrl2.equalsIgnoreCase("https://tommyjohn.com/collections/mens-underwear")))
 			throw new Exception("Men category clicked but not opened correct page");
 		Reporter.log("Men category is Displayed :: Hoverable :: Clickable");
 		Thread.sleep(3000);
@@ -88,12 +88,12 @@ public class HomePageComponents extends HomePageLocators {
 			throw new Exception("Women category is not displayed");
 		element = driver.findElement(WOMEN_CATEGORY);
 		action.moveToElement(element).perform();
-		if(!driver.findElement(WHATS_NEW_IN_WOMEN_CATEGORY).isDisplayed())
+		if(!driver.findElement(NEW_ARRIVALS_IN_WOMEN_CATEGORY).isDisplayed())
 			throw new Exception("Men Category is not hoverable");
 		driver.findElement(WOMEN_CATEGORY).click();
 		Thread.sleep(3000);
 		currentUrl2 = driver.getCurrentUrl();
-		if(!currentUrl2.equalsIgnoreCase("https://tommyjohn.com/pages/womens-category"))
+		if(!(currentUrl2.equalsIgnoreCase("https://tommyjohn.com/pages/womens-category")||currentUrl2.equalsIgnoreCase("https://tommyjohn.com/collections/womens-underwear")))
 			throw new Exception("Women category is clicked but not opened correct page");
 		Reporter.log("Women category is Displayed :: Hoverable :: Clickable");
 
@@ -129,13 +129,13 @@ public class HomePageComponents extends HomePageLocators {
 
 
 		// Verify Gift Guide category
-		if(!driver.findElement(GIFT_GUIDE).isDisplayed())
-			throw new Exception("Gift guide category is not displayed");
-		element = driver.findElement(GIFT_GUIDE);
-		action.moveToElement(element).perform();
-		if(!driver.findElement(GIFTCARDS).isDisplayed())
-			throw new Exception("Gift Guide category is not hoverable");
-		Reporter.log("Gift Guide category is Displayed :: Hoverable");
+//		if(!driver.findElement(GIFT_GUIDE).isDisplayed())
+//			throw new Exception("Gift guide category is not displayed");
+//		element = driver.findElement(GIFT_GUIDE);
+//		action.moveToElement(element).perform();
+//		if(!driver.findElement(GIFTCARDS).isDisplayed())
+//			throw new Exception("Gift Guide category is not hoverable");
+//		Reporter.log("Gift Guide category is Displayed :: Hoverable");
 	}
 
 	
@@ -218,7 +218,7 @@ public class HomePageComponents extends HomePageLocators {
 		softAssert.assertEquals(driver.findElement(ProductDetailsPageLocators.PRODUCT_TITLE).getText(), productname , "correct PDP page not displayed after clicking on image of product on search page" );
 		
 		driver.navigate().back();
-		Thread.sleep(6000);
+		Thread.sleep(10000);
 		driver.findElement(SEARCHPAGE_PRODUCT_NAME).click();
 		Thread.sleep(6000);
 		softAssert.assertEquals(driver.findElement(ProductDetailsPageLocators.PRODUCT_TITLE).getText(), productname , "correct PDP page not displayed after clicking on name of product on search page" );
@@ -344,135 +344,141 @@ public class HomePageComponents extends HomePageLocators {
 		if(!text.equals("About"))
 			throw new Exception("About footer link text is changed");	
 		driver.findElement(ABOUT_LINK).click();
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/about-us")) 
 			driver.navigate().back();
 		else
 			throw new Exception("Wrong page opened after About footer link clicked");
 		Reporter.log("About link is Displayed :: Clickable");
-
+		Thread.sleep(4000);
 		// check Press link
 		text = driver.findElement(PRESS_LINK).getText();
 		if(!text.equals("Press"))
 			throw new Exception("Press link text is changed");	
 		driver.findElement(PRESS_LINK).click();
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/press")) 
 			driver.navigate().back();
 		else
 			throw new Exception("Wrong page opened after Press footer link clicked");
 		Reporter.log("Press fotter link is Displayed :: Clickable");
+		Thread.sleep(5000);
 
 		// check military discount link
 		text = driver.findElement(MILITARY_DISCOUNT_LINK).getText();
 		if(!text.equals("Military Discount"))
 			throw new Exception("Military Discount link text is changed");	
 		driver.findElement(MILITARY_DISCOUNT_LINK).click();
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.sheerid.com/")) 
 			driver.navigate().back();
 		else
 			throw new Exception("Wrong page opened after Military Discount footer link clicked");
 		Reporter.log("Military Discount fotter link is Displayed :: Clickable");
+		Thread.sleep(5000);
 
 		// check Teacher Discount  link
 		text = driver.findElement(TEACHER_DISCOUNT_LINK).getText();
 		if(!text.equals("Student & Teacher Discount"))
 			throw new Exception("Teacher Discount link text is changed");	
 		driver.findElement(TEACHER_DISCOUNT_LINK).click();
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://offers.sheerid.com/tommy-john-landing-page/")) 
 			driver.navigate().back();
 		else
 			throw new Exception("Wrong page opened after Teacher Discount footer link clicked");
 		Reporter.log("Teacher Discount fotter link is Displayed :: Clickable");
-
+		Thread.sleep(5000);
 
 		// check  Jobs  link
 		text = driver.findElement(JOBS_LINK).getText();
 		if(!text.equals("Jobs"))
 			throw new Exception("Jobs link text is changed");	
 		driver.findElement(JOBS_LINK).click();
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.theresumator.com/apply")) 
 			driver.navigate().back();
 		else
 			throw new Exception("Wrong page opened after Jobs footer link clicked");
 		Reporter.log("Jobs fotter link is Displayed :: Clickable");
+		Thread.sleep(5000);
 
 		// check  Privacy Policy  link
 		text = driver.findElement(PRIVACY_POLICY_LINK).getText();
 		if(!text.equals("Privacy Policy"))
 			throw new Exception("Privacy Policy link text is changed");	
 		driver.findElement(PRIVACY_POLICY_LINK).click();
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/tommy-john-website-privacy-policy")) 
 			driver.navigate().back();
 		else
 			throw new Exception("Wrong page opened after Privacy Policy footer link clicked");
 		Reporter.log("Privacy Policy fotter link is Displayed :: Clickable");
-
+		Thread.sleep(5000);
 		// check  Terms & Conditions  link
 		text = driver.findElement(TERMS_AND_CONDITION_LINK).getText();
 		if(!text.equals("Terms & Conditions"))
 			throw new Exception("Terms & Conditions link text is changed");	
 		driver.findElement(TERMS_AND_CONDITION_LINK).click();
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/tommy-john-terms-and-conditions")) 
 			driver.navigate().back();
 		else
 			throw new Exception("Wrong page opened after Terms & Conditions footer link clicked");
 		Reporter.log("Terms & Conditions footer link is Displayed :: Clickable");
-
+		Thread.sleep(5000);
 
 		// check  Terms & Conditions  link
 		text = driver.findElement(BLOG_LINK).getText();
 		if(!text.equals("Blog"))
 			throw new Exception("Terms & Conditions link text is changed");	
 		driver.findElement(BLOG_LINK).click();
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/blogs/news")) 
 			driver.navigate().back();
 		else
 			throw new Exception("Wrong page opened after Blog footer link clicked");
 		Reporter.log("Blog footer link is Displayed :: Clickable");
-
+		Thread.sleep(5000);
 
 		// check  Help  link
 		text = driver.findElement(HELP_LINK).getText();
 		if(!text.equals("Help"))
 			throw new Exception("Help link text is changed");	
 		driver.findElement(HELP_LINK).click();
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://help.tommyjohn.com/hc/en-us")) 
 			driver.navigate().back();
 		else
 			throw new Exception("Wrong page opened after Help footer link clicked");
 		Reporter.log("Help fotter link is Displayed :: Clickable");
-
+		Thread.sleep(5000);
+		
 		// check  Contact Us  link
 		text = driver.findElement(CONTACT_US_LINK).getText();
 		if(!text.equals("Contact Us"))
 			throw new Exception("Contact Us link text is changed");	
 		driver.findElement(CONTACT_US_LINK).click();
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/contact-us")) 
 			driver.navigate().back();
 		else
 			throw new Exception("Wrong page opened after Contact Us footer link clicked");
 		Reporter.log("Contact Us footer link is Displayed :: Clickable");
-
+		Thread.sleep(5000);
+		
 		// check  Retailers  link
 		text = driver.findElement(RETAILERS_LINK).getText();
 		if(!text.equals("Retailers"))
 			throw new Exception("Retailers link text is changed");	
 		driver.findElement(RETAILERS_LINK).click();
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/retailers")) 
 			driver.navigate().back();
 		else
 			throw new Exception("Wrong page opened after Retailers footer link clicked");
 		Reporter.log("Retailers footer link is Displayed :: Clickable");
+		Thread.sleep(5000);
 
 		// check  King of Prussia Store  link
 		//		text = driver.findElement(KING_OF_PURSSIA_STORE_LINK).getText();
@@ -492,12 +498,13 @@ public class HomePageComponents extends HomePageLocators {
 		if(!text.equals("Tommy John Stores"))
 			throw new Exception("Tommy John Stores link text is changed");	
 		driver.findElement(TOMMY_JOHN_STORES).click();
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/store-directory")) 
 			driver.navigate().back();
 		else
 			throw new Exception("Wrong page opened after Tommy John Stores footer link clicked");
 		Reporter.log("Tommy John Stores footer link is Displayed :: Clickable");
+		Thread.sleep(5000);
 
 		// check Charlotte Store Store  link
 		//		text = driver.findElement(CHARLOTTE_STORE_LINK).getText();
@@ -516,24 +523,26 @@ public class HomePageComponents extends HomePageLocators {
 		if(!text.equals("Store Locator"))
 			throw new Exception("Store Locator link text is changed");	
 		driver.findElement(STORE_LOCATOR_LINK).click();
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/store-locator")) 
 			driver.navigate().back();
 		else
 			throw new Exception("Wrong page opened after Store Locator footer link clicked");
 		Reporter.log("Store Locator footer link is Displayed :: Clickable");
+		Thread.sleep(5000);
 
 		// check Shipping & Returns  link
 		text = driver.findElement(SHIPPING_AND_RETURNS_LINK).getText();
 		if(!text.equals("Shipping & Return Policy"))
 			throw new Exception("Shipping & Returns link text is changed");	
 		driver.findElement(SHIPPING_AND_RETURNS_LINK).click();
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://help.tommyjohn.com/hc/en-us/articles/360000507746-Shipping-Returns")) 
 			driver.navigate().back();
 		else
 			throw new Exception("Wrong page opened after Shipping & Returns footer link clicked");
 		Reporter.log("Shipping & Returns footer link is Displayed :: Clickable");
+		Thread.sleep(5000);
 
 
 		// check 1-800-708-3490  link
@@ -541,42 +550,46 @@ public class HomePageComponents extends HomePageLocators {
 		if(!text.equals("1-800-708-3490"))
 			throw new Exception("1-800-708-3490 link text is changed");	
 		Reporter.log("1-800-708-3490 footer link is Displayed");
+		Thread.sleep(5000);
 
 		// check Loyalty  link
 		text = driver.findElement(LOYALTY_LINK).getText();
 		if(!text.equals("Loyalty"))
 			throw new Exception("Loyalty link text is changed");	
 		driver.findElement(LOYALTY_LINK).click();
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://help.tommyjohn.com/hc/en-us/sections/360000067306-Loyalty-Rewards")) 
 			driver.navigate().back();
 		else
 			throw new Exception("Wrong page opened after Loyalty footer link clicked");
 		Reporter.log("Loyalty footer link is Displayed :: Clickable");
+		Thread.sleep(5000);
 
 		// check Tommy John Rewards  link
-		text = driver.findElement(TOMMYJOHN_REWARDS_LINK).getText();
-		if(!text.equals("Tommy John Rewards"))
-			throw new Exception("Tommy John Rewards link text is changed");	
-		driver.findElement(TOMMYJOHN_REWARDS_LINK).click();
-		Thread.sleep(3000);
-		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/loyalty")) 
-			driver.navigate().back();
-		else
-			throw new Exception("Wrong page opened after Tommy John Rewards footer link clicked");
-		Reporter.log("Tommy John Rewards footer link is Displayed :: Clickable");
+//		text = driver.findElement(TOMMYJOHN_REWARDS_LINK).getText();
+//		if(!text.equals("Tommy John Rewards"))
+//			throw new Exception("Tommy John Rewards link text is changed");	
+//		driver.findElement(TOMMYJOHN_REWARDS_LINK).click();
+//		Thread.sleep(3000);
+//		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/loyalty")) 
+//			driver.navigate().back();
+//		else
+//			throw new Exception("Wrong page opened after Tommy John Rewards footer link clicked");
+//		Reporter.log("Tommy John Rewards footer link is Displayed :: Clickable");
+//		Thread.sleep(5000);
 
 		// check Gift Cards  link
 		text = driver.findElement(GIFT_CARD_LINK).getText();
 		if(!text.equals("Gift Cards"))
 			throw new Exception("Gift Cards link text is changed");	
 		driver.findElement(GIFT_CARD_LINK).click();
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/products/e-gift-card")) 
 			driver.navigate().back();
 		else
 			throw new Exception("Wrong page opened after Gift Cards footer link clicked");
 		Reporter.log("Gift Cards footer link is Displayed :: Clickable");
+		Thread.sleep(5000);
 
 		// check Fabric Guide  link
 		text = driver.findElement(FABRIC_GUIDE_LINK).getText();
@@ -589,6 +602,7 @@ public class HomePageComponents extends HomePageLocators {
 		else
 			throw new Exception("Wrong page opened after Fabric Guide footer link clicked");
 		Reporter.log("Fabric Guide footer link is Displayed :: Clickable");
+		Thread.sleep(5000);
 
 		// check Facebook link
 		text = driver.findElement(FACEBOOK_LINK).getText();
@@ -603,6 +617,7 @@ public class HomePageComponents extends HomePageLocators {
 			throw new Exception("Wrong page opened after clicked on Facebook link");
 		driver.switchTo().window(list.get(0));
 		Reporter.log("Facebook footer link is Displayed :: Clickable");
+		Thread.sleep(5000);
 
 		// check Twitter link
 		text = driver.findElement(TWITTER_LINK).getText();
@@ -617,6 +632,7 @@ public class HomePageComponents extends HomePageLocators {
 			throw new Exception("Wrong page opened after clicked on Twitter link");
 		driver.switchTo().window(list.get(0));
 		Reporter.log("Twitter footer link is Displayed :: Clickable");
+		Thread.sleep(5000);
 
 		// check Pinterest link
 		text = driver.findElement(PINTEREST_LINK).getText();
@@ -631,6 +647,7 @@ public class HomePageComponents extends HomePageLocators {
 			throw new Exception("Wrong page opened after clicked on Pinterest link");
 		driver.switchTo().window(list.get(0));
 		Reporter.log("Pinterest footer link is Displayed :: Clickable");
+		Thread.sleep(5000);
 
 		// check Instagram link
 		text = driver.findElement(INSTAGRAM_LINK).getText();
@@ -645,6 +662,7 @@ public class HomePageComponents extends HomePageLocators {
 			throw new Exception("Wrong page opened after clicked on Instagram link");
 		driver.switchTo().window(list.get(0));
 		Reporter.log("Instagram footer link is Displayed :: Clickable");
+		Thread.sleep(5000);
 
 		// check YouTube link
 		text = driver.findElement(YOUTUBE_LINK).getText();
@@ -659,6 +677,7 @@ public class HomePageComponents extends HomePageLocators {
 			throw new Exception("Wrong page opened after clicked on YouTube link");
 		driver.switchTo().window(list.get(0));
 		Reporter.log("YouTube footer link is Displayed :: Clickable");
+		Thread.sleep(5000);
 
 		// check Google+ link
 		//		text = driver.findElement(GOOGLE_PLUS_LINK).getText();
@@ -706,7 +725,7 @@ public class HomePageComponents extends HomePageLocators {
 			action = new Actions(driver);
 			element = driver.findElement(MEN_CATEGORY);
 			action.moveToElement(element).perform();
-			driver.findElement(BUTTON_DOWN_SHIRT_IN_MEN_CATEGORY).click();
+			driver.findElement(DRESS_SHIRTS_IN_MEN_CATEGORY	).click();
 			Thread.sleep(3000);
 			Reporter.log(driver.getCurrentUrl());
 		}
@@ -727,7 +746,7 @@ public class HomePageComponents extends HomePageLocators {
 						action = new Actions(driver);
 						element = driver.findElement(MEN_CATEGORY);
 						action.moveToElement(element).perform();
-						driver.findElement(HOODIES_AND_JACKETS_IN_MEN_CATEGORY).click();
+						driver.findElement(JACKETS_AND_OUTWEARS_IN_MEN_CATEGORY).click();
 						Thread.sleep(3000);	
 						Reporter.log(driver.getCurrentUrl());
 
@@ -790,7 +809,10 @@ public class HomePageComponents extends HomePageLocators {
 		action = new Actions(driver);
 		element = driver.findElement(MEN_CATEGORY);
 		action.moveToElement(element).perform();
-		driver.findElement(DRESS_SHIRTS_IN_MEN_CATEGORY).click();
+		//driver.findElement(DRESS_SHIRTS_IN_MEN_CATEGORY).click();
+		WebElement element = driver.findElement(DRESS_SHIRTS_IN_MEN_CATEGORY);
+		executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();", element);
 		Thread.sleep(3000);
 	}
 
@@ -839,7 +861,7 @@ public class HomePageComponents extends HomePageLocators {
 		action = new Actions(driver);
 		element = driver.findElement(WOMEN_CATEGORY);
 		action.moveToElement(element).perform();
-		driver.findElement(ALL_WOMENS_COLLECTIONS_IN_WOMEN_CATEGORY).click();
+		driver.findElement(ALL_CLOTHING_IN_WOMEN_CATEGORY).click();
 		Thread.sleep(3000);
 		Reporter.log(driver.getCurrentUrl());
 	}
@@ -947,7 +969,7 @@ public class HomePageComponents extends HomePageLocators {
 		element = driver.findElement(WOMEN_CATEGORY);
 		action.moveToElement(element).perform();
 
-		WebElement element = driver.findElement(ALL_WOMENS_COLLECTIONS_IN_WOMEN_CATEGORY);
+		WebElement element = driver.findElement(ALL_CLOTHING_IN_WOMEN_CATEGORY);
 		executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", element);
 		Thread.sleep(3000);
@@ -970,8 +992,12 @@ public class HomePageComponents extends HomePageLocators {
 		action = new Actions(driver);
 		element = driver.findElement(BRA_CATEGORY);
 		action.moveToElement(element).perform();
-		driver.findElement(SHOP_ALL_BRAS).click();
-		Thread.sleep(3000);	
+		WebElement element = driver.findElement(SHOP_ALL_BRAS);
+		executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();", element);
+		Thread.sleep(3000);
+		//driver.findElement(SHOP_ALL_BRAS).click();
+		
 		//Reporter.log(driver.getCurrentUrl());
 
 	}
@@ -981,8 +1007,12 @@ public class HomePageComponents extends HomePageLocators {
 			action = new Actions(driver);
 			element = driver.findElement(BRA_CATEGORY);
 			action.moveToElement(element).perform();
-			driver.findElement(TRIANGLE_BRALETTE).click();
-			Thread.sleep(3000);	
+			WebElement element = driver.findElement(TRIANGLE_BRALETTE);
+			executor = (JavascriptExecutor)driver;
+			executor.executeScript("arguments[0].click();", element);
+			Thread.sleep(3000);
+			//driver.findElement().click();
+				
 			//Reporter.log(driver.getCurrentUrl());
 
 		}
@@ -992,7 +1022,11 @@ public class HomePageComponents extends HomePageLocators {
 					action = new Actions(driver);
 					element = driver.findElement(BRA_CATEGORY);
 					action.moveToElement(element).perform();
-					driver.findElement(SCOOP_BRALETTE).click();
+					WebElement element = driver.findElement(SCOOP_BRALETTE);
+					executor = (JavascriptExecutor)driver;
+					executor.executeScript("arguments[0].click();", element);
+
+				//	driver.findElement(SCOOP_BRALETTE).click();
 					Thread.sleep(3000);	
 					//Reporter.log(driver.getCurrentUrl());
 
@@ -1003,7 +1037,10 @@ public class HomePageComponents extends HomePageLocators {
 		action = new Actions(driver);
 		element = driver.findElement(PACKS);
 		action.moveToElement(element).perform();
-		driver.findElement(MYSTERYPACK_IN_PACKS).click();
+		WebElement element = driver.findElement(MYSTERYPACK_IN_PACKS);
+		executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();", element);
+		//driver.findElement(MYSTERYPACK_IN_PACKS).click();
 		Thread.sleep(3000);	
 		Reporter.log(driver.getCurrentUrl());
 
@@ -1030,6 +1067,16 @@ public class HomePageComponents extends HomePageLocators {
 		element = driver.findElement(BRA_CATEGORY);
 		action.moveToElement(element).perform();
 		driver.findElement(MIXANDMATCH).click();
+		Thread.sleep(3000);
+		Reporter.log(driver.getCurrentUrl());
+	}
+
+	public void navigateToHisNHerInPacks() throws Exception{
+		
+		action = new Actions(driver);
+		element = driver.findElement(PACKS);
+		action.moveToElement(element).perform();
+		driver.findElement(HISANDHERPACKS).click();
 		Thread.sleep(3000);
 		Reporter.log(driver.getCurrentUrl());
 	}

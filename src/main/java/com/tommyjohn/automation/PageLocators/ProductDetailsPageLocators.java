@@ -40,8 +40,8 @@ public class ProductDetailsPageLocators {
 	public static By PLUS_BUTTON = By.cssSelector(".pdp.plusBtn");
 	public static By UPDATED_QUANTITY = By.cssSelector(".pdp.updatedQty");
 	public static By MINUS_BUTTON = By.cssSelector(".pdp.minusBtn");
-	public static By PAIR_GUARANTEE = By.cssSelector("div.product-accordion.container> ul > li:nth-child(2) > div:nth-child(1) > a");
-	public static By SHIPING_AND_RETURNS = By.cssSelector("div.product-accordion.container> ul > li:nth-child(3) > div:nth-child(1) > a");
+	public static By PAIR_GUARANTEE = By.cssSelector("div.product-accordion.container> ul > li:nth-child(3) > div:nth-child(1) > a");
+	public static By SHIPING_AND_RETURNS = By.cssSelector("div.product-accordion.container> ul > li:nth-child(2) > div:nth-child(1) > a");
 	public static By CHECKOUT_BUTTON = By.cssSelector(".inline-cart__action-btns > a");
 	//public static By COLOR_AND_SIZE = By.cssSelector("div.product-info__variant-select > div:nth-child(1) > div.product-info__header.hide > span");
 

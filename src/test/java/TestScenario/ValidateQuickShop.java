@@ -27,11 +27,11 @@ public class ValidateQuickShop {
 	{
 		new QuickShopPage(driver).QuickShopOnCollectionPage();
 	}
-	@Test
-	public void TC_ValidateQuickShopOnBuyWith() throws Exception
-	{
-		new QuickShopPage(driver).QuickShopOnBuyWithSection();
-	}
+//	@Test
+//	public void TC_ValidateQuickShopOnBuyWith() throws Exception
+//	{
+//		new QuickShopPage(driver).QuickShopOnBuyWithSection();
+//	}
 	
 	@AfterMethod(alwaysRun = true)
 	void teardown () {
