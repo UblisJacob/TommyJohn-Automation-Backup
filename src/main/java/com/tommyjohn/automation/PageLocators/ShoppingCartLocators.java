@@ -15,9 +15,9 @@ public class ShoppingCartLocators {
 	public static By PRODUCT_COLOR_SIZE = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > div");
 	public static By PRODUCT_PRICE = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > div.line-item__price > span");
 	public static By PRODUCT_SUBTOTAL = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > div.line-item__total > div.line-item__subtotal >span");
-	public static By PRODUCT_QUANTITY = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > div.line-item__total > div > #updatedQty");
-	public static By PRODUCT_QUANT_MINUS = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > div.line-item__total > div > #minusBtn");
-	public static By PRODUCT_QUANT_ADD = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > div.line-item__total > div > #plusBtn");
+	public static By PRODUCT_QUANTITY = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > div.line-item__total > div > .prodQty");
+	public static By PRODUCT_QUANT_MINUS = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > div.line-item__total > div > button");
+	public static By PRODUCT_QUANT_ADD = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > div.line-item__total > div > button:nth-child(3)");
 	public static By CART_TOTAL_TEXT = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__summary > .inline-cart__summary > div > span");
 	public static By CART_TOTAL = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__summary > .inline-cart__summary > div > span:nth-child(2)");
 	//public static By CHECKOUT_BUTTON = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__summary > a");

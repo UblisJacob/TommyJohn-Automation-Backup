@@ -108,6 +108,7 @@ public class ContactUsComponent extends ContactUsPageLocators
 		else
 			throw new Exception("Wrong page opened after Help link clicked");
 		Reporter.log("Help link is Displayed :: Clickable");
+		Thread.sleep(4000);
 
 		softassert.assertTrue(driver.findElement(SHIPPING_RETURNS_POLICY).isDisplayed(), "'Shipping & Return Policy' link is not displayed.");
 		softassert.assertEquals(driver.findElement(SHIPPING_RETURNS_POLICY).getText(), properties.getProperty("Shipping&ReturnPolicy"),"Text changed for 'Shipping & Return Policy' link.");
@@ -116,10 +117,11 @@ public class ContactUsComponent extends ContactUsPageLocators
 		Thread.sleep(3000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://help.tommyjohn.com/hc/en-us/articles/360000507746-Shipping-Returns")) 
 			driver.navigate().back();
+		
 		else
 			throw new Exception("Wrong page opened after Shipping & Return Policy link clicked");
 		Reporter.log("Shipping & Return Policy link is Displayed :: Clickable");
-
+		Thread.sleep(4000);
 		softassert.assertTrue(driver.findElement(WHOLESALE_INQUIRIES).isDisplayed(), "'Wholesale Inquiries' link is not displayed.");
 		softassert.assertEquals(driver.findElement(WHOLESALE_INQUIRIES).getText(), properties.getProperty("WholesaleInquiries"),"Text changed for 'Wholesale Inquiries' link.");
 
@@ -130,7 +132,7 @@ public class ContactUsComponent extends ContactUsPageLocators
 		else
 			throw new Exception("Wrong page opened after Wholesale Inquiries link clicked");
 		Reporter.log("Wholesale Inquiries link is Displayed :: Clickable");
-
+		Thread.sleep(4000);
 		softassert.assertTrue(driver.findElement(NAME_TEXT).isDisplayed(), "'Name' label is not displayed.");
 		System.out.println("Name text is: "+driver.findElement(NAME_TEXT).getText());
 		softassert.assertEquals(driver.findElement(NAME_TEXT).getText(), properties.getProperty("Name"),"Text changed for 'Name' label.");

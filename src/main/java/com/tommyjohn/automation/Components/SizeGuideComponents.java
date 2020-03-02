@@ -61,7 +61,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 		List<WebElement> producttitle = driver.findElements(By.cssSelector(".product-meta__title"));
 		for (WebElement title : producttitle)
 		{
-			if(title.getText().contains("Dress Shirt"))
+			if(title.getText().contains("Shirt"))
 			{
 				title.click();
 				break;
@@ -86,7 +86,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 	public void validateMen_StretchedWovenBottom_SizeGuidePage() throws Exception
 	{
 		new HomePageComponents(driver).navigateToPantsAndShortsInMensCategory();
-		navigateToProductDetailsPage();
+		navigateToMensBottom();
 		validateMen_StrtchedWovenBottom();
 	}
 	public void validateWomenUnderwearSizeGuidePage() throws Exception
@@ -107,7 +107,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 		List<WebElement> producttitle = driver.findElements(By.cssSelector(".product-meta__title"));
 		for (WebElement title : producttitle)
 		{
-			if(!title.getText().contains("Go Anywhere®"))
+			if(!title.getText().contains("V-Neck Tee"))
 			{
 				title.click();
 				break;
@@ -122,7 +122,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 		List<WebElement> producttitle = driver.findElements(By.cssSelector(".product-meta__title"));
 		for (WebElement title : producttitle)
 		{
-			if(title.getText().contains("Go Anywhere®"))
+			if(title.getText().contains("Scoop Neck Tee"))
 			{
 				title.click();
 				break;
@@ -170,12 +170,15 @@ public class SizeGuideComponents extends SizeGuideLocators
 
 	public void validateMen_StretchedWovenBlazer_SizeGuidePage() throws Exception
 	{
+		new HomePageComponents(driver).navigateToHoodiesandJacketsInMensCategory();
+		navigatetoMensBlazer();
 		validateMen_StrtchedWovenBlazer();
 	}
 
 	public void validateBraSizeGuidePage() throws Exception {
 
 		navigateToBraPDP();
+		Thread.sleep(4000);
 
 		validateBraSizeGuide();
 
@@ -199,7 +202,11 @@ public class SizeGuideComponents extends SizeGuideLocators
 
 	public void validate_pack() throws Exception
 	{
-		driver.navigate().to("https://tommyjohn.com/collections/mens-underwear-packs/products/second-skin-boxer-brief-3-pack");
+		//driver.navigate().to("https://tommyjohn.com/collections/mens-underwear-packs/products/second-skin-boxer-brief-3-pack");
+	new HomePageComponents(driver).navigateToAllWomensPacksInPacksCategory();
+	
+		Thread.sleep(3000);
+		driver.findElement(By.cssSelector(".product-meta__title")).click();
 		Thread.sleep(3000);
 		Open_SizeGuide();
 		Thread.sleep(3000);
@@ -327,7 +334,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 
 	public void validateWomenUnderwearSizeGuide() throws Exception
 	{
-		driver.navigate().to("https://tommyjohn.com/collections/womens-second-skin-brief/?color=winetasting");
+		//driver.navigate().to("https://tommyjohn.com/collections/womens-second-skin-brief/?color=winetasting");
 		Thread.sleep(3000);
 		Open_SizeGuide();
 		Thread.sleep(3000);
@@ -344,7 +351,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 
 	public void validateWomenUnderShirtsSizeGuide() throws Exception
 	{
-		driver.navigate().to("https://tommyjohn.com/collections/womens-camisoles/products/womens-cool-cotton-stay-tucked-camisole?color=oatmeal-heather");
+		//driver.navigate().to("https://tommyjohn.com/collections/womens-camisoles/products/womens-cool-cotton-stay-tucked-camisole?color=oatmeal-heather");
 		Thread.sleep(3000);
 		Open_SizeGuide();
 		Thread.sleep(3000);
@@ -361,7 +368,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 
 	public void validateWomenT_ShirtsSizeGuide() throws Exception
 	{
-		driver.navigate().to("https://tommyjohn.com/products/womens-second-skin-crew-neck-graphic-tee-ballsy-large-logo");
+		//driver.navigate().to("https://tommyjohn.com/products/womens-second-skin-crew-neck-graphic-tee-ballsy-large-logo");
 		Thread.sleep(3000);
 		Open_SizeGuide();
 		Thread.sleep(3000);
@@ -442,7 +449,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 
 	public void validate_Womens_Top() throws Exception
 	{
-		driver.navigate().to("https://tommyjohn.com/collections/womens-tees-polos/products/womens-go-anywhere-quick-dry-relaxed-v-neck-tee");
+		//driver.navigate().to("https://tommyjohn.com/collections/womens-tees-polos/products/womens-go-anywhere-quick-dry-relaxed-v-neck-tee");
 		Thread.sleep(3000);
 		Open_SizeGuide();
 		Thread.sleep(3000);
@@ -460,7 +467,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 
 	public void validate_Womens_Woven_Blazer() throws Exception
 	{
-		driver.navigate().to("https://tommyjohn.com/collections/womens-hoodies-jackets/products/womens-stretch-woven-blazer");
+		//driver.navigate().to("https://tommyjohn.com/collections/womens-hoodies-jackets/products/womens-stretch-woven-blazer");
 		Thread.sleep(3000);
 		Open_SizeGuide();
 		Thread.sleep(3000);
@@ -478,7 +485,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 
 	public void validate_Womens_Bottoms() throws Exception
 	{
-		driver.navigate().to("https://tommyjohn.com/collections/womens-pants-shorts/products/womens-go-anywhere-lightweight-performance-pant");
+		//driver.navigate().to("https://tommyjohn.com/collections/womens-pants-shorts/products/womens-go-anywhere-lightweight-performance-pant");
 		Thread.sleep(3000);
 		Open_SizeGuide();
 		Thread.sleep(3000);
@@ -496,7 +503,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 
 	public void validateMenDressShirtSizeGuide() throws Exception
 	{
-		driver.navigate().to("https://tommyjohn.com/products/slim-fit-print-stay-tucked-dress-shirt");
+		//driver.navigate().to("https://tommyjohn.com/products/slim-fit-print-stay-tucked-dress-shirt");
 		Thread.sleep(3000);
 		Open_SizeGuide();
 		Thread.sleep(3000);
@@ -513,7 +520,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 
 	public void validateMenUnderShirtSizeGuide() throws Exception
 	{
-		driver.navigate().to("https://tommyjohn.com/products/second-skin-crew-neck-stay-tucked-undershirt-2-0");
+		//driver.navigate().to("https://tommyjohn.com/products/second-skin-crew-neck-stay-tucked-undershirt-2-0");
 		Thread.sleep(3000);
 		Open_SizeGuide();
 		Thread.sleep(3000);
@@ -530,7 +537,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 
 	public void validateMen_GoAnywhereShirt() throws Exception  
 	{
-		driver.navigate().to("https://tommyjohn.com/products/go-anywhere-un-tucked-shirt");
+		//driver.navigate().to("https://tommyjohn.com/products/go-anywhere-un-tucked-shirt");
 		Thread.sleep(3000);
 		Open_SizeGuide();
 		Thread.sleep(3000);
@@ -548,7 +555,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 
 	public void validateMen_StrtchedWovenBottom() throws Exception  
 	{
-		driver.navigate().to("https://tommyjohn.com/products/go-anywhere-everyday-tech-pant");
+		//driver.navigate().to("https://tommyjohn.com/products/go-anywhere-everyday-tech-pant");
 		Thread.sleep(3000);
 		Open_SizeGuide();
 		Thread.sleep(3000);
@@ -566,7 +573,8 @@ public class SizeGuideComponents extends SizeGuideLocators
 
 	public void validateMen_StrtchedWovenBlazer() throws Exception  
 	{
-		driver.navigate().to("https://tommyjohn.com/products/go-anywhere-everyday-tech-blazer");
+		//driver.navigate().to("https://tommyjohn.com/products/go-anywhere-everyday-tech-blazer");
+		
 		Thread.sleep(3000);
 		Open_SizeGuide();
 		Thread.sleep(3000);
@@ -584,7 +592,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 
 	public void Open_SizeGuide() throws Exception
 	{
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		if(!driver.findElement(SIZEGUIDE).isEnabled())
 			throw new Exception("Size Guide button is not present");
 		WebElement ele = driver.findElement(SIZEGUIDE);
@@ -833,6 +841,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 
 	public void validate_SizeGuideInstructions() throws Exception
 	{
+		Thread.sleep(3000);
 		if(!driver.findElement(SIZE_GUIDE_INSTRUCTION_CONTENT).isDisplayed())
 			throw new Exception("Product size guide instruction content is not displayed");
 	}
@@ -933,7 +942,10 @@ public class SizeGuideComponents extends SizeGuideLocators
 	{
 
 		new HomePageComponents(driver).navigateToBraCategory();
-		Thread.sleep(3000);
+		jse=(JavascriptExecutor)driver;
+		jse.executeScript("window.scrollBy(0,250)");
+		
+		Thread.sleep(4000);
 
 		List<WebElement> producttitle = driver.findElements(By.cssSelector(".product-meta__title"));
 		for (WebElement title : producttitle)
@@ -953,13 +965,21 @@ public class SizeGuideComponents extends SizeGuideLocators
 	public void navigateToBundlePDP() throws Exception 
 	{
 
-		new HomePageComponents(driver).navigateToAllWomensPacksInPacksCategory();
+		new HomePageComponents(driver).navigateToHisNHerInPacks();
+		Thread.sleep(4000);
+		driver.findElement(By.cssSelector(".product-meta__title")).click();
 		Thread.sleep(3000);
+
+		
+	}
+	
+	public void navigateToMensBottom() throws Exception 
+	{
 
 		List<WebElement> producttitle = driver.findElements(By.cssSelector(".product-meta__title"));
 		for (WebElement title : producttitle)
 		{
-			if(title.getText().contains("Set"))
+			if(title.getText().contains("Pant"))
 			{
 				Thread.sleep(3000);
 				System.out.println(title.getText());
@@ -970,5 +990,22 @@ public class SizeGuideComponents extends SizeGuideLocators
 			}
 		}
 	}
+	public void navigatetoMensBlazer() throws Exception 
+	{
 
+		List<WebElement> producttitle = driver.findElements(By.cssSelector(".product-meta__title"));
+		for (WebElement title : producttitle)
+		{
+			if(title.getText().contains("Blazer"))
+			{
+				Thread.sleep(3000);
+				System.out.println(title.getText());
+
+				title.click();
+
+				break;
+			}
+		}
+	}
+	
 }

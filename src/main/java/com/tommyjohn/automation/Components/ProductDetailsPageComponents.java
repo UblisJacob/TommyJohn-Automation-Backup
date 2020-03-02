@@ -3,6 +3,7 @@ package com.tommyjohn.automation.Components;
 import java.util.List;
 import java.util.Properties;
 
+import org.hamcrest.core.AnyOf;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -82,6 +83,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		List<WebElement> productcolors = driver.findElements(COLOR_TEXT);
 		for( WebElement color : productcolors )
 		{
+			System.out.println(color.getText());
 			if(!color.getText().isEmpty()) {
 				pdp.productcolor = color.getText();
 				break;
@@ -475,6 +477,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 					// check 'Best PairGuarantee' and 'Shopping And Returns' are clickable or not
 					flag = false;
+					Exception except = null;
 
 
 					if (driver.findElement(PRODUCT_DETAILS).isDisplayed())
@@ -497,15 +500,18 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 					catch(Exception e )
 					{
 						Reporter.log("Pair guarantee link is not present for this particular product");
+						except = e;
 					}
-					if (driver.findElement(SHIPING_AND_RETURNS).isDisplayed()) {
-						element = driver.findElement(SHIPING_AND_RETURNS);
-						jse = (JavascriptExecutor)driver;
-						jse.executeScript("arguments[0].click();", element);
-						//driver.findElement(SHIPING_AND_RETURNS).click();
-					}		
-					else throw new Exception("SHIPING_AND_RETURNS accordion not present or not clikable");	
-
+					if(except!=null)
+					{
+						if (driver.findElement(SHIPING_AND_RETURNS).isDisplayed()) {
+							element = driver.findElement(SHIPING_AND_RETURNS);
+							jse = (JavascriptExecutor)driver;
+							jse.executeScript("arguments[0].click();", element);
+							//driver.findElement(SHIPING_AND_RETURNS).click();
+						}		
+						else throw new Exception("SHIPING_AND_RETURNS accordion not present or not clikable");	
+					}
 					//Buywithcode
 
 					//driver.findElement())
@@ -1091,8 +1097,9 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		Thread.sleep(20000);
 		jse = (JavascriptExecutor)driver;
 		jse.executeScript("window.scrollBy(0,1000)");
-		
-		softAssert.assertEquals(driver.findElement(RFY_TITLE).getText() , "Recommended For You" , "Recommended for you title name change");
+
+		softAssert.assertTrue(driver.findElement(RFY_TITLE).isDisplayed() ,"Recommended for you title name change");
+
 		softAssert.assertTrue(driver.findElement(RFY_SECTION).isDisplayed(), "Recommended for you section not present");
 		softAssert.assertTrue(driver.findElement(RFY_PRODUCT_TITLE).isDisplayed(), "Recommended for you product title not present");
 		softAssert.assertTrue(driver.findElement(RFY_PRODUCT_IMAGE).isDisplayed(), "Recommended for you product image not present");
@@ -1138,10 +1145,10 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 		softAssert.assertTrue(driver.findElement(PRODUCT_TITLE).isDisplayed() , "Product Title is not displayed");
 		softAssert.assertTrue(driver.findElement(PRODUCT_PRICE).isDisplayed() ,"Product price is not displayed");	
-		softAssert.assertEquals(driver.findElement(MYSTERPACK_PRMOMSG).getText(), "All Mystery Packs are both mysterious and non-refundable" , "Promo message not displayed for mystery pack");
-		try{
-			softAssert.assertTrue(driver.findElement(SIZEGUIDE).isDisplayed() ,"Size Guide button is not present");
-
+		//softAssert.assertTrue(driver.findElement(MYSTERPACK_PRMOMSG).isDisplayed(),  "Promo message not displayed for mystery pack");
+		softAssert.assertTrue(driver.findElement(SIZEGUIDE).isDisplayed() ,"Size Guide button is not present");
+if(driver.findElement(SIZEGUIDE).isDisplayed())
+{
 			WebElement ele = driver.findElement(SIZEGUIDE);
 			JavascriptExecutor executor = (JavascriptExecutor)driver;
 			executor.executeScript("arguments[0].click();", ele);
@@ -1155,7 +1162,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 			Thread.sleep(3000);
 		}
-		catch(Exception e)
+else
 		{
 			System.out.println("Size guide link is not Displayed");
 			Reporter.log("Size guide link is not Displayed.");
@@ -1170,9 +1177,11 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			Reporter.log("Review Stars Are Displayed :: Clickable :: Clicked");
 			// check for Rating and Reviews are present or not
 			System.out.println("rating: " + driver.findElement(RATING_NUMBER).getText());
+
 			if(!driver.findElement(RATING_NUMBER).getText().equals("(0)"))
 			{
-
+				
+				
 				if(driver.findElement(RATING_AND_REVIEWS_BOX).isDisplayed()) {
 					if(!driver.findElement(FIRST_BOX_IN_RATING_AND_REVIEWS).isDisplayed())
 						throw new Exception("In first box Review Stars not present in Rating and Reviews section");
@@ -1277,18 +1286,18 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		{
 			Reporter.log("Pair guarantee link is not present for this particular product");
 		}
-		
+
 		try{
-		if(!driver.findElement(SHIPING_AND_RETURNS).getText().contentEquals("Free Shipping & Returns"))
-		{
-			if (driver.findElement(SHIPING_AND_RETURNS).isDisplayed()) {
-				element = driver.findElement(SHIPING_AND_RETURNS);
-				jse = (JavascriptExecutor)driver;
-				jse.executeScript("arguments[0].click();", element);
-				//driver.findElement(SHIPING_AND_RETURNS).click();
-			}		
-			else throw new Exception("SHIPING_AND_RETURNS accordion not present or not clikable");	
-		}
+			if(!driver.findElement(SHIPING_AND_RETURNS).getText().contentEquals("Free Shipping & Returns"))
+			{
+				if (driver.findElement(SHIPING_AND_RETURNS).isDisplayed()) {
+					element = driver.findElement(SHIPING_AND_RETURNS);
+					jse = (JavascriptExecutor)driver;
+					jse.executeScript("arguments[0].click();", element);
+					//driver.findElement(SHIPING_AND_RETURNS).click();
+				}		
+				else throw new Exception("SHIPING_AND_RETURNS accordion not present or not clikable");	
+			}
 		}
 		catch(Exception e )
 		{

@@ -136,6 +136,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 	Thread.sleep(3000);
 		softAssert.assertTrue(driver.getCurrentUrl().contains("checkouts"), "Checkout page is not displayed on clicking checkout button");
 		driver.navigate().back();
+		Thread.sleep(5000);
 		driver.findElement(HomePageLocators.CART_ICON).click();
 		Thread.sleep(3000);
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
