@@ -72,12 +72,12 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		if(!Prod_Image.isDisplayed())
 			//#		if(!driver.findElement(THIRD_PRODUCT_IMAGE).isDisplayed())
 			throw new Exception("Product image is not present");
-		
+
 		WebElement ele = driver.findElement(THIRD_PRODUCT_IMAGE);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", ele);
-		
-		
+
+
 		//	driver.findElement(THIRD_PRODUCT_IMAGE).click();
 		Thread.sleep(3000);
 		Reporter.log(driver.getCurrentUrl());
@@ -227,8 +227,8 @@ public class CollectionPageComponent extends CollectionPageLocator {
 				System.out.println("total displayed product on page :: "+allProductsOnPage1);
 				System.out.println("total displayed count of product :: "+totalDisplayedCount);
 				try{
-				if(allProductsOnPage1 != (Integer.parseInt(totalDisplayedCount)))
-					throw new Exception("Total displayed count is not same as all products on page");
+					if(allProductsOnPage1 != (Integer.parseInt(totalDisplayedCount)))
+						throw new Exception("Total displayed count is not same as all products on page");
 				}
 				catch(Exception e)
 				{
@@ -315,27 +315,27 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			allProductsOnPage = driver.findElements(FIRST_PRODUCT_IMAGE);
 			System.out.println("All product on page :: "+allProductsOnPage.size());
 			try{
-			for(int i=1; i < allProductsOnPage.size(); i++) {
-				String text = null;
-				String text1 = null;
-				String text2 = null;
+				for(int i=1; i < allProductsOnPage.size(); i++) {
+					String text = null;
+					String text1 = null;
+					String text2 = null;
 
-				text = driver.findElement(By.cssSelector(".mega-collection-grid__row > div.product-item:nth-child("+i+") > div.product-meta__prices")).getText();
-				System.out.println("Text :: "+text);
-				for (String a : text.split("\\$")) 
-					text1 = a;
-				System.out.println("text 1 :: "+text1);
-				// loop to check previous and next price
-				int j = i+1;
-				System.out.println("Text :: "+driver.findElement(By.cssSelector(".mega-collection-grid__row > div.product-item:nth-child("+j+") > div.product-meta__prices")).getText());
-				for (String a : driver.findElement(By.cssSelector(".mega-collection-grid__row > div.product-item:nth-child("+j+") > div.product-meta__prices")).getText().split("\\$")) 
-					text2 = a;
-				System.out.println("text2 :: "+text2);
-				if(Float.parseFloat(text1) > Float.parseFloat(text2))
-					throw new Exception("Products are not sorted by price correctly");
+					text = driver.findElement(By.cssSelector(".mega-collection-grid__row > div.product-item:nth-child("+i+") > div.product-meta__prices")).getText();
+					System.out.println("Text :: "+text);
+					for (String a : text.split("\\$")) 
+						text1 = a;
+					System.out.println("text 1 :: "+text1);
+					// loop to check previous and next price
+					int j = i+1;
+					System.out.println("Text :: "+driver.findElement(By.cssSelector(".mega-collection-grid__row > div.product-item:nth-child("+j+") > div.product-meta__prices")).getText());
+					for (String a : driver.findElement(By.cssSelector(".mega-collection-grid__row > div.product-item:nth-child("+j+") > div.product-meta__prices")).getText().split("\\$")) 
+						text2 = a;
+					System.out.println("text2 :: "+text2);
+					if(Float.parseFloat(text1) > Float.parseFloat(text2))
+						throw new Exception("Products are not sorted by price correctly");
 
-			}
 				}
+			}
 			catch(Exception e)
 			{
 				System.out.println("Due to lazy loading price comparison is not possible for sort by filter.");
@@ -660,11 +660,81 @@ public class CollectionPageComponent extends CollectionPageLocator {
 				System.out.println("OOS/Unavaiable size is selected.");
 				Reporter.log("Quick shop size overlay OOS/unavailable button is disabled.");
 			}
-			
+
 		}
 		else
 			throw new Exception("Quick Shop ATC button is not displayed on hover.");
 		softAssert.assertAll();
 	}
+
+	public void MethodToCheckColorSwatchChanging() throws Exception {
+		Thread.sleep(5000);
+		JavascriptExecutor executore = (JavascriptExecutor) driver;
+		executore.executeScript("window.scrollBy(0, 350)", "");
+		Thread.sleep(5000);
+
+		List<WebElement> allElements = driver.findElements(ALL_COLOR_LIST);
+		int elementsCount = allElements.size();
+		System.out.println("Color Element count :: " + elementsCount);
+
+		if (elementsCount > 1)
+		{
+			element = driver.findElement(By.cssSelector("div.mega-collection-grid.js-mega-collection-grid > div:nth-child(3) > div:nth-child(1)>div:nth-child(2)>.product-item__swatch-list>.slick-list>.slick-track>div:nth-child(1)>div"));
+			element.click();
+
+			for (int i = 1; i < elementsCount; i++) {
+					if (i < 4) {
+					String Img_colortext = null;
+					String colornew1 = null;
+					text = driver.findElement(PRODUCT_IMAGE_COLOR_NAME).getAttribute("href");
+					String[] strarray = text.split("[=]");
+					String text1 = strarray[strarray.length - 1];
+					Img_colortext = text1.replace("-", " ");
+
+					System.out.println("Product image color name is: " + Img_colortext);
+
+
+					element = driver.findElement(By.cssSelector("div.mega-collection-grid.js-mega-collection-grid > div:nth-child(3) > div:nth-child(1)>div:nth-child(2)>.product-item__swatch-list>.slick-list>.slick-track>div:nth-child("+ i +")>div"));
+					colornew1 = element.getAttribute("title"); 
+					String colornew = colornew1.replace("/", " ");
+					System.out.println(colornew);
+					if(colornew.equalsIgnoreCase(Img_colortext)) 
+					{
+						WebElement elemen =driver.findElement(By.cssSelector("div.mega-collection-grid.js-mega-collection-grid > div:nth-child(3) > div:nth-child(1)>div:nth-child(2)>.product-item__swatch-list>.slick-list>.slick-track>div:nth-child( "+ (i+1) + ")>div"));
+						executore.executeScript("arguments[0].click();", elemen);
+						softAssert.assertEquals(Img_colortext , colornew , "Color not changing");
+                        Reporter.log("Color swatches are changing correctly");
+					}
+					else {
+						throw new Exception("Color not changing");
+					}
+				}
+			}
+		}
+
+		// Check slick arrows of color Swatches
+		if(elementsCount > 8)
+		{
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			element = driver.findElement(COLOR_SWATCH_NEXT_SLICK_ARROWS);
+			softAssert.assertTrue(element.getAttribute("aria-disabled").equals("false"), "Color swatch next slick arrow is not enabled.");
+			if(element.getAttribute("aria-disabled").equals("false"))
+			{
+				js.executeScript("arguments[0].click();", element);
+			}		
+			
+			element = driver.findElement(COLOR_SWATCH_PREV_SLICK_ARROWS);
+			softAssert.assertTrue(element.getAttribute("aria-disabled").equals("false"), "Color swatch prev slick arrow is not enabled.");
+			if(element.getAttribute("aria-disabled").equals("false"))
+			{
+				js.executeScript("arguments[0].click();", element);
+			}	
+			Reporter.log("Color swatch slick arrows are displayed :: Clickable");
+		}
+
+	}
+
+
+
 }
 
