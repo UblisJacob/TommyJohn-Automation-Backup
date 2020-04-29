@@ -361,7 +361,7 @@ public class HomePageComponents extends HomePageLocators {
 			driver.navigate().back();
 		else
 			throw new Exception("Wrong page opened after Press footer link clicked");
-		Reporter.log("Press fotter link is Displayed :: Clickable");
+		Reporter.log("Press footer link is Displayed :: Clickable");
 		Thread.sleep(5000);
 
 		// check military discount link
@@ -374,7 +374,7 @@ public class HomePageComponents extends HomePageLocators {
 			driver.navigate().back();
 		else
 			throw new Exception("Wrong page opened after Military Discount footer link clicked");
-		Reporter.log("Military Discount fotter link is Displayed :: Clickable");
+		Reporter.log("Military Discount footer link is Displayed :: Clickable");
 		Thread.sleep(5000);
 
 		// check Teacher Discount  link
@@ -387,7 +387,7 @@ public class HomePageComponents extends HomePageLocators {
 			driver.navigate().back();
 		else
 			throw new Exception("Wrong page opened after Teacher Discount footer link clicked");
-		Reporter.log("Teacher Discount fotter link is Displayed :: Clickable");
+		Reporter.log("Teacher Discount footer link is Displayed :: Clickable");
 		Thread.sleep(5000);
 
 		// check  Jobs  link
@@ -442,17 +442,18 @@ public class HomePageComponents extends HomePageLocators {
 		Thread.sleep(5000);
 
 		// check  Help  link
-		text = driver.findElement(HELP_LINK).getText();
-		if(!text.equals("Help"))
-			throw new Exception("Help link text is changed");	
-		driver.findElement(HELP_LINK).click();
-		Thread.sleep(5000);
-		if(driver.getCurrentUrl().equalsIgnoreCase("https://help.tommyjohn.com/hc/en-us")) 
-			driver.navigate().back();
-		else
-			throw new Exception("Wrong page opened after Help footer link clicked");
-		Reporter.log("Help fotter link is Displayed :: Clickable");
-		Thread.sleep(5000);
+//		text = driver.findElement(HELP_LINK).getText();
+//		if(!text.equals("Help"))
+//			throw new Exception("Help link text is changed");	
+//		driver.findElement(HELP_LINK).click();
+//		Thread.sleep(5000);
+//		if(driver.getCurrentUrl().equalsIgnoreCase("https://help.tommyjohn.com/hc/en-us")) 
+//			driver.navigate().back();
+		
+//		else
+//			throw new Exception("Wrong page opened after Help footer link clicked");
+//		Reporter.log("Help fotter link is Displayed :: Clickable");
+//		Thread.sleep(5000);
 		
 		// check  Contact Us  link
 		text = driver.findElement(CONTACT_US_LINK).getText();
@@ -558,7 +559,7 @@ public class HomePageComponents extends HomePageLocators {
 			throw new Exception("Loyalty link text is changed");	
 		driver.findElement(LOYALTY_LINK).click();
 		Thread.sleep(5000);
-		if(driver.getCurrentUrl().equalsIgnoreCase("https://help.tommyjohn.com/hc/en-us/sections/360000067306-Loyalty-Rewards")) 
+		if(driver.getCurrentUrl().equalsIgnoreCase("https://help.tommyjohn.com/hc/en-us/sections/360008463991-Loyalty-Rewards")) 
 			driver.navigate().back();
 		else
 			throw new Exception("Wrong page opened after Loyalty footer link clicked");

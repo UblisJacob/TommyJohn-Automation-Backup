@@ -6,7 +6,6 @@ import java.util.Properties;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotVisibleException;
-import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -28,12 +27,13 @@ public class CustomUtilities {
 	 * 
 	 * @throws Exception
 	 */
+	
 	//	@BeforeSuite
 	@SuppressWarnings("finally")
 	public WebDriver launchtj() throws Exception 
 	{
 		// load properties file
-		loadPropertiesFile();
+		loadPropertiesFile(); 
 
 		//	System.setProperty("webdriver.chrome.driver" ,"src\\main\\resources\\chromedriver.exe");
 		//	System.setProperty("webdriver.chrome.driver" ,"/tmp/chromedriver.exe");
@@ -91,7 +91,5 @@ public class CustomUtilities {
 		}
 
 	}
-	
-	
 
 }
