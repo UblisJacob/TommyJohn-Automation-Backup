@@ -43,7 +43,12 @@ public class CollectionPage extends CollectionPageComponent{
 		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
 		methodToCheckCorosalsOnTopOfPageIsActiveWhenRelatedStyleIsChecked();
 	}
-
+	public void validateColorSwatcheonAllpanties() throws Exception
+	{
+		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
+		MethodToCheckColorSwatchChanging();
+	}
+	
 	public void validateproductimageonAllUnderwear() throws Exception
 	{
 		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
@@ -73,7 +78,12 @@ public class CollectionPage extends CollectionPageComponent{
 		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 		methodToCheckCorosalsOnTopOfPageIsActiveWhenRelatedStyleIsChecked();
 	}
-
+	public void validateColorSwatcheonAllUnderwear() throws Exception
+	{
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
+		MethodToCheckColorSwatchChanging();
+	}
+	
 	public void validateproductimageonAllUndershirts() throws Exception {
 
 		new HomePageComponents(driver).navigateToAllUnderShirtsInMensCategory();
@@ -102,6 +112,11 @@ public class CollectionPage extends CollectionPageComponent{
 	{
 		new HomePageComponents(driver).navigateToAllUnderShirtsInMensCategory();
 		methodToCheckCorosalsOnTopOfPageIsActiveWhenRelatedStyleIsChecked();
+	}
+	public void validateColorSwatcheonAllUndershirts() throws Exception
+	{
+		new HomePageComponents(driver).navigateToAllUnderShirtsInMensCategory();
+		MethodToCheckColorSwatchChanging();
 	}
 
 	public void validateproductimageonAllWomensCollection() throws Exception {
@@ -133,7 +148,11 @@ public class CollectionPage extends CollectionPageComponent{
 		new HomePageComponents(driver).navigateToAllWomensCollectionInWomensCategory();
 		methodToCheckCorosalsOnTopOfPageIsActiveWhenRelatedStyleIsChecked();
 	}
-
+	public void validateColorSwatcheonAllWomensCollection() throws Exception
+	{
+		new HomePageComponents(driver).navigateToAllWomensCollectionInWomensCategory();
+		MethodToCheckColorSwatchChanging();
+	}
 
 	//Single Collections
 
@@ -160,6 +179,11 @@ public class CollectionPage extends CollectionPageComponent{
 		new HomePageComponents(driver).navigateToSecondSkinInMenCategory();
 		methodToCheckAllFilters();
 	}
+	public void validateColorSwatcheonSecondSkin() throws Exception
+	{
+		new HomePageComponents(driver).navigateToSecondSkinInMenCategory();
+		MethodToCheckColorSwatchChanging();
+	}
 
 	public void validateproductimageonOnCoolCotton() throws Exception {
 
@@ -183,6 +207,11 @@ public class CollectionPage extends CollectionPageComponent{
 	{
 		new HomePageComponents(driver).navigateToCoolCottonInMensCollection();
 		methodToCheckAllFilters();
+	}
+	public void validateColorSwatcheonCoolCotton() throws Exception
+	{
+		new HomePageComponents(driver).navigateToCoolCottonInMensCollection();
+		MethodToCheckColorSwatchChanging();
 	}
 	
 	public void validateproductimageonOnCottonBasics() throws Exception {
@@ -208,6 +237,11 @@ public class CollectionPage extends CollectionPageComponent{
 		new HomePageComponents(driver).navigateToCottonBasicsInMensCategory();
 		methodToCheckAllFilters();
 	}
+	public void validateColorSwatcheonCottonBasics() throws Exception
+	{
+		new HomePageComponents(driver).navigateToCottonBasicsInMensCategory();
+		MethodToCheckColorSwatchChanging();
+	}
 	
 	public void validateproductimageonOnPacks() throws Exception {
 
@@ -232,6 +266,8 @@ public class CollectionPage extends CollectionPageComponent{
 		new HomePageComponents(driver).navigateToAllWomensPacksInPacksCategory();
 		methodToCheckAllFilters();
 	}
+	
+	
 
 	// All collection URLs
 	public void validateallcollectionurls() throws Exception

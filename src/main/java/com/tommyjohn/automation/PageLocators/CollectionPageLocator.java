@@ -20,6 +20,12 @@ public class CollectionPageLocator {
 	public static By THIRD_PRODUCT_HEAD_LINE_TEXT = By.cssSelector(".product-meta__title");
 	public static By THIRD_PRODUCT_REVIEW_STARS = By.cssSelector(".yotpo");
 	
+	public static By ALL_COLOR_LIST = By.cssSelector("div.mega-collection-grid.js-mega-collection-grid > div:nth-child(3) > div:nth-child(1)>div:nth-child(2)>.product-item__swatch-list>.slick-list>.slick-track>div");
+	public static By PRODUCT_IMAGE_COLOR_NAME= By.cssSelector("div.mega-collection-grid.js-mega-collection-grid > div:nth-child(3) > div:nth-child(1)>div:nth-child(1)>a");
+	public static By COLOR_SWATCH_PREV_SLICK_ARROWS = By.cssSelector("div.mega-collection-grid.js-mega-collection-grid > div:nth-child(3) > div:nth-child(1)>div:nth-child(2)>.product-item__swatch-list>.slick-next");
+	public static By COLOR_SWATCH_NEXT_SLICK_ARROWS = By.cssSelector("div.mega-collection-grid.js-mega-collection-grid > div:nth-child(3) > div:nth-child(1)>div:nth-child(2)>.product-item__swatch-list>.slick-prev");
+
+	
 	public static By MAIN_HEADING_OF_SELECTED_CATEGORY = By.cssSelector("div.collection-title-bar__content > h1");
 	public static By ALL_FILTERS = By.cssSelector("div.mega-collection-filters > div > a");
 	public static By DISPLAYED_ALL_SELECTED_OPTIONS = By.cssSelector("div.js-mega-collection-desktop-filter-tags > button");
