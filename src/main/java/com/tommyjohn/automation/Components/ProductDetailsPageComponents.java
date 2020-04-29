@@ -396,7 +396,11 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 						}
 						else 
 						{
-							driver.findElement(By.cssSelector(".select--options__list> li:nth-child("+i+")")).click();
+
+							WebElement el = driver.findElement(By.cssSelector(".select--options__list> li:nth-child("+i+")"));
+							jse = (JavascriptExecutor)driver;
+							jse.executeScript("arguments[0].click();", el);
+							
 							System.out.println("Unavailable size clicked");
 							//	driver.findElement(ADD_TO_CART_BUTTON).click();
 							System.out.println(driver.findElement(ADD_TO_CART_BUTTON).getText());

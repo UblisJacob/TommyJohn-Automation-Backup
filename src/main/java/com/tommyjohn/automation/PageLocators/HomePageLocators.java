@@ -58,7 +58,7 @@ public class HomePageLocators{
 	public static By SEARCHRESULT_KEYWORD = By.cssSelector(".nxt-ac-section-container > .nxt-ac-item");
 	public static By SEARCHRESULT_PRODUCT = By.cssSelector(".nxt-ac-products-container > .nxt-ac-item");
 	
-	public static By SEARCHPAGE_TITLE = By.cssSelector(".collection-title-bar__title");
+	public static By SEARCHPAGE_TITLE = By.cssSelector(".collection-search-title-bar__title");
 	public static By SEARCHPAGE_DESC= By.cssSelector(".collection-title-bar__description");
 	public static By SEARCHPAGE_ITEMCOUNT= By.cssSelector(".collection-filters__active-count");
 	public static By SEARCHPAGE_FILTER= By.cssSelector(".collection-filter");
@@ -82,7 +82,7 @@ public class HomePageLocators{
 
 	//public static By CHAT_WITH_US_POPUP_MINIMIZE = By.cssSelector(".button_container.last_child.jx_ui_Widget > div > div");
 	public static By CALL_US_OPTION = By.cssSelector(".header-nav-dropdown > ul > li:nth-child(3) > a");
-	public static By EMAIL_US = By.cssSelector(".header-nav-dropdown > ul > li:nth-child(4) > a");
+	public static By EMAIL_US = By.cssSelector(".header-nav-dropdown > ul > li:nth-child(5) > a");
 
 	public static By ACCOUNT_ICON = By.xpath("//i[@class='icon-account']"); //cssSelector("i.icon-account");
 	public static By REORDER = By.cssSelector("header-desktop-right > li:nth-child(3) >div > ul > li:nth-child(2) > a ");
