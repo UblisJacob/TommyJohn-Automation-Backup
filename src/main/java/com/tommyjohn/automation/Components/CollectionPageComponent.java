@@ -226,14 +226,15 @@ public class CollectionPageComponent extends CollectionPageLocator {
 				//                
 				System.out.println("total displayed product on page :: "+allProductsOnPage1);
 				System.out.println("total displayed count of product :: "+totalDisplayedCount);
-				try{
-					if(allProductsOnPage1 != (Integer.parseInt(totalDisplayedCount)))
-						throw new Exception("Total displayed count is not same as all products on page");
-				}
-				catch(Exception e)
-				{
-					System.out.println("Due to lazy loading total displayed count is not possible.");
-				}
+				
+//				try{
+//					if(allProductsOnPage1 != (Integer.parseInt(totalDisplayedCount)))
+//						throw new Exception("Total displayed count is not same as all products on page");
+//				}
+//				catch(Exception e)
+//				{
+//					System.out.println("Due to lazy loading total displayed count is not possible.");
+//				}
 
 				ct++;
 
@@ -305,7 +306,12 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		{
 			//driver.findElement(LAST_FILTER).click();
 			Select selectElement = new Select(driver.findElement(LAST_FILTER));
-			selectElement.selectByValue("price:asc");
+			if(driver.getTitle().contains("Search"))
+			selectElement.selectByIndex(3);
+			else
+				selectElement.selectByIndex(2);
+			
+		
 
 			// click on second option
 
@@ -314,8 +320,10 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			Thread.sleep(5000);
 			allProductsOnPage = driver.findElements(FIRST_PRODUCT_IMAGE);
 			System.out.println("All product on page :: "+allProductsOnPage.size());
+			if(allProductsOnPage.size()>5)
+			{
 			try{
-				for(int i=1; i < allProductsOnPage.size(); i++) {
+				for(int i=1; i < 6; i++) {
 					String text = null;
 					String text1 = null;
 					String text2 = null;
@@ -336,6 +344,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 				}
 			}
+		
 			catch(Exception e)
 			{
 				System.out.println("Due to lazy loading price comparison is not possible for sort by filter.");
@@ -343,7 +352,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			Reporter.log("All Products are sorted as selected option");
 
 		}
-
+		}
 
 	}
 	public void  methodToCheckCorosalsOnTopOfPageIsActiveWhenRelatedStyleIsChecked() throws Exception {

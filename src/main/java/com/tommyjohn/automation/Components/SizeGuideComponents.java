@@ -163,7 +163,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 	}	
 	public void validate_pack_SizeGuidePage() throws Exception
 	{
-		new HomePageComponents(driver).nevigateToAllMensPacksInPacksCategory();
+		new HomePageComponents(driver).navigateToAllMensPacksInPacksCategory();
 		navigateToProductDetailsPage();
 		validate_pack();
 	}

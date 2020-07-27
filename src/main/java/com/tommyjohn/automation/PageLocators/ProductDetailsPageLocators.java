@@ -6,7 +6,7 @@ public class ProductDetailsPageLocators {
 
 	public static By FIRST_PRODUCT_REVIEW_STARS = By.cssSelector("div.mega-collection-grid__row:nth-child(3) > div:nth-child(3) > a > div");
 
-	public static By PRODUCT_TITLE = By.cssSelector(".product-info__inner-top > div > .product-info__title-wrap > .product-info__title");
+	public static By PRODUCT_TITLE = By.cssSelector(" .product-info__title-wrap > .product-info__title");
 	//	public static By PRODUCT_PRICE = By.cssSelector("div.product-info__inner-top > span > span:nth-child(2)");
 	public static By PRODUCT_PRICE = By.cssSelector("div.multi-pdp-title-wrap.desktop-view > div.product-info__price-wrap >span > span:nth-child(2)");
 
@@ -31,7 +31,7 @@ public class ProductDetailsPageLocators {
 
 	public static By ALL_COLOR_LIST = By.cssSelector(".product-option__color-swatches-wrapper > ul >li");
 	public static By PRODUCT_DETAILS = By.cssSelector("div.product-accordion.container> ul > li:nth-child(1) > div:nth-child(1) > a");
-	public static By SIZEGUIDE = By.cssSelector(".product-info__header--desktop > button");
+	public static By SIZEGUIDE = By.cssSelector(".product-info__header--desktop > button.size-guide");
 	public static By SIZE_GUIDE_BUTTON = By.cssSelector(".product-details__controls--inner > button:nth-child(2)");
 	public static By ADD_TO_CART_BUTTON = By.cssSelector("button.product-info__atc.button.button--red.button--full.js-loop-atc");
 	public static By JOIN_THE_WAITLIST = By.cssSelector("button.product-info__atc.button.button--red.button--full.js-loop-atc.email-when-in-stock");
@@ -77,7 +77,7 @@ public class ProductDetailsPageLocators {
 	public static By STAR_RATINGS = By.cssSelector(".yotpo-stars-and-sum-reviews > span > span.sr-only");
 	
 	public static By WRITE_REVIEW_BUTTON = By.cssSelector(".write-review-button");
-	public static By WRITE_REVIEW_HEADING = By.cssSelector("#pdpReviews > div > div > form > div");
+	public static By WRITE_REVIEW_HEADING = By.cssSelector(".yotpo_write-review-header > h3");
 	public static By WRITE_REVIEW_HEADING1 = By.cssSelector(".y-label.yotpo-header-title");
 	public static By REVIEW_STARS_IN_RATING_AND_REVIEWS = By.cssSelector(".yotpo-bottomline-box-1 > span:nth-child(1)");
 	public static By REVIEWS_TITLE = By.cssSelector(".review-title");
