@@ -27,7 +27,7 @@ public class CollectionPageLocator {
 
 	
 	public static By MAIN_HEADING_OF_SELECTED_CATEGORY = By.cssSelector("div.collection-title-bar__content > h1");
-	public static By ALL_FILTERS = By.cssSelector("div.mega-collection-filters > div > a");
+	public static By ALL_FILTERS = By.cssSelector("div.mega-collection-filters > div");
 	public static By DISPLAYED_ALL_SELECTED_OPTIONS = By.cssSelector("div.js-mega-collection-desktop-filter-tags > button");
 	public static By CLEAR_FILTER_BUTTON = By.cssSelector("div.mega-collection-filters--controls > a");
 	public static By FIRST_ITEM_IN_DISPLAYED_LIST = By.cssSelector("div.js-mega-collection-desktop-filter-tags > button:nth-child(1)");

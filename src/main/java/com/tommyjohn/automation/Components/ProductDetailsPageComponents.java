@@ -109,13 +109,14 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		String colornew = null;
 		String colortext = null;
 		String quantity;
-		List<WebElement> l = driver.findElements(By.cssSelector(".product-info__header"));
-		if(l.size()==1)
-		{
-			SoftAssert softAssert =  new SoftAssert();
+		//List<WebElement> l = driver.findElements(By.cssSelector(".product-info__header"));
+		
+		SoftAssert softAssert =  new SoftAssert();
 
 			System.out.println(driver.getCurrentUrl());
-			driver.navigate().refresh();
+			
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_PRICE));
 			// check product price is displayed or not
 			if(!driver.findElement(PRODUCT_PRICE).isEnabled())
 				throw new Exception("Product price is not displayed");
@@ -164,9 +165,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			System.out.println("Vertical images are displayed on PDP.");
 			Reporter.log("Vertical images are displayed on PDP.");
 
-
-
-			// check for whats my size
+			// check for Size Guide button 
 			if(!driver.findElement(SIZEGUIDE).isEnabled())
 				throw new Exception("Size Guide button is not present");
 			WebElement ele = driver.findElement(SIZEGUIDE);
@@ -176,56 +175,30 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			Thread.sleep(3000);
 
 			if (!driver.findElement(By.cssSelector(".size-chart-content")).isDisplayed())
-				//		allClasses = driver.findElement(SIZE_GUIDE_BUTTON).getAttribute("class");
-				//		for (String c : allClasses.split(" ")) {
-				//			if (c.equals("active")) {
-				//				flag = true;
-				//			}
-				//		}
-				//		if(!flag)
 				throw new Exception("Sizes chart overlay is not displayed after Size guide button was clicked");
 			Reporter.log("Size guide is Displayed :: Clickable");
 
 			driver.findElement(By.cssSelector(".close_chart_modal")).click();
+			
 
-			// scroll it top again
-
-			Thread.sleep(8000);
-
-			// Check review stars are clickable and visible or not
-
-			//	throw new Exception("Star rating not present");
-
-			//		element = driver.findElement(RATING_STARS);
-			//		// get all classes from specified path
-			//		allClasses = element.getAttribute("class");
-			//		// check stars are clickable or not by using star-clickable class name
-			//		for (String c : allClasses.split(" ")) {
-			//			if (c.equals("star-clickable")) {
-
-			//			}
-			//		}
+		//check rating n reviews
+			wait.until(ExpectedConditions.visibilityOfElementLocated(RATING_STARS));
 			if(driver.findElement(RATING_STARS).isDisplayed()) {
 
-				//			Thread.sleep(3000);
-				//			jse = (JavascriptExecutor)driver;
-				//			jse.executeScript("window.scrollBy(0,-250)", "");
-				//			Thread.sleep(4000);
-				//			//	driver.findElement(By.cssSelector(".yotpo-stars")).click();
-				//			//driver.findElement(RATING_STARS).click();
-				driver.navigate().refresh();
-				Thread.sleep(15000);
 				WebElement elem = driver.findElement(RATING_STARS);
 				JavascriptExecutor executore = (JavascriptExecutor)driver;
 				executore.executeScript("arguments[0].click();", elem);
 				// wait for scroll it down
-				Thread.sleep(6000);
+				wait.until(ExpectedConditions.presenceOfElementLocated(RATING_NUMBER));
+				
 				Reporter.log("Review Stars Are Displayed :: Clickable :: Clicked");
 				// check for Rating and Reviews are present or not
 				System.out.println("rating: " + driver.findElement(RATING_NUMBER).getText());
+				
 				if(!driver.findElement(RATING_NUMBER).getText().equals("(0)"))
 				{
 
+					Thread.sleep(3000);
 					if(driver.findElement(RATING_AND_REVIEWS_BOX).isDisplayed()) {
 						if(!driver.findElement(FIRST_BOX_IN_RATING_AND_REVIEWS).isDisplayed())
 							throw new Exception("In first box Review Stars not present in Rating and Reviews section");
@@ -257,33 +230,10 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 
 			// check for write a review button
-			//		if(!driver.findElement(WRITE_REVIEW_BUTTON).isEnabled())
-			//			throw new Exception("Write Review Button is not displayed");
-			//		// check Write Review portion should not be visible before click button to Write Review
-			//		element = driver.findElement(WRITE_REVIEW_HEADING);
-			//		allClasses = element.getAttribute("class");
-			//		for (String c : allClasses.split(" ")) {
-			//			if (c.equals("visible")) {
-			//				throw new Exception("Write Review portion should not be visible before Write Review button is clicked");
-			//			}
-			//		}
-			//		WebDriverWait wait = new WebDriverWait(driver, 30);
-			//		wait.until(ExpectedConditions.visibilityOfElementLocated(WRITE_REVIEW_BUTTON));	
-			//		//driver.findElement(WRITE_REVIEW_BUTTON).click();
-			//		WebElement elem = driver.findElement(WRITE_REVIEW_BUTTON);
-			//		JavascriptExecutor executore = (JavascriptExecutor)driver;
-			//		executore.executeScript("arguments[0].click();", elem);
-			//		// check Write Review portion should be visible by clicking Write A Review button
-			//		element = driver.findElement(WRITE_REVIEW_HEADING);
-			//		allClasses = element.getAttribute("class");
-			//		for (String c : allClasses.split(" ")) {
-			//			if (c.equals("visible")) {
-			//				flag = true;
-			//			}
-			//		}
-			//		if(!flag)
-			//			throw new Exception("Write Review portion is not visible after click Write Review button");
-			//		Reporter.log("Write A Review button Displayed :: Clickable :: Write Review portion is Displayed after click button :: Text Correct");
+			WebElement writereview = driver.findElement(WRITE_REVIEW_BUTTON);
+			executor.executeScript("arguments[0].click();", writereview);
+
+			softAssert.assertEquals(driver.findElement(WRITE_REVIEW_TITLE).getText(), "Write a Review", "Laguage mismatch for Write a Review title");
 
 			// scroll it top again
 			((JavascriptExecutor) driver).executeScript("window.scrollTo(0, -document.body.scrollHeight)");
@@ -298,8 +248,6 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 			if(elementsCount > 1)
 			{
-
-
 				for(int i=1;i<elementsCount;i++)
 				{
 					if(i<4)
@@ -557,11 +505,11 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			}
 			//}
 			softAssert.assertAll();
+		
+//		else {
+//			Reporter.log("Bundle page opened and it is validated separately");
 		}
-		else {
-			Reporter.log("Bundle page opened and it is validated separately");
-		}
-	}
+//	}
 
 	public void validateafterpayonpdp() throws Exception {
 		String text = null;

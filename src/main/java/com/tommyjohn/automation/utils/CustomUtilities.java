@@ -39,13 +39,14 @@ public class CustomUtilities {
 		//	System.setProperty("webdriver.chrome.driver" ,"/tmp/chromedriver.exe");
 		System.setProperty("webdriver.chrome.driver" ,properties.getProperty("chromeDriverPath"));
 		ChromeOptions chromeOptions = new ChromeOptions();
-		chromeOptions.addArguments("--headless");
+//		chromeOptions.addArguments("--headless");
 		chromeOptions.addArguments("window-size=1366,768");
 		chromeOptions.addArguments("--no-sandbox"); 
 		chromeOptions.addArguments("--disable-dev-shm-usage"); 
 		chromeOptions.addArguments("--aggressive-cache-discard"); 
 		chromeOptions.addArguments("--disable-cache"); 
 		chromeOptions.addArguments("--disable-application-cache"); 
+		chromeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
 	
 	//	chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
 		driver= new ChromeDriver(chromeOptions);

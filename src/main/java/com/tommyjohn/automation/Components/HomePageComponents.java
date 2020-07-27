@@ -9,6 +9,8 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
 
@@ -24,6 +26,7 @@ public class HomePageComponents extends HomePageLocators {
 	public String currentUrl2;
 	boolean flag = false;
 	public static WebElement element;
+	public static WebElement ele1;
 	public Actions action;
 	JavascriptExecutor executor = (JavascriptExecutor)driver;
 
@@ -39,12 +42,13 @@ public class HomePageComponents extends HomePageLocators {
 	public void ValidateLogoAndCategoriesPresence() throws Exception
 	{
 		action = new Actions(driver);
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		if(driver.findElement(HOMEPAGE_LOGO).isDisplayed())
 		{
 
 			currentUrl1 = driver.getCurrentUrl();
 			WebElement element = driver.findElement(HOMEPAGE_LOGO);
-			JavascriptExecutor executor = (JavascriptExecutor)driver;
+			
 			executor.executeScript("arguments[0].click();", element);		
 			String currentUrl2 = driver.getCurrentUrl();
 			if(!currentUrl1.equals(currentUrl2))
@@ -55,78 +59,102 @@ public class HomePageComponents extends HomePageLocators {
 			throw new Exception("HomePage logo is not present");
 
 		//Verify new arrivals
-		if(driver.findElement(NEWARRIVALS_CATEGORY).isDisplayed()) {
-
-			element = driver.findElement(NEWARRIVALS_CATEGORY);
-			action.moveToElement(element).perform();
-			//			if(!driver.findElement(MEN_IN_NEWARRIVALS_CATEGORY).isEnabled())
-			//				throw new Exception("New Arrivals category not hoverable"); 
-		}
-		else
-			throw new Exception("New Arrivals category is not present");
-		Reporter.log("New Arrivals category is Displayed :: Hoverable");
-		Thread.sleep(3000);
+//		if(driver.findElement(NEWARRIVALS_CATEGORY).isDisplayed()) {
+//
+//			element = driver.findElement(NEWARRIVALS_CATEGORY);
+//			action.moveToElement(element).perform();
+//			//			if(!driver.findElement(MEN_IN_NEWARRIVALS_CATEGORY).isEnabled())
+//			//				throw new Exception("New Arrivals category not hoverable"); 
+//		}
+//		else
+//			throw new Exception("New Arrivals category is not present");
+//		Reporter.log("New Arrivals category is Displayed :: Hoverable");
+//		Thread.sleep(3000);
 
 		// Verify Men category
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.presenceOfElementLocated(MEN_CATEGORY));
 		if(!driver.findElement(MEN_CATEGORY).isDisplayed())
 			throw new Exception("Men category is not present");		
+		WebElement men = driver.findElement(MEN_CATEGORY);
+		executor.executeScript("arguments[0].click();", men);	
+		Thread.sleep(4000);
+		currentUrl2 = driver.getCurrentUrl();
+		System.out.println(currentUrl2);
+		if(!(currentUrl2.equalsIgnoreCase("https://tommyjohn.com/pages/mens-category")||currentUrl2.equalsIgnoreCase("https://tommyjohn.com/collections/mens")))
+			throw new Exception("Men category clicked but not opened correct page");
 		element = driver.findElement(MEN_CATEGORY);
 		action.moveToElement(element).perform();
-		if(!driver.findElement(NEW_ARRIVALS_IN_MEN_CATEGORY).isEnabled())
+		if(!driver.findElement(FIRST_lEVEL1_CATEGORY).isEnabled())
 			throw new Exception("Men Category is not hoverable");
-		driver.findElement(MEN_CATEGORY).click();
-		Thread.sleep(3000);
-		currentUrl2 = driver.getCurrentUrl();
-		if(!(currentUrl2.equalsIgnoreCase("https://tommyjohn.com/pages/mens-category")||currentUrl2.equalsIgnoreCase("https://tommyjohn.com/collections/mens-underwear")))
-			throw new Exception("Men category clicked but not opened correct page");
+		
 		Reporter.log("Men category is Displayed :: Hoverable :: Clickable");
 		Thread.sleep(3000);
 
 
 		// Verify Women category
+		wait.until(ExpectedConditions.presenceOfElementLocated(MEN_CATEGORY));
 		if(!driver.findElement(WOMEN_CATEGORY).isDisplayed())
 			throw new Exception("Women category is not displayed");
 		element = driver.findElement(WOMEN_CATEGORY);
 		action.moveToElement(element).perform();
-		if(!driver.findElement(NEW_ARRIVALS_IN_WOMEN_CATEGORY).isDisplayed())
+		if(!driver.findElement(FIRST_lEVEL1_CATEGORY).isDisplayed())
 			throw new Exception("Men Category is not hoverable");
-		driver.findElement(WOMEN_CATEGORY).click();
-		Thread.sleep(3000);
+		WebElement women = driver.findElement(WOMEN_CATEGORY);
+		executor.executeScript("arguments[0].click();", women);
+		Thread.sleep(4000);
 		currentUrl2 = driver.getCurrentUrl();
-		if(!(currentUrl2.equalsIgnoreCase("https://tommyjohn.com/pages/womens-category")||currentUrl2.equalsIgnoreCase("https://tommyjohn.com/collections/womens-underwear")))
+		if(!(currentUrl2.equalsIgnoreCase("https://tommyjohn.com/pages/womens-category")||currentUrl2.equalsIgnoreCase("https://tommyjohn.com/collections/womens")))
 			throw new Exception("Women category is clicked but not opened correct page");
 		Reporter.log("Women category is Displayed :: Hoverable :: Clickable");
+		
+		// Verify Final Sale category
+		wait.until(ExpectedConditions.presenceOfElementLocated(FINAL_SALE));
+		if(!driver.findElement(FINAL_SALE).isDisplayed())
+			throw new Exception("Final Sale category is not displayed");
+		element = driver.findElement(FINAL_SALE);
+		action.moveToElement(element).perform();
+		if(!driver.findElement(FIRST_lEVEL1_CATEGORY).isDisplayed())
+			throw new Exception("Final Sale category is not hoverable");
+		WebElement fs = driver.findElement(FINAL_SALE);
+		executor.executeScript("arguments[0].click();", fs);
+		Thread.sleep(4000);
+		currentUrl2 = driver.getCurrentUrl();
+		if(!(currentUrl2.equalsIgnoreCase("https://tommyjohn.com/collections/sale")))
+			throw new Exception("Final Sale is clicked but not opened correct page");
+		Reporter.log("Final Sale category is Displayed :: Hoverable :: clickable");
+	}
 
 		// Verify Underwear category
-		if(!driver.findElement(UNDERWEAR_CATEGORY).isDisplayed())
-			throw new Exception("Underwear category is not displayed");
-		element = driver.findElement(UNDERWEAR_CATEGORY);
-		action.moveToElement(element).perform();
-		if(!driver.findElement(MEN_IN_UNDERWEAR_CATEGORY).isDisplayed())
-			throw new Exception("Underwear Category is not hoverable");
-		Reporter.log("Underwear category is Displayed :: Hoverable");
+//		if(!driver.findElement(UNDERWEAR_CATEGORY).isDisplayed())
+//			throw new Exception("Underwear category is not displayed");
+//		element = driver.findElement(UNDERWEAR_CATEGORY);
+//		action.moveToElement(element).perform();
+//		if(!driver.findElement(MEN_IN_UNDERWEAR_CATEGORY).isDisplayed())
+//			throw new Exception("Underwear Category is not hoverable");
+//		Reporter.log("Underwear category is Displayed :: Hoverable");
 
-		Thread.sleep(3000);
+//		Thread.sleep(3000);
 		// Verify Shop by Bras category
-		if(!driver.findElement(BRAS).isDisplayed())
-			throw new Exception("Bras category is not displayed");
-		element = driver.findElement(BRAS);
-		action.moveToElement(element).perform();
-		if(!driver.findElement(BRAS_TITLE).isDisplayed())
-			throw new Exception("Bras category is not hoverable");
-		Reporter.log("Bras category is Displayed :: Hoverable");
-
-		Thread.sleep(3000);
+//		if(!driver.findElement(BRAS).isDisplayed())
+//			throw new Exception("Bras category is not displayed");
+//		element = driver.findElement(BRAS);
+//		action.moveToElement(element).perform();
+//		if(!driver.findElement(BRAS_TITLE).isDisplayed())
+//			throw new Exception("Bras category is not hoverable");
+//		Reporter.log("Bras category is Displayed :: Hoverable");
+//
+//		Thread.sleep(3000);
 
 		// Verify Packs category
-		if(!driver.findElement(PACKS).isDisplayed())
-			throw new Exception("Packs category is not displayed");
-		element = driver.findElement(PACKS);
-		action.moveToElement(element).perform();
-		if(!driver.findElement(MEN_IN_PACKS).isDisplayed())
-			throw new Exception("Packs category is not hoverable");
-		Reporter.log("Packs category is Displayed :: Hoverable");
-
+//		if(!driver.findElement(PACKS).isDisplayed())
+//			throw new Exception("Packs category is not displayed");
+//		element = driver.findElement(PACKS);
+//		action.moveToElement(element).perform();
+//		if(!driver.findElement(MEN_IN_PACKS).isDisplayed())
+//			throw new Exception("Packs category is not hoverable");
+//		Reporter.log("Packs category is Displayed :: Hoverable");
+//
 
 		// Verify Gift Guide category
 //		if(!driver.findElement(GIFT_GUIDE).isDisplayed())
@@ -136,7 +164,7 @@ public class HomePageComponents extends HomePageLocators {
 //		if(!driver.findElement(GIFTCARDS).isDisplayed())
 //			throw new Exception("Gift Guide category is not hoverable");
 //		Reporter.log("Gift Guide category is Displayed :: Hoverable");
-	}
+//	}
 
 	
 	public void validateSearchFunction() throws Exception {
@@ -147,12 +175,12 @@ public class HomePageComponents extends HomePageLocators {
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", element);
 		driver.findElement(SEARCH_TEXTBOX).sendKeys("Boxer Brief");
-		Thread.sleep(3000);
+		Thread.sleep(7000);
 		softAssert.assertTrue(driver.findElement(POPULAR_SEARCHES).isDisplayed(), "Popular searches section not displayed ");
 		softAssert.assertTrue(driver.findElement(PRODUCT_MATCHES).isDisplayed(), "Product matches section is not displayed");
 		
 		driver.findElement(PRODUCT_MATCHES).click();
-		Thread.sleep(7000);
+		Thread.sleep(8000);
 		if(driver.findElement(ProductDetailsPageLocators.PRODUCT_DETAILS).getText().contains("Pack"))
 		new ProductDetailsPageComponents(driver).verifybundlepages();
 		else
@@ -187,48 +215,60 @@ public class HomePageComponents extends HomePageLocators {
 		Reporter.log("Search Icon is Displayed :: Clickable :: Search textbox is Opened after click");
 
 
-		driver.findElement(SEARCH_TEXTBOX).sendKeys("Boxer Brief");
-		Thread.sleep(3000);
+		driver.findElement(SEARCH_TEXTBOX).sendKeys("tees");
+		WebDriverWait wait = new WebDriverWait(driver,50);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(POPULAR_SEARCHES));
 		softAssert.assertTrue(driver.findElement(POPULAR_SEARCHES).isDisplayed(), "Popular searches section not displayed ");
 		softAssert.assertTrue(driver.findElement(PRODUCT_MATCHES).isDisplayed(), "Product matches section is not displayed");
 
-		driver.findElement(SEARCHRESULT_KEYWORD).click();
-		Thread.sleep(9000);
+		driver.findElement(POPULAR_SEARCHES).click();
 		
-		softAssert.assertEquals(driver.findElement(SEARCHPAGE_TITLE).getText(), "Refine Search" , "Refine search title is not displayed on search page");
-		softAssert.assertTrue(driver.findElement(SEARCHPAGE_DESC).isDisplayed(), "Showing results description not displayed on search page");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SEARCHPAGE_PRODUCT_REVIEWS));
+		System.out.println("Results for \"tee\"");
+		System.out.println(driver.findElement(SEARCHPAGE_TITLE).getText());
+		
+		softAssert.assertEquals(driver.findElement(SEARCHPAGE_TITLE).getText(), "Results for “tee”" , "Search Page title is not displayed on search page");
+		//softAssert.assertTrue(driver.findElement(SEARCHPAGE_DESC).isDisplayed(), "Showing results description not displayed on search page");
 		softAssert.assertTrue(driver.findElement(SEARCHPAGE_ITEMCOUNT).isDisplayed(), "Item count not displayed on search page");
-		softAssert.assertTrue(driver.findElement(SEARCHPAGE_FILTER).isDisplayed(), "Filter section not present on search page");
+		//softAssert.assertTrue(driver.findElement(SEARCHPAGE_FILTER).isDisplayed(), "Filter section not present on search page");
 		
-		List<WebElement> products = driver.findElements(SEARCHPAGE_PRODUCTS);
-		int count = products.size();
+	//check filters
 		
-		softAssert.assertEquals(driver.findElement(SEARCHPAGE_ITEMCOUNT).getText(), count + " Items" , "Number of products displayed does not match the count displayed on search page");
+		
+		
+//		List<WebElement> products = driver.findElements(SEARCHPAGE_PRODUCTS);
+//		int count = products.size();
+//		
+//		softAssert.assertEquals(driver.findElement(SEARCHPAGE_ITEMCOUNT).getText(), count + " Items" , "Number of products displayed does not match the count displayed on search page");
 		
 		softAssert.assertTrue(driver.findElement(SEARCHPAGE_PRODUCT_IMAGE).isDisplayed(), "Product image not present on search page");
 		softAssert.assertTrue(driver.findElement(SEARCHPAGE_PRODUCT_NAME).isDisplayed(), "Product name not present on search page");
-	//	softAssert.assertTrue(driver.findElement(SEARCHPAGE_PRODUCT_REVIEWS).isDisplayed(), "Product reviews not present on search page");
+		softAssert.assertTrue(driver.findElement(SEARCHPAGE_PRODUCT_REVIEWS).isDisplayed(), "Product reviews not present on search page");
 		softAssert.assertTrue(driver.findElement(SEARCHPAGE_PRODUCT_SWATCHES).isDisplayed(), "Product swatches not present on search page");
 		softAssert.assertTrue(driver.findElement(SEARCHPAGE_PRODUCT_PRICE).isDisplayed(), "Product price not present on search page");
-		
+		softAssert.assertTrue(driver.findElement(SEARCHPAGE_PRODUCT_BADGE).isDisplayed(), "Product badge not present on search page");
 		String productname = driver.findElement(By.cssSelector(".product-meta__title")).getText();
 		
+	
 		driver.findElement(SEARCHPAGE_PRODUCT_IMAGE).click();
-		Thread.sleep(6000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_TITLE));
 		softAssert.assertEquals(driver.findElement(ProductDetailsPageLocators.PRODUCT_TITLE).getText(), productname , "correct PDP page not displayed after clicking on image of product on search page" );
 		
 		driver.navigate().back();
-		Thread.sleep(10000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SEARCHPAGE_PRODUCT_NAME));
 		driver.findElement(SEARCHPAGE_PRODUCT_NAME).click();
-		Thread.sleep(6000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_TITLE));
 		softAssert.assertEquals(driver.findElement(ProductDetailsPageLocators.PRODUCT_TITLE).getText(), productname , "correct PDP page not displayed after clicking on name of product on search page" );
 		
 		driver.navigate().back();
-		Thread.sleep(6000);
-//		driver.findElement(SEARCHPAGE_PRODUCT_REVIEWS).click();
-//		Thread.sleep(6000);
-//		softAssert.assertEquals(driver.findElement(ProductDetailsPageLocators.PRODUCT_TITLE).getText(), productname , "correct PDP page not displayed after clicking on reviews of product on search page" );
-//		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SEARCHPAGE_PRODUCT_REVIEWS));
+		driver.findElement(SEARCHPAGE_PRODUCT_REVIEWS).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_TITLE));
+		softAssert.assertEquals(driver.findElement(ProductDetailsPageLocators.PRODUCT_TITLE).getText(), productname , "correct PDP page not displayed after clicking on reviews of product on search page" );
+		driver.navigate().back();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SEARCHPAGE_PRODUCT_NAME));
+		new CollectionPageComponent(driver).MethodToCheckColorSwatchChanging();
+		
 		softAssert.assertAll();
 		
 	}
@@ -256,6 +296,7 @@ public class HomePageComponents extends HomePageLocators {
 
 		// check chat with us option
 		driver.get(baseUrl);
+		Thread.sleep(3000);
 		element = driver.findElement(HELP_ICON);
 		action.moveToElement(element).perform();
 		if(!driver.findElement(CHAT_WITH_US).isDisplayed())
@@ -268,17 +309,17 @@ public class HomePageComponents extends HomePageLocators {
 		element = driver.findElement(CHAT_WITH_US_POPUP);
 		if(!element.isEnabled())
 			throw new Exception("Chat With Us Popup is not opened");
-		//		if(element.isEnabled()) {
-		//			//			if(!driver.findElement(CHAT_WITH_US_POPUP_MINIMIZE).isDisplayed())
-		//			//				throw new Exception("Chat With Us Popup Minimize button is not present");
-		//
-		//			WebElement element = driver.findElement(CHAT_WITH_US_POPUP_MINIMIZE);
-		//			JavascriptExecutor executor = (JavascriptExecutor)driver;
-		//			executor.executeScript("arguments[0].click();", element);
-		//			
-		//		}
-		//		else
-		//			throw new Exception("Chat With Us Popup is not opened");
+				if(element.isEnabled()) {
+					//			if(!driver.findElement(CHAT_WITH_US_POPUP_MINIMIZE).isDisplayed())
+					//				throw new Exception("Chat With Us Popup Minimize button is not present");
+		
+					WebElement element = driver.findElement(CHAT_WITH_US_POPUP_MINIMIZE);
+					JavascriptExecutor executor = (JavascriptExecutor)driver;
+					executor.executeScript("arguments[0].click();", element);
+					
+				}
+				else
+					throw new Exception("Chat With Us Popup is not opened");
 		Reporter.log("Chat With Us Popup is Displayed :: Minimize Button working");
 
 		driver.switchTo().defaultContent();
@@ -293,6 +334,14 @@ public class HomePageComponents extends HomePageLocators {
 		text = driver.findElement(CALL_US_OPTION).getText();
 		if(!text.equals("Call Us: 1-800-708-3490"))
 			throw new Exception("Text or Number for Call Us changed");
+		
+		if(!driver.findElement(TEXT_US_OPTION).isDisplayed())
+			throw new Exception("TEXT US Option is not present");
+		
+		text = driver.findElement(TEXT_US_OPTION).getText();
+		if(!text.equals("Text Us: 1-855-976-4933"))
+			throw new Exception("Text or Number for Text Us changed");
+		
 
 		// valaditing Email Us option
 		driver.get(baseUrl);
@@ -389,6 +438,20 @@ public class HomePageComponents extends HomePageLocators {
 			throw new Exception("Wrong page opened after Teacher Discount footer link clicked");
 		Reporter.log("Teacher Discount footer link is Displayed :: Clickable");
 		Thread.sleep(5000);
+		
+		// check  Healthcare  link
+//		text = driver.findElement(HEALTHCARE_DISC_LINK).getText();
+//		if(!text.equals("Healthcare Hero Discount"))
+//			throw new Exception("Healthcare Hero Discount link text is changed");	
+//		driver.findElement(HEALTHCARE_DISC_LINK).click();
+//		Thread.sleep(5000);
+//		if(driver.getCurrentUrl().equalsIgnoreCase("https://services.sheerid.com/verify/5eb057b19c1d181bd389bf0d/")) 
+//			driver.navigate().back();
+//		else
+//			throw new Exception("Wrong page opened after Healthcare Hero Discount footer link clicked");
+//		Reporter.log("Healthcare Hero Discount footer link is Displayed :: Clickable");
+//		Thread.sleep(5000);
+		
 
 		// check  Jobs  link
 		text = driver.findElement(JOBS_LINK).getText();
@@ -400,7 +463,7 @@ public class HomePageComponents extends HomePageLocators {
 			driver.navigate().back();
 		else
 			throw new Exception("Wrong page opened after Jobs footer link clicked");
-		Reporter.log("Jobs fotter link is Displayed :: Clickable");
+		Reporter.log("Jobs footer link is Displayed :: Clickable");
 		Thread.sleep(5000);
 
 		// check  Privacy Policy  link
@@ -413,7 +476,7 @@ public class HomePageComponents extends HomePageLocators {
 			driver.navigate().back();
 		else
 			throw new Exception("Wrong page opened after Privacy Policy footer link clicked");
-		Reporter.log("Privacy Policy fotter link is Displayed :: Clickable");
+		Reporter.log("Privacy Policy footer link is Displayed :: Clickable");
 		Thread.sleep(5000);
 		// check  Terms & Conditions  link
 		text = driver.findElement(TERMS_AND_CONDITION_LINK).getText();
@@ -452,7 +515,7 @@ public class HomePageComponents extends HomePageLocators {
 		
 //		else
 //			throw new Exception("Wrong page opened after Help footer link clicked");
-//		Reporter.log("Help fotter link is Displayed :: Clickable");
+//		Reporter.log("Help footer link is Displayed :: Clickable");
 //		Thread.sleep(5000);
 		
 		// check  Contact Us  link
@@ -461,7 +524,7 @@ public class HomePageComponents extends HomePageLocators {
 			throw new Exception("Contact Us link text is changed");	
 		driver.findElement(CONTACT_US_LINK).click();
 		Thread.sleep(5000);
-		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/contact-us")) 
+		if(driver.getCurrentUrl().equalsIgnoreCase("https://help.tommyjohn.com/hc/en-us")) 
 			driver.navigate().back();
 		else
 			throw new Exception("Wrong page opened after Contact Us footer link clicked");
@@ -547,11 +610,11 @@ public class HomePageComponents extends HomePageLocators {
 
 
 		// check 1-800-708-3490  link
-		text = driver.findElement(NUMBER_LINK).getText();
-		if(!text.equals("1-800-708-3490"))
-			throw new Exception("1-800-708-3490 link text is changed");	
-		Reporter.log("1-800-708-3490 footer link is Displayed");
-		Thread.sleep(5000);
+//		text = driver.findElement(NUMBER_LINK).getText();
+//		if(!text.equals("1-800-708-3490"))
+//			throw new Exception("1-800-708-3490 link text is changed");	
+//		Reporter.log("1-800-708-3490 footer link is Displayed");
+//		Thread.sleep(5000);
 
 		// check Loyalty  link
 		text = driver.findElement(LOYALTY_LINK).getText();
@@ -697,354 +760,166 @@ public class HomePageComponents extends HomePageLocators {
 	}
 
 
-	// nevigate new arrival in men category
-	public void nevigateToNewArrivalsInMenCategory() throws Exception {
-		action = new Actions(driver);
-		element = driver.findElement(MEN_CATEGORY);
-		action.moveToElement(element).perform();
-		driver.findElement(NEW_ARRIVALS_IN_MEN_CATEGORY).click();
-		Thread.sleep(3000);
-		Reporter.log(driver.getCurrentUrl());
+	// navigate new arrival in men category
+	public void navigateToNewArrivalsInMenCategory() throws Exception {
+		driver.get("https://tommyjohn.com/collections/mens-new-arrivals-1");
 	}
 
 	// navigate to all underwear in men category 
 	public void navigateToAllUnderwearInMenCategory() throws Exception {
-		action = new Actions(driver);
-		element = driver.findElement(MEN_CATEGORY);
-		action.moveToElement(element).perform();
-
-		driver.findElement(ALL_UNDERWEAR_IN_MEN_CATEGORY).click();	
-		Thread.sleep(3000);
-		Reporter.log(driver.getCurrentUrl());
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollBy(0, 250)", "");
+	driver.get("https://tommyjohn.com/collections/mens-underwear");
 		
 	}
 	
 	//navigate to Button down shirts
 		public void navigateToButtonDownShirtInMenCategory() throws Exception {
-			action = new Actions(driver);
-			element = driver.findElement(MEN_CATEGORY);
-			action.moveToElement(element).perform();
-			driver.findElement(DRESS_SHIRTS_IN_MEN_CATEGORY	).click();
-			Thread.sleep(3000);
-			Reporter.log(driver.getCurrentUrl());
+			
+		driver.get("https://tommyjohn.com/collections/mens-shirts");
 		}
 
 	// navigate to Pants and shorts in Men's category
 			public void navigateToPantsAndShortsInMensCategory() throws Exception {
-				action = new Actions(driver);
-				element = driver.findElement(MEN_CATEGORY);
-				action.moveToElement(element).perform();
-				driver.findElement(PANTS_AND_SHORTS_IN_MEN_CATEGORY).click();
-				Thread.sleep(3000);	
-				Reporter.log(driver.getCurrentUrl());
+			driver.get("https://tommyjohn.com/collections/pants-and-shorts");
 
 			}
 
 	// navigate to Hoodies & Jackets in Men's category
 					public void navigateToHoodiesandJacketsInMensCategory() throws Exception {
-						action = new Actions(driver);
-						element = driver.findElement(MEN_CATEGORY);
-						action.moveToElement(element).perform();
-						driver.findElement(JACKETS_AND_OUTWEARS_IN_MEN_CATEGORY).click();
-						Thread.sleep(3000);	
-						Reporter.log(driver.getCurrentUrl());
+						driver.get("https://tommyjohn.com/collections/jackets-outerwear-1");
 
 					}
 
 	// navigate to Camisole in womens category
 					public void navigateToCamisoleInwomensCategory() throws Exception {
-						action = new Actions(driver);
-						element = driver.findElement(WOMEN_CATEGORY);
-						action.moveToElement(element).perform();
-						driver.findElement(CAMISOLE_IN_WOMEN_CATEGORY).click();
-						Thread.sleep(3000);	
-						Reporter.log(driver.getCurrentUrl());
+					driver.get("https://tommyjohn.com/collections/womens-sale-camisole");
 
 					}	
 
 	// navigate to Tops & Tees in womens category
 					public void navigateToTopsAndTeesInwomensCategory() throws Exception {
-						action = new Actions(driver);
-						element = driver.findElement(WOMEN_CATEGORY);
-						action.moveToElement(element).perform();
-						driver.findElement(TOPS_AND_TEES_IN_WOMEN_CATEGORY).click();
-						Thread.sleep(3000);	
-						Reporter.log(driver.getCurrentUrl());
+					driver.get("https://tommyjohn.com/collections/womens-tops-tees");
 
 					}		
 	// navigate to Hoodies and Jackets in womens category
 					public void navigateToHoodiesandJacketsInwomensCategory() throws Exception {
-						action = new Actions(driver);
-						element = driver.findElement(WOMEN_CATEGORY);
-						action.moveToElement(element).perform();
-						driver.findElement(HOODIES_AND_JACKETS_IN_WOMEN_CATEGORY).click();
-						Thread.sleep(3000);	
-						Reporter.log(driver.getCurrentUrl());
+						driver.get("https://tommyjohn.com/collections/womens-sweatshirts-jackets");
 
 					}		
 	// navigate to Pants & Shorts in womens category
 					public void navigateToPantsandShortsInwomensCategory() throws Exception {
-						action = new Actions(driver);
-						element = driver.findElement(WOMEN_CATEGORY);
-						action.moveToElement(element).perform();
-						driver.findElement(PANTS_AND_SHORTS_IN_WOMEN_CATEGORY).click();
-						Thread.sleep(3000);	
-						Reporter.log(driver.getCurrentUrl());
+					driver.get("https://tommyjohn.com/collections/womens-pants-shorts");
 
 					}	
 
 	// navigate to tank in men category
-	public void nevigateToTankInMenCategory() throws Exception {
-		action = new Actions(driver);
-		element = driver.findElement(MEN_CATEGORY);
-		action.moveToElement(element).perform();
-		driver.findElement(TANK_IN_MEN_CATEGORY).click();
-		Thread.sleep(3000);
-		Reporter.log(driver.getCurrentUrl());
+	public void navigateToTankInMenCategory() throws Exception {
+	driver.get("https://tommyjohn.com/collections/mens-tanks");
 	}
 
-	// nevigate to dress shirts in men category
-	public void nevigateToDressShirtsInMenCategory() throws Exception {
-		action = new Actions(driver);
-		element = driver.findElement(MEN_CATEGORY);
-		action.moveToElement(element).perform();
-		//driver.findElement(DRESS_SHIRTS_IN_MEN_CATEGORY).click();
-		WebElement element = driver.findElement(DRESS_SHIRTS_IN_MEN_CATEGORY);
-		executor = (JavascriptExecutor)driver;
-		executor.executeScript("arguments[0].click();", element);
-		Thread.sleep(3000);
+	// navigate to dress shirts in men category
+	public void navigateToDressShirtsInMenCategory() throws Exception {
+	driver.get("https://tommyjohn.com/collections/mens-shirts");
 	}
 
-	// nevigate to all mens collections in men category
+	// navigate to all mens collections in men category
 	public void navigateToAllMensCollectionsInMenCategory() throws Exception {
-		action = new Actions(driver);
-		element = driver.findElement(MEN_CATEGORY);
-		action.moveToElement(element).perform();
-		driver.findElement(ALL_CLOTHING_IN_MEN_CATEGORY).click();
-		Thread.sleep(3000);
-		Reporter.log(driver.getCurrentUrl());
+driver.get("https://tommyjohn.com/collections/mens");
 	}
 
-	// nevigate to New Arrivals in Women category
-	public void nevigateToNewArrivalsInWomenCategory() throws Exception {
-		action = new Actions(driver);
-		element = driver.findElement(WOMEN_CATEGORY);
-		action.moveToElement(element).perform();
-		driver.findElement(NEW_ARRIVALS_IN_WOMEN_CATEGORY).click();
-		Thread.sleep(3000);
-		Reporter.log(driver.getCurrentUrl());
+	// navigate to New Arrivals in Women category
+	public void navigateToNewArrivalsInWomenCategory() throws Exception {
+	driver.get("https://tommyjohn.com/collections/womens-new-arrivals");
 	}
 
-	// nevigate to All Panties in Women category
-	public void nevigateToAllPantiesnInWomenCategory() throws Exception {
-		action = new Actions(driver);
-		element = driver.findElement(WOMEN_CATEGORY);
-		action.moveToElement(element).perform();
-		driver.findElement(ALL_PANTIES_IN_WOMEN_CATEGORY).click();
-		Thread.sleep(3000);
-		Reporter.log(driver.getCurrentUrl());
+	// navigate to All Panties in Women category
+	public void navigateToAllPantiesnInWomenCategory() throws Exception {
+	driver.get("https://tommyjohn.com/collections/womens-underwear");
 	}
 
-	// nevigate to Tees and Polos in Women category
-	public void nevigateToTeesAndPolosInWomenCategory() throws Exception {
-		action = new Actions(driver);
-		element = driver.findElement(WOMEN_CATEGORY);
-		action.moveToElement(element).perform();
-		driver.findElement(BOYSHORT_IN_WOMEN_CATEGORY).click();
-		Thread.sleep(3000);
-		Reporter.log(driver.getCurrentUrl());
+	// navigate to Tees and Polos in Women category
+	public void navigateToTeesAndPolosInWomenCategory() throws Exception {
+		driver.get("https://tommyjohn.com/collections/womens-tops-tees");
 	}
 
-	// nevigate to All Womens Collections in Women category
-	public void nevigateToAllWomensCollectionsInWomenCategory() throws Exception {
-		action = new Actions(driver);
-		element = driver.findElement(WOMEN_CATEGORY);
-		action.moveToElement(element).perform();
-		driver.findElement(ALL_CLOTHING_IN_WOMEN_CATEGORY).click();
-		Thread.sleep(3000);
-		Reporter.log(driver.getCurrentUrl());
+	// navigate to All Womens Collections in Women category
+	public void navigateToAllWomensCollectionsInWomenCategory() throws Exception {
+	driver.get("https://tommyjohn.com/collections/all-womens");
 	}
 
-	// nevigate to All Mens Packs in Packs category
-	public void nevigateToAllMensPacksInPacksCategory() throws Exception {
-		action = new Actions(driver);
-		element = driver.findElement(PACKS);
-		action.moveToElement(element).perform();
-		driver.findElement(ALL_MENS_PACKS_IN_PACKS_CATEGORY).click();
-		Thread.sleep(3000);
-		Reporter.log(driver.getCurrentUrl());
+	// navigate to All Mens Packs in Packs category
+	public void navigateToAllMensPacksInPacksCategory() throws Exception {
+		driver.get("https://tommyjohn.com/collections/mens-underwear-packs");
 	}
 
-	// nevigate to All Womens Packs in Packs category
+	// navigate to All Womens Packs in Packs category
 	public void navigateToAllWomensPacksInPacksCategory() throws Exception {
-		action = new Actions(driver);
-		element = driver.findElement(PACKS);
-		action.moveToElement(element).perform();
-		driver.findElement(ALL_WOMENS_PACKS_IN_PACKS_CATEGORY).click();
-		Thread.sleep(3000);
-		Reporter.log(driver.getCurrentUrl());
+		driver.get("https://tommyjohn.com/collections/womens-underwear-packs");
 	}
 
-	// nevigate to single collection cool cotton
+	// navigate to single collection cool cotton
 	public void navigateToCoolCottonInMensCollection() throws Exception {
-		action = new Actions(driver);
-		element = driver.findElement(MEN_CATEGORY);
-		action.moveToElement(element).perform();
-		driver.findElement(COOL_COTTON_IN_MENS_CATEGORY).click();
-		Thread.sleep(3000);
-		Reporter.log(driver.getCurrentUrl());
+		driver.get("https://tommyjohn.com/collections/cool-cotton");
 	}
 
 	// navigate to All Clothing in womens categories
 	public void navigateToAllClothingInWomensCategory() throws Exception {
-		action = new Actions(driver);
-		element = driver.findElement(WOMEN_CATEGORY);
-		action.moveToElement(element).perform();
-		driver.findElement(ALL_CLOTHING_IN_WOMEN_CATEGORY).click();
-		Thread.sleep(3000);	
-		Reporter.log(driver.getCurrentUrl());
+		driver.get("https://tommyjohn.com/collections/womens-all-clothing");
 	}
 
 	// navigate to second skin in men catagory
 	public void navigateToSecondSkinInMenCategory() throws Exception {
-		action = new Actions(driver);
-		element = driver.findElement(MEN_CATEGORY);
-		action.moveToElement(element).perform();
-		driver.findElement(SECOND_SKIN_IN_MEN_CATEGORY).click();
-		Thread.sleep(3000);	
-		Reporter.log(driver.getCurrentUrl());
+	driver.get("https://tommyjohn.com/collections/mens-second-skin");
 
 	}
 	// navigate to all panties in women catagory
 	public void navigateToAllPantiesInWomenCategory() throws Exception {
-		action = new Actions(driver);
-		element = driver.findElement(WOMEN_CATEGORY);
-		action.moveToElement(element).perform();
-		driver.findElement(ALL_PANTIES_IN_WOMEN_CATEGORY).click();
-		Thread.sleep(3000);	
-		Reporter.log(driver.getCurrentUrl());
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollBy(0, 250)", "");
-		/*JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-		Thread.sleep(8000);
-		js.executeScript("window.scrollTo(0, -document.body.scrollHeight);");
-		js.executeScript("window.scrollBy(0, 500)", "");
-		Thread.sleep(3000);*/
+	driver.get("https://tommyjohn.com/collections/womens-underwear");
 	}
 
 	// navigate to cotton basics in shop by collections catagory
 	public void navigateToCottonBasicsInMensCategory() throws Exception {
-		action = new Actions(driver);
-		element = driver.findElement(MEN_CATEGORY);
-		action.moveToElement(element).perform();
-		driver.findElement(COTTON_BASICS_IN_MENS_CATEGORY).click();
-		Thread.sleep(3000);	
-		Reporter.log(driver.getCurrentUrl());
+	driver.get("https://tommyjohn.com/collections/mens-cotton-basic");
 
 	}
 
 	// navigate to cotton basics in shop by collections catagory
 	public void navigateToAllUnderShirtsInMensCategory() throws Exception {
-		action = new Actions(driver);
-		element = driver.findElement(MEN_CATEGORY);
-		action.moveToElement(element).perform();
-		driver.findElement(ALL_UNDERSHIRTS_IN_MEN_CATEGORY).click();
-		Thread.sleep(3000);	
-		Reporter.log(driver.getCurrentUrl());
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollBy(0, 250)", "");
-		/*JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-		Thread.sleep(3000);
-		js.executeScript("window.scrollTo(0, -document.body.scrollHeight);");
-		js.executeScript("window.scrollBy(0, 500)", "");
-		Thread.sleep(3000);*/
+	driver.get("https://tommyjohn.com/collections/mens-undershirts");
 	}
 
 	// navigate to cotton basics in shop by collections catagory
 	public void navigateToAllWomensCollectionInWomensCategory() throws Exception {
-		action = new Actions(driver);
-		element = driver.findElement(WOMEN_CATEGORY);
-		action.moveToElement(element).perform();
-
-		WebElement element = driver.findElement(ALL_CLOTHING_IN_WOMEN_CATEGORY);
-		executor = (JavascriptExecutor)driver;
-		executor.executeScript("arguments[0].click();", element);
-		Thread.sleep(3000);
-		Reporter.log(driver.getCurrentUrl());
+	driver.get("https://tommyjohn.com/collections/all-womens");
 		
 		}
 
 	// navigate to Gift Card category
 	public void navigateToGiftCard() throws Exception {
-		action = new Actions(driver);
-		element = driver.findElement(NEWARRIVALS_CATEGORY);
-		action.moveToElement(element).perform();
-		driver.findElement(GIFT_CARD_IN_NEWARRIVALS_CATEGORY).click();
-		Thread.sleep(3000);	
-		//Reporter.log(driver.getCurrentUrl());
+driver.get("https://tommyjohn.com/products/e-gift-card");
 
 	}
 	// navigate to Bra category
 	public void navigateToBraCategory() throws Exception {
-		action = new Actions(driver);
-		element = driver.findElement(BRA_CATEGORY);
-		action.moveToElement(element).perform();
-		WebElement element = driver.findElement(SHOP_ALL_BRAS);
-		executor = (JavascriptExecutor)driver;
-		executor.executeScript("arguments[0].click();", element);
-		Thread.sleep(3000);
-		//driver.findElement(SHOP_ALL_BRAS).click();
-		
-		//Reporter.log(driver.getCurrentUrl());
+	driver.get("https://tommyjohn.com/collections/bras");	
 
 	}
 	
 	// navigate to Triangle Bralette category
 		public void navigateToTriangleBraletteCategory() throws Exception {
-			action = new Actions(driver);
-			element = driver.findElement(BRA_CATEGORY);
-			action.moveToElement(element).perform();
-			WebElement element = driver.findElement(TRIANGLE_BRALETTE);
-			executor = (JavascriptExecutor)driver;
-			executor.executeScript("arguments[0].click();", element);
-			Thread.sleep(3000);
-			//driver.findElement().click();
-				
-			//Reporter.log(driver.getCurrentUrl());
+		driver.get("https://tommyjohn.com/collections/bra-womens-styles-triangle-bralette");
 
 		}
 		
 		// navigate to Scoop Bralette category
 				public void navigateToScoopBraletteCategory() throws Exception {
-					action = new Actions(driver);
-					element = driver.findElement(BRA_CATEGORY);
-					action.moveToElement(element).perform();
-					WebElement element = driver.findElement(SCOOP_BRALETTE);
-					executor = (JavascriptExecutor)driver;
-					executor.executeScript("arguments[0].click();", element);
-
-				//	driver.findElement(SCOOP_BRALETTE).click();
-					Thread.sleep(3000);	
-					//Reporter.log(driver.getCurrentUrl());
+				driver.get("https://tommyjohn.com/collections/bra-womens-styles-scoop-bralette");
 
 				}
 
 	// navigate to all panties in women catagory
 	public void navigateToMysteryPacksinPacksCategory() throws Exception {
-		action = new Actions(driver);
-		element = driver.findElement(PACKS);
-		action.moveToElement(element).perform();
-		WebElement element = driver.findElement(MYSTERYPACK_IN_PACKS);
-		executor = (JavascriptExecutor)driver;
-		executor.executeScript("arguments[0].click();", element);
-		//driver.findElement(MYSTERYPACK_IN_PACKS).click();
-		Thread.sleep(3000);	
-		Reporter.log(driver.getCurrentUrl());
 
+driver.get("https://tommyjohn.com/collections/womens-sale-underwear");
 	}
 	// navigate to Contact Us Page
 		public void navigateToContactUsPage() throws Exception {
@@ -1064,21 +939,12 @@ public class HomePageComponents extends HomePageLocators {
 	
 	// navigate to mix & match in Bra Category
 	public void navigateToMixAndMatchInBrasCategory() throws Exception {
-		action = new Actions(driver);
-		element = driver.findElement(BRA_CATEGORY);
-		action.moveToElement(element).perform();
-		driver.findElement(MIXANDMATCH).click();
-		Thread.sleep(3000);
-		Reporter.log(driver.getCurrentUrl());
+		driver.get("https://tommyjohn.com/collections/womens-mix-and-match");
 	}
 
 	public void navigateToHisNHerInPacks() throws Exception{
 		
-		action = new Actions(driver);
-		element = driver.findElement(PACKS);
-		action.moveToElement(element).perform();
-		driver.findElement(HISANDHERPACKS).click();
-		Thread.sleep(3000);
-		Reporter.log(driver.getCurrentUrl());
+		driver.get("https://tommyjohn.com/collections/his-hers-rose-gold-packs");
+
 	}
 }
