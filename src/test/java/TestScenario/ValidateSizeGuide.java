@@ -70,12 +70,12 @@ public class ValidateSizeGuide
 	public void TC_verifyScoopBraletteSizeGuidePage() throws Exception {	
 		new SizeGuidePage(driver).validateScoopBraletteSizeGuidePage();
 	}
-	
+
 	@Test(priority=10)
 	public void TC_verifyTriangleBraletteSizeGuidePage() throws Exception {	
 		new SizeGuidePage(driver).validateTriangleBraletteSizeGuidePage();
 	}
-	
+
 	@Test(priority=11)
 	public void TC_verifyWomensTop_SizeGuidePage() throws Exception {	
 		new SizeGuidePage(driver).verify_WomensTop_SizeGuidePage();

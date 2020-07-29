@@ -46,7 +46,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 		String text = null;
 
 		// call method to navigate to collection page
-		navigateToAllUnderwearInMenCategory();
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 
 		// call method to navigate product details page
 		text = navigateToProductDetailsPage();
@@ -85,7 +85,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 	}
 	public void validateMen_StretchedWovenBottom_SizeGuidePage() throws Exception
 	{
-		new HomePageComponents(driver).navigateToPantsAndShortsInMensCategory();
+		new HomePageComponents(driver).navigateToBottomInMensCategory();
 		navigateToMensBottom();
 		validateMen_StrtchedWovenBottom();
 	}
@@ -119,9 +119,12 @@ public class SizeGuideComponents extends SizeGuideLocators
 	public void validate_WomensTop_SizeGuidePage() throws Exception
 	{
 		new HomePageComponents(driver).navigateToTopsAndTeesInwomensCategory();
+		jse = (JavascriptExecutor)driver;
+		jse.executeScript("window.scrollBy(0,750)");
 		List<WebElement> producttitle = driver.findElements(By.cssSelector(".product-meta__title"));
 		for (WebElement title : producttitle)
 		{
+			System.out.println("Title is: " +title.getText());
 			if(title.getText().contains("Scoop Neck Tee"))
 			{
 				title.click();
@@ -134,6 +137,8 @@ public class SizeGuideComponents extends SizeGuideLocators
 	public void validate_Womens_WovenBlazer_SizeGuidePage() throws Exception
 	{
 		new HomePageComponents(driver).navigateToHoodiesandJacketsInwomensCategory();
+		jse = (JavascriptExecutor)driver;
+		jse.executeScript("window.scrollBy(0,250)");
 		List<WebElement> producttitle = driver.findElements(By.cssSelector(".product-meta__title"));
 		for (WebElement title : producttitle)
 		{
@@ -163,7 +168,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 	}	
 	public void validate_pack_SizeGuidePage() throws Exception
 	{
-		new HomePageComponents(driver).navigateToAllMensPacksInPacksCategory();
+		new HomePageComponents(driver).nevigateToAllMensPacksInPacksCategory();
 		navigateToProductDetailsPage();
 		validate_pack();
 	}
@@ -203,8 +208,8 @@ public class SizeGuideComponents extends SizeGuideLocators
 	public void validate_pack() throws Exception
 	{
 		//driver.navigate().to("https://tommyjohn.com/collections/mens-underwear-packs/products/second-skin-boxer-brief-3-pack");
-	new HomePageComponents(driver).navigateToAllWomensPacksInPacksCategory();
-	
+		new HomePageComponents(driver).navigateToAllWomensPacksInPacksCategory();
+
 		Thread.sleep(3000);
 		driver.findElement(By.cssSelector(".product-meta__title")).click();
 		Thread.sleep(3000);
@@ -308,7 +313,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 		/*CommonContentsInAllSizeGuide();
 		validate_SizeGuideInstructions();*/
 		Thread.sleep(3000);
-		if (!driver.findElement(By.cssSelector("div.product-details.product-details--fit.container.active > div > div:nth-child(2) > div")).isDisplayed())
+		if (!driver.findElement(By.cssSelector("div.product-details.product-details--fit.container.active > div:nth-child(2) > div:nth-child(2) > div.generic-size-guide")).isDisplayed())
 			throw new Exception("Sizes chart overlay is not displayed after Size guide button was clicked");
 		Reporter.log("Bundle product's Second size guide link is Displayed :: Clickable");
 
@@ -574,7 +579,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 	public void validateMen_StrtchedWovenBlazer() throws Exception  
 	{
 		//driver.navigate().to("https://tommyjohn.com/products/go-anywhere-everyday-tech-blazer");
-		
+
 		Thread.sleep(3000);
 		Open_SizeGuide();
 		Thread.sleep(3000);
@@ -592,7 +597,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 
 	public void Open_SizeGuide() throws Exception
 	{
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		if(!driver.findElement(SIZEGUIDE).isEnabled())
 			throw new Exception("Size Guide button is not present");
 		WebElement ele = driver.findElement(SIZEGUIDE);
@@ -681,8 +686,15 @@ public class SizeGuideComponents extends SizeGuideLocators
 				element.click();
 			}
 			Thread.sleep(3000);
-			if(driver.findElement(FIND_SIZE_BUTTON).isDisplayed())	
-				driver.findElement(FIND_SIZE_BUTTON).click();
+			
+			WebElement ele = driver.findElement(FIND_SIZE_BUTTON);
+			jse = (JavascriptExecutor)driver;
+			jse.executeScript("arguments[0].click();", ele);					
+			/*
+			 * 
+			 * if(driver.findElement(FIND_SIZE_BUTTON).isDisplayed())
+			 * driver.findElement(FIND_SIZE_BUTTON).click();
+			 */		
 			if(!driver.findElement(CALCULATED_SIZE_RESULT).isDisplayed())
 				throw new Exception("Calculated Size Result is not displayed.");
 			if(!driver.findElement(FIND_SIZE_BUTTON).getText().equalsIgnoreCase("Edit Size"))
@@ -846,16 +858,14 @@ public class SizeGuideComponents extends SizeGuideLocators
 			throw new Exception("Product size guide instruction content is not displayed");
 	}
 
-	public void navigateToAllUnderwearInMenCategory() throws Exception {
-		action = new Actions(driver);
-		element = driver.findElement(MEN_CATEGORY);
-		action.moveToElement(element).perform();
-
-		driver.findElement(ALL_UNDERWEAR_IN_MEN_CATEGORY).click();	
-		Thread.sleep(3000);
-		Reporter.log(driver.getCurrentUrl());
-	}
-
+	/*
+	 * public void navigateToAllUnderwearInMenCategory() throws Exception { action =
+	 * new Actions(driver); element = driver.findElement(MEN_CATEGORY);
+	 * action.moveToElement(element).perform();
+	 * 
+	 * driver.findElement(ALL_UNDERWEAR_IN_MEN_CATEGORY).click();
+	 * Thread.sleep(3000); Reporter.log(driver.getCurrentUrl()); }
+	 */
 
 	public String navigateToProductDetailsPage() throws Exception {
 		String text = null;
@@ -898,22 +908,24 @@ public class SizeGuideComponents extends SizeGuideLocators
 	{
 
 		new HomePageComponents(driver).navigateToTriangleBraletteCategory();
+		Thread.sleep(3000);
 		jse = (JavascriptExecutor)driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		Thread.sleep(5000);
-
-		List<WebElement> producttitle = driver.findElements(By.cssSelector(".product-meta__title"));
-		for (WebElement title : producttitle)
-		{
-			if(title.getText().endsWith("Triangle Bralette")) {
-				title.click();
-				//	executor.executeScript("arguments[0].click();", title);
-				break;
-			}
-
-		}
-
-
+		/*
+		 * List<WebElement> producttitle =
+		 * driver.findElements(By.cssSelector(".product-meta__title")); for (WebElement
+		 * title : producttitle) { if(title.getText().endsWith("Triangle Bralette")) {
+		 * title.click(); // executor.executeScript("arguments[0].click();", title);
+		 * break; }
+		 * 
+		 * }
+		 */
+		
+		element= driver.findElement(By.cssSelector(".product-meta__title"));
+		System.out.println("Triangle Bralette title is: "+element.getText());
+		element.click();
+        Thread.sleep(5000);
 	}
 
 	public void navigateToScoopBralettePDP() throws Exception 
@@ -923,18 +935,19 @@ public class SizeGuideComponents extends SizeGuideLocators
 		Thread.sleep(3000);
 		jse=(JavascriptExecutor)driver;
 		jse.executeScript("window.scrollBy(0,250)");
-		List<WebElement> producttitle = driver.findElements(By.cssSelector(".product-meta__title"));
-		for (WebElement title : producttitle)
-		{
-			if(title.getText().endsWith("Scoop Bralette"))
-			{
-				title.click();
-				//executor.executeScript("arguments[0].click();", title);
-				break;
-			}
-
-		}
-
+		/*
+		 * List<WebElement> producttitle =
+		 * driver.findElements(By.cssSelector(".product-meta__title")); for (WebElement
+		 * title : producttitle) { if(title.getText().endsWith("Scoop Bralette")) {
+		 * title.click(); //executor.executeScript("arguments[0].click();", title);
+		 * break; }
+		 * 
+		 * }
+		 */
+		element= driver.findElement(By.cssSelector(".product-meta__title"));
+		System.out.println("Scoop Bralette title is: "+element.getText());
+		element.click();
+        Thread.sleep(5000);
 
 	}
 
@@ -944,7 +957,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 		new HomePageComponents(driver).navigateToBraCategory();
 		jse=(JavascriptExecutor)driver;
 		jse.executeScript("window.scrollBy(0,250)");
-		
+
 		Thread.sleep(4000);
 
 		List<WebElement> producttitle = driver.findElements(By.cssSelector(".product-meta__title"));
@@ -965,29 +978,43 @@ public class SizeGuideComponents extends SizeGuideLocators
 	public void navigateToBundlePDP() throws Exception 
 	{
 
-		new HomePageComponents(driver).navigateToHisNHerInPacks();
+		new HomePageComponents(driver).navigateToLoungeWearPacksInWomenPacksCategory();
 		Thread.sleep(4000);
-		driver.findElement(By.cssSelector(".product-meta__title")).click();
-		Thread.sleep(3000);
-
 		
-	}
-	
-	public void navigateToMensBottom() throws Exception 
-	{
+		jse=(JavascriptExecutor)driver;
+		jse.executeScript("window.scrollBy(0,250)");
+		Thread.sleep(4000);
 
 		List<WebElement> producttitle = driver.findElements(By.cssSelector(".product-meta__title"));
+		
 		for (WebElement title : producttitle)
 		{
+			System.out.println("product title is: "+title.getText());
+			if(title.getText().contains("Set"))
+			{
+				Thread.sleep(3000);
+				System.out.println(title.getText());
+				title.click();
+				break;
+			}
+		}
+	}
+
+	public void navigateToMensBottom() throws Exception 
+	{
+        List<WebElement> producttitle = driver.findElements(By.cssSelector(".product-meta__title"));
+		for (WebElement title : producttitle)
+		{
+			System.out.println("product title is :"+title.getText());
 			if(title.getText().contains("Pant"))
 			{
 				Thread.sleep(3000);
 				System.out.println(title.getText());
 
 				title.click();
-
 				break;
 			}
+			
 		}
 	}
 	public void navigatetoMensBlazer() throws Exception 
@@ -1007,5 +1034,5 @@ public class SizeGuideComponents extends SizeGuideLocators
 			}
 		}
 	}
-	
+
 }

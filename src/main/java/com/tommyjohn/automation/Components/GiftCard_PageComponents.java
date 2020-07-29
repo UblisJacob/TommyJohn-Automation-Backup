@@ -80,36 +80,42 @@ public class GiftCard_PageComponents extends GiftCard_PageLocators {
 
 	public void GoToOnGiftCardPage() throws Exception{
 
-		action = new Actions(driver);
+		/*
+		 * action = new Actions(driver);  //navigate to Gift card
+		 * PDP if(driver.findElement(NEW_ARRIVALS_OPTION).isDisplayed()) {
+		 * 
+		 * new HomePageComponents(driver).navigateToGiftCard();
+		 * Reporter.log("Gift card link is clickable :: Clickable"); } else throw new
+		 * Exception("New Arrivals category is not present.");
+		 */	
 		String GC_price =null;
-		//navigate to Gift card PDP
-		if(driver.findElement(NEW_ARRIVALS_OPTION).isDisplayed()) {
-
-			new HomePageComponents(driver).navigateToGiftCard();
-			Reporter.log("Gift card link is clickable :: Clickable");
-		}
-		else
-			throw new Exception("New Arrivals category is not present.");
+		new HomePageComponents(driver).navigateToGiftCard();
 		Thread.sleep(3000);
 
 		//Price selector
 
-		softAssert.assertTrue(driver.findElement(PRICE_DROPDOWN).isDisplayed(), "Price dropdown is not present.");
-		allElements = driver.findElements(PRICE_OPTIONS);
-		elementsCount = allElements.size();
-		System.out.println("All sizes list :: "+ elementsCount);
+				allElements = driver.findElements(PRICE_OPTIONS);
+				softAssert.assertTrue(allElements.get(0).isDisplayed(),"Gift card Amount radio buttons are not displayed.");
+				System.out.println("all amount list is: "+allElements.size());
+				allElements.get(0).click();
+				GC_price= driver.findElement(PRICE_OPTIONS).getText();
+				Thread.sleep(3000);
+				Reporter.log("Gift Cart amount radio buttons are displayed :: Clickable");
 
-		for(int i=0;i<=elementsCount-1;i++) {
-			driver.findElement(PRICE_DROPDOWN).click();
-			GC_price=allElements.get(i).getText();
-			allElements.get(i).click();
-			System.out.println("price is: "+GC_price);
-			Thread.sleep(3000);
-		}
-
-		Reporter.log("Gift Cart amount drop-down is displayed :: Clickable");
-
-		// Enter valid Recipient’s and Confirm Recipient’s Email  
+		/*
+		 * softAssert.assertTrue(driver.findElement(PRICE_DROPDOWN).isDisplayed(),
+		 * "Price dropdown is not present."); allElements =
+		 * driver.findElements(PRICE_OPTIONS); elementsCount = allElements.size();
+		 * System.out.println("All sizes list :: "+ elementsCount);
+		 * 
+		 * for(int i=0;i<=elementsCount-1;i++) {
+		 * driver.findElement(PRICE_DROPDOWN).click();
+		 * GC_price=allElements.get(i).getText(); allElements.get(i).click();
+		 * System.out.println("price is: "+GC_price); Thread.sleep(3000); }
+		 * 
+		 * Reporter.log("Gift Cart amount drop-down is displayed :: Clickable");
+		 * 
+		 */		// Enter valid Recipient’s and Confirm Recipient’s Email  
 		Rec_mail=driver.findElement(RECIPIENT_MAIL_TEXTBOX);
 		Rec_mail.sendKeys(properties.getProperty("checkoutemail"));
 		System.out.println("Entered recipient mail id is: "+Rec_mail.getAttribute("value"));
@@ -153,6 +159,7 @@ public class GiftCard_PageComponents extends GiftCard_PageLocators {
 
 		//Check Gift card Color text on inline cart
 		Expected_text = "TJ Green / "+GC_price;
+		System.out.println("Expected GC price text is: "+Expected_text);
 		softAssert.assertEquals(driver.findElement(GIFT_CARD_COLOR_INLINE_CART).getText(), Expected_text,"Gift card color text is incorrect on inline cart.");
 		Reporter.log("Gift Card color on inline cart is Displayed :: Correct");
 
@@ -184,15 +191,14 @@ public class GiftCard_PageComponents extends GiftCard_PageLocators {
 	}
 
 	public void verifyFieldsforGC() throws Exception {
-		action = new Actions(driver);
-		//navigate to Gift card PDP
-		if(driver.findElement(NEW_ARRIVALS_OPTION).isDisplayed()) {
-
-			new HomePageComponents(driver).navigateToGiftCard();
-			Reporter.log("Gift card link is clickable :: Clickable");
-		}
-		else
-			throw new Exception("New Arrivals category is not present.");
+		/*
+		 * action = new Actions(driver); //navigate to Gift card PDP
+		 * if(driver.findElement(NEW_ARRIVALS_OPTION).isDisplayed()) {
+		 * 
+		 * new HomePageComponents(driver).navigateToGiftCard();
+		 * Reporter.log("Gift card link is clickable :: Clickable"); } else
+		 */			
+		new HomePageComponents(driver).navigateToGiftCard();
 		Thread.sleep(3000);
 		//GC image
 		softAssert.assertTrue(driver.findElement(GIFT_CARD_DISPLAY_IMAGE).isDisplayed(), "Gift Card image is not displayed");
@@ -224,9 +230,17 @@ public class GiftCard_PageComponents extends GiftCard_PageLocators {
 		softAssert.assertEquals(driver.findElement(GIFT_CARD_AMOUNT_TEXT).getText(),properties.getProperty("GCAmount"), "Amount text is changed on Gift card PDP");
 		System.out.println("GC Amount label is: "+driver.findElement(GIFT_CARD_AMOUNT_TEXT).getText());
 		Reporter.log("Gift Card amount title is displayed");
-		softAssert.assertTrue(driver.findElement(PRICE_DROPDOWN).isDisplayed(), "Gift card price dropdown is not displayed.");
-		Reporter.log("Gift Card price drop-down is displayed");
-
+		/*
+		 * softAssert.assertTrue(driver.findElement(PRICE_DROPDOWN).isDisplayed(),
+		 * "Gift card price dropdown is not displayed.");
+		 * Reporter.log("Gift Card price drop-down is displayed");
+		 */
+		
+		//Amount radio buttons
+		List<WebElement> Amountlist = driver.findElements(By.cssSelector("div.radio-options-container>div>label.mainLabel>label"));
+		System.out.println("Total amount list are : "+Amountlist.size());
+		softAssert.assertTrue(Amountlist.get(0).isDisplayed(),"Gift card Amount radio buttons are not displayed.");
+		Reporter.log("Gift Card amount radio buttons are displayed");
 
 		//Recipient email
 		softAssert.assertTrue(driver.findElement(RECIPIENT_MAIL_LABEL).isDisplayed(), "Recipient email text is not displayed on PDP.");
@@ -322,16 +336,17 @@ public class GiftCard_PageComponents extends GiftCard_PageLocators {
 
 	public void verifyErrorMessagesforGC() throws Exception
 	{
-		action = new Actions(driver);
-
-		//navigate to Gift card PDP
-		if(driver.findElement(NEW_ARRIVALS_OPTION).isDisplayed()) {
-
-			new HomePageComponents(driver).navigateToGiftCard();
-			Reporter.log("Gift card link is clickable :: Clickable");
-		}
-		else
-			throw new Exception("New Arrivals category is not present.");
+		/*
+		 * action = new Actions(driver);
+		 * 
+		 * //navigate to Gift card PDP
+		 * if(driver.findElement(NEW_ARRIVALS_OPTION).isDisplayed()) {
+		 * 
+		 * new HomePageComponents(driver).navigateToGiftCard();
+		 * Reporter.log("Gift card link is clickable :: Clickable"); } else throw new
+		 * Exception("New Arrivals category is not present.");
+		 */
+		new HomePageComponents(driver).navigateToGiftCard();
 		Thread.sleep(3000);
 
 		//When amount is not selected
@@ -340,15 +355,23 @@ public class GiftCard_PageComponents extends GiftCard_PageLocators {
 		softAssert.assertEquals(driver.findElement(SELECT_AN_AMOUNT_BUTTON).getText(), properties.getProperty("GCSelectAnAmountButton"),"Text changed for Select An amount button in GC.");
 
 		//When amount is selected
-		softAssert.assertTrue(driver.findElement(PRICE_DROPDOWN).isDisplayed(), "Price dropdown is not present.");
-		allElements = driver.findElements(PRICE_OPTIONS);
-		elementsCount = allElements.size();
-		System.out.println("All sizes list :: "+ elementsCount);
-		for(int i=0;i<=elementsCount-1;i++) {
-			driver.findElement(PRICE_DROPDOWN).click();
-			allElements.get(i).click();
-			Thread.sleep(3000);
-		}
+		
+		List<WebElement> Amountlist = driver.findElements(PRICE_OPTIONS);
+		softAssert.assertTrue(Amountlist.get(0).isDisplayed(),"Gift card Amount radio buttons are not displayed.");
+		Amountlist.get(0).click();
+		Thread.sleep(3000);
+		Reporter.log("Gift Cart amount radio buttons are displayed :: Clickable");
+
+		
+		/*
+		 * softAssert.assertTrue(driver.findElement(PRICE_DROPDOWN).isDisplayed(),
+		 * "Price dropdown is not present."); allElements =
+		 * driver.findElements(PRICE_OPTIONS); elementsCount = allElements.size();
+		 * System.out.println("All sizes list :: "+ elementsCount); 
+		 * for(int
+		 * i=0;i<=elementsCount-1;i++) { driver.findElement(PRICE_DROPDOWN).click();
+		 * allElements.get(i).click(); Thread.sleep(3000); }
+		 */
 		softAssert.assertEquals(driver.findElement(SELECT_AN_AMOUNT_BUTTON).getText(), properties.getProperty("GCATCButton"),"Text changed for Add to Cart button in GC.");
 		Thread.sleep(3000);
 

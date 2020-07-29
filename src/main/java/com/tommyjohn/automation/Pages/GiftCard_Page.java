@@ -11,7 +11,8 @@ public class GiftCard_Page extends GiftCard_PageComponents {
 		this.driver = driver;
 	}
 
-	public void giftCardPageCheck() throws Exception {
+	public void giftCardPageCheck() throws Exception
+	{
 		new GiftCard_PageComponents(driver).GoToOnGiftCardPage();
 	}
 

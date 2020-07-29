@@ -6,7 +6,7 @@ public class SizeGuideLocators
 {
 	public static By FIRST_PRODUCT_REVIEW_STARS = By.cssSelector("div.mega-collection-grid__row:nth-child(3) > div:nth-child(3) > a > div");
 
-	public static By PRODUCT_TITLE = By.cssSelector(".product-info__inner-top > div > .product-info__title-wrap > .product-info__title");
+	public static By PRODUCT_TITLE = By.cssSelector(" .product-info__title-wrap > h1.product-info__title");
 	public static By PRODUCT_PRICE = By.cssSelector("div.multi-pdp-title-wrap.desktop-view > div.product-info__price-wrap >span > span:nth-child(2)");
 	public static By RATING_STARS = By.cssSelector("div.multi-pdp-title-wrap.desktop-view > div.product-info__price-wrap > div.yotpo-star-wrapper > div > div > span:nth-child(2)");
 	public static By CUSTOMER_REVIEW_STATUS_TEXT = By.cssSelector("div.multi-pdp-title-wrap.desktop-view > div.product-info__price-wrap > div.yotpo-star-wrapper > div > div > span");
@@ -37,11 +37,11 @@ public class SizeGuideLocators
 	
 	//Size Guide Locators
 	public static By SIZEGUIDE = By.cssSelector(".product-info__header--desktop > button");
-	public static By BUNDLE_FIRST_SIZE_GUIDE_BUTTON = By.cssSelector(".option-dropdown__section-bundle:nth-child(1)>div>button");
-	public static By BUNDLE_SECOND_SIZE_GUIDE_BUTTON = By.cssSelector(".option-dropdown__section-bundle:nth-child(2)>div>button");
+	public static By BUNDLE_FIRST_SIZE_GUIDE_BUTTON = By.cssSelector(".product-info__variant-select>div:nth-child(1)>button");
+	public static By BUNDLE_SECOND_SIZE_GUIDE_BUTTON = By.cssSelector(".product-info__variant-select.client-side > div:nth-child(6) > button");
 	public static By SIZE_GUIDE_BUTTON = By.cssSelector(".product-details__controls--inner > button:nth-child(2)");
 	public static By SIZE_GUIDE_TITLE = By.cssSelector(".size-chart-content>.size-guide-title");
-	public static By SECOND_SIZE_GUIDE_TITLE = By.cssSelector("div.product-details.product-details--fit.container.active > div > div:nth-child(2) >.size-chart-content> h1");
+	public static By SECOND_SIZE_GUIDE_TITLE = By.cssSelector(".product-details--fit.container.active > div:nth-child(2) > div > h1");
 	public static By SIZE_GUIDE_FITMETER_TITLE = By.cssSelector(".size-guide-yatpo-fit");
 	public static By SECOND_SIZE_GUIDE_FITMETER_TITLE = By.xpath("//div[@class='size-chart-overlay' ][@style='display: flex;']//div[@class='size-guide-yatpo-fit']");
 	public static By SIZE_GUIDE_CUSTOMER_SAY_REVIEW_TEXT = By.cssSelector(".size-guide-yatpo-fit>span");

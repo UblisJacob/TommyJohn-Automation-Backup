@@ -928,13 +928,26 @@ driver.get("https://tommyjohn.com/collections/womens-sale-underwear");
 				throw new Exception("Contact Us link text is changed");	
 			driver.findElement(CONTACT_US_LINK).click();
 			Thread.sleep(3000);
+			if(driver.getCurrentUrl().equalsIgnoreCase("https://help.tommyjohn.com/hc/en-us")) 
+			{
+				Thread.sleep(5000);
+				driver.findElement(By.cssSelector("#contact-info>p:nth-child(5)>a")).click();
+				Thread.sleep(5000);
+				if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/contact-us")) 
+					System.out.println("Email link on help page is Displayed :: Clickable");
+				else
+					throw new Exception("Wrong page opened after Email link on help page link clicked");
+
+			}
+			
+			else {
 			if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/contact-us")) 
 				//driver.navigate().back();
 				System.out.println("Contact Us footer link is Displayed :: Clickable");
 			else
 				throw new Exception("Wrong page opened after Contact Us footer link clicked");
 			Reporter.log("Contact Us footer link is Displayed :: Clickable");
-											
+		}							
 		}
 	
 	// navigate to mix & match in Bra Category
@@ -947,4 +960,27 @@ driver.get("https://tommyjohn.com/collections/womens-sale-underwear");
 		driver.get("https://tommyjohn.com/collections/his-hers-rose-gold-packs");
 
 	}
+	
+	//navigate to bottom in men category
+    public void navigateToBottomInMensCategory() throws Exception{
+		
+		driver.get("https://tommyjohn.com/collections/mens-lounge-bottoms");
+
+	}
+    //navigate to packs in men category
+    public void nevigateToAllMensPacksInPacksCategory() throws Exception{
+		
+		driver.get("https://tommyjohn.com/collections/clothing-packs");
+
+	}
+
+  //navigate to lounge wear packs in women category
+    public void navigateToLoungeWearPacksInWomenPacksCategory() throws Exception{
+		
+		driver.get("https://tommyjohn.com/collections/womens-lounge-sleep-packs");
+
+	}
+
+
+
 }
