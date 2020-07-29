@@ -20,8 +20,8 @@ public class ReOrderPageComponents extends ReOrderPageLocators{
 	WebElement element;
 	String text;
 
-	public ReOrderPageComponents(WebDriver driver) {
-
+	public ReOrderPageComponents(WebDriver driver)
+	{
 		this.driver = driver;
 	}
 

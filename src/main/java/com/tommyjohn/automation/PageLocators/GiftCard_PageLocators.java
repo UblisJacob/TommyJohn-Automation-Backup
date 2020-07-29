@@ -8,13 +8,13 @@ public class GiftCard_PageLocators {
 	public static By GIFT_CARD_TITLE = By.cssSelector(".product-info__inner-top >div >div:nth-child(1) >h1");
 	public static By GIFT_CARD_PRICE = By.cssSelector(".product-info__inner-top >div >div:nth-child(2) >span >span:nth-child(2)");
 	public static By COLOR_NAME = By.cssSelector(".product-info__option >div >span");
-	public static By GIFT_CARD_AMOUNT_TEXT = By.cssSelector(".option-dropdown__section >div:nth-child(1)");
+	public static By GIFT_CARD_AMOUNT_TEXT = By.cssSelector("div.radio-options-container>div>div.optionName");
 
 	//Price selector
 	public static By PRICE_DROPDOWN = By.cssSelector(".select.select--options.js-option-select.option-dropdown__option.desktop-view >a");
-	public static By PRICE_OPTIONS = By.cssSelector(".select--options__list__item");
+	public static By PRICE_OPTIONS = By.cssSelector("div.radio-options-container>div>label");
 	public static By PRICE_100 = By.cssSelector(".select--options__list >li:nth-child(3)");
-
+    
 
 	//Form
 	public static By RECIPIENT_MAIL_LABEL = By.cssSelector("#gift-card-section >div:nth-child(1)"); 

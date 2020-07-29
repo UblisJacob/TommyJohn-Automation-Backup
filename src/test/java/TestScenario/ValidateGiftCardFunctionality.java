@@ -17,7 +17,8 @@ public class ValidateGiftCardFunctionality{
 		try {
 			driver = new CustomUtilities().launchtj();
 
-		} catch (Exception e1) {
+		} catch (Exception e1) 
+		{
 			e1.printStackTrace();
 		}
 	}
