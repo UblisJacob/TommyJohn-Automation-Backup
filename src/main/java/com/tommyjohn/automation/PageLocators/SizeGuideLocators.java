@@ -38,10 +38,10 @@ public class SizeGuideLocators
 	//Size Guide Locators
 	public static By SIZEGUIDE = By.cssSelector(".product-info__header--desktop > button");
 	public static By BUNDLE_FIRST_SIZE_GUIDE_BUTTON = By.cssSelector(".product-info__variant-select>div:nth-child(1)>button");
-	public static By BUNDLE_SECOND_SIZE_GUIDE_BUTTON = By.cssSelector(".product-info__variant-select.client-side > div:nth-child(6) > button");
+	public static By BUNDLE_SECOND_SIZE_GUIDE_BUTTON = By.cssSelector("div.product-info > div > div.product-info__inner-contents > div.multiPdp__tabs > div > div > div > div.product-info__variant-select > div:nth-child(3) > div.product-info__header > button");
 	public static By SIZE_GUIDE_BUTTON = By.cssSelector(".product-details__controls--inner > button:nth-child(2)");
 	public static By SIZE_GUIDE_TITLE = By.cssSelector(".size-chart-content>.size-guide-title");
-	public static By SECOND_SIZE_GUIDE_TITLE = By.cssSelector(".product-details--fit.container.active > div:nth-child(2) > div > h1");
+	public static By SECOND_SIZE_GUIDE_TITLE = By.cssSelector(" div.product-details.product-details--fit.container.active > div > div:nth-child(2) > div > h1");
 	public static By SIZE_GUIDE_FITMETER_TITLE = By.cssSelector(".size-guide-yatpo-fit");
 	public static By SECOND_SIZE_GUIDE_FITMETER_TITLE = By.xpath("//div[@class='size-chart-overlay' ][@style='display: flex;']//div[@class='size-guide-yatpo-fit']");
 	public static By SIZE_GUIDE_CUSTOMER_SAY_REVIEW_TEXT = By.cssSelector(".size-guide-yatpo-fit>span");
@@ -67,6 +67,7 @@ public class SizeGuideLocators
     public static By WATCH_NOW_BUTTON = By.cssSelector(".size-guide-play-video");
     public static By INSTRUCTIONAL_VIDEO = By.cssSelector(".size-image>.instructional-video");
 	
+    
 	public static By ADD_TO_CART_BUTTON = By.cssSelector("button.product-info__atc.button.button--red.button--full.js-loop-atc");
 	public static By JOIN_THE_WAITLIST = By.cssSelector("button.product-info__atc.button.button--red.button--full.js-loop-atc.email-when-in-stock");
 	public static By QUANTITY = By.cssSelector(".product-info__atc");

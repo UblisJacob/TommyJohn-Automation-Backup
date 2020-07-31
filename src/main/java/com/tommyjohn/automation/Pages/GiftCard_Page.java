@@ -19,7 +19,6 @@ public class GiftCard_Page extends GiftCard_PageComponents {
 	public void verifyfieldsforGCPage() throws Exception{
 		new GiftCard_PageComponents(driver).verifyFieldsforGC();
 	}
-
 	public void verifyerrormessagesongiftcard() throws Exception{
 		new GiftCard_PageComponents(driver).verifyErrorMessagesforGC();
 

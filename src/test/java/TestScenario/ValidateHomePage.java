@@ -46,18 +46,17 @@ public class ValidateHomePage {
 		new HomePage(driver).validateCartIcon();
 	}
 	
-	@Test
-	public void TC_ValidateSearchFunctionalityviaPopularSearches() throws Exception {
-		
-		new HomePage(driver).validateSearch();
-	}
-	
-	@Test
-	public void TC_ValidateSearchFunctionalityviaProductMatches() throws Exception {
-		
-		new HomePage(driver).validateSearchPM();
-	}
-	
+	/*
+	 * @Test public void TC_ValidateSearchFunctionalityviaPopularSearches() throws
+	 * Exception {
+	 * 
+	 * new HomePage(driver).validateSearch(); }
+	 * 
+	 * @Test public void TC_ValidateSearchFunctionalityviaProductMatches() throws
+	 * Exception {
+	 * 
+	 * new HomePage(driver).validateSearchPM(); }
+	 */
 	@AfterMethod(alwaysRun = true)
 	void teardown () {
 		

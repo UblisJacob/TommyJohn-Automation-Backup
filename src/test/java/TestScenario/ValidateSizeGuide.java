@@ -25,7 +25,6 @@ public class ValidateSizeGuide
 		}
 	}
 
-
 	@Test(priority=0)
 	public void TC_verifyMenUnderwearSizeGuidePage() throws Exception {	
 		new SizeGuidePage(driver).verifyMenUnderwearSizeGuidePage();
@@ -80,10 +79,13 @@ public class ValidateSizeGuide
 	public void TC_verifyWomensTop_SizeGuidePage() throws Exception {	
 		new SizeGuidePage(driver).verify_WomensTop_SizeGuidePage();
 	}
-	@Test(priority=12)
-	public void TC_verifyWomens_WovenBlazer_SizeGuidePage() throws Exception {	
-		new SizeGuidePage(driver).verify_Womens_WovenBlazer_SizeGuidePage();
-	}
+
+	//Women blazer product is not live
+	/*
+	 * @Test(priority=12) public void TC_verifyWomens_WovenBlazer_SizeGuidePage()
+	 * throws Exception { new
+	 * SizeGuidePage(driver).verify_Womens_WovenBlazer_SizeGuidePage(); }
+	 */	
 	@Test(priority=13)
 	public void TC_verifyWomensBottom_SizeGuidePage() throws Exception {	
 		new SizeGuidePage(driver).verify_WomensBottoms_SizeGuidePage();

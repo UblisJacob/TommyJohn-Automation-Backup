@@ -36,7 +36,6 @@ public class ContactUsComponent extends ContactUsPageLocators
 		Thread.sleep(3000);
 		driver.findElement(SEND_MESSAGE_BUTTON).click();
 		Reporter.log("User is able to send message through contact us form.");
-
 	}
 	public void ContactUsFieldValidation() throws Exception
 	{
