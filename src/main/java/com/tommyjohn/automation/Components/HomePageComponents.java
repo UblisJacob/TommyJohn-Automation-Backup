@@ -227,7 +227,7 @@ public class HomePageComponents extends HomePageLocators {
 		System.out.println("Results for \"tee\"");
 		System.out.println(driver.findElement(SEARCHPAGE_TITLE).getText());
 		
-		softAssert.assertEquals(driver.findElement(SEARCHPAGE_TITLE).getText(), "Results for “tee”" , "Search Page title is not displayed on search page");
+		softAssert.assertEquals(driver.findElement(SEARCHPAGE_TITLE).getText(), "Results for â€œteeâ€�" , "Search Page title is not displayed on search page");
 		//softAssert.assertTrue(driver.findElement(SEARCHPAGE_DESC).isDisplayed(), "Showing results description not displayed on search page");
 		softAssert.assertTrue(driver.findElement(SEARCHPAGE_ITEMCOUNT).isDisplayed(), "Item count not displayed on search page");
 		//softAssert.assertTrue(driver.findElement(SEARCHPAGE_FILTER).isDisplayed(), "Filter section not present on search page");
@@ -937,7 +937,6 @@ driver.get("https://tommyjohn.com/collections/womens-sale-underwear");
 					System.out.println("Email link on help page is Displayed :: Clickable");
 				else
 					throw new Exception("Wrong page opened after Email link on help page link clicked");
-
 			}
 			
 			else {
@@ -962,25 +961,30 @@ driver.get("https://tommyjohn.com/collections/womens-sale-underwear");
 	}
 	
 	//navigate to bottom in men category
-    public void navigateToBottomInMensCategory() throws Exception{
+    public void navigateToBottomInMensCategory(){
 		
 		driver.get("https://tommyjohn.com/collections/mens-lounge-bottoms");
 
 	}
     //navigate to packs in men category
-    public void nevigateToAllMensPacksInPacksCategory() throws Exception{
-		
-		driver.get("https://tommyjohn.com/collections/clothing-packs");
+    public void nevigateToAllMensPacksInPacksCategory() 
+    {
+	driver.get("https://tommyjohn.com/collections/clothing-packs");
 
 	}
 
   //navigate to lounge wear packs in women category
-    public void navigateToLoungeWearPacksInWomenPacksCategory() throws Exception{
+    public void navigateToLoungeWearPacksInWomenPacksCategory(){
 		
 		driver.get("https://tommyjohn.com/collections/womens-lounge-sleep-packs");
 
 	}
 
+  //navigate to Boxer Brief in men category
+    public void navigateToBoxerBriefInMenCategory(){
+		driver.get("https://tommyjohn.com/collections/underwear-mens-styles-boxer-brief");
+
+	}
 
 
 }

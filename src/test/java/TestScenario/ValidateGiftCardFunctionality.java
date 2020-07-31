@@ -22,7 +22,6 @@ public class ValidateGiftCardFunctionality{
 			e1.printStackTrace();
 		}
 	}
-
 	@Test
 	public void ValidateGiftCardFlow() throws Exception
 	{

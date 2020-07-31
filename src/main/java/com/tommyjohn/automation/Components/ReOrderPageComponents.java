@@ -20,8 +20,8 @@ public class ReOrderPageComponents extends ReOrderPageLocators{
 	WebElement element;
 	String text;
 
-	public ReOrderPageComponents(WebDriver driver)
-	{
+	public ReOrderPageComponents(WebDriver driver) {
+
 		this.driver = driver;
 	}
 
@@ -90,8 +90,10 @@ public class ReOrderPageComponents extends ReOrderPageLocators{
 		Thread.sleep(3000);
 		text = driver.findElement(REORDER_ITEM_TITLE).getText();
 		driver.findElement(PRODUCT_IMAGE).click();
-		Thread.sleep(3000);
-		
+		Thread.sleep(7000);
+		System.out.println("Title on Reorder page is: "+text);
+		String text1= driver.findElement(ProductDetailsPageLocators.PRODUCT_TITLE).getText();
+		System.out.println("Title on PDP is: "+text1);
 		softAssert.assertEquals(driver.findElement(ProductDetailsPageLocators.PRODUCT_TITLE).getText(), text , "Wrong product page opened from reorder page");
 		softAssert.assertAll();
 	}

@@ -79,15 +79,6 @@ public class GiftCard_PageComponents extends GiftCard_PageLocators {
 
 
 	public void GoToOnGiftCardPage() throws Exception{
-
-		/*
-		 * action = new Actions(driver);  //navigate to Gift card
-		 * PDP if(driver.findElement(NEW_ARRIVALS_OPTION).isDisplayed()) {
-		 * 
-		 * new HomePageComponents(driver).navigateToGiftCard();
-		 * Reporter.log("Gift card link is clickable :: Clickable"); } else throw new
-		 * Exception("New Arrivals category is not present.");
-		 */	
 		String GC_price =null;
 		new HomePageComponents(driver).navigateToGiftCard();
 		Thread.sleep(3000);
@@ -115,7 +106,7 @@ public class GiftCard_PageComponents extends GiftCard_PageLocators {
 		 * 
 		 * Reporter.log("Gift Cart amount drop-down is displayed :: Clickable");
 		 * 
-		 */		// Enter valid Recipientâ€™s and Confirm Recipientâ€™s Email  
+		 */		// Enter valid Recipient’s and Confirm Recipient’s Email  
 		Rec_mail=driver.findElement(RECIPIENT_MAIL_TEXTBOX);
 		Rec_mail.sendKeys(properties.getProperty("checkoutemail"));
 		System.out.println("Entered recipient mail id is: "+Rec_mail.getAttribute("value"));

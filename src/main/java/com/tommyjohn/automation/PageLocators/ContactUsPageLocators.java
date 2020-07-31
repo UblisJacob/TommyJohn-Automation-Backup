@@ -14,7 +14,6 @@ public class ContactUsPageLocators
 	public static By LIVE_CHAT_WITH_US =By.cssSelector(".contact-information>p:nth-child(5)>a");
 	public static By FOR_FURTHER_INFO_TEXT=By.cssSelector(".contact-information>p:nth-child(7)");
 	public static By TIMING_TEXT = By.cssSelector(".contact-information>p:nth-child(6)");
-
 	public static By HELP_LINK = By.cssSelector(".contact-information>ul>li:nth-child(1)>a");
 	public static By SHIPPING_RETURNS_POLICY = By.cssSelector(".contact-information>ul>li:nth-child(2)>a");
 	public static By WHOLESALE_INQUIRIES = By.cssSelector(".contact-information>ul>li:nth-child(3)>a");
