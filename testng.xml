@@ -83,7 +83,7 @@
 			<class name="TestScenario.ValidateGiftCardFunctionality" />
 		</classes>
 	</test>
-	
+
 	<test thread-count="1" name="SizeGuideTests" verbose="1"
 		parallel="tests">
 		<classes>
@@ -126,23 +126,29 @@
 		</classes>
 	</test>
 
-<!-- 	<test thread-count="1" name="AfterPayTests" verbose="1" -->
-<!-- 		parallel="tests"> -->
-<!-- 		<classes> -->
-<!-- 			<class name="TestScenario.ValidateAfterPay" /> -->
-<!-- 		</classes> -->
-<!-- 	</test> -->
-<!-- 	<test thread-count="1" name="MixAndMatch" verbose="1" -->
-<!-- 		parallel="tests"> -->
-<!-- 		<classes> -->
-<!-- 			<class name="TestScenario.ValidateMixAndMatchPage" /> -->
-<!-- 		</classes> -->
-<!-- 	</test> -->
-<!-- 	<test thread-count="1" name="LoyaltyOptInTests" verbose="1" -->
-<!-- 		parallel="tests"> -->
-<!-- 		<classes> -->
-<!-- 			<class name="TestScenario.ValidateLoyaltyOptIn" /> -->
-<!-- 		</classes> -->
-<!-- 	</test> -->
+	<test thread-count="1" name="NavigationFlow" verbose="1"
+		parallel="tests">
+		<classes>
+			<class name="TestScenario.ValidateNavigationFlow" />
+		</classes>
+	</test>
+	<!-- <test thread-count="1" name="AfterPayTests" verbose="1" -->
+	<!-- parallel="tests"> -->
+	<!-- <classes> -->
+	<!-- <class name="TestScenario.ValidateAfterPay" /> -->
+	<!-- </classes> -->
+	<!-- </test> -->
+	<!-- <test thread-count="1" name="MixAndMatch" verbose="1" -->
+	<!-- parallel="tests"> -->
+	<!-- <classes> -->
+	<!-- <class name="TestScenario.ValidateMixAndMatchPage" /> -->
+	<!-- </classes> -->
+	<!-- </test> -->
+	<!-- <test thread-count="1" name="LoyaltyOptInTests" verbose="1" -->
+	<!-- parallel="tests"> -->
+	<!-- <classes> -->
+	<!-- <class name="TestScenario.ValidateLoyaltyOptIn" /> -->
+	<!-- </classes> -->
+	<!-- </test> -->
 
 </suite> 
