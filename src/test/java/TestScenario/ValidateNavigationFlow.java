@@ -72,12 +72,12 @@ public class ValidateNavigationFlow
 		new NavigationFlowPage(driver).NavigateToScoopBraletteInWomensBrasCategory();
 	
 	}
-	@Test
-	public void Validate_Women_Collections_ComfortSmoothing() throws Exception
-	{
-		new NavigationFlowPage(driver).NavigatetoComfortSmoothingInWomenCollectionCategory();
-	
-	}
+//	@Test
+//	public void Validate_Women_Collections_ComfortSmoothing() throws Exception
+//	{
+//		new NavigationFlowPage(driver).NavigatetoComfortSmoothingInWomenCollectionCategory();
+//	
+//	}
 	@Test
 	public void Validate_FinalSale_WomenSale_Underwear() throws Exception
 	{

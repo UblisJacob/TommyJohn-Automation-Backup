@@ -25,10 +25,10 @@ public class AccountLoginLocators {
 	public static By CREATEACCOUNT_EMAIL  = By.cssSelector("#email");
 	public static By CREATEACCOUNT_PASSWORD= By.cssSelector("#create-password");
 	public static By CREATEACCOUNT_BUTTON = By.cssSelector("#create_customer > button");
-	public static By EMAIL_LABEL = By.cssSelector("#create_customer > div:nth-child(6) > label");
-	public static By PASSWORD_LABEL = By.cssSelector("#create_customer > div:nth-child(7) > label");
-	public static By SWELLOPTIN_LABEL = By.cssSelector("#accepts_loyalty-member > label");
-	public static By SWELLOPTIN_CHCKBOX = By.cssSelector("#loyalty-member");
+	public static By EMAIL_LABEL = By.cssSelector("#create_customer > div:nth-child(7) > label");
+	public static By PASSWORD_LABEL = By.cssSelector("#create_customer > div:nth-child(8) > label");
+	public static By MARKETING_LABEL = By.cssSelector(".account-checkbox-label");
+	public static By MARKETING_CHCKBOX = By.cssSelector("#accept_marketing");
 	public static By CREATEACCOUNT_DISCLAIMER = By.cssSelector(".disclaimer.gdpr_Privacy_Policy");
 	public static By PRIVACYPOLICY_LINK = By.cssSelector(".disclaimer.gdpr_Privacy_Policy > a.privacyPolicy_Textlink");
 	public static By TERMS_LINK = By.cssSelector(".disclaimer.gdpr_Privacy_Policy> a:nth-child(2)");

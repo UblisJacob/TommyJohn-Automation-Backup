@@ -6,6 +6,7 @@ import java.util.Set;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -73,9 +74,8 @@ public class HomePageComponents extends HomePageLocators {
 
 		// Verify Men category
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.presenceOfElementLocated(MEN_CATEGORY));
-		if(!driver.findElement(MEN_CATEGORY).isDisplayed())
-			throw new Exception("Men category is not present");		
+		wait.until(ExpectedConditions.elementToBeClickable(MEN_CATEGORY));
+			
 		WebElement men = driver.findElement(MEN_CATEGORY);
 		executor.executeScript("arguments[0].click();", men);	
 		Thread.sleep(4000);
@@ -83,6 +83,7 @@ public class HomePageComponents extends HomePageLocators {
 		System.out.println(currentUrl2);
 		if(!(currentUrl2.equalsIgnoreCase("https://tommyjohn.com/pages/mens-category")||currentUrl2.equalsIgnoreCase("https://tommyjohn.com/collections/mens")))
 			throw new Exception("Men category clicked but not opened correct page");
+		wait.until(ExpectedConditions.presenceOfElementLocated(MEN_CATEGORY));
 		element = driver.findElement(MEN_CATEGORY);
 		action.moveToElement(element).perform();
 		if(!driver.findElement(FIRST_lEVEL1_CATEGORY).isEnabled())
@@ -93,9 +94,8 @@ public class HomePageComponents extends HomePageLocators {
 
 
 		// Verify Women category
-		wait.until(ExpectedConditions.presenceOfElementLocated(MEN_CATEGORY));
-		if(!driver.findElement(WOMEN_CATEGORY).isDisplayed())
-			throw new Exception("Women category is not displayed");
+		wait.until(ExpectedConditions.presenceOfElementLocated(WOMEN_CATEGORY));
+		
 		element = driver.findElement(WOMEN_CATEGORY);
 		action.moveToElement(element).perform();
 		if(!driver.findElement(FIRST_lEVEL1_CATEGORY).isDisplayed())
@@ -110,8 +110,6 @@ public class HomePageComponents extends HomePageLocators {
 		
 		// Verify Final Sale category
 		wait.until(ExpectedConditions.presenceOfElementLocated(FINAL_SALE));
-		if(!driver.findElement(FINAL_SALE).isDisplayed())
-			throw new Exception("Final Sale category is not displayed");
 		element = driver.findElement(FINAL_SALE);
 		action.moveToElement(element).perform();
 		if(!driver.findElement(FIRST_lEVEL1_CATEGORY).isDisplayed())
@@ -215,19 +213,26 @@ public class HomePageComponents extends HomePageLocators {
 		Reporter.log("Search Icon is Displayed :: Clickable :: Search textbox is Opened after click");
 
 
-		driver.findElement(SEARCH_TEXTBOX).sendKeys("tees");
-		WebDriverWait wait = new WebDriverWait(driver,50);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(POPULAR_SEARCHES));
-		softAssert.assertTrue(driver.findElement(POPULAR_SEARCHES).isDisplayed(), "Popular searches section not displayed ");
-		softAssert.assertTrue(driver.findElement(PRODUCT_MATCHES).isDisplayed(), "Product matches section is not displayed");
-
-		driver.findElement(POPULAR_SEARCHES).click();
+		driver.findElement(SEARCH_TEXTBOX).sendKeys("tees" + Keys.ENTER);
 		
+		  WebDriverWait wait = new WebDriverWait(driver,50);
+		/* wait.until(ExpectedConditions.visibilityOfElementLocated(POPULAR_SEARCHES));
+		 * softAssert.assertTrue(driver.findElement(POPULAR_SEARCHES).isDisplayed(),
+		 * "Popular searches section not displayed ");
+		 * softAssert.assertTrue(driver.findElement(PRODUCT_MATCHES).isDisplayed(),
+		 * "Product matches section is not displayed");
+		 * 
+		 * driver.findElement(POPULAR_SEARCHES).click();
+		 */
+		
+
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SEARCHPAGE_PRODUCT_IMAGE));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SEARCHPAGE_PRODUCT_REVIEWS));
-		System.out.println("Results for \"tee\"");
+		System.out.println("Results for \"tees\"");
 		System.out.println(driver.findElement(SEARCHPAGE_TITLE).getText());
 		
-		softAssert.assertEquals(driver.findElement(SEARCHPAGE_TITLE).getText(), "Results for â€œteeâ€�" , "Search Page title is not displayed on search page");
+		softAssert.assertEquals(driver.findElement(SEARCHPAGE_TITLE).getText(), "Results for \"tees\"" , "Search Page title is not displayed on search page");
 		//softAssert.assertTrue(driver.findElement(SEARCHPAGE_DESC).isDisplayed(), "Showing results description not displayed on search page");
 		softAssert.assertTrue(driver.findElement(SEARCHPAGE_ITEMCOUNT).isDisplayed(), "Item count not displayed on search page");
 		//softAssert.assertTrue(driver.findElement(SEARCHPAGE_FILTER).isDisplayed(), "Filter section not present on search page");
@@ -249,20 +254,25 @@ public class HomePageComponents extends HomePageLocators {
 		softAssert.assertTrue(driver.findElement(SEARCHPAGE_PRODUCT_BADGE).isDisplayed(), "Product badge not present on search page");
 		String productname = driver.findElement(By.cssSelector(".product-meta__title")).getText();
 		
-	
-		driver.findElement(SEARCHPAGE_PRODUCT_IMAGE).click();
+		WebElement img  = driver.findElement(SEARCHPAGE_PRODUCT_IMAGE);
+		executor.executeScript("arguments[0].click();", img );
+		//driver.findElement(SEARCHPAGE_PRODUCT_IMAGE).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_TITLE));
 		softAssert.assertEquals(driver.findElement(ProductDetailsPageLocators.PRODUCT_TITLE).getText(), productname , "correct PDP page not displayed after clicking on image of product on search page" );
 		
 		driver.navigate().back();
+		executor.executeScript("window.scrollBy(0,100)", "");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SEARCHPAGE_PRODUCT_NAME));
-		driver.findElement(SEARCHPAGE_PRODUCT_NAME).click();
+		WebElement pname  = driver.findElement(SEARCHPAGE_PRODUCT_NAME);
+		executor.executeScript("arguments[0].click();", pname );
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_TITLE));
 		softAssert.assertEquals(driver.findElement(ProductDetailsPageLocators.PRODUCT_TITLE).getText(), productname , "correct PDP page not displayed after clicking on name of product on search page" );
 		
 		driver.navigate().back();
+		executor.executeScript("window.scrollBy(0,100)", "");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SEARCHPAGE_PRODUCT_REVIEWS));
-		driver.findElement(SEARCHPAGE_PRODUCT_REVIEWS).click();
+		WebElement previews  = driver.findElement(SEARCHPAGE_PRODUCT_REVIEWS);
+		executor.executeScript("arguments[0].click();", previews );
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_TITLE));
 		softAssert.assertEquals(driver.findElement(ProductDetailsPageLocators.PRODUCT_TITLE).getText(), productname , "correct PDP page not displayed after clicking on reviews of product on search page" );
 		driver.navigate().back();
@@ -458,6 +468,8 @@ public class HomePageComponents extends HomePageLocators {
 		if(!text.equals("Jobs"))
 			throw new Exception("Jobs link text is changed");	
 		driver.findElement(JOBS_LINK).click();
+		Thread.sleep(3000);
+		driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
 		Thread.sleep(5000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.theresumator.com/apply")) 
 			driver.navigate().back();
@@ -466,12 +478,13 @@ public class HomePageComponents extends HomePageLocators {
 		Reporter.log("Jobs footer link is Displayed :: Clickable");
 		Thread.sleep(5000);
 
+		((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		// check  Privacy Policy  link
 		text = driver.findElement(PRIVACY_POLICY_LINK).getText();
 		if(!text.equals("Privacy Policy"))
 			throw new Exception("Privacy Policy link text is changed");	
 		driver.findElement(PRIVACY_POLICY_LINK).click();
-		Thread.sleep(5000);
+		Thread.sleep(7000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/tommy-john-website-privacy-policy")) 
 			driver.navigate().back();
 		else

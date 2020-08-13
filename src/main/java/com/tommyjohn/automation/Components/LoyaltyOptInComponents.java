@@ -100,7 +100,7 @@ public class LoyaltyOptInComponents extends LoyaltyOptInLocators {
 		Thread.sleep(2000);
 		driver.findElement(AccountLoginLocators.CREATEACCOUNT_PASSWORD).sendKeys(password);
 
-		driver.findElement(AccountLoginLocators.SWELLOPTIN_CHCKBOX).click();
+		driver.findElement(AccountLoginLocators.MARKETING_CHCKBOX).click();
 
 		driver.findElement(AccountLoginLocators.CREATEACCOUNT_BUTTON).click();
 		Thread.sleep(7000);
@@ -180,7 +180,7 @@ public class LoyaltyOptInComponents extends LoyaltyOptInLocators {
 		Thread.sleep(2000);
 		driver.findElement(AccountLoginLocators.CREATEACCOUNT_PASSWORD).sendKeys(password);
 
-		driver.findElement(AccountLoginLocators.SWELLOPTIN_CHCKBOX).click();
+		driver.findElement(AccountLoginLocators.MARKETING_CHCKBOX).click();
 
 		driver.findElement(AccountLoginLocators.CREATEACCOUNT_BUTTON).click();
 		Thread.sleep(7000);
@@ -355,7 +355,7 @@ public class LoyaltyOptInComponents extends LoyaltyOptInLocators {
 		
 		softAssert.assertEquals(driver.findElement(SWELL_REFERRAL_HEADING).getText(), "Give $15 , Get $15" , "Swell referral heading not correct");
 		System.out.println("Swell referral Subheading is: "+driver.findElement(SWELL_REFERRAL_SUBHEADING).getText());
-		softAssert.assertEquals(driver.findElement(SWELL_REFERRAL_SUBHEADING).getText(), "Now, Enter your friend’s email." , "Swell referral sub heading not correct");
+		softAssert.assertEquals(driver.findElement(SWELL_REFERRAL_SUBHEADING).getText(), "Now, Enter your friendï¿½s email." , "Swell referral sub heading not correct");
 		driver.findElement(SWELL_REFERRAL_EMAIl).sendKeys("vijeta@tommyjohnwear.com");
 		softAssert.assertTrue(driver.findElement(SWELL_REFERRAL_SUBMIT_BTN).isEnabled(), "Swell referral submit button not enabled");
         Reporter.log("Registered user is able to refer friend's email.");
