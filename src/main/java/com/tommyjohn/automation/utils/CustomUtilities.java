@@ -46,7 +46,7 @@ public class CustomUtilities {
 		chromeOptions.addArguments("--aggressive-cache-discard"); 
 		chromeOptions.addArguments("--disable-cache"); 
 		chromeOptions.addArguments("--disable-application-cache"); 
-		chromeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+		//chromeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
 	
 	//	chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
 		driver= new ChromeDriver(chromeOptions);
