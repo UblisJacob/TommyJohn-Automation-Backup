@@ -50,12 +50,12 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	public String navigateToProductDetailsPage() throws Exception {
 		String text = null;
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(THIRD_PRODUCT_HEAD_LINE_TEXT));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
 		// get text and click on the first product
-		if(!driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT).isDisplayed())
-			throw new Exception("Product head line text is not displayed");
-		text = driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT).getText();
-		driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT).click();
+		text = driver.findElement(FIRST_PRODUCT_URL).getAttribute("href");
+		WebElement el = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT);
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();", el);
 		Thread.sleep(3000);
 		Reporter.log(driver.getCurrentUrl());
 		return text;
@@ -66,22 +66,22 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		String text = null;
 
 		WebDriverWait wait = new WebDriverWait(driver, 20);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(THIRD_PRODUCT_HEAD_LINE_TEXT));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_IMAGE));
 		// get product title and click on image if present
-		text = driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT).getText();
-		Thread.sleep(5000);
-		WebElement Prod_Image = driver.findElement(THIRD_PRODUCT_IMAGE);
+		text = driver.findElement(FIRST_PRODUCT_URL).getAttribute("href");
+		
+		WebElement Prod_Image = driver.findElement(FIRST_PRODUCT_IMAGE);
 		if(!Prod_Image.isDisplayed())
 			//#		if(!driver.findElement(THIRD_PRODUCT_IMAGE).isDisplayed())
 			throw new Exception("Product image is not present");
 
-		WebElement ele = driver.findElement(THIRD_PRODUCT_IMAGE);
+		WebElement ele = driver.findElement(FIRST_PRODUCT_IMAGE);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", ele);
 
 
 		//	driver.findElement(THIRD_PRODUCT_IMAGE).click();
-		Thread.sleep(3000);
+		Thread.sleep(7000);
 		Reporter.log(driver.getCurrentUrl());
 
 		// check correct Product details page opened or not
@@ -97,12 +97,11 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	public void validateProductHeadingTextOnCollectionPage() throws Exception {
 		String text = null;
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(THIRD_PRODUCT_HEAD_LINE_TEXT));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
 		// get product title and click on product heading text if present
-		if(!driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT).isDisplayed())
-			throw new Exception("Product heading text is not present");
-		text = driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT).getText();
-		driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT).click();
+		
+		text = driver.findElement(FIRST_PRODUCT_URL).getAttribute("href");
+		driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT).click();
 		Thread.sleep(3000);
 		Reporter.log(driver.getCurrentUrl());
 
@@ -110,6 +109,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		new ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);	
 
 		// validate product details page by calling the method
+		if(!driver.getCurrentUrl().contains("pack"))		
 		new ProductDetailsPageComponents(driver).validatePage();
 
 		Reporter.log("Product head line text on collection page is Displayed :: Clickable and validated successfully");
@@ -122,11 +122,11 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 
 		// get product title and click on product heading text if present
-		try {
-			if(!driver.findElement(THIRD_PRODUCT_REVIEW_STARS).isDisplayed())
+//		try {
+			if(!driver.findElement(FIRST_PRODUCT_REVIEW_STARS).isDisplayed())
 				throw new Exception("Product review stars are not present");
-			text = driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT).getText();
-			driver.findElement(THIRD_PRODUCT_REVIEW_STARS).click();
+			text = driver.findElement(FIRST_PRODUCT_URL).getAttribute("href");
+			driver.findElement(FIRST_PRODUCT_REVIEW_STARS).click();
 			Thread.sleep(3000);
 			Reporter.log(driver.getCurrentUrl());
 			// check correct Product details page opened or not
@@ -137,9 +137,10 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 			Reporter.log("Product review stars on collection page is Displayed :: Clickable and validated successfully");
 
-		}catch(Exception e) {
-			Reporter.log("Review Stars were not present for the selected product");
-		}
+//	}
+			//catch(Exception e) {
+//			Reporter.log("Review Stars were not present for the selected product");
+//		}
 	}
 
 
@@ -477,10 +478,10 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 		// Recipient's email ID needs to be mentioned.
 		String to1 = "vijeta@tommyjohnwear.com";
-		String to2 = "saurabh.agarwal@tommyjohnwear.com";
-		String to3 = "manoj.konale@tommyjohnwear.com";
+//		String to2 = "saurabh.agarwal@tommyjohnwear.com";
+//		String to3 = "manoj.konale@tommyjohnwear.com";
 		String to4 = "vipul@tommyjohnwear.com";
-		String to5 = "anjali.pathak@tommyjohnwear.com";
+//		String to5 = "anjali.pathak@tommyjohnwear.com";
 		String to6 = "jubin@tommyjohnwear.com";
 		String to7 = "akshata@tommyjohnwear.com";
 		//		String to8 = "anil@tommyjohnwear.com";
@@ -514,10 +515,10 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			message.setFrom(new InternetAddress(from));
 			// Set To: header field of the header.
 			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to1));
-			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to2));
-			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to3));
+//			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to2));
+//			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to3));
 			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to4));
-			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to5));
+//			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to5));
 			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to6));
 			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to7));
 			//		message.addRecipient(Message.RecipientType.TO,new InternetAddress(to8));

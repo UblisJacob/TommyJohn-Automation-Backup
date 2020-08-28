@@ -36,7 +36,7 @@ public class SizeGuideLocators
 	public static By PRODUCT_DETAILS = By.cssSelector("div.product-accordion.container> ul > li:nth-child(1) > div:nth-child(1) > a");
 	
 	//Size Guide Locators
-	public static By SIZEGUIDE = By.cssSelector(".product-info__header--desktop > button");
+	public static By SIZEGUIDE = By.cssSelector("button.size-guide");
 	public static By BUNDLE_FIRST_SIZE_GUIDE_BUTTON = By.cssSelector(".product-info__variant-select>div:nth-child(1)>button");
 	public static By BUNDLE_SECOND_SIZE_GUIDE_BUTTON = By.cssSelector("div.product-info > div > div.product-info__inner-contents > div.multiPdp__tabs > div > div > div > div.product-info__variant-select > div:nth-child(3) > div.product-info__header > button");
 	public static By SIZE_GUIDE_BUTTON = By.cssSelector(".product-details__controls--inner > button:nth-child(2)");

@@ -21,10 +21,10 @@ public class HomePage extends HomePageComponents {
 		validateFooterLinks();
 	}
 
-	public void verifyhelp() throws Exception
+	public void verifyaccountdropdown() throws Exception
 	{
 		
-		validateHelpIcon();
+		validateaccountdropdown();
 	}
 
 	public void verifycart() throws Exception

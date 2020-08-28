@@ -25,7 +25,7 @@ public class ContactUsPage  {
 	{
 		new HomePageComponents(driver).navigateToContactUsPage();
 		Thread.sleep(3000);
-		new ContactUsComponent(driver).ContactUsFieldValidation();
+		new ContactUsComponent(driver).HelpUsPageValidation();
 		Thread.sleep(3000);
 	}
 }

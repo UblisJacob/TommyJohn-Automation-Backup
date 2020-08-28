@@ -171,16 +171,16 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	
 		Thread.sleep(8000);
 		
-	//	softAssert.assertEquals(driver.findElement(SHIPPING_TEXT).getText(), "Shipping method");
+		softAssert.assertEquals(driver.findElement(SHIPPING_TEXT).getText(), "Shipping method");
 		 WebElement element = driver.findElement(CONTINUE_TO_PAYMENT_BUTTON);
 			jse = (JavascriptExecutor)driver;
 			jse.executeScript("arguments[0].click();", element);
-		// driver.findElement(CONTINUE_TO_PAYMENT_BUTTON).click();
+		driver.findElement(CONTINUE_TO_PAYMENT_BUTTON).click();
 		 Reporter.log("Selected shipping method and user is navigated to payment page");
 		 
 		 Thread.sleep(3000);
-	//	 softAssert.assertTrue(driver.findElement(COMPLETE_ORDER_BUTTON).isEnabled() , "Complete Order button is not displayed");	
-		 Reporter.log("Complete Order button is enabled");
+	 softAssert.assertTrue(driver.findElement(COMPLETE_ORDER_BUTTON).isDisplayed() , "Complete Order button is not displayed");	
+		 Reporter.log("Complete Order button is displayed");
 		 
 		 softAssert.assertAll();	
 		

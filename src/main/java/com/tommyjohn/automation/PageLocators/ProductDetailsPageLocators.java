@@ -6,7 +6,7 @@ public class ProductDetailsPageLocators {
 
 	public static By FIRST_PRODUCT_REVIEW_STARS = By.cssSelector("div.mega-collection-grid__row:nth-child(3) > div:nth-child(3) > a > div");
 
-	public static By PRODUCT_TITLE = By.cssSelector("div > div.product-info__title-wrap > h1.product-info__title");
+	public static By PRODUCT_TITLE = By.cssSelector("div.desktop-view > div.product-info__title-wrap > h1.product-info__title");
 	//	public static By PRODUCT_PRICE = By.cssSelector("div.product-info__inner-top > span > span:nth-child(2)");
 	public static By PRODUCT_PRICE = By.cssSelector("div.multi-pdp-title-wrap.desktop-view > div.product-info__price-wrap >span > span:nth-child(2)");
 
@@ -25,15 +25,15 @@ public class ProductDetailsPageLocators {
 	public static By ALL_SIZE_LIST = By.cssSelector(".select--options__list >li");
 	public static By SIZE_DROPDOWN_MENS = By.cssSelector(".option-dropdown__option >div[data-option-name = 'Mens Size'] >a");
 	public static By SIZE_DROPDOWN_WOMENS = By.cssSelector(".option-dropdown__option >div[data-option-name = 'Womens Size'] >a");
-	public static By SIZE_TEXT = By.cssSelector(".select--options__label");
+	public static By SIZE_TEXT = By.xpath("//input[@class='sizeOption' and @checked='checked']");
 	//public static By ALL_SIZE_LIST = By.cssSelector(".product-option__variants.product-option__variants-size > ul > li");
 
 
 	public static By ALL_COLOR_LIST = By.cssSelector(".product-option__color-swatches-wrapper > ul >li");
 	public static By PRODUCT_DETAILS = By.cssSelector("div.product-accordion.container> ul > li:nth-child(1) > div:nth-child(1) > a");
-	public static By SIZEGUIDE = By.cssSelector(".product-info__header--desktop > button");
+	public static By SIZEGUIDE = By.cssSelector("button.product-info__header-btn.size-guide");
 	public static By SIZE_GUIDE_BUTTON = By.cssSelector(".product-details__controls--inner > button:nth-child(2)");
-	public static By ADD_TO_CART_BUTTON = By.cssSelector("button.product-info__atc.button.button--red.button--full.js-loop-atc");
+	public static By ADD_TO_CART_BUTTON = By.cssSelector("button.product-info__atc.button.js-loop-atc");
 	public static By JOIN_THE_WAITLIST = By.cssSelector("button.product-info__atc.button.button--red.button--full.js-loop-atc.email-when-in-stock");
 	//public static By QUANTITY = By.cssSelector(".qty-selector.desktop>#updatedQty.pdp.prodQty");
 	public static By QUANTITY = By.cssSelector(".product-info__atc");
@@ -131,7 +131,7 @@ public class ProductDetailsPageLocators {
 	public static By JOINTHEWAITLIST_SUCCESS = By.cssSelector(".swym-success");
 	
    //Recommended for you (RFY)
-	public static By RFY_TITLE = By.cssSelector("#dy-widget-grid-title-9929808");
+	public static By RFY_TITLE = By.cssSelector(".dy-rec--title");
 	public static By RFY_SECTION = By.cssSelector(".dy-rec--products");
 	public static By RFY_PRODUCT_IMAGE = By.cssSelector(".dy-rec--product-tile > img");
 	public static By RFY_PRODUCT_TITLE = By.cssSelector(".dy-rec--product-tile > .dy-product-info > .dy-rec--product-title");

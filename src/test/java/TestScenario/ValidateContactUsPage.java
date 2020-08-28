@@ -23,7 +23,7 @@ public class ValidateContactUsPage {
 	}
 	
 	@Test
-	public void TC_ContactUsFieldValidation() throws Exception
+	public void TC_ContactUs_HelpPageValidation() throws Exception
 	{
 		new ContactUsPage(driver).ContactUsFieldValidation_page();
 	}

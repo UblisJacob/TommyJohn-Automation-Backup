@@ -157,7 +157,7 @@ public class HomePageLocators{
 //	public static By MYSTERYPACK_IN_PACKS = By.cssSelector(".header-desktop-left > ul > li:nth-child(6) > div > ul > li:nth-child(2) > ul > li:nth-child(3) > a");
 //	public static By TEMP_TAB = By.cssSelector(".header-desktop-left > ul > li:nth-child(7) > a");
 //
-	public static By SEARCH_ICON = By.id("searchMenuBtn");
+	public static By SEARCH_ICON = By.id("constructorio-search");
 	public static By SEARCH_ICON_FORM_TAG = By.cssSelector(".header-search-form");
 	public static By SEARCH_TEXTBOX = By.cssSelector(".nextopia-search");
 	public static By POPULAR_SEARCHES = By.cssSelector(".autocomplete-suggestion-search-suggestions");
@@ -180,9 +180,9 @@ public class HomePageLocators{
 	
 
 	public static By HELP_ICON = By.cssSelector("i.icon-help");
-	public static By HELP_ICON_HELP_OPTION = By.cssSelector(".header-nav-dropdown > ul >li:nth-child(1) > a");
-	public static By CHAT_WITH_US = By.cssSelector(".header-nav-dropdown > ul >li:nth-child(2) > a");
-	public static By CHAT_WITH_US_IFRAME = By.cssSelector(".zopim:nth-child(2) > iframe");
+	public static By HELP_ICON_HELP_OPTION = By.cssSelector(".header-nav-dropdown > ul >li:nth-child(2) > a");
+	public static By MYACCOUNT_OPTION = By.cssSelector(".header-nav-dropdown > ul >li:nth-child(1) > a");
+	public static By SIGNIN_OPTION = By.cssSelector(".header-nav-dropdown > ul >li:nth-child(3) > a");
 	//public static By CHAT_WITH_US_POPUP = By.cssSelector(".desktop.sf_large.scroll_top.scroll_bottom > div.scrollable_inner.jx_ui_Widget > div:nth-child(2) > a");
 	public static By CHAT_WITH_US_POPUP = By.cssSelector(".jx_ui_Widget");
 	public static By CHAT_WITH_US_POPUP_MINIMIZE = By.cssSelector(".meshim_widget_widgets_titleBar_MinimizeButton > div.overlay.jx_ui_Widget");
@@ -192,10 +192,10 @@ public class HomePageLocators{
 	public static By TEXT_US_OPTION = By.cssSelector(".header-nav-dropdown > ul > li:nth-child(4) > a");
 	public static By EMAIL_US = By.cssSelector(".header-nav-dropdown > ul > li:nth-child(5) > a");
 
-	public static By ACCOUNT_ICON = By.xpath("//i[@class='icon-account']"); //cssSelector("i.icon-account");
+	public static By ACCOUNT_ICON = By.cssSelector(".header-account-item-container > a");
 	public static By REORDER = By.cssSelector("header-desktop-right > li:nth-child(3) >div > ul > li:nth-child(2) > a ");
 	//	public static By CART_ICON = By.cssSelector("i.icon-shopping-cart");
-	public static By CART_ICON = By.cssSelector(".header-main__inner.container > ul > li:nth-child(4) > button > i");
+	public static By CART_ICON = By.cssSelector("button.header-cart-btn > i");
 	public static By CART_HEADING_TEXT = By.cssSelector(".inline-cart__col1 > h3");
 
 	public static By ABOUT_LINK = By.linkText("About");

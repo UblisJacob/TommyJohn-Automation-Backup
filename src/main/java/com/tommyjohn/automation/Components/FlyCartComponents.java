@@ -275,7 +275,7 @@ allElements = driver.findElements(LIST_OF_ITEMS_IN_FLYCART);
 		System.out.println("color and size :: "+colorAndSize);
 		colorAndSize = colorAndSize+" / ";
 		
-String size = 	driver.findElement(ProductDetailsPageLocators.SIZE_TEXT).getText();
+String size = 	driver.findElement(ProductDetailsPageLocators.SIZE_TEXT).getAttribute("value");
 String[] b = size.split(",") ;
 	size = b[0];
 		colorAndSize = colorAndSize.concat(size);
