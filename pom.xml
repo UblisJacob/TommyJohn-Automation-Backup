@@ -22,6 +22,39 @@
 	</properties>
 
 	<dependencies>
+
+		<!-- https://mvnrepository.com/artifact/net.lightbody.bmp/browsermob-proxy -->
+		<dependency>
+			<groupId>net.lightbody.bmp</groupId>
+			<artifactId>browsermob-core</artifactId>
+			<version>2.1.5</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.automation-remarks/video-recorder -->
+		<dependency>
+			<groupId>com.automation-remarks</groupId>
+			<artifactId>video-recorder</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>atu.testng.reports.ATUReports</groupId>
+			<artifactId>ATUReporter_Selenium_testNG</artifactId>
+			<version>5.1.1</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/libs/ATUReporter_Selenium_testNG_5.1.1.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>atu.testng.reports.ATUReports</groupId>
+			<artifactId>ATUTestRecorder</artifactId>
+			<version>2.1</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/libs/ATUTestRecorder_2.1.jar</systemPath>
+		</dependency>
+
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

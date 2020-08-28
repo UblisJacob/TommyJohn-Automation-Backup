@@ -63,7 +63,7 @@ public class AccountLoginComponents extends AccountLoginLocators{
 		// logout the account
 		element = driver.findElement(HomePageLocators.ACCOUNT_ICON);
 		actions.moveToElement(element).perform();
-		driver.findElement(LOGOUT_OPTION_IN_ACCOUNT_ICON).click();
+executor.executeScript("arguments[0].click();", driver.findElement(LOGOUT_OPTION_IN_ACCOUNT_ICON));
 		Thread.sleep(3000);
 
 		Reporter.log("Account Created Successfully :: User is brought to account page");
@@ -237,7 +237,7 @@ public class AccountLoginComponents extends AccountLoginLocators{
 		driver.findElement(BACK_TO_lOGIN_LINK).click();
 		Thread.sleep(3000);
 		currentUrl = driver.getCurrentUrl();
-		if(!currentUrl.equals(CustomUtilities.properties.getProperty("loginRecoverPageUrl1")))
+		if(!currentUrl.startsWith("https://tommyjohn.com/account/login"))
 			throw new Exception("Wrong page opened after back to login link clicked");
 
 		Reporter.log("All the fields and texts displayed on Recover password page are correct");
@@ -247,6 +247,7 @@ public class AccountLoginComponents extends AccountLoginLocators{
 	public void recoverPassword(String createdAccountEmail) throws Exception {
 		String text = null;
 
+		driver.navigate().to("https://tommyjohn.com/");
 		// click on accout icon from home page
 		//	driver.findElement(HomePageLocators.ACCOUNT_ICON).click();
 		WebElement element = driver.findElement(HomePageLocators.ACCOUNT_ICON);
@@ -419,7 +420,8 @@ public class AccountLoginComponents extends AccountLoginLocators{
 			// logout the account
 			element = driver.findElement(HomePageLocators.ACCOUNT_ICON);
 			actions.moveToElement(element).perform();
-			driver.findElement(LOGOUT_OPTION_IN_ACCOUNT_ICON).click();
+			WebElement logout = driver.findElement(LOGOUT_OPTION_IN_ACCOUNT_ICON);
+			executor.executeScript("arguments[0].click();", logout);
 			Thread.sleep(3000);
 
 		}

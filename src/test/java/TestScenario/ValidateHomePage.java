@@ -12,7 +12,7 @@ import com.tommyjohn.automation.utils.CustomUtilities;
 
 public class ValidateHomePage {
 	public WebDriver driver;
-	
+
 	@BeforeMethod(alwaysRun = true)
 	public void setup() {
 		try {
@@ -22,44 +22,44 @@ public class ValidateHomePage {
 			e1.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void TC_verifyLogoAndCategoriesOnHomePage() throws Exception {
-		
+
 		new HomePage(driver).ValidateLogoAndCategoriesPresence();
 	}
 	@Test
 	public void TC_verifyFooterLinksOnHomePage() throws Exception {
-		
+
 		new HomePage(driver).validateFooterLinks();
 	}
 	@Test
-	public void TC_verifyHelpOnHomePage() throws Exception {
-		
-		new HomePage(driver).verifyhelp();
+	public void TC_verifyAccountdropdownOnHomePage() throws Exception {
+
+		new HomePage(driver).verifyaccountdropdown();
 	}
 
 	@Test
 	public void TC_verifyAccountAndCartIconOnHomePage() throws Exception {
-		
+
 		new HomePage(driver).validateAccountIcon();
 		new HomePage(driver).validateCartIcon();
 	}
-	
-	
-	  @Test public void TC_ValidateSearchFunctionalityviaPopularSearches() throws
-	  Exception {
-	  
-	  new HomePage(driver).validateSearch(); }
-	  
-//	  @Test public void TC_ValidateSearchFunctionalityviaProductMatches() throws
-//	  Exception {
-//	  
-//	  new HomePage(driver).validateSearchPM(); }
-	 
+
+	@Test public void TC_ValidateSearchFunctionalityviaPopularSearches() throws
+	Exception {
+
+		new HomePage(driver).validateSearchFunctionality();
+	}
+
+	@Test public void TC_ValidateSearchFunctionalityviaProductMatches() throws
+	Exception {
+
+		new HomePage(driver).validateSearchFunction(); }
+
 	@AfterMethod(alwaysRun = true)
 	void teardown () {
-		
+
 		driver.close();
 		driver.quit();
 	}

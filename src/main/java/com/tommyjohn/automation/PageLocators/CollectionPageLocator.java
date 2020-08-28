@@ -12,13 +12,15 @@ public class CollectionPageLocator {
 //	public static By THIRD_PRODUCT_REVIEW_STARS = By.cssSelector("div.mega-collection-grid__row:nth-child(3) > div:nth-child(3) > a > div");
 //	public static By FIRST_PRODUCT_IMAGE = By.cssSelector("div.mega-collection-grid__row:nth-child(3) > div:nth-child(1) > div > a > img");
 //	public static By FIRST_PRODUCT_IMAGE = By.cssSelector(".product-image");
-	public static By FIRST_PRODUCT_IMAGE = By.cssSelector(".product-image-container");
-	public static By FIRST_PRODUCT_HEAD_LINE_TEXT_LINK = By.cssSelector("div.mega-collection-grid__row:nth-child(3) > div:nth-child(1) > a > h2");
-	public static By FIRST_PRODUCT_REVIEW_STARS = By.cssSelector("div.mega-collection-grid__row:nth-child(3) > div:nth-child(1) > a > div");
+//	public static By FIRST_PRODUCT_IMAGE = By.cssSelector(".product-image-container");
+//	public static By FIRST_PRODUCT_HEAD_LINE_TEXT_LINK = By.cssSelector("div.mega-collection-grid__row:nth-child(3) > div:nth-child(1) > a > h2");
+//	public static By FIRST_PRODUCT_REVIEW_STARS = By.cssSelector("div.mega-collection-grid__row:nth-child(3) > div:nth-child(1) > a > div");
 	
-	public static By THIRD_PRODUCT_IMAGE = By.cssSelector(".product-image");
-	public static By THIRD_PRODUCT_HEAD_LINE_TEXT = By.cssSelector(".product-meta__title");
-	public static By THIRD_PRODUCT_REVIEW_STARS = By.cssSelector(".yotpo");
+	public static By COMPARE_PRODUCT = By.cssSelector(".product-image-container > div.has-compare");
+	public static By FIRST_PRODUCT_IMAGE = By.cssSelector(".product-image");
+	public static By FIRST_PRODUCT_HEAD_LINE_TEXT = By.cssSelector(".product-meta__title");
+	public static By FIRST_PRODUCT_REVIEW_STARS = By.cssSelector(".yotpo-bottomline");
+	public static By FIRST_PRODUCT_URL = By.cssSelector(".product-meta");
 	
 	public static By ALL_COLOR_LIST = By.cssSelector("div.mega-collection-grid.js-mega-collection-grid > div:nth-child(3) > div:nth-child(1)>div:nth-child(2)>.product-item__swatch-list>.slick-list>.slick-track>div");
 	public static By PRODUCT_IMAGE_COLOR_NAME= By.cssSelector("div.mega-collection-grid.js-mega-collection-grid > div:nth-child(3) > div:nth-child(1)>div:nth-child(1)>a");

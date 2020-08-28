@@ -33,10 +33,12 @@ public class ReOrderPageComponents extends ReOrderPageLocators{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HomePageLocators.ACCOUNT_ICON));
 		driver.findElement(HomePageLocators.ACCOUNT_ICON).click();
 		Thread.sleep(3000);
-		driver.findElement(AccountLoginLocators.CUSTOMER_EMAIL_INPUT).sendKeys("ashish@tommyjohnwear.com");
+		driver.findElement(AccountLoginLocators.CUSTOMER_EMAIL_INPUT).clear();
+		driver.findElement(AccountLoginLocators.CUSTOMER_EMAIL_INPUT).sendKeys("vijeta@tommyjohnwear.com");
 		driver.findElement(AccountLoginLocators.CUSTOMER_PASSWORD_INPUTBOX).sendKeys(CustomUtilities.properties.getProperty("password"));
 		driver.findElement(AccountLoginLocators.LOGIN_BUTTON).click();
-		Thread.sleep(7000);
+
+Thread.sleep(5000);
 
 		//action = new Actions(driver);
 		//element = driver.findElement(HomePageLocators.ACCOUNT_ICON);
@@ -45,7 +47,7 @@ public class ReOrderPageComponents extends ReOrderPageLocators{
 		//driver.findElement(HomePageLocators.REORDER).click();
 		
 		driver.navigate().to(driver.getCurrentUrl()+"?view=reorder");
-		Thread.sleep(3000);
+		wait.until(ExpectedConditions.presenceOfElementLocated(REORDER_TEXT));
 
 		softAssert.assertEquals(driver.findElement(REORDER_TEXT).getText(), "Reorder", "Reorder title is not present on Reorder page");
 		softAssert.assertTrue(driver.findElement(PRODUCT_IMAGE).isDisplayed(), "Product Images not present on reorder page");
