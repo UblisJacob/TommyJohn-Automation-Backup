@@ -26,6 +26,7 @@ import org.testng.Reporter;
 import atu.testrecorder.ATUTestRecorder;
 import net.lightbody.bmp.BrowserMobProxy;
 import net.lightbody.bmp.BrowserMobProxyServer;
+import net.lightbody.bmp.client.ClientUtil;
 
 
 public class CustomUtilities {
@@ -35,7 +36,7 @@ public class CustomUtilities {
 	public static BufferedReader reader;
 	public static Properties properties;
 	public static final String propertiesFilePath = "src/main/resources/configuration.properties";
-	public static ATUTestRecorder recorder;
+//	public static ATUTestRecorder recorder;
 
 	/**
 	 * Method to set up the drivers.
@@ -44,22 +45,26 @@ public class CustomUtilities {
 	 */
 
 	// @BeforeSuite
-	@SuppressWarnings({ "finally", "static-access" })
+	@SuppressWarnings({ })
 	public WebDriver launchtj() throws Exception {
 		BrowserMobProxy proxy = new BrowserMobProxyServer();
+		proxy.setTrustAllServers(true);
 		proxy.start(0);
+		
 		
 //		 List<String> allowUrlPatterns = new ArrayList<String>();
 //		    allowUrlPatterns.add("https://events.bouncex.net");
 		proxy.blacklistRequests("https?://.*\\.bouncex\\.net/.*", 410);
 		proxy.blacklistRequests("https?://.*\\.bounceexchange\\.com/.*", 410);
 		
-		 Proxy selproxy = new Proxy();
+		Proxy selproxy = new Proxy();
 		String proxyStr = "localhost:" + proxy.getPort();
+		
 		
 		selproxy.setHttpProxy(proxyStr);
 		selproxy.setSslProxy(proxyStr);
 	
+
 		
 		// load properties file
 		loadPropertiesFile();
@@ -80,12 +85,12 @@ public class CustomUtilities {
 		chromeOptions.addArguments("--ignore-certificate-errors");
 		chromeOptions.addArguments("--no-default-browser-check");
 		chromeOptions.addArguments("--disable-popup-blocking");
-		chromeOptions.addArguments("--proxy-bypass-list=*");
+//		chromeOptions.addArguments("--proxy-bypass-list=*");
 
 		
 		chromeOptions.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 		chromeOptions.setCapability(CapabilityType.PROXY, selproxy);
-	//	chromeOptions.addArguments("--proxy-server={0}".format(proxyStr,proxyStr));
+//		chromeOptions.addArguments("--proxy-server={0}".format(proxyStr,proxyStr));
 //		chromeOptions.addArguments("--proxy-auto-detect");
 		//chromeOptions.addArguments("--proxy-bypass-list=*");
 		
@@ -100,9 +105,7 @@ public class CustomUtilities {
 		// chromeOptions.setExperimentalOption("excludeSwitches", new
 		// String[]{"enable-automation"});
 
-//		Map<String, Object> params = new HashMap<String, Object>();
-//		params.put("source", "Object.defineProperty(navigator, 'webdriver', { get: () => undefined })");
-//		executeCdpCommand("Page.addScriptToEvaluateOnNewDocument", params);
+
 
 		// chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
 		driver = new ChromeDriver(chromeOptions);

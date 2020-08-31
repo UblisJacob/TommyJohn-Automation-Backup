@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
 import com.tommyjohn.automation.Pages.NavigationFlowPage;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
-import atu.testrecorder.exceptions.ATUTestRecorderException;
+//import atu.testrecorder.exceptions.ATUTestRecorderException;
 
 public class ValidateNavigationFlow
 {
@@ -143,16 +143,16 @@ public class ValidateNavigationFlow
 	
 	}
 	@AfterMethod(alwaysRun = true)
-	void teardown (Method m) throws ATUTestRecorderException {
+	void teardown () {
 		
 	
 		
-		File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-		try {
-			FileUtils.copyFile(file, new File(CustomUtilities.properties.getProperty("executionvideospath")+"/Screenshot_"+ m.getName()+".png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//		File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+//		try {
+//			FileUtils.copyFile(file, new File(CustomUtilities.properties.getProperty("executionvideospath")+"/Screenshot_"+ m.getName()+".png"));
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 		
 		driver.close();
 		driver.quit();
