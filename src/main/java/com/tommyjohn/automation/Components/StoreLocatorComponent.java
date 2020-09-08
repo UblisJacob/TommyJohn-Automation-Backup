@@ -11,6 +11,8 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
 
@@ -36,13 +38,15 @@ public class StoreLocatorComponent extends StoreLocatorPageLocators
 	}
 	public void StoreLocatorLayout() throws Exception
 	{
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		SoftAssert softassert = new SoftAssert();
 		// navigate to Store Locator  page
 		text = driver.findElement(HomePageLocators.STORE_LOCATOR_LINK).getText();
 		if(!text.equals("Store Locator"))
 			throw new Exception("Store Locator link text is changed");	
 		driver.findElement(HomePageLocators.STORE_LOCATOR_LINK).click();
-		Thread.sleep(3000);
+		
+		wait.until(ExpectedConditions.presenceOfElementLocated(OURSTORES_HEADING));
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/store-locator")) 
 			System.out.println("Store Locator footer link is Clickable and correct.");
 		else

@@ -106,7 +106,9 @@ public class GiftCard_PageComponents extends GiftCard_PageLocators {
 		 * 
 		 * Reporter.log("Gift Cart amount drop-down is displayed :: Clickable");
 		 * 
-		 */		// Enter valid Recipient’s and Confirm Recipient’s Email  
+		 */		
+				
+				
 		Rec_mail=driver.findElement(RECIPIENT_MAIL_TEXTBOX);
 		Rec_mail.sendKeys(properties.getProperty("checkoutemail"));
 		System.out.println("Entered recipient mail id is: "+Rec_mail.getAttribute("value"));
