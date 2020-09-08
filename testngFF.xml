@@ -2,9 +2,13 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Regression Test Suite">
 
+<listeners>
+    <listener class-name="TestScenario.ListenerClass"></listener> 
+</listeners>
 
 	<test thread-count="1" name="NavigationFlow" verbose="1"
 		parallel="tests">
+		<parameter name="browser" value="firefox" />
 		<classes>
 			<class name="TestScenario.ValidateNavigationFlow" />
 		</classes>
@@ -12,6 +16,7 @@
 
 	<test thread-count="1" name="HomePageTests" verbose="1"
 		parallel="tests">
+		<parameter name="browser" value="firefox" />
 		<classes>
 			<class name="TestScenario.ValidateHomePage" />
 		</classes>
@@ -19,6 +24,7 @@
 
 	<test thread-count="1" name="AccountLoginAndCreationTests"
 		verbose="1" parallel="tests">
+		<parameter name="browser" value="firefox" />
 		<classes>
 			<class name="TestScenario.ValidateAccountLoginFunctionality" />
 		</classes>
@@ -26,6 +32,7 @@
 
 	<test thread-count="1" name="SingleCollectionTests" verbose="1"
 		parallel="tests">
+		<parameter name="browser" value="firefox" />
 		<classes>
 			<class name="TestScenario.ValidateSingleCollectionPages">
 			</class>
@@ -34,6 +41,7 @@
 
 	<test thread-count="1" name="MegaCollectionTests" verbose="1"
 		parallel="tests">
+		<parameter name="browser" value="firefox" />
 		<classes>
 			<class name="TestScenario.ValidateMegaCollectionPages" />
 
@@ -42,6 +50,7 @@
 
 	<test thread-count="1" name="ProductPageTests" verbose="1"
 		parallel="tests">
+		<parameter name="browser" value="firefox" />
 		<classes>
 			<class name="TestScenario.ValidateProductDetailsPage" />
 		</classes>
@@ -49,6 +58,7 @@
 
 	<test thread-count="1" name="AddToCartTests" verbose="1"
 		parallel="tests">
+		<parameter name="browser" value="firefox" />
 		<classes>
 			<class name="TestScenario.AddToCartTests" />
 		</classes>
@@ -56,6 +66,7 @@
 
 	<test thread-count="1" name="FlyCartTests" verbose="1"
 		parallel="tests">
+		<parameter name="browser" value="firefox" />
 		<classes>
 			<class name="TestScenario.ValidateFlyCartPage" />
 		</classes>
@@ -63,7 +74,7 @@
 
 	<test thread-count="1" name="ShoppingCartTests" verbose="1"
 		parallel="tests">
-
+		<parameter name="browser" value="firefox" />
 		<classes>
 			<class name="TestScenario.ValidateShoppingCart" />
 		</classes>
@@ -71,6 +82,7 @@
 
 	<test thread-count="1" name="Checkout Tests" verbose="1"
 		parallel="tests">
+		<parameter name="browser" value="firefox" />
 		<classes>
 			<class name="TestScenario.ValidateCheckoutPage" />
 		</classes>
@@ -79,6 +91,7 @@
 
 	<test thread-count="1" name="ReorderPagetests" verbose="1"
 		parallel="tests">
+		<parameter name="browser" value="firefox" />
 		<classes>
 			<class name="TestScenario.ValidateReOrderPage" />
 		</classes>
@@ -86,6 +99,7 @@
 
 	<test thread-count="1" name="GiftCardPageTests" verbose="1"
 		parallel="tests">
+		<parameter name="browser" value="firefox" />
 		<classes>
 			<class name="TestScenario.ValidateGiftCardFunctionality" />
 		</classes>
@@ -93,6 +107,7 @@
 
 	<test thread-count="1" name="SizeGuideTests" verbose="1"
 		parallel="tests">
+		<parameter name="browser" value="firefox" />
 		<classes>
 			<class name="TestScenario.ValidateSizeGuide" />
 		</classes>
@@ -100,6 +115,7 @@
 
 	<test thread-count="1" name="CompareTool" verbose="1"
 		parallel="tests">
+		<parameter name="browser" value="firefox" />
 		<classes>
 			<class name="TestScenario.ValidateCompareTool" />
 		</classes>
@@ -107,6 +123,7 @@
 
 	<test thread-count="1" name="ContactUs" verbose="1"
 		parallel="tests">
+		<parameter name="browser" value="firefox" />
 		<classes>
 			<class name="TestScenario.ValidateContactUsPage" />
 		</classes>
@@ -114,6 +131,7 @@
 
 	<test thread-count="1" name="QuickShop" verbose="1"
 		parallel="tests">
+		<parameter name="browser" value="firefox" />
 		<classes>
 			<class name="TestScenario.ValidateQuickShop" />
 		</classes>
@@ -121,6 +139,7 @@
 
 	<test thread-count="1" name="StoreLocator" verbose="1"
 		parallel="tests">
+		<parameter name="browser" value="firefox" />
 		<classes>
 			<class name="TestScenario.ValidateStoreLocator" />
 		</classes>
@@ -129,6 +148,7 @@
 
 <!-- 	<test thread-count="1" name="LoadingALlCollectionPages" -->
 <!-- 		verbose="1" parallel="tests"> -->
+<!-- <parameter name="browser" value="firefox" /> -->
 <!-- 		<classes> -->
 <!-- 			<class name="TestScenario.ValidateCollectionPage" /> -->
 <!-- 		</classes> -->

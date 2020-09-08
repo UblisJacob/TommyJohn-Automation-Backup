@@ -6,6 +6,7 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.tommyjohn.automation.Pages.ProductDetailsPage;
@@ -17,9 +18,10 @@ public class ValidateProductDetailsPage {
 
 
 	@BeforeMethod(alwaysRun = true)
-	public void setup() {
+	@Parameters("browser")
+	public void setup(String browser) {
 		try {
-			driver = new CustomUtilities().launchtj();
+			driver = new CustomUtilities().launchtj(browser);
 
 		} catch (Exception e1) {
 			e1.printStackTrace();
