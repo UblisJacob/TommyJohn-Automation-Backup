@@ -3,6 +3,7 @@ package TestScenario;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.tommyjohn.automation.Pages.GiftCard_Page;
@@ -13,15 +14,16 @@ public class ValidateGiftCardFunctionality{
 	WebDriver driver;
 
 	@BeforeMethod(alwaysRun = true)
-	public void setup() {
+	@Parameters("browser")
+	public void setup(String browser) {
 		try {
-			driver = new CustomUtilities().launchtj();
+			driver = new CustomUtilities().launchtj(browser);
 
-		} catch (Exception e1) 
-		{
+		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
 	}
+	
 	@Test
 	public void ValidateGiftCardFlow() throws Exception
 	{
