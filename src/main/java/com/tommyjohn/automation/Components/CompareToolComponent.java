@@ -36,9 +36,9 @@ public class CompareToolComponent extends CompareToolLocators
 	public void CompareToolOnMensUnderwearCollection() throws Exception
 	{
 		Actions action = new Actions(driver);
-		Thread.sleep(3000);
+		Thread.sleep(6000);
 		jse = (JavascriptExecutor)driver;
-		jse.executeScript("window.scrollBy(0,250)");
+		jse.executeScript("window.scrollBy(0,1050)");
 		//Hover On product image on collection page
 		element = driver.findElement(CollectionPageLocator.COMPARE_PRODUCT);
 		action.moveToElement(element).build().perform();

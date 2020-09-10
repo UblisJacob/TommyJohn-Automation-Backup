@@ -30,6 +30,7 @@ public class ContactUsPageLocators
 	public static By SHIPPING_RETURNS_POLICY = By.cssSelector(".contact-information>ul>li:nth-child(2)>a");
 	public static By WHOLESALE_INQUIRIES = By.cssSelector(".contact-information>ul>li:nth-child(3)>a");
 	public static By NAME_TEXT=By.cssSelector(".contact-form--wrapper>form>div:nth-child(3)>label");
+	public static By EMAILUS_TITLE = By.cssSelector(".page-title");
 	public static By NAME_TEXTBOX = By.name("name");
 	public static By EMAIL_ADDRESS_TEXT = By.cssSelector(".contact-form--wrapper>form>div:nth-child(4)>label");
 	public static By EMAIL_ADDRESS_TEXTBOX = By.name("email");

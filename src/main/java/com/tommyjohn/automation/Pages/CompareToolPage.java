@@ -15,7 +15,7 @@ public class CompareToolPage
 	
 	public void validateCompareTool() throws Exception
 	{
-		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
+		new HomePageComponents(driver).navigateToBoxerBriefInMenCategory();
 		new CompareToolComponent(driver).CompareToolOnMensUnderwearCollection();
 	}
 }
