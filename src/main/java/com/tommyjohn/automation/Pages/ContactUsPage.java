@@ -15,15 +15,15 @@ public class ContactUsPage  {
 	}
 	public void VerifyContactUsFlow() throws Exception
 	{
-		new HomePageComponents(driver).navigateToContactUsPage();
+		new HomePageComponents(driver).navigateToHelpPage();
 		Thread.sleep(3000);
 		new ContactUsComponent(driver).ContactUsFlow();
         Thread.sleep(3000);
 	}
 	
-	public void ContactUsFieldValidation_page() throws Exception
+	public void HelpFieldValidation_page() throws Exception
 	{
-		new HomePageComponents(driver).navigateToContactUsPage();
+		new HomePageComponents(driver).navigateToHelpPage();
 		Thread.sleep(3000);
 		new ContactUsComponent(driver).HelpUsPageValidation();
 		Thread.sleep(3000);

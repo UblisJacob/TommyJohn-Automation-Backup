@@ -29,7 +29,7 @@ public class ReOrderPageComponents extends ReOrderPageLocators{
 	{
 
 		SoftAssert softAssert = new SoftAssert();
-		WebDriverWait wait = new WebDriverWait(driver, 20);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HomePageLocators.ACCOUNT_ICON));
 		driver.findElement(HomePageLocators.ACCOUNT_ICON).click();
 		Thread.sleep(3000);
