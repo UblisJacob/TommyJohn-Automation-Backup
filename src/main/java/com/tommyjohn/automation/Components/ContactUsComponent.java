@@ -2,8 +2,12 @@ package com.tommyjohn.automation.Components;
 
 import java.util.List;
 import java.util.Properties;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
 
@@ -25,6 +29,14 @@ public class ContactUsComponent extends ContactUsPageLocators
 	}
 	public void ContactUsFlow() throws Exception
 	{
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.presenceOfElementLocated(EMAIL_US_LINK));
+		driver.findElement(EMAIL_US_LINK).click();
+		
+		wait.until(ExpectedConditions.presenceOfElementLocated(EMAILUS_TITLE));
+		String PageTitle = driver.findElement(EMAILUS_TITLE).getText();
+		softassert.assertEquals(PageTitle, "Email Us", "Email us title not present on contact us page");
+
 		Thread.sleep(3000);
 		driver.findElement(NAME_TEXTBOX).sendKeys("test");
 		Thread.sleep(3000);
@@ -34,8 +46,10 @@ public class ContactUsComponent extends ContactUsPageLocators
 		Thread.sleep(3000);
 		driver.findElement(MESSAGE_TEXTAREA).sendKeys("Test Message, Please ignore this.");
 		Thread.sleep(3000);
-		driver.findElement(SEND_MESSAGE_BUTTON).click();
+		softassert.assertTrue(driver.findElement(SEND_MESSAGE_BUTTON).isEnabled(), "Send message button not enabled");
 		Reporter.log("User is able to send message through contact us form.");
+		
+		softassert.assertAll();
 	}
 	public void ContactUsFieldValidation() throws Exception
 	{
@@ -192,7 +206,10 @@ public class ContactUsComponent extends ContactUsPageLocators
 	
 	public void HelpUsPageValidation() throws Exception
 	{
+		
+		
 		Thread.sleep(3000);
+		
 		softassert.assertTrue(driver.findElement(HELP_PAGETITLE).isDisplayed(), "Help Center page title is not displayed.");
 		softassert.assertEquals(driver.findElement(HELP_PAGETITLE).getText(), properties.getProperty("PageTitle"),"Text changed for Help Center page title.");
 		Reporter.log("Contact us Page Title is displayed :: Correct.");

@@ -968,7 +968,7 @@ driver.get("https://tommyjohn.com/products/e-gift-card");
 driver.get("https://tommyjohn.com/collections/womens-sale-underwear");
 	}
 	// navigate to Contact Us Page
-		public void navigateToContactUsPage() throws Exception {
+		public void navigateToHelpPage() throws Exception {
 			
 			driver.get(("https://help.tommyjohn.com/hc/en-us"));
 //			text = driver.findElement(CONTACT_US_LINK).getText();

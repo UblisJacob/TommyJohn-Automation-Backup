@@ -113,13 +113,6 @@
 		</classes>
 	</test>
 
-	<test thread-count="1" name="CompareTool" verbose="1"
-		parallel="tests">
-		<parameter name="browser" value="chrome" />
-		<classes>
-			<class name="TestScenario.ValidateCompareTool" />
-		</classes>
-	</test>
 
 	<test thread-count="1" name="ContactUs" verbose="1"
 		parallel="tests">

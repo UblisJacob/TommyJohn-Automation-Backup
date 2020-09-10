@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
@@ -252,10 +253,10 @@ public class SizeGuideComponents extends SizeGuideLocators
 		executor2.executeScript("arguments[0].click();", ele2);
 		Thread.sleep(3000);
 
-		
-		  if(!driver.findElement(SECOND_SIZE_GUIDE_TITLE).isDisplayed()) 
-		throw new Exception("Product's second size guide title is not displayed");
-		 
+
+		if(!driver.findElement(SECOND_SIZE_GUIDE_TITLE).isDisplayed()) 
+			throw new Exception("Product's second size guide title is not displayed");
+
 		// validation for fit-meter section
 		if(!driver.findElement(SECOND_SIZE_GUIDE_FITMETER_TITLE).isDisplayed())
 			throw new Exception("Product's second size guide fit-meter title is not displayed");
@@ -514,7 +515,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 	public void validateMenDressShirtSizeGuide() throws Exception
 	{
 		//driver.navigate().to("https://tommyjohn.com/products/slim-fit-print-stay-tucked-dress-shirt");
-		Thread.sleep(3000);
+
 		Open_SizeGuide();
 		Thread.sleep(3000);
 		CommonContentsInAllSizeGuide();
@@ -602,7 +603,11 @@ public class SizeGuideComponents extends SizeGuideLocators
 
 	public void Open_SizeGuide() throws Exception
 	{
-		Thread.sleep(5000);
+
+		driver.navigate().refresh();
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+
+		wait.until(ExpectedConditions.presenceOfElementLocated(ProductDetailsPageComponents.SIZE_GUIDE_BUTTON));	
 		if(!driver.findElement(SIZEGUIDE).isEnabled())
 			throw new Exception("Size Guide button is not present");
 		WebElement ele = driver.findElement(SIZEGUIDE);
@@ -691,7 +696,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 				element.click();
 			}
 			Thread.sleep(3000);
-			
+
 			WebElement ele = driver.findElement(FIND_SIZE_BUTTON);
 			jse = (JavascriptExecutor)driver;
 			jse.executeScript("arguments[0].click();", ele);					
@@ -719,17 +724,17 @@ public class SizeGuideComponents extends SizeGuideLocators
 
 		if(!driver.findElement(BRA_SIZE_GUIDE_INSTRUCTION_CONTENT).isDisplayed())
 			throw new Exception("Bra Size Guide Instruction Content is not displayed.");
-		if(!driver.findElement(WATCH_NOW_BUTTON).isDisplayed()){
-			throw new Exception("'Watch Now' button is not displayed.");}
-		else {
-			if(!driver.findElement(WATCH_NOW_BUTTON).getText().equalsIgnoreCase("Watch Now"))
-				throw new Exception("Text changed for 'Watch Now' button.");
-			driver.findElement(WATCH_NOW_BUTTON).click();
-			if(!driver.findElement(INSTRUCTIONAL_VIDEO).isDisplayed())
-				throw new Exception("Instructional video is not displayed.");
-			if(!driver.findElement(WATCH_NOW_BUTTON).getText().equalsIgnoreCase("Pause"))
-				throw new Exception("Button text should change from 'Watch Now' to 'Pause' ");
-		}
+		//		if(!driver.findElement(WATCH_NOW_BUTTON).isDisplayed()){
+		//			throw new Exception("'Watch Now' button is not displayed.");}
+		//		else {
+		//			if(!driver.findElement(WATCH_NOW_BUTTON).getText().equalsIgnoreCase("Watch Now"))
+		//				throw new Exception("Text changed for 'Watch Now' button.");
+		//			driver.findElement(WATCH_NOW_BUTTON).click();
+		//			if(!driver.findElement(INSTRUCTIONAL_VIDEO).isDisplayed())
+		//				throw new Exception("Instructional video is not displayed.");
+		//			if(!driver.findElement(WATCH_NOW_BUTTON).getText().equalsIgnoreCase("Pause"))
+		//				throw new Exception("Button text should change from 'Watch Now' to 'Pause' ");
+		//		}
 	}
 
 	public void CommonContentsInAllSizeGuide() throws Exception
@@ -926,18 +931,19 @@ public class SizeGuideComponents extends SizeGuideLocators
 		 * 
 		 * }
 		 */
-		
+
 		element= driver.findElement(By.cssSelector(".product-meta__title"));
 		System.out.println("Triangle Bralette title is: "+element.getText());
 		element.click();
-        Thread.sleep(5000);
+		Thread.sleep(5000);
 	}
 
 	public void navigateToScoopBralettePDP() throws Exception 
 	{
-
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		new HomePageComponents(driver).navigateToScoopBraletteCategory();
-		Thread.sleep(3000);
+
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".collection-title-bar__title")));
 		jse=(JavascriptExecutor)driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		/*
@@ -952,7 +958,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 		element= driver.findElement(By.cssSelector(".product-meta__title"));
 		System.out.println("Scoop Bralette title is: "+element.getText());
 		element.click();
-        Thread.sleep(5000);
+		Thread.sleep(5000);
 
 	}
 
@@ -985,13 +991,13 @@ public class SizeGuideComponents extends SizeGuideLocators
 
 		new HomePageComponents(driver).navigateToLoungeWearPacksInWomenPacksCategory();
 		Thread.sleep(4000);
-		
+
 		jse=(JavascriptExecutor)driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		Thread.sleep(4000);
 
 		List<WebElement> producttitle = driver.findElements(By.cssSelector(".product-meta__title"));
-		
+
 		for (WebElement title : producttitle)
 		{
 			System.out.println("product title is: "+title.getText());
@@ -1007,7 +1013,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 
 	public void navigateToMensBottom() throws Exception 
 	{
-        List<WebElement> producttitle = driver.findElements(By.cssSelector(".product-meta__title"));
+		List<WebElement> producttitle = driver.findElements(By.cssSelector(".product-meta__title"));
 		for (WebElement title : producttitle)
 		{
 			System.out.println("product title is :"+title.getText());
@@ -1019,7 +1025,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 				title.click();
 				break;
 			}
-			
+
 		}
 	}
 	public void navigatetoMensBlazer() throws Exception 

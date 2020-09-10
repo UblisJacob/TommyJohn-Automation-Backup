@@ -16,7 +16,7 @@ public class QuickShopPage {
 
 	public void QuickShopOnCollectionPage() throws Exception
 	{
-		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
+		new HomePageComponents(driver).navigateToBoxerBriefInMenCategory();
 		new CollectionPageComponent(driver).QuickShopOnMegaCollection();
 	}
 

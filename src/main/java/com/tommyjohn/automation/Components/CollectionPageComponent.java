@@ -69,7 +69,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_IMAGE));
 		// get product title and click on image if present
 		text = driver.findElement(FIRST_PRODUCT_URL).getAttribute("href");
-		
+
 		WebElement Prod_Image = driver.findElement(FIRST_PRODUCT_IMAGE);
 		if(!Prod_Image.isDisplayed())
 			//#		if(!driver.findElement(THIRD_PRODUCT_IMAGE).isDisplayed())
@@ -99,7 +99,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
 		// get product title and click on product heading text if present
-		
+
 		text = driver.findElement(FIRST_PRODUCT_URL).getAttribute("href");
 		driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT).click();
 		Thread.sleep(3000);
@@ -110,7 +110,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 		// validate product details page by calling the method
 		if(!driver.getCurrentUrl().contains("pack"))		
-		new ProductDetailsPageComponents(driver).validatePage();
+			new ProductDetailsPageComponents(driver).validatePage();
 
 		Reporter.log("Product head line text on collection page is Displayed :: Clickable and validated successfully");
 
@@ -122,25 +122,25 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 
 		// get product title and click on product heading text if present
-//		try {
-			if(!driver.findElement(FIRST_PRODUCT_REVIEW_STARS).isDisplayed())
-				throw new Exception("Product review stars are not present");
-			text = driver.findElement(FIRST_PRODUCT_URL).getAttribute("href");
-			driver.findElement(FIRST_PRODUCT_REVIEW_STARS).click();
-			Thread.sleep(3000);
-			Reporter.log(driver.getCurrentUrl());
-			// check correct Product details page opened or not
-			new ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);	
+		//		try {
+		if(!driver.findElement(FIRST_PRODUCT_REVIEW_STARS).isDisplayed())
+			throw new Exception("Product review stars are not present");
+		text = driver.findElement(FIRST_PRODUCT_URL).getAttribute("href");
+		driver.findElement(FIRST_PRODUCT_REVIEW_STARS).click();
+		Thread.sleep(3000);
+		Reporter.log(driver.getCurrentUrl());
+		// check correct Product details page opened or not
+		new ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);	
 
-			// validate product details page by calling the method
-			new ProductDetailsPageComponents(driver).validatePage();
+		// validate product details page by calling the method
+		new ProductDetailsPageComponents(driver).validatePage();
 
-			Reporter.log("Product review stars on collection page is Displayed :: Clickable and validated successfully");
+		Reporter.log("Product review stars on collection page is Displayed :: Clickable and validated successfully");
 
-//	}
-			//catch(Exception e) {
-//			Reporter.log("Review Stars were not present for the selected product");
-//		}
+		//	}
+		//catch(Exception e) {
+		//			Reporter.log("Review Stars were not present for the selected product");
+		//		}
 	}
 
 
@@ -478,10 +478,10 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 		// Recipient's email ID needs to be mentioned.
 		String to1 = "vijeta@tommyjohnwear.com";
-//		String to2 = "saurabh.agarwal@tommyjohnwear.com";
-//		String to3 = "manoj.konale@tommyjohnwear.com";
+		//		String to2 = "saurabh.agarwal@tommyjohnwear.com";
+		//		String to3 = "manoj.konale@tommyjohnwear.com";
 		String to4 = "vipul@tommyjohnwear.com";
-//		String to5 = "anjali.pathak@tommyjohnwear.com";
+		//		String to5 = "anjali.pathak@tommyjohnwear.com";
 		String to6 = "jubin@tommyjohnwear.com";
 		String to7 = "akshata@tommyjohnwear.com";
 		//		String to8 = "anil@tommyjohnwear.com";
@@ -515,10 +515,10 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			message.setFrom(new InternetAddress(from));
 			// Set To: header field of the header.
 			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to1));
-//			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to2));
-//			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to3));
+			//			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to2));
+			//			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to3));
 			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to4));
-//			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to5));
+			//			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to5));
 			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to6));
 			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to7));
 			//		message.addRecipient(Message.RecipientType.TO,new InternetAddress(to8));
@@ -561,10 +561,15 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	public void QuickShopOnMegaCollection() throws Exception
 	{
 		Actions action = new Actions(driver);
-		Thread.sleep(3000);
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		Thread.sleep(8000);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		js.executeScript("window.scrollBy(0,500)");
 
+		wait.until(ExpectedConditions.presenceOfElementLocated(FIRST_PRODUCT_IMAGE));
 		//Hover On product image on collection page
 		element = driver.findElement(FIRST_PRODUCT_IMAGE);
+		js.executeScript("arguments[0].scrollIntoView(true);", element);
 		action.moveToElement(element).build().perform();
 		Thread.sleep(3000);
 		AddproductToCartByQuickShop();
@@ -572,6 +577,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 	public void AddproductToCartByQuickShop() throws Exception
 	{
+		JavascriptExecutor js = (JavascriptExecutor)driver;
 		String prod_title = driver.findElement(PRODUCT_TITLE_ON_COLLECTION).getText();
 		String color_name = driver.findElement(PRODUCT_ITEM_SWATCH_CIRCLE).getAttribute("title");
 		String amount = driver.findElement(PRODUCT_AMOUNT_ON_Collection).getText();
@@ -594,7 +600,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			softAssert.assertTrue(driver.findElement(QUICK_SHOP_SIZE_OVERLAY_HEADING).isDisplayed(), "Quick shop select size overlay's heading is not displayed.");
 			softAssert.assertEquals(driver.findElement(QUICK_SHOP_SIZE_OVERLAY_HEADING).getText(), "Choose Your Size","Text changed for Quick shop Size overlay heading.");
 			Reporter.log("Quick shop size overlay heading is displayed ::Correct.");
-			softAssert.assertTrue(driver.findElement(QUICK_SHOP_SIZE_LIST).isDisplayed(), "Quick shop size labels are not displayed.");
+			softAssert.assertTrue(driver.findElement(QUICK_SHOP_SIZE_LABEL).isDisplayed(), "Quick shop size labels are not displayed.");
 			Reporter.log("Quick shop size labels are displayed.");
 			/*
 			 * softAssert.assertTrue(!driver.findElement(QUICK_SHOP_SIZE_OVERLAY_ATC).
@@ -613,11 +619,11 @@ public class CollectionPageComponent extends CollectionPageLocator {
 				classtext=allElements.get(i).getAttribute("class");
 				if (!classtext.contains("not-available")) 
 				{
-					element= driver.findElement(By.cssSelector("div.inline-quick-shop > ul > li:nth-child("+(i+1)+")"));
-					element.click();
-					Selected_size=allElements.get(i+1).getText();
+					element= driver.findElement(By.cssSelector("div.inline-quick-shop > ul > li:nth-child("+(i+1)+") > label"));
+					js.executeScript("arguments[0].click();", element);
+					Selected_size=allElements.get(i).getAttribute("value");
 					System.out.println("Selected size is: "+Selected_size);
-					Thread.sleep(3000);
+					Thread.sleep(3000);	
 					break;
 
 				}
@@ -635,62 +641,63 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			 * element.click(); Selected_size=allElements.get(i+1).getText();
 			 * System.out.println("Selected size is: "+Selected_size); Thread.sleep(3000); }
 			 */			
-			 //Add available size to the cart
-			 //	if(driver.findElement(QUICK_SHOP_SIZE_OVERLAY_ATC).isEnabled()){
-			 /*
-			  * text= driver.findElement(QUICK_SHOP_SIZE_OVERLAY_ATC).getText();
-			  * if(text.equalsIgnoreCase("Out Of Stock")) throw new
-			  * Exception("Quick shop size overlay ATC btn is enabled for OOS product size."
-			  * );
-			  * 
-			  * else if(text.equalsIgnoreCase("Add To Cart"))
-			  * driver.findElement(QUICK_SHOP_SIZE_OVERLAY_ATC).click();
-			  * Reporter.log("Quick Shop size overlay ATC button is Displayed :: Clickable."
-			  * ); Thread.sleep(3000);
-			  */
-			 //field validation for added product on fly cart	
-			 Thread.sleep(3000);
-			 String actual = driver.findElement(PRODUCT_TITLE_ON_FLYCART).getText();
-			 System.out.println("Actual product name is: "+actual+" and Expected product name is: "+prod_title);
-			 softAssert.assertEquals(actual,prod_title ,"Product name on flycart is incorrect.");
+			//Add available size to the cart
+			//	if(driver.findElement(QUICK_SHOP_SIZE_OVERLAY_ATC).isEnabled()){
+			/*
+			 * text= driver.findElement(QUICK_SHOP_SIZE_OVERLAY_ATC).getText();
+			 * if(text.equalsIgnoreCase("Out Of Stock")) throw new
+			 * Exception("Quick shop size overlay ATC btn is enabled for OOS product size."
+			 * );
+			 * 
+			 * else if(text.equalsIgnoreCase("Add To Cart"))
+			 * driver.findElement(QUICK_SHOP_SIZE_OVERLAY_ATC).click();
+			 * Reporter.log("Quick Shop size overlay ATC button is Displayed :: Clickable."
+			 * ); Thread.sleep(3000);
+			 */
+			//field validation for added product on fly cart	
+			Thread.sleep(3000);
+			String actual = driver.findElement(FlyCartPageLocator.FIRST_PRODUCT_TITLE_IN_CART).getText();
+			System.out.println("Actual product name is: "+actual+" and Expected product name is: "+prod_title);
+			//softAssert.assertEquals(actual,prod_title ,"Product name on flycart is incorrect.");
 
-			 text = driver.findElement(PRODUCT_LINE_ITEM_OPTION).getText();
-			 String[] text1 = text.split("/");
-			 actual = text1[0];
-			 // String expected = color_name+" / "+Selected_size;
-			 String expected = color_name+" ";
-			 System.out.println("Actual Color name is: "+actual+" and Expected color name is: "+expected);
-			 softAssert.assertEquals(actual,expected ,"Product Line item option on flycart is incorrect.");
+			text = driver.findElement(FlyCartPageLocator.COLOR_AND_SIZE_IN_CART).getText();
+			actual = text;
+		//	String[] text1 = text.split("/");
+			//actual = text1[0];
+			 String expected = color_name+" / "+Selected_size;
+			//String expected = color_name+" ";
+			System.out.println("Actual Color name is: "+actual+" and Expected color name is: "+expected);
+			softAssert.assertEquals(actual,expected ,"Product Line item option on flycart is incorrect.");
 
-			 actual = driver.findElement(PRODUCT_AMOUNT_ON_FLYCART).getText();
-			 //Product amount is displayed without ".00" suffix in Buy with section
-			 String new_amount = null;
-			 String new_actual_amount = null;
-			 for (String a : amount.split("\\.00")) 
-				 new_amount = a;
-			 for (String a : amount.split("\\.00")) 
-				 new_actual_amount = a;
-			 System.out.println("Actual product amount is: "+new_actual_amount+" and Expected product amount is: "+new_amount);
-			 softAssert.assertEquals(new_actual_amount,new_amount,"Product amount on flycart is incorrect.");
-			 System.out.println("product details are correct on Fly cart.");
-			 Thread.sleep(3000);
-			 Reporter.log("Product details are validated on Inline cart.");
-			 driver.findElement(FlyCartPageLocator.INLINE_CART_CLOSE_BUTTON).click();
-			 //	}
-			 //If selected size is OOS/Unavailable
-			 /*
-			  * else{ text= driver.findElement(QUICK_SHOP_SIZE_OVERLAY_ATC).getText();
-			  * System.out.println("Text of ATC on Quick shop overlay for OOS size is: "+text
-			  * ); if(!text.equalsIgnoreCase("Out Of Stock")){
-			  * if(!text.equalsIgnoreCase("Unavilable")) throw new
-			  * Exception("Text change of ATC on Quick shop overlay for OOS/Unavailable size."
-			  * ); }
-			  * 
-			  * driver.findElement(QUICK_SHOP_SIZE_OVERLAY_CLOSE).click();
-			  * System.out.println("OOS/Unavaiable size is selected.");
-			  * Reporter.log("Quick shop size overlay OOS/unavailable button is disabled.");
-			  * }
-			  */
+			actual = driver.findElement(FlyCartPageLocator.PRICE_IN_QUANTITY_LINE).getText();
+			//Product amount is displayed without ".00" suffix in Buy with section
+			String new_amount = null;
+			String new_actual_amount = null;
+			for (String a : amount.split("\\.00")) 
+				new_amount = a;
+			for (String a : amount.split("\\.00")) 
+				new_actual_amount = a;
+			System.out.println("Actual product amount is: "+new_actual_amount+" and Expected product amount is: "+new_amount);
+			softAssert.assertEquals(new_actual_amount,new_amount,"Product amount on flycart is incorrect.");
+			System.out.println("product details are correct on Fly cart.");
+			Thread.sleep(3000);
+			Reporter.log("Product details are validated on Inline cart.");
+			driver.findElement(FlyCartPageLocator.INLINE_CART_CLOSE_BUTTON).click();
+			//	}
+			//If selected size is OOS/Unavailable
+			/*
+			 * else{ text= driver.findElement(QUICK_SHOP_SIZE_OVERLAY_ATC).getText();
+			 * System.out.println("Text of ATC on Quick shop overlay for OOS size is: "+text
+			 * ); if(!text.equalsIgnoreCase("Out Of Stock")){
+			 * if(!text.equalsIgnoreCase("Unavilable")) throw new
+			 * Exception("Text change of ATC on Quick shop overlay for OOS/Unavailable size."
+			 * ); }
+			 * 
+			 * driver.findElement(QUICK_SHOP_SIZE_OVERLAY_CLOSE).click();
+			 * System.out.println("OOS/Unavaiable size is selected.");
+			 * Reporter.log("Quick shop size overlay OOS/unavailable button is disabled.");
+			 * }
+			 */
 		}
 		else
 			throw new Exception("Quick Shop ATC button is not displayed on hover.");
