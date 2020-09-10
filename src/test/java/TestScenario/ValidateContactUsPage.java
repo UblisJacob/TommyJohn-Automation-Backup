@@ -25,12 +25,12 @@ public class ValidateContactUsPage {
 	}
 	
 	@Test
-	public void TC_ContactUs_HelpPageValidation() throws Exception
+	public void TC_HelpPageValidation() throws Exception
 	{
-		new ContactUsPage(driver).ContactUsFieldValidation_page();
+		new ContactUsPage(driver).HelpFieldValidation_page();
 	}
 	@Test
-	public void TC_VerifyContactUsFlow() throws Exception
+	public void TC_VerifyContactUsForm() throws Exception
 	{
 		new ContactUsPage(driver).VerifyContactUsFlow();
 	}
