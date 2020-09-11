@@ -17,7 +17,7 @@
 		</classes>
 	</test>
 
-	<test thread-count="1" name="AccountLoginAndCreationTests"
+	 <test thread-count="1" name="AccountLoginAndCreationTests"
 		verbose="1" parallel="tests">
 		<classes>
 			<class name="TestScenario.ValidateAccountLoginFunctionality" />
