@@ -36,10 +36,11 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		
 		new HomePageComponents(driver).validateCartIcon();
 		driver.findElement(HomePageLocators.CART_ICON).click();
-		WebDriverWait wait = new WebDriverWait(driver, 20);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
-		Thread.sleep(3000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CART_TITLE));
+		//Thread.sleep(3000);
 		softAssert.assertTrue(driver.findElement(CART_TITLE).isDisplayed() , "Your Shopping Cart title is not displayed");
 		softAssert.assertEquals(driver.findElement(CART_TITLE).getText(), "Your Shopping Cart" , "Wrong text displayed for Cart title");
 		softAssert.assertTrue(driver.findElement(EMPTY_CART_MESSAGE).isDisplayed(), "Your cart is Empty message is not displayed on empty cart");
@@ -94,26 +95,30 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		
 		
 		text = new AddToCartComponents(driver).addToCart();
+		System.out.println("Text is:"+text);
+		String[] part = text.split("/");
+		String part1 = part[part.length-1];
+		String part2 = part1.replace("-", " ");
+		System.out.println("Title text is:" +part2);
 		driver.findElement(HomePageLocators.CART_ICON).click();
 		WebDriverWait wait = new WebDriverWait(driver, 20);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CART_TITLE));
-		
 		softAssert.assertTrue(driver.findElement(PRODUCT_TITLE).isDisplayed(), "Product title for added item not present on Cart");
 		text1 = driver.findElement(PRODUCT_TITLE).getText();
-		softAssert.assertEquals(text1, text, "Wrong Product added to cart");
+		//softAssert.assertEquals(text1, part2, "Wrong Product added to cart");
+		String text2= text1.replace("'", "");
+		System.out.println("text2 is: "+text2.toLowerCase());
+		if(!text2.toLowerCase().contains(part2))
+			throw new Exception("Wrong Product added to cart");
 		quant= driver.findElement(PRODUCT_QUANTITY).getAttribute("value");
-		
-		
+				
 		driver.findElement(PRODUCT_QUANT_ADD).click();
 		softAssert.assertEquals(driver.findElement(PRODUCT_QUANTITY).getAttribute("value"), "2");
 		driver.findElement(PRODUCT_QUANT_MINUS).click();
 		softAssert.assertEquals(driver.findElement(PRODUCT_QUANTITY).getAttribute("value"), quant);
-		
-		
-		
-		
+			
 		wait.until(ExpectedConditions.visibilityOfElementLocated(REMOVE_PRODUCT_FROM_CART));
 		driver.findElement(REMOVE_PRODUCT_FROM_CART).click();
 		Thread.sleep(3000);
@@ -166,23 +171,21 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		
 		System.out.println("cart " + driver.findElement(PRODUCT_COLOR_SIZE).getText());
 		System.out.println("pdp " + pdp1.productcolor + " / " + pdp1.prodsize);
-		System.out.println("ex " + driver.findElement(PRODUCT_QUANTITY).getText());
+		System.out.println("ex " + driver.findElement(PRODUCT_QUANTITY).getAttribute("value"));
 		System.out.println("ac " + pdp1.productquant);
-		
 		
 		softAssert.assertEquals(driver.findElement(PRODUCT_TITLE).getText(), pdp1.productname, "Wrong product title displayed in cart");
 		softAssert.assertEquals(driver.findElement(PRODUCT_QUANTITY).getAttribute("value"), pdp1.productquant, "Wrong quantity added to cart");
 		softAssert.assertEquals(driver.findElement(PRODUCT_PRICE).getText(), pdp1.productprice, "Wrong product price displayed in cart");
-		softAssert.assertEquals(driver.findElement(PRODUCT_COLOR_SIZE).getText(), pdp1.productcolor + " / " + pdp1.prodsize, "Wrong color & size added to cart");
-		
+		//softAssert.assertEquals(driver.findElement(PRODUCT_COLOR_SIZE).getText(), pdp1.productcolor + " / " + pdp1.prodsize, "Wrong color & size added to cart");
+		if(!driver.findElement(PRODUCT_COLOR_SIZE).getText().equalsIgnoreCase(pdp1.productcolor + " / " + pdp1.prodsize))
+			throw new Exception("Wrong color & size added to cart");
 		softAssert.assertAll();
 	}
 	
 	public void validateafterpayonShoppingCart() throws Exception
 	{
 		
-	
-	
 		//product add to cart
 		new HomePageComponents(driver).navigateToBraCategory();
 		new CollectionPageComponent(driver).navigateToProductDetailsPage();

@@ -14,7 +14,7 @@ public class CheckoutPageLocators {
 	public static By AMZ_PAY = By.xpath("//form[@action = 'https://payments.amazon.com/checkout/signin'] /button" );
 
 	//Contact info 
-	public static By CONTACTINFO_TEXT = By.cssSelector("#main-header");
+	public static By CONTACTINFO_TEXT = By.cssSelector("h2#main-header");
 	public static By ALREADYHAVEANACCOUNT_TEXT = By.cssSelector(".layout-flex__item > span");
 	public static By LOGIN_LINK = By.cssSelector(".layout-flex__item > a");
 	public static By CHECKOUT_EMAIL = By.cssSelector("#checkout_email");
@@ -50,10 +50,10 @@ public class CheckoutPageLocators {
 	public static By CONTACT_EMAIL =  By.cssSelector(".review-block__content > bdo");
 	public static By SHIP_ADDRESS =  By.cssSelector(".review-block__content > address");
 	public static By CHANGE_LINK = By.cssSelector(".review-block__link > a");
-	public static By SHIPPING_TEXT = By.cssSelector("#main-header");
+	public static By SHIPPING_TEXT = By.cssSelector("h2#main-header");
 	public static By SHIPPING_RADIO_BUTTON = By.cssSelector(".input-radio");
 	public static By RETURN_LINK = By.cssSelector(".step__footer__previous-link-content");
-	public static By CONTINUE_TO_PAYMENT_BUTTON = By.cssSelector(".step__footer__continue-btn");
+	public static By CONTINUE_TO_PAYMENT_BUTTON = By.cssSelector("button#continue_button");
 
 
 	//                                           payment
@@ -64,7 +64,7 @@ public class CheckoutPageLocators {
 	public static By PAYPAL_OPTION = By.xpath("//*[@data-gateway-group='express']");
 
 	public static By BILLING_TEXT = By.cssSelector(".section--billing-address > div.section__header > h2");
-	public static By COMPLETE_ORDER_BUTTON = By.cssSelector(".step__footer__continue-btn");
+	public static By COMPLETE_ORDER_BUTTON = By.cssSelector("button.step__footer__continue-btn");
 	public static By HOWHEARD_TITLE = By.cssSelector(".how_new_title");
 	public static By HOWHEARD_SUBTITLE = By.cssSelector(".how_new_subtitle");
 	public static By HOWHEARD_DROPDOWN = By.cssSelector(".make_selection_select");

@@ -98,7 +98,7 @@ executor.executeScript("arguments[0].click();", driver.findElement(LOGOUT_OPTION
 		if(!driver.findElement(ALREADYHAVEANACCOUNT_LINK).isDisplayed())
 			throw new Exception("Already have an account link is not present");
 		driver.findElement(ALREADYHAVEANACCOUNT_LINK).click();
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		driver.findElement(CREATEACCOUNT_BTN).click();
 		Thread.sleep(3000);
 

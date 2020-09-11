@@ -52,11 +52,12 @@ public class ValidateHomePage {
 		new HomePage(driver).validateSearchFunctionality();
 	}
 
-	@Test public void TC_ValidateSearchFunctionalityviaProductMatches() throws
-	Exception {
-
-		new HomePage(driver).validateSearchFunction(); }
-
+	/*
+	 * @Test public void TC_ValidateSearchFunctionalityviaProductMatches() throws
+	 * Exception {
+	 * 
+	 * new HomePage(driver).validateSearchFunction(); }
+	 */
 	@AfterMethod(alwaysRun = true)
 	void teardown () {
 

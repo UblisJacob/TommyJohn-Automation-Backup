@@ -36,7 +36,7 @@ public class ProductDetailsPageLocators {
 	public static By ADD_TO_CART_BUTTON = By.cssSelector("button.product-info__atc.button.js-loop-atc");
 	public static By JOIN_THE_WAITLIST = By.cssSelector("button.product-info__atc.button.button--red.button--full.js-loop-atc.email-when-in-stock");
 	//public static By QUANTITY = By.cssSelector(".qty-selector.desktop>#updatedQty.pdp.prodQty");
-	public static By QUANTITY = By.cssSelector(".product-info__atc");
+	public static By QUANTITY = By.cssSelector("button.product-info__atc");
 	public static By PLUS_BUTTON = By.cssSelector(".pdp.plusBtn");
 	public static By UPDATED_QUANTITY = By.cssSelector(".pdp.updatedQty");
 	public static By MINUS_BUTTON = By.cssSelector(".pdp.minusBtn");
