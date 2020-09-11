@@ -2,9 +2,9 @@
 <classpath>
 	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
 		<attributes>
+			<attribute name="test" value="true"/>
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" output="target/classes" path="src/main/java">
@@ -22,6 +22,7 @@
 	<classpathentry kind="var" path="M2_REPO/javax/activation/activation/1.1/activation-1.1.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
+			<attribute name="module" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
@@ -61,25 +62,6 @@
 	<classpathentry kind="var" path="M2_REPO/org/apache/logging/log4j/log4j-api/2.11.2/log4j-api-2.11.2.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/apache/logging/log4j/log4j-core/2.11.2/log4j-core-2.11.2.jar"/>
 	<classpathentry kind="var" path="M2_REPO/com/github/stephenc/monte/monte-screen-recorder/0.7.7.0/monte-screen-recorder-0.7.7.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Vijeta/Downloads/poi-bin-4.1.1-20191023/poi-4.1.1/ooxml-lib/curvesapi-1.06.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Vijeta/Downloads/poi-bin-4.1.1-20191023/poi-4.1.1/ooxml-lib/xmlbeans-3.1.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Vijeta/Downloads/poi-bin-4.1.1-20191023/poi-4.1.1/poi-4.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Vijeta/Downloads/poi-bin-4.1.1-20191023/poi-4.1.1/poi-examples-4.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Vijeta/Downloads/poi-bin-4.1.1-20191023/poi-4.1.1/poi-excelant-4.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Vijeta/Downloads/poi-bin-4.1.1-20191023/poi-4.1.1/poi-ooxml-4.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Vijeta/Downloads/poi-bin-4.1.1-20191023/poi-4.1.1/poi-ooxml-schemas-4.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Vijeta/Downloads/poi-bin-4.1.1-20191023/poi-4.1.1/poi-scratchpad-4.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Vijeta/Downloads/poi-bin-4.1.1-20191023/poi-4.1.1/lib/activation-1.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Vijeta/Downloads/poi-bin-4.1.1-20191023/poi-4.1.1/lib/commons-codec-1.13.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Vijeta/Downloads/poi-bin-4.1.1-20191023/poi-4.1.1/lib/commons-collections4-4.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Vijeta/Downloads/poi-bin-4.1.1-20191023/poi-4.1.1/lib/commons-compress-1.19.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Vijeta/Downloads/poi-bin-4.1.1-20191023/poi-4.1.1/lib/commons-logging-1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Vijeta/Downloads/poi-bin-4.1.1-20191023/poi-4.1.1/lib/commons-math3-3.6.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Vijeta/Downloads/poi-bin-4.1.1-20191023/poi-4.1.1/lib/jaxb-api-2.3.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Vijeta/Downloads/poi-bin-4.1.1-20191023/poi-4.1.1/lib/jaxb-core-2.3.0.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Vijeta/Downloads/poi-bin-4.1.1-20191023/poi-4.1.1/lib/jaxb-impl-2.3.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Vijeta/Downloads/poi-bin-4.1.1-20191023/poi-4.1.1/lib/junit-4.12.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Vijeta/Downloads/poi-bin-4.1.1-20191023/poi-4.1.1/lib/log4j-1.2.17.jar"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
