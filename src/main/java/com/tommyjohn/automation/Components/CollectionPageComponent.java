@@ -33,6 +33,7 @@ import org.testng.asserts.SoftAssert;
 
 import com.tommyjohn.automation.PageLocators.CollectionPageLocator;
 import com.tommyjohn.automation.PageLocators.FlyCartPageLocator;
+import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
 
 import net.bytebuddy.asm.Advice.Exit;
 
@@ -49,6 +50,8 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 	public String navigateToProductDetailsPage() throws Exception {
 		String text = null;
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,250)");
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
 		// get text and click on the first product
@@ -56,8 +59,9 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		WebElement el = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", el);
-		Thread.sleep(3000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_TITLE));
 		Reporter.log(driver.getCurrentUrl());
+		//text = driver.findElement(ProductDetailsPageLocators.PRODUCT_TITLE).getText();
 		return text;
 	}
 

@@ -15,6 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
 
+import com.tommyjohn.automation.PageLocators.CollectionPageLocator;
 import com.tommyjohn.automation.PageLocators.HomePageLocators;
 import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
 import com.tommyjohn.automation.utils.CustomUtilities;
@@ -74,53 +75,40 @@ public class HomePageComponents extends HomePageLocators {
 
 		// Verify Men category
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.elementToBeClickable(MEN_CATEGORY));
-			
-		WebElement men = driver.findElement(MEN_CATEGORY);
-		//action.moveToElement(men).perform();
-	
-		currentUrl2 = men.getAttribute("href");
-		System.out.println(currentUrl2);
-		if(!(currentUrl2.contentEquals("https://tommyjohn.com/pages/mens-category")||currentUrl2.equalsIgnoreCase("https://tommyjohn.com/collections/mens")))
-			throw new Exception("Men category clicked but not opened correct page");
 		wait.until(ExpectedConditions.presenceOfElementLocated(MEN_CATEGORY));
+		if(!driver.findElement(MEN_CATEGORY).isDisplayed())
+			throw new Exception("Men category is not present");	
+
 		element = driver.findElement(MEN_CATEGORY);
 		action.moveToElement(element).perform();
-		if(!driver.findElement(FIRST_lEVEL1_CATEGORY).isEnabled())
+		if(!driver.findElement(FIRST_lEVEL1_CATEGORY).isDisplayed())
 			throw new Exception("Men Category is not hoverable");
-		
-		Reporter.log("Men category is Displayed :: Hoverable :: Clickable");
 		Thread.sleep(3000);
+		Reporter.log("Men category is displayed :: Hoverable");
+    	Thread.sleep(3000);
 
 
 		// Verify Women category
-		wait.until(ExpectedConditions.elementToBeClickable(WOMEN_CATEGORY));
-		
-		WebElement women = driver.findElement(WOMEN_CATEGORY);
-		currentUrl2 = women.getAttribute("href");
-		System.out.println(currentUrl2);
-		if(!(currentUrl2.contentEquals("https://tommyjohn.com/pages/womens-category")||currentUrl2.equalsIgnoreCase("https://tommyjohn.com/collections/womens")))
-			throw new Exception("Women category is clicked but not opened correct page");
-	
-		action.moveToElement(women).perform();
-		if(!driver.findElement(FIRST_lEVEL1_CATEGORY).isEnabled())
-			throw new Exception("Women Category is not hoverable");
-		Thread.sleep(3000);
+    	wait = new WebDriverWait(driver, 30);
+    	wait.until(ExpectedConditions.presenceOfElementLocated(WOMEN_CATEGORY));
+		if(!driver.findElement(WOMEN_CATEGORY).isDisplayed())
+			throw new Exception("Women category is not displayed");
+		element = driver.findElement(WOMEN_CATEGORY);
+		action.moveToElement(element).perform();
+		if(!driver.findElement(FIRST_lEVEL1_CATEGORY).isDisplayed())
+			throw new Exception("Men Category is not hoverable");
 		Reporter.log("Women category is Displayed :: Hoverable :: Clickable");
+		Thread.sleep(3000);
 		
 		// Verify Final Sale category
+		wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.presenceOfElementLocated(FINAL_SALE));
-		WebElement fs = driver.findElement(FINAL_SALE);
-		currentUrl2 = fs.getAttribute("href");
-		System.out.println(currentUrl2);
-		if(!(currentUrl2.contentEquals("https://tommyjohn.com/collections/sale")))
-			throw new Exception("Final Sale is clicked but not opened correct page");
-		
-		action.moveToElement(fs).perform();
+		if(!driver.findElement(FINAL_SALE).isDisplayed())
+			throw new Exception("Final Sale category is not displayed");
+		element = driver.findElement(FINAL_SALE);
+		action.moveToElement(element).perform();
 		if(!driver.findElement(FIRST_lEVEL1_CATEGORY).isDisplayed())
 			throw new Exception("Final Sale category is not hoverable");
-		Thread.sleep(3000);
-		
 		Reporter.log("Final Sale category is Displayed :: Hoverable :: clickable");
 	}
 
@@ -170,20 +158,31 @@ public class HomePageComponents extends HomePageLocators {
 
 		SoftAssert softAssert = new SoftAssert();
 		action = new Actions(driver);
-		
+	
 		WebElement element = driver.findElement(SEARCH_ICON);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", element);
 		driver.findElement(SEARCH_ICON).sendKeys("tees");
-		WebElement search = driver.findElement(SEARCH_ICON);
-		action.moveToElement(driver.findElement(SEARCH_ICON)).build().perform();
-		Thread.sleep(3000);
-		softAssert.assertTrue(driver.findElement(POPULAR_SEARCHES).isDisplayed(), "Popular searches section not displayed ");
-		softAssert.assertTrue(driver.findElement(PRODUCT_MATCHES).isDisplayed(), "Product matches section is not displayed");
 		
-		WebElement pm = driver.findElement(PRODUCT_MATCHES);
-		executor.executeScript("arguments[0].click();", pm);
-		Thread.sleep(8000);
+		  WebElement search = driver.findElement(SEARCH_ICON);
+		  action.moveToElement(driver.findElement(SEARCH_ICON)).build().perform();
+		  Thread.sleep(3000);
+		  softAssert.assertTrue(driver.findElement(POPULAR_SEARCHES).isDisplayed(),
+		  "Popular searches section not displayed ");
+		  softAssert.assertTrue(driver.findElement(PRODUCT_MATCHES).isDisplayed(),
+		  "Product matches section is not displayed");
+		  
+		  WebElement pm = driver.findElement(PRODUCT_MATCHES);
+		  executor.executeScript("arguments[0].click();", pm);
+		 
+		/*
+		 * WebDriverWait wait = new WebDriverWait(driver, 30);
+		 * wait.until(ExpectedConditions.visibilityOfElementLocated(
+		 * SEARCHPAGE_PRODUCT_NAME)); //Thread.sleep(8000);
+		 * driver.findElement(SEARCHPAGE_PRODUCT_NAME).click();
+		 */	
+		  Thread.sleep(8000);
+	//	wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_DETAILS));
 		if(driver.findElement(ProductDetailsPageLocators.PRODUCT_DETAILS).getText().contains("Pack"))
 		new ProductDetailsPageComponents(driver).verifybundlepages();
 		else
@@ -289,7 +288,7 @@ public class HomePageComponents extends HomePageLocators {
 			throw new Exception("Account icon is not present");
 
 		// check sign in option
-		
+		driver.get(baseUrl);
 		wait.until(ExpectedConditions.presenceOfElementLocated(ACCOUNT_ICON));
 		element = driver.findElement(ACCOUNT_ICON);
 		action.moveToElement(element).perform();
@@ -305,11 +304,15 @@ public class HomePageComponents extends HomePageLocators {
 		
 		//check help
 		driver.get(baseUrl);
+		wait.until(ExpectedConditions.presenceOfElementLocated(ACCOUNT_ICON));
+		element = driver.findElement(ACCOUNT_ICON);
 		action.moveToElement(element).perform();
 		if(!driver.findElement(HELP_ICON_HELP_OPTION).isDisplayed())
 			throw new Exception("Help Center option not displayed");
 		Reporter.log("Help center option is Displayed ");
 		driver.findElement(HELP_ICON_HELP_OPTION).click();
+		Thread.sleep(3000);
+		driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
 		Thread.sleep(3000);
 		currentUrl2 = driver.getCurrentUrl();
 		if(!currentUrl2.equalsIgnoreCase("https://help.tommyjohn.com/hc/en-us"))
@@ -442,6 +445,8 @@ element = driver.findElement(ACCOUNT_ICON);
 		Reporter.log("About link is Displayed :: Clickable");
 		Thread.sleep(4000);
 		// check Press link
+		// scroll the page at bottom to test all the footer links
+		((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		text = driver.findElement(PRESS_LINK).getText();
 		if(!text.equals("Press"))
 			throw new Exception("Press link text is changed");	
@@ -455,10 +460,14 @@ element = driver.findElement(ACCOUNT_ICON);
 		Thread.sleep(5000);
 
 		// check military discount link
+		// scroll the page at bottom to test all the footer links
+				((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		text = driver.findElement(MILITARY_DISCOUNT_LINK).getText();
 		if(!text.equals("Military Discount"))
 			throw new Exception("Military Discount link text is changed");	
 		driver.findElement(MILITARY_DISCOUNT_LINK).click();
+		Thread.sleep(3000);
+		driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
 		Thread.sleep(5000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.sheerid.com/")) 
 			driver.navigate().back();
@@ -468,10 +477,14 @@ element = driver.findElement(ACCOUNT_ICON);
 		Thread.sleep(5000);
 
 		// check Teacher Discount  link
+		// scroll the page at bottom to test all the footer links
+				((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		text = driver.findElement(TEACHER_DISCOUNT_LINK).getText();
 		if(!text.equals("Student & Teacher Discount"))
 			throw new Exception("Teacher Discount link text is changed");	
 		driver.findElement(TEACHER_DISCOUNT_LINK).click();
+		Thread.sleep(5000);
+		driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
 		Thread.sleep(5000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://offers.sheerid.com/tommy-john-landing-page/")) 
 			driver.navigate().back();
@@ -481,20 +494,26 @@ element = driver.findElement(ACCOUNT_ICON);
 		Thread.sleep(5000);
 		
 		// check  Healthcare  link
-//		text = driver.findElement(HEALTHCARE_DISC_LINK).getText();
-//		if(!text.equals("Healthcare Hero Discount"))
-//			throw new Exception("Healthcare Hero Discount link text is changed");	
-//		driver.findElement(HEALTHCARE_DISC_LINK).click();
-//		Thread.sleep(5000);
-//		if(driver.getCurrentUrl().equalsIgnoreCase("https://services.sheerid.com/verify/5eb057b19c1d181bd389bf0d/")) 
-//			driver.navigate().back();
-//		else
-//			throw new Exception("Wrong page opened after Healthcare Hero Discount footer link clicked");
-//		Reporter.log("Healthcare Hero Discount footer link is Displayed :: Clickable");
-//		Thread.sleep(5000);
+		// scroll the page at bottom to test all the footer links
+				((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		text = driver.findElement(HEALTHCARE_DISC_LINK).getText();
+		if(!text.equals("Healthcare Hero Discount"))
+			throw new Exception("Healthcare Hero Discount link text is changed");	
+		driver.findElement(HEALTHCARE_DISC_LINK).click();
+		Thread.sleep(3000);
+		driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
+		Thread.sleep(5000);
+		if(driver.getCurrentUrl().equalsIgnoreCase("https://services.sheerid.com/verify/5eb057b19c1d181bd389bf0d/")) 
+			driver.navigate().back();
+		else
+			throw new Exception("Wrong page opened after Healthcare Hero Discount footer link clicked");
+		Reporter.log("Healthcare Hero Discount footer link is Displayed :: Clickable");
+		Thread.sleep(5000);
 		
 
 		// check  Jobs  link
+		// scroll the page at bottom to test all the footer links
+				((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		text = driver.findElement(JOBS_LINK).getText();
 		if(!text.equals("Jobs"))
 			throw new Exception("Jobs link text is changed");	
@@ -523,6 +542,8 @@ element = driver.findElement(ACCOUNT_ICON);
 		Reporter.log("Privacy Policy footer link is Displayed :: Clickable");
 		Thread.sleep(5000);
 		// check  Terms & Conditions  link
+		// scroll the page at bottom to test all the footer links
+				((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		text = driver.findElement(TERMS_AND_CONDITION_LINK).getText();
 		if(!text.equals("Terms & Conditions"))
 			throw new Exception("Terms & Conditions link text is changed");	
@@ -536,6 +557,8 @@ element = driver.findElement(ACCOUNT_ICON);
 		Thread.sleep(5000);
 
 		// check  Terms & Conditions  link
+		// scroll the page at bottom to test all the footer links
+				((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		text = driver.findElement(BLOG_LINK).getText();
 		if(!text.equals("Blog"))
 			throw new Exception("Terms & Conditions link text is changed");	
@@ -563,10 +586,14 @@ element = driver.findElement(ACCOUNT_ICON);
 //		Thread.sleep(5000);
 		
 		// check  Contact Us  link
+		// scroll the page at bottom to test all the footer links
+				((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		text = driver.findElement(CONTACT_US_LINK).getText();
 		if(!text.equals("Contact Us"))
 			throw new Exception("Contact Us link text is changed");	
 		driver.findElement(CONTACT_US_LINK).click();
+		Thread.sleep(3000);
+		driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
 		Thread.sleep(5000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://help.tommyjohn.com/hc/en-us")) 
 			driver.navigate().back();
@@ -576,6 +603,8 @@ element = driver.findElement(ACCOUNT_ICON);
 		Thread.sleep(5000);
 		
 		// check  Retailers  link
+		// scroll the page at bottom to test all the footer links
+				((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		text = driver.findElement(RETAILERS_LINK).getText();
 		if(!text.equals("Retailers"))
 			throw new Exception("Retailers link text is changed");	
@@ -602,6 +631,8 @@ element = driver.findElement(ACCOUNT_ICON);
 
 
 		// Check  Tommy John Store link
+		// scroll the page at bottom to test all the footer links
+				((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		text = driver.findElement(TOMMY_JOHN_STORES).getText();
 		if(!text.equals("Tommy John Stores"))
 			throw new Exception("Tommy John Stores link text is changed");	
@@ -627,6 +658,8 @@ element = driver.findElement(ACCOUNT_ICON);
 		//		Reporter.log("Charlotte Store footer link is Displayed :: Clickable");
 
 		// check Store Locator  link
+		// scroll the page at bottom to test all the footer links
+				((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		text = driver.findElement(STORE_LOCATOR_LINK).getText();
 		if(!text.equals("Store Locator"))
 			throw new Exception("Store Locator link text is changed");	
@@ -640,10 +673,14 @@ element = driver.findElement(ACCOUNT_ICON);
 		Thread.sleep(5000);
 
 		// check Shipping & Returns  link
+		// scroll the page at bottom to test all the footer links
+				((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		text = driver.findElement(SHIPPING_AND_RETURNS_LINK).getText();
 		if(!text.equals("Shipping & Return Policy"))
 			throw new Exception("Shipping & Returns link text is changed");	
 		driver.findElement(SHIPPING_AND_RETURNS_LINK).click();
+		Thread.sleep(3000);
+		driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
 		Thread.sleep(5000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://help.tommyjohn.com/hc/en-us/articles/360000507746-Shipping-Returns")) 
 			driver.navigate().back();
@@ -661,10 +698,14 @@ element = driver.findElement(ACCOUNT_ICON);
 //		Thread.sleep(5000);
 
 		// check Loyalty  link
+		// scroll the page at bottom to test all the footer links
+				((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		text = driver.findElement(LOYALTY_LINK).getText();
 		if(!text.equals("Loyalty"))
 			throw new Exception("Loyalty link text is changed");	
 		driver.findElement(LOYALTY_LINK).click();
+		Thread.sleep(3000);
+		driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
 		Thread.sleep(5000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://help.tommyjohn.com/hc/en-us/sections/360008463991-Loyalty-Rewards")) 
 			driver.navigate().back();
@@ -702,6 +743,8 @@ element = driver.findElement(ACCOUNT_ICON);
 		Thread.sleep(5000);
 
 		// check Fabric Guide  link
+		// scroll the page at bottom to test all the footer links
+				((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		text = driver.findElement(FABRIC_GUIDE_LINK).getText();
 		if(!text.equals("Fabric Guide"))
 			throw new Exception("Fabric Guide link text is changed");	
@@ -715,77 +758,109 @@ element = driver.findElement(ACCOUNT_ICON);
 		Thread.sleep(5000);
 
 		// check Facebook link
+		// scroll the page at bottom to test all the footer links
+				((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		text = driver.findElement(FACEBOOK_LINK).getText();
 		if(!text.equals("Facebook"))
 			throw new Exception("Facebook link text changed");
 		driver.findElement(FACEBOOK_LINK).click();
 		Thread.sleep(3000);
-		handles = driver.getWindowHandles();
-		list = new ArrayList<String>(handles);
-		driver.switchTo().window(list.get(1));
-		if(!driver.getCurrentUrl().equals("https://www.facebook.com/TommyJohnWear"))
+		driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
+		Thread.sleep(3000);
+		/*
+		 * handles = driver.getWindowHandles(); list = new ArrayList<String>(handles);
+		 * driver.switchTo().window(list.get(1));
+		 */		if(!driver.getCurrentUrl().equals("https://www.facebook.com/TommyJohnWear"))
 			throw new Exception("Wrong page opened after clicked on Facebook link");
-		driver.switchTo().window(list.get(0));
+		//driver.switchTo().window(list.get(0));
+		 else
+			 driver.navigate().back();
 		Reporter.log("Facebook footer link is Displayed :: Clickable");
 		Thread.sleep(5000);
 
 		// check Twitter link
+		// scroll the page at bottom to test all the footer links
+				((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		text = driver.findElement(TWITTER_LINK).getText();
 		if(!text.equals("Twitter"))
 			throw new Exception("Twitter link text changed");
 		driver.findElement(TWITTER_LINK).click();
 		Thread.sleep(3000);
-		handles = driver.getWindowHandles();
-		list = new ArrayList<String>(handles);
-		driver.switchTo().window(list.get(2));
-		if(!driver.getCurrentUrl().equals("https://twitter.com/TommyJohn"))
+		driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
+		Thread.sleep(3000);
+		/*
+		 * handles = driver.getWindowHandles(); list = new ArrayList<String>(handles);
+		 * driver.switchTo().window(list.get(2));
+		 */		if(!driver.getCurrentUrl().equals("https://twitter.com/TommyJohn"))
 			throw new Exception("Wrong page opened after clicked on Twitter link");
-		driver.switchTo().window(list.get(0));
+	//	driver.switchTo().window(list.get(0));
+		 else
+			 driver.navigate().back();
 		Reporter.log("Twitter footer link is Displayed :: Clickable");
 		Thread.sleep(5000);
 
 		// check Pinterest link
+		// scroll the page at bottom to test all the footer links
+				((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		text = driver.findElement(PINTEREST_LINK).getText();
 		if(!text.equals("Pinterest"))
 			throw new Exception("Pinterest link text changed");
 		driver.findElement(PINTEREST_LINK).click();
 		Thread.sleep(3000);
-		handles = driver.getWindowHandles();
-		list = new ArrayList<String>(handles);
-		driver.switchTo().window(list.get(3));
+		driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
+		Thread.sleep(3000);
+		/*
+		 * handles = driver.getWindowHandles(); list = new ArrayList<String>(handles);
+		 * driver.switchTo().window(list.get(3));
+		 */
 		if(!driver.getCurrentUrl().equals("https://www.pinterest.com/tommyjohnwear/"))
 			throw new Exception("Wrong page opened after clicked on Pinterest link");
-		driver.switchTo().window(list.get(0));
+		//driver.switchTo().window(list.get(0));
+		else
+			 driver.navigate().back();
 		Reporter.log("Pinterest footer link is Displayed :: Clickable");
 		Thread.sleep(5000);
 
 		// check Instagram link
+		// scroll the page at bottom to test all the footer links
+				((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		text = driver.findElement(INSTAGRAM_LINK).getText();
 		if(!text.equals("Instagram"))
 			throw new Exception("Instagram link text changed");
 		driver.findElement(INSTAGRAM_LINK).click();
 		Thread.sleep(3000);
-		handles = driver.getWindowHandles();
-		list = new ArrayList<String>(handles);
-		driver.switchTo().window(list.get(4));
+		driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
+		Thread.sleep(3000);
+		/*
+		 * handles = driver.getWindowHandles(); list = new ArrayList<String>(handles);
+		 * driver.switchTo().window(list.get(4));
+		 */
 		if(!driver.getCurrentUrl().equals("https://www.instagram.com/tommyjohnwear/"))
 			throw new Exception("Wrong page opened after clicked on Instagram link");
-		driver.switchTo().window(list.get(0));
+		//driver.switchTo().window(list.get(0));
+		else
+			 driver.navigate().back();
 		Reporter.log("Instagram footer link is Displayed :: Clickable");
 		Thread.sleep(5000);
 
 		// check YouTube link
+		// scroll the page at bottom to test all the footer links
+				((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		text = driver.findElement(YOUTUBE_LINK).getText();
 		if(!text.equals("YouTube"))
 			throw new Exception("YouTube link text changed");
 		driver.findElement(YOUTUBE_LINK).click();
 		Thread.sleep(3000);
-		handles = driver.getWindowHandles();
-		list = new ArrayList<String>(handles);
-		driver.switchTo().window(list.get(5));
-		if(!driver.getCurrentUrl().equals("https://www.youtube.com/user/tommyjohnwear"))
+		driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
+		Thread.sleep(3000);
+		/*
+		 * handles = driver.getWindowHandles(); list = new ArrayList<String>(handles);
+		 * driver.switchTo().window(list.get(5));
+		 */		if(!driver.getCurrentUrl().equals("https://www.youtube.com/user/tommyjohnwear"))
 			throw new Exception("Wrong page opened after clicked on YouTube link");
-		driver.switchTo().window(list.get(0));
+		//driver.switchTo().window(list.get(0));
+		 else
+			 driver.navigate().back();
 		Reporter.log("YouTube footer link is Displayed :: Clickable");
 		Thread.sleep(5000);
 
@@ -814,6 +889,7 @@ element = driver.findElement(ACCOUNT_ICON);
 	// navigate to all underwear in men category 
 	public void navigateToAllUnderwearInMenCategory() throws Exception {
 	driver.get("https://tommyjohn.com/collections/mens-underwear");
+	Thread.sleep(5000);
 		
 	}
 	
@@ -900,6 +976,7 @@ driver.get("https://tommyjohn.com/collections/mens");
 	// navigate to All Womens Packs in Packs category
 	public void navigateToAllWomensPacksInPacksCategory() throws Exception {
 		driver.get("https://tommyjohn.com/collections/womens-underwear-packs");
+		Thread.sleep(5000);
 	}
 
 	// navigate to single collection cool cotton
@@ -915,11 +992,13 @@ driver.get("https://tommyjohn.com/collections/mens");
 	// navigate to second skin in men catagory
 	public void navigateToSecondSkinInMenCategory() throws Exception {
 	driver.get("https://tommyjohn.com/collections/mens-second-skin");
+	Thread.sleep(5000);
 
 	}
 	// navigate to all panties in women catagory
 	public void navigateToAllPantiesInWomenCategory() throws Exception {
 	driver.get("https://tommyjohn.com/collections/womens-underwear");
+	Thread.sleep(5000);
 	}
 
 	// navigate to cotton basics in shop by collections catagory
@@ -936,6 +1015,7 @@ driver.get("https://tommyjohn.com/collections/mens");
 	// navigate to cotton basics in shop by collections catagory
 	public void navigateToAllWomensCollectionInWomensCategory() throws Exception {
 	driver.get("https://tommyjohn.com/collections/all-womens");
+	Thread.sleep(5000);
 		
 		}
 

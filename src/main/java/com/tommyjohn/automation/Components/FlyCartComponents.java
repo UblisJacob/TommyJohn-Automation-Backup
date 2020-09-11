@@ -329,7 +329,7 @@ String[] b = size.split(",") ;
 
 		// check for checkout button
 		driver.findElement(CHECKOUT_BUTTON).click();
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		driver.get(CustomUtilities.baseUrl);
 		Thread.sleep(3000);
 		Reporter.log("Checkout button is Displayed :: Clickable");

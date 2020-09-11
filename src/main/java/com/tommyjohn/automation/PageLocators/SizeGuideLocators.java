@@ -37,8 +37,8 @@ public class SizeGuideLocators
 	
 	//Size Guide Locators
 	public static By SIZEGUIDE = By.cssSelector("button.size-guide");
-	public static By BUNDLE_FIRST_SIZE_GUIDE_BUTTON = By.cssSelector(".product-info__variant-select>div:nth-child(1)>button");
-	public static By BUNDLE_SECOND_SIZE_GUIDE_BUTTON = By.cssSelector("div.product-info > div > div.product-info__inner-contents > div.multiPdp__tabs > div > div > div > div.product-info__variant-select > div:nth-child(3) > div.product-info__header > button");
+	public static By BUNDLE_FIRST_SIZE_GUIDE_BUTTON = By.cssSelector("div.radios-wrapper>div:nth-child(1)>div.Size>div>button");
+	public static By BUNDLE_SECOND_SIZE_GUIDE_BUTTON = By.cssSelector("div.radios-wrapper>div:nth-child(2)>div.Size>div>button");
 	public static By SIZE_GUIDE_BUTTON = By.cssSelector(".product-details__controls--inner > button:nth-child(2)");
 	public static By SIZE_GUIDE_TITLE = By.cssSelector(".size-chart-content>.size-guide-title");
 	public static By SECOND_SIZE_GUIDE_TITLE = By.cssSelector(" div.product-details.product-details--fit.container.active > div > div:nth-child(2) > div > h1");
