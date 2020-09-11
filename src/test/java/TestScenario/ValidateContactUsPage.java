@@ -3,6 +3,7 @@ package TestScenario;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.tommyjohn.automation.Pages.AfterPay;
@@ -13,9 +14,10 @@ public class ValidateContactUsPage {
 	WebDriver driver ;
 
 	@BeforeMethod(alwaysRun = true)
-	public void setup() {
+	@Parameters("browser")
+	public void setup(String browser) {
 		try {
-			driver = new CustomUtilities().launchtj();
+			driver = new CustomUtilities().launchtj(browser);
 
 		} catch (Exception e1) {
 			e1.printStackTrace();
@@ -23,12 +25,12 @@ public class ValidateContactUsPage {
 	}
 	
 	@Test
-	public void TC_ContactUs_HelpPageValidation() throws Exception
+	public void TC_HelpPageValidation() throws Exception
 	{
-		new ContactUsPage(driver).ContactUsFieldValidation_page();
+		new ContactUsPage(driver).HelpFieldValidation_page();
 	}
 	@Test
-	public void TC_VerifyContactUsFlow() throws Exception
+	public void TC_VerifyContactUsForm() throws Exception
 	{
 		new ContactUsPage(driver).VerifyContactUsFlow();
 	}
