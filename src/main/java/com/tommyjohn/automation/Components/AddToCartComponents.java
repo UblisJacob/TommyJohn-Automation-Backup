@@ -41,7 +41,7 @@ public class AddToCartComponents extends AddToCartLocators{
 		text = new CollectionPageComponent(driver).navigateToProductDetailsPage();
 
 		// call method to check correct PDP opened or not
-		new ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);
+		//new ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);
 		// select size and add product to cart
 		selectSize();
 		 atc();
@@ -49,13 +49,15 @@ public class AddToCartComponents extends AddToCartLocators{
 	}
 
 	public void selectSize() throws Exception {
+		
+		Thread.sleep(9000);
 		// Select first size between available sizes
 		        String text1= null;
 				allElements = driver.findElements(ALL_SIZE_LIST);
 				elementsCount = allElements.size();
 				System.out.println("All sizes list :: "+ elementsCount);
 				JavascriptExecutor executor = (JavascriptExecutor)driver;
-			    Thread.sleep(3000);
+			    
 			    try {
 				if(driver.findElement(By.cssSelector("div.radio-options-container")).isDisplayed())
 				{
