@@ -292,9 +292,11 @@ public class HomePageComponents extends HomePageLocators {
 		wait.until(ExpectedConditions.presenceOfElementLocated(ACCOUNT_ICON));
 		element = driver.findElement(ACCOUNT_ICON);
 		action.moveToElement(element).perform();
-		if(!driver.findElement(SIGNIN_OPTION).isDisplayed())
-			throw new Exception("Sign in option not displayed");
-		Reporter.log("Sign in option is Displayed ");
+		wait.until(ExpectedConditions.presenceOfElementLocated(SIGNIN_OPTION));
+		WebElement signIn = driver.findElement(SIGNIN_OPTION);
+		action.moveToElement(signIn).perform();
+		
+		
 		driver.findElement(SIGNIN_OPTION).click();
 		Thread.sleep(3000);
 		currentUrl2 = driver.getCurrentUrl();
