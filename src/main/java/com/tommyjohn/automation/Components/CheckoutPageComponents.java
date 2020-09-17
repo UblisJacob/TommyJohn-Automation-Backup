@@ -67,7 +67,8 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		 softAssert.assertEquals(text, "PayPal Checkout");
 		 driver.close();
 		 
-		Reporter.log("PayPal option is present on checkout page and is functional"); 
+		 Reporter.log("PayPal option is present on checkout page");
+		 Reporter.log("PayPal popup shows up when clicked on paypal express checkout button");
 		 Thread.sleep(3000);
 		driver.switchTo().window(mainWindow);
 		 WebElement element = driver.findElement(GPAY_BUTTON);
@@ -87,8 +88,8 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		 softAssert.assertEquals(text, "Sign in – Google accounts");
 		 driver.close();
 		 driver.switchTo().window(mainWindow);
-		 Reporter.log("GPay option is present on checkout page and is functional");
-		 
+		 Reporter.log("GPay option is present on checkout page");
+		 Reporter.log("GPay popup shows up when clicked on Gpay express checkout button");
 		 //verify amz pay
 		 WebElement element1 = driver.findElement(AMZ_PAY);
 			jse.executeScript("arguments[0].click();", element1);
@@ -97,7 +98,8 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 			 softAssert.assertEquals(text, "Amazon Sign in using our secure server");
 			
 			 
-			Reporter.log("Amazon Pay option is present on checkout page and is functional"); 
+			Reporter.log("Amazon Pay option is present on checkout page"); 
+			Reporter.log("Redirected to amzon login page when clicked on amz pay button"); 
 			 Thread.sleep(3000);
 		
 		 
@@ -182,8 +184,9 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		 Reporter.log("Selected shipping method and user is navigated to payment page");
 		 
 		 Thread.sleep(5000);
+		 jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		
-		 // wait.until(ExpectedConditions.visibilityOfElementLocated(COMPLETE_ORDER_BUTTON));	
+		 wait.until(ExpectedConditions.visibilityOfElementLocated(COMPLETE_ORDER_BUTTON));	
 		 softAssert.assertTrue(driver.findElement(COMPLETE_ORDER_BUTTON).isDisplayed() , "Complete Order button is not displayed");	
 		 Reporter.log("Complete Order button is displayed");
 		 
@@ -250,7 +253,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		softAssert.assertTrue(driver.findElement(SHIP_ADDRESS).isDisplayed(), "Shipping address is not present");
 		softAssert.assertTrue(driver.findElement(CHANGE_LINK).isDisplayed(), "change link is not present to chnage ");
 		softAssert.assertTrue(driver.findElement(SHIPPING_TEXT).isDisplayed(), "Shipping text is not present");
-		softAssert.assertTrue(driver.findElement(RETURN_LINK).isDisplayed(), "return link is not present");
+		//softAssert.assertTrue(driver.findElement(RETURN_LINK).isDisplayed(), "return link is not present");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTINUE_TO_PAYMENT_BUTTON));
 		softAssert.assertTrue(driver.findElement(CONTINUE_TO_PAYMENT_BUTTON).isDisplayed(), "Continue to paymnet method button is not present");
 		
@@ -268,6 +271,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	
 	public void paymentpage() throws Exception
 	{
+		jse = (JavascriptExecutor)driver;
 		SoftAssert softAssert = new SoftAssert();
 		new AddToCartComponents(driver).addToCart();
 		driver.findElement(HomePageLocators.CART_ICON).click();
@@ -289,15 +293,18 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		driver.findElement(CONTINUE_TO_SHIPPING_BUTTON).click();
 		Reporter.log("User is navigated to select shipping method");
 	
+		
 		//Thread.sleep(10000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTINUE_TO_PAYMENT_BUTTON));
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SHIPPING_RADIO_BUTTON));
+		jse.executeScript("window.scrollBy(0,100)");
+		Thread.sleep(3000);
 		WebElement element = driver.findElement(CONTINUE_TO_PAYMENT_BUTTON);
-		jse = (JavascriptExecutor)driver;
 		jse.executeScript("arguments[0].click();", element);
 	//	driver.findElement(CONTINUE_TO_PAYMENT_BUTTON).click();
 		Reporter.log("User is navigated to payment page");
 		
-		Thread.sleep(60000);
+	
 		
 //		softAssert.assertTrue(driver.findElement(CONTACT_EMAIL).isDisplayed(), "Conatct email is not present");
 //		softAssert.assertTrue(driver.findElement(SHIP_ADDRESS).isDisplayed(), "Shipping address is not present");
@@ -317,7 +324,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 //			System.out.println("Overlay not displayed");
 //		}
 //		
-		driver.navigate().refresh();
+		
 		Thread.sleep(10000);
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(CREDITCARD_OPTION));
 		softAssert.assertTrue(driver.findElement(CREDITCARD_OPTION).isDisplayed(), "Credit card option is not present");
@@ -342,11 +349,14 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	
 	public void entershippingdetails() throws Exception
 	{
-		Thread.sleep(3000);
-		driver.findElement(FIRSTNAME_TEXTBOX).sendKeys("Test");
-		driver.findElement(LASTNAME_TEXTBOX).sendKeys("Test");
-		driver.findElement(ADDRESS1_TEXTBOX).sendKeys("123 Test Adress");
-		driver.findElement(ADDRESS2_TEXTBOX).sendKeys("Suite1");
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		
+		wait.until(ExpectedConditions.presenceOfElementLocated(FIRSTNAME_TEXTBOX));
+		driver.findElement(FIRSTNAME_TEXTBOX).sendKeys("Vijeta");
+		driver.findElement(LASTNAME_TEXTBOX).sendKeys("Juneja");
+		driver.findElement(ADDRESS1_TEXTBOX).sendKeys("123Test Address B");
+		Thread.sleep(2000);
+		driver.findElement(ADDRESS2_TEXTBOX).sendKeys("8th floor");
 		driver.findElement(CITY_TEXTBOX).sendKeys("New York");
 		WebElement countrydp = driver.findElement(COUNTRY_DROPDOWN);
 		Select country = new Select(countrydp);
