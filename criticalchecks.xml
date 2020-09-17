@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Regression Test Suite">
+
+	<listeners>
+		<listener class-name="TestScenario.ListenerClass"></listener>
+	</listeners>
+
+	<test thread-count="1" name="NavigationFlow" verbose="1"
+		parallel="tests">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="TestScenario.ValidateNavigationFlow">
+				<methods>
+					<include name="Validate_Mens_AllNewArrivals" />
+					<include name="Validate_Women_Bras_ScoopBralette" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test thread-count="1" name="HomePageTests" verbose="1"
+		parallel="tests">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="TestScenario.ValidateHomePage">
+				<methods>
+					<include name="TC_verifyAccountAndCartIconOnHomePage" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test thread-count="1" name="AccountLoginAndCreationTests"
+		verbose="1" parallel="tests">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="TestScenario.ValidateAccountLoginFunctionality">
+				<methods>
+				<include name="TC_VerifyCreateAccount" />
+				<include name="TC_VerifyAccountLogin" />
+				
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	
+
+	<test thread-count="1" name="FlyCartTests" verbose="1"
+		parallel="tests">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="TestScenario.ValidateFlyCartPage">
+				<methods>
+				<include name="TC_ValidateFlyCartwithProductsInIt" />
+				</methods>
+
+			</class>
+		</classes>
+	</test>
+
+	<test thread-count="1" name="ShoppingCartTests" verbose="1"
+		parallel="tests">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="TestScenario.ValidateShoppingCart">
+				<methods>
+					<include name="ValidateCheckoutIsFunctionalFromCart" />
+					</methods>
+
+			</class>
+		</classes>
+	</test>
+
+	<test thread-count="1" name="Checkout Tests" verbose="1"
+		parallel="tests">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="TestScenario.ValidateCheckoutPage">
+				<methods>
+					<include name="ValidateExpressCheckoutoptionsAreFunctional" />
+					<include name="ValidateGuestCheckoutFlow" />
+					<include name="ValidateRegisteredUserCheckoutFlow" />
+					<include name="ValidateInformationPageOfCheckout" />
+					<include name="ValidateShippingPageOfCheckout" />
+					<include name="ValidatePaymentPageOfCheckout" />
+
+				</methods>
+
+			</class>
+		</classes>
+	</test>
+
+
+	<test thread-count="1" name="ReorderPagetests" verbose="1"
+		parallel="tests">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="TestScenario.ValidateReOrderPage">
+				<methods>
+					<include
+						name="ValidateUserIsAbleToReOrderItemFromReOrderPage" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test thread-count="1" name="GiftCardPageTests" verbose="1"
+		parallel="tests">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="TestScenario.ValidateGiftCardFunctionality">
+				<methods>
+					<include name="ValidateGiftCardFlow" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test thread-count="1" name="QuickShop" verbose="1"
+		parallel="tests">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="TestScenario.ValidateQuickShop" />
+		</classes>
+	</test>
+</suite> 
