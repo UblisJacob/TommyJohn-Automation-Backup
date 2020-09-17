@@ -21,6 +21,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.net.NetworkUtils;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -57,17 +58,20 @@ public class CustomUtilities {
 		loadPropertiesFile();
 		
 		//proxying to blacklist bounceX popup
-		BrowserMobProxy proxy = new BrowserMobProxyServer();
-		proxy.setTrustAllServers(true);
-		proxy.start(0);
-		proxy.blacklistRequests("https?://.*\\.bouncex\\.net/.*", 410);
-		proxy.blacklistRequests("https?://.*\\.bounceexchange\\.com/.*", 410);
-		
-		Proxy selproxy = new Proxy();
-		String proxyStr = "localhost:" + proxy.getPort();
-		
-		selproxy.setHttpProxy(proxyStr);
-		selproxy.setSslProxy(proxyStr);
+//		BrowserMobProxy proxy = new BrowserMobProxyServer();
+//		//proxy.setTrustAllServers(true);
+//		proxy.start(0);
+//		proxy.blacklistRequests("https?://.*\\.bouncex\\.net/.*", 410);
+//		proxy.blacklistRequests("https?://.*\\.bounceexchange\\.com/.*", 410);
+//		
+//		Proxy selproxy = ClientUtil.createSeleniumProxy(proxy);
+//		//String proxyStr = "localhost:" + proxy.getPort();
+//		
+//		String ipAddress = new NetworkUtils().getIp4NonLoopbackAddressOfThisMachine().getHostAddress();
+//		String proxyStr = ipAddress + ":" + proxy.getPort();
+//		
+//		selproxy.setHttpProxy(proxyStr);
+//		selproxy.setSslProxy(proxyStr);
 	
 	
 if (browser.equalsIgnoreCase("chrome"))
@@ -77,7 +81,7 @@ if (browser.equalsIgnoreCase("chrome"))
 		// System.setProperty("webdriver.chrome.driver" ,"/tmp/chromedriver.exe");
 		System.setProperty("webdriver.chrome.driver", properties.getProperty("chromeDriverPath"));
 		ChromeOptions chromeOptions = new ChromeOptions();
-		chromeOptions.addArguments("--headless");
+//		chromeOptions.addArguments("--headless");
 		chromeOptions.addArguments("--window-size=1280,800");
 		chromeOptions.addArguments("--disable-gpu");
 		chromeOptions.addArguments("--no-sandbox");
@@ -88,11 +92,17 @@ if (browser.equalsIgnoreCase("chrome"))
 		chromeOptions.addArguments("--ignore-certificate-errors");
 		chromeOptions.addArguments("--no-default-browser-check");
 		chromeOptions.addArguments("--disable-popup-blocking");
-//		chromeOptions.addArguments("--proxy-bypass-list=*");
+		chromeOptions.setAcceptInsecureCerts(true);
 
 		
-		chromeOptions.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
-		chromeOptions.setCapability(CapabilityType.PROXY, selproxy);
+	//	chromeOptions.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
+		//chromeOptions.setCapability(CapabilityType.PROXY, selproxy);
+		
+	//	new
+		chromeOptions.addArguments("--host-resolver-rules=MAP events.bouncex.net 127.0.0.1");
+		chromeOptions.addArguments("--host-resolver-rules=MAP assets.bounceexchange.com 127.0.0.1");
+		chromeOptions.addArguments("--host-resolver-rules=MAP api.bounceexchange.com 127.0.0.1");
+		chromeOptions.addArguments("--host-resolver-rules=MAP tag.bounceexchange.com 127.0.0.1");
 		
 		driver = new ChromeDriver(chromeOptions);
 		driver.get(baseUrl);
@@ -127,8 +137,14 @@ else if (browser.equalsIgnoreCase("firefox"))
 	options.addArguments("--disable-popup-blocking");
 
 	options.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
-	options.setCapability(CapabilityType.PROXY, selproxy);
+	//options.setCapability(CapabilityType.PROXY, selproxy);
 
+	options.addArguments("--host-resolver-rules=MAP events.bouncex.net 127.0.0.1");
+	options.addArguments("--host-resolver-rules=MAP assets.bounceexchange.com 127.0.0.1");
+	options.addArguments("--host-resolver-rules=MAP api.bounceexchange.com 127.0.0.1");
+	options.addArguments("--host-resolver-rules=MAP tag.bounceexchange.com 127.0.0.1");
+	
+	
 	driver = new FirefoxDriver(options);
 	driver.get(baseUrl);
 	driver.manage().window().maximize();
@@ -151,7 +167,12 @@ else if (browser.equalsIgnoreCase("edge"))
 	options.setCapability("--disable-popup-blocking",true);
 
 	options.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
-	options.setCapability(CapabilityType.PROXY, selproxy);
+	//options.setCapability(CapabilityType.PROXY, selproxy);
+	
+	options.setCapability("--host-resolver-rules=MAP events.bouncex.net 127.0.0.1",true);
+	options.setCapability("--host-resolver-rules=MAP assets.bounceexchange.com 127.0.0.1",true);
+	options.setCapability("--host-resolver-rules=MAP api.bounceexchange.com 127.0.0.1",true);
+	options.setCapability("--host-resolver-rules=MAP tag.bounceexchange.com 127.0.0.1",true);
 
 	edgedriver = new EdgeDriver(options);
 	edgedriver.get(baseUrl);

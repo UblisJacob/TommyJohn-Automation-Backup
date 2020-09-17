@@ -414,8 +414,10 @@ element = driver.findElement(ACCOUNT_ICON);
 	}
 	public void validateCartIcon() throws Exception {
 		// Check for Cart icon
-		if(!driver.findElement(CART_ICON).isDisplayed())
-			throw new Exception("Cart Icon is not present");
+		
+		driver.navigate().to(baseUrl);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.presenceOfElementLocated(CART_ICON));
 		driver.findElement(CART_ICON).click();
 		Thread.sleep(2000);
 		if(!driver.findElement(CART_HEADING_TEXT).isDisplayed())
