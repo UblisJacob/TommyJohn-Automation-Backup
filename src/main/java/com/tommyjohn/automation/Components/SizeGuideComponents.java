@@ -105,6 +105,8 @@ public class SizeGuideComponents extends SizeGuideLocators
 	public void validateWomenT_ShirtsSizeGuidePage() throws Exception
 	{
 		new HomePageComponents(driver).navigateToTopsAndTeesInwomensCategory();
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.presenceOfElementLocated(CollectionPageComponent.FIRST_PRODUCT_HEAD_LINE_TEXT));
 		List<WebElement> producttitle = driver.findElements(By.cssSelector(".product-meta__title"));
 		for (WebElement title : producttitle)
 		{
@@ -119,6 +121,8 @@ public class SizeGuideComponents extends SizeGuideLocators
 	public void validate_WomensTop_SizeGuidePage() throws Exception
 	{
 		new HomePageComponents(driver).navigateToTopsAndTeesInwomensCategory();
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.presenceOfElementLocated(CollectionPageComponent.FIRST_PRODUCT_HEAD_LINE_TEXT));
 		jse = (JavascriptExecutor)driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		List<WebElement> producttitle = driver.findElements(By.cssSelector(".product-meta__title"));
@@ -252,7 +256,6 @@ public class SizeGuideComponents extends SizeGuideLocators
 		JavascriptExecutor executor2 = (JavascriptExecutor)driver;
 		executor2.executeScript("arguments[0].click();", ele2);
 		Thread.sleep(3000);
-
 
 		if(!driver.findElement(SECOND_SIZE_GUIDE_TITLE).isDisplayed()) 
 			throw new Exception("Product's second size guide title is not displayed");

@@ -3,7 +3,6 @@ package com.tommyjohn.automation.Components;
 import java.util.List;
 import java.util.Properties;
 
-import org.hamcrest.core.AnyOf;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -1319,7 +1318,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 				Thread.sleep(3000);
 				System.out.println(title.getText());
 
-				title.click();
+				jse.executeScript("arguments[0].click();", title);
 
 				break;
 			}		

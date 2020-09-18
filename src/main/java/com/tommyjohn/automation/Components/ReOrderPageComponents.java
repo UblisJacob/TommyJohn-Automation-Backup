@@ -1,5 +1,6 @@
 package com.tommyjohn.automation.Components;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -35,7 +36,9 @@ public class ReOrderPageComponents extends ReOrderPageLocators{
 		Thread.sleep(3000);
 		driver.findElement(AccountLoginLocators.CUSTOMER_EMAIL_INPUT).clear();
 		driver.findElement(AccountLoginLocators.CUSTOMER_EMAIL_INPUT).sendKeys("vijeta@tommyjohnwear.com");
+		Thread.sleep(2000);
 		driver.findElement(AccountLoginLocators.CUSTOMER_PASSWORD_INPUTBOX).sendKeys(CustomUtilities.properties.getProperty("password"));
+		Thread.sleep(2000);
 		driver.findElement(AccountLoginLocators.LOGIN_BUTTON).click();
 
 Thread.sleep(5000);
@@ -63,14 +66,17 @@ Thread.sleep(5000);
 
 	public void reorderitem() throws Exception
 	{
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		SoftAssert softAssert = new SoftAssert();
 		ReorderPagevalidation();
+		element=driver.findElement(REORDER_ITEM_ATC);
 		text = driver.findElement(REORDER_ITEM_TITLE).getText();
-		driver.findElement(REORDER_ITEM_ATC).click();
+		executor.executeScript("arguments[0].click();", element);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.FIRST_PRODUCT_TITLE_IN_CART));
 		softAssert.assertEquals(driver.findElement(FlyCartPageLocator.FIRST_PRODUCT_TITLE_IN_CART).getText(), text , "Wrong product added to cart");
-		driver.findElement(FlyCartPageLocator.CHECKOUT_BUTTON).click();
+		WebElement elem= driver.findElement(FlyCartPageLocator.CHECKOUT_BUTTON);
+		executor.executeScript("arguments[0].click();", elem);
 		softAssert.assertAll();
 	}
 

@@ -1049,8 +1049,11 @@ driver.get("https://tommyjohn.com/products/e-gift-card");
 	// navigate to all panties in women catagory
 	public void navigateToMysteryPacksinPacksCategory() throws Exception {
 
-driver.get("https://tommyjohn.com/collections/womens-sale-underwear");
+driver.get("https://tommyjohn.com/search?keywords=mystery+packs");
 	}
+	
+	
+	
 	// navigate to Contact Us Page
 		public void navigateToHelpPage() throws Exception {
 			
