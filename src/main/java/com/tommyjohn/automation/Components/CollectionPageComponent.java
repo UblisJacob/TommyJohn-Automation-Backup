@@ -123,8 +123,14 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	@SuppressWarnings("static-access")
 	public void validateProductReviewStarsOnCollectionPage() throws Exception {
 		String text = null;
-
-
+		
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.presenceOfElementLocated(TOTAL_COUNTS_OF_ITEMS));
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		
+		jse.executeScript("window.scrollBy(0,250)");
+		
+		Thread.sleep(3000);
 		// get product title and click on product heading text if present
 		//		try {
 		if(!driver.findElement(FIRST_PRODUCT_REVIEW_STARS).isDisplayed())
@@ -134,7 +140,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		Thread.sleep(3000);
 		Reporter.log(driver.getCurrentUrl());
 		// check correct Product details page opened or not
-		new ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);	
+		//new ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);	
 
 		// validate product details page by calling the method
 		new ProductDetailsPageComponents(driver).validatePage();
@@ -445,8 +451,9 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 			// Load sheet- Here we are loading first sheet only
 			XSSFSheet sh1= wb.getSheetAt(0);
-			System.out.println(sh1.getRow(0).getCell(0).getStringCellValue());
 
+			System.out.println(sh1.getRow(0).getCell(0).getStringCellValue());
+			Reporter.log(sh1.getRow(0).getCell(0).getStringCellValue());
 
 			int rowCount = sh1.getLastRowNum()-sh1.getFirstRowNum();
 
@@ -466,13 +473,21 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 	private void checkurl(String url) throws InterruptedException {
 
-		driver.get(url);
-		Thread.sleep(10000);
-		List<WebElement> items =driver.findElements(By.cssSelector(".product-item"));
-		Reporter.log("No. of items present in " + url + " is " + items.size());
-		if(items.size()==0)
+		try
 		{
-			sendmail(url);
+			driver.get(url);
+			WebDriverWait wait = new WebDriverWait(driver, 20);
+			wait.until(ExpectedConditions.presenceOfElementLocated(FIRST_PRODUCT));
+			List<WebElement> items =driver.findElements(By.cssSelector(".product-item"));
+			Reporter.log("No. of items present in " + url + " is " + items.size());
+			if(items.size()==0)
+			{
+				sendmail(url);
+			}
+		}
+
+		catch (Exception e){
+			sendnotification(url);
 		}
 	}
 
@@ -482,13 +497,8 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 		// Recipient's email ID needs to be mentioned.
 		String to1 = "vijeta@tommyjohnwear.com";
-		//		String to2 = "saurabh.agarwal@tommyjohnwear.com";
-		//		String to3 = "manoj.konale@tommyjohnwear.com";
-		String to4 = "vipul@tommyjohnwear.com";
-		//		String to5 = "anjali.pathak@tommyjohnwear.com";
-		String to6 = "jubin@tommyjohnwear.com";
-		String to7 = "akshata@tommyjohnwear.com";
-		//		String to8 = "anil@tommyjohnwear.com";
+		//String to2 = "shweta.garhewal@tommyjohnwear.com";
+
 
 		// Sender's email ID needs to be mentioned
 		String from = "noreplymw@tommyjohnwear.com";
@@ -504,7 +514,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		Authenticator auth = new Authenticator()
 		{
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("edw_job_alerts@aretove.com", "RedBook2018");
+				return new PasswordAuthentication("edw_job_alerts@aretove.com", "K79bh@typ");
 			}
 		};
 
@@ -519,13 +529,8 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			message.setFrom(new InternetAddress(from));
 			// Set To: header field of the header.
 			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to1));
-			//			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to2));
-			//			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to3));
-			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to4));
-			//			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to5));
-			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to6));
-			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to7));
-			//		message.addRecipient(Message.RecipientType.TO,new InternetAddress(to8));
+			//message.addRecipient(Message.RecipientType.TO,new InternetAddress(to2));
+			
 
 			// Set Subject: header field
 			message.setSubject("Collection Page may be down ");
@@ -534,7 +539,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			BodyPart messageBodyPart = new MimeBodyPart();
 
 			// Fill the message
-			messageBodyPart.setText("Please check for collection as it may be down or taking more than 10 seconds to load : " + url);
+			messageBodyPart.setText("Please check for collection as it may be down or very slow to load : " + url);
 
 			// Create a multipar message
 			Multipart multipart = new MimeMultipart();
@@ -560,7 +565,81 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			mex.printStackTrace();
 		}
 	}
+	
+	
+	private void sendnotification(String url) {
 
+
+
+		// Recipient's email ID needs to be mentioned.
+		String to1 = "vijeta@tommyjohnwear.com";
+		//String to2 = "shweta.garhewal@tommyjohnwear.com";
+	
+
+		// Sender's email ID needs to be mentioned
+		String from = "noreplymw@tommyjohnwear.com";
+		// Assuming you are sending email from localhost
+		String host = "secure.emailsrvr.com";
+		// Get system properties
+		Properties properties = System.getProperties();
+		// Setup mail server
+		properties.setProperty("mail.smtp.host", host);
+		properties.setProperty("mail.smtp.port", "587");
+		properties.setProperty("mail.smtp.auth", "true");
+
+		Authenticator auth = new Authenticator()
+		{
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication("edw_job_alerts@aretove.com", "K79bh@typ");
+			}
+		};
+
+		// Get the default Session object.
+		Session session = Session.getDefaultInstance(properties, auth);
+		System.out.println("Session Created");
+
+		try{
+			// Create a default MimeMessage object.
+			MimeMessage message = new MimeMessage(session);
+			// Set From: header field of the header.
+			message.setFrom(new InternetAddress(from));
+			// Set To: header field of the header.
+			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to1));
+			//message.addRecipient(Message.RecipientType.TO,new InternetAddress(to2));
+			
+			// Set Subject: header field
+			message.setSubject("Collection Page suite notification ");
+
+			// Create the message part 
+			BodyPart messageBodyPart = new MimeBodyPart();
+
+			// Fill the message
+			messageBodyPart.setText("Please check for collection page suite if you havent got notification for the pages to be down : " + url);
+
+			// Create a multipar message
+			Multipart multipart = new MimeMultipart();
+
+			// Set text message part
+			multipart.addBodyPart(messageBodyPart);
+
+			// Part two is attachment
+			//		         messageBodyPart = new MimeBodyPart();
+			//		         String filename = "<Enter File Path of Emailable Report>";
+			//		         DataSource source = new FileDataSource(filename);
+			//		         messageBodyPart.setDataHandler(new DataHandler(source));
+			//		         messageBodyPart.setFileName(filename);
+			//		         multipart.addBodyPart(messageBodyPart);
+
+			// Send the complete message parts
+			message.setContent(multipart );
+			System.out.println(message.getSubject());
+			// Send message
+			Transport.send(message);
+			System.out.println("Sent message successfully....");
+		}catch (MessagingException mex) {
+			mex.printStackTrace();
+		}
+	}
 
 	public void QuickShopOnMegaCollection() throws Exception
 	{
@@ -666,9 +745,9 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 			text = driver.findElement(FlyCartPageLocator.COLOR_AND_SIZE_IN_CART).getText();
 			actual = text;
-		//	String[] text1 = text.split("/");
+			//	String[] text1 = text.split("/");
 			//actual = text1[0];
-			 String expected = color_name+" / "+Selected_size;
+			String expected = color_name+" / "+Selected_size;
 			//String expected = color_name+" ";
 			System.out.println("Actual Color name is: "+actual+" and Expected color name is: "+expected);
 			softAssert.assertEquals(actual,expected ,"Product Line item option on flycart is incorrect.");

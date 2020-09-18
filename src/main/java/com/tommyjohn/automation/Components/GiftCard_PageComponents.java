@@ -318,12 +318,14 @@ public class GiftCard_PageComponents extends GiftCard_PageLocators {
 			jse.executeScript("arguments[0].click();", element);
 		}
 		else throw new Exception("SHIPING_AND_RETURNS accordion not present or not clikable");	
+		
+		softAssert.assertAll();
+		
 		Reporter.log("Shipping & Returns accordion is Displayed and clikable");
 
 
 		Reporter.log("All the fields are present and clickable");
 
-		softAssert.assertAll();
 	}
 
 
@@ -340,7 +342,7 @@ public class GiftCard_PageComponents extends GiftCard_PageLocators {
 		 * Exception("New Arrivals category is not present.");
 		 */
 		new HomePageComponents(driver).navigateToGiftCard();
-		Thread.sleep(3000);
+		Thread.sleep(6000);
 
 		//When amount is not selected
 		softAssert.assertTrue(driver.findElement(SELECT_AN_AMOUNT_BUTTON).isDisplayed(), "Select an amount button is not displayed");

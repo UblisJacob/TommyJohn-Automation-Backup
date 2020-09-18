@@ -93,19 +93,6 @@
 	</test>
 
 
-	<test thread-count="1" name="ReorderPagetests" verbose="1"
-		parallel="tests">
-		<parameter name="browser" value="chrome" />
-		<classes>
-			<class name="TestScenario.ValidateReOrderPage">
-				<methods>
-					<include
-						name="ValidateUserIsAbleToReOrderItemFromReOrderPage" />
-				</methods>
-			</class>
-		</classes>
-	</test>
-
 	<test thread-count="1" name="GiftCardPageTests" verbose="1"
 		parallel="tests">
 		<parameter name="browser" value="chrome" />
