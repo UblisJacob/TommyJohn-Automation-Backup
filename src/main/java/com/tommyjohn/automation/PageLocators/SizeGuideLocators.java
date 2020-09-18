@@ -41,7 +41,7 @@ public class SizeGuideLocators
 	public static By BUNDLE_SECOND_SIZE_GUIDE_BUTTON = By.cssSelector("div.radios-wrapper>div:nth-child(2)>div.Size>div>button");
 	public static By SIZE_GUIDE_BUTTON = By.cssSelector(".product-details__controls--inner > button:nth-child(2)");
 	public static By SIZE_GUIDE_TITLE = By.cssSelector(".size-chart-content>.size-guide-title");
-	public static By SECOND_SIZE_GUIDE_TITLE = By.cssSelector(" div.product-details.product-details--fit.container.active > div > div:nth-child(2) > div > h1");
+	public static By SECOND_SIZE_GUIDE_TITLE = By.cssSelector(" div.product-details.product-details--fit.container.active > div:nth-child(2) > div.size-chart-content >h1 ");
 	public static By SIZE_GUIDE_FITMETER_TITLE = By.cssSelector(".size-guide-yatpo-fit");
 	public static By SECOND_SIZE_GUIDE_FITMETER_TITLE = By.xpath("//div[@class='size-chart-overlay' ][@style='display: flex;']//div[@class='size-guide-yatpo-fit']");
 	public static By SIZE_GUIDE_CUSTOMER_SAY_REVIEW_TEXT = By.cssSelector(".size-guide-yatpo-fit>span");
