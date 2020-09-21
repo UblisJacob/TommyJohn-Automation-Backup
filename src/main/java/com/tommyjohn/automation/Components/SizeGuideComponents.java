@@ -158,6 +158,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 	public void validate_WomensBottom_SizeGuidePage() throws Exception
 	{
 		new HomePageComponents(driver).navigateToPantsandShortsInwomensCategory();
+		Thread.sleep(3000);
 		List<WebElement> producttitle = driver.findElements(By.cssSelector(".product-meta__title"));
 		for (WebElement title : producttitle)
 		{
@@ -608,7 +609,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 	{
 
 		driver.navigate().refresh();
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, 50);
 
 		wait.until(ExpectedConditions.presenceOfElementLocated(ProductDetailsPageComponents.SIZE_GUIDE_BUTTON));	
 		if(!driver.findElement(SIZEGUIDE).isEnabled())
