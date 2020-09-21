@@ -460,9 +460,9 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			for (int i = 1; i < rowCount+1; i++) {
 				String url= sh1.getRow(i).getCell(0).getStringCellValue();
 				checkurl(url);
-
 			}
 
+			
 
 		}
 		catch (Exception e)
@@ -497,7 +497,8 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 		// Recipient's email ID needs to be mentioned.
 		String to1 = "vijeta@tommyjohnwear.com";
-		//String to2 = "shweta.garhewal@tommyjohnwear.com";
+		String to2 = "shweta.garhewal@tommyjohnwear.com";
+		String to3 = "daniel.lee@tommyjohnwear.com";
 
 
 		// Sender's email ID needs to be mentioned
@@ -529,8 +530,9 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			message.setFrom(new InternetAddress(from));
 			// Set To: header field of the header.
 			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to1));
-			//message.addRecipient(Message.RecipientType.TO,new InternetAddress(to2));
-			
+			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to2));
+			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to3));
+
 
 			// Set Subject: header field
 			message.setSubject("Collection Page may be down ");
