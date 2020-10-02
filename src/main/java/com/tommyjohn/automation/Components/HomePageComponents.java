@@ -314,7 +314,7 @@ public class HomePageComponents extends HomePageLocators {
 		Reporter.log("Help center option is Displayed ");
 		driver.findElement(HELP_ICON_HELP_OPTION).click();
 		Thread.sleep(3000);
-		driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
+	//	driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
 		Thread.sleep(3000);
 		currentUrl2 = driver.getCurrentUrl();
 		if(!currentUrl2.equalsIgnoreCase("https://help.tommyjohn.com/hc/en-us"))
@@ -920,6 +920,11 @@ element = driver.findElement(ACCOUNT_ICON);
 					driver.get("https://tommyjohn.com/collections/womens-camisoles");
 
 					}	
+					
+					public void navigateToDressesInwomensCategory() throws Exception {
+						driver.get("https://tommyjohn.com/collections/womens-dresses");
+
+						}
 
 	// navigate to Tops & Tees in womens category
 					public void navigateToTopsAndTeesInwomensCategory() throws Exception {
