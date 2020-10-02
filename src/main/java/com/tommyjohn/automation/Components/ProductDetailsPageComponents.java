@@ -44,7 +44,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		String text = null;
 
 		// call method to navigate to collection page
-		new HomePageComponents(driver).navigateToAllClothingInWomensCategory();
+		new HomePageComponents(driver).navigateToCamisoleInwomensCategory();
 
 		// call method to nevigate product details page
 		text = new CollectionPageComponent(driver).navigateToProductDetailsPage();
