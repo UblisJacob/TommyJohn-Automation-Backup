@@ -1,5 +1,7 @@
 package com.tommyjohn.automation.Components;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
@@ -13,6 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
 
+import com.tommyjohn.automation.PageLocators.FlyCartPageLocator;
 import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
 import com.tommyjohn.automation.PageLocators.SizeGuideLocators;
 import com.tommyjohn.automation.utils.CustomUtilities;
@@ -487,7 +490,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 					if(Integer.parseInt(quantity1)!=Integer.parseInt(quantity)+1) 
 						throw new Exception("Quantity not increased by 1");
 					Reporter.log("Quantity increased by 1");
-					
+
 					element = driver.findElement(MINUS_BUTTON);
 					jse = (JavascriptExecutor)driver;
 					jse.executeScript("arguments[0].click();", element);
@@ -776,7 +779,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		text = new CollectionPageComponent(driver).navigateToProductDetailsPage();
 		// call method to check correct PDP opend or not
 		checkCorrectProductDetailsPageOpenedOrNot(text);
-        Thread.sleep(3000);
+		Thread.sleep(3000);
 		WebElement elem = driver.findElement(RATING_STARS);
 		JavascriptExecutor executore = (JavascriptExecutor)driver;
 		executore.executeScript("arguments[0].click();", elem);
@@ -1160,7 +1163,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			for(int i=3;i<=elementsCount;i=i+2) {
 				flag = false;
 				element = driver.findElement(By.cssSelector("div.radios-wrapper > div.radio-options-container > div > label:nth-child("+i+")"));
-			
+
 				if (element.getAttribute("class").contains("oosVariant")) {
 					{
 						if(!driver.findElement(PRODUCT_TITLE).getText().contains("Pack"))
@@ -1168,69 +1171,11 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 							//if(driver.findElement(By.cssSelector(".select--options__list > li:nth-child("+i+") > div > span")).getText().contentEquals("(Out of Stock - Email Me)"))
 							//{
-								jse = (JavascriptExecutor)driver;
-								jse.executeScript("arguments[0].click();", element);
-								Thread.sleep(3000);
-								driver.findElement(ADD_TO_CART_BUTTON).click();
-								Thread.sleep(3000);
-								softAssert.assertEquals(driver.findElement(EMAIL_WHEN_IN_STOCK_TITLE).getText() , "Email When In Stock" , "Email When In Stock title change");
-								softAssert.assertEquals(driver.findElement(JOINTHEWAITLIST_REMINDER_DESC).getText() , "Get notified via email when this product is back in stock." , "Email When In Stock Reminder description change");
-								softAssert.assertEquals(driver.findElement(JOINTHEWAITLIST_PRIVACYINFO).getText() , "We will send you an email once the product becomes available. Your email address will not be shared with anyone else." , "Email When In Stock Privacy Info description change");
-
-								driver.findElement(JOINTHEWAITLIST_EMAILTEXTBOX).sendKeys("akshata@tommyjohnwear.com");
-								driver.findElement(JOINTHEWAITLIST_NOTIFYBUTTON).click();
-								Thread.sleep(4000);
-								softAssert.assertEquals(driver.findElement(JOINTHEWAITLIST_SUCCESS).getText(),"Thank you!" , "Email when in stock not functional");
-								System.out.println(driver.findElement(JOINTHEWAITLIST_SUCCESS).getText());
-								driver.findElement(JOINTHEWAITLIST_CLOSEBTN).click();
-								driver.switchTo().defaultContent();
-								softAssert.assertAll();
-								flag=true;
-
-							//}
-						}
-					
-						//break;
-					}
-					if(flag==true)
-						break;
-					else
-						continue;
-				}
-				if(flag==true)
-					break;
-				else
-					continue;
-				}	
-
-				
-
-			}
-
-		
-		else
-		{
-			//dropdown
-
-		for(int i=1;i<=elementsCount;i++) {
-			flag = false;
-			//driver.findElement(SIZE_DROPDOWN).click();
-			executor.executeScript("arguments[0].click();", driver.findElement(SIZE_DROPDOWN));
-			element = driver.findElement(By.cssSelector(".select--options__list > li:nth-child("+i+") > div"));
-
-			allClasses = element.getAttribute("class");
-			// check size available or not
-			for (String c : allClasses.split(" ")) {
-				if (c.equals("unavailable")) 
-				{
-					if(!driver.findElement(PRODUCT_TITLE).getText().contains("Pack"))
-					{					
-
-						if(driver.findElement(By.cssSelector(".select--options__list > li:nth-child("+i+") > div > span")).getText().contentEquals("(Out of Stock - Email Me)"))
-						{
 							jse = (JavascriptExecutor)driver;
 							jse.executeScript("arguments[0].click();", element);
-							//		driver.switchTo().frame("swell-popup");
+							Thread.sleep(3000);
+							driver.findElement(ADD_TO_CART_BUTTON).click();
+							Thread.sleep(3000);
 							softAssert.assertEquals(driver.findElement(EMAIL_WHEN_IN_STOCK_TITLE).getText() , "Email When In Stock" , "Email When In Stock title change");
 							softAssert.assertEquals(driver.findElement(JOINTHEWAITLIST_REMINDER_DESC).getText() , "Get notified via email when this product is back in stock." , "Email When In Stock Reminder description change");
 							softAssert.assertEquals(driver.findElement(JOINTHEWAITLIST_PRIVACYINFO).getText() , "We will send you an email once the product becomes available. Your email address will not be shared with anyone else." , "Email When In Stock Privacy Info description change");
@@ -1245,20 +1190,78 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 							softAssert.assertAll();
 							flag=true;
 
+							//}
+						}
+
+						//break;
+					}
+					if(flag==true)
+						break;
+					else
+						continue;
+				}
+				if(flag==true)
+					break;
+				else
+					continue;
+			}	
+
+
+
+		}
+
+
+		else
+		{
+			//dropdown
+
+			for(int i=1;i<=elementsCount;i++) {
+				flag = false;
+				//driver.findElement(SIZE_DROPDOWN).click();
+				executor.executeScript("arguments[0].click();", driver.findElement(SIZE_DROPDOWN));
+				element = driver.findElement(By.cssSelector(".select--options__list > li:nth-child("+i+") > div"));
+
+				allClasses = element.getAttribute("class");
+				// check size available or not
+				for (String c : allClasses.split(" ")) {
+					if (c.equals("unavailable")) 
+					{
+						if(!driver.findElement(PRODUCT_TITLE).getText().contains("Pack"))
+						{					
+
+							if(driver.findElement(By.cssSelector(".select--options__list > li:nth-child("+i+") > div > span")).getText().contentEquals("(Out of Stock - Email Me)"))
+							{
+								jse = (JavascriptExecutor)driver;
+								jse.executeScript("arguments[0].click();", element);
+								//		driver.switchTo().frame("swell-popup");
+								softAssert.assertEquals(driver.findElement(EMAIL_WHEN_IN_STOCK_TITLE).getText() , "Email When In Stock" , "Email When In Stock title change");
+								softAssert.assertEquals(driver.findElement(JOINTHEWAITLIST_REMINDER_DESC).getText() , "Get notified via email when this product is back in stock." , "Email When In Stock Reminder description change");
+								softAssert.assertEquals(driver.findElement(JOINTHEWAITLIST_PRIVACYINFO).getText() , "We will send you an email once the product becomes available. Your email address will not be shared with anyone else." , "Email When In Stock Privacy Info description change");
+
+								driver.findElement(JOINTHEWAITLIST_EMAILTEXTBOX).sendKeys("akshata@tommyjohnwear.com");
+								driver.findElement(JOINTHEWAITLIST_NOTIFYBUTTON).click();
+								Thread.sleep(4000);
+								softAssert.assertEquals(driver.findElement(JOINTHEWAITLIST_SUCCESS).getText(),"Thank you!" , "Email when in stock not functional");
+								System.out.println(driver.findElement(JOINTHEWAITLIST_SUCCESS).getText());
+								driver.findElement(JOINTHEWAITLIST_CLOSEBTN).click();
+								driver.switchTo().defaultContent();
+								softAssert.assertAll();
+								flag=true;
+
+							}
 						}
 					}
-				}
 
+					if(flag==true)
+						break;
+					else
+						continue;
+				}
 				if(flag==true)
 					break;
 				else
 					continue;
 			}
-			if(flag==true)
-				break;
-			else
-				continue;
-		}
 		}
 
 	}
@@ -1428,7 +1431,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			String quantity1 = driver.findElement(QUANTITY).getAttribute("data-add-qty");
 			// check quantity added by 1 or not 
 			if(Integer.parseInt(quantity1)!=Integer.parseInt(quantity)+1) 
-			throw new Exception("Quantity not increased by 1");
+				throw new Exception("Quantity not increased by 1");
 
 			Reporter.log("Quantity increased by 1");
 			element = driver.findElement(MINUS_BUTTON);
@@ -1530,6 +1533,102 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		{
 			throw new Exception("Buy with section is not displayed on PDP");
 		}
+	}
+
+	public void ATC_Scrolling_CTA() throws Exception
+	{
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
+		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		new AddToCartComponents(driver).selectSize();
+		jse = (JavascriptExecutor) driver;
+		jse.executeScript("window.scrollBy(0,650)");
+		WebElement Stickynav = driver.findElement(By.cssSelector(".product-bar"));
+		SoftAssert softassert = new SoftAssert();
+		softassert.assertTrue(Stickynav.isDisplayed(), "Sticky nav is not displayed on PDP");
+		element =driver.findElement(By.cssSelector(".product-bar__atc"));
+		softassert.assertTrue(element.isDisplayed(), "scrolling CTA Add to Cart is not displayed");
+		softassert.assertEquals(element.getText(), "Add To Cart", "Text changed for scrolling CTA Add to cart");
+		Thread.sleep(3000);
+		element.click();
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.INLINE_CART_TITLE));
+		softassert.assertTrue(driver.findElement(FlyCartPageLocator.INLINE_CART_TITLE).isDisplayed(), "Fly cart is not expanded after ATC on PDP");
+		softassert.assertAll();
+		Reporter.log("Scrolling CTA Add to Cart is displayed :: Clickable");
+	}
+
+	public void Sort_By_Reviews() throws Exception
+	{
+		SoftAssert softassert = new SoftAssert();
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
+		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+
+		if(!driver.findElement(RATING_NUMBER).getText().equals("(0)"))
+		{
+			driver.findElement(RATING_NUMBER).click();
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(SORT_BY));
+
+			softassert.assertEquals(driver.findElement(SORT_BY).getText(), "Sort By", "Default text is not 'Sort By' for reviews sort option");
+
+			//Verify Default sort By is newest
+			List<WebElement> sort_options = driver.findElements(SORT_BY_OPTIONS);
+			for(int i=1; i<sort_options.size();i++)
+			{
+				WebElement sort_by_option = driver.findElement(By.cssSelector(".yotpo-reviews-question-container>div.yotpo-sort-by-options-container>ul>li:nth-child("+i+")"));
+				String Option_name = sort_by_option.getAttribute("data-sort-option");
+				if(Option_name.equals("Newest"))
+				{
+					String allclasses = sort_by_option.getAttribute("class");
+					System.out.println("Class name is: "+allclasses);
+					if(allclasses.contains("active")) {
+						System.out.println("Default sort By is: "+Option_name);
+						Reporter.log("Default sort By is newest");}
+					else {
+						throw new Exception("Default sort By is not newest.");
+					}
+					break;
+				}
+
+			}
+			//verify sort By options are displayed
+			driver.findElement(SORT_BY).click();
+			softassert.assertTrue(driver.findElement(SORT_BY_OPTIONS_DIV).isDisplayed(), "Sort By option container is not displayed after click on sort by filter");
+			for(int i=1; i<sort_options.size();i++)
+			{
+				WebElement sort_by_option = driver.findElement(By.cssSelector(".yotpo-reviews-question-container>div.yotpo-sort-by-options-container>ul>li:nth-child("+i+")"));
+				String Option_name = sort_by_option.getAttribute("data-sort-option");
+				softassert.assertTrue(sort_by_option.isDisplayed(), "Sort By option "+Option_name+"  is not displayed");
+			}
+			Reporter.log("Sort By options are displayed");
+
+			//Apply sort By after rating filter
+			driver.navigate().refresh();
+			for(int j=1; j<=5;j++)
+			{
+				element = driver.findElement(By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div:nth-child(2) > ul.yotpo-revew-bottomline-list > li:nth-child("+j+") > .yotpo-review-bottomline-individual-ratings > .yotpo-review-bottomline-individual-ratings__count>span"));
+				String num= element.getText();
+				int count= Integer.parseInt(num);
+				if(count>0)
+				{
+					element.click();
+					break;
+				}
+			}
+			wait.until(ExpectedConditions.presenceOfElementLocated(REVIEW_FILTER_MESSAGE));
+			driver.findElement(SORT_BY).click();
+			Thread.sleep(3000);
+			softassert.assertTrue(driver.findElement(SORT_BY_OPTIONS_DIV).isDisplayed(), "Sort By option container is not displayed after apply rating filter");
+			WebElement Most_Helpful_SortBy = driver.findElement(By.cssSelector(".yotpo-reviews-question-container>div.yotpo-sort-by-options-container>ul>li:nth-child(4)"));
+			Most_Helpful_SortBy.click();
+			String allclass = Most_Helpful_SortBy.getAttribute("class");
+			String optionname= Most_Helpful_SortBy.getAttribute("data-sort-option");
+			System.out.println("selected option is: "+optionname+" & its class is: "+allclass);
+			softassert.assertEquals(driver.findElement(SORT_BY).getText(), optionname, "Sort By options are not clickable");
+			Reporter.log("User is able to sort after applying rating filter");
+		}
+		else
+			System.out.println("Desired PDP have no Sort By functionality because of zero reviews.");
 	}
 
 }

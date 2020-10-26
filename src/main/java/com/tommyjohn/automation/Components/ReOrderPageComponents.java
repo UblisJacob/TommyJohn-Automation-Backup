@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
 
 import com.tommyjohn.automation.PageLocators.AccountLoginLocators;
@@ -105,6 +106,39 @@ Thread.sleep(5000);
 		softAssert.assertEquals(driver.findElement(ProductDetailsPageLocators.PRODUCT_TITLE).getText(), text , "Wrong product page opened from reorder page");
 		softAssert.assertAll();
 	}
+	
+	public void ReviewsPage_fromReorder() throws Exception
+	{
+		SoftAssert softAssert = new SoftAssert();
+		JavascriptExecutor executore = (JavascriptExecutor) driver;
+		ReorderPagevalidation();
+		Thread.sleep(3000);
+		driver.findElement(REORDER_ITEM_WRITEREVIEW).click();
+		Thread.sleep(5000);
+		softAssert.assertEquals(driver.findElement(ProductDetailsPageLocators.WRITE_REVIEW_TITLE).getText(), "Write a Review", "Language mismatch for Write a Review title");
+		softAssert.assertEquals(driver.findElement(ProductDetailsPageLocators.NAME).getText(), "* Name", "Laguage mismatch for Name ");
+		driver.findElement(ProductDetailsPageLocators.NAME_TEXTBOX).sendKeys("Vijeta");
+		softAssert.assertEquals(driver.findElement(ProductDetailsPageLocators.EMAIL).getText(), "* Email", "Laguage mismatch for Email ");
+		driver.findElement(ProductDetailsPageLocators.EMAIL_TEXTBOX).sendKeys("vijeta@tommyjohnwear.com");
+		softAssert.assertEquals(driver.findElement(ProductDetailsPageLocators.LOCATION).getText(), "Location (Optional)", "Laguage mismatch for Location ");
+		driver.findElement(ProductDetailsPageLocators.LOCATION_TEXTBOX).sendKeys("India");
+		softAssert.assertEquals(driver.findElement(ProductDetailsPageLocators.FIT).getText(), "Fit", "Laguage mismatch for Fit	 ");
+		WebElement fit = driver.findElement(ProductDetailsPageLocators.FIT_SELECTION);
+		executore.executeScript("arguments[0].click();", fit);
+		softAssert.assertEquals(driver.findElement(ProductDetailsPageLocators.OVERALLRATING).getText(), "* Overall Rating", "Laguage mismatch for Overall Rating	 ");
+		WebElement stars = driver.findElement(ProductDetailsPageLocators.STAR_SELECTION);
+		executore.executeScript("arguments[0].click();", stars);
+		softAssert.assertEquals(driver.findElement(ProductDetailsPageLocators.HEADLINE).getText(), "* Add a Headline", "Laguage mismatch for Headline ");
+		driver.findElement(ProductDetailsPageLocators.HEADLINE_TEXTBOX).sendKeys("Nice Product");
+		softAssert.assertEquals(driver.findElement(ProductDetailsPageLocators.REVIEW).getText(), "* Review", "Laguage mismatch for Review	 ");
+		driver.findElement(ProductDetailsPageLocators.REVIEW_TEXTBOX).sendKeys("Must Buy");
+
+		softAssert.assertTrue(driver.findElement(ProductDetailsPageLocators.SUBMIT_BTN).isEnabled(), "Submit button not enabled");
+		softAssert.assertAll();
+		Reporter.log("Review Page from reorder is correct");
+		
+	}
+
 	
 	
 }

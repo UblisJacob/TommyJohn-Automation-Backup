@@ -65,6 +65,16 @@ public class ValidateProductDetailsPage {
 		new ProductDetailsPage(driver).verifymysterypack();
 	}
 	
+	@Test
+	public void TC_VerifyATC_ScrollingCTA() throws Exception {	
+		new ProductDetailsPage(driver).VerifyATC_ScrollingCTA();
+	}
+	
+	@Test
+	public void TC_VerifySortyByReviews() throws Exception
+	{
+		new ProductDetailsPage(driver).VerifySortByReviews();
+	}
 
 	@AfterMethod(alwaysRun = true)
 	void teardown () {

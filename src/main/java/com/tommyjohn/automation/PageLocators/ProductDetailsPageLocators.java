@@ -149,4 +149,13 @@ public class ProductDetailsPageLocators {
 		public static By PRODUCT_TITLE_ON_FLYCART = By.cssSelector("div.inline-cart__col1 > div:nth-child(6) > .line-item >.line-item__summary>a");
 	    public static By PRODUCT_LINE_ITEM_OPTION = By.cssSelector(" div.line-item__summary > div.line-item__option");
 	    public static By PRODUCT_AMOUNT_ON_FLYCART = By.cssSelector(".line-item__price>span");
+	    
+	    //Sort By
+	    public static By SORT_BY = By.cssSelector(".yotpo-reviews-qa-header>div.yotpo-header-tab__sort-by");
+	    public static By SORT_BY_OPTIONS_DIV = By.cssSelector(".yotpo-reviews-question-container>div.yotpo-sort-by-options-container.active");
+	    public static By SORT_BY_OPTIONS = By.cssSelector(".yotpo-reviews-question-container>div.yotpo-sort-by-options-container>ul>li");
+	    public static By POSTED_REVIEW_DATE= By.cssSelector(".yotpo-reviews-container>.review-list>li:nth-child(2)>div>div.yotpo-review-buyer-info>p:nth-child(2)");
+	    public static By POSTED_REVIEW_DATE_NEXT= By.cssSelector(".yotpo-reviews-container>.review-list>li:nth-child(3)>div>div.yotpo-review-buyer-info>p:nth-child(2)");
+        public static By REVIEW_FILTER_MESSAGE = By.cssSelector(".yotpo-bottomline__filter-message");
+	    
 }

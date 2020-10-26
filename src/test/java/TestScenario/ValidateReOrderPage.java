@@ -47,6 +47,11 @@ public class ValidateReOrderPage {
 	{
 		new ReOrderPage(driver).OrderDetails();
 	}
+	@Test
+	public void ValidateReviewsPageFromReOrderPage() throws Exception
+	{
+		new ReOrderPage(driver).ReviewPage();
+	}
 	
 	@AfterMethod(alwaysRun = true)
 	void tearDown() {
