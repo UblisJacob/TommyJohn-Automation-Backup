@@ -56,5 +56,15 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 		new ProductDetailsPageComponents(driver).verifyMysteryPacks();
 		
 	}
+	
+	public void VerifyATC_ScrollingCTA() throws Exception
+	{
+		new ProductDetailsPageComponents(driver).ATC_Scrolling_CTA();
+	}
+	
+	public void VerifySortByReviews() throws Exception
+	{
+		new ProductDetailsPageComponents(driver).Sort_By_Reviews();
+	}
 		
 	}

@@ -31,6 +31,9 @@ public class ReOrderPage extends ReOrderPageComponents{
 	{
 		new ReOrderPageComponents(driver).orderdetails();
 	}
-
+	public void ReviewPage() throws Exception
+	{
+		new ReOrderPageComponents(driver).ReviewsPage_fromReorder();
+	}
 
 }
