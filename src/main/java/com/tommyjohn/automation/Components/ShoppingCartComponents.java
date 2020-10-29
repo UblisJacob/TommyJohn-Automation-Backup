@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -137,7 +138,10 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CART_TITLE));
 	
-		driver.findElement(CHECKOUT_BUTTON).click();
+		WebElement element = driver.findElement(CHECKOUT_BUTTON);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].click();", element);
+	//	driver.findElement(CHECKOUT_BUTTON).click();
 	Thread.sleep(3000);
 		softAssert.assertTrue(driver.getCurrentUrl().contains("checkouts"), "Checkout page is not displayed on clicking checkout button");
 		driver.navigate().back();
