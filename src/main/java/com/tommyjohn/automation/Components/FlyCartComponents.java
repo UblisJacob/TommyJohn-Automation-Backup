@@ -248,6 +248,8 @@ allElements = driver.findElements(LIST_OF_ITEMS_IN_FLYCART);
 		driver.findElement(INLINE_CART_CLOSE_BUTTON).click();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		text1 = driver.getCurrentUrl();
+		System.out.println(text1);
+		System.out.println(CustomUtilities.baseUrl);
 		softAssert.assertTrue(text1.equals(CustomUtilities.baseUrl), "Continue shopping button is not working correctly");
 		Thread.sleep(2000);
 
