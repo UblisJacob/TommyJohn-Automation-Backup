@@ -41,10 +41,12 @@ public class ChromeExtensionUtility {
         
     	 loadPropertiesFile();
     	 System.setProperty("webdriver.chrome.driver", properties.getProperty("chromeDriverPath"));
+    	 
+    	 
     	
 
     	 ChromeOptions chromeOptions = new ChromeOptions();
-    	 chromeOptions.addExtensions(new File("src/main/resources/heapdebbuger.crx"));
+    	 chromeOptions.addExtensions(new File("src/main/resources/heapdebugger.crx"));
 //    	 chromeOptions.addArguments("--headless");
     	 chromeOptions.setExperimentalOption("w3c", false);
     	 chromeOptions.addArguments("--host-resolver-rules=MAP events.bouncex.net 127.0.0.1");
@@ -54,10 +56,19 @@ public class ChromeExtensionUtility {
  		
  	//	chromeOptions.addArguments("auto-open-devtools-for-tabs");
  		
+ 		
+		
+ 		
+ 		
+ 		
  		LoggingPreferences logPrefs = new LoggingPreferences();
         logPrefs.enable(LogType.BROWSER, Level.ALL);
         logPrefs.enable(LogType.CLIENT, Level.ALL);
         logPrefs.enable(LogType.DRIVER, Level.ALL);
+        
+        
+        
+       
         
         chromeOptions.setCapability("goog:loggingPrefs", logPrefs);
 
@@ -71,7 +82,7 @@ public class ChromeExtensionUtility {
         return driver;
         
          }
-            //do something useful with the data
+            
           
 
 
