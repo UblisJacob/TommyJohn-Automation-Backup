@@ -27,58 +27,55 @@ public class ValidateHeapEvents {
 	WebDriver driver;
 
 	@Test
-	public void TC_ValidateDYHomePageEvents() throws Exception
+	public void TC_ValidateHomePageEvents() throws Exception
 	{
+		int count=0;
 		driver = ChromeExtensionUtility.launchchromewithextension();
-
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("javascript:window.scrollBy(0,1300)");
-
-		Thread.sleep(3000);
+		js.executeScript("javascript:window.scrollBy(0,300)");
+		if(driver.findElement(By.cssSelector(".dy-rec--product-tile")).isDisplayed())
+		{
+			driver.findElement(By.cssSelector(".dy-rec--product-tile")).click();
+		}
 		String logEntries = driver.manage().logs().getAvailableLogTypes().toString();
 		System.out.println(logEntries);
-
-
-
-		if(driver.findElement(By.cssSelector(".dy-rec--products")).isDisplayed())
-		{
-
-			LogEntries logclient = driver.manage().logs().get(LogType.BROWSER);
-			//	List<String> log = new ArrayList<>();
-			for (LogEntry entry : logclient) {
-				System.out.println(entry.getMessage().replace("chrome-extension://bihllkinhojjiacepgoipnppiiigbekj/src/events.js 50:24", "properties").replace("chrome-extension://bihllkinhojjiacepgoipnppiiigbekj/src/events.js 45:34", "Event"));
-
-				if(entry.getMessage().contains("chrome-extension"))
+		
+		LogEntries logclient = driver.manage().logs().get(LogType.BROWSER);
+		//	List<String> log = new ArrayList<>();
+		for (LogEntry entry : logclient) {
+			
+			if(entry.getMessage().contains("chrome-extension"))
+			{
+				if(entry.getMessage().contains("\"name:\" \"homepage_view\""))
 				{
-					if(entry.getMessage().contains("\"name:\" \"view_plp\""))
-					{
-						System.out.println(entry.getMessage());
-						Reporter.log("view_plp event fired on homepage when product listing was present.");
-						break;
-
-					}
-
+					System.out.println(entry.getMessage());
+					Reporter.log("homepage_view event fired on homepage.");
+					count++;
+					
 
 				}
-
-
+				if(entry.getMessage().contains("\"name:\" \"homepage_click_content\""))
+				{
+					System.out.println(entry.getMessage());
+					Reporter.log("homepage_click_content event fired on homepage.");
+					count++;
+				}				
 			}
-
 		}
-
-		else {
-			Reporter.log("No product listings on homepage, hence view_plp event cannot be verified on homepage.");
-			System.out.println("No product listings on homepage, hence view_plp event cannot be verified on homepage.");
-
-		}
-
+		
+	if(count!=2)
+	{
+	Reporter.log("homepage_view and homepage_click_content event not fired on homepage.");
+	throw new Exception("homepage_view and homepage_click_content event not fired on homepage.");
 	}
-
+	driver.quit();
+}
 
 
 	@Test
 	public void TC_ValidateCollectionPageEvents() throws Exception
 	{
+		int count=0;
 		driver = ChromeExtensionUtility.launchchromewithextension();
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		WebElement element;
@@ -89,7 +86,7 @@ public class ValidateHeapEvents {
 		String script = "console.clear();";
 		js.executeScript(script);
 
-		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
+		new HomePageComponents(driver).navigateToBoxerBriefInMenCategory();
 		
 	Thread.sleep(10000);
 	driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child(2) > a")).click();
@@ -111,6 +108,9 @@ public class ValidateHeapEvents {
 		js.executeScript("arguments[0].scrollIntoView(true);", element);
 		Thread.sleep(3000);
 		action.moveToElement(element).build().perform();
+		Thread.sleep(2000);
+		driver.findElement(CollectionPageComponent.QUICK_SHOP_ATC).click();
+		Thread.sleep(3000);
 		
 		element = driver.findElement(CollectionPageComponent.QUICK_SHOP_ATC);
 		List<WebElement> allElements;
@@ -153,40 +153,55 @@ public class ValidateHeapEvents {
 					{
 						System.out.println(entry.getMessage());
 						Reporter.log("view_plp event fired on collection page.");
-						break;
+						count++;
+
+					}
+					if(entry.getMessage().contains("\"name:\" \"test_view_plp\""))
+					{
+						System.out.println(entry.getMessage());
+						Reporter.log("test_view_plp event fired on collection page.");
+						count++;
 
 					}
 					
 					if(entry.getMessage().contains("\"name:\" \"apply_sort\""))
 					{
 						System.out.println(entry.getMessage());
-						Reporter.log("view_plp event fired on collection page.");
-						break;
+						Reporter.log("apply_sort event fired on collection page.");
+						count++;
 
 					}
 					
 					if(entry.getMessage().contains("\"name:\" \"apply_filter\""))
 					{
 						System.out.println(entry.getMessage());
-						Reporter.log("view_plp event fired on collection page.");
-						break;
+						Reporter.log("apply_filter event fired on collection page.");
+						count++;
 
 					}
 
 					if(entry.getMessage().contains("\"name:\" \"add_to_cart_all\""))
 					{
 						System.out.println(entry.getMessage());
-						Reporter.log("view_plp event fired on collection page.");
-						break;
+						Reporter.log("addtocart_all event fired on collection page.");
+						count++;
 
 					}
 				}
 
 
 			}
+			
+			
 
 		}
-	}
+		
+		if(count!=5)
+		{
+			Reporter.log("Few events not fired on PLP.");
+			throw new Exception("Few events not fired on PLP.");
+		}
+		driver.quit();}
 }
 
 
