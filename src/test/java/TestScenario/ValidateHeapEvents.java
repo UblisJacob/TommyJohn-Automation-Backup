@@ -1,9 +1,8 @@
 package TestScenario;
 
-
-
 import java.util.List;
 
+import org.asynchttpclient.util.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -21,6 +20,10 @@ import org.testng.annotations.Test;
 import com.tommyjohn.automation.Components.CollectionPageComponent;
 import com.tommyjohn.automation.Components.HomePageComponents;
 import com.tommyjohn.automation.utils.ChromeExtensionUtility;
+import com.tommyjohn.automation.utils.FFExtensionUtility;
+
+import net.lightbody.bmp.core.har.Har;
+import net.lightbody.bmp.core.har.HarEntry;
 
 public class ValidateHeapEvents {
 
@@ -37,13 +40,14 @@ public class ValidateHeapEvents {
 		{
 			driver.findElement(By.cssSelector(".dy-rec--product-tile")).click();
 		}
+
 		String logEntries = driver.manage().logs().getAvailableLogTypes().toString();
 		System.out.println(logEntries);
-		
+
 		LogEntries logclient = driver.manage().logs().get(LogType.BROWSER);
-		//	List<String> log = new ArrayList<>();
+
 		for (LogEntry entry : logclient) {
-			
+			System.out.println(entry.getMessage());
 			if(entry.getMessage().contains("chrome-extension"))
 			{
 				if(entry.getMessage().contains("\"name:\" \"homepage_view\""))
@@ -51,7 +55,7 @@ public class ValidateHeapEvents {
 					System.out.println(entry.getMessage());
 					Reporter.log("homepage_view event fired on homepage.");
 					count++;
-					
+
 
 				}
 				if(entry.getMessage().contains("\"name:\" \"homepage_click_content\""))
@@ -62,46 +66,47 @@ public class ValidateHeapEvents {
 				}				
 			}
 		}
-		
-	if(count!=2)
-	{
-	Reporter.log("homepage_view and homepage_click_content event not fired on homepage.");
-	throw new Exception("homepage_view and homepage_click_content event not fired on homepage.");
-	}
-	driver.quit();
-}
 
+		if(count!=2)
+		{
+			Reporter.log("homepage_view and homepage_click_content event not fired on homepage.");
+			throw new Exception("homepage_view and homepage_click_content event not fired on homepage.");
+		}
+		driver.quit();
+
+	}
 
 	@Test
 	public void TC_ValidateCollectionPageEvents() throws Exception
 	{
 		int count=0;
-		driver = ChromeExtensionUtility.launchchromewithextension();
+		//driver = ChromeExtensionUtility.launchchromewithextension();
+		driver = FFExtensionUtility.launchffwithextension();
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		WebElement element;
 		Actions action = new Actions(driver);
 
-		
+
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		String script = "console.clear();";
 		js.executeScript(script);
 
 		new HomePageComponents(driver).navigateToBoxerBriefInMenCategory();
-		
-	Thread.sleep(10000);
-	driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child(2) > a")).click();
-	driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child(2) > ul > li:nth-child(1) > label > input")).click();
-	driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child(2) > a")).click();
 
-	Thread.sleep(3000);
+		Thread.sleep(10000);
+		driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child(2) > a")).click();
+		driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child(2) > ul > li:nth-child(1) > label > input")).click();
+		driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child(2) > a")).click();
+
+		Thread.sleep(3000);
 		Select selectElement = new Select(driver.findElement(CollectionPageComponent.LAST_FILTER));
 		selectElement.selectByValue("price:asc");
-		
+
 		Thread.sleep(5000);
-		
+
 		js.executeScript("window.scrollBy(0,250)", "");
 		//Hover On product image on collection page
-		
+
 		wait.until(ExpectedConditions.presenceOfElementLocated(CollectionPageComponent.FIRST_PRODUCT_IMAGE));
 
 		element = driver.findElement(CollectionPageComponent.FIRST_PRODUCT_IMAGE);
@@ -111,7 +116,7 @@ public class ValidateHeapEvents {
 		Thread.sleep(2000);
 		driver.findElement(CollectionPageComponent.QUICK_SHOP_ATC).click();
 		Thread.sleep(3000);
-		
+
 		element = driver.findElement(CollectionPageComponent.QUICK_SHOP_ATC);
 		List<WebElement> allElements;
 		String classtext;
@@ -135,8 +140,8 @@ public class ValidateHeapEvents {
 				System.out.println("Selected size is OOS");
 			}
 		}
-		
-		
+
+
 
 		Thread.sleep(10000);
 		String logEntries = driver.manage().logs().getAvailableLogTypes().toString();
@@ -163,7 +168,7 @@ public class ValidateHeapEvents {
 						count++;
 
 					}
-					
+
 					if(entry.getMessage().contains("\"name:\" \"apply_sort\""))
 					{
 						System.out.println(entry.getMessage());
@@ -171,7 +176,7 @@ public class ValidateHeapEvents {
 						count++;
 
 					}
-					
+
 					if(entry.getMessage().contains("\"name:\" \"apply_filter\""))
 					{
 						System.out.println(entry.getMessage());
@@ -191,11 +196,11 @@ public class ValidateHeapEvents {
 
 
 			}
-			
-			
+
+
 
 		}
-		
+
 		if(count!=5)
 		{
 			Reporter.log("Few events not fired on PLP.");
