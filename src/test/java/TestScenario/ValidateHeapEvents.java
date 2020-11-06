@@ -1,8 +1,10 @@
 package TestScenario;
 
+
+
+import java.util.ArrayList;
 import java.util.List;
 
-import org.asynchttpclient.util.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -16,6 +18,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -28,12 +31,9 @@ import com.tommyjohn.automation.PageLocators.CheckoutPageLocators;
 import com.tommyjohn.automation.PageLocators.FlyCartPageLocator;
 import com.tommyjohn.automation.PageLocators.HomePageLocators;
 import com.tommyjohn.automation.utils.ChromeExtensionUtility;
-import com.tommyjohn.automation.utils.FFExtensionUtility;
-import net.lightbody.bmp.core.har.Har;
-import net.lightbody.bmp.core.har.HarEntry;
 import com.tommyjohn.automation.utils.CustomUtilities;
-import bsh.Console;
 
+import bsh.Console;
 
 public class ValidateHeapEvents {
 
@@ -42,7 +42,8 @@ public class ValidateHeapEvents {
 	@Test
 	public void TC_ValidateHomePageEvents() throws Exception
 	{
-		int count=0;
+		//	int count=0;
+		List<String> expectedevents = new ArrayList<String>();
 		driver = ChromeExtensionUtility.launchchromewithextension();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("javascript:window.scrollBy(0,300)");
@@ -50,15 +51,12 @@ public class ValidateHeapEvents {
 		{
 			driver.findElement(By.cssSelector(".dy-rec--product-tile")).click();
 		}
-
 		String logEntries = driver.manage().logs().getAvailableLogTypes().toString();
 		System.out.println(logEntries);
 
 		LogEntries logclient = driver.manage().logs().get(LogType.BROWSER);
-
+		//	List<String> log = new ArrayList<>();
 		for (LogEntry entry : logclient) {
-
-			System.out.println(entry.getMessage());
 
 			if(entry.getMessage().contains("chrome-extension"))
 			{
@@ -66,35 +64,37 @@ public class ValidateHeapEvents {
 				{
 					System.out.println(entry.getMessage());
 					Reporter.log("homepage_view event fired on homepage.");
-					count++;
-
+					//count++;
+					if(!expectedevents.contains("homepage_view"))
+						expectedevents.add("homepage_view");
 
 				}
 				if(entry.getMessage().contains("\"name:\" \"homepage_click_content\""))
 				{
 					System.out.println(entry.getMessage());
 					Reporter.log("homepage_click_content event fired on homepage.");
-					count++;
+					//count++;
+					if(!expectedevents.contains("homepage_click_content"))
+						expectedevents.add("homepage_click_content");
 				}				
 			}
 		}
 
-
-		if(count!=2)
+		if(expectedevents.size()!=2)
 		{
 			Reporter.log("homepage_view and homepage_click_content event not fired on homepage.");
 			throw new Exception("homepage_view and homepage_click_content event not fired on homepage.");
 		}
-		driver.quit();
+		//driver.quit();
+	}
 
-}
 
 	@Test
 	public void TC_ValidateCollectionPageEvents() throws Exception
 	{
-		int count=0;
-		//driver = ChromeExtensionUtility.launchchromewithextension();
-		driver = FFExtensionUtility.launchffwithextension();
+		//int count=0;
+		List<String> expectedevents = new ArrayList<String>();
+		driver = ChromeExtensionUtility.launchchromewithextension();
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		WebElement element;
 		Actions action = new Actions(driver);
@@ -171,14 +171,20 @@ public class ValidateHeapEvents {
 					{
 						System.out.println(entry.getMessage());
 						Reporter.log("view_plp event fired on collection page.");
-						count++;
+						//	count++;
+						if(!expectedevents.contains("view_plp"))
+							expectedevents.add("view_plp");
+
 
 					}
 					if(entry.getMessage().contains("\"name:\" \"test_view_plp\""))
 					{
 						System.out.println(entry.getMessage());
 						Reporter.log("test_view_plp event fired on collection page.");
-						count++;
+						//count++;
+						if(!expectedevents.contains("test_view_plp"))
+							expectedevents.add("test_view_plp");
+
 
 					}
 
@@ -186,7 +192,10 @@ public class ValidateHeapEvents {
 					{
 						System.out.println(entry.getMessage());
 						Reporter.log("apply_sort event fired on collection page.");
-						count++;
+						//count++;
+						if(!expectedevents.contains("apply_sort"))
+							expectedevents.add("apply_sort");
+
 
 					}
 
@@ -194,7 +203,10 @@ public class ValidateHeapEvents {
 					{
 						System.out.println(entry.getMessage());
 						Reporter.log("apply_filter event fired on collection page.");
-						count++;
+						//	count++;
+						if(!expectedevents.contains("apply_filter"))
+							expectedevents.add("apply_filter");
+
 
 					}
 
@@ -202,25 +214,28 @@ public class ValidateHeapEvents {
 					{
 						System.out.println(entry.getMessage());
 						Reporter.log("addtocart_all event fired on collection page.");
-						count++;
+						//count++;
+						if(!expectedevents.contains("add_to_cart_all"))
+							expectedevents.add("add_to_cart_all");
+
 					}
 				}
 			}
-
 		}
 
-		if(count!=5)
+		if(expectedevents.size()!=5)
 		{
 			Reporter.log("Few events not fired on PLP.");
 			throw new Exception("Few events not fired on PLP.");
 		}
-		driver.quit();
+		//driver.quit();
 	}
 
 	@Test
 	public void TC_ValidatePDPEvents() throws Exception
 	{
-		int count=0;
+		//int count=0;
+		List<String> expectedevents = new ArrayList<String>();
 		driver = ChromeExtensionUtility.launchchromewithextension();
 
 		JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -247,7 +262,10 @@ public class ValidateHeapEvents {
 					{
 						System.out.println(entry.getMessage());
 						Reporter.log("add_to_cart_all event fired on pdp.");
-						count++;
+						//count++;
+						if(!expectedevents.contains("add_to_cart_all"))
+							expectedevents.add("add_to_cart_all");
+
 
 					}
 
@@ -255,20 +273,29 @@ public class ValidateHeapEvents {
 					{
 						System.out.println(entry.getMessage());
 						Reporter.log("PDP_AddtoCart event fired on pdp.");
-						count++;
+						//count++;
+						if(!expectedevents.contains("PDP_AddtoCart"))
+							expectedevents.add("PDP_AddtoCart");
+
 					}
 					if(entry.getMessage().contains("\"name:\" \"PDP_ViewPDP\""))
 					{
 						System.out.println(entry.getMessage());
 						Reporter.log("PDP_ViewPDP event fired on pdp.");
-						count++;
+						//count++;
+						if(!expectedevents.contains("PDP_ViewPDP"))
+							expectedevents.add("PDP_ViewPDP");
+
 
 					}
 					if(entry.getMessage().contains("\"name:\" \"test_view_pdp\""))
 					{
 						System.out.println(entry.getMessage());
 						Reporter.log("test_view_pdp event fired on pdp.");
-						count++;
+						//count++;
+						if(!expectedevents.contains("test_view_pdp"))
+							expectedevents.add("test_view_pdp");
+
 
 					}
 
@@ -276,20 +303,20 @@ public class ValidateHeapEvents {
 			}
 		}
 
-		//actual count is 4 but view_pdp events triggered 2 times so the count is +2
-		if(count!=6)
+		if(expectedevents.size()!=4)
 		{
 			Reporter.log("Few events not fired on PDP.");
 			throw new Exception("Few events not fired on PDP.");
 		}
-		driver.quit();
+		//driver.quit();
 
 	}	
 
 	@Test
 	public void TC_ValidateSearchEvents() throws Exception
 	{
-		int count=0;
+		//int count=0;
+		List<String> expectedevents = new ArrayList<String>();
 		driver = ChromeExtensionUtility.launchchromewithextension();
 
 		JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -313,26 +340,30 @@ public class ValidateHeapEvents {
 					{
 						System.out.println(entry.getMessage());
 						Reporter.log("'Search Submit' event fired on search page.");
-						count++;
+						//count++;
+						if(!expectedevents.contains("Search Submit"))
+							expectedevents.add("Search Submit");
+
 
 					}
 				}
 			}
 		}
 
-		if(count!=1)
+		if(expectedevents.size()!=1)
 		{
 			Reporter.log("Few events not fired on search page.");
 			throw new Exception("Few events not fired on search page.");
 		}
-		driver.quit();
+		//driver.quit();
 
 	}	
 
 	@Test
 	public void TC_ValidateCheckoutEventsOnInformationPage() throws Exception
 	{
-		int count=0;
+		//int count=0;
+		List<String> expectedevents = new ArrayList<String>();
 		SoftAssert softAssert = new SoftAssert();
 		driver = ChromeExtensionUtility.launchchromewithextension();
 
@@ -365,37 +396,47 @@ public class ValidateHeapEvents {
 					{
 						System.out.println(entry.getMessage());
 						Reporter.log("checkout_click_express_checkout_method event fired on information page.");
-						count++;
+						//count++;
+						if(!expectedevents.contains("checkout_click_express_checkout_method"))
+							expectedevents.add("checkout_click_express_checkout_method");
+
 					}
 					if(entry.getMessage().contains("\"name:\" \"view_checkout_step\""))
 					{
 						System.out.println(entry.getMessage());
 						Reporter.log("view_checkout_step event fired on information page.");
-						count++;
+						//count++;
+						if(!expectedevents.contains("view_checkout_step"))
+							expectedevents.add("view_checkout_step");
+
 					}
 					if(entry.getMessage().contains("\"name:\" \"click_to_visit_checkout\""))
 					{
 						System.out.println(entry.getMessage());
 						Reporter.log("click_to_visit_checkout event fired on information page.");
-						count++;
+						//count++;
+						if(!expectedevents.contains("click_to_visit_checkout"))
+							expectedevents.add("click_to_visit_checkout");
+
 					}
 				}
 			}
 		}
 
-		if(count!=3)
+		if(expectedevents.size()!=3)
 		{
 			Reporter.log("Few events not fired on information page.");
 			throw new Exception("Few events not fired on information page.");
 		}
-		driver.quit();
+	//driver.quit();
 
 	}	
 
 	@Test
 	public void TC_ValidateCheckoutEventsOnShippingPage() throws Exception
 	{
-		int count=0;
+		//int count=0;
+		List<String> expectedevents = new ArrayList<String>();
 		SoftAssert softAssert = new SoftAssert();
 		driver = ChromeExtensionUtility.launchchromewithextension();
 
@@ -431,31 +472,38 @@ public class ValidateHeapEvents {
 					{
 						System.out.println(entry.getMessage());
 						Reporter.log("view_checkout_step event fired on shipping page.");
-						count++;
+						//count++;
+						if(!expectedevents.contains("view_checkout_step"))
+							expectedevents.add("view_checkout_step");
+
 					}
 					if(entry.getMessage().contains("\"name:\" \"click_to_visit_checkout\""))
 					{
 						System.out.println(entry.getMessage());
 						Reporter.log("click_to_visit_checkout event fired on shipping page.");
-						count++;
+						//count++;
+						if(!expectedevents.contains("click_to_visit_checkout"))
+							expectedevents.add("click_to_visit_checkout");
+
 					}
 				}
 			}
 		}
 
-		if(count!=2)
+		if(expectedevents.size()!=2)
 		{
 			Reporter.log("Few events not fired on shipping page.");
 			throw new Exception("Few events not fired on shipping page.");
 		}
-		driver.quit();
+		//driver.quit();
 
 	}	
 
 	@Test
 	public void TC_ValidateCheckoutEventsOnPaymentPage() throws Exception
 	{
-		int count=0;
+		//int count=0;
+		List<String> expectedevents = new ArrayList<String>();
 		SoftAssert softAssert = new SoftAssert();
 		driver = ChromeExtensionUtility.launchchromewithextension();
 
@@ -502,34 +550,47 @@ public class ValidateHeapEvents {
 					{
 						System.out.println(entry.getMessage());
 						Reporter.log("view_checkout_step event fired on payment page.");
-						count++;
+						//count++;
+						if(!expectedevents.contains("view_checkout_step"))
+							expectedevents.add("view_checkout_step");
+
 					}
 					if(entry.getMessage().contains("\"name:\" \"click_to_visit_checkout\""))
 					{
 						System.out.println(entry.getMessage());
 						Reporter.log("click_to_visit_checkout event fired on payment page.");
-						count++;
+						//count++;
+						if(!expectedevents.contains("click_to_visit_checkout"))
+							expectedevents.add("click_to_visit_checkout");
+
 					}
 					if(entry.getMessage().contains("\"name:\" \"apply_coupon\""))
 					{
 						System.out.println(entry.getMessage());
 						Reporter.log("apply_coupon event fired on payment page.");
-						count++;
+						//count++;
+						if(!expectedevents.contains("apply_coupon"))
+							expectedevents.add("apply_coupon");
+
 					}
 				}
 			}
 		}
-		//actual count is 3 but view_checkout_step event triggered 2 times so the count is +1
-		if(count!=4)
+		if(expectedevents.size()!=3)
 		{
 			Reporter.log("Few events not fired on payment page.");
 			throw new Exception("Few events not fired on payment page.");
 		}
-		driver.quit();
+		//driver.quit();
 
 	}	
 
-
+	@AfterMethod(alwaysRun = true)
+	void close()
+	{
+		driver.close();
+		driver.quit();
+	}
 }
 
 
