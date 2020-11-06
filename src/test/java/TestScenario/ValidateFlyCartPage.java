@@ -46,7 +46,7 @@ public class ValidateFlyCartPage {
 	@AfterMethod(alwaysRun = true)
 	void tearDown() {
 
-		this.driver.close();
+		//this.driver.close();
 		this.driver.quit();
 
 	}
