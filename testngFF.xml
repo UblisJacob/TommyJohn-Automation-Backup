@@ -2,9 +2,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Regression Test Suite">
 
-<listeners>
-    <listener class-name="TestScenario.ListenerClass"></listener> 
-</listeners>
+	<listeners>
+		<listener class-name="TestScenario.ListenerClass"></listener>
+	</listeners>
 
 	<test thread-count="1" name="NavigationFlow" verbose="1"
 		parallel="tests">
@@ -146,13 +146,13 @@
 	</test>
 
 
-<!-- 	<test thread-count="1" name="LoadingALlCollectionPages" -->
-<!-- 		verbose="1" parallel="tests"> -->
-<!-- <parameter name="browser" value="firefox" /> -->
-<!-- 		<classes> -->
-<!-- 			<class name="TestScenario.ValidateCollectionPage" /> -->
-<!-- 		</classes> -->
-<!-- 	</test> -->
+	<test thread-count="1" name="LoadingALlCollectionPages"
+		verbose="1" parallel="tests">
+		<parameter name="browser" value="firefox" />
+		<classes>
+			<class name="TestScenario.ValidateCollectionPage" />
+		</classes>
+	</test>
 
 	<!-- <test thread-count="1" name="AfterPayTests" verbose="1" parallel="tests"> 
 		<classes> <class name="TestScenario.ValidateAfterPay" /> </classes> </test> 
