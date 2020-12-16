@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
-import org.apache.commons.io.FileUtils;
+
 import org.junit.internal.runners.TestMethod;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -51,12 +51,12 @@ public class ValidateNavigationFlow
 	
 	}
 
-	@Test
-	public void Validate_FinalSale_AllMensSale() throws Exception
-	{
-		new NavigationFlowPage(driver).NavigateToAllMensSaleInFinalSaleCategory();
-	
-	}
+//	@Test
+//	public void Validate_FinalSale_AllMensSale() throws Exception
+//	{
+//		new NavigationFlowPage(driver).NavigateToAllMensSaleInFinalSaleCategory();
+//	
+//	}
 	@Test
 	public void Validate_Men_AllSocks() throws Exception
 	{
@@ -93,12 +93,12 @@ public class ValidateNavigationFlow
 //		new NavigationFlowPage(driver).NavigatetoComfortSmoothingInWomenCollectionCategory();
 //	
 //	}
-	@Test
-	public void Validate_FinalSale_WomenSale_Underwear() throws Exception
-	{
-		new NavigationFlowPage(driver).NavigateToWomenSaleUnderwearInFinalSaleCategory();
-	
-	}
+//	@Test
+//	public void Validate_FinalSale_WomenSale_Underwear() throws Exception
+//	{
+//		new NavigationFlowPage(driver).NavigateToWomenSaleUnderwearInFinalSaleCategory();
+//	
+//	}
 	
 	@Test
 	public void Validate_Men_Undershirts_VNeck() throws Exception
@@ -124,12 +124,12 @@ public class ValidateNavigationFlow
 		new NavigationFlowPage(driver).NavigateToCheeckyUnderwearInWomenCategory();
 	
 	}
-	@Test
-	public void Validate_FinalSale_MenSale_LoungeAndSleep() throws Exception
-	{
-		new NavigationFlowPage(driver).NavigateToMensLoungeAndSleepInFinalSaleCategory();
-	
-	}
+//	@Test
+//	public void Validate_FinalSale_MenSale_LoungeAndSleep() throws Exception
+//	{
+//		new NavigationFlowPage(driver).NavigateToMensLoungeAndSleepInFinalSaleCategory();
+//	
+//	}
 	@Test
 	public void Validate_Men_Clothing_ButtonDowns() throws Exception
 	{
