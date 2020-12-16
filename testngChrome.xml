@@ -148,12 +148,12 @@
 		</classes>
 	</test>
 
-<!-- 	<test thread-count="1" name="VerifyHeapEvents" -->
-<!-- 		verbose="1" parallel="tests"> -->
-<!-- 		<classes> -->
-<!-- 			<class name="TestScenario.ValidateHeapEvents" /> -->
-<!-- 		</classes> -->
-<!-- 	</test> -->
+	<test thread-count="1" name="VerifyHeapEvents"
+		verbose="1" parallel="tests">
+		<classes>
+			<class name="TestScenario.ValidateHeapEvents" />
+		</classes>
+	</test>
 
 	<!-- <test thread-count="1" name="AfterPayTests" verbose="1" parallel="tests"> 
 		<classes> <class name="TestScenario.ValidateAfterPay" /> </classes> </test> 
