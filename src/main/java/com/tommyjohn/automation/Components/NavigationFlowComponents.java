@@ -156,12 +156,13 @@ public class NavigationFlowComponents extends NavigationFlowPageLocators
 	public void NavigatetoScoopBraletteInWomensBrasCategory() throws Exception
 	{
 		ValidateWomenCategory();
-		Validate_Second_Level1_Category();
+		Validate_Fourth_Level1_Category();
 		if(!driver.findElement(WOMEN_BRAS_SCOOPBRALETTE).isDisplayed())
 			throw new Exception("Scoop Bralette in womens bras category is not displayed");
 
 		driver.findElement(WOMEN_BRAS_SCOOPBRALETTE).click();
 		Thread.sleep(3000);
+		System.out.println(driver.getCurrentUrl());
 		if(driver.getCurrentUrl().startsWith("https://tommyjohn.com/collections")) 
 
 			//if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/collections/bra-womens-styles-scoop-bralette")) 

@@ -154,12 +154,6 @@
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="TestScenario.ValidateCheckoutPage">
-				<methods>
-					<include name="ValidateExpressCheckoutoptionsAreFunctional" />
-					<include name="ValidateRegisteredUserCheckoutFlow" />
-					<include name="ValidatePaymentPageOfCheckout" />
-
-				</methods>
 
 			</class>
 		</classes>
@@ -215,19 +209,19 @@
 
 
 
-	<!-- <test thread-count="1" name="LoadingALlCollectionPages" -->
-	<!-- verbose="1" parallel="tests"> -->
-	<!-- <classes> -->
-	<!-- <class name="TestScenario.ValidateCollectionPage" /> -->
-	<!-- </classes> -->
-	<!-- </test> -->
+<!-- 	<test thread-count="1" name="LoadingALlCollectionPages" -->
+<!-- 	verbose="1" parallel="tests"> -->
+<!-- 	<classes> -->
+<!-- 	<class name="TestScenario.ValidateCollectionPage" /> -->
+<!-- 	</classes> -->
+<!-- 	</test> -->
 
-	<!-- <test thread-count="1" name="AfterPayTests" verbose="1" -->
-	<!-- parallel="tests"> -->
-	<!-- <classes> -->
-	<!-- <class name="TestScenario.ValidateAfterPay" /> -->
-	<!-- </classes> -->
-	<!-- </test> -->
+<!-- 	<test thread-count="1" name="AfterPayTests" verbose="1" -->
+<!-- 	parallel="tests"> -->
+<!-- 	<classes> -->
+<!-- 	<class name="TestScenario.ValidateAfterPay" /> -->
+<!-- 	</classes> -->
+<!-- 	</test> -->
 
 
 </suite> 

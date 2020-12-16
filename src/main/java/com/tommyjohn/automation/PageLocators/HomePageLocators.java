@@ -209,12 +209,12 @@ public class HomePageLocators{
 	public static By BLOG_LINK = By.linkText("Blog");
 
 	public static By HELP_LINK = By.linkText("Help");
-	public static By CONTACT_US_LINK = By.linkText("Contact Us");
+	public static By CONTACT_US_LINK = By.linkText("Contact & FAQ");
 	public static By RETAILERS_LINK = By.linkText("Retailers");
 	public static By KING_OF_PURSSIA_STORE_LINK = By.linkText("King of Prussia Store");
 	public static By CHARLOTTE_STORE_LINK = By.linkText("Charlotte Store");
 	public static By TOMMY_JOHN_STORES = By.linkText("Tommy John Stores");
-	public static By STORE_LOCATOR_LINK = By.xpath("//a[@title='Tommy John Store Locator']");
+	public static By STORE_LOCATOR_LINK = By.xpath("//a[@title='Store Locator']");
 	public static By SHIPPING_AND_RETURNS_LINK = By.linkText("Shipping & Return Policy");
 	public static By NUMBER_LINK = By.linkText("1-800-708-3490");
 	public static By LOYALTY_LINK = By.linkText("Loyalty");

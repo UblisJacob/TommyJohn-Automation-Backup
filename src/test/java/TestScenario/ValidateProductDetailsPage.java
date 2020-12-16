@@ -60,10 +60,10 @@ public class ValidateProductDetailsPage {
 		new ProductDetailsPage(driver).verifyrecommendedforyou();
 	}
 	
-	@Test
-	public void TC_VerifyMysterPackPDP() throws Exception {	
-		new ProductDetailsPage(driver).verifymysterypack();
-	}
+//	@Test
+//	public void TC_VerifyMysterPackPDP() throws Exception {	
+//		new ProductDetailsPage(driver).verifymysterypack();
+//	}
 	
 	@Test
 	public void TC_VerifyATC_ScrollingCTA() throws Exception {	
