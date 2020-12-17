@@ -138,7 +138,14 @@
 			<class name="TestScenario.ValidateStoreLocator" />
 		</classes>
 	</test>
-
+	
+	<test thread-count="1" name="PhysicalGiftCard" verbose="1"
+		parallel="tests">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="TestScenario.ValidatePhysicalGiftCard" />
+		</classes>
+	</test>
 
 	<test thread-count="1" name="LoadingALlCollectionPages"
 		verbose="1" parallel="tests">
@@ -155,9 +162,14 @@
 <!-- 		</classes> -->
 <!-- 	</test> -->
 
-	<!-- <test thread-count="1" name="AfterPayTests" verbose="1" parallel="tests"> 
-		<classes> <class name="TestScenario.ValidateAfterPay" /> </classes> </test> 
-		<test thread-count="1" name="MixAndMatch" verbose="1" parallel="tests"> <classes> 
+<!-- 	 <test thread-count="1" name="AfterPayTests" verbose="1" parallel="tests"> 
+	 <parameter name="browser" value="chrome" />
+		<classes>
+		 <class name="TestScenario.ValidateAfterPay" /> 
+		 </classes>
+	 </test>  -->
+		
+	<!--	<test thread-count="1" name="MixAndMatch" verbose="1" parallel="tests"> <classes> 
 		<class name="TestScenario.ValidateMixAndMatchPage" /> </classes> </test> 
 		<test thread-count="1" name="LoyaltyOptInTests" verbose="1" parallel="tests"> 
 		<classes> <class name="TestScenario.ValidateLoyaltyOptIn" /> </classes> </test> -->
