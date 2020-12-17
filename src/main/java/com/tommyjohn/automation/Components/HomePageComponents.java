@@ -1033,6 +1033,12 @@ driver.get("https://tommyjohn.com/collections/mens");
 driver.get("https://tommyjohn.com/products/e-gift-card");
 
 	}
+	
+	//navigate to physical GC
+	public void navigateToPhysicalGC()
+	{
+		driver.get("https://tommyjohn.com/collections/gift-cards/products/gift-card");
+	}
 	// navigate to Bra category
 	public void navigateToBraCategory() throws Exception {
 	driver.get("https://tommyjohn.com/collections/bras");	
