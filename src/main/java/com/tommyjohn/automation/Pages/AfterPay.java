@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import com.tommyjohn.automation.Components.CheckoutPageComponents;
 import com.tommyjohn.automation.Components.FlyCartComponents;
 import com.tommyjohn.automation.Components.GiftCard_PageComponents;
+import com.tommyjohn.automation.Components.PhysicalGiftCardComponents;
 //import com.tommyjohn.automation.Components.GiftCardPageComponents;
 import com.tommyjohn.automation.Components.ProductDetailsPageComponents;
 import com.tommyjohn.automation.Components.ShoppingCartComponents;
@@ -41,6 +42,10 @@ public class AfterPay {
 	public void AfterPayOnGiftCardPage() throws Exception
 	{
 		new GiftCard_PageComponents(driver).CheckAfterPayMessageonGC();
+	}
+	public void AfterPayOnPhysicalGiftCardPage() throws Exception
+	{
+		new PhysicalGiftCardComponents(driver).CheckAfterPayMessageonPhysicalGC();
 	}
 	
 	public void ValidateAfterPayforAddressotherThanUS() throws Exception
