@@ -10,19 +10,19 @@ import com.tommyjohn.automation.utils.CustomUtilities;
 
 public class ValidateAfterPay {
 
-	WebDriver driver ;
-
+	WebDriver driver;
 	@BeforeMethod(alwaysRun = true)
 	@Parameters("browser")
-	public void setup(String browser) {
+	public void setup(String browser)
+	{
 		try {
 			driver = new CustomUtilities().launchtj(browser);
-
-		} catch (Exception e1) {
+		}
+		catch(Exception e1)
+		{
 			e1.printStackTrace();
 		}
-	}
-	
+	}	
 	@Test
 	public void TC_ValidateAfterPayOnPDP() throws Exception
 	{
@@ -51,6 +51,11 @@ public class ValidateAfterPay {
 	public void TC_ValidateAfterPayWithGiftCard() throws Exception
 	{
 		new AfterPay(driver).AfterPayOnGiftCardPage();
+	}
+	@Test
+	public void TC_ValidateAfterPayWithPhysicalGiftCard() throws Exception
+	{
+		new AfterPay(driver).AfterPayOnPhysicalGiftCardPage();
 	}
 	
 	@Test
