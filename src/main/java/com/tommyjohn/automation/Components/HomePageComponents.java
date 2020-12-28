@@ -1131,6 +1131,18 @@ driver.get("https://tommyjohn.com/search?keywords=mystery+packs");
 		driver.get("https://tommyjohn.com/collections/underwear-mens-styles-boxer-brief");
 
 	}
+    //navigate to Mens underwear quiz page
+    public void navigateToMensQuizPage()
+    {
+    	driver.get("https://tommyjohn.com/pages/underwear-quiz?quizID=MN-UW-QZ");
+    	
+    }
+
+  //navigate to Womens underwear quiz page
+    public void navigateToWomensQuizPage()
+    {
+    	driver.get("https://tommyjohn.com/pages/underwear-quiz?quizID=WN-UW-QZ");
+    }
 
 
 }
