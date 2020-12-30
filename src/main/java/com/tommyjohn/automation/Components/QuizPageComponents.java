@@ -47,7 +47,7 @@ public class QuizPageComponents extends QuizPageLocators
 	public void MensRetakeQuizFlow() throws Exception
 	{
 		new HomePageComponents(driver).navigateToMensQuizPage();
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		RetakeQuizFlow();
 		Reporter.log("Mens Retake Quiz Flow is Displayed :: Correct");
 	}
@@ -74,11 +74,11 @@ public class QuizPageComponents extends QuizPageLocators
 		RetakeQuizFlow();
 		Reporter.log("Womens Retake Quiz Flow is Displayed :: Correct");
 	}
-	
+
 	public void WomensResultPage() throws Exception
 	{
 		new HomePageComponents(driver).navigateToWomensQuizPage();
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		QuizFlow();
 		ResultPage();
 	}
@@ -154,6 +154,7 @@ public class QuizPageComponents extends QuizPageLocators
 			js.executeScript("arguments[0].click();", element);
 			SelectedOptions.add(element);
 		}
+
 		Allclasses = driver.findElement(NEXT_CTA).getAttribute("class");
 		if(Allclasses.contains("is-disabled"))
 			throw new Exception("Next cta is not enabled with selected options on second question page");
@@ -298,9 +299,11 @@ public class QuizPageComponents extends QuizPageLocators
 		js.executeScript("arguments[0].click();", element);
 		Reporter.log("Quiz Summary Card is displayed :: Correct");
 		//Result Page
-		if(!driver.getCurrentUrl().equals("https://tommyjohn.com/pages/quiz-results"))
-			throw new Exception("Incorrect page is opened after click on see result CTA from summary page");
-		Thread.sleep(5000);
+		//		if(!driver.getCurrentUrl().equals("https://tommyjohn.com/pages/quiz-results"))
+		//			throw new Exception("Incorrect page is opened after click on see result CTA from summary page");
+		//		Thread.sleep(5000);
+
+		softassert.assertTrue(driver.findElement(RETAKE_QUIZ_CTA).isDisplayed(), "Retake quiz CTA is not displayed on result page or Incorrect page opened after click on see result CTA");
 
 		softassert.assertAll();
 		return QuestionText;
@@ -359,25 +362,26 @@ public class QuizPageComponents extends QuizPageLocators
 		OnSelectClasses.clear();
 		Reporter.log("Preselected options functionality is correct for template: "+text);	
 	}
-	
+
 	public void ResultPage() throws Exception
 	{
 		// Verify selected options on result page
-				softassert.assertTrue(driver.findElement(QUIZ_RESULT_PRODUCT_IMAGE).isDisplayed(), "products are displayed on quiz result page");
-				text= driver.findElement(RESULT_PAGE_SELECTED_VALUES).getText();
-				list2=text.split("\\|");
-				for(int k=0;k<list2.length-1;k++)
-				{
-					result_page_selected_value.add(list2[k].toLowerCase().toString());
-				}
-				for(String temp: result_page_selected_value) {
-					if(!summary_result.contains(temp))
-					{
-						throw new Exception("Result is not based on combination of selected options for: "+temp);
-					}
-				}
-				softassert.assertAll();
-				Reporter.log("Result page is Displayed:: Correct");
+		Thread.sleep(3000);
+		softassert.assertTrue(driver.findElement(QUIZ_RESULT_PRODUCT_IMAGE).isDisplayed(), "products are displayed on quiz result page");
+		text= driver.findElement(RESULT_PAGE_SELECTED_VALUES).getText();
+		list2=text.split("\\|");
+		for(int k=0;k<list2.length-1;k++)
+		{
+			result_page_selected_value.add(list2[k].toLowerCase().toString());
+		}
+		for(String temp: result_page_selected_value) {
+			if(!summary_result.contains(temp))
+			{
+				throw new Exception("Result is not based on combination of selected options for: "+temp);
+			}
+		}
+		softassert.assertAll();
+		Reporter.log("Result page is Displayed:: Correct");
 
 	}
 

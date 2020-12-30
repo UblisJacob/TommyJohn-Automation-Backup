@@ -539,7 +539,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 				throw new Exception("AfterPay Message is displayed on Checkout page for address other than US.");
 			Reporter.log("AfterPay Message is displayed on Checkout page for address other than US");
 		}
-		catch(NoSuchElementException e){
+		catch(Exception e){
 			System.out.println("After Pay Message is not displayed on checkout page for address other than US.");
 			Reporter.log("After Pay Message is not displayed on Checkout page for address other than US.");
 		}

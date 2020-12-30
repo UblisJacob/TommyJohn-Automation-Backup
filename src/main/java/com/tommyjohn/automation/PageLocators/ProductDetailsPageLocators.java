@@ -47,8 +47,8 @@ public class ProductDetailsPageLocators {
 
 	//afterpay
 
-	public static By AFTERPAY_PDP = By.cssSelector("div.desktop-view > .afterpay-pdp-container > p > span");
-	public static By AFTERPAY_PDP_AFTERMESSAGE_LOGO = By.cssSelector("div.desktop-view > .afterpay-pdp-container > p > span.afterpay-logo-link");
+	public static By AFTERPAY_PDP = By.cssSelector("div.desktop-view.desktop > .afterpay-pdp-container > p");
+	public static By AFTERPAY_PDP_AFTERMESSAGE_LOGO = By.cssSelector("div.desktop-view.desktop > .afterpay-pdp-container > p >p>img");
 	public static By AFTERPAY_PDP_BEFOREMESSAGE_LOGO = By.cssSelector("div.desktop-view > .afterpay-pdp-container > p> img ");
 
 

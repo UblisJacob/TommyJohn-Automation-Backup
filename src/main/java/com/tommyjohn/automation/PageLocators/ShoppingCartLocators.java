@@ -27,9 +27,9 @@ public class ShoppingCartLocators {
 	 public static By CHECKOUT_BUTTON = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__summary > a.cart__checkout-btn");
 	//AfterPay
 	    public static By AFTERPAY_CART = By.cssSelector(".afterpay-cart-container >p> span");
-    public static By AFTERPAY_DIV = By.cssSelector(".inline-cart__summary>.afterpay-cart-container>.afterpay-paragraph");
+    public static By AFTERPAY_DIV = By.cssSelector(".inline-cart__summary>.afterpay-cart-container>p>.afterpay-paragraph");
 	public static By AFTERPAYTEXT_WITH_AVAILABLE = By.cssSelector(".inline-cart__summary>.afterpay-cart-container>.afterpay-paragraph>span");
-	public static By AFTERPAYTEXT_WITH_INSTALLMENT = By.cssSelector(".inline-cart__summary>.afterpay-cart-container>.afterpay-paragraph>span.afterpay-text1");
+	public static By AFTERPAYTEXT_WITH_INSTALLMENT = By.cssSelector(".inline-cart__summary>.afterpay-cart-container>p");
 	public static By AFTERPAYLOGO_WITH_AVAILABLE_MSG = By.cssSelector(".inline-cart__summary>span>p:nth-child(2)>.afterpay-link");
-	public static By AFTERPAYLOGO_WITH_INSTALLMENT_MSG = By.cssSelector(".inline-cart__summary>span>p:nth-child(2)>span.afterpay-logo-link>.afterpay-link");
+	public static By AFTERPAYLOGO_WITH_INSTALLMENT_MSG = By.cssSelector(".afterpay-cart-container>p>p>a.afterpay-link");
 }
