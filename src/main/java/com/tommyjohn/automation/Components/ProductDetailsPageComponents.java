@@ -1,7 +1,5 @@
 package com.tommyjohn.automation.Components;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
@@ -163,7 +161,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			System.out.println("Promo Message is not applicable for this product.");
 		}
 
-
+        Thread.sleep(5000);
 		//Check vertical image(carousel)
 		WebElement VERTICAL_IMAGE = driver.findElement(By.cssSelector(".slick-vertical > div > div > div.slick-slide.slick-current.slick-active"));
 		softAssert.assertTrue(VERTICAL_IMAGE.isDisplayed(), "Vertical images are not displayed on PDP.");
@@ -288,7 +286,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		allElements = driver.findElements(ALL_SIZE_LIST);
 		elementsCount = allElements.size();
 		System.out.println("All sizes list :: "+ elementsCount);
-
+		try {
 		if(driver.findElement(By.cssSelector("div.radio-options-container")).isDisplayed())
 		{
 
@@ -375,9 +373,10 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			}
 
 		}
-
-		else
-		{
+	}
+catch(Exception ex) {
+//		else
+//		{
 			//dropdown
 			for(int i=1;i<=elementsCount;i++) {
 				flag = false;
@@ -579,7 +578,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 				}
 				break;
 			}
-		}
+	//	}
+	}
 		//}
 		softAssert.assertAll();
 
@@ -600,7 +600,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 		// call method to check correct PDP opend or not
 		checkCorrectProductDetailsPageOpenedOrNot(text);
-
+        Thread.sleep(5000);
 		//Check afterpay message display
 		if(!driver.findElement(AFTERPAY_PDP).isDisplayed())
 			throw new Exception("AfterPay Message not present on PDP");
@@ -623,10 +623,13 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 			installment =Float.parseFloat(price2)/4;
 			String inst = String.format("%.2f",installment );
-			String expectedmessage = "In 4 interest-free installments of $" + inst + " by"; 
+		//	String expectedmessage = "or 4 installments of $" + inst + " by ?"; 
+			String expectedmessage =  inst+ " "; 
 			System.out.println("expected message is: " + expectedmessage);
-			System.out.println("Actual message is: " +driver.findElement(AFTERPAY_PDP).getText());
-			softAssert.assertEquals(driver.findElement(AFTERPAY_PDP).getText(), expectedmessage , "Wrong afterpay message displayed for product price");
+			String actual = driver.findElement(AFTERPAY_PDP).getText();
+			String ins_amount= actual.substring(actual.indexOf("$")+1, actual.indexOf("b"));
+			System.out.println("Actual int_amount is: " +actual);
+			softAssert.assertEquals(ins_amount, expectedmessage , "Wrong afterpay message displayed for product price");
 			Reporter.log("After pay message with calculated installment is correct :: Displayed and correct");
 			softAssert.assertTrue(driver.findElement(AFTERPAY_PDP_AFTERMESSAGE_LOGO).isDisplayed(), "Afterpay logo not present on PDP");
 			Reporter.log("After pay logo icon is displayed on PDP :: Displayed");
