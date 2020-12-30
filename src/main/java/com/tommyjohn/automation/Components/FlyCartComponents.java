@@ -465,10 +465,13 @@ String[] b = size.split(",") ;
 
 			installment =Float.parseFloat(price2)/4;
 			String inst = String.format("%.2f",installment );
-			String expectedmessage = "or 4 interest-free installments of $" + inst + " by"; 
+		//	String expectedmessage = "In 4 installments of $" + inst + " by ?"; 
+			String expectedmessage =  inst+ " "; 
 			System.out.println("expected message is: " + expectedmessage);
-			System.out.println("Actual message is: " +driver.findElement(AFTERPAYTEXT).getText());
-			softAssert.assertEquals(driver.findElement(AFTERPAYTEXT).getText(), expectedmessage , "Wrong afterpay message displayed for product price");
+			String actual= driver.findElement(AFTERPAYTEXT).getText();
+			String ins_amount= actual.substring(actual.indexOf("$")+1, actual.indexOf("b"));
+			System.out.println("Actual int_amount is: " +ins_amount);
+			softAssert.assertEquals(ins_amount, expectedmessage , "Wrong afterpay message displayed for product price");
 			Reporter.log("After pay message with calculated installment is correct on Inline cart :: Displayed and correct");
 			softAssert.assertTrue(driver.findElement(AFTERPAYLOGO_ICON).isDisplayed(), "Afterpay logo not present on PDP");
 			Reporter.log("After pay logo icon is displayed on Inline cart :: Displayed");
@@ -479,34 +482,6 @@ String[] b = size.split(",") ;
 		jse = (JavascriptExecutor)driver;
 		jse.executeScript("arguments[0].click();", element);
 		Thread.sleep(3000);
-
-//		//Gift Card Added To Cart
-//		new GiftCardPageComponents(driver).AddGiftCardTocart();
-//		Thread.sleep(3000);
-
-//		//Check gift cart with normal product in fly cart
-//		allElements = driver.findElements(FlyCartPageLocator.LIST_OF_ITEMS_IN_FLYCART);
-//		System.out.println("Total item in cart is: "+allElements.size());
-//		for(int i=1; i<=allElements.size();i++)
-//		{
-//			String title = driver.findElement(By.cssSelector("div.inline-cart__col1 > div:nth-child(6) > article:nth-child("+i+") > div.line-item__summary > a")).getText();
-//			System.out.println("product title in fly cart is: " +title);
-//			if(title.equalsIgnoreCase("E-Gift Card"))
-//			{
-//				try{
-//					System.out.println("Verifying for AfterPay Message .......");
-//					if(driver.findElement(AFTERPAYTEXT).isDisplayed())
-//						throw new Exception("AfterPay Message is displayed on Fly cart with Gift Card.");
-//					Reporter.log("AfterPay Message is displayed on Inline cart with Gift Card");
-//				}
-//				catch(NoSuchElementException e){
-//					System.out.println("After Pay Message is not displayed on Fly cart with Gift Card.");
-//					Reporter.log("After Pay Message is not displayed on Inline cart with Gift Card");
-//				}
-//			}
-//			
-//		}
-
 
 		softAssert.assertAll();
 	}
