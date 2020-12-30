@@ -582,7 +582,7 @@ public class GiftCard_PageComponents extends GiftCard_PageLocators {
 		System.out.println("Total item in cart is: "+allElements.size());
 		for(int i=1; i<=allElements.size();i++)
 		{
-			String title = driver.findElement(By.cssSelector("tbody > tr:nth-child("+i+") > td.product__description > span.product__description__name.order-summary__emphasis")).getText();
+			String title = driver.findElement(By.cssSelector("tbody > tr:nth-child("+i+") > th.product__description > span.product__description__name.order-summary__emphasis")).getText();
 
 			if(title.equalsIgnoreCase("E-Gift Card"))
 			{

@@ -267,7 +267,7 @@ public class PhysicalGiftCardComponents extends PhysicalGiftCardPageLocators
 		System.out.println("Total item in cart is: "+allElements.size());
 		for(int i=1; i<=allElements.size();i++)
 		{
-			String title = driver.findElement(By.cssSelector("div.inline-cart__col1 > div:nth-child(5) > article:nth-child("+i+") > div.line-item__summary > a")).getText();
+			String title = driver.findElement(By.cssSelector("div.inline-cart__col1 > div:nth-child(6) > article:nth-child("+i+") > div.line-item__summary > a")).getText();
 			System.out.println("product title in fly cart is: " +title);
 			if(title.equalsIgnoreCase("Tommy John Gift Card"))
 			{

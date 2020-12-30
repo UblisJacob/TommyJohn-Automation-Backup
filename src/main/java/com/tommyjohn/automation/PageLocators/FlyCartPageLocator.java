@@ -37,7 +37,7 @@ public class FlyCartPageLocator {
 	//AfterPay
 	
 	public static By AFTERPAY_DIV = By.cssSelector(".afterpay-cart-container>.afterpay-paragraph");
-	public static By AFTERPAYTEXT = By.cssSelector(".afterpay-incart-container > p>span.afterpay-text1");
+	public static By AFTERPAYTEXT = By.cssSelector(".afterpay-incart-container > p");
 	public static By AFTERPAYLOGO_ICON = By.cssSelector(".afterpay-link");
 	public static By AFTERPAY_FLYCART = By.cssSelector(".afterpay-incart-container > p > span");
 	
