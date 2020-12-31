@@ -38,8 +38,8 @@ public class AccountLoginComponents extends AccountLoginLocators{
 		actions = new Actions(driver);
 		testemail = "testaccount" + System.currentTimeMillis() +"@gmail.com";
 		password = CustomUtilities.properties.getProperty("password");
-		//		driver.findElement(HomePageLocators.ACCOUNT_ICON).click();
-		WebElement element = driver.findElement((HomePageLocators.ACCOUNT_ICON));
+		//		driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN).click();
+		WebElement element = driver.findElement((HomePageLocators.ACCOUNT_NAV_DROPDOWN));
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", element);
 		wait.until(ExpectedConditions.presenceOfElementLocated(CREATEACCOUNT_BTN));
@@ -61,9 +61,9 @@ public class AccountLoginComponents extends AccountLoginLocators{
 			throw new Exception("account page is not displayed after creating account");
 
 		// logout the account
-		element = driver.findElement(HomePageLocators.ACCOUNT_ICON);
+		element = driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN);
 		actions.moveToElement(element).perform();
-executor.executeScript("arguments[0].click();", driver.findElement(LOGOUT_OPTION_IN_ACCOUNT_ICON));
+		executor.executeScript("arguments[0].click();", driver.findElement(LOGOUT_OPTION_IN_ACCOUNT_ICON));
 		Thread.sleep(3000);
 
 		Reporter.log("Account Created Successfully :: User is brought to account page");
@@ -74,8 +74,8 @@ executor.executeScript("arguments[0].click();", driver.findElement(LOGOUT_OPTION
 	{
 		String text=null;
 		String currentUrl;
-		//	driver.findElement(HomePageLocators.ACCOUNT_ICON).click();
-		WebElement element = driver.findElement(HomePageLocators.ACCOUNT_ICON);
+		//	driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN).click();
+		WebElement element = driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", element);
 		Thread.sleep(5000);
@@ -126,6 +126,10 @@ executor.executeScript("arguments[0].click();", driver.findElement(LOGOUT_OPTION
 
 		if(!driver.findElement(MARKETING_CHCKBOX).isDisplayed())
 			throw new Exception("Marketing checkbox not present");
+		WebElement Marketing_checkbox_status = driver.findElement(By.cssSelector("#create_customer>input:nth-child(5)"));
+		String status= Marketing_checkbox_status.getAttribute("value");
+		if(!status.equalsIgnoreCase("true"))
+			throw new Exception("Marketing Checkbox is not checked by default");
 		driver.findElement(MARKETING_CHCKBOX).click();
 
 		if(!driver.findElement(CREATEACCOUNT_BUTTON).isDisplayed())
@@ -164,10 +168,10 @@ executor.executeScript("arguments[0].click();", driver.findElement(LOGOUT_OPTION
 
 
 		WebDriverWait wait = new WebDriverWait (driver, 30);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HomePageLocators.ACCOUNT_ICON));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HomePageLocators.ACCOUNT_NAV_DROPDOWN));
 
-		//	driver.findElement(HomePageLocators.ACCOUNT_ICON).click();
-		WebElement element = driver.findElement((HomePageLocators.ACCOUNT_ICON));
+		//	driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN).click();
+		WebElement element = driver.findElement((HomePageLocators.ACCOUNT_NAV_DROPDOWN));
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", element);
 		Thread.sleep(3000);
@@ -192,8 +196,8 @@ executor.executeScript("arguments[0].click();", driver.findElement(LOGOUT_OPTION
 		String text = null;
 
 		// click on accout icon from home page
-		//driver.findElement(HomePageLocators.ACCOUNT_ICON).click();
-		WebElement element = driver.findElement(HomePageLocators.ACCOUNT_ICON);
+		//driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN).click();
+		WebElement element = driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", element);
 		Thread.sleep(6000);
@@ -249,8 +253,8 @@ executor.executeScript("arguments[0].click();", driver.findElement(LOGOUT_OPTION
 
 		driver.navigate().to("https://tommyjohn.com/");
 		// click on accout icon from home page
-		//	driver.findElement(HomePageLocators.ACCOUNT_ICON).click();
-		WebElement element = driver.findElement(HomePageLocators.ACCOUNT_ICON);
+		//	driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN).click();
+		WebElement element = driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", element);
 		Thread.sleep(3000);
@@ -291,8 +295,8 @@ executor.executeScript("arguments[0].click();", driver.findElement(LOGOUT_OPTION
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 
 		// click on accout icon from home page
-		//		driver.findElement(HomePageLocators.ACCOUNT_ICON).click();
-		WebElement element = driver.findElement((HomePageLocators.ACCOUNT_ICON));
+		//		driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN).click();
+		WebElement element = driver.findElement((HomePageLocators.ACCOUNT_NAV_DROPDOWN));
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", element);
 		Thread.sleep(3000);
@@ -340,8 +344,8 @@ executor.executeScript("arguments[0].click();", driver.findElement(LOGOUT_OPTION
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 
 		// click on accout icon from home page
-		//		driver.findElement(HomePageLocators.ACCOUNT_ICON).click();
-		WebElement element = driver.findElement((HomePageLocators.ACCOUNT_ICON));
+		//		driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN).click();
+		WebElement element = driver.findElement((HomePageLocators.ACCOUNT_NAV_DROPDOWN));
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", element);
 
@@ -391,8 +395,8 @@ executor.executeScript("arguments[0].click();", driver.findElement(LOGOUT_OPTION
 
 		actions = new Actions(driver);
 		// click on account icon from home page
-		//		driver.findElement(HomePageLocators.ACCOUNT_ICON).click();
-		WebElement element = driver.findElement((HomePageLocators.ACCOUNT_ICON));
+		//		driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN).click();
+		WebElement element = driver.findElement((HomePageLocators.ACCOUNT_NAV_DROPDOWN));
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", element);
 		Thread.sleep(3000);
@@ -400,7 +404,7 @@ executor.executeScript("arguments[0].click();", driver.findElement(LOGOUT_OPTION
 		currentUrl = driver.getCurrentUrl();
 		if(currentUrl.equals(CustomUtilities.properties.getProperty("loginPageUrl"))) {
 			// type correct email if email inputbox is present
-		
+
 			driver.findElement(CUSTOMER_EMAIL_INPUT).clear();
 			Thread.sleep(2000);
 			driver.findElement(CUSTOMER_EMAIL_INPUT).sendKeys(createdAccountEmail);
@@ -418,7 +422,7 @@ executor.executeScript("arguments[0].click();", driver.findElement(LOGOUT_OPTION
 			driver.findElement(LOGIN_BUTTON).click();
 			Thread.sleep(5000);
 			// logout the account
-			element = driver.findElement(HomePageLocators.ACCOUNT_ICON);
+			element = driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN);
 			actions.moveToElement(element).perform();
 			WebElement logout = driver.findElement(LOGOUT_OPTION_IN_ACCOUNT_ICON);
 			executor.executeScript("arguments[0].click();", logout);
@@ -433,8 +437,8 @@ executor.executeScript("arguments[0].click();", driver.findElement(LOGOUT_OPTION
 	public void verifyErrorMessagesOnLoginPage() throws Exception {
 
 		// click on account icon from home page
-		//		driver.findElement(HomePageLocators.ACCOUNT_ICON).click();
-		WebElement element = driver.findElement((HomePageLocators.ACCOUNT_ICON));
+		//		driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN).click();
+		WebElement element = driver.findElement((HomePageLocators.ACCOUNT_NAV_DROPDOWN));
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", element);
 		Thread.sleep(3000);
@@ -442,13 +446,13 @@ executor.executeScript("arguments[0].click();", driver.findElement(LOGOUT_OPTION
 		currentUrl = driver.getCurrentUrl();
 		if(currentUrl.equals(CustomUtilities.properties.getProperty("loginPageUrl"))) {
 			// type wrong email if email inputbox is present
-		
+
 			driver.findElement(CUSTOMER_EMAIL_INPUT).clear();
 			Thread.sleep(2000);
 			driver.findElement(CUSTOMER_EMAIL_INPUT).sendKeys(invalidemail);
-Thread.sleep(3000);
+			Thread.sleep(3000);
 			// type correct password if password inputbox is present
-		
+
 			driver.findElement(CUSTOMER_PASSWORD_INPUTBOX).clear();
 			Thread.sleep(2000);
 			driver.findElement(CUSTOMER_PASSWORD_INPUTBOX).sendKeys(invalidpassword);

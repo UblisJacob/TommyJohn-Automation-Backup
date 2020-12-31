@@ -38,7 +38,7 @@ public class LoyaltyOptInComponents extends LoyaltyOptInLocators {
 		testemail = "testaccount" + System.currentTimeMillis() +"@gmail.com";
 		password = CustomUtilities.properties.getProperty("password");
 
-		WebElement element = driver.findElement((HomePageLocators.ACCOUNT_ICON));
+		WebElement element = driver.findElement((HomePageLocators.ACCOUNT_NAV_DROPDOWN));
 		executor.executeScript("arguments[0].click();", element);
 		Thread.sleep(3000);
 		driver.findElement(AccountLoginLocators.CREATEACCOUNT_BTN).click();
@@ -87,7 +87,7 @@ public class LoyaltyOptInComponents extends LoyaltyOptInLocators {
 		testemail = "testaccount" + System.currentTimeMillis() +"@gmail.com";
 		password = CustomUtilities.properties.getProperty("password");
 
-		WebElement element = driver.findElement((HomePageLocators.ACCOUNT_ICON));
+		WebElement element = driver.findElement((HomePageLocators.ACCOUNT_NAV_DROPDOWN));
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", element);
 		Thread.sleep(3000);
@@ -165,7 +165,7 @@ public class LoyaltyOptInComponents extends LoyaltyOptInLocators {
 		testemail = "testaccount" + System.currentTimeMillis() +"@gmail.com";
 		password = CustomUtilities.properties.getProperty("password");
 
-		WebElement element = driver.findElement((HomePageLocators.ACCOUNT_ICON));
+		WebElement element = driver.findElement((HomePageLocators.ACCOUNT_NAV_DROPDOWN));
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", element);
 		Thread.sleep(3000);
@@ -195,7 +195,7 @@ public class LoyaltyOptInComponents extends LoyaltyOptInLocators {
 		Thread.sleep(9000);
 		Reporter.log("On loyalty page 'Join Now' button is displayed :: Clickable.");
 
-		element = driver.findElement(HomePageLocators.ACCOUNT_ICON);
+		element = driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN);
 		actions.moveToElement(element).perform();
 		driver.findElement(AccountLoginLocators.MYACCOUNT_OPTION_IN_ACCOUNT_ICON).click();
 
@@ -288,7 +288,7 @@ public class LoyaltyOptInComponents extends LoyaltyOptInLocators {
 		testemail = "Testaccount" + System.currentTimeMillis() +"@gmail.com";
 		password = CustomUtilities.properties.getProperty("password");
 
-		WebElement element = driver.findElement((HomePageLocators.ACCOUNT_ICON));
+		WebElement element = driver.findElement((HomePageLocators.ACCOUNT_NAV_DROPDOWN));
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", element);
 		Thread.sleep(3000);
