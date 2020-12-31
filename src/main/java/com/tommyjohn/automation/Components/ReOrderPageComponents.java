@@ -32,8 +32,8 @@ public class ReOrderPageComponents extends ReOrderPageLocators{
 
 		SoftAssert softAssert = new SoftAssert();
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HomePageLocators.ACCOUNT_ICON));
-		driver.findElement(HomePageLocators.ACCOUNT_ICON).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HomePageLocators.ACCOUNT_NAV_DROPDOWN));
+		driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN).click();
 		Thread.sleep(3000);
 		driver.findElement(AccountLoginLocators.CUSTOMER_EMAIL_INPUT).clear();
 		driver.findElement(AccountLoginLocators.CUSTOMER_EMAIL_INPUT).sendKeys("vijeta@tommyjohnwear.com");
@@ -45,7 +45,7 @@ public class ReOrderPageComponents extends ReOrderPageLocators{
 Thread.sleep(5000);
 
 		//action = new Actions(driver);
-		//element = driver.findElement(HomePageLocators.ACCOUNT_ICON);
+		//element = driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN);
 		//action.moveToElement(element).perform();
 		//action.moveToElement(element).click(driver.findElement(HomePageLocators.REORDER)).build().perform();
 		//driver.findElement(HomePageLocators.REORDER).click();
