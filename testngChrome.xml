@@ -23,7 +23,7 @@
 		</classes>
 	</test>
 
-	<test thread-count="1" name="AccountLoginAndCreationTests"
+ 	<test thread-count="1" name="AccountLoginAndCreationTests"
 		verbose="1" parallel="tests">
 		<parameter name="browser" value="chrome" />
 		<classes>
@@ -170,13 +170,22 @@
 		</classes>
 	</test>
 
+ 
+	<test thread-count="1" name="VerifyAccountPage"
+		verbose="1" parallel="tests">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="TestScenario.ValidateAccountPage" />
+		</classes>
+	</test>
+ 
 <!-- 	 <test thread-count="1" name="AfterPayTests" verbose="1" parallel="tests"> 
 	 <parameter name="browser" value="chrome" />
 		<classes>
 		 <class name="TestScenario.ValidateAfterPay" /> 
 		 </classes>
-	 </test>  -->
-		
+	 </test> 
+ -->		
 	<!--	<test thread-count="1" name="MixAndMatch" verbose="1" parallel="tests"> <classes> 
 		<class name="TestScenario.ValidateMixAndMatchPage" /> </classes> </test> 
 		<test thread-count="1" name="LoyaltyOptInTests" verbose="1" parallel="tests"> 
