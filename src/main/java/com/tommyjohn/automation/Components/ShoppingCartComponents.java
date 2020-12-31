@@ -152,7 +152,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		Thread.sleep(3000);
 		driver.findElement(CONTINUE_SHOPPING).click();
 		Thread.sleep(3000);
-		softAssert.assertTrue(driver.findElement(HomePageLocators.ACCOUNT_ICON).isDisplayed(), "Continue Shopping redirects user to wrong page");
+		softAssert.assertTrue(driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN).isDisplayed(), "Continue Shopping redirects user to wrong page");
 		
 		softAssert.assertAll();
 	}
