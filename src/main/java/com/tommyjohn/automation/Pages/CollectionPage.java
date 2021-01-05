@@ -17,6 +17,8 @@ public class CollectionPage extends CollectionPageComponent{
 	public void validateproductimageonAllpanties() throws Exception
 	{
 		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
+		Verify_ProductTile_HoverFunctionality();
+		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
 		validateProductImageOnCollectionPage();
 	}
 
@@ -51,6 +53,8 @@ public class CollectionPage extends CollectionPageComponent{
 	
 	public void validateproductimageonAllUnderwear() throws Exception
 	{
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
+		Verify_ProductTile_HoverFunctionality();
 		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 		validateProductImageOnCollectionPage();
 	}
@@ -87,6 +91,8 @@ public class CollectionPage extends CollectionPageComponent{
 	public void validateproductimageonAllUndershirts() throws Exception {
 
 		new HomePageComponents(driver).navigateToAllUnderShirtsInMensCategory();
+		Verify_ProductTile_HoverFunctionality();
+		new HomePageComponents(driver).navigateToAllUnderShirtsInMensCategory();
 		validateProductImageOnCollectionPage();
 	}
 
@@ -121,6 +127,8 @@ public class CollectionPage extends CollectionPageComponent{
 
 	public void validateproductimageonAllWomensCollection() throws Exception {
 
+		new HomePageComponents(driver).navigateToAllWomensCollectionInWomensCategory();
+		Verify_ProductTile_HoverFunctionality();
 		new HomePageComponents(driver).navigateToAllWomensCollectionInWomensCategory();
 		validateProductImageOnCollectionPage();
 	}
@@ -159,6 +167,7 @@ public class CollectionPage extends CollectionPageComponent{
 	public void validateproductimageonOnSecondSkin() throws Exception {
 
 		new HomePageComponents(driver).navigateToSecondSkinInMenCategory();
+		//Verify_ProductTile_HoverFunctionality();
 		validateProductImageOnCollectionPage();
 	}
 
@@ -187,6 +196,8 @@ public class CollectionPage extends CollectionPageComponent{
 
 	public void validateproductimageonOnCoolCotton() throws Exception {
 
+		new HomePageComponents(driver).navigateToCoolCottonInMensCollection();
+		Verify_ProductTile_HoverFunctionality();
 		new HomePageComponents(driver).navigateToCoolCottonInMensCollection();
 		validateProductImageOnCollectionPage();
 	}
@@ -217,6 +228,7 @@ public class CollectionPage extends CollectionPageComponent{
 	public void validateproductimageonOnCottonBasics() throws Exception {
 
 		new HomePageComponents(driver).navigateToCottonBasicsInMensCategory();
+	//	Verify_ProductTile_HoverFunctionality();
 		validateProductImageOnCollectionPage();
 	}
 
@@ -246,6 +258,8 @@ public class CollectionPage extends CollectionPageComponent{
 	public void validateproductimageonOnPacks() throws Exception {
 
 		new HomePageComponents(driver).navigateToAllWomensPacksInPacksCategory();
+		Verify_ProductTile_HoverFunctionality();
+		new HomePageComponents(driver).navigateToAllWomensPacksInPacksCategory();
 		validateProductImageOnCollectionPage();
 	}
 
@@ -267,7 +281,26 @@ public class CollectionPage extends CollectionPageComponent{
 		methodToCheckAllFilters();
 	}
 	
-	
+	public void validateSortFilterOnGCPLP() throws Exception
+	{
+		new HomePageComponents(driver).NavigateToGCPLP();
+		methodToCheckAllFilters();
+	}
+	public void validateProductReviewStarsOnGCPLP() throws Exception
+	{
+		new HomePageComponents(driver).NavigateToGCPLP();
+		validateReviewStarOnGCPLP();
+	}
+	public void validateColorSwatcheonGCPLP() throws Exception
+	{
+		new HomePageComponents(driver).NavigateToGCPLP();
+		MethodToCheckColorSwatchChanging();
+	}
+	public void validateProductNameOnGCPLP() throws Exception
+	{
+		new HomePageComponents(driver).NavigateToGCPLP();
+		validateProductHeadingTextOnCollectionPage();
+	}
 
 	// All collection URLs
 	public void validateallcollectionurls() throws Exception
@@ -308,41 +341,3 @@ public class CollectionPage extends CollectionPageComponent{
 //	{
 //		validateProductReviewStarsForSingleCollection();
 //	}
-////--------------------------validate mega collections------------------------
-//	
-//	public void validateAllClothingOnCollectionPage() throws Exception {
-//		validateMegaCollectionAllClothingInWomensCategory();
-//	}
-//	
-//	public void validateWomensAllPantiesOnCollectionPage() throws Exception {
-//		validateMegaCollectionAllPantiesInWomensCategory();
-//	}
-//	public void validateMensAllUnderwearOnCollectionPage() throws Exception {
-//		validateMegaCollectionAllUnderwearInMensCategory();
-//	}
-//	public void validateMensAllUnderShirtsOnCollectionPage() throws Exception {
-//		validateMegaCollectionAllUndershirtsInMensCategory();
-//	}
-//	public void validateMensAllCollectionsOnCollectionPage() throws Exception {
-//		validateMegaCollectionAllCollectionsInMensCategory();
-//	}
-//	
-//	
-////---------------------------validate single collections---------------------------
-//	
-//	public void validateSecondSkinOnSingleCollectionPage() throws Exception {
-//		validateSingleCollectionSecondSkinInMenCategory();
-//	}
-//	
-//	public void validateCoolCottonOnSingleCollectionPage() throws Exception {
-//		validateSingleCollectionCoolCottonInMenCategory();
-//	}
-//	public void validatePacksOnSingleCollectionPage() throws Exception {
-//		validateSingleCollectionPacksInWomenCategory();
-//	}
-//	
-//	public void validateCottonBasicsOnSingleCollectionPage() throws Exception {
-//		validateSingleCollectionCottonBasicsInShopByCollectionsCategory();
-//	}
-//
-//}

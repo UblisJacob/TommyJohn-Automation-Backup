@@ -12,7 +12,7 @@ public class ProductDetailsPageLocators {
 
 
 	public static By AFTERPAY_DIV = By.cssSelector(".multi-pdp-title-wrap.desktop-view>span>.afterpay-paragraph");
-
+    public static By SECOND_VERTICAL_IMAGE = By.cssSelector(".slick-vertical > div > div > div:nth-child(2)>img");
 
 	public static By COLOR_LISTS = By.cssSelector(".product-option__color-swatches-wrapper > ul >li");
 	public static By FIRST_COLOR = By.cssSelector(".product-option__color-swatches-wrapper > ul > li:nth-child(1) > label");
