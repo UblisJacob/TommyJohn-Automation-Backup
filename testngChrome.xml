@@ -48,6 +48,15 @@
 
 		</classes>
 	</test>
+	
+	<test thread-count="1" name="GiftCardCollectionTests" verbose="1"
+		parallel="tests">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="TestScenario.ValidateGiftCardPLP" />
+
+		</classes>
+	</test>
 
 	<test thread-count="1" name="ProductPageTests" verbose="1"
 		parallel="tests">

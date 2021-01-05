@@ -1098,6 +1098,12 @@ public class HomePageComponents extends HomePageLocators {
 		driver.get("https://tommyjohn.com/collections/bras");	
 
 	}
+	
+	//navigate to GC plp
+	public void NavigateToGCPLP()
+	{
+		driver.get("https://tommyjohn.com/collections/gift-cards");
+	}
 
 	// navigate to Triangle Bralette category
 	public void navigateToTriangleBraletteCategory() throws Exception {

@@ -19,6 +19,7 @@ public class CollectionPageLocator {
 	public static By FIRST_PRODUCT = By.cssSelector(".product-item");
 	public static By COMPARE_PRODUCT = By.cssSelector(".product-image-container > div.has-compare");
 	public static By FIRST_PRODUCT_IMAGE = By.cssSelector(".product-image");
+	public static By HOVERED_PRODUCT_IMAGE = By.cssSelector(".product-image--hover");
 	public static By FIRST_PRODUCT_HEAD_LINE_TEXT = By.cssSelector(".product-meta__title");
 	public static By FIRST_PRODUCT_REVIEW_STARS = By.cssSelector(".yotpo-bottomline");
 	public static By FIRST_PRODUCT_URL = By.cssSelector(".product-meta");

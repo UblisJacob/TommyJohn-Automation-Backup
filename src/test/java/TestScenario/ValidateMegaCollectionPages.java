@@ -96,15 +96,16 @@ public class ValidateMegaCollectionPages {
 	public void TC_ValidateProductReviewStarsOnAllUndershirtsInMenCategory() throws Exception
 	{ new CollectionPage(driver).validateproductreviewstarsonAllUndershirts(); }
 
-	@Test
-	public void TC_ValidateFiltersAndSortingOnAllUndershirtsInMenCategory()
-			throws Exception { new
-		CollectionPage(driver).validatefilterandsortonAllUndershirts(); }
+//	@Test
+//	public void TC_ValidateFiltersAndSortingOnAllUndershirtsInMenCategory()
+//			throws Exception
+//	{
+//		new	CollectionPage(driver).validatefilterandsortonAllUndershirts(); }
 
 	@Test
 	public void TC_ValidateStyleCarouselOnAllUndershirtsInMenCategory()
-			throws Exception { new
-		CollectionPage(driver).validatestylecarouselonAllUndershirts(); }
+			throws Exception
+	{ new CollectionPage(driver).validatestylecarouselonAllUndershirts(); }
 
 	@Test
 	public void
