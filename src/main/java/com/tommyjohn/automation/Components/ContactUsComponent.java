@@ -227,7 +227,7 @@ public class ContactUsComponent extends ContactUsPageLocators
 		softassert.assertTrue(driver.findElement(EMAIL_US_LINK).isDisplayed(), "'Email Us' link is not displayed.");
 		softassert.assertTrue(driver.findElement(CHAT_LINK).isDisplayed(), "'Chat' link is not displayed.");
 		softassert.assertTrue(driver.findElement(CALL_US_NUMBER).isDisplayed(), "'Call us number' text is not displayed.");
-		softassert.assertTrue(driver.findElement(TEXT_US_AT).isDisplayed(), "'Text us number' text is not displayed.");
+	//	softassert.assertTrue(driver.findElement(TEXT_US_AT).isDisplayed(), "'Text us number' text is not displayed.");
 		
 		softassert.assertTrue(driver.findElement(HELP_CATEGORY).isDisplayed(), "'Help category container'  is not displayed.");
 

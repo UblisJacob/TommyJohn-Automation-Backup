@@ -1,6 +1,7 @@
 package com.tommyjohn.automation.PageLocators;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.By.ByLinkText;
 
 public class HomePageLocators{
 
@@ -200,7 +201,9 @@ public class HomePageLocators{
 	public static By CART_HEADING_TEXT = By.cssSelector(".inline-cart__col1 > h3");
 
 	public static By ABOUT_LINK = By.linkText("About");
+	public static By Careers = By.linkText("Careers");
 	public static By PRESS_LINK = By.linkText("Press");
+	public static By Reviews = By.linkText("Reviews");
 	public static By MILITARY_DISCOUNT_LINK = By.linkText("Military Discount");
 	public static By TEACHER_DISCOUNT_LINK = By.linkText("Student & Teacher Discount");
 	public static By HEALTHCARE_DISC_LINK = By.linkText("Healthcare Hero Discount");
@@ -211,18 +214,24 @@ public class HomePageLocators{
 
 	public static By HELP_LINK = By.linkText("Help");
 	public static By CONTACT_US_LINK = By.linkText("Contact & FAQ");
+	public static By RETURNS_AND_EXCHANGES = By.linkText("Returns & Exchanges");
 	public static By RETAILERS_LINK = By.linkText("Retailers");
 	public static By KING_OF_PURSSIA_STORE_LINK = By.linkText("King of Prussia Store");
 	public static By CHARLOTTE_STORE_LINK = By.linkText("Charlotte Store");
 	public static By TOMMY_JOHN_STORES = By.linkText("Tommy John Stores");
-	public static By STORE_LOCATOR_LINK = By.xpath("//a[@title='Store Locator']");
+	public static By STORE_LOCATOR_LINK = By.linkText("Store Locator");
 	public static By SHIPPING_AND_RETURNS_LINK = By.linkText("Shipping & Return Policy");
 	public static By NUMBER_LINK = By.linkText("1-800-708-3490");
 	public static By LOYALTY_LINK = By.linkText("Loyalty");
 
 	public static By TOMMYJOHN_REWARDS_LINK = By.linkText("Tommy John Rewards");
+	public static By SHOP_WOMEN = By.linkText("Shop Women");
+	public static By SHOP_MEN = By.linkText("Shop Men");
 	public static By GIFT_CARD_LINK = By.linkText("Gift Cards");
 	public static By FABRIC_GUIDE_LINK = By.linkText("Fabric Guide");
+	
+	public static By SIGN_IN_FOOTER_LINK= By.linkText("Sign In");
+	public static By ORDER_HISTORY = By.linkText("Order History");
 
 	public static By FACEBOOK_LINK = By.linkText("Facebook");
 	public static By TWITTER_LINK = By.linkText("Twitter");
@@ -230,6 +239,37 @@ public class HomePageLocators{
 	public static By INSTAGRAM_LINK = By.linkText("Instagram");
 	public static By YOUTUBE_LINK = By.linkText("YouTube");
 	public static By GOOGLE_PLUS_LINK = By.linkText("Google+");
+	
+	public static By FACEBOOK_ICON = By.cssSelector(".footer-social_icons>div.footer-icons>a:nth-child(1)");
+	public static By TWITTER_ICON = By.cssSelector(".footer-social_icons>div.footer-icons>a:nth-child(2)");
+	public static By PINTEREST_ICON = By.cssSelector(".footer-social_icons>div.footer-icons>a:nth-child(3)");
+	public static By INSTAGRAM_ICON = By.cssSelector(".footer-social_icons>div.footer-icons>a:nth-child(4)");
+	public static By YOUTUBE_ICON = By.cssSelector(".footer-social_icons>div.footer-icons>a:nth-child(5)");
+	
+	public static By NEWSLETTER_TITLE= By.cssSelector(".footer-section_one>div>.shopify-section>.footer-newsletter>.newsletter_title");
+	public static By NEWSLETTER_RADIO_BUTTONS = By.cssSelector(".footer-section_one>div>.shopify-section>section>form>.gender-container>span");
+	public static By NEWSLETTER_INPUT_TEXTBOX = By.cssSelector(".footer-section_one>div>.shopify-section>section>form>.footer-newsletter__submit-form>input");
+	public static By NEWSLETTER_SIGN_UP_BUTTON = By.cssSelector(".footer-section_one>div>.shopify-section>section>form>.footer-newsletter__submit-form>button");
+	public static By NEWSLETTER_FORM_SUCCESS_MESSAGE = By.cssSelector(".footer-section_one>div>.shopify-section>section>form>div.footer-newsletter__form-success");
+	public static By GIVE_FEEDBACK_CTA = By.cssSelector(".footer-feedback_btn");
+	public static By DO_NOT_SELL_PERSONAL_INFO_LINK= By.linkText("Do Not Sell My Information");
+	
+	public static By CCPA_FORM_TITLE = By.cssSelector(".ccpa-form-first-step-container>.ccpa-form-title");
+	public static By CCPA_STATE_OF_RESIDENCE_QSN = By.cssSelector(".ccpa-form-first-step-container>.ccpa-form>div>label");
+	public static By STATE_DROPDOWN = By.cssSelector(".ccpa-form-first-step-container>.ccpa-form>div>select");
+	public static By ERROR_MESSAGE = By.cssSelector(".ccpa-form--error");
+	public static By NON_CALIFORNIA_USER_HINT_SECTION = By.cssSelector(".ccpa-form-noncalifornia-user");
+	public static By BACK_TO_HOME_CTA = By.cssSelector(".ccpa-form-submit-contents__cta");
+	public static By CALIFORNIA_USER_FORM_HEADING = By.cssSelector(".ccpa-form-california-user>div:nth-child(1)");
+	public static By NAME_LABEL = By.cssSelector(".ccpa-form-label__name");
+	public static By NAME_TEXTBOX = By.cssSelector(".ccpa-form--input__name");
+	public static By EMAIL_LABEL = By.cssSelector(".ccpa-form-label__email");
+	public static By EMAIL_TEXTBOX = By.cssSelector(".ccpa-form--input__email");
+	public static By WOULD_LIKE_TO_HEADING = By.cssSelector(".ccpa-form-label__consent");
+	public static By SUBMIT_REQUEST_CTA = By.cssSelector(".ccpa-form--submit");
+	public static By SUCCESSFULLY_SUBMIT_MESSAGE = By.cssSelector(".ccpa-form-submit>.ccpa-form-description");
+	public static By BACK_TO_HOME_CALIFORNIA = By.cssSelector("#shopify-section-section-ccpa-form > div > div > div.ccpa-form-submit-contents__cta"); 
+	
 
 //	public static By SECOND_SKIN_IN_MEN_CATEGORY = By.cssSelector(".header-desktop-left > ul > li:nth-child(2) > div > ul > li:nth-child(7) > ul > li:nth-child(1) > a");
 //	public static By COOL_COTTON_IN_MENS_CATEGORY = By.cssSelector(".header-desktop-left > ul > li:nth-child(2) > div > ul > li:nth-child(7) > ul > li:nth-child(2) > a");

@@ -48,11 +48,20 @@ public class ValidateHomePage {
 		new HomePage(driver).validateCartIcon();
 	}
 
-	@Test public void TC_ValidateSearchFunctionalityviaPopularSearches() throws
+	@Test
+	public void TC_ValidateSearchFunctionalityviaPopularSearches() throws
 	Exception {
 
 		new HomePage(driver).validateSearchFunctionality();
 	}
+	
+	@Test
+	public void TC_ValidateDoNotSellMyPersonalInformationPage() throws
+	Exception {
+
+		new HomePage(driver).validateDoNotSellMyPersonalInformation();
+	}
+
 
 
 
