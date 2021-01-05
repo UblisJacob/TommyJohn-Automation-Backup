@@ -1,5 +1,9 @@
 package com.tommyjohn.automation.Components;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -36,21 +40,27 @@ public class ReOrderPageComponents extends ReOrderPageLocators{
 		driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN).click();
 		Thread.sleep(3000);
 		driver.findElement(AccountLoginLocators.CUSTOMER_EMAIL_INPUT).clear();
+		Thread.sleep(2000);
 		driver.findElement(AccountLoginLocators.CUSTOMER_EMAIL_INPUT).sendKeys("vijeta@tommyjohnwear.com");
 		Thread.sleep(2000);
 		driver.findElement(AccountLoginLocators.CUSTOMER_PASSWORD_INPUTBOX).sendKeys(CustomUtilities.properties.getProperty("password"));
 		Thread.sleep(2000);
 		driver.findElement(AccountLoginLocators.LOGIN_BUTTON).click();
 
-Thread.sleep(5000);
+		Thread.sleep(5000);
 
-		//action = new Actions(driver);
-		//element = driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN);
-		//action.moveToElement(element).perform();
-		//action.moveToElement(element).click(driver.findElement(HomePageLocators.REORDER)).build().perform();
-		//driver.findElement(HomePageLocators.REORDER).click();
-		
+		action = new Actions(driver);
+		element = driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN);
+		action.moveToElement(element).perform();
+		if(!driver.findElement(HEADER_REORDER_LINK).isDisplayed())
+			throw new Exception("Reorder option not displayed");
+		Reporter.log("Header Nav Reorder link is Displayed ");
+
+//		action.moveToElement(element).click(driver.findElement(HomePageLocators.REORDER)).build().perform();
+//		driver.findElement(HomePageLocators.REORDER).click();
+
 		driver.navigate().to(driver.getCurrentUrl()+"?view=reorder");
+		wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.presenceOfElementLocated(REORDER_TEXT));
 
 		softAssert.assertEquals(driver.findElement(REORDER_TEXT).getText(), "Reorder", "Reorder title is not present on Reorder page");
@@ -70,9 +80,19 @@ Thread.sleep(5000);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		SoftAssert softAssert = new SoftAssert();
 		ReorderPagevalidation();
-		element=driver.findElement(REORDER_ITEM_ATC);
-		text = driver.findElement(REORDER_ITEM_TITLE).getText();
-		executor.executeScript("arguments[0].click();", element);
+		List<WebElement> list = new ArrayList<WebElement>();
+		list=driver.findElements(REORDER_ITEM_ATC);
+		
+		for(int i=0; i<list.size(); i++)
+		{
+		   	if(list.get(i).getAttribute("title").equalsIgnoreCase("Add to Cart"))
+		   	{
+		   		text= driver.findElement(By.cssSelector(".account-reorder-grid>.reorder-item:nth-child("+(i+1)+")>a:nth-child(2)>span")).getText();
+		   		executor.executeScript("arguments[0].click();", list.get(i));
+		   		break;
+		   	}
+		 }
+		
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.FIRST_PRODUCT_TITLE_IN_CART));
 		softAssert.assertEquals(driver.findElement(FlyCartPageLocator.FIRST_PRODUCT_TITLE_IN_CART).getText(), text , "Wrong product added to cart");
@@ -91,7 +111,7 @@ Thread.sleep(5000);
 		softAssert.assertTrue(driver.findElement(ORDERDETAILS_TITLE).isDisplayed(), "Order details page didnt opened");
 		softAssert.assertAll();		
 	}
-	
+
 	public void reorderpagetopdp() throws Exception
 	{
 		SoftAssert softAssert = new SoftAssert();
@@ -106,7 +126,7 @@ Thread.sleep(5000);
 		softAssert.assertEquals(driver.findElement(ProductDetailsPageLocators.PRODUCT_TITLE).getText(), text , "Wrong product page opened from reorder page");
 		softAssert.assertAll();
 	}
-	
+
 	public void ReviewsPage_fromReorder() throws Exception
 	{
 		SoftAssert softAssert = new SoftAssert();
@@ -136,10 +156,10 @@ Thread.sleep(5000);
 		softAssert.assertTrue(driver.findElement(ProductDetailsPageLocators.SUBMIT_BTN).isEnabled(), "Submit button not enabled");
 		softAssert.assertAll();
 		Reporter.log("Review Page from reorder is correct");
-		
+
 	}
 
-	
-	
+
+
 }
 

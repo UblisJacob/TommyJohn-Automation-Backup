@@ -49,6 +49,11 @@ public class HomePage extends HomePageComponents {
 
 	}
 	
+	public void validateDoNotSellMyPersonalInformation() throws Exception
+	{
+		new HomePageComponents(driver).validate_DoNotSellMyPersonalInfo();
+
+	}
 	
 	
 	

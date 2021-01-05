@@ -15,7 +15,7 @@ public class StoreLocatorPageLocators
 		public static By FIND_A_STORE_BUTTON =By.cssSelector(".form-input>button:nth-child(3)");
 		public static By GET_DIRECTION_BUTTON = By.cssSelector("#scasl-direction > a");
 		public static By MAP = By.cssSelector("#bh-sl-map > div > div > div:nth-child(1) > div:nth-child(3)");
-		public static By MAP_TEXT = By.cssSelector("#bh-sl-map > div > div >div:nth-child(11)> div:nth-child(1) > div:nth-child(1)");
-		public static By SATELLITE_TEXT = By.cssSelector("#bh-sl-map > div > div >div:nth-child(11)> div:nth-child(2) > div:nth-child(1)");
+		public static By MAP_TEXT = By.cssSelector("#bh-sl-map > div > div >div:nth-child(4)> div>div:nth-child(1)>button");
+		public static By SATELLITE_TEXT = By.cssSelector("#bh-sl-map > div > div >div:nth-child(4)> div>div:nth-child(2)>button");
 
 }

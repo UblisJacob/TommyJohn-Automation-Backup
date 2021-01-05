@@ -31,7 +31,7 @@ public class StoreLocatorComponent extends StoreLocatorPageLocators
 	List<WebElement> allElements;
 	Properties properties = CustomUtilities.properties;
 	String text;
-	
+
 
 	public StoreLocatorComponent(WebDriver driver) {
 
@@ -47,8 +47,8 @@ public class StoreLocatorComponent extends StoreLocatorPageLocators
 		if(!text.equals("Store Locator"))
 			throw new Exception("Store Locator link text is changed");	
 		WebElement sl = driver.findElement(HomePageLocators.STORE_LOCATOR_LINK);
-		
-		 js.executeScript("arguments[0].click();", sl);
+
+		js.executeScript("arguments[0].click();", sl);
 		System.out.println(driver.getCurrentUrl());
 		wait.until(ExpectedConditions.presenceOfElementLocated(OURSTORES_HEADING));
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/store-locator")) 
@@ -105,13 +105,16 @@ public class StoreLocatorComponent extends StoreLocatorPageLocators
 
 		//Scroll down
 		JavascriptExecutor jse=(JavascriptExecutor)driver;
-		jse.executeScript("arguments[0].scrollIntoView(true);", driver.findElement(By.id("scasl-app-container")));
-		
-		Thread.sleep(5000);
+		jse.executeScript("arguments[0].scrollIntoView();", driver.findElement(FIND_A_STORE_BUTTON));
 
+		//Thread.sleep(8000);
+		wait= new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.presenceOfElementLocated(MAP));
 		softassert.assertTrue(driver.findElement(MAP).isDisplayed(), "Map is not displayed.");
 		Reporter.log("Map is displayed on store locator page.");
 
+		jse.executeScript("arguments[0].scrollIntoView();", driver.findElement(FIND_A_STORE_BUTTON));
+		wait.until(ExpectedConditions.presenceOfElementLocated(MAP_TEXT));
 		softassert.assertTrue(driver.findElement(MAP_TEXT).isDisplayed(), "Map button is not displayed on Find a retailer section.");
 		System.out.println("Map button text is: "+driver.findElement(MAP_TEXT).getText());
 		softassert.assertEquals(driver.findElement(MAP_TEXT).getText(),"Map","Text changed for 'Map' button on Find a retailer section." );
@@ -133,7 +136,7 @@ public class StoreLocatorComponent extends StoreLocatorPageLocators
 		Reporter.log("User location input box is Displayed :: Clickable.");
 
 		//validate location list
-		driver.findElement(FIND_A_STORE_BUTTON).click();
+	//	driver.findElement(FIND_A_STORE_BUTTON).click();
 		Thread.sleep(5000);
 		text = driver.findElement(By.cssSelector(".bh-sl-loc-list>ul>li:nth-child(1)>div>div>div:nth-child(5)>span:nth-child(1)")).getText();
 		System.out.println("First displayed city location is: "+text);
