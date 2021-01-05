@@ -2,6 +2,7 @@ package com.tommyjohn.automation.Components;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -113,7 +114,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		new ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);	
 
 		// validate product details page by calling the method
-		if(!driver.getCurrentUrl().contains("pack"))		
+		if(!(driver.getCurrentUrl().contains("pack")||driver.getCurrentUrl().contains("gift-cards")))		
 			new ProductDetailsPageComponents(driver).validatePage();
 
 		Reporter.log("Product head line text on collection page is Displayed :: Clickable and validated successfully");
@@ -146,13 +147,32 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		new ProductDetailsPageComponents(driver).validatePage();
 
 		Reporter.log("Product review stars on collection page is Displayed :: Clickable and validated successfully");
+		}
 
-		//	}
-		//catch(Exception e) {
-		//			Reporter.log("Review Stars were not present for the selected product");
-		//		}
+	public void validateReviewStarOnGCPLP() throws Exception
+	{
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.presenceOfElementLocated(TOTAL_COUNTS_OF_ITEMS));
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("window.scrollBy(0,250)");
+		Thread.sleep(3000);
+		List<WebElement> product_name = driver.findElements(PRODUCT_TITLE_ON_COLLECTION);
+		for(WebElement ele : product_name)
+		{
+			if(ele.getText().equalsIgnoreCase("E-Gift Card"))
+			{
+				WebElement reviews=driver.findElement(By.xpath("//*[@class='product-meta' and @title='E-Gift Card']/child::div[1]")); 
+				softAssert.assertFalse(reviews.isDisplayed(),"Reviews stars are displayed for 'E Gift Card' product on plp");
+			}
+		else if (ele.getText().equalsIgnoreCase("Tommy John Gift Card")) {
+			
+		}
+			WebElement reviews=driver.findElement(By.xpath("//*[@class='product-meta' and @title='Tommy John Gift Card']/child::div[1]")); 
+			softAssert.assertTrue(reviews.isDisplayed(),"Reviews stars are not displayed for 'Tommy John Gift Card' product on plp");
+		}
+		Reporter.log("Validated Product rating stars on GC plp");
+		
 	}
-
 
 	// method to validate all filters
 	public void methodToCheckAllFilters() throws Exception {
@@ -855,6 +875,31 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		}
 
 	}
+	
+	public void Verify_ProductTile_HoverFunctionality() throws Exception
+	{
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		Thread.sleep(8000);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		js.executeScript("window.scrollBy(0,500)");
+
+		wait.until(ExpectedConditions.presenceOfElementLocated(FIRST_PRODUCT_IMAGE));
+		String text1 = driver.findElement(HOVERED_PRODUCT_IMAGE).getAttribute("src");
+		String[] imagetext = text1.split("_425");
+		String Hover_on_plp = imagetext[0];
+		element = driver.findElement(FIRST_PRODUCT_IMAGE);
+		js.executeScript("arguments[0].click();", element);
+		Thread.sleep(3000);
+		wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.SECOND_VERTICAL_IMAGE));
+		String text = driver.findElement(ProductDetailsPageLocators.SECOND_VERTICAL_IMAGE).getAttribute("src");
+		String[] list1 = text.split(".jpg");
+		String Second_image_pdp = list1[0];
+		if(!Hover_on_plp.equalsIgnoreCase(Second_image_pdp))
+			throw new Exception("Product tile hover functionality is not correct on plp");
+		Reporter.log("Verified Product tile hover functionality on plp");	
+	}
+
 
 
 
