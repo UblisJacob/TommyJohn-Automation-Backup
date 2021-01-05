@@ -1,9 +1,7 @@
 package com.tommyjohn.automation.Components;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -11,11 +9,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
-
-import com.tommyjohn.automation.PageLocators.CollectionPageLocator;
 import com.tommyjohn.automation.PageLocators.HomePageLocators;
 import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
 import com.tommyjohn.automation.utils.CustomUtilities;
@@ -31,7 +28,7 @@ public class HomePageComponents extends HomePageLocators {
 	public static WebElement ele1;
 	public Actions action;
 	JavascriptExecutor executor = (JavascriptExecutor)driver;
-    SoftAssert softassert = new SoftAssert();
+	SoftAssert softassert = new SoftAssert();
 
 	String text;
 
@@ -59,11 +56,11 @@ public class HomePageComponents extends HomePageLocators {
 		}
 		else
 			throw new Exception("HomePage logo is not present");
-        
+
 		//Verify header search icon image
 		softassert.assertTrue(driver.findElement(SEARCH_ICON_IMAGE).isDisplayed(), "Global header search icon image is not displayed");
 		Reporter.log("Global header serach icon image is displayed");
-		
+
 		//Verify new arrivals
 		//		if(driver.findElement(NEWARRIVALS_CATEGORY).isDisplayed()) {
 		//
@@ -435,8 +432,6 @@ public class HomePageComponents extends HomePageLocators {
 
 	// validate homepage links
 	public void validateFooterLinks() throws Exception {
-		Set<String> handles = null;
-		List<String> list = null;
 
 		driver.get(baseUrl);
 		// scroll the page at bottom to test all the footer links
@@ -453,6 +448,22 @@ public class HomePageComponents extends HomePageLocators {
 			throw new Exception("Wrong page opened after About footer link clicked");
 		Reporter.log("About link is Displayed :: Clickable");
 		Thread.sleep(4000);
+
+		// check Careers link
+		text = driver.findElement(Careers).getText();
+		if(!text.equals("Careers"))
+			throw new Exception("Careers footer link text is changed");	
+		driver.findElement(Careers).click();
+		Thread.sleep(3000);
+		driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
+		Thread.sleep(5000);
+		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.theresumator.com/apply")) 
+			driver.navigate().back();
+		else
+			throw new Exception("Wrong page opened after About footer link clicked");
+		Reporter.log("About link is Displayed :: Clickable");
+		Thread.sleep(4000);
+
 		// check Press link
 		// scroll the page at bottom to test all the footer links
 		((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
@@ -467,6 +478,37 @@ public class HomePageComponents extends HomePageLocators {
 			throw new Exception("Wrong page opened after Press footer link clicked");
 		Reporter.log("Press footer link is Displayed :: Clickable");
 		Thread.sleep(5000);
+
+		// check  Blog  link
+		// scroll the page at bottom to test all the footer links
+		((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		text = driver.findElement(BLOG_LINK).getText();
+		if(!text.equals("Blog"))
+			throw new Exception("blog link text is changed");	
+		driver.findElement(BLOG_LINK).click();
+		Thread.sleep(5000);
+		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/blogs/news")) 
+			driver.navigate().back();
+		else
+			throw new Exception("Wrong page opened after Blog footer link clicked");
+		Reporter.log("Blog footer link is Displayed :: Clickable");
+		Thread.sleep(5000);
+
+		// check  Reviews  link
+		// scroll the page at bottom to test all the footer links
+		((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		text = driver.findElement(Reviews).getText();
+		if(!text.equals("Reviews"))
+			throw new Exception("Reviews link text is changed");	
+		driver.findElement(Reviews).click();
+		Thread.sleep(5000);
+		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/reviews")) 
+			driver.navigate().back();
+		else
+			throw new Exception("Wrong page opened after Reviews footer link clicked");
+		Reporter.log("Reviews footer link is Displayed :: Clickable");
+		Thread.sleep(5000);
+
 
 		// check military discount link
 		// scroll the page at bottom to test all the footer links
@@ -520,65 +562,7 @@ public class HomePageComponents extends HomePageLocators {
 		Thread.sleep(5000);
 
 
-		// check  Jobs  link
-		// scroll the page at bottom to test all the footer links
-		//			((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-		//		text = driver.findElement(JOBS_LINK).getText();
-		//		if(!text.equals("Jobs"))
-		//			throw new Exception("Jobs link text is changed");	
-		//		driver.findElement(JOBS_LINK).click();
-		//		Thread.sleep(3000);
-		//		driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
-		//		Thread.sleep(5000);
-		//		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.theresumator.com/apply")) 
-		//			driver.navigate().back();
-		//		else
-		//			throw new Exception("Wrong page opened after Jobs footer link clicked");
-		//		Reporter.log("Jobs footer link is Displayed :: Clickable");
-		//		Thread.sleep(5000);
 
-		//		((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-		//		// check  Privacy Policy  link
-		//		text = driver.findElement(PRIVACY_POLICY_LINK).getText();
-		//		if(!text.equals("Privacy Policy"))
-		//			throw new Exception("Privacy Policy link text is changed");	
-		//		driver.findElement(PRIVACY_POLICY_LINK).click();
-		//		Thread.sleep(7000);
-		//		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/tommy-john-website-privacy-policy")) 
-		//			driver.navigate().back();
-		//		else
-		//			throw new Exception("Wrong page opened after Privacy Policy footer link clicked");
-		//		Reporter.log("Privacy Policy footer link is Displayed :: Clickable");
-		//		Thread.sleep(5000);
-		// check  Terms & Conditions  link
-		// scroll the page at bottom to test all the footer links
-		//				((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-		//		text = driver.findElement(TERMS_AND_CONDITION_LINK).getText();
-		//		if(!text.equals("Terms & Conditions"))
-		//			throw new Exception("Terms & Conditions link text is changed");	
-		//		driver.findElement(TERMS_AND_CONDITION_LINK).click();
-		//		Thread.sleep(5000);
-		//		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/tommy-john-terms-and-conditions")) 
-		//			driver.navigate().back();
-		//		else
-		//			throw new Exception("Wrong page opened after Terms & Conditions footer link clicked");
-		//		Reporter.log("Terms & Conditions footer link is Displayed :: Clickable");
-		//		Thread.sleep(5000);
-
-		// check  Terms & Conditions  link
-		// scroll the page at bottom to test all the footer links
-		//				((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-		//		text = driver.findElement(BLOG_LINK).getText();
-		//		if(!text.equals("Blog"))
-		//			throw new Exception("Terms & Conditions link text is changed");	
-		//		driver.findElement(BLOG_LINK).click();
-		//		Thread.sleep(5000);
-		//		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/blogs/news")) 
-		//			driver.navigate().back();
-		//		else
-		//			throw new Exception("Wrong page opened after Blog footer link clicked");
-		//		Reporter.log("Blog footer link is Displayed :: Clickable");
-		//		Thread.sleep(5000);
 
 		// check  Help  link
 		//		text = driver.findElement(HELP_LINK).getText();
@@ -601,9 +585,7 @@ public class HomePageComponents extends HomePageLocators {
 		if(!text.equals("Contact & FAQ"))
 			throw new Exception("Contact Us link text is changed");	
 		driver.findElement(CONTACT_US_LINK).click();
-		//Thread.sleep(3000);
-		//driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
-		Thread.sleep(5000);
+		Thread.sleep(3000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://help.tommyjohn.com/hc/en-us")) 
 			driver.navigate().back();
 		else
@@ -626,17 +608,6 @@ public class HomePageComponents extends HomePageLocators {
 		Reporter.log("Retailers footer link is Displayed :: Clickable");
 		Thread.sleep(5000);
 
-		// check  King of Prussia Store  link
-		//		text = driver.findElement(KING_OF_PURSSIA_STORE_LINK).getText();
-		//		if(!text.equals("King of Prussia Store"))
-		//			throw new Exception("King of Prussia Store link text is changed");	
-		//		driver.findElement(KING_OF_PURSSIA_STORE_LINK).click();
-		//		Thread.sleep(3000);
-		//		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/king-of-prussia")) 
-		//			driver.navigate().back();
-		//		else
-		//			throw new Exception("Wrong page opened after King of Prussia Store footer link clicked");
-		//		Reporter.log("King of Prussia Store footer link is Displayed :: Clickable");
 
 
 		// Check  Tommy John Store link
@@ -654,18 +625,6 @@ public class HomePageComponents extends HomePageLocators {
 		Reporter.log("Tommy John Stores footer link is Displayed :: Clickable");
 		Thread.sleep(5000);
 
-		// check Charlotte Store Store  link
-		//		text = driver.findElement(CHARLOTTE_STORE_LINK).getText();
-		//		if(!text.equals("Charlotte Store"))
-		//			throw new Exception("Charlotte Store link text is changed");	
-		//		driver.findElement(CHARLOTTE_STORE_LINK).click();
-		//		Thread.sleep(3000);
-		//		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/south-park-landing-page")) 
-		//			driver.navigate().back();
-		//		else
-		//			throw new Exception("Wrong page opened after Charlotte Store footer link clicked");
-		//		Reporter.log("Charlotte Store footer link is Displayed :: Clickable");
-
 		// check Store Locator  link
 		// scroll the page at bottom to test all the footer links
 		((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
@@ -681,7 +640,23 @@ public class HomePageComponents extends HomePageLocators {
 		Reporter.log("Store Locator footer link is Displayed :: Clickable");
 		Thread.sleep(5000);
 
-		// check Shipping & Returns  link
+		// check Returns & Exchanges  link
+		// scroll the page at bottom to test all the footer links
+		((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		text = driver.findElement(RETURNS_AND_EXCHANGES).getText();
+		if(!text.equals("Returns & Exchanges"))
+			throw new Exception("Shipping & Returns link text is changed");	
+		driver.findElement(RETURNS_AND_EXCHANGES).click();
+		Thread.sleep(3000);
+		if(driver.getCurrentUrl().equalsIgnoreCase("https://help.tommyjohn.com/hc/en-us/sections/360000065123-Returns-Exchanges")) 
+			driver.navigate().back();
+		else
+			throw new Exception("Wrong page opened after Returns & Exchanges footer link clicked");
+		Reporter.log("Returns & Exchanges footer link is Displayed :: Clickable");
+		Thread.sleep(5000);
+
+
+		// check Shipping & Returns Policy  link
 		// scroll the page at bottom to test all the footer links
 		((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		text = driver.findElement(SHIPPING_AND_RETURNS_LINK).getText();
@@ -689,8 +664,6 @@ public class HomePageComponents extends HomePageLocators {
 			throw new Exception("Shipping & Returns link text is changed");	
 		driver.findElement(SHIPPING_AND_RETURNS_LINK).click();
 		Thread.sleep(3000);
-		driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
-		Thread.sleep(5000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://help.tommyjohn.com/hc/en-us/articles/360000507746-Shipping-Returns")) 
 			driver.navigate().back();
 		else
@@ -698,47 +671,36 @@ public class HomePageComponents extends HomePageLocators {
 		Reporter.log("Shipping & Returns footer link is Displayed :: Clickable");
 		Thread.sleep(5000);
 
-
-		// check 1-800-708-3490  link
-		//		text = driver.findElement(NUMBER_LINK).getText();
-		//		if(!text.equals("1-800-708-3490"))
-		//			throw new Exception("1-800-708-3490 link text is changed");	
-		//		Reporter.log("1-800-708-3490 footer link is Displayed");
-		//		Thread.sleep(5000);
-
-		// check Loyalty  link
-		// scroll the page at bottom to test all the footer links
-		//				((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-		//		text = driver.findElement(LOYALTY_LINK).getText();
-		//		if(!text.equals("Loyalty"))
-		//			throw new Exception("Loyalty link text is changed");	
-		//		driver.findElement(LOYALTY_LINK).click();
-		//		Thread.sleep(3000);
-		//		driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
-		//		Thread.sleep(5000);
-		//		if(driver.getCurrentUrl().equalsIgnoreCase("https://help.tommyjohn.com/hc/en-us/sections/360008463991-Loyalty-Rewards")) 
-		//			driver.navigate().back();
-		//		else
-		//			throw new Exception("Wrong page opened after Loyalty footer link clicked");
-		//		Reporter.log("Loyalty footer link is Displayed :: Clickable");
-		//		Thread.sleep(5000);
-
-		// check Tommy John Rewards  link
-		//		text = driver.findElement(TOMMYJOHN_REWARDS_LINK).getText();
-		//		if(!text.equals("Tommy John Rewards"))
-		//			throw new Exception("Tommy John Rewards link text is changed");	
-		//		driver.findElement(TOMMYJOHN_REWARDS_LINK).click();
-		//		Thread.sleep(3000);
-		//		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/loyalty")) 
-		//			driver.navigate().back();
-		//		else
-		//			throw new Exception("Wrong page opened after Tommy John Rewards footer link clicked");
-		//		Reporter.log("Tommy John Rewards footer link is Displayed :: Clickable");
-		//		Thread.sleep(5000);
-
+		// check Shop Women  link
 		((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		text = driver.findElement(SHOP_WOMEN).getText();
+		if(!text.equals("Shop Women"))
+			throw new Exception("Shop Women link text is changed");	
+		driver.findElement(SHOP_WOMEN).click();
+		Thread.sleep(5000);
+		if(driver.getCurrentUrl().contains("https://tommyjohn.com/collections/womens-all")) 
+			driver.navigate().back();
+		else
+			throw new Exception("Wrong page opened after Shop Women footer link clicked");
+		Reporter.log("Shop Women footer link is Displayed :: Clickable");
+		Thread.sleep(5000);
+
+		// check Shop Men  link
+		((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		text = driver.findElement(SHOP_MEN).getText();
+		if(!text.equals("Shop Men"))
+			throw new Exception("Shop Women link text is changed");	
+		driver.findElement(SHOP_MEN).click();
+		Thread.sleep(5000);
+		if(driver.getCurrentUrl().contains("https://tommyjohn.com/collections/mens-all")) 
+			driver.navigate().back();
+		else
+			throw new Exception("Wrong page opened after Shop Men footer link clicked");
+		Reporter.log("Shop Men footer link is Displayed :: Clickable");
+		Thread.sleep(5000);
 
 		// check Gift Cards  link
+		((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		text = driver.findElement(GIFT_CARD_LINK).getText();
 		if(!text.equals("Gift Cards"))
 			throw new Exception("Gift Cards link text is changed");	
@@ -766,126 +728,213 @@ public class HomePageComponents extends HomePageLocators {
 		Reporter.log("Fabric Guide footer link is Displayed :: Clickable");
 		Thread.sleep(5000);
 
+		// check Sign In  link
+		// scroll the page at bottom to test all the footer links
+		((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		text = driver.findElement(SIGN_IN_FOOTER_LINK).getText();
+		if(!text.equals("Sign In"))
+			throw new Exception("Sign In link text is changed");	
+		driver.findElement(SIGN_IN_FOOTER_LINK).click();
+		Thread.sleep(3000);
+		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/account/login")) 
+			driver.navigate().back();
+		else
+			throw new Exception("Wrong page opened after Sign In footer link clicked");
+		Reporter.log("Sign In footer link is Displayed :: Clickable");
+		Thread.sleep(5000);
+
+		// check Order History  link
+		// scroll the page at bottom to test all the footer links
+		((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		text = driver.findElement(ORDER_HISTORY).getText();
+		if(!text.equals("Order History"))
+			throw new Exception("Order History link text is changed");	
+		driver.findElement(ORDER_HISTORY).click();
+		Thread.sleep(3000);
+		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/account/login")) 
+			driver.navigate().back();
+		else
+			throw new Exception("Wrong page opened after Order History footer link clicked");
+		Reporter.log("Order History footer link is Displayed :: Clickable");
+		Thread.sleep(5000);
+
+
 		// check Facebook link
 		// scroll the page at bottom to test all the footer links
 		((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-		text = driver.findElement(FACEBOOK_LINK).getText();
-		if(!text.equals("Facebook"))
-			throw new Exception("Facebook link text changed");
-		driver.findElement(FACEBOOK_LINK).click();
+		softassert.assertTrue(driver.findElement(FACEBOOK_ICON).isDisplayed(), "Facebook icon is not displayed on footer");
+		driver.findElement(FACEBOOK_ICON).click();
 		Thread.sleep(3000);
 		driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
 		Thread.sleep(3000);
-		/*
-		 * handles = driver.getWindowHandles(); list = new ArrayList<String>(handles);
-		 * driver.switchTo().window(list.get(1));
-		 */		if(!driver.getCurrentUrl().equals("https://www.facebook.com/TommyJohnWear"))
-			 throw new Exception("Wrong page opened after clicked on Facebook link");
-		 //driver.switchTo().window(list.get(0));
-		 else
-			 driver.navigate().back();
-		 Reporter.log("Facebook footer link is Displayed :: Clickable");
-		 Thread.sleep(5000);
+		if(!driver.getCurrentUrl().equals("https://www.facebook.com/TommyJohnWear"))
+			throw new Exception("Wrong page opened after clicked on Facebook Icon");
+		else
+			driver.navigate().back();
+		Reporter.log("Facebook footer link is Displayed :: Clickable");
+		Thread.sleep(5000);
 
-		 // check Twitter link
-		 // scroll the page at bottom to test all the footer links
-		 ((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-		 text = driver.findElement(TWITTER_LINK).getText();
-		 if(!text.equals("Twitter"))
-			 throw new Exception("Twitter link text changed");
-		 driver.findElement(TWITTER_LINK).click();
-		 Thread.sleep(3000);
-		 driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
-		 Thread.sleep(3000);
-		 /*
-		  * handles = driver.getWindowHandles(); list = new ArrayList<String>(handles);
-		  * driver.switchTo().window(list.get(2));
-		  */		if(!driver.getCurrentUrl().equals("https://twitter.com/TommyJohn"))
-			  throw new Exception("Wrong page opened after clicked on Twitter link");
-		  //	driver.switchTo().window(list.get(0));
-		  else
-			  driver.navigate().back();
-		  Reporter.log("Twitter footer link is Displayed :: Clickable");
-		  Thread.sleep(5000);
+		// check Twitter link
+		// scroll the page at bottom to test all the footer links
+		((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		softassert.assertTrue(driver.findElement(TWITTER_ICON).isDisplayed(), "Twitter icon is not displayed on footer");
+		driver.findElement(TWITTER_ICON).click();
+		Thread.sleep(3000);
+		driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
+		Thread.sleep(3000);
+		if(!driver.getCurrentUrl().equals("https://twitter.com/TommyJohn"))
+			throw new Exception("Wrong page opened after clicked on Twitter link");
 
-		  // check Pinterest link
-		  // scroll the page at bottom to test all the footer links
-		  ((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-		  text = driver.findElement(PINTEREST_LINK).getText();
-		  if(!text.equals("Pinterest"))
-			  throw new Exception("Pinterest link text changed");
-		  driver.findElement(PINTEREST_LINK).click();
-		  Thread.sleep(3000);
-		  driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
-		  Thread.sleep(3000);
-		  /*
-		   * handles = driver.getWindowHandles(); list = new ArrayList<String>(handles);
-		   * driver.switchTo().window(list.get(3));
-		   */
-		  if(!driver.getCurrentUrl().equals("https://www.pinterest.com/tommyjohnwear/"))
-			  throw new Exception("Wrong page opened after clicked on Pinterest link");
-		  //driver.switchTo().window(list.get(0));
-		  else
-			  driver.navigate().back();
-		  Reporter.log("Pinterest footer link is Displayed :: Clickable");
-		  Thread.sleep(5000);
+		else
+			driver.navigate().back();
+		Reporter.log("Twitter footer link is Displayed :: Clickable");
+		Thread.sleep(5000);
 
-		  // check Instagram link
-		  // scroll the page at bottom to test all the footer links
-		  ((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-		  text = driver.findElement(INSTAGRAM_LINK).getText();
-		  if(!text.equals("Instagram"))
-			  throw new Exception("Instagram link text changed");
-		  driver.findElement(INSTAGRAM_LINK).click();
-		  Thread.sleep(3000);
-		  driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
-		  Thread.sleep(3000);
-		  /*
-		   * handles = driver.getWindowHandles(); list = new ArrayList<String>(handles);
-		   * driver.switchTo().window(list.get(4));
-		   */
-		  if(!driver.getCurrentUrl().equals("https://www.instagram.com/tommyjohnwear/"))
-			  throw new Exception("Wrong page opened after clicked on Instagram link");
-		  //driver.switchTo().window(list.get(0));
-		  else
-			  driver.navigate().back();
-		  Reporter.log("Instagram footer link is Displayed :: Clickable");
-		  Thread.sleep(5000);
+		// check Pinterest link
+		// scroll the page at bottom to test all the footer links
+		((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		softassert.assertTrue(driver.findElement(PINTEREST_ICON).isDisplayed(), "Pinterest icon is not displayed on footer");
+		driver.findElement(PINTEREST_ICON).click();
+		Thread.sleep(3000);
+		driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
+		Thread.sleep(3000);
+		if(!driver.getCurrentUrl().equals("https://www.pinterest.com/tommyjohnwear/"))
+			throw new Exception("Wrong page opened after clicked on Pinterest link");
+		else
+			driver.navigate().back();
+		Reporter.log("Pinterest footer link is Displayed :: Clickable");
+		Thread.sleep(5000);
 
-		  // check YouTube link
-		  // scroll the page at bottom to test all the footer links
-		  ((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-		  text = driver.findElement(YOUTUBE_LINK).getText();
-		  if(!text.equals("YouTube"))
-			  throw new Exception("YouTube link text changed");
-		  driver.findElement(YOUTUBE_LINK).click();
-		  Thread.sleep(3000);
-		  driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
-		  Thread.sleep(3000);
-		  /*
-		   * handles = driver.getWindowHandles(); list = new ArrayList<String>(handles);
-		   * driver.switchTo().window(list.get(5));
-		   */		if(!driver.getCurrentUrl().equals("https://www.youtube.com/user/tommyjohnwear"))
-			   throw new Exception("Wrong page opened after clicked on YouTube link");
-		   //driver.switchTo().window(list.get(0));
-		   else
-			   driver.navigate().back();
-		   Reporter.log("YouTube footer link is Displayed :: Clickable");
-		   Thread.sleep(5000);
+		// check Instagram link
+		// scroll the page at bottom to test all the footer links
+		((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		softassert.assertTrue(driver.findElement(INSTAGRAM_ICON).isDisplayed(), "Instagram icon is not displayed on footer");
+		driver.findElement(INSTAGRAM_ICON).click();
+		Thread.sleep(3000);
+		driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
+		Thread.sleep(3000);
+		System.out.println("insta link is: "+driver.getCurrentUrl());
+		if(!driver.getCurrentUrl().contains("https://www.instagram.com/"))
+			throw new Exception("Wrong page opened after clicked on Instagram link");
+		else
+			driver.navigate().back();
+		Reporter.log("Instagram footer link is Displayed :: Clickable");
+		Thread.sleep(5000);
 
-		   // check Google+ link
-		   //		text = driver.findElement(GOOGLE_PLUS_LINK).getText();
-		   //		if(!text.equals("Google+"))
-		   //			throw new Exception("Google+ link text changed");
-		   //		driver.findElement(GOOGLE_PLUS_LINK).click();
-		   //		Thread.sleep(3000);
-		   //		handles = driver.getWindowHandles();
-		   //		list = new ArrayList<String>(handles);
-		   //		driver.switchTo().window(list.get(6));
-		   //		if(!driver.getCurrentUrl().contains("https://accounts.google.com"))
-		   //			throw new Exception("Wrong page opened after clicked on Google+ link");
-		   //		driver.switchTo().window(list.get(0));
-		   //		Reporter.log("Google+ footer link is Displayed :: Clickable");
+		// check YouTube link
+		// scroll the page at bottom to test all the footer links
+		((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		softassert.assertTrue(driver.findElement(YOUTUBE_ICON).isDisplayed(), "Youtube icon is not displayed on footer");
+		driver.findElement(YOUTUBE_ICON).click();
+		Thread.sleep(3000);
+		driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
+		Thread.sleep(3000);
+		if(!driver.getCurrentUrl().equals("https://www.youtube.com/user/tommyjohnwear"))
+			throw new Exception("Wrong page opened after clicked on YouTube link");
+		else
+			driver.navigate().back();
+		Reporter.log("YouTube footer link is Displayed :: Clickable");
+		Thread.sleep(5000);
+
+
+		//Verify Footer Newsletter section
+		((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		softassert.assertTrue(driver.findElement(NEWSLETTER_TITLE).isDisplayed(), "Newsletter Title is not displayed on footer");
+		softassert.assertTrue(driver.findElement(NEWSLETTER_RADIO_BUTTONS).isDisplayed(), "Newsletter Radio buttons are not displayed on footer");
+		softassert.assertTrue(driver.findElement(NEWSLETTER_INPUT_TEXTBOX).isDisplayed(), "Newsletter Text Box is not displayed on footer");
+		softassert.assertTrue(driver.findElement(NEWSLETTER_SIGN_UP_BUTTON).isDisplayed(), "Newsletter sign up button is not displayed on footer");
+		String testemail = "testaccount" + System.currentTimeMillis() +"@gmail.com";
+		driver.findElement(NEWSLETTER_INPUT_TEXTBOX).sendKeys(testemail);
+		driver.findElement(NEWSLETTER_SIGN_UP_BUTTON).click();
+		Thread.sleep(3000);
+		softassert.assertTrue(driver.findElement(NEWSLETTER_FORM_SUCCESS_MESSAGE).isDisplayed(), "Success message is not displayed with newsletter form submission");
+		softassert.assertTrue(driver.findElement(GIVE_FEEDBACK_CTA).isDisplayed(), "Give feedback CTA is not displayed on footer");
+		driver.findElement(GIVE_FEEDBACK_CTA).click();
+		Thread.sleep(3000);
+		String Feedback_page_url = "https://tommyjohn.az1.qualtrics.com/jfe/form/SV_eXmBDyc2bTaruw5?";
+		softassert.assertTrue(driver.getCurrentUrl().contains(Feedback_page_url), "Wrong page opened after click on Give Feedback CTA on footer");
+
+		softassert.assertAll();
+
+	}
+
+	//navigate to do not sell my personal info page
+	public void NavigateToDoNotSellMyPersonalInfoPage()
+	{
+		driver.get(baseUrl);
+		((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(DO_NOT_SELL_PERSONAL_INFO_LINK));
+		driver.findElement(DO_NOT_SELL_PERSONAL_INFO_LINK).click();
+		wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.presenceOfElementLocated(CCPA_FORM_TITLE));
+		softassert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/do-not-sell-my-personal-information"), "Wrong page opened after click on 'Do not sell my personal information link'");
+		Reporter.log("Do not sell my personal information link is displayed :: Clickable");
+		softassert.assertAll();
+
+	}
+
+	public void validate_DoNotSellMyPersonalInfo() throws Exception
+	{
+		NavigateToDoNotSellMyPersonalInfoPage();
+		softassert.assertTrue(driver.findElement(CCPA_STATE_OF_RESIDENCE_QSN).isDisplayed(), "'What is your state of residence' question is not displayed on CCPA page");
+		softassert.assertTrue(driver.findElement(STATE_DROPDOWN).isDisplayed(), "State option dropdown is not displayed on CCPA page");
+
+		Select stateoptions = new Select(driver.findElement(STATE_DROPDOWN));
+		//Check field validations
+		stateoptions.selectByValue("California");
+		Thread.sleep(2000);
+		driver.findElement(SUBMIT_REQUEST_CTA).click();
+		softassert.assertTrue(driver.findElement(ERROR_MESSAGE).isDisplayed(), "Error message is not displayed for wrong/empty submission with california user");
+		Reporter.log("Field validation is correct on Do Not Sell My Personal Information Page");
+
+		//select all other states
+		stateoptions.selectByValue("All other states");
+		Thread.sleep(2000);
+		softassert.assertTrue(driver.findElement(NON_CALIFORNIA_USER_HINT_SECTION).isDisplayed(), "how to protect privacy message for non california user is not displayed ");
+		driver.findElement(BACK_TO_HOME_CTA).click();
+		Thread.sleep(3000);
+		softassert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/"), "Wrong page opened after click on 'Back to Home' CTA from CCPA page");
+		Reporter.log("Page is correct for non-california user");
+
+
+		//Select California state
+		NavigateToDoNotSellMyPersonalInfoPage();
+		stateoptions = new Select(driver.findElement(STATE_DROPDOWN));
+		stateoptions.selectByValue("California");
+		Thread.sleep(2000);
+		softassert.assertTrue(driver.findElement(CALIFORNIA_USER_FORM_HEADING).isDisplayed(), "Form heading for California user is not displayed");
+		softassert.assertTrue(driver.findElement(NAME_LABEL).isDisplayed(), "Name label for California user is not displayed");
+		softassert.assertTrue(driver.findElement(NAME_TEXTBOX).isDisplayed(), "Name Textbox for California user is not displayed");
+		driver.findElement(NAME_TEXTBOX).sendKeys("test_name");
+		softassert.assertTrue(driver.findElement(EMAIL_LABEL).isDisplayed(), "Email Label for California user is not displayed");
+		softassert.assertTrue(driver.findElement(EMAIL_TEXTBOX).isDisplayed(), "Email textbox for California user is not displayed");
+		String testemail = "testaccount" + System.currentTimeMillis() +"@gmail.com";
+		driver.findElement(EMAIL_TEXTBOX).sendKeys(testemail);
+		softassert.assertTrue(driver.findElement(WOULD_LIKE_TO_HEADING).isDisplayed(), "'I would like to' heading is not displayed for checkbox selection");
+		int total_checkbox = driver.findElements(By.cssSelector(".ccpa-form-california-user>div:nth-child(4)>.checkbox-wrapper>label>div:nth-child(1)")).size();
+		for(int i=2; i<=total_checkbox+1; i++)
+		{
+			WebElement checkbox = driver.findElement(By.cssSelector(".ccpa-form-california-user>div:nth-child(4)>.checkbox-wrapper:nth-child("+i+")>label>div:nth-child(1)"));
+			WebElement checkbox_label = driver.findElement(By.cssSelector(".ccpa-form-california-user>div:nth-child(4)>.checkbox-wrapper:nth-child("+i+")>label>div:nth-child(2)>span"));
+			softassert.assertTrue(checkbox_label.isDisplayed(), "Checkbox label is not displayed for checkbox number"+(i-1));
+			checkbox.click();
+			Thread.sleep(3000);
+			System.out.println("selected checkbox is: "+checkbox_label.getText());
+		}
+		softassert.assertTrue(driver.findElement(SUBMIT_REQUEST_CTA).isDisplayed(), "Submit Request CTA is not displayed for california user");
+		driver.findElement(SUBMIT_REQUEST_CTA).click();
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.presenceOfElementLocated(SUCCESSFULLY_SUBMIT_MESSAGE));
+		softassert.assertTrue(driver.findElement(SUCCESSFULLY_SUBMIT_MESSAGE).isDisplayed(), "Successful submit message is not displayed for california user");
+		softassert.assertTrue(driver.findElement(BACK_TO_HOME_CTA).isDisplayed(), "'Back to Home' CTA is not displayed after successful submission by california user");
+		//		WebElement element= driver.findElement(BACK_TO_HOME_CALIFORNIA);
+		//		((JavascriptExecutor)driver).executeScript("arguments[0].click();", element);
+		//		Thread.sleep(3000);
+		//		System.out.println(element.getText()+" CTA is cliackable");
+		//		softassert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/"), "Wrong page opened after click on 'Back to Home' CTA after successful submission by california user");
+		Reporter.log("Page is correct for california user");
+		softassert.assertAll();
 
 	}
 
