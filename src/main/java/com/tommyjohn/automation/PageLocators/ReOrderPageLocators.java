@@ -13,6 +13,7 @@ public class ReOrderPageLocators {
 	public static By REORDER_ITEM_ATC = By.cssSelector(".reorder-item > button");
 	public static By REORDER_ITEM_WRITEREVIEW = By.cssSelector(".reorder-item__review-link");
 	public static By ORDERDETAILS_TITLE = By.cssSelector(".account-logged-in-row > h1");
+	public static By HEADER_REORDER_LINK = By.cssSelector(".header-nav-dropdown > ul >li:nth-child(2) > a");
 	
 	
 	
