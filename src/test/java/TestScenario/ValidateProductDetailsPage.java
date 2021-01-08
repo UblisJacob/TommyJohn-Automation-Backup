@@ -75,6 +75,12 @@ public class ValidateProductDetailsPage {
 	{
 		new ProductDetailsPage(driver).VerifySortByReviews();
 	}
+	
+	@Test
+	public void TC_VerifySelectedSwatchFromPLP() throws Exception
+	{
+		new ProductDetailsPage(driver).VerifySelectedSwatchFromPLP();
+	}
 
 	@AfterMethod(alwaysRun = true)
 	void teardown () {

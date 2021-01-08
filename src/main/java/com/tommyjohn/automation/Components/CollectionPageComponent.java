@@ -2,7 +2,6 @@ package com.tommyjohn.automation.Components;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -168,8 +167,9 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			
 		}
 			WebElement reviews=driver.findElement(By.xpath("//*[@class='product-meta' and @title='Tommy John Gift Card']/child::div[1]")); 
-			softAssert.assertTrue(reviews.isDisplayed(),"Reviews stars are not displayed for 'Tommy John Gift Card' product on plp");
+			softAssert.assertTrue(reviews.isDisplayed(),"Review stars are not displayed for 'Tommy John Gift Card' product on plp");
 		}
+		softAssert.assertAll();
 		Reporter.log("Validated Product rating stars on GC plp");
 		
 	}
