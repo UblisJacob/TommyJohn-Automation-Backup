@@ -66,5 +66,9 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 	{
 		new ProductDetailsPageComponents(driver).Sort_By_Reviews();
 	}
+	public void VerifySelectedSwatchFromPLP() throws Exception
+	{
+		new ProductDetailsPageComponents(driver).Check_Selected_Swatch();
+	}
 		
 	}
