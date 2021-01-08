@@ -1,7 +1,5 @@
 package com.tommyjohn.automation.Components;
 
-import java.util.List;
-import java.util.Set;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -13,6 +11,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
+
+import com.tommyjohn.automation.PageLocators.CollectionPageLocator;
 import com.tommyjohn.automation.PageLocators.HomePageLocators;
 import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
 import com.tommyjohn.automation.utils.CustomUtilities;
@@ -247,7 +247,7 @@ public class HomePageComponents extends HomePageLocators {
 		softAssert.assertTrue(driver.findElement(SEARCHPAGE_PRODUCT_REVIEWS).isDisplayed(), "Product reviews not present on search page");
 		softAssert.assertTrue(driver.findElement(SEARCHPAGE_PRODUCT_SWATCHES).isDisplayed(), "Product swatches not present on search page");
 		softAssert.assertTrue(driver.findElement(SEARCHPAGE_PRODUCT_PRICE).isDisplayed(), "Product price not present on search page");
-		//softAssert.assertTrue(driver.findElement(SEARCHPAGE_PRODUCT_BADGE).isDisplayed(), "Product badge not present on search page");
+		softAssert.assertTrue(driver.findElement(SEARCHPAGE_PRODUCT_BADGE).isDisplayed(), "Product badge not present on search page");
 		String productname = driver.findElement(By.cssSelector(".product-meta__title")).getText();
 
 		WebElement img  = driver.findElement(SEARCHPAGE_PRODUCT_IMAGE);
@@ -1009,6 +1009,9 @@ public class HomePageComponents extends HomePageLocators {
 	// navigate to all mens collections in men category
 	public void navigateToAllMensCollectionsInMenCategory() throws Exception {
 		driver.get("https://tommyjohn.com/collections/mens");
+		Thread.sleep(3000);
+		element = driver.findElement(CollectionPageLocator.CLEAR_FILTER_BUTTON);
+		((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);",element);
 	}
 
 	// navigate to New Arrivals in Women category

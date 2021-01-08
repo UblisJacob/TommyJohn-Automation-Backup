@@ -132,11 +132,11 @@ public class ProductDetailsPageLocators {
 	
    //Recommended for you (RFY)
 	public static By RFY_TITLE = By.cssSelector(".dy-rec--title");
-	public static By RFY_SECTION = By.cssSelector(".dy-rec--products");
-	public static By RFY_PRODUCT_IMAGE = By.cssSelector(".dy-rec--product-tile > img");
-	public static By RFY_PRODUCT_TITLE = By.cssSelector(".dy-rec--product-tile > .dy-product-info > .dy-rec--product-title");
-	public static By RFY_PRODUCT_REVIEWS = By.cssSelector(".dy-rec--product-tile > .dy-product-info > .yotpo");
-	public static By RFY_PRODUCT_PRICE = By.cssSelector(".dy-rec--product-price");
+	public static By RFY_SECTION = By.cssSelector("div.dy-rec--products");
+	public static By RFY_PRODUCT_IMAGE = By.cssSelector(".product-image");
+	public static By RFY_PRODUCT_TITLE = By.cssSelector(".product-meta__title");
+	public static By RFY_PRODUCT_REVIEWS = By.xpath("//a[@class='product-meta']/div/div");
+	public static By RFY_PRODUCT_PRICE = By.cssSelector(".product-meta__prices");
 	
 	//Mystery packs
 	public static By MYSTERPACK_PRMOMSG = By.cssSelector(".multi-pdp-title-wrap.desktop-view >.product-info_promo.show");
