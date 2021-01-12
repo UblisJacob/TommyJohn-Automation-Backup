@@ -1,5 +1,7 @@
 package com.tommyjohn.automation.Components;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -938,6 +940,98 @@ public class HomePageComponents extends HomePageLocators {
 
 	}
 
+	public void VerifyQuickShopOnDYRecs() throws Exception
+	{
+		Actions action = new Actions(driver);
+		element= driver.findElement(ProductDetailsPageLocators.RFY_SECTION);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].scrollIntoView(true);",element);
+		Thread.sleep(3000);
+		element = driver.findElement(ProductDetailsPageLocators.RFY_PRODUCT_IMAGE);
+		jse.executeScript("arguments[0].scrollIntoView(true);", element);
+		action.moveToElement(element).build().perform();
+		Thread.sleep(3000);
+		new CollectionPageComponent(driver).AddproductToCartByQuickShop();
+		Reporter.log("Verified DY recs quick shop functionality on HomePgae");
+
+	}
+
+	public void MethodToCheckColorSwatchOnDYRecs() throws Exception
+	{
+		SoftAssert softassert = new SoftAssert();
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		element= driver.findElement(ProductDetailsPageLocators.RFY_SECTION);
+		jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].scrollIntoView(true);",element);
+		Thread.sleep(3000);
+
+		List<WebElement> allElements = driver.findElements(RFY_SWATCH_COUNT);
+		//	System.out.println("color classes are: "+driver.findElement(RFY_SWATCH_COUNT).getAttribute("class"));
+		int elementsCount = allElements.size();
+		System.out.println("Color Element count :: " + elementsCount);
+
+		if (elementsCount > 1)
+		{
+			element = driver.findElement(By.cssSelector(".dy-rec--products>div:nth-child(1) > div > div.product-item__swatches:nth-child(2)> div > div:nth-child(1)>div"));
+			element.click();
+
+			for (int i = 1; i < elementsCount; i++) {
+				if (i < 4) {
+					String Img_colortext = null;
+					String colornew1 = null;
+					String text = driver.findElement(RFY_PRODUCT_IMG_COLORNAME).getAttribute("href");
+					String[] strarray = text.split("[=]");
+					String text1 = strarray[strarray.length - 1];
+					Img_colortext = text1.replace("-", " ");
+
+					System.out.println("Product image color name is: " + Img_colortext);
+
+
+					element = driver.findElement(By.cssSelector(".dy-rec--products>div:nth-child(1) > div > div.product-item__swatches:nth-child(2)> div > div:nth-child("+i+")>div"));
+					colornew1 = element.getAttribute("title"); 
+					//	String colornew = colornew1.replace("/", " ");
+					System.out.println("swatch color is: "+colornew1);
+					if(colornew1.equalsIgnoreCase(Img_colortext)) 
+					{
+						WebElement elemen =driver.findElement(By.cssSelector(".dy-rec--products>div:nth-child(1) > div > div.product-item__swatches:nth-child(2)> div > div:nth-child("+(i+1)+")>div"));
+						jse.executeScript("arguments[0].click();", elemen);
+						softassert.assertEquals(Img_colortext , colornew1 , "Color not changing");
+						Reporter.log("Color swatches are changing correctly");
+					}
+					else {
+						throw new Exception("Color not changing");
+					}
+				}
+			}
+		}
+	}
+
+	public void RFY_ProductTileHoverFunctionality() throws Exception
+	{
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		element= driver.findElement(ProductDetailsPageLocators.RFY_SECTION);
+		jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].scrollIntoView(true);",element);
+		Thread.sleep(3000);
+
+		wait.until(ExpectedConditions.presenceOfElementLocated(ProductDetailsPageLocators.RFY_PRODUCT_IMAGE));
+		String text1 = driver.findElement(ProductDetailsPageLocators.RFY_HOVER_PRODUCT_IMG).getAttribute("src");
+		String[] imagetext = text1.split("_425");
+		String Hover_on_plp = imagetext[0];
+		element = driver.findElement(ProductDetailsPageLocators.RFY_PRODUCT_IMAGE);
+		jse.executeScript("arguments[0].click();", element);
+		Thread.sleep(3000);
+		wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.SECOND_VERTICAL_IMAGE));
+		String text = driver.findElement(ProductDetailsPageLocators.SECOND_VERTICAL_IMAGE).getAttribute("src");
+		String[] list1 = text.split(".jpg");
+		String Second_image_pdp = list1[0];
+		if(!Hover_on_plp.equalsIgnoreCase(Second_image_pdp))
+			throw new Exception("Product tile hover functionality is not correct");
+		Reporter.log("Verified Product tile hover functionality");	
+
+	}
 
 	// navigate new arrival in men category
 	public void navigateToNewArrivalsInMenCategory() throws Exception {
@@ -1101,7 +1195,7 @@ public class HomePageComponents extends HomePageLocators {
 		driver.get("https://tommyjohn.com/collections/bras");	
 
 	}
-	
+
 	//navigate to GC plp
 	public void NavigateToGCPLP()
 	{

@@ -714,7 +714,8 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			 * Reporter.log("Quick shop size overlay ATC is disabled before size selection."
 			 * );
 			 * 
-			 */			//select sizes from quick shop size overlay
+			 */		
+			//select sizes from quick shop size overlay
 			List<WebElement> allElements;
 			String classtext;
 			allElements = driver.findElements(QUICK_SHOP_SIZE_LIST);
