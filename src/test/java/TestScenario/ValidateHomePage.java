@@ -61,9 +61,34 @@ public class ValidateHomePage {
 
 		new HomePage(driver).validateDoNotSellMyPersonalInformation();
 	}
+	
+	@Test
+	public void TC_ValidateRecommendedForYou() throws
+	Exception {
 
+		new HomePage(driver).verifyrecommendedforyou();
+	}
+	
+	@Test
+	public void TC_ValidateQuickShoponDYRecsHomePgae() throws
+	Exception {
 
+		new HomePage(driver).verifyQuickShopforDYRecsOnHomePage();
+	}
 
+	@Test
+	public void TC_ValidateColorSwatchonDYRecsHomePage() throws
+	Exception {
+
+		new HomePage(driver).verifyColorSwatchforDYRecsOnHomePage();
+	}
+
+	@Test
+	public void TC_ValidateProductTileHoverFunctionalityonDYRecsHomePage() throws
+	Exception {
+
+		new HomePage(driver).verifyRFYProductTileHoverFunctionality();
+	}
 
 
 //	@Test public void TC_ValidateSearchFunctionalityviaProductMatches() throws
