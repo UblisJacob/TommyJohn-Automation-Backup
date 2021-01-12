@@ -73,6 +73,10 @@ public class ProductDetailsPageLocators {
 	public static By THIRD_BOX_IN_RATING_AND_REVIEWS = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div > div.yotpo-review-bottomline-customer-say-container");
 	public static By FIT_GRAPH_IN_THIRD_BOX = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div > div.yotpo-review-bottomline-customer-say-container > .size-guide-yatpo-fit-graph > ul > li.selected");
 	public static By FIT_STATUS_IN_THIRD_BOX = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div > div.yotpo-review-bottomline-customer-say-container > .yotpo-review-bottomline-customer-say > .yotpo-review-bottomline-fit");
+	public static By POSTED_REVIEWS_SECTION = By.cssSelector(".yotpo-review-box");
+	public static By PAGINATION_LEFT_ARROW = By.cssSelector(".yotpo-paginator__arrow.arrow-left");
+	public static By PAGINATION_RIGHT_ARROW = By.cssSelector(".yotpo-paginator__arrow.arrow-right");
+	public static By PAGINATION_CURRENT_VALUE = By.cssSelector(".yotpo-paginator__current-page");
 	
 	public static By STAR_RATINGS = By.cssSelector(".yotpo-stars-and-sum-reviews > span > span.sr-only");
 	
@@ -134,9 +138,13 @@ public class ProductDetailsPageLocators {
 	public static By RFY_TITLE = By.cssSelector(".dy-rec--title");
 	public static By RFY_SECTION = By.cssSelector("div.dy-rec--products");
 	public static By RFY_PRODUCT_IMAGE = By.cssSelector(".product-image");
+	public static By RFY_HOVER_PRODUCT_IMG= By.cssSelector(".product-image--hover");
 	public static By RFY_PRODUCT_TITLE = By.cssSelector(".product-meta__title");
 	public static By RFY_PRODUCT_REVIEWS = By.xpath("//a[@class='product-meta']/div/div");
 	public static By RFY_PRODUCT_PRICE = By.cssSelector(".product-meta__prices");
+	public static By RFY_SWATCH_LIST = By.cssSelector(".dy-recs-placeholder__above-desktop-reviews>div>.dy-rec>div>div:nth-child(2)>.dy-rec--products>div:nth-child(1) > div > div.product-item__swatches:nth-child(2)> div > div");
+	public static By RFY_PRODUCT_IMG_COLORNAME = By.cssSelector(".dy-recs-placeholder__above-desktop-reviews>div>.dy-rec>div>div:nth-child(2)>.dy-rec--products>div:nth-child(1) > div > div>a");
+	
 	
 	//Mystery packs
 	public static By MYSTERPACK_PRMOMSG = By.cssSelector(".multi-pdp-title-wrap.desktop-view >.product-info_promo.show");
@@ -158,4 +166,17 @@ public class ProductDetailsPageLocators {
 	    public static By POSTED_REVIEW_DATE_NEXT= By.cssSelector(".yotpo-reviews-container>.review-list>li:nth-child(3)>div>div.yotpo-review-buyer-info>p:nth-child(2)");
         public static By REVIEW_FILTER_MESSAGE = By.cssSelector(".yotpo-bottomline__filter-message");
 	    
+        //Ask Questions
+        public static By Ask_a_Question_CTA = By.cssSelector(".ask-question-button");
+        public static By ASK_A_QSN_CONTAINER = By.cssSelector(".yotpo-reviews-widget>section>form");
+        public static By ASK_A_QUESTION_TITLE = By.cssSelector(".qna-form-title");
+        public static By QSN_ANS_NAME_TEXTBOX = By.name("name");
+        public static By QSN_ANS_EMAIL_TEXTBOX = By.cssSelector(".qna-form > div:nth-child(3) > input[type=email]");
+        public static By QSN_ANS_QUESTION_TEXTBOX = By.name("question");
+        public static By SUBMIT_QUESTION_CTA = By.cssSelector(".qna-form-submit>input");
+        public static By QSN_ANS_NAME_ERROR = By.className("qna-form-error--name");
+        public static By QSN_ANS_EMAIL_ERROR = By.className("qna-form-error--email");
+        public static By QSN_ANS_QUESTION_ERROR = By.className("qna-form-error--question");
+        
+        
 }

@@ -1,5 +1,6 @@
 package com.tommyjohn.automation.Components;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -12,6 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
+import org.xbill.DNS.ISDNRecord;
 
 import com.tommyjohn.automation.PageLocators.CollectionPageLocator;
 import com.tommyjohn.automation.PageLocators.FlyCartPageLocator;
@@ -628,17 +630,31 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 					softAssert.assertTrue(driver.findElement(FIT_STATUS_IN_THIRD_BOX).isDisplayed(), "In third box fit status not present");
 
 					Reporter.log("Verified Reviews and Rating box section, All elements are present including fit status, fit graph, Rating label, rating count, Rating meter, Avg rating, total reviews etc");
+
+					
+					//verify paginations
+					softAssert.assertTrue(driver.findElement(PAGINATION_LEFT_ARROW).isDisplayed(), "Pagination left arrow is not displayed on pdp");
+					softAssert.assertTrue(driver.findElement(PAGINATION_RIGHT_ARROW).isDisplayed(), "Pagination right arrow is not displayed on pdp");
+					softAssert.assertTrue(driver.findElement(PAGINATION_CURRENT_VALUE).isDisplayed(), "Pagination current value is not displayed on pdp");
+              String[] page_value1 = driver.findElement(PAGINATION_CURRENT_VALUE).getText().split(" /");
+              String previous_page_number = page_value1[0];
+              int pre_number = Integer.parseInt(previous_page_number);
+              driver.findElement(PAGINATION_RIGHT_ARROW).click();
+              Thread.sleep(5000);
+              String[] page_value2 = driver.findElement(PAGINATION_CURRENT_VALUE).getText().split(" /");
+              String next_page_number = page_value2[0];
+              int next_number = Integer.parseInt(next_page_number);
+              System.out.println("previous is: "+previous_page_number+" next page no. is: "+next_page_number);
+              softAssert.assertTrue(pre_number<next_number,"Pagination next arrow is not functional");
+              Reporter.log("Reviews Pagination is functional on PDP");           
 				}
 
 				else 
-
 					throw new Exception("Rating and Reviews box is not present");
-
 				softAssert.assertTrue(driver.findElement(REVIEWER_NAME).isDisplayed(), "Reviewer name is not displayed");
 				softAssert.assertTrue(driver.findElement(REVIEWER_TYPE).isDisplayed(), "Reviewer type is not displayed");
 				softAssert.assertTrue(driver.findElement(USER_REVIEW_FIT).isDisplayed(), "User review for fit is not displayed");
 				softAssert.assertTrue(driver.findElement(USER_REVIEW_DATE).isDisplayed(), "User review date is not displayed");
-				//	softAssert.assertTrue(driver.findElement(USER_REVIEW_LOCATION).isDisplayed(), "User review location is not displayed");
 				softAssert.assertTrue(driver.findElement(USER_REVIEW_STARS).isDisplayed(), "User review stars is not displayed");
 				softAssert.assertTrue(driver.findElement(USER_REVIEW_TITLE).isDisplayed(), "User review title is not displayed");
 				softAssert.assertTrue(driver.findElement(USER_REVIEW_MAIN_CONTENT).isDisplayed(), "User review main content is not displayed");
@@ -1202,12 +1218,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 	public void verifyRecommendedForU() throws Exception
 	{
-
-		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 		SoftAssert softAssert = new SoftAssert();
-		// call method to navigate product details page
-		new CollectionPageComponent(driver).navigateToProductDetailsPage();
-		Thread.sleep(5000);
 		element= driver.findElement(RFY_SECTION);
 		jse = (JavascriptExecutor)driver;
 		jse.executeScript("arguments[0].scrollIntoView(true);",element);
@@ -1225,8 +1236,70 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		softAssert.assertEquals(driver.findElement(PRODUCT_TITLE).getText(), text , "PDP page not correct after clicking on Recommended for you image");
 
 		softAssert.assertAll();
+	}
+	
+	public void VerifyQuickShopOnRecommendedforYou() throws Exception
+	{
+		Actions action = new Actions(driver);
+		element= driver.findElement(RFY_SECTION);
+		jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].scrollIntoView(true);",element);
+		Thread.sleep(3000);
+		element = driver.findElement(RFY_PRODUCT_IMAGE);
+		jse.executeScript("arguments[0].scrollIntoView(true);", element);
+		action.moveToElement(element).build().perform();
+		Thread.sleep(3000);
+		new CollectionPageComponent(driver).AddproductToCartByQuickShop();
+		Reporter.log("Verified DY recs quick shop functionality on PDP");
+
+	}
+	
+	public void MethodToCheckColorSwatchOnDYRecs() throws Exception
+	{
+		SoftAssert softassert = new SoftAssert();
+		element= driver.findElement(RFY_SECTION);
+		jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].scrollIntoView(true);",element);
+		Thread.sleep(3000);
+		
+		List<WebElement> allElements = driver.findElements(RFY_SWATCH_LIST);
+		int elementsCount = allElements.size();
+		System.out.println("Color Element count :: " + elementsCount);
+
+		if (elementsCount > 1)
+		{
+			element = driver.findElement(By.cssSelector(".dy-recs-placeholder__above-desktop-reviews>div>.dy-rec>div>div:nth-child(2)>.dy-rec--products>div:nth-child(1) > div > div.product-item__swatches:nth-child(2)> div > div:nth-child(1)"));
+			element.click();
+
+			for (int i = 1; i < elementsCount; i++) {
+				if (i < 4) {
+					String Img_colortext = null;
+					String colornew1 = null;
+					String text = driver.findElement(RFY_PRODUCT_IMG_COLORNAME).getAttribute("href");
+					String[] strarray = text.split("[=]");
+					String text1 = strarray[strarray.length - 1];
+					Img_colortext = text1.replace("-", " ");
+
+					System.out.println("Product image color name is: " + Img_colortext);
 
 
+					element = driver.findElement(By.cssSelector(".dy-recs-placeholder__above-desktop-reviews>div>.dy-rec>div>div:nth-child(2)>.dy-rec--products>div:nth-child(1) > div > div.product-item__swatches:nth-child(2)> div > div:nth-child("+i+")>div"));
+					colornew1 = element.getAttribute("title"); 
+				//	String colornew = colornew1.replace("/", " ");
+					System.out.println("swatch color is: "+colornew1);
+					if(colornew1.equalsIgnoreCase(Img_colortext)) 
+					{
+						WebElement elemen =driver.findElement(By.cssSelector(".dy-recs-placeholder__above-desktop-reviews>div>.dy-rec>div>div:nth-child(2)>.dy-rec--products>div:nth-child(1) > div > div.product-item__swatches:nth-child(2)> div > div:nth-child("+(i+1)+")>div"));
+						jse.executeScript("arguments[0].click();", elemen);
+						softassert.assertEquals(Img_colortext , colornew1 , "Color not changing");
+						Reporter.log("Color swatches are changing correctly");
+					}
+					else {
+						throw new Exception("Color not changing");
+					}
+				}
+			}
+		}
 	}
 
 	public void verifyMysteryPacks() throws Exception
@@ -1551,16 +1624,58 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			Thread.sleep(3000);
 			softassert.assertTrue(driver.findElement(SORT_BY_OPTIONS_DIV).isDisplayed(), "Sort By option container is not displayed after apply rating filter");
 			WebElement Most_Helpful_SortBy = driver.findElement(By.cssSelector(".yotpo-reviews-question-container>div.yotpo-sort-by-options-container>ul>li:nth-child(4)"));
-			Most_Helpful_SortBy.click();
 			String allclass = Most_Helpful_SortBy.getAttribute("class");
 			String optionname= Most_Helpful_SortBy.getAttribute("data-sort-option");
 			System.out.println("selected option is: "+optionname+" & its class is: "+allclass);
+			Most_Helpful_SortBy.click();
+			Thread.sleep(3000);
 			softassert.assertEquals(driver.findElement(SORT_BY).getText(), optionname, "Sort By options are not clickable");
 			Reporter.log("User is able to sort after applying rating filter");
 		}
 		else
 			System.out.println("Desired PDP have no Sort By functionality because of zero reviews.");
+		softassert.assertAll();
 	}
+
+	public void Check_Ask_Question() throws Exception
+	{
+		jse = (JavascriptExecutor)driver;
+		SoftAssert softassert = new SoftAssert();
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
+		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+
+		Thread.sleep(3000);
+		driver.findElement(RATING_NUMBER).click();
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(Ask_a_Question_CTA));
+		softassert.assertEquals(driver.findElement(Ask_a_Question_CTA).getText(), "Ask a Question", "Text change for 'Ask a question'CTA");
+		element=driver.findElement(Ask_a_Question_CTA);
+		jse.executeScript("arguments[0].click();", element);
+		Thread.sleep(3000);
+		jse.executeScript("window.scrollBy(0, 30)");
+		List<String> arraylist = new ArrayList<String>();
+		String classes = driver.findElement(ASK_A_QSN_CONTAINER).getAttribute("class");
+		for(String a: classes.split(" "))
+		{
+			arraylist.add(a);
+		}
+		softassert.assertTrue(arraylist.contains("show"), "Ask a Question form is not displayed on cta click");
+		softassert.assertTrue(driver.findElement(QSN_ANS_NAME_TEXTBOX).isDisplayed(), "Q&A Name textbox is not displayed");
+		softassert.assertTrue(driver.findElement(QSN_ANS_EMAIL_TEXTBOX).isDisplayed(), "Q&A Email textbox is not displayed");
+		softassert.assertTrue(driver.findElement(QSN_ANS_QUESTION_TEXTBOX).isDisplayed(), "Q&A Question textbox is not displayed");
+		softassert.assertTrue(driver.findElement(SUBMIT_QUESTION_CTA).isDisplayed(), "Q&A submit button is not displayed");
+
+		//field validations
+		driver.findElement(SUBMIT_QUESTION_CTA).click();
+		Thread.sleep(2000);
+		softassert.assertTrue(driver.findElement(QSN_ANS_NAME_ERROR).isDisplayed(), "Name error message is not displayed with invalid input");
+		softassert.assertTrue(driver.findElement(QSN_ANS_EMAIL_ERROR).isDisplayed(), "Email error message is not displayed with invalid input");
+		softassert.assertTrue(driver.findElement(QSN_ANS_QUESTION_ERROR).isDisplayed(), "Question error message is not displayed with invalid input");
+
+		Reporter.log("Ask a Question form is Displayed :: Correct");
+		softassert.assertAll();
+	}
+
 
 	public void Check_Selected_Swatch() throws Exception
 	{
@@ -1573,7 +1688,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		List<WebElement> allElements = driver.findElements(By.cssSelector("div.mega-collection-grid.js-mega-collection-grid > div:nth-child(3) > div:nth-child(1)>div:nth-child(2)>.product-item__swatch-list>.slick-list>.slick-track>div>div"));
 		int elementsCount = allElements.size();
 		System.out.println("Color Element count :: " + elementsCount);
-		
+
 		if (elementsCount > 1)
 		{			
 			element = allElements.get(elementsCount-1);
@@ -1584,13 +1699,13 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_TITLE));
 			String colortext_pdp = driver.findElement(COLOR_TEXT).getText();
-			
+
 			if(!swatch_name_plp.equalsIgnoreCase(colortext_pdp))
 				throw new Exception("PDP doesn't opened with selected swatch from plp");
 			Reporter.log("Validated PDP opens with selected swatch from plp");
 		}
-		
-		
+
+
 	}
 }
 
