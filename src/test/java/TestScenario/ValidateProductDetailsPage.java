@@ -82,6 +82,29 @@ public class ValidateProductDetailsPage {
 		new ProductDetailsPage(driver).VerifySelectedSwatchFromPLP();
 	}
 
+	@Test
+	public void TC_VerifyAskAQuestion() throws Exception
+	{
+		new ProductDetailsPage(driver).VerifyAskAQuestion();
+	}
+	
+	@Test
+	public void TC_VerifyQuickShoponDYRecsPDP() throws Exception
+	{
+		new ProductDetailsPage(driver).verifyQuicShopforDYRecsOnPDP();
+	}
+	
+	@Test
+	public void TC_VerifyColorSwatchonDYRecsPDP() throws Exception
+	{
+		new ProductDetailsPage(driver).verifyColorSwatchforDYRecsOnPDP();
+	}
+	
+	@Test
+	public void TC_VerifyProductTileHoverFunctionalityonDYRecsPDP() throws Exception
+	{
+		new ProductDetailsPage(driver).verifyProductTileHoverFunctionalityforDYRecsOnPDP();
+	}
 	@AfterMethod(alwaysRun = true)
 	void teardown () {
 		

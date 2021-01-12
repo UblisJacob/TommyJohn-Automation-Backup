@@ -2,6 +2,8 @@ package com.tommyjohn.automation.Pages;
 
 import org.openqa.selenium.WebDriver;
 
+import com.tommyjohn.automation.Components.CollectionPageComponent;
+import com.tommyjohn.automation.Components.HomePageComponents;
 import com.tommyjohn.automation.Components.ProductDetailsPageComponents;
 
 public class ProductDetailsPage extends ProductDetailsPageComponents{
@@ -47,6 +49,9 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 
 	public void verifyrecommendedforyou() throws Exception {
 		
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
+		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		Thread.sleep(5000);
 		new ProductDetailsPageComponents(driver).verifyRecommendedForU();
 		
 	}
@@ -66,9 +71,38 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 	{
 		new ProductDetailsPageComponents(driver).Sort_By_Reviews();
 	}
+	
+	public void VerifyAskAQuestion() throws Exception {
+		new ProductDetailsPageComponents(driver).Check_Ask_Question();
+	}
+	
 	public void VerifySelectedSwatchFromPLP() throws Exception
 	{
 		new ProductDetailsPageComponents(driver).Check_Selected_Swatch();
+	}
+	
+	public void verifyQuicShopforDYRecsOnPDP() throws Exception {
+
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
+		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		Thread.sleep(5000);
+		new ProductDetailsPageComponents(driver).VerifyQuickShopOnRecommendedforYou();
+	}
+
+	public void verifyColorSwatchforDYRecsOnPDP() throws Exception {
+
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
+		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		Thread.sleep(5000);
+		new ProductDetailsPageComponents(driver).MethodToCheckColorSwatchOnDYRecs();
+	}
+
+	public void verifyProductTileHoverFunctionalityforDYRecsOnPDP() throws Exception {
+
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
+		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		Thread.sleep(5000);
+		new HomePageComponents(driver).RFY_ProductTileHoverFunctionality();
 	}
 		
 	}

@@ -270,7 +270,9 @@ public class HomePageLocators{
 	public static By SUCCESSFULLY_SUBMIT_MESSAGE = By.cssSelector(".ccpa-form-submit>.ccpa-form-description");
 	public static By BACK_TO_HOME_CALIFORNIA = By.cssSelector("#shopify-section-section-ccpa-form > div > div > div.ccpa-form-submit-contents__cta"); 
 	
-
+    public static By RFY_SWATCH_COUNT = By.cssSelector(".dy-rec--products>div:nth-child(1) > div > div.product-item__swatches:nth-child(2)> div > div");
+	public static By RFY_PRODUCT_IMG_COLORNAME = By.cssSelector(".dy-rec--products>div:nth-child(1) > div > div>a");
+    
 //	public static By SECOND_SKIN_IN_MEN_CATEGORY = By.cssSelector(".header-desktop-left > ul > li:nth-child(2) > div > ul > li:nth-child(7) > ul > li:nth-child(1) > a");
 //	public static By COOL_COTTON_IN_MENS_CATEGORY = By.cssSelector(".header-desktop-left > ul > li:nth-child(2) > div > ul > li:nth-child(7) > ul > li:nth-child(2) > a");
 //	public static By COTTON_BASICS_IN_MENS_CATEGORY = By.cssSelector(".header-desktop-left > ul > li:nth-child(2) > div > ul > li:nth-child(7) > ul > li:nth-child(7) > a");
