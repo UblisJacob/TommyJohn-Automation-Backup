@@ -1,24 +1,26 @@
 package com.tommyjohn.automation.Components;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
-
+import com.tommyjohn.automation.PageLocators.AddToCartLocators;
+import com.tommyjohn.automation.PageLocators.CollectionPageLocator;
 import com.tommyjohn.automation.PageLocators.FlyCartPageLocator;
 import com.tommyjohn.automation.PageLocators.HomePageLocators;
 import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
 public class FlyCartComponents extends FlyCartPageLocator{
-	
+
 
 	double installment;
 	public JavascriptExecutor jse;
@@ -72,23 +74,23 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		Reporter.log("Inline Cart Title is Displayed :: Text is correct ");
 
 		Thread.sleep(3000);
-try {
-		// check for shipping message text
-		softAssert.assertTrue(driver.findElement(SHIPING_MESSAGE_TEXT).isDisplayed(), "Shipping message text is not displayed");
-		Reporter.log("Shipping message text is Displayed ");
+		try {
+			// check for shipping message text
+			softAssert.assertTrue(driver.findElement(SHIPING_MESSAGE_TEXT).isDisplayed(), "Shipping message text is not displayed");
+			Reporter.log("Shipping message text is Displayed ");
 
-		Thread.sleep(3000);
+			Thread.sleep(3000);
 
-		// check for shipping message meter
-		softAssert.assertTrue(driver.findElement(SHIPING_MESSAGE_METER).isDisplayed(), "Shipping message meter is not displayed");
-		Reporter.log("Shipping message meter is Displayed");
-		Thread.sleep(3000);
-}
-catch(Exception e)
-{
-	Reporter.log("Shipping message and meter absent");
-}
-		
+			// check for shipping message meter
+			softAssert.assertTrue(driver.findElement(SHIPING_MESSAGE_METER).isDisplayed(), "Shipping message meter is not displayed");
+			Reporter.log("Shipping message meter is Displayed");
+			Thread.sleep(3000);
+		}
+		catch(Exception e)
+		{
+			Reporter.log("Shipping message and meter absent");
+		}
+
 
 		// check for empty cart text
 		softAssert.assertTrue(driver.findElement(INLINE_CART_EMPTY_TEXT).isDisplayed(), "Shipping 'Your cart is empty' is not displayed");
@@ -155,31 +157,31 @@ catch(Exception e)
 		softAssert.assertTrue(text.equals(properties.get("inlineCartTitle")), "Text for inline cart title is changed");
 		Reporter.log("Inline Cart Title is Displayed :: Text is correct ");
 		Thread.sleep(3000);
-try
-{
-		// check for shipping message text
-		softAssert.assertTrue(driver.findElement(SHIPING_MESSAGE_TEXT).isDisplayed(), "Shipping message text is not displayed");
-		Reporter.log("Shipping message text is Displayed ");
-		Thread.sleep(3000);
+		try
+		{
+			// check for shipping message text
+			softAssert.assertTrue(driver.findElement(SHIPING_MESSAGE_TEXT).isDisplayed(), "Shipping message text is not displayed");
+			Reporter.log("Shipping message text is Displayed ");
+			Thread.sleep(3000);
 
-		// check for shipping message meter
-		softAssert.assertTrue(driver.findElement(SHIPING_MESSAGE_METER).isDisplayed(), "Shipping message meter is not displayed");
-		Reporter.log("Shipping message meter is Displayed");
-		Thread.sleep(3000);
+			// check for shipping message meter
+			softAssert.assertTrue(driver.findElement(SHIPING_MESSAGE_METER).isDisplayed(), "Shipping message meter is not displayed");
+			Reporter.log("Shipping message meter is Displayed");
+			Thread.sleep(3000);
 
-		element = driver.findElement(SHIPING_MESSAGE_METER);
-		int width = element.getSize().getWidth();
-		System.out.println("width :: "+element.getSize().getWidth());
-		softAssert.assertTrue(width > 0, "Element is added but, shipping message meter is showing empty");
-		Thread.sleep(3000);
+			element = driver.findElement(SHIPING_MESSAGE_METER);
+			int width = element.getSize().getWidth();
+			System.out.println("width :: "+element.getSize().getWidth());
+			softAssert.assertTrue(width > 0, "Element is added but, shipping message meter is showing empty");
+			Thread.sleep(3000);
 
-		Reporter.log("Shipping message meter is displayed correctly");
-		
-}catch(Exception e)
-{
-	Reporter.log("Shipping bar message and title not present, Please check if disabled from DY");
-}
-allElements = driver.findElements(LIST_OF_ITEMS_IN_FLYCART);
+			Reporter.log("Shipping message meter is displayed correctly");
+
+		}catch(Exception e)
+		{
+			Reporter.log("Shipping bar message and title not present, Please check if disabled from DY");
+		}
+		allElements = driver.findElements(LIST_OF_ITEMS_IN_FLYCART);
 
 		// check all fields for all items in flycart
 		for(int i=1; i<=allElements.size();i++) {
@@ -276,10 +278,10 @@ allElements = driver.findElements(LIST_OF_ITEMS_IN_FLYCART);
 		colorAndSize = driver.findElement(ProductDetailsPageLocators.COLOR_TEXT).getText();
 		System.out.println("color and size :: "+colorAndSize);
 		colorAndSize = colorAndSize+" / ";
-		
-String size = 	driver.findElement(ProductDetailsPageLocators.SIZE_TEXT).getAttribute("value");
-String[] b = size.split(",") ;
-	size = b[0];
+
+		String size = 	driver.findElement(ProductDetailsPageLocators.SIZE_TEXT).getAttribute("value");
+		String[] b = size.split(",") ;
+		size = b[0];
 		colorAndSize = colorAndSize.concat(size);
 		System.out.println("color and size :: "+colorAndSize);
 
@@ -300,8 +302,8 @@ String[] b = size.split(",") ;
 		// check for plus minus button
 		String quantity = driver.findElement(QUANTITY).getAttribute("data-item-qty");
 		System.out.println("quantity :: "+quantity);
-		
-		
+
+
 		((JavascriptExecutor)driver).executeScript("arguments[0].click();", driver.findElement(PLUS_BUTTON));
 		Thread.sleep(3000);
 		String quantity1 = driver.findElement(QUANTITY).getAttribute("data-item-qty");
@@ -380,7 +382,6 @@ String[] b = size.split(",") ;
 
 		Thread.sleep(3000);
 		driver.findElement(GIFT_WRAP).click();
-		//	((JavascriptExecutor)driver).executeScript("arguments[0].click();", driver.findElement(By.id("GIFT_WRAP")));;
 		Thread.sleep(2000);
 
 		// check popup is opened or not
@@ -417,11 +418,11 @@ String[] b = size.split(",") ;
 		System.out.println("price1  :: "+price1);
 
 
-		//		double p = Float.parseFloat(price);
-		//		double p2 = Float.parseFloat(price2);
-		//		double p1 = Float.parseFloat(price1);
-		//		// check the total estimated price is displayed correctly when added gift wrap price
-		//		softAssert.assertTrue(p1 == p2+p, "Total estimated price is not correct");
+				double p = Float.parseFloat(price);
+				double p2 = Float.parseFloat(price2);
+				double p1 = Float.parseFloat(price1);
+				// check the total estimated price is displayed correctly when added gift wrap price
+				softAssert.assertTrue(p1 == p2+p, "Total estimated price is not correct");
 
 		driver.get(CustomUtilities.baseUrl);
 
@@ -431,7 +432,7 @@ String[] b = size.split(",") ;
 	public void validateafterpayoninlinecart() throws Exception
 	{
 		//product add to cart
-	
+
 		// call method to navigate to collection page
 		new HomePageComponents(driver).navigateToBraCategory();
 
@@ -447,7 +448,7 @@ String[] b = size.split(",") ;
 		if(!driver.findElement(AFTERPAYTEXT).isDisplayed())
 			throw new Exception("AfterPay Message not present on Fly cart.");
 		Reporter.log("After pay Message is displayed on Inline Cart :: Displayed");
-		
+
 		//Check message with calculated installment and icon display
 		price = driver.findElement(ESTIMATE_TOTAL_PRICE).getText();
 		String[] price1 = price.split("\\$");
@@ -465,7 +466,7 @@ String[] b = size.split(",") ;
 
 			installment =Float.parseFloat(price2)/4;
 			String inst = String.format("%.2f",installment );
-		//	String expectedmessage = "In 4 installments of $" + inst + " by ?"; 
+			//	String expectedmessage = "In 4 installments of $" + inst + " by ?"; 
 			String expectedmessage =  inst+ " "; 
 			System.out.println("expected message is: " + expectedmessage);
 			String actual= driver.findElement(AFTERPAYTEXT).getText();
@@ -483,6 +484,66 @@ String[] b = size.split(",") ;
 		jse.executeScript("arguments[0].click();", element);
 		Thread.sleep(3000);
 
+		softAssert.assertAll();
+	}
+
+	public void VerifyFlyCartOpenWithQSAndPDP() throws Exception
+	{
+		Actions action = new Actions(driver);
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
+		Thread.sleep(8000);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		js.executeScript("window.scrollBy(0,500)");
+
+		wait.until(ExpectedConditions.presenceOfElementLocated(CollectionPageLocator.FIRST_PRODUCT_IMAGE));
+		element = driver.findElement(CollectionPageLocator.FIRST_PRODUCT_IMAGE);
+		js.executeScript("arguments[0].scrollIntoView(true);", element);
+		action.moveToElement(element).build().perform();
+		Thread.sleep(3000);
+		if(driver.findElement(CollectionPageLocator.QUICK_SHOP_ATC).isDisplayed())
+		{
+			driver.findElement(CollectionPageLocator.QUICK_SHOP_ATC).click();
+			Thread.sleep(3000);
+			//select sizes from quick shop size overlay
+			List<WebElement> allElements;
+			String classtext;
+			allElements = driver.findElements(QUICK_SHOP_SIZE_LIST);
+			System.out.println("All sizes list :: "+ allElements.size());
+			for(int i=0;i<allElements.size();i++) 
+			{
+				classtext=allElements.get(i).getAttribute("class");
+				if (!classtext.contains("not-available")) 
+				{
+					element= driver.findElement(By.cssSelector("div.inline-quick-shop > ul > li:nth-child("+(i+1)+") > label"));
+					js.executeScript("arguments[0].click();", element);
+					Thread.sleep(5000);	
+					break;
+				}
+				else
+				{
+					System.out.println("Selected size is OOS");
+				}
+			}
+			softAssert.assertTrue(driver.findElement(INLINE_CART_TITLE).isDisplayed(), "Flyout cart is not opened with QuickShop");
+			Reporter.log("Validated Flyout cart opens with Quickshop");
+
+		}
+		else
+			throw new Exception("Quick Shop ATC button is not displayed on hover.");
+
+		//Check on pdp
+		new HomePageComponents(driver).navigateToDressesInwomensCategory();
+		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		new AddToCartComponents(driver).selectSize();
+		if(!driver.findElement(AddToCartLocators.ADD_TO_CART_BUTTON).isEnabled())
+			throw new Exception("ADD TO CART button is not present");
+		element = driver.findElement(AddToCartLocators.ADD_TO_CART_BUTTON);
+		jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].click();", element);
+		Thread.sleep(5000);
+		softAssert.assertTrue(driver.findElement(INLINE_CART_TITLE).isDisplayed(), "Flyout cart is not opened with ATC from pdp");
+		Reporter.log("Validated Flyout cart opens with ATC from pdp");
 		softAssert.assertAll();
 	}
 }

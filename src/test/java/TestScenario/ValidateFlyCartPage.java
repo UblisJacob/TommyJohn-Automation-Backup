@@ -26,21 +26,29 @@ public class ValidateFlyCartPage {
 	}
 
 
-	@Test
-	public void TC_ValidateEmptyFlyCart() throws Exception {
 
-		new FlyCartPage(driver).verifyAllFields();
-	}
 	@Test
-	public void TC_ValidateTextAndLinksonFlyCart() throws Exception {
-
-		new FlyCartPage(driver).verifyAllFieldsOnNonEmptyFlyCart();
+	public void TC_ValidateEmptyFlyCart() throws Exception 
+	{
+		new FlyCartPage(driver).verifyAllFields(); 
 	}
 
-	@Test
-	public void TC_ValidateFlyCartwithProductsInIt() throws Exception {
+	@Test 
+	public void TC_ValidateTextAndLinksonFlyCart() throws Exception
+	{
+		new FlyCartPage(driver).verifyAllFieldsOnNonEmptyFlyCart(); 
+	}
 
-		new FlyCartPage(driver).validateAllFieldsOnNonEmptyFlyCart();
+	@Test 
+	public void TC_ValidateFlyCartwithProductsInIt() throws Exception
+	{
+		new FlyCartPage(driver).validateAllFieldsOnNonEmptyFlyCart(); 
+	}
+
+	@Test
+	public void TC_ValidateFlyCartOpenedWithQSandPDP() throws Exception {
+
+		new FlyCartPage(driver).VerifyFlyCartOpenWithQSAndPDP();
 	}
 
 	@AfterMethod(alwaysRun = true)

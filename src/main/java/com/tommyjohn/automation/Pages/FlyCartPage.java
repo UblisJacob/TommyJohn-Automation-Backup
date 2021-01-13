@@ -25,4 +25,7 @@ public class FlyCartPage extends FlyCartComponents {
 		new FlyCartComponents(driver).validateNonEmptyFlyCart();
 	}
 
+	public void validateFlyCartOpenedWithQSandPDP() throws Exception {
+		new FlyCartComponents(driver).VerifyFlyCartOpenWithQSAndPDP();
+	}
 }

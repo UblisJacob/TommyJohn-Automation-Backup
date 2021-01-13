@@ -995,7 +995,7 @@ public class HomePageComponents extends HomePageLocators {
 					{
 						WebElement elemen =driver.findElement(By.cssSelector(".dy-rec--products>div:nth-child(1) > div > div.product-item__swatches:nth-child(2)> div > div:nth-child("+(i+1)+")>div"));
 						jse.executeScript("arguments[0].click();", elemen);
-						softassert.assertEquals(Img_colortext , colornew1 , "Color not changing");
+						softassert.assertTrue(Img_colortext.equalsIgnoreCase(colornew1), "Color not changing");
 						Reporter.log("Color swatches are changing correctly");
 					}
 					else {
@@ -1004,6 +1004,7 @@ public class HomePageComponents extends HomePageLocators {
 				}
 			}
 		}
+		softassert.assertAll();
 	}
 
 	public void RFY_ProductTileHoverFunctionality() throws Exception
