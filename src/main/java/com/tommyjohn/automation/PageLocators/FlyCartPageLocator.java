@@ -3,6 +3,7 @@ package com.tommyjohn.automation.PageLocators;
 import org.openqa.selenium.By;
 
 public class FlyCartPageLocator {
+	public static By INLINE_CART_SECTION = By.cssSelector(".section.inline-cart");
 	public static By INLINE_CART_CLOSE_BUTTON = By.cssSelector("button.inline-cart__close-btn");
 	public static By VIEW_CART_LINK = By.cssSelector("a.inline-cart__cart-link");
 	public static By INLINE_CART_TITLE = By.cssSelector(".inline-cart__title");
@@ -41,7 +42,7 @@ public class FlyCartPageLocator {
 	public static By AFTERPAYLOGO_ICON = By.cssSelector(".afterpay-link");
 	public static By AFTERPAY_FLYCART = By.cssSelector(".afterpay-incart-container > p > span");
 	
-	
+	public static By QUICK_SHOP_SIZE_LIST = By.cssSelector(".quickshop-open>.inline-quick-shop>ul>li");
 	
 	
 	
