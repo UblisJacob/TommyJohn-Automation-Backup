@@ -1300,6 +1300,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 				}
 			}
 		}
+		softassert.assertAll();
 	}
 
 	public void verifyMysteryPacks() throws Exception
