@@ -12,7 +12,12 @@ public class CheckoutPageLocators {
 	public static By PAYPAL_BUTTON = By.cssSelector(".paypal-button");
 	public static By GPAY_BUTTON = By.xpath("//div[@data-testid = 'GooglePay-button']");
 	public static By AMZ_PAY = By.xpath("//form[@action = 'https://payments.amazon.com/checkout/signin'] /button" );
-
+	public static By BREADCRUMB_LINK_CART = By.cssSelector("ul.breadcrumb>li:nth-child(1) >a");
+	public static By BREADCRUMB_LINK_INFORMATION = By.cssSelector("ul.breadcrumb>li:nth-child(2)");
+	public static By BREADCRUMB_LINK_SHIPPING = By.cssSelector("ul.breadcrumb>li:nth-child(3)");
+	public static By BREADCRUMB_LINK_PAYMENT = By.cssSelector("ul.breadcrumb>li:nth-child(4)");
+	
+	
 	//Contact info 
 	public static By CONTACTINFO_TEXT = By.cssSelector("h2#main-header");
 	public static By ALREADYHAVEANACCOUNT_TEXT = By.cssSelector(".layout-flex__item > span");
@@ -43,13 +48,17 @@ public class CheckoutPageLocators {
 	public static By APPLY_DISCOUNT_BUTTON = By.cssSelector(".order-summary__section--discount > form:nth-child(3) > div  > div  > div >button");
 	public static By SUBTOTAL = By.cssSelector("td.total-line__price > .order-summary__emphasis");
 	public static By SHIPPING = By.cssSelector(".total-line--shipping > .total-line__price > span");
+	public static By APPLIED_PROMO_CODE = By.cssSelector(".tag__text>span.reduction-code>span");
+	public static By CANCEL_PROMO_CODE = By.cssSelector("button.tag__button");
 	public static By TOTAL = By.cssSelector(".payment-due__price");
 
 	//                                          Shipping
 
 	public static By CONTACT_EMAIL =  By.cssSelector(".review-block__content > bdo");
 	public static By SHIP_ADDRESS =  By.cssSelector(".review-block__content > address");
-	public static By CHANGE_LINK = By.cssSelector(".review-block__link > a");
+	public static By CHANGE_LINK_CONTACT = By.cssSelector(".content-box__row>div:nth-child(1)>.review-block__link > a");
+	public static By CHANGE_LINK_SHIP_TO = By.cssSelector(".content-box__row>div:nth-child(2)>.review-block__link > a");
+	public static By CHANGE_LINK_METHOD = By.cssSelector(".content-box__row>div:nth-child(3)>.review-block__link > a");
 	public static By SHIPPING_TEXT = By.cssSelector("h2#main-header");
 	public static By SHIPPING_RADIO_BUTTON = By.cssSelector(".input-radio");
 	public static By RETURN_LINK = By.cssSelector(".step__footer__previous-link-content");
