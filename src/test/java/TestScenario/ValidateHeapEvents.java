@@ -1,10 +1,6 @@
 package TestScenario;
-
-
-
 import java.util.ArrayList;
 import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -21,7 +17,6 @@ import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-
 import com.tommyjohn.automation.Components.AddToCartComponents;
 import com.tommyjohn.automation.Components.CheckoutPageComponents;
 import com.tommyjohn.automation.Components.CollectionPageComponent;
@@ -42,20 +37,16 @@ public class ValidateHeapEvents {
 	@Test
 	public void TC_ValidateHomePageEvents() throws Exception
 	{
-		//	int count=0;
 		List<String> expectedevents = new ArrayList<String>();
 		driver = ChromeExtensionUtility.launchchromewithextension();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("javascript:window.scrollBy(0,300)");
 		Thread.sleep(3000);
-		if(driver.findElement(By.cssSelector("div.dy-rec--product-tile")).isDisplayed())
-		{
-			driver.findElement(By.cssSelector("div.dy-rec--product-tile")).click();
-		}
-		else
-			throw new Exception("Dy recs not displayed or not clickable");
+		WebElement homepage_cta = driver.findElement(By.xpath("//a[@type='button']"));
+		if(homepage_cta.isDisplayed())
+		homepage_cta.click();
 		String logEntries = driver.manage().logs().getAvailableLogTypes().toString();
-		System.out.println(logEntries);
+		System.out.println("Homepage logentries: "+logEntries);
 
 		LogEntries logclient = driver.manage().logs().get(LogType.BROWSER);
 		//	List<String> log = new ArrayList<>();
@@ -536,7 +527,7 @@ public class ValidateHeapEvents {
 		js.executeScript("arguments[0].click();", element);
 		Thread.sleep(5000);
 		WebElement coupon_input= driver.findElement(By.cssSelector("div.order-summary__section--discount>form:nth-child(3)>div>div>div>div>input"));
-		coupon_input.sendKeys("Test_Order_Tech");
+		coupon_input.sendKeys("FIRST15");
 		driver.findElement(CheckoutPageLocators.APPLY_DISCOUNT_BUTTON).click();
 
 		Thread.sleep(10000);
