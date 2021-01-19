@@ -163,7 +163,7 @@ public class HomePageLocators{
 	public static By SEARCH_ICON_FORM_TAG = By.cssSelector(".header-search-form");
 	public static By SEARCH_TEXTBOX = By.cssSelector(".nextopia-search");
 	public static By POPULAR_SEARCHES = By.cssSelector(".autocomplete-suggestion-search-suggestions");
-	public static By PRODUCT_MATCHES = By.cssSelector(".autocomplete-suggestion-products");
+	public static By PRODUCT_MATCHES_TITLE = By.cssSelector(".desktop-search-product-tile-title");
 //	public static By SEARCHRESULT_KEYWORD = By.cssSelector(".nxt-ac-section-container > .nxt-ac-item");
 //	public static By SEARCHRESULT_PRODUCT = By.cssSelector(".nxt-ac-products-container > .nxt-ac-item");
 	
@@ -176,9 +176,20 @@ public class HomePageLocators{
 	public static By SEARCHPAGE_PRODUCT_IMAGE = By.cssSelector(".product-image-container > a > img");
 	public static By SEARCHPAGE_PRODUCT_SWATCHES = By.cssSelector(".product-item__swatches");
 	public static By SEARCHPAGE_PRODUCT_NAME = By.cssSelector(".product-meta__title");
-	public static By SEARCHPAGE_PRODUCT_REVIEWS = By.cssSelector("div.yotpo.bottomLine");
+	public static By SEARCHPAGE_PRODUCT_REVIEWS = By.cssSelector(".yotpo.bottomLine");
 	public static By SEARCHPAGE_PRODUCT_PRICE = By.cssSelector(".product-meta__price");
 	public static By SEARCHPAGE_PRODUCT_BADGE = By.cssSelector(".product-item__badge");	
+	public static By RECENT_SEARCHES_TITLE = By.cssSelector(".recent-searches-title>span");
+	public static By CLEAR_RECENT_SEARCHES = By.cssSelector(".search-value__clear>span");
+	public static By RECENT_SEARCH_CONTAINER = By.cssSelector(".desktop-recent-search-container");
+	public static By SEARCHPAGE_ALL_FILTERS = By.cssSelector("div.mega-collection-filters > div > a");
+	public static By SEARCHPAGE_ALL_SELECTED_FILTER_OPTIONS = By.cssSelector("div.js-mega-collection-desktop-filter-tags >div> button");
+	public static By SEARCHPAGE_CLEAR_FILTER = By.cssSelector("div.mega-collection-filters--controls > a");
+	public static By SEARCHPAGE_LAST_FILTER = By.cssSelector(".mega-collection-filters > select");
+	public static By AUTO_SUGGESTED_LINKS = By.cssSelector(".autocomplete-suggestions-content>a");
+	public static By AUTO_SUGGESTED_PRODUCT_IMG = By.cssSelector(".search-product-image>a>img");
+	public static By AUTO_SUGGESTED_PRODUCT_TILE_TITLE = By.cssSelector(".search-product-tile>a");
+	
 	
 
 	public static By HELP_ICON = By.cssSelector("i.icon-help");

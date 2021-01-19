@@ -47,10 +47,13 @@ public class ValidateHeapEvents {
 		driver = ChromeExtensionUtility.launchchromewithextension();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("javascript:window.scrollBy(0,300)");
-		if(driver.findElement(By.cssSelector(".dy-rec--product-tile")).isDisplayed())
+		Thread.sleep(3000);
+		if(driver.findElement(By.cssSelector("div.dy-rec--product-tile")).isDisplayed())
 		{
-			driver.findElement(By.cssSelector(".dy-rec--product-tile")).click();
+			driver.findElement(By.cssSelector("div.dy-rec--product-tile")).click();
 		}
+		else
+			throw new Exception("Dy recs not displayed or not clickable");
 		String logEntries = driver.manage().logs().getAvailableLogTypes().toString();
 		System.out.println(logEntries);
 
@@ -82,8 +85,8 @@ public class ValidateHeapEvents {
 
 		if(expectedevents.size()!=2)
 		{
-			Reporter.log("homepage_view and homepage_click_content event not fired on homepage.");
-			throw new Exception("homepage_view and homepage_click_content event not fired on homepage.");
+			Reporter.log("Few events not fired on homepage.");
+			throw new Exception("Few events not fired on homepage.");
 		}
 		//driver.quit();
 	}
@@ -104,7 +107,7 @@ public class ValidateHeapEvents {
 		String script = "console.clear();";
 		js.executeScript(script);
 
-		new HomePageComponents(driver).navigateToBoxerBriefInMenCategory();
+		new HomePageComponents(driver).navigateToDressesInwomensCategory();
 
 		Thread.sleep(10000);
 		driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child(2) > a")).click();
@@ -113,7 +116,7 @@ public class ValidateHeapEvents {
 
 		Thread.sleep(3000);
 		Select selectElement = new Select(driver.findElement(CollectionPageComponent.LAST_FILTER));
-		selectElement.selectByValue("price:asc");
+		selectElement.selectByValue("Price:ascending");
 
 		Thread.sleep(5000);
 
@@ -343,8 +346,6 @@ public class ValidateHeapEvents {
 						//count++;
 						if(!expectedevents.contains("Search Submit"))
 							expectedevents.add("Search Submit");
-
-
 					}
 				}
 			}
@@ -382,10 +383,10 @@ public class ValidateHeapEvents {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CheckoutPageLocators.AMZ_PAY));
 		WebElement element = driver.findElement(CheckoutPageLocators.AMZ_PAY);
 		js.executeScript("arguments[0].click();", element);
-		Thread.sleep(3000);
-		driver.navigate().back();
-
 		Thread.sleep(10000);
+//		driver.navigate().back();
+//
+//		Thread.sleep(10000);
 		LogEntries logclient = driver.manage().logs().get(LogType.BROWSER);
 		for (LogEntry entry : logclient) {
 			{
