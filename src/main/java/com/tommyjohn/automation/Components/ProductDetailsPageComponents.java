@@ -64,13 +64,15 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 	public void checkCorrectProductDetailsPageOpenedOrNot(String text1) throws Exception {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		String text2 = null;
-
+		String[] list;
 		wait.until(ExpectedConditions.presenceOfElementLocated(ADD_TO_CART_BUTTON));
-
-		text2 = driver.getCurrentUrl();
-
+		list =driver.getCurrentUrl().split("/");
+		text2 = list[list.length-1];
+		System.out.println("text2 is: "+text2+" and text1 is: "+text1);
+		list=text1.split("/");
+		text1=list[list.length-1];
 		// check correct PDP opened
-		if(!text2.contains(text1))
+		if(!text2.equals(text1))
 			throw new Exception("Wrong product details page opened");
 		Reporter.log("Product details page is Correct :: Product title is Displayed");
 
@@ -631,22 +633,22 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 					Reporter.log("Verified Reviews and Rating box section, All elements are present including fit status, fit graph, Rating label, rating count, Rating meter, Avg rating, total reviews etc");
 
-					
+
 					//verify paginations
 					softAssert.assertTrue(driver.findElement(PAGINATION_LEFT_ARROW).isDisplayed(), "Pagination left arrow is not displayed on pdp");
 					softAssert.assertTrue(driver.findElement(PAGINATION_RIGHT_ARROW).isDisplayed(), "Pagination right arrow is not displayed on pdp");
 					softAssert.assertTrue(driver.findElement(PAGINATION_CURRENT_VALUE).isDisplayed(), "Pagination current value is not displayed on pdp");
-              String[] page_value1 = driver.findElement(PAGINATION_CURRENT_VALUE).getText().split(" /");
-              String previous_page_number = page_value1[0];
-              int pre_number = Integer.parseInt(previous_page_number);
-              driver.findElement(PAGINATION_RIGHT_ARROW).click();
-              Thread.sleep(5000);
-              String[] page_value2 = driver.findElement(PAGINATION_CURRENT_VALUE).getText().split(" /");
-              String next_page_number = page_value2[0];
-              int next_number = Integer.parseInt(next_page_number);
-              System.out.println("previous is: "+previous_page_number+" next page no. is: "+next_page_number);
-              softAssert.assertTrue(pre_number<next_number,"Pagination next arrow is not functional");
-              Reporter.log("Reviews Pagination is functional on PDP");           
+					String[] page_value1 = driver.findElement(PAGINATION_CURRENT_VALUE).getText().split(" /");
+					String previous_page_number = page_value1[0];
+					int pre_number = Integer.parseInt(previous_page_number);
+					driver.findElement(PAGINATION_RIGHT_ARROW).click();
+					Thread.sleep(5000);
+					String[] page_value2 = driver.findElement(PAGINATION_CURRENT_VALUE).getText().split(" /");
+					String next_page_number = page_value2[0];
+					int next_number = Integer.parseInt(next_page_number);
+					System.out.println("previous is: "+previous_page_number+" next page no. is: "+next_page_number);
+					softAssert.assertTrue(pre_number<next_number,"Pagination next arrow is not functional");
+					Reporter.log("Reviews Pagination is functional on PDP");           
 				}
 
 				else 
@@ -1237,7 +1239,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 		softAssert.assertAll();
 	}
-	
+
 	public void VerifyQuickShopOnRecommendedforYou() throws Exception
 	{
 		Actions action = new Actions(driver);
@@ -1253,7 +1255,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		Reporter.log("Verified DY recs quick shop functionality on PDP");
 
 	}
-	
+
 	public void MethodToCheckColorSwatchOnDYRecs() throws Exception
 	{
 		SoftAssert softassert = new SoftAssert();
@@ -1261,7 +1263,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		jse = (JavascriptExecutor)driver;
 		jse.executeScript("arguments[0].scrollIntoView(true);",element);
 		Thread.sleep(3000);
-		
+
 		List<WebElement> allElements = driver.findElements(RFY_SWATCH_LIST);
 		int elementsCount = allElements.size();
 		System.out.println("Color Element count :: " + elementsCount);
@@ -1278,14 +1280,14 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 					String text = driver.findElement(RFY_PRODUCT_IMG_COLORNAME).getAttribute("href");
 					String[] strarray = text.split("[=]");
 					String text1 = strarray[strarray.length - 1];
-					Img_colortext = text1.replace("-", " ");
+					Img_colortext = text1.replace("-", " ").toLowerCase();
 
 					System.out.println("Product image color name is: " + Img_colortext);
 
 
 					element = driver.findElement(By.cssSelector(".dy-recs-placeholder__above-desktop-reviews>div>.dy-rec>div>div:nth-child(2)>.dy-rec--products>div:nth-child(1) > div > div.product-item__swatches:nth-child(2)> div > div:nth-child("+i+")>div"));
-					colornew1 = element.getAttribute("title"); 
-				//	String colornew = colornew1.replace("/", " ");
+					colornew1 = element.getAttribute("title").replace("/", " ").toLowerCase(); 
+					//	String colornew = colornew1.replace("/", " ");
 					System.out.println("swatch color is: "+colornew1);
 					if(colornew1.equalsIgnoreCase(Img_colortext)) 
 					{
