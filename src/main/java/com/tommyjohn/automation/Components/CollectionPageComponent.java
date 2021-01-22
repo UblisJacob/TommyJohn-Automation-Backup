@@ -201,25 +201,21 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			System.out.println("All options list :: "+ optionsList);
 			int ct = 0;
 			//loop for clicking all the options in ith filter
-			for(int j = 1; j <= optionsList; j++) {
-
-				// check if element is not displayed but present then continue at this step
-				System.out.println("i = "+i+" j = "+j);
+		//	for(int j = 1; j <= optionsList; j++) {
 
 				// check if not any option present
 				if(optionsList == 0)
 					break;
-
-				if(!driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child("+i+") > ul > li:nth-child("+j+") > label > input")).isDisplayed())
+				WebElement Filter_option_item =driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child("+i+") > ul > li:nth-child(1) > label > input"));
+				if(!Filter_option_item.isDisplayed())
 					continue;
 				count++;
-				driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child("+i+") > ul > li:nth-child("+j+") > label > input")).click();
+				jse.executeScript("arguments[0].click();", Filter_option_item);
 				Thread.sleep(2000);
 
 				// get the name of selected option
-				selectedOption = driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child("+i+") > ul > li:nth-child("+j+") > label > input")).getAttribute("data-filter-btn");
+				selectedOption = driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child("+i+") > ul > li:nth-child(1) > label > input")).getAttribute("data-filter-btn");
 				System.out.println("selected option :: "+selectedOption);
-
 
 				// get all selected displayed optioins
 				allElements = driver.findElements(DISPLAYED_ALL_SELECTED_OPTIONS);
@@ -247,16 +243,6 @@ public class CollectionPageComponent extends CollectionPageLocator {
 				System.out.println("Out ddd :: "+allProductsOnPage1);
 				// check for hoverable class (if image is hoverable then it count two images for one image)
 				element = driver.findElement(FIRST_PRODUCT_IMAGE);
-				//   			String classes = element.getAttribute("class");
-				//    			System.out.println("Classes :: "+classes);
-				//    			for (String c : classes.split(" ")) {
-				//    				System.out.println("C ::::: "+c);
-				//    				if (c.equals("product-image-container--has-hover")) {
-				//    					allProductsOnPage1 = (allProductsOnPage1)/2;
-				//    					System.out.println("In ddd :: "+allProductsOnPage1);
-				//    				}
-				//    			}
-				//                
 				System.out.println("total displayed product on page :: "+allProductsOnPage1);
 				System.out.println("total displayed count of product :: "+totalDisplayedCount);
 				try{
@@ -270,7 +256,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 				ct++;
 
-			}
+			//}
 
 			// check again any options are present or not
 			if(optionsList == 0)
@@ -722,12 +708,16 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			System.out.println("All sizes list :: "+ allElements.size());
 			for(int i=0;i<allElements.size();i++) 
 			{
-				classtext=allElements.get(i).getAttribute("class");
-				if (!classtext.contains("not-available")) 
+				//classtext=allElements.get(i).getAttribute("class");
+				String[] classes1 = allElements.get(i).getAttribute("class").split(" ");
+				classtext =classes1[classes1.length-1];
+				System.out.println("last class name is: "+classtext);
+				if (!classtext.equalsIgnoreCase("not-available")) 
 				{
-					element= driver.findElement(By.cssSelector("div.inline-quick-shop > ul > li:nth-child("+(i+1)+") > label"));
+					element= driver.findElement(By.cssSelector("div.inline-quick-shop > ul > li:nth-child("+(i+1)+") > input"));
 					js.executeScript("arguments[0].click();", element);
-					Selected_size=allElements.get(i).getAttribute("value");
+					//Selected_size=allElements.get(i).getAttribute("value");
+					Selected_size=element.getAttribute("value");
 					System.out.println("Selected size is: "+Selected_size);
 					Thread.sleep(3000);	
 					break;
