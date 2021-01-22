@@ -403,18 +403,19 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		}
 		// click on apply button
 		driver.findElement(GIFT_WRAP_APPLY).click();
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 
 		// check the $5 price is applying or not
 		price2 = driver.findElement(GIFT_WRAP_PRICE).getText();
+		System.out.println("previous price2 is: "+price2);
 		for (String a : price2.split("\\$")) 
 			price2 = a;
 		System.out.println("price2  :: "+price2);
 
 		// get estimated total price
 		price1 = driver.findElement(ESTIMATE_TOTAL_PRICE).getText();
-		for (String a : price1.split("\\$")) 
-			price1 = a;
+		for (String b : price1.split("\\$")) 
+			price1 = b;
 		System.out.println("price1  :: "+price1);
 
 

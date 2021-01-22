@@ -1231,7 +1231,8 @@ public class HomePageComponents extends HomePageLocators {
 	public void navigateToAllUnderwearInMenCategory() throws Exception {
 		driver.get("https://tommyjohn.com/collections/mens-underwear");
 		Thread.sleep(5000);
-
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("window.scrollBy(0,250)");
 	}
 
 	//navigate to Button down shirts
@@ -1292,9 +1293,11 @@ public class HomePageComponents extends HomePageLocators {
 	// navigate to all mens collections in men category
 	public void navigateToAllMensCollectionsInMenCategory() throws Exception {
 		driver.get("https://tommyjohn.com/collections/mens");
-		Thread.sleep(3000);
-		element = driver.findElement(CollectionPageLocator.CLEAR_FILTER_BUTTON);
-		((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);",element);
+		Thread.sleep(10000);
+//		element = driver.findElement(By.cssSelector("div.mega-collection-filters--controls > a"));
+//		WebDriverWait wait = new WebDriverWait(driver, 30);
+//		wait.until(ExpectedConditions.presenceOfElementLocated((By) element));
+//		((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);",element);
 	}
 
 	// navigate to New Arrivals in Women category
