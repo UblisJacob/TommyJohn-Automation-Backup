@@ -68,9 +68,15 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		wait.until(ExpectedConditions.presenceOfElementLocated(ADD_TO_CART_BUTTON));
 		list =driver.getCurrentUrl().split("/");
 		text2 = list[list.length-1];
-		System.out.println("text2 is: "+text2+" and text1 is: "+text1);
+		list = text2.split("\\?");
+		text2 = list[0];
+
 		list=text1.split("/");
 		text1=list[list.length-1];
+		list = text1.split("\\?");
+		text1 = list[0];
+
+		System.out.println("text2 is: "+text2+" and text1 is: "+text1);
 		// check correct PDP opened
 		if(!text2.equals(text1))
 			throw new Exception("Wrong product details page opened");
@@ -687,7 +693,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		text = new CollectionPageComponent(driver).navigateToProductDetailsPage();
 		// call method to check correct PDP opend or not
 		checkCorrectProductDetailsPageOpenedOrNot(text);
-
+        Thread.sleep(5000);
 		WebElement elem = driver.findElement(RATING_STARS);
 		JavascriptExecutor executore = (JavascriptExecutor)driver;
 		executore.executeScript("arguments[0].click();", elem);
@@ -1125,16 +1131,41 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 							jse = (JavascriptExecutor)driver;
 							jse.executeScript("arguments[0].click();", element);
 							Thread.sleep(3000);
+							
+//							WebElement atc = driver.findElement(By.cssSelector("div.multiPdp__atc-container>button"));
+//							String[] classname = atc.getAttribute("class").split(" ");
+//							String atc_status = classname[classname.length-1];
+//							if(!atc_status.equals("email-when-in-stock"))
+//							{
+//							WebElement oos_variant = driver.findElement(By.cssSelector(".product-option__variant-btn.email-when-in-stock"));
+//							jse.executeScript("arguments[0].click();", oos_variant);
+//							Thread.sleep(3000);
+//							}
+							
+							List<WebElement> unavailable_color = driver.findElements(By.cssSelector(".product-option__color-swatches-wrapper > ul >li>input.unavailable")); 
+							for(int a=1; a<=unavailable_color.size();a++)
+							{
+								WebElement oos_color = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper > ul >li:nth-child("+a+")>input.unavailable"));
+								//oos_color.click();
+								jse.executeScript("arguments[0].click();", oos_color);
+								Thread.sleep(3000);
+								String[] classname = oos_color.getAttribute("class").split(" ");
+								String status = classname[classname.length-1];
+								if(status.equals("email-when-in-stock"))
+									break;
+								else continue;
+							}
+							
 							driver.findElement(ADD_TO_CART_BUTTON).click();
 							Thread.sleep(3000);
-							softAssert.assertEquals(driver.findElement(EMAIL_WHEN_IN_STOCK_TITLE).getText() , "Email When In Stock" , "Email When In Stock title change");
-							softAssert.assertEquals(driver.findElement(JOINTHEWAITLIST_REMINDER_DESC).getText() , "Get notified via email when this product is back in stock." , "Email When In Stock Reminder description change");
-							softAssert.assertEquals(driver.findElement(JOINTHEWAITLIST_PRIVACYINFO).getText() , "We will send you an email once the product becomes available. Your email address will not be shared with anyone else." , "Email When In Stock Privacy Info description change");
+							softAssert.assertEquals(driver.findElement(EMAIL_WHEN_IN_STOCK_TITLE).getText() , "Email Me When Back In Stock" , "Email When In Stock title change");
+							softAssert.assertEquals(driver.findElement(JOINTHEWAITLIST_REMINDER_DESC).getText() , "Get notified via email when this product is back in stock" , "Email When In Stock Reminder description change");
+							softAssert.assertTrue(driver.findElement(JOINTHEWAITLIST_PRIVACYINFO).isDisplayed(),"Email When In Stock Privacy Info description not displayed");
 
 							driver.findElement(JOINTHEWAITLIST_EMAILTEXTBOX).sendKeys("akshata@tommyjohnwear.com");
 							driver.findElement(JOINTHEWAITLIST_NOTIFYBUTTON).click();
 							Thread.sleep(4000);
-							softAssert.assertEquals(driver.findElement(JOINTHEWAITLIST_SUCCESS).getText(),"Thank you!" , "Email when in stock not functional");
+							softAssert.assertEquals(driver.findElement(JOINTHEWAITLIST_SUCCESS).getText(),"Thank You" , "Email when in stock not functional");
 							System.out.println(driver.findElement(JOINTHEWAITLIST_SUCCESS).getText());
 							driver.findElement(JOINTHEWAITLIST_CLOSEBTN).click();
 							driver.switchTo().defaultContent();
@@ -1566,10 +1597,11 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 	public void Sort_By_Reviews() throws Exception
 	{
+		jse = (JavascriptExecutor)driver;
 		SoftAssert softassert = new SoftAssert();
-		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
+		new HomePageComponents(driver).navigateToDressesInwomensCategory();
 		new CollectionPageComponent(driver).navigateToProductDetailsPage();
-
+		Thread.sleep(5000);
 		if(!driver.findElement(RATING_NUMBER).getText().equals("(0)"))
 		{
 			driver.findElement(RATING_NUMBER).click();
@@ -1600,6 +1632,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			}
 			//verify sort By options are displayed
 			driver.findElement(SORT_BY).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(SORT_BY_OPTIONS_DIV));
 			softassert.assertTrue(driver.findElement(SORT_BY_OPTIONS_DIV).isDisplayed(), "Sort By option container is not displayed after click on sort by filter");
 			for(int i=1; i<sort_options.size();i++)
 			{
@@ -1611,6 +1644,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 			//Apply sort By after rating filter
 			driver.navigate().refresh();
+			Thread.sleep(5000);
 			for(int j=1; j<=5;j++)
 			{
 				element = driver.findElement(By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div:nth-child(2) > ul.yotpo-revew-bottomline-list > li:nth-child("+j+") > .yotpo-review-bottomline-individual-ratings > .yotpo-review-bottomline-individual-ratings__count>span"));
@@ -1618,19 +1652,24 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 				int count= Integer.parseInt(num);
 				if(count>0)
 				{
-					element.click();
+					Thread.sleep(3000);
+					jse.executeScript("arguments[0].click();", element);
+					//	element.click();
 					break;
 				}
 			}
 			wait.until(ExpectedConditions.presenceOfElementLocated(REVIEW_FILTER_MESSAGE));
-			driver.findElement(SORT_BY).click();
-			Thread.sleep(3000);
+			element=driver.findElement(SORT_BY);
+			jse.executeScript("arguments[0].click();", element);
+			//Thread.sleep(3000);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(SORT_BY_OPTIONS_DIV));
 			softassert.assertTrue(driver.findElement(SORT_BY_OPTIONS_DIV).isDisplayed(), "Sort By option container is not displayed after apply rating filter");
 			WebElement Most_Helpful_SortBy = driver.findElement(By.cssSelector(".yotpo-reviews-question-container>div.yotpo-sort-by-options-container>ul>li:nth-child(4)"));
 			String allclass = Most_Helpful_SortBy.getAttribute("class");
 			String optionname= Most_Helpful_SortBy.getAttribute("data-sort-option");
 			System.out.println("selected option is: "+optionname+" & its class is: "+allclass);
-			Most_Helpful_SortBy.click();
+			jse.executeScript("arguments[0].click();", Most_Helpful_SortBy);
+			//Most_Helpful_SortBy.click();
 			Thread.sleep(3000);
 			softassert.assertEquals(driver.findElement(SORT_BY).getText(), optionname, "Sort By options are not clickable");
 			Reporter.log("User is able to sort after applying rating filter");
@@ -1669,7 +1708,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		softassert.assertTrue(driver.findElement(SUBMIT_QUESTION_CTA).isDisplayed(), "Q&A submit button is not displayed");
 
 		//field validations
-		driver.findElement(SUBMIT_QUESTION_CTA).click();
+		element=driver.findElement(SUBMIT_QUESTION_CTA);
+		jse.executeScript("arguments[0].click();", element);
 		Thread.sleep(2000);
 		softassert.assertTrue(driver.findElement(QSN_ANS_NAME_ERROR).isDisplayed(), "Name error message is not displayed with invalid input");
 		softassert.assertTrue(driver.findElement(QSN_ANS_EMAIL_ERROR).isDisplayed(), "Email error message is not displayed with invalid input");
