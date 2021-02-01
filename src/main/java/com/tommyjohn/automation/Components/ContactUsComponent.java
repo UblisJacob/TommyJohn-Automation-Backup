@@ -230,7 +230,7 @@ public class ContactUsComponent extends ContactUsPageLocators
 	//	softassert.assertTrue(driver.findElement(TEXT_US_AT).isDisplayed(), "'Text us number' text is not displayed.");
 		
 		softassert.assertTrue(driver.findElement(HELP_CATEGORY).isDisplayed(), "'Help category container'  is not displayed.");
-
+        softassert.assertAll();
 
 		
 	}
