@@ -126,13 +126,13 @@ public class ProductDetailsPageLocators {
 	public static By HEADLINE_ERROR = By.cssSelector("input#yotpo_input_review_headline  ~ span.error-message");
 	public static By REVIEW_ERROR = By.cssSelector("#yotpo_input_review_content  ~ span.error-message");
 	
-	public static By EMAIL_WHEN_IN_STOCK_TITLE = By.cssSelector(".swym-title > h2");
-	public static By JOINTHEWAITLIST_REMINDER_DESC = By.cssSelector(".swym-remind-description");
-	public static By JOINTHEWAITLIST_EMAILTEXTBOX = By.cssSelector("#swym-remind-email-auth-input");
-	public static By JOINTHEWAITLIST_NOTIFYBUTTON = By.cssSelector("#swym-remind-email-auth-button");
-	public static By JOINTHEWAITLIST_PRIVACYINFO = By.cssSelector(".swym-privacy-info");
-	public static By JOINTHEWAITLIST_CLOSEBTN = By.cssSelector(".swym-remind-me > .swym-tab-modal-close");
-	public static By JOINTHEWAITLIST_SUCCESS = By.cssSelector(".swym-success");
+	public static By EMAIL_WHEN_IN_STOCK_TITLE = By.cssSelector(".jtwl_header > span");
+	public static By JOINTHEWAITLIST_REMINDER_DESC = By.cssSelector(".jtwl_subtitle_wrapper> span");
+	public static By JOINTHEWAITLIST_EMAILTEXTBOX = By.cssSelector(".jtwl_form__input.jtwl_form__userEmail");
+	public static By JOINTHEWAITLIST_NOTIFYBUTTON = By.cssSelector(".jtwl_form__submit");
+	public static By JOINTHEWAITLIST_PRIVACYINFO = By.cssSelector(".jtwl_footer>span");
+	public static By JOINTHEWAITLIST_CLOSEBTN = By.cssSelector(".close_jtwl");
+	public static By JOINTHEWAITLIST_SUCCESS = By.cssSelector(".jtwl_success>span");
 	
    //Recommended for you (RFY)
 	public static By RFY_TITLE = By.cssSelector(".dy-rec--title");
