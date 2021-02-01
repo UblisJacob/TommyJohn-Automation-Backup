@@ -796,7 +796,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			 */
 		}
 		else
-			throw new Exception("Quick Shop ATC button is not displayed on hover.");
+			throw new Exception("Quick Shop ATC button is not displayed on hovered product or quickshop not available for particular product");
 		softAssert.assertAll();
 	}
 

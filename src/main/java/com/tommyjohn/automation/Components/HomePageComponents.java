@@ -52,7 +52,8 @@ public class HomePageComponents extends HomePageLocators {
 			currentUrl1 = driver.getCurrentUrl();
 			WebElement element = driver.findElement(HOMEPAGE_LOGO);
 
-			executor.executeScript("arguments[0].click();", element);		
+			executor.executeScript("arguments[0].click();", element);	
+			Thread.sleep(3000);
 			String currentUrl2 = driver.getCurrentUrl();
 			if(!currentUrl1.equals(currentUrl2))
 				throw new Exception("HomePage logo not working correctly");
@@ -86,6 +87,7 @@ public class HomePageComponents extends HomePageLocators {
 
 		element = driver.findElement(MEN_CATEGORY);
 		action.moveToElement(element).perform();
+		Thread.sleep(3000);
 		if(!driver.findElement(FIRST_lEVEL1_CATEGORY).isDisplayed())
 			throw new Exception("Men Category is not hoverable");
 		Thread.sleep(3000);
@@ -100,6 +102,7 @@ public class HomePageComponents extends HomePageLocators {
 			throw new Exception("Women category is not displayed");
 		element = driver.findElement(WOMEN_CATEGORY);
 		action.moveToElement(element).perform();
+		Thread.sleep(3000);
 		if(!driver.findElement(FIRST_lEVEL1_CATEGORY).isDisplayed())
 			throw new Exception("Men Category is not hoverable");
 		Reporter.log("Women category is Displayed :: Hoverable :: Clickable");

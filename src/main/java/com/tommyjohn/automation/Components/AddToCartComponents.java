@@ -177,7 +177,22 @@ public class AddToCartComponents extends AddToCartLocators{
 //									}
 										
 									System.out.println("Unavailable size clicked");
-									element = driver.findElement(ProductDetailsPageComponents.JOIN_THE_WAITLIST);
+									
+									List<WebElement> unavailable_color = driver.findElements(By.cssSelector(".product-option__color-swatches-wrapper > ul >li>input.unavailable")); 
+									for(int a=1; a<=unavailable_color.size();a++)
+									{
+										WebElement oos_color = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper > ul >li:nth-child("+a+")>input.unavailable"));
+										//oos_color.click();
+										jse.executeScript("arguments[0].click();", oos_color);
+										Thread.sleep(3000);
+										String[] classname = oos_color.getAttribute("class").split(" ");
+										String status = classname[classname.length-1];
+										if(status.equals("email-when-in-stock"))
+											break;
+										else continue;
+									}
+									
+									element = driver.findElement(ProductDetailsPageLocators.JOIN_THE_WAITLIST);
 									text1 = element.getText();
 									System.out.println("Text of button when Unavailable size selected :: "+text1);
 									if(!(text1.equalsIgnoreCase("JOIN THE WAITLIST")))
