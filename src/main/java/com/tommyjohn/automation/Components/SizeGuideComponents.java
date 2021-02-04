@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 
+import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
 import com.tommyjohn.automation.PageLocators.SizeGuideLocators;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
@@ -611,7 +612,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 		driver.navigate().refresh();
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 
-		wait.until(ExpectedConditions.presenceOfElementLocated(ProductDetailsPageComponents.SIZE_GUIDE_BUTTON));	
+		wait.until(ExpectedConditions.presenceOfElementLocated(ProductDetailsPageLocators.SIZE_GUIDE_BUTTON));	
 		if(!driver.findElement(SIZEGUIDE).isEnabled())
 			throw new Exception("Size Guide button is not present");
 		WebElement ele = driver.findElement(SIZEGUIDE);

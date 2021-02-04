@@ -178,10 +178,10 @@ public class AddToCartComponents extends AddToCartLocators{
 										
 									System.out.println("Unavailable size clicked");
 									
-									List<WebElement> unavailable_color = driver.findElements(By.cssSelector(".product-option__color-swatches-wrapper > ul >li>input.unavailable")); 
+									List<WebElement> unavailable_color = driver.findElements(By.cssSelector(".product-option__color-swatches-wrapper > ul >li>input")); 
 									for(int a=1; a<=unavailable_color.size();a++)
 									{
-										WebElement oos_color = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper > ul >li:nth-child("+a+")>input.unavailable"));
+										WebElement oos_color = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper > ul >li:nth-child("+a+")>input"));
 										//oos_color.click();
 										jse.executeScript("arguments[0].click();", oos_color);
 										Thread.sleep(3000);
