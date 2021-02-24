@@ -1480,8 +1480,8 @@ public class HomePageComponents extends HomePageLocators {
 
 	//navigate to Boxer Brief in men category
 	public void navigateToBoxerBriefInMenCategory(){
-		driver.get("https://tommyjohn.com/collections/underwear-mens-styles-boxer-brief");
-
+		driver.get("https://tommyjohn.com/collections/mens-boxer-brief-underwear");
+		((JavascriptExecutor)driver).executeScript("window.scrollTo(document.body.scrollHeight,0)");
 	}
 	//navigate to Mens underwear quiz page
 	public void navigateToMensQuizPage()
