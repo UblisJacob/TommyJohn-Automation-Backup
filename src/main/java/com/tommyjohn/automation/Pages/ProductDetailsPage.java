@@ -1,5 +1,6 @@
 package com.tommyjohn.automation.Pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
 import com.tommyjohn.automation.Components.CollectionPageComponent;
@@ -103,6 +104,23 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 		new CollectionPageComponent(driver).navigateToProductDetailsPage();
 		Thread.sleep(5000);
 		new HomePageComponents(driver).RFY_ProductTileHoverFunctionality();
+	}
+	public void verifyPreselectedSizeOnBraPDP() throws Exception {
+
+		new HomePageComponents(driver).navigateToBraCategory();
+		((JavascriptExecutor)driver).executeScript("window.scrollBy(0,250)");
+		Check_Preselected_Size();
+	}
+
+	public void verifyPreselectedSizeOnBoxerBriefPDP() throws Exception {
+
+		new HomePageComponents(driver).navigateToBoxerBriefInMenCategory();
+		Check_Preselected_Size();
+	}
+	public void verifyPreselectedSizeOnMensUndershirtPDP() throws Exception {
+
+		new HomePageComponents(driver).navigateToAllUnderShirtsInMensCategory();
+		Check_Preselected_Size();
 	}
 		
 	}

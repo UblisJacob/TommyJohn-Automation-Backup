@@ -160,9 +160,15 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		{
 			if(ele.getText().equalsIgnoreCase("E-Gift Card"))
 			{
+				try {
 				WebElement reviews=driver.findElement(By.xpath("//*[@class='product-meta' and @title='E-Gift Card']/child::div[1]")); 
 				softAssert.assertFalse(reviews.isDisplayed(),"Reviews stars are displayed for 'E Gift Card' product on plp");
-			}
+					}
+				catch(Exception ex)
+				{
+					System.out.println("Reviews stars are not displayed for 'E Gift Card' product on plp");
+				}
+				}
 		else if (ele.getText().equalsIgnoreCase("Tommy John Gift Card")) {
 			
 		}
