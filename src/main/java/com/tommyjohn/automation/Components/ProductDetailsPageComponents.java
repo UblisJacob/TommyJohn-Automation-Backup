@@ -37,6 +37,9 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 	public  static String productprice;
 	public static String productquant;
 	public String price;
+
+	public static String Sizename1;
+	public static String Sizename2;
 	double installment;
 
 
@@ -1749,6 +1752,106 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		}
 
 
+	}
+	
+	public void Check_Preselected_Size() throws Exception
+	{
+		SoftAssert softassert = new SoftAssert();
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CollectionPageLocator.FIRST_PRODUCT));
+		Thread.sleep(3000);
+		String[] title1 = driver.findElement(CollectionPageLocator.FIRST_PRODUCT).getAttribute("data-name").split(",");
+		String pname= title1[0];
+		String[] title = pname.split(" ");
+		
+		String Product_type = title[title.length-1];
+		System.out.println("product type is: "+Product_type);
+		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_TITLE));
+		//new AddToCartComponents(driver).selectSize();
+		Thread.sleep(2000);
+		WebElement second_size = driver.findElement(By.cssSelector("div.radios-wrapper > div.radio-options-container > div > label:nth-child(5)"));
+		second_size.click();
+		allElements = driver.findElements(By.cssSelector("input.sizeOption"));
+		for(int i=1;i<allElements.size();i++)
+		{
+			element = driver.findElement(By.cssSelector("input.sizeOption:nth-child("+(i*2)+")"));
+		 try {
+		        String value = element.getAttribute("checked");
+		        if (value == null){
+		           continue;
+		        }
+		        else {
+		        	 Sizename1 = element.getAttribute("value");
+		        	 System.out.println("size1 is: "+Sizename1);
+		        	 break;
+		        }
+		    } catch (Exception e) {
+		    	System.out.println(element.getAttribute("value")+" size is not selected");
+		    }
+		}
+		
+		driver.navigate().back();
+		//((JavascriptExecutor)driver).executeScript("window.scrollBy(0,450)");
+		Thread.sleep(5000);
+		List<WebElement> producttitle = driver.findElements(By.cssSelector(".product-meta__title"));
+		for (int j=2;j<producttitle.size();j++)
+		{
+			try {
+				if(driver.findElement(By.cssSelector("div.collection-hero--interactive-inner")).isDisplayed())
+					((JavascriptExecutor)driver).executeScript("window.scrollBy(0,250)");
+			element = driver.findElement(By.cssSelector("div.mega-collection-grid > div:nth-child(3) > div:nth-child("+j+") > a> h2"));
+				}
+			catch(Exception e)
+			{
+				((JavascriptExecutor)driver).executeScript("window.scrollBy(0,100)");
+				wait.until(ExpectedConditions.visibilityOfElementLocated(CollectionPageLocator.FIRST_PRODUCT));
+				try {
+					element= driver.findElement(By.cssSelector("div.mega-collection-grid > div > div > div:nth-child("+j+")> a > h2"));
+				}
+				catch(Exception ex)
+				{
+					element= driver.findElement(By.cssSelector("div.mega-collection-grid > div > div > div:nth-child("+(j+1)+")> a > h2"));
+				}
+			}
+			if(element.getText().endsWith(Product_type))
+			{
+				Thread.sleep(3000);
+				System.out.println("2nd selected product name is: "+element.getText());
+				//element.click();
+				((JavascriptExecutor)driver).executeScript("arguments[0].click();",element);
+				break;
+			}
+			else {
+				((JavascriptExecutor)driver).executeScript("window.scrollBy(0,100)");
+				continue;
+			}
+		}
+		Thread.sleep(5000);
+		allElements = driver.findElements(By.cssSelector("input.sizeOption"));
+		for(int k=1;k<allElements.size();k++)
+		{
+			WebElement element1 = driver.findElement(By.cssSelector("input.sizeOption:nth-child("+(k*2)+")"));
+			try {
+		        String value1 = element1.getAttribute("checked");
+		        if (value1 == null){
+		        	continue;
+		        }
+		        else {
+		        	 Sizename2 = element1.getAttribute("value");
+		        	 System.out.println("size2 is: "+Sizename2);
+		        	 break;
+		        }
+		    } catch (Exception e) {
+		    	System.out.println(element1.getAttribute("value")+" size is not selected");
+		    }
+		}
+		System.out.println("selected size is: "+Sizename1+" preselected size is: "+Sizename2);
+		softassert.assertEquals(Sizename1, Sizename2, "Preselect functionality for size options are incorrect");
+
+		Reporter.log("Preselect functionality for sizes are correct on pdp");
+		softassert.assertAll();
+		
 	}
 }
 

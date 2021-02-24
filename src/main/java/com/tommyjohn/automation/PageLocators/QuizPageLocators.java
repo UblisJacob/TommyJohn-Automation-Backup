@@ -6,17 +6,17 @@ public class QuizPageLocators
 {
 
 	//Mens Quiz page
-	public static By GET_STARTED_CTA = By.cssSelector(".cta-container>button.btn-get-started");
+	public static By GET_STARTED_CTA = By.cssSelector(".hero-cta-container>button.hero-get-started-cta");
 	public static By INSTRUCTION_HEADING = By.cssSelector(".question-container>p.instruction");
 	public static By QUESTION_HEADING = By.cssSelector(".question-container>p.heading");
 	public static By QUESTION_BLOCK_OPTIONS = By.cssSelector(".questions-tile-parent>.questions-tile>.question-block");
-	public static By NEXT_CTA = By.cssSelector(".btn-container>button");
+	public static By NEXT_CTA = By.cssSelector("div.go-next>button");
 	public static By PREVIOUS_ARROW = By.cssSelector(".go-back>img");
-	public static By EDUCATION_CARD_TITLE = By.cssSelector(".card-tile>p.education-card-title");
+	public static By EDUCATION_CARD_TITLE = By.cssSelector(".card-title-wrapper>p.education-card-title");
 	public static By SUMMARY_CARD_HEADING = By.cssSelector(".summary-card-block>p.summary-card-heading");
 	public static By SUMMARY_CARD_SUBHEADING = By.cssSelector(".summary-card-sub-heading");
 	public static By SUMMARY_ANSWER = By.cssSelector(".summary-answer");
-	public static By SEE_RESULT_CTA = By.cssSelector(".btn-container>a.btn-next");
+	public static By SEE_RESULT_CTA = By.cssSelector(".go-next>button.go-next-button");
 	
 	public static By QUIZ_ANSWER_HERO_TITLE = By.cssSelector(".quiz-answers-hero__title>p");
 	public static By RETAKE_QUIZ_CTA = By.cssSelector(".quiz-answers-hero__content>a>button.quiz-answers-hero__text-link");

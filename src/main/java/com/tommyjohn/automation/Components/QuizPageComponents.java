@@ -274,7 +274,7 @@ public class QuizPageComponents extends QuizPageLocators
 		//		wait.until(ExpectedConditions.presenceOfElementLocated(PREVIOUS_ARROW));
 		Thread.sleep(5000);
 		softassert.assertTrue(driver.findElement(SUMMARY_CARD_HEADING).isDisplayed(), "Men's Summary card title is not displayed");
-		softassert.assertEquals(driver.findElement(SEE_RESULT_CTA).getText(), "See Results","Text changed for 'See Results' cta on Summary card");
+		softassert.assertEquals(driver.findElement(SEE_RESULT_CTA).getText(), "Get Results","Text changed for 'See Results' cta on Summary card");
 		softassert.assertTrue(driver.findElement(PREVIOUS_ARROW).isDisplayed(), "Back arrow is not displayed on summary card");
 
 		element= driver.findElement(PREVIOUS_ARROW);
@@ -292,7 +292,7 @@ public class QuizPageComponents extends QuizPageLocators
 		list1= text.split(",");
 		for(int j=0;j<=list1.length-1;j++)
 		{
-			summary_result.add(list1[j].toLowerCase().toString());
+			summary_result.add(list1[j].toLowerCase().toString().trim());
 		}
 
 		element = driver.findElement(SEE_RESULT_CTA);
@@ -352,7 +352,7 @@ public class QuizPageComponents extends QuizPageLocators
 		{
 			element = driver.findElement(By.cssSelector(".questions-tile-parent>.questions-tile>div:nth-child("+i+")"));
 
-			if(element.getAttribute("class").contains("onSelect")) {
+			if(element.getAttribute("class").contains("selected")) {
 				OnSelectClasses.add(element);
 			}
 		}
@@ -369,11 +369,13 @@ public class QuizPageComponents extends QuizPageLocators
 		Thread.sleep(3000);
 		softassert.assertTrue(driver.findElement(QUIZ_RESULT_PRODUCT_IMAGE).isDisplayed(), "products are displayed on quiz result page");
 		text= driver.findElement(RESULT_PAGE_SELECTED_VALUES).getText();
-		list2=text.split("\\|");
+		list2=text.split("\\| ");
+		System.out.println("list2 is: "+list2);
 		for(int k=0;k<list2.length-1;k++)
 		{
-			result_page_selected_value.add(list2[k].toLowerCase().toString());
+			result_page_selected_value.add(list2[k].toLowerCase().toString().trim());
 		}
+		System.out.println("summary: "+summary_result+" Result page: "+result_page_selected_value);
 		for(String temp: result_page_selected_value) {
 			if(!summary_result.contains(temp))
 			{

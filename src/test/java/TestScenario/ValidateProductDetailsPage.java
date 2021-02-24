@@ -105,6 +105,24 @@ public class ValidateProductDetailsPage {
 	{
 		new ProductDetailsPage(driver).verifyProductTileHoverFunctionalityforDYRecsOnPDP();
 	}
+	@Test
+	public void TC_VerifyPreselectedSizeOnBraPDP() throws Exception
+	{
+		new ProductDetailsPage(driver).verifyPreselectedSizeOnBraPDP();
+	}
+	
+	
+	@Test
+	public void TC_VerifyPreselectedSizeOnBoxerBriefPDP() throws Exception
+	{
+		new ProductDetailsPage(driver).verifyPreselectedSizeOnBoxerBriefPDP(); 
+	}
+	@Test
+	public void TC_VerifyPreselectedSizeOnMensUndershirtPDP() throws Exception
+	{
+		new ProductDetailsPage(driver).verifyPreselectedSizeOnMensUndershirtPDP();
+	}
+	
 	@AfterMethod(alwaysRun = true)
 	void teardown () {
 		
