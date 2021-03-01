@@ -17,6 +17,7 @@ import org.xbill.DNS.ISDNRecord;
 
 import com.tommyjohn.automation.PageLocators.CollectionPageLocator;
 import com.tommyjohn.automation.PageLocators.FlyCartPageLocator;
+import com.tommyjohn.automation.PageLocators.HomePageLocators;
 import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
 import com.tommyjohn.automation.PageLocators.SizeGuideLocators;
 import com.tommyjohn.automation.utils.CustomUtilities;
@@ -40,6 +41,9 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 	public static String Sizename1;
 	public static String Sizename2;
+	public static String BundleSizename1;
+	public static String BundleSizename2;
+	
 	double installment;
 
 
@@ -696,7 +700,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		text = new CollectionPageComponent(driver).navigateToProductDetailsPage();
 		// call method to check correct PDP opend or not
 		checkCorrectProductDetailsPageOpenedOrNot(text);
-        Thread.sleep(5000);
+		Thread.sleep(5000);
 		WebElement elem = driver.findElement(RATING_STARS);
 		JavascriptExecutor executore = (JavascriptExecutor)driver;
 		executore.executeScript("arguments[0].click();", elem);
@@ -1134,17 +1138,17 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 							jse = (JavascriptExecutor)driver;
 							jse.executeScript("arguments[0].click();", element);
 							Thread.sleep(3000);
-							
-//							WebElement atc = driver.findElement(By.cssSelector("div.multiPdp__atc-container>button"));
-//							String[] classname = atc.getAttribute("class").split(" ");
-//							String atc_status = classname[classname.length-1];
-//							if(!atc_status.equals("email-when-in-stock"))
-//							{
-//							WebElement oos_variant = driver.findElement(By.cssSelector(".product-option__variant-btn.email-when-in-stock"));
-//							jse.executeScript("arguments[0].click();", oos_variant);
-//							Thread.sleep(3000);
-//							}
-							
+
+							//							WebElement atc = driver.findElement(By.cssSelector("div.multiPdp__atc-container>button"));
+							//							String[] classname = atc.getAttribute("class").split(" ");
+							//							String atc_status = classname[classname.length-1];
+							//							if(!atc_status.equals("email-when-in-stock"))
+							//							{
+							//							WebElement oos_variant = driver.findElement(By.cssSelector(".product-option__variant-btn.email-when-in-stock"));
+							//							jse.executeScript("arguments[0].click();", oos_variant);
+							//							Thread.sleep(3000);
+							//							}
+
 							List<WebElement> unavailable_color = driver.findElements(By.cssSelector(".product-option__color-swatches-wrapper > ul >li>input")); 
 							for(int a=1; a<=unavailable_color.size();a++)
 							{
@@ -1158,7 +1162,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 									break;
 								else continue;
 							}
-							
+
 							driver.findElement(ADD_TO_CART_BUTTON).click();
 							Thread.sleep(3000);
 							softAssert.assertEquals(driver.findElement(EMAIL_WHEN_IN_STOCK_TITLE).getText() , "Email Me When Back In Stock" , "Email When In Stock title change");
@@ -1753,19 +1757,125 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 
 	}
-	
+
 	public void Check_Preselected_Size() throws Exception
 	{
 		SoftAssert softassert = new SoftAssert();
+		List<String> selected_bundle_size1 = new ArrayList<String>();
+		List<String> selected_bundle_size2 = new ArrayList<String>();
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CollectionPageLocator.FIRST_PRODUCT));
 		Thread.sleep(3000);
 		String[] title1 = driver.findElement(CollectionPageLocator.FIRST_PRODUCT).getAttribute("data-name").split(",");
 		String pname= title1[0];
 		String[] title = pname.split(" ");
-		
+
 		String Product_type = title[title.length-1];
 		System.out.println("product type is: "+Product_type);
+
+		if(Product_type.equalsIgnoreCase("Set"))
+		{
+			jse=(JavascriptExecutor)driver;
+			jse.executeScript("window.scrollBy(0,250)");
+			Thread.sleep(4000);
+
+			List<WebElement> producttitle = driver.findElements(By.cssSelector(".product-meta__title"));
+
+			for (WebElement packtitle : producttitle)
+			{
+				System.out.println("product title is: "+packtitle.getText());
+				if(packtitle.getText().contains("Lounge Set"))
+				{
+					Thread.sleep(3000);
+					System.out.println(packtitle.getText());
+					packtitle.click();
+					break;
+				}
+			}
+			wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_TITLE));
+            SelectSizeOnBundlePDP();
+            List<WebElement> BundleSize_OptionName = driver.findElements(By.cssSelector("div.radios-wrapper > div.radio-options-container > div"));
+            int BundleSize_OptionCount = BundleSize_OptionName.size();
+			for(int i=1; i<=BundleSize_OptionCount; i++)
+			{
+				allElements = driver.findElements(By.cssSelector("div.radios-wrapper > div.radio-options-container:nth-child("+i+") > div>input.sizeOption"));
+				for(int j=1;j<allElements.size();j++)
+				{
+					element = driver.findElement(By.cssSelector("input.sizeOption:nth-child("+(j*2)+")"));
+					try {
+						String value = element.getAttribute("checked");
+						if (value == null){
+							continue;
+						}
+						else {
+							BundleSizename1 = element.getAttribute("value");
+							selected_bundle_size1.add(BundleSizename1);
+							break;
+						}
+					} catch (Exception e) {
+						System.out.println(element.getAttribute("value")+" size is not selected");
+					}
+				}
+
+			}
+			driver.navigate().back();
+			Thread.sleep(5000);
+			List<WebElement> Bundleproducttitle = driver.findElements(By.cssSelector(".product-meta__title"));
+			for (int k=2;k<Bundleproducttitle.size();k++)
+			{
+				try {
+			element = driver.findElement(By.cssSelector("div.mega-collection-grid > div:nth-child(3) > div:nth-child("+k+") > a> h2"));
+				}
+				catch(Exception ex)
+				{
+					element = driver.findElement(By.cssSelector("div.mega-collection-grid > div:nth-child(3) > div:nth-child("+(k+1)+") > a> h2"));
+				}
+			String[] Bundletitle1 = element.getText().split(",");
+			String Bundle_pname= Bundletitle1[0];
+			String[] BundleProducttitle = Bundle_pname.split(" ");
+			String Bundle_Product_type = BundleProducttitle[BundleProducttitle.length-1];
+			if(element.getText().endsWith(Bundle_Product_type))
+			{
+				Thread.sleep(3000);
+				System.out.println("2nd selected product name is: "+element.getText());
+				((JavascriptExecutor)driver).executeScript("arguments[0].click();",element);
+				break;
+			}
+			else {
+				((JavascriptExecutor)driver).executeScript("window.scrollBy(0,100)");
+				continue;
+			}
+			}
+			
+            List<WebElement> BundleSize_OptionName2 = driver.findElements(By.cssSelector("div.radios-wrapper > div.radio-options-container > div"));
+            int BundleSize_OptionCount2 = BundleSize_OptionName2.size();
+			for(int i=1; i<=BundleSize_OptionCount2; i++)
+			{
+				allElements = driver.findElements(By.cssSelector("div.radios-wrapper > div.radio-options-container:nth-child("+i+") > div>input.sizeOption"));
+				for(int j=1;j<allElements.size();j++)
+				{
+					element = driver.findElement(By.cssSelector("input.sizeOption:nth-child("+(j*2)+")"));
+					try {
+						String value = element.getAttribute("checked");
+						if (value == null){
+							continue;
+						}
+						else {
+							BundleSizename1 = element.getAttribute("value");
+							selected_bundle_size2.add(BundleSizename1);
+							break;
+						}
+					} catch (Exception e) {
+						System.out.println(element.getAttribute("value")+" size is not selected");
+					}
+				}
+
+			}
+			
+			System.out.println("selected size is: "+selected_bundle_size1+" preselected size is: "+selected_bundle_size2);
+			softassert.assertTrue(selected_bundle_size1.equals(selected_bundle_size2), "Preselect functionality for size options are incorrect on Bundle pdp");
+			}
+		else {
 		new CollectionPageComponent(driver).navigateToProductDetailsPage();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_TITLE));
 		//new AddToCartComponents(driver).selectSize();
@@ -1776,21 +1886,21 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		for(int i=1;i<allElements.size();i++)
 		{
 			element = driver.findElement(By.cssSelector("input.sizeOption:nth-child("+(i*2)+")"));
-		 try {
-		        String value = element.getAttribute("checked");
-		        if (value == null){
-		           continue;
-		        }
-		        else {
-		        	 Sizename1 = element.getAttribute("value");
-		        	 System.out.println("size1 is: "+Sizename1);
-		        	 break;
-		        }
-		    } catch (Exception e) {
-		    	System.out.println(element.getAttribute("value")+" size is not selected");
-		    }
+			try {
+				String value = element.getAttribute("checked");
+				if (value == null){
+					continue;
+				}
+				else {
+					Sizename1 = element.getAttribute("value");
+					System.out.println("size1 is: "+Sizename1);
+					break;
+				}
+			} catch (Exception e) {
+				System.out.println(element.getAttribute("value")+" size is not selected");
+			}
 		}
-		
+
 		driver.navigate().back();
 		//((JavascriptExecutor)driver).executeScript("window.scrollBy(0,450)");
 		Thread.sleep(5000);
@@ -1800,8 +1910,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			try {
 				if(driver.findElement(By.cssSelector("div.collection-hero--interactive-inner")).isDisplayed())
 					((JavascriptExecutor)driver).executeScript("window.scrollBy(0,250)");
-			element = driver.findElement(By.cssSelector("div.mega-collection-grid > div:nth-child(3) > div:nth-child("+j+") > a> h2"));
-				}
+				element = driver.findElement(By.cssSelector("div.mega-collection-grid > div:nth-child(3) > div:nth-child("+j+") > a> h2"));
+			}
 			catch(Exception e)
 			{
 				((JavascriptExecutor)driver).executeScript("window.scrollBy(0,100)");
@@ -1833,25 +1943,81 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		{
 			WebElement element1 = driver.findElement(By.cssSelector("input.sizeOption:nth-child("+(k*2)+")"));
 			try {
-		        String value1 = element1.getAttribute("checked");
-		        if (value1 == null){
-		        	continue;
-		        }
-		        else {
-		        	 Sizename2 = element1.getAttribute("value");
-		        	 System.out.println("size2 is: "+Sizename2);
-		        	 break;
-		        }
-		    } catch (Exception e) {
-		    	System.out.println(element1.getAttribute("value")+" size is not selected");
-		    }
+				String value1 = element1.getAttribute("checked");
+				if (value1 == null){
+					continue;
+				}
+				else {
+					Sizename2 = element1.getAttribute("value");
+					System.out.println("size2 is: "+Sizename2);
+					break;
+				}
+			} catch (Exception e) {
+				System.out.println(element1.getAttribute("value")+" size is not selected");
+			}
 		}
 		System.out.println("selected size is: "+Sizename1+" preselected size is: "+Sizename2);
 		softassert.assertEquals(Sizename1, Sizename2, "Preselect functionality for size options are incorrect");
-
+		}
 		Reporter.log("Preselect functionality for sizes are correct on pdp");
 		softassert.assertAll();
-		
+
+	}
+
+	public void ErrorMessagewithMaxQTYonPDP() throws Exception
+	{
+		SoftAssert softassert = new SoftAssert();
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CollectionPageLocator.FIRST_PRODUCT));
+		Thread.sleep(3000);
+		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_TITLE));
+		new AddToCartComponents(driver).selectSize();
+		if(!driver.findElement(ADD_TO_CART_BUTTON).isEnabled())
+			throw new Exception("ADD TO CART button is not present");
+		element = driver.findElement(ADD_TO_CART_BUTTON);
+		jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].click();", element);
+		Thread.sleep(2000);
+
+		driver.navigate().refresh();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HomePageLocators.CART_ICON));
+		driver.findElement(HomePageLocators.CART_ICON).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.FIRST_PRODUCT_TITLE_IN_CART));
+		driver.findElement(FlyCartPageLocator.QUANTITY).sendKeys("100000000");
+		Thread.sleep(3000);
+		driver.findElement(FlyCartPageLocator.PLUS_BUTTON).click();
+		Thread.sleep(2000);
+		driver.findElement(FlyCartPageLocator.INLINE_CART_CLOSE_BUTTON).click();
+		Thread.sleep(3000);
+		driver.findElement(ADD_TO_CART_BUTTON).click();
+		Thread.sleep(5000);
+		softassert.assertTrue(driver.findElement(LOW_INVENTORY_MSG).isDisplayed(), "On pdp 'Low inventory message' is not displayed with maximum qty added to cart");
+		softassert.assertAll();
+		Reporter.log("'Low inventory message' is verified on PDP");
+	}
+
+	public void SelectSizeOnBundlePDP() throws Exception
+	{
+		allElements = driver.findElements(ALL_SIZE_LIST);
+		elementsCount = allElements.size();
+		System.out.println("All sizes list :: "+ elementsCount);
+		if(driver.findElement(By.cssSelector(".radio-options-container")).isDisplayed())
+		{
+			//radio
+			List<WebElement> Size_OptionName = driver.findElements(By.cssSelector("div.radios-wrapper > div.radio-options-container > div"));
+			int Size_OptionCount = Size_OptionName.size();
+			for(int i=1; i<=Size_OptionCount; i++)
+			{
+				Thread.sleep(3000);
+				List<WebElement> Sizes_Label = driver.findElements(By.cssSelector("div.radios-wrapper>div:nth-child("+i+")>div.Size>label"));
+				elementsCount = Sizes_Label.size();
+				System.out.println("All sizes list count is :: "+ elementsCount);
+
+				WebElement second_size_option = driver.findElement(By.cssSelector("div.radios-wrapper > div.radio-options-container:nth-child("+i+")> div > label:nth-child(5)"));
+				second_size_option.click();
+			}
+		}
 	}
 }
 

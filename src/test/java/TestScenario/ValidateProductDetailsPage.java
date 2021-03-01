@@ -122,7 +122,16 @@ public class ValidateProductDetailsPage {
 	{
 		new ProductDetailsPage(driver).verifyPreselectedSizeOnMensUndershirtPDP();
 	}
-	
+	@Test
+	public void TC_VerifyPreselectedSizeOnBundlePDP() throws Exception
+	{
+		new ProductDetailsPage(driver).verifyPreselectedSizeOnBundlePDP();
+	}
+	@Test
+	public void TC_VerifyLowInventoryMessageOnMensUnderwearPDP() throws Exception
+	{
+		new ProductDetailsPage(driver).verifyLowInventoryMessageOnMensUnderwearPDP();
+	}
 	@AfterMethod(alwaysRun = true)
 	void teardown () {
 		
