@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import com.tommyjohn.automation.Components.CollectionPageComponent;
 import com.tommyjohn.automation.Components.HomePageComponents;
 import com.tommyjohn.automation.Components.ProductDetailsPageComponents;
+import com.tommyjohn.automation.Components.SizeGuideComponents;
 
 public class ProductDetailsPage extends ProductDetailsPageComponents{
 	WebDriver driver;
@@ -121,6 +122,18 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 
 		new HomePageComponents(driver).navigateToAllUnderShirtsInMensCategory();
 		Check_Preselected_Size();
+	}
+
+	public void verifyPreselectedSizeOnBundlePDP() throws Exception {
+
+		new HomePageComponents(driver).navigateToLoungeWearPacksInWomenPacksCategory();
+		Check_Preselected_Size();
+	}
+
+	public void verifyLowInventoryMessageOnMensUnderwearPDP() throws Exception {
+
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
+		ErrorMessagewithMaxQTYonPDP();
 	}
 		
 	}
