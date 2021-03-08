@@ -42,9 +42,12 @@ public class ValidateHeapEvents {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("javascript:window.scrollBy(0,300)");
 		Thread.sleep(3000);
-		WebElement homepage_cta = driver.findElement(By.xpath("//a[@type='button']"));
+		WebElement homepage_cta = driver.findElement(By.cssSelector("div.overlay-contents > a:nth-child(3)"));
 		if(homepage_cta.isDisplayed())
-			homepage_cta.click();
+			//homepage_cta.click();
+			js.executeScript("arguments[0].click();", homepage_cta);
+		else
+			throw new Exception("There are no cta to click on homepage");
 		String logEntries = driver.manage().logs().getAvailableLogTypes().toString();
 		System.out.println("Homepage logentries: "+logEntries);
 

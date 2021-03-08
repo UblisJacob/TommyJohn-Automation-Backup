@@ -1,7 +1,9 @@
 package com.tommyjohn.automation.Pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import com.tommyjohn.automation.Components.CollectionPageComponent;
 import com.tommyjohn.automation.Components.HomePageComponents;
@@ -109,7 +111,14 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 	public void verifyPreselectedSizeOnBraPDP() throws Exception {
 
 		new HomePageComponents(driver).navigateToBraCategory();
-		((JavascriptExecutor)driver).executeScript("window.scrollBy(0,250)");
+		Thread.sleep(3000);
+		((JavascriptExecutor)driver).executeScript("window.scrollBy(0,100)");
+		element=driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child(2) > a"));
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].click();", element);
+		WebElement Triangle_Bralette = driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child(2) > ul > li>label>input#option-style-triangle-bralette"));
+		jse.executeScript("arguments[0].click();", Triangle_Bralette);
+		((JavascriptExecutor)driver).executeScript("window.scrollBy(0,150)");
 		Check_Preselected_Size();
 	}
 
