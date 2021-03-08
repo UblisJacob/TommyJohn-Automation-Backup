@@ -448,46 +448,10 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 			softAssert.assertTrue(driver.findElement(AFTERPAYLOGO_WITH_INSTALLMENT).isDisplayed(), "Afterpay logo not present on Shopping cart");
 			Reporter.log("After pay logo icon is displayed on Checkout page :: Displayed");
 		}
-		driver.findElement(By.cssSelector(".breadcrumb > li:nth-child(1) > a")).click();
+	//	driver.findElement(By.cssSelector(".breadcrumb > li:nth-child(1) > a")).click();
 		Thread.sleep(5000);
-
-		//		//Gift Card Added To Cart
-		//  		new GiftCardPageComponents(driver).AddGiftCardTocart();
-		//  		Thread.sleep(3000);
-		//  		
-		//  		wait = new WebDriverWait(driver, 20);
-		//		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.CHECKOUT_BUTTON));
-		//		driver.findElement(FlyCartPageLocator.CHECKOUT_BUTTON).click();
-		//		Thread.sleep(5000);
-		//		
-		//		//Check gift cart with normal product in CheckOut Page
-		//		allElements = driver.findElements(LIST_OF_ITEM_IN_PAYMENT_PAGE);
-		//		System.out.println("Total item in cart is: "+allElements.size());
-		//		for(int i=1; i<=allElements.size();i++)
-		//		{
-		//			String title = driver.findElement(By.cssSelector("tbody > tr:nth-child("+i+") > td.product__description > span.product__description__name.order-summary__emphasis")).getText();
-		//			System.out.println("product title in fly cart is: " +title);
-		//			if(title.equalsIgnoreCase("E-Gift Card"))
-		//			{
-		//				try{
-		//					System.out.println("Verifying for AfterPay Message .......");
-		//					if(!driver.findElement(AFTERPAY_OPTION).getAttribute("style").equalsIgnoreCase("display: none;"))
-		//						throw new Exception("AfterPay Message is displayed on payment page with Gift Card.");
-		//					Reporter.log("AfterPay Message is displayed on Checkout page with Gift Card");
-		//				}
-		//				catch(NoSuchElementException e){
-		//					System.out.println("After Pay Message is not displayed on payment page with Gift Card.");
-		//					Reporter.log("After Pay Message is not displayed on Checkout page with Gift Card");
-		//				}
-		//			}
-		//			
-		//		}
-
 		softAssert.assertAll();
 	}
-
-
-
 	public void CheckAfterPayForAddressOtherThanUS() throws Exception
 	{
 		//add product to cart
@@ -495,8 +459,6 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		new HomePageComponents(driver).navigateToBraCategory();
 		new CollectionPageComponent(driver).navigateToProductDetailsPage();
 		new ProductDetailsPageComponents(driver).validatePage();
-
-
 		driver.findElement(HomePageLocators.CART_ICON).click();
 
 		//Click on Checkout button in inline cart
@@ -534,34 +496,21 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 			System.out.println("After Pay Message is not displayed on checkout page for address other than US.");
 			Reporter.log("After Pay Message is not displayed on Checkout page for address other than US.");
 		}
-
-
-
-
 	}
 	public void entershippingAddressOtherThanUS()
 	{
-
-
 		driver.findElement(ADDRESS1_TEXTBOX).sendKeys("123 Test Adress");
-
 		driver.findElement(ADDRESS2_TEXTBOX).sendKeys("Suite1");
-
 		driver.findElement(CITY_TEXTBOX).sendKeys("Perth");
 		WebElement countrydp = driver.findElement(COUNTRY_DROPDOWN);
 		Select country = new Select(countrydp);
 		country.selectByValue("Australia");
-
 		WebElement statedp = driver.findElement(STATE_DROPDOWN);
 		Select state = new Select(statedp);
 		state.selectByValue("WA");
-
-
 		driver.findElement(PINCODE_TEXTBOX).sendKeys("6000");
-
 		driver.findElement(PHONE_TEXTBOX).sendKeys("8889996667");
 	}
-
 
 }
 
