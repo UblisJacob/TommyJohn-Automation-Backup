@@ -1760,6 +1760,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 	public void Check_Preselected_Size() throws Exception
 	{
+		
 		SoftAssert softassert = new SoftAssert();
 		List<String> selected_bundle_size1 = new ArrayList<String>();
 		List<String> selected_bundle_size2 = new ArrayList<String>();
@@ -1772,14 +1773,31 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 		String Product_type = title[title.length-1];
 		System.out.println("product type is: "+Product_type);
+		element= driver.findElement(CollectionPageLocator.FIRST_PRODUCT);
+		List<WebElement> producttitle = driver.findElements(By.cssSelector(".product-meta__title"));
+		if(Product_type.equalsIgnoreCase("Pack"))
+		{		
+			for (WebElement packtitle : producttitle)
+			{
+				System.out.println("product title is: "+packtitle.getText());
+				if(packtitle.getText().contains("Lounge Set"))
+				{
+					Thread.sleep(3000);
+					System.out.println(packtitle.getText());
+					element = packtitle;
+					break;
+				}
+			}
 
-		if(Product_type.equalsIgnoreCase("Set"))
+		}
+				
+		if((Product_type.equalsIgnoreCase("Set")||element.getText().contains("Set")))
 		{
 			jse=(JavascriptExecutor)driver;
 			jse.executeScript("window.scrollBy(0,250)");
 			Thread.sleep(4000);
 
-			List<WebElement> producttitle = driver.findElements(By.cssSelector(".product-meta__title"));
+			producttitle = driver.findElements(By.cssSelector(".product-meta__title"));
 
 			for (WebElement packtitle : producttitle)
 			{
@@ -1904,7 +1922,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		driver.navigate().back();
 		//((JavascriptExecutor)driver).executeScript("window.scrollBy(0,450)");
 		Thread.sleep(5000);
-		List<WebElement> producttitle = driver.findElements(By.cssSelector(".product-meta__title"));
+		producttitle = driver.findElements(By.cssSelector(".product-meta__title"));
 		for (int j=2;j<producttitle.size();j++)
 		{
 			try {
@@ -1959,6 +1977,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		System.out.println("selected size is: "+Sizename1+" preselected size is: "+Sizename2);
 		softassert.assertEquals(Sizename1, Sizename2, "Preselect functionality for size options are incorrect");
 		}
+		
 		Reporter.log("Preselect functionality for sizes are correct on pdp");
 		softassert.assertAll();
 
