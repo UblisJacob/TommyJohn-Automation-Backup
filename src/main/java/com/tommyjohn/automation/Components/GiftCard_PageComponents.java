@@ -54,13 +54,22 @@ public class GiftCard_PageComponents extends GiftCard_PageLocators {
 		allElements = driver.findElements(PRICE_OPTIONS);
 		elementsCount = allElements.size();
 		System.out.println("All sizes list :: "+ elementsCount);
-
+		 try {
+				if(driver.findElement(By.cssSelector("div.radio-options-container")).isDisplayed())
+				{
+					allElements.get(0).click();
+				}
+				}
+		
+		 catch(Exception e)
+		 {
 		for(int i=1;i<=elementsCount;i++) {
 			driver.findElement(PRICE_DROPDOWN).click();
 			element = driver.findElement(By.cssSelector(".select--options__list > li:nth-child("+i+") > div"));
 			element.click();
 			Thread.sleep(3000);
 		}
+		 }
 		driver.findElement(RECIPIENT_MAIL_TEXTBOX).sendKeys("testaccount00001@gmail.com");
 		Thread.sleep(3000);
 		driver.findElement(CONFIRM_MAIL_TEXTBOX).sendKeys("testaccount00001@gmail.com");
@@ -561,6 +570,7 @@ public class GiftCard_PageComponents extends GiftCard_PageLocators {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ShoppingCartLocators.CHECKOUT_BUTTON));
 		driver.findElement(ShoppingCartLocators.CHECKOUT_BUTTON).click();
 		Thread.sleep(5000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CheckoutPageComponents.CHECKOUT_EMAIL));
 		driver.findElement(CheckoutPageComponents.CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
 		new CheckoutPageComponents(driver).entershippingdetails();
 		Thread.sleep(3000);
