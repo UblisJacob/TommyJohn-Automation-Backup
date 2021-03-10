@@ -37,7 +37,7 @@ public class CheckoutPageLocators {
 	public static By PHONE_TEXTBOX = By.cssSelector("#checkout_shipping_address_phone");
 	public static By REMEMBERME_CHCKBOX = By.cssSelector("#checkout_remember_me");
 	public static By RETURN_TO_CART_LINK = By.cssSelector(".step__footer__previous-link");
-	public static By CONTINUE_TO_SHIPPING_BUTTON = By.cssSelector(".step__footer__continue-btn.btn ");
+	public static By CONTINUE_TO_SHIPPING_BUTTON = By.cssSelector(".step__footer__continue-btn.btn");
 
 
 	//SideBar

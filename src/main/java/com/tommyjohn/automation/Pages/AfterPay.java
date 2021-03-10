@@ -52,5 +52,10 @@ public class AfterPay {
 	{
 		new CheckoutPageComponents(driver).CheckAfterPayForAddressOtherThanUS();
 	}
+	
+	public void AfterpaywithPromoCodeChnageOnPaymentPage() throws Exception
+	{
+		new CheckoutPageComponents(driver).AfterPayMessageByModifyingPromoCode();
+	}
 }
 
