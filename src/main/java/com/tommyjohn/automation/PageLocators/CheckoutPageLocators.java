@@ -12,10 +12,10 @@ public class CheckoutPageLocators {
 	public static By PAYPAL_BUTTON = By.cssSelector(".paypal-button");
 	public static By GPAY_BUTTON = By.xpath("//div[@data-testid = 'GooglePay-button']");
 	public static By AMZ_PAY = By.xpath("//form[@action = 'https://payments.amazon.com/checkout/signin'] /button" );
-	public static By BREADCRUMB_LINK_CART = By.cssSelector("ul.breadcrumb>li:nth-child(1) >a");
-	public static By BREADCRUMB_LINK_INFORMATION = By.cssSelector("ul.breadcrumb>li:nth-child(2)");
-	public static By BREADCRUMB_LINK_SHIPPING = By.cssSelector("ul.breadcrumb>li:nth-child(3)");
-	public static By BREADCRUMB_LINK_PAYMENT = By.cssSelector("ul.breadcrumb>li:nth-child(4)");
+	public static By BREADCRUMB_LINK_CART = By.cssSelector("ol.breadcrumb>li:nth-child(1) >a");
+	public static By BREADCRUMB_LINK_INFORMATION = By.cssSelector("ol.breadcrumb>li:nth-child(2)");
+	public static By BREADCRUMB_LINK_SHIPPING = By.cssSelector("ol.breadcrumb>li:nth-child(3)");
+	public static By BREADCRUMB_LINK_PAYMENT = By.cssSelector("ol.breadcrumb>li:nth-child(4)");
 	
 	
 	//Contact info 
@@ -37,7 +37,7 @@ public class CheckoutPageLocators {
 	public static By PHONE_TEXTBOX = By.cssSelector("#checkout_shipping_address_phone");
 	public static By REMEMBERME_CHCKBOX = By.cssSelector("#checkout_remember_me");
 	public static By RETURN_TO_CART_LINK = By.cssSelector(".step__footer__previous-link");
-	public static By CONTINUE_TO_SHIPPING_BUTTON = By.cssSelector(".step__footer__continue-btn.btn ");
+	public static By CONTINUE_TO_SHIPPING_BUTTON = By.cssSelector(".step__footer__continue-btn.btn");
 
 
 	//SideBar
