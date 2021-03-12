@@ -1,10 +1,14 @@
 package com.tommyjohn.automation.Pages;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import com.tommyjohn.automation.Components.CollectionPageComponent;
 import com.tommyjohn.automation.Components.HomePageComponents;
 import com.tommyjohn.automation.Components.ProductDetailsPageComponents;
+import com.tommyjohn.automation.Components.SizeGuideComponents;
 
 public class ProductDetailsPage extends ProductDetailsPageComponents{
 	WebDriver driver;
@@ -103,6 +107,42 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 		new CollectionPageComponent(driver).navigateToProductDetailsPage();
 		Thread.sleep(5000);
 		new HomePageComponents(driver).RFY_ProductTileHoverFunctionality();
+	}
+	public void verifyPreselectedSizeOnBraPDP() throws Exception {
+
+		new HomePageComponents(driver).navigateToBraCategory();
+		Thread.sleep(3000);
+		((JavascriptExecutor)driver).executeScript("window.scrollBy(0,100)");
+		element=driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child(2) > a"));
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].click();", element);
+		WebElement Triangle_Bralette = driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child(2) > ul > li>label>input#option-style-triangle-bralette"));
+		jse.executeScript("arguments[0].click();", Triangle_Bralette);
+		((JavascriptExecutor)driver).executeScript("window.scrollBy(0,150)");
+		Check_Preselected_Size();
+	}
+
+	public void verifyPreselectedSizeOnBoxerBriefPDP() throws Exception {
+
+		new HomePageComponents(driver).navigateToBoxerBriefInMenCategory();
+		Check_Preselected_Size();
+	}
+	public void verifyPreselectedSizeOnMensUndershirtPDP() throws Exception {
+
+		new HomePageComponents(driver).navigateToAllUnderShirtsInMensCategory();
+		Check_Preselected_Size();
+	}
+
+	public void verifyPreselectedSizeOnBundlePDP() throws Exception {
+
+		new HomePageComponents(driver).navigateToLoungeWearPacksInWomenPacksCategory();
+		Check_Preselected_Size();
+	}
+
+	public void verifyLowInventoryMessageOnMensUnderwearPDP() throws Exception {
+
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
+		ErrorMessagewithMaxQTYonPDP();
 	}
 		
 	}

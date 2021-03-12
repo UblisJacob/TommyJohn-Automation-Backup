@@ -64,7 +64,12 @@ public class ValidateAfterPay {
 		new AfterPay(driver).ValidateAfterPayforAddressotherThanUS();
 	
 	}
-
+	@Test
+	public void ValidateAfterpayWithPromoCodeChnageOnPaymentPage() throws Exception
+	{
+		new AfterPay(driver).AfterpaywithPromoCodeChnageOnPaymentPage();
+	
+	}
 
 	@AfterMethod(alwaysRun = true)
 	void teardown () {

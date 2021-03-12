@@ -6,7 +6,7 @@ public class ProductDetailsPageLocators {
 
 	public static By FIRST_PRODUCT_REVIEW_STARS = By.cssSelector("div.mega-collection-grid__row:nth-child(3) > div:nth-child(3) > a > div");
 
-	public static By PRODUCT_TITLE = By.cssSelector("div.desktop-view > div.product-info__title-wrap > h1.product-info__title");
+	public static By PRODUCT_TITLE = By.cssSelector("div.multi-pdp-title-wrap.desktop-view.desktop > div.product-info__title-wrap > h1");
 	//	public static By PRODUCT_PRICE = By.cssSelector("div.product-info__inner-top > span > span:nth-child(2)");
 	public static By PRODUCT_PRICE = By.cssSelector("div.multi-pdp-title-wrap.desktop-view > div.product-info__price-wrap >span > span:nth-child(2)");
 
@@ -44,7 +44,8 @@ public class ProductDetailsPageLocators {
 	public static By SHIPING_AND_RETURNS = By.cssSelector("div.product-accordion.container> ul > li:nth-child(2) > div:nth-child(1) > a");
 	public static By CHECKOUT_BUTTON = By.cssSelector(".inline-cart__action-btns > a");
 	//public static By COLOR_AND_SIZE = By.cssSelector("div.product-info__variant-select > div:nth-child(1) > div.product-info__header.hide > span");
-
+    public static By LOW_INVENTORY_MSG = By.cssSelector("div.product-info_low-inventory-message");
+	
 	//afterpay
 
 	public static By AFTERPAY_PDP = By.cssSelector("div.desktop-view.desktop > .afterpay-pdp-container > p");
