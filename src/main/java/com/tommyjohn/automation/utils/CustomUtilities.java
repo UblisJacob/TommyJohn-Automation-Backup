@@ -78,7 +78,8 @@ if (browser.equalsIgnoreCase("chrome"))
 		// System.setProperty("webdriver.chrome.driver"
 		// ,"src\\main\\resources\\chromedriver.exe");
 		// System.setProperty("webdriver.chrome.driver" ,"/tmp/chromedriver.exe");
-		System.setProperty("webdriver.chrome.driver", properties.getProperty("chromeDriverPath"));
+		System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
+		System.setProperty("webdriver.chrome.whitelistedIps", "");
 		ChromeOptions chromeOptions = new ChromeOptions();
 		chromeOptions.addArguments("--headless");
 		chromeOptions.addArguments("--window-size=1280,800");
