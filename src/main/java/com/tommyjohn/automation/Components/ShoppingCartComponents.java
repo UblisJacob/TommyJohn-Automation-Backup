@@ -189,13 +189,11 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 	
 	public void validateafterpayonShoppingCart() throws Exception
 	{
-		
-		//product add to cart
-		new HomePageComponents(driver).navigateToBraCategory();
-		new CollectionPageComponent(driver).navigateToProductDetailsPage();
-		new ProductDetailsPageComponents(driver).validatePage();
-
-        //navigate to shopping cart page
+//		new HomePageComponents(driver).navigateToBraCategory();
+//		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+	//	new ProductDetailsPageComponents(driver).validatePage();
+		new AddToCartComponents(driver).addToCart();
+	    //navigate to shopping cart page
 		driver.findElement(HomePageLocators.CART_ICON).click();
 		WebDriverWait wait = new WebDriverWait(driver, 20);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));

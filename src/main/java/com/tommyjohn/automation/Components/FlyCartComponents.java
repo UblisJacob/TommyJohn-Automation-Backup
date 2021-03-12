@@ -419,11 +419,11 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		System.out.println("price1  :: "+price1);
 
 
-				double p = Float.parseFloat(price);
-				double p2 = Float.parseFloat(price2);
-				double p1 = Float.parseFloat(price1);
-				// check the total estimated price is displayed correctly when added gift wrap price
-				softAssert.assertTrue(p1 == p2+p, "Total estimated price is not correct");
+		double p = Float.parseFloat(price);
+		double p2 = Float.parseFloat(price2);
+		double p1 = Float.parseFloat(price1);
+		// check the total estimated price is displayed correctly when added gift wrap price
+		softAssert.assertTrue(p1 == p2+p, "Total estimated price is not correct");
 
 		driver.get(CustomUtilities.baseUrl);
 
@@ -432,25 +432,19 @@ public class FlyCartComponents extends FlyCartPageLocator{
 
 	public void validateafterpayoninlinecart() throws Exception
 	{
-		//product add to cart
 
-		// call method to navigate to collection page
-		new HomePageComponents(driver).navigateToBraCategory();
-
-		// call method to navigate product details page
-		new CollectionPageComponent(driver).navigateToProductDetailsPage();
-		new ProductDetailsPageComponents(driver).validatePage();
-
+//		new HomePageComponents(driver).navigateToBraCategory();
+//
+//		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		//	new ProductDetailsPageComponents(driver).validatePage();
+		new AddToCartComponents(driver).addToCart();
 		driver.findElement(HomePageLocators.CART_ICON).click();
 		Thread.sleep(3000);
-
-		//Check AfterPay message display
 
 		if(!driver.findElement(AFTERPAYTEXT).isDisplayed())
 			throw new Exception("AfterPay Message not present on Fly cart.");
 		Reporter.log("After pay Message is displayed on Inline Cart :: Displayed");
 
-		//Check message with calculated installment and icon display
 		price = driver.findElement(ESTIMATE_TOTAL_PRICE).getText();
 		String[] price1 = price.split("\\$");
 		String price2 = price1[price1.length-1];

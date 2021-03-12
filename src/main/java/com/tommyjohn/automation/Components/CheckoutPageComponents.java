@@ -365,7 +365,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	public void CheckPromoCodeApplication() throws Exception
 	{
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		String Promo_Code = "FIRST15";
+		String Promo_Code = "MOBILE25";
 		driver.findElement(DISCOUNT_CODE_TEXTBOX).sendKeys(Promo_Code);
 		driver.findElement(APPLY_DISCOUNT_BUTTON).click();
 		//Thread.sleep(3000);
@@ -385,8 +385,8 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		//product add to cart
 		new HomePageComponents(driver).navigateToBraCategory();
 		new CollectionPageComponent(driver).navigateToProductDetailsPage();
-		new ProductDetailsPageComponents(driver).validatePage();
-
+		//	new ProductDetailsPageComponents(driver).validatePage();
+		new AddToCartComponents(driver).addToCart();
 		//navigate to Checkout page
 		driver.findElement(HomePageLocators.CART_ICON).click();
 		WebDriverWait wait = new WebDriverWait(driver, 20);
@@ -410,7 +410,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		Thread.sleep(10000);
 
 		//Check AfterPay message is display
-		wait = new WebDriverWait(driver, 30);
+		wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(AFTERPAY_OPTION));
 		if(!driver.findElement(AFTERPAY_OPTION).isDisplayed())
 			throw new Exception("After pay option is not displayed on checkout page.");
@@ -448,55 +448,15 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 			softAssert.assertTrue(driver.findElement(AFTERPAYLOGO_WITH_INSTALLMENT).isDisplayed(), "Afterpay logo not present on Shopping cart");
 			Reporter.log("After pay logo icon is displayed on Checkout page :: Displayed");
 		}
-		driver.findElement(By.cssSelector(".breadcrumb > li:nth-child(1) > a")).click();
+		//	driver.findElement(By.cssSelector(".breadcrumb > li:nth-child(1) > a")).click();
 		Thread.sleep(5000);
-
-		//		//Gift Card Added To Cart
-		//  		new GiftCardPageComponents(driver).AddGiftCardTocart();
-		//  		Thread.sleep(3000);
-		//  		
-		//  		wait = new WebDriverWait(driver, 20);
-		//		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.CHECKOUT_BUTTON));
-		//		driver.findElement(FlyCartPageLocator.CHECKOUT_BUTTON).click();
-		//		Thread.sleep(5000);
-		//		
-		//		//Check gift cart with normal product in CheckOut Page
-		//		allElements = driver.findElements(LIST_OF_ITEM_IN_PAYMENT_PAGE);
-		//		System.out.println("Total item in cart is: "+allElements.size());
-		//		for(int i=1; i<=allElements.size();i++)
-		//		{
-		//			String title = driver.findElement(By.cssSelector("tbody > tr:nth-child("+i+") > td.product__description > span.product__description__name.order-summary__emphasis")).getText();
-		//			System.out.println("product title in fly cart is: " +title);
-		//			if(title.equalsIgnoreCase("E-Gift Card"))
-		//			{
-		//				try{
-		//					System.out.println("Verifying for AfterPay Message .......");
-		//					if(!driver.findElement(AFTERPAY_OPTION).getAttribute("style").equalsIgnoreCase("display: none;"))
-		//						throw new Exception("AfterPay Message is displayed on payment page with Gift Card.");
-		//					Reporter.log("AfterPay Message is displayed on Checkout page with Gift Card");
-		//				}
-		//				catch(NoSuchElementException e){
-		//					System.out.println("After Pay Message is not displayed on payment page with Gift Card.");
-		//					Reporter.log("After Pay Message is not displayed on Checkout page with Gift Card");
-		//				}
-		//			}
-		//			
-		//		}
-
 		softAssert.assertAll();
 	}
-
-
-
 	public void CheckAfterPayForAddressOtherThanUS() throws Exception
 	{
 		//add product to cart
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		new HomePageComponents(driver).navigateToBraCategory();
-		new CollectionPageComponent(driver).navigateToProductDetailsPage();
-		new ProductDetailsPageComponents(driver).validatePage();
-
-
+		new AddToCartComponents(driver).addToCart();
 		driver.findElement(HomePageLocators.CART_ICON).click();
 
 		//Click on Checkout button in inline cart
@@ -505,7 +465,6 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		Thread.sleep(5000);
 
 		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
-		//Enter shipping Address with other than US 
 		entershippingAddressOtherThanUS();
 		Thread.sleep(3000);
 
@@ -534,32 +493,93 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 			System.out.println("After Pay Message is not displayed on checkout page for address other than US.");
 			Reporter.log("After Pay Message is not displayed on Checkout page for address other than US.");
 		}
-
-
-
-
 	}
 	public void entershippingAddressOtherThanUS()
 	{
-
-
 		driver.findElement(ADDRESS1_TEXTBOX).sendKeys("123 Test Adress");
-
 		driver.findElement(ADDRESS2_TEXTBOX).sendKeys("Suite1");
-
 		driver.findElement(CITY_TEXTBOX).sendKeys("Perth");
 		WebElement countrydp = driver.findElement(COUNTRY_DROPDOWN);
 		Select country = new Select(countrydp);
 		country.selectByValue("Australia");
-
 		WebElement statedp = driver.findElement(STATE_DROPDOWN);
 		Select state = new Select(statedp);
 		state.selectByValue("WA");
-
-
 		driver.findElement(PINCODE_TEXTBOX).sendKeys("6000");
-
 		driver.findElement(PHONE_TEXTBOX).sendKeys("8889996667");
+	}
+	public void AfterPayMessageByModifyingPromoCode() throws Exception
+	{
+		AfterpayonCheckout();
+		jse = (JavascriptExecutor)driver;
+		String Promo_Code = "MOBILE25";
+		driver.findElement(DISCOUNT_CODE_TEXTBOX).sendKeys(Promo_Code);
+		driver.findElement(APPLY_DISCOUNT_BUTTON).click();
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.presenceOfElementLocated(APPLIED_PROMO_CODE));
+		softAssert.assertEquals(driver.findElement(APPLIED_PROMO_CODE).getText(), Promo_Code, "Wrong/Invalid Promo Code applied");
+		WebElement cancel_code= driver.findElement(CANCEL_PROMO_CODE);
+		CheckAfterPayInstallment();
+		jse.executeScript("window.scrollTo(0, 0)");
+		jse.executeScript("arguments[0].click();", cancel_code);
+		Thread.sleep(8000);
+		CheckAfterPayInstallment();
+        Thread.sleep(5000);
+		driver.findElement(BREADCRUMB_LINK_SHIPPING).click();
+		wait.until(ExpectedConditions.presenceOfElementLocated(CONTINUE_TO_PAYMENT_BUTTON));
+		Thread.sleep(3000);
+		driver.findElement(DISCOUNT_CODE_TEXTBOX).sendKeys(Promo_Code);
+		driver.findElement(APPLY_DISCOUNT_BUTTON).click();
+		wait.until(ExpectedConditions.presenceOfElementLocated(APPLIED_PROMO_CODE));
+
+		driver.findElement(CONTINUE_TO_PAYMENT_BUTTON).click();
+		Thread.sleep(5000);
+		wait.until(ExpectedConditions.presenceOfElementLocated(APPLIED_PROMO_CODE));
+		cancel_code= driver.findElement(CANCEL_PROMO_CODE);
+		jse.executeScript("arguments[0].click();", cancel_code);
+		Thread.sleep(8000);
+		CheckAfterPayInstallment();
+		Reporter.log("AfterPay installment amount displayed :: Correct with promo code change");
+		softAssert.assertAll();
+	}
+
+	public void CheckAfterPayInstallment() throws Exception
+	{
+		jse = (JavascriptExecutor)driver;
+		price = driver.findElement(TOTAL).getText();
+		String[] price1 = price.split("\\$");
+		String price2 = price1[price1.length-1];
+		System.out.println("Estimate total is: "+price);
+		jse.executeScript("window.scrollBy(0,250)");
+		Thread.sleep(5000);
+		if(Float.parseFloat(price2)<35 || Float.parseFloat(price2)>1000 )
+		{
+			String Available_Between = driver.findElement(AVAILABLE_BETWEEN_TEXT).getText();
+			String Amount = driver.findElement(AFTERPAY_INSTALLMENTS).getText();
+			String expectedmessage= Available_Between+ " " +Amount;
+			System.out.println("Message with availability is: "+expectedmessage);
+			softAssert.assertEquals(expectedmessage, "available between $35 - $1000" , "Wrong afterpay message displayed for product price");
+			Reporter.log("After pay message is correct On Checkout page :: Displayed and Correct");
+			softAssert.assertTrue(driver.findElement(AFTERPAYLOGO_WITH_AVAILABLE).isDisplayed(), "Afterpay logo not present on Shopping cart.");	
+			Reporter.log("After pay logo icon is displayed on Checkout Page :: Displayed");
+		}
+		else
+		{
+			installment =Float.parseFloat(price2)/4;
+			String inst = String.format("%.2f",installment );
+			String afterInstallmentText = driver.findElement(AFTERPAYLOGO_WITH_INSTALLMENT).getText();
+			String expectedmessage = "4 interest-free installments of $" + inst +" "+ afterInstallmentText ; 
+			String actualMessage = driver.findElement(AFTERPAYTEXT_WITH_INSTALLMENT).getText();
+			System.out.println("Icon text is: "+afterInstallmentText);
+			System.out.println("expected message is: " + expectedmessage);
+			System.out.println("Actual message is: " +actualMessage);
+			softAssert.assertEquals(actualMessage, expectedmessage , "Wrong afterpay message displayed for product price with installment.");
+			Reporter.log("After pay message with calculated installment is correct on Checkout page :: Displayed and correct");
+			softAssert.assertTrue(driver.findElement(AFTERPAYLOGO_WITH_INSTALLMENT).isDisplayed(), "Afterpay logo not present on Shopping cart");
+			Reporter.log("After pay logo icon is displayed on Checkout page :: Displayed");
+		}
+		Thread.sleep(5000);
+		softAssert.assertAll();
 	}
 
 
