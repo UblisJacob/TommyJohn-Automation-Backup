@@ -1022,7 +1022,7 @@ public class HomePageComponents extends HomePageLocators {
 		Thread.sleep(3000);
 		driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
 		Thread.sleep(3000);
-		if(!driver.getCurrentUrl().equals("https://www.youtube.com/user/tommyjohnwear"))
+		if(!driver.getCurrentUrl().equals("https://www.youtube.com/channel/UCF6m4oUrw6Q7-b3oFE67gjw"))
 			throw new Exception("Wrong page opened after clicked on YouTube link");
 		else
 			driver.navigate().back();
@@ -1480,8 +1480,8 @@ public class HomePageComponents extends HomePageLocators {
 
 	//navigate to Boxer Brief in men category
 	public void navigateToBoxerBriefInMenCategory(){
-		driver.get("https://tommyjohn.com/collections/underwear-mens-styles-boxer-brief");
-
+		driver.get("https://tommyjohn.com/collections/mens-boxer-brief-underwear");
+		((JavascriptExecutor)driver).executeScript("window.scrollTo(document.body.scrollHeight,0)");
 	}
 	//navigate to Mens underwear quiz page
 	public void navigateToMensQuizPage()

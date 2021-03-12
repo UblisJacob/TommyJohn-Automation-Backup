@@ -42,9 +42,12 @@ public class ValidateHeapEvents {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("javascript:window.scrollBy(0,300)");
 		Thread.sleep(3000);
-		WebElement homepage_cta = driver.findElement(By.xpath("//a[@type='button']"));
+		WebElement homepage_cta = driver.findElement(By.cssSelector("div.overlay-contents > a:nth-child(3)"));
 		if(homepage_cta.isDisplayed())
-		homepage_cta.click();
+			//homepage_cta.click();
+			js.executeScript("arguments[0].click();", homepage_cta);
+		else
+			throw new Exception("There are no cta to click on homepage");
 		String logEntries = driver.manage().logs().getAvailableLogTypes().toString();
 		System.out.println("Homepage logentries: "+logEntries);
 
@@ -307,6 +310,55 @@ public class ValidateHeapEvents {
 	}	
 
 	@Test
+	public void TC_ValidateCartEvents() throws Exception
+	{
+		List<String> expectedevents = new ArrayList<String>();
+		driver = ChromeExtensionUtility.launchchromewithextension();
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		String script = "console.clear();";
+		js.executeScript(script);
+
+		new HomePageComponents(driver).navigateToBoxerBriefInMenCategory();
+		Thread.sleep(3000);
+		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		Thread.sleep(5000);
+		new AddToCartComponents(driver).selectSize();
+		new AddToCartComponents(driver).atc();
+		driver.navigate().refresh();
+		Thread.sleep(3000);
+        driver.findElement(HomePageLocators.CART_ICON).click();
+        js.executeScript(script);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.QUANTITY_PLUS_MINUS_BUTTON));
+        driver.findElement(FlyCartPageLocator.PLUS_BUTTON).click();
+		Thread.sleep(10000);
+		LogEntries logclient = driver.manage().logs().get(LogType.BROWSER);
+		for (LogEntry entry : logclient) {
+			{
+
+				if(entry.getMessage().contains("chrome-extension"))
+				{
+					if(entry.getMessage().contains("\"name:\" \"cart_quantity_change\""))
+					{
+						System.out.println(entry.getMessage());
+						Reporter.log("cart_quantity_change event fired on cart.");
+						//count++;
+						if(!expectedevents.contains("cart_quantity_change"))
+							expectedevents.add("cart_quantity_change");
+					}			
+				}
+			}
+		}
+
+		if(expectedevents.size()!=1)
+		{
+			Reporter.log("Few events not fired on cart.");
+			throw new Exception("Few events not fired on cart.");
+		}
+
+	}
+
+	@Test
 	public void TC_ValidateSearchEvents() throws Exception
 	{
 		//int count=0;
@@ -375,9 +427,9 @@ public class ValidateHeapEvents {
 		WebElement element = driver.findElement(CheckoutPageLocators.AMZ_PAY);
 		js.executeScript("arguments[0].click();", element);
 		Thread.sleep(10000);
-//		driver.navigate().back();
-//
-//		Thread.sleep(10000);
+		//		driver.navigate().back();
+		//
+		//		Thread.sleep(10000);
 		LogEntries logclient = driver.manage().logs().get(LogType.BROWSER);
 		for (LogEntry entry : logclient) {
 			{
@@ -420,7 +472,7 @@ public class ValidateHeapEvents {
 			Reporter.log("Few events not fired on information page.");
 			throw new Exception("Few events not fired on information page.");
 		}
-	//driver.quit();
+		//driver.quit();
 
 	}	
 
