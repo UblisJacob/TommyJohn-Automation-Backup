@@ -1842,17 +1842,38 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			for (int k=2;k<Bundleproducttitle.size();k++)
 			{
 				try {
-			element = driver.findElement(By.cssSelector("div.mega-collection-grid > div:nth-child(3) > div:nth-child("+k+") > a> h2"));
+					for (WebElement packtitle : Bundleproducttitle)
+					{
+						if(packtitle.getText().contains("Lounge Set"))
+						{
+							Thread.sleep(3000);
+							element = driver.findElement(By.cssSelector("div.mega-collection-grid > div:nth-child(3) > div:nth-child("+k+") > a> h2"));
+							break;
+						}
+					}
+					
+					
+			//element = driver.findElement(By.cssSelector("div.mega-collection-grid > div:nth-child(3) > div:nth-child("+k+") > a> h2"));
 				}
 				catch(Exception ex)
 				{
-					element = driver.findElement(By.cssSelector("div.mega-collection-grid > div:nth-child(3) > div:nth-child("+(k+1)+") > a> h2"));
+					for (WebElement packtitle : Bundleproducttitle)
+					{
+						if(packtitle.getText().contains("Lounge Set"))
+						{
+							Thread.sleep(3000);
+							element = driver.findElement(By.cssSelector("div.mega-collection-grid > div:nth-child(3) > div:nth-child("+(k+1)+") > a> h2"));
+							break;
+						}
+					}
+					
+					//element = driver.findElement(By.cssSelector("div.mega-collection-grid > div:nth-child(3) > div:nth-child("+(k+1)+") > a> h2"));
 				}
 			String[] Bundletitle1 = element.getText().split(",");
 			String Bundle_pname= Bundletitle1[0];
 			String[] BundleProducttitle = Bundle_pname.split(" ");
 			String Bundle_Product_type = BundleProducttitle[BundleProducttitle.length-1];
-			if(element.getText().endsWith(Bundle_Product_type))
+			if(Bundle_Product_type.equals("Set"))
 			{
 				Thread.sleep(3000);
 				System.out.println("2nd selected product name is: "+element.getText());
