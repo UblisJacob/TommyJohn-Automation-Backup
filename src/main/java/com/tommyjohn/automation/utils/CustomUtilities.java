@@ -59,20 +59,6 @@ public class CustomUtilities {
 		loadPropertiesFile();
 
 		//proxying to blacklist bounceX popup
-		//		BrowserMobProxy proxy = new BrowserMobProxyServer();
-		//		//proxy.setTrustAllServers(true);
-		//		proxy.start(0);
-		//		proxy.blacklistRequests("https?://.*\\.bouncex\\.net/.*", 410);
-		//		proxy.blacklistRequests("https?://.*\\.bounceexchange\\.com/.*", 410);
-		//		
-		//		Proxy selproxy = ClientUtil.createSeleniumProxy(proxy);
-		//		//String proxyStr = "localhost:" + proxy.getPort();
-		//		
-		//		String ipAddress = new NetworkUtils().getIp4NonLoopbackAddressOfThisMachine().getHostAddress();
-		//		String proxyStr = ipAddress + ":" + proxy.getPort();
-		//		
-		//		selproxy.setHttpProxy(proxyStr);
-		//		selproxy.setSslProxy(proxyStr);
 
 
 		if (browser.equalsIgnoreCase("chrome"))
