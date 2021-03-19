@@ -235,7 +235,7 @@ public class AddToCartComponents extends AddToCartLocators{
 						if(flag == true)
 							continue;
 						else {
-						
+						Thread.sleep(3000);
 							element = driver.findElement(ADD_TO_CART_BUTTON);
 							text1 = element.getText();
 							System.out.println("Button text when Available size selected :: "+text1);

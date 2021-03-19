@@ -18,13 +18,13 @@ public class ShoppingCartLocators {
 	public static By PRODUCT_QUANTITY = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > div.line-item__total > div > .prodQty");
 	public static By PRODUCT_QUANT_MINUS = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > div.line-item__total > div > button");
 	public static By PRODUCT_QUANT_ADD = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > div.line-item__total > div > button:nth-child(3)");
-	public static By CART_TOTAL_TEXT = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__summary > .inline-cart__summary > div > span");
-	public static By CART_TOTAL = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__summary > .inline-cart__summary > div > span:nth-child(2)");
+	public static By CART_TOTAL_TEXT = By.cssSelector("section > div.cart__outer > div.cart__summary > div.cart__summary-inner-div > div:nth-child(2) > div > span:nth-child(2)");
+	public static By CART_TOTAL = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__summary >.cart__summary-inner-div> .inline-cart__summary:nth-child(2) > div > span:nth-child(2)");
 	//public static By CHECKOUT_BUTTON = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__summary > a");
-	public static By CONTINUE_SHOPPING = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__summary > a.cart__continue");
+	public static By CONTINUE_SHOPPING = By.cssSelector(" section > div.cart__outer > div.cart__summary > div.cart__summary-inner-div > a.cart__continue.text-link");
 	public static By GIFT_WRAP_LINK = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__summary > div > a");
 	public static By ESTIMATE_TOTAL_PRICE = By.cssSelector(".cart__summary>.inline-cart__summary>div>span:nth-child(2)");
-	 public static By CHECKOUT_BUTTON = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__summary > a.cart__checkout-btn");
+	 public static By CHECKOUT_BUTTON = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__summary > div.cart__summary-inner-div>a.cart__checkout-btn");
 	//AfterPay
 	    public static By AFTERPAY_CART = By.cssSelector(".afterpay-cart-container >p> span");
     public static By AFTERPAY_DIV = By.cssSelector(".inline-cart__summary>.afterpay-cart-container>p>.afterpay-paragraph");

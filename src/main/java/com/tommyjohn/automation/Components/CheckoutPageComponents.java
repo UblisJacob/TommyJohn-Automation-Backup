@@ -135,7 +135,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		Reporter.log("User is navigated to select shipping method");
 
 		Thread.sleep(7000);
-		//	wait.until(ExpectedConditions.visibilityOfElementLocated(SHIPPING_TEXT));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SHIPPING_TEXT));
 		softAssert.assertEquals(driver.findElement(SHIPPING_TEXT).getText(), "Shipping method");
 		driver.findElement(CONTINUE_TO_PAYMENT_BUTTON).click();
 		Reporter.log("Selected shipping method and user is navigated to payment page");
