@@ -1022,7 +1022,7 @@ public class HomePageComponents extends HomePageLocators {
 		Thread.sleep(3000);
 		driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
 		Thread.sleep(3000);
-		if(!driver.getCurrentUrl().equals("https://www.youtube.com/channel/UCF6m4oUrw6Q7-b3oFE67gjw"))
+		if(!driver.getCurrentUrl().contains("https://www.youtube.com"))
 			throw new Exception("Wrong page opened after clicked on YouTube link");
 		else
 			driver.navigate().back();
