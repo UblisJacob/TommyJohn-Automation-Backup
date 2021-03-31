@@ -37,6 +37,11 @@ public class ShoppingCartPage extends ShoppingCartComponents{
 	{
 		new ShoppingCartComponents(driver).productDetailsInCart();
 	}
+	
+	public void VerifyPromoCodeOnCart() throws Exception
+	{
+		new ShoppingCartComponents(driver).Promo_Code_OncartPage();
+	}
 
 
 }

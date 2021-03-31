@@ -35,7 +35,7 @@ public class AddToCartComponents extends AddToCartLocators{
 		String text = null;
 
 		// navigate to any product collection page
-		new HomePageComponents(driver).navigateToDressesInwomensCategory();
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 
 		// call method to navigate product details page
 		text = new CollectionPageComponent(driver).navigateToProductDetailsPage();

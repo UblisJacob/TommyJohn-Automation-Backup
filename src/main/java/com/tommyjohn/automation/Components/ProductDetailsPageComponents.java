@@ -2059,6 +2059,190 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			}
 		}
 	}
+	public void Add_Bundle_toCart() throws Exception
+	{
+		jse = (JavascriptExecutor)driver;
+		String allClasses = null;
+		String allClass = null;
+		new SizeGuideComponents(driver).navigateToBundlePDP();
+		Thread.sleep(5000);
+		allElements = driver.findElements(ALL_SIZE_LIST);
+		elementsCount = allElements.size();
+		System.out.println("All sizes list :: "+ elementsCount);
+		if(driver.findElement(By.cssSelector(".radio-options-container")).isDisplayed())
+		{
+			//radio
+			List<WebElement> Size_OptionName = driver.findElements(By.cssSelector("div.radios-wrapper > div.radio-options-container > div"));
+			int Size_OptionCount = Size_OptionName.size();
+			for(int i=1; i<=Size_OptionCount; i++)
+			{
+				Thread.sleep(3000);
+				List<WebElement> Sizes_Label = driver.findElements(By.cssSelector("div.radios-wrapper>div:nth-child("+i+")>div.Size>label"));
+				elementsCount = Sizes_Label.size();
+				System.out.println("All sizes list count is :: "+ elementsCount);
+
+				for(int j=3;j<=elementsCount;j=j+2) {
+					flag = false;
+					element = driver.findElement(By.cssSelector("div.radios-wrapper > div.radio-options-container:nth-child("+i+")> div > label:nth-child("+j+")"));
+
+					allClasses = element.getAttribute("class");
+					// check size available or not
+					for (String c : allClasses.split(" ")) {
+						if (c.equals("oosVariant")) {
+							/*
+							 * jse = (JavascriptExecutor)driver; jse.executeScript("arguments[0].click();",
+							 * element); System.out.println("Unavailable size clicked");
+							 */									int y=j;
+							 for(int k=y; k<y; k++)
+							 {
+
+								 WebElement e = driver.findElement(By.cssSelector("div.radios-wrapper > div.radio-options-container > div > label:nth-child("+k+")"));
+								 allClass = e.getAttribute("class");
+								 for (String d : allClass.split(" ")) {
+									 if (d.equals("oosVariant")) 
+										 y++;
+									 else 
+										 driver.findElement(By.cssSelector("div.radios-wrapper > div.radio-options-container > div > label:nth-child("+y+")")).click();
+								 }
+							 }
+							 //flag=true;							
+						}
+						else 
+						{
+							System.out.println("selected size is: "+element.getText());
+							jse = (JavascriptExecutor)driver;
+							jse.executeScript("arguments[0].click();" , element);
+
+						}
+
+					}
+					if(j==elementsCount) {
+						Reporter.log("No any size available");
+						break;
+					}	
+					if(flag==false)
+						break;
+					else
+						continue;
+
+				}
+
+				if(flag == true)
+					continue;
+
+			}	
+			if(!driver.findElement(ADD_TO_CART_BUTTON).isEnabled())
+				throw new Exception("ADD TO CART button is not present");
+			element = driver.findElement(ADD_TO_CART_BUTTON);
+			jse = (JavascriptExecutor)driver;
+			jse.executeScript("arguments[0].click();", element);
+
+		}
+
+		else {
+			//dropdown
+
+			for(int i=1;i<=elementsCount;i++) {
+				flag = false;
+				//driver.findElement(SIZE_DROPDOWN).click();
+				WebElement elem = driver.findElement(SIZE_DROPDOWN_MENS);
+				jse.executeScript("arguments[0].click();", elem);
+				element = driver.findElement(By.cssSelector(".select--options__list[data-option-name = 'Mens Size'] > li:nth-child("+i+") > div"));
+
+				allClasses = element.getAttribute("class");
+				// check size available or not
+				for (String c : allClasses.split(" ")) {
+					if (c.equals("unavailable")) {
+
+						driver.findElement(By.cssSelector(".select--options__list[data-option-name = 'Mens Size']> li:nth-child("+i+")")).click();
+						WebElement eleme = driver.findElement(SIZE_DROPDOWN_WOMENS);
+						jse.executeScript("arguments[0].click();", eleme);
+						//	driver.findElement(By.cssSelector(".select--options__list[data-option-name = 'Womens Size']> li:nth-child("+i+")")).click();
+						int y =i;
+						for(int j=0;j<y;j++)
+						{
+
+							WebElement e = driver.findElement(By.cssSelector(".select--options__list[data-option-name = 'Womens Size'] > li:nth-child("+y+") > div"));
+							allClass = e.getAttribute("class");
+							for (String d : allClass.split(" ")) {
+
+								// check size available or not
+
+								if (d.equals("unavailable")) 
+									y++;
+								else 
+									driver.findElement(By.cssSelector(".select--options__list[data-option-name = 'Womens Size']> li:nth-child("+y+")")).click();
+							}
+						}
+
+
+						flag = true;
+
+						//break;
+					}
+					else 
+					{
+						Thread.sleep(3000);
+						WebElement e =	driver.findElement(By.cssSelector(".select--options__list[data-option-name = 'Mens Size']> li:nth-child("+i+")"));
+						Thread.sleep(2000);
+						jse.executeScript("arguments[0].click();", e);
+						if(!driver.findElement(ADD_TO_CART_BUTTON).getText().contentEquals("Add to Cart"))
+						{
+							WebElement eleme = driver.findElement(SIZE_DROPDOWN_WOMENS);
+							jse.executeScript("arguments[0].click();", eleme);
+
+							int y =i;
+							for(int j=0;j<y;j++)
+							{
+
+								WebElement el = driver.findElement(By.cssSelector(".select--options__list[data-option-name = 'Womens Size'] > li:nth-child("+y+") > div"));
+								String allClas = el.getAttribute("class");
+								for (String u : allClas.split(" ")) {
+
+									// check size available or not
+
+									if (u.equals("unavailable")) 
+										y++;
+									else 
+										driver.findElement(By.cssSelector(".select--options__list[data-option-name = 'Womens Size']> li:nth-child("+y+")")).click();
+								}
+							}
+						}
+
+						//jse.executeScript("arguments[0].click();", driver.findElement(SIZE_DROPDOWN_WOMENS));
+
+						//	WebElement elm  = driver.findElement(By.cssSelector(".select--options__list[data-option-name = 'Womens Size']> li:nth-child("+i+") > div"));
+
+
+						//jse.executeScript("arguments[0].click();", elm);
+						if (!driver.findElement(ADD_TO_CART_BUTTON).getText().contentEquals("Add to Cart"))
+							throw new Exception("Wrong language on CTA for In stock bundle");
+
+					}
+
+					if(i==elementsCount) {
+						Reporter.log("No any size available");
+
+					}			
+					if(flag==false)
+						break;
+					else
+						continue;
+
+				}
+				if(flag==false)
+					break;
+				else
+					continue;
+			}
+			if(!driver.findElement(ADD_TO_CART_BUTTON).isEnabled())
+				throw new Exception("ADD TO CART button is not present");
+			element = driver.findElement(ADD_TO_CART_BUTTON);
+			jse = (JavascriptExecutor)driver;
+			jse.executeScript("arguments[0].click();", element);
+
+		}
+	}
 }
 
 

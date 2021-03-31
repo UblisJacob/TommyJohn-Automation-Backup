@@ -55,6 +55,11 @@ public class ValidateShoppingCart {
 		new ShoppingCartPage(driver).verifyproductinCart();
 	}
 	
+	@Test
+	public void ValidatePromoCodeOnCartPage() throws Exception
+	{
+		new ShoppingCartPage(driver).VerifyPromoCodeOnCart();
+	}
 	@AfterMethod(alwaysRun = true)
 	void tearDown() {
 
