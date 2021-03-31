@@ -869,7 +869,8 @@ public class HomePageComponents extends HomePageLocators {
 		text = driver.findElement(SHOP_WOMEN).getText();
 		if(!text.equals("Shop Women"))
 			throw new Exception("Shop Women link text is changed");	
-		driver.findElement(SHOP_WOMEN).click();
+		element=driver.findElement(SHOP_WOMEN);
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", element);
 		Thread.sleep(5000);
 		if(driver.getCurrentUrl().contains("https://tommyjohn.com/collections/womens-all")) 
 			driver.navigate().back();
@@ -883,7 +884,8 @@ public class HomePageComponents extends HomePageLocators {
 		text = driver.findElement(SHOP_MEN).getText();
 		if(!text.equals("Shop Men"))
 			throw new Exception("Shop Women link text is changed");	
-		driver.findElement(SHOP_MEN).click();
+		element=driver.findElement(SHOP_MEN);
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", element);
 		Thread.sleep(5000);
 		if(driver.getCurrentUrl().contains("https://tommyjohn.com/collections/mens-all")) 
 			driver.navigate().back();
@@ -897,7 +899,8 @@ public class HomePageComponents extends HomePageLocators {
 		text = driver.findElement(GIFT_CARD_LINK).getText();
 		if(!text.equals("Gift Cards"))
 			throw new Exception("Gift Cards link text is changed");	
-		driver.findElement(GIFT_CARD_LINK).click();
+		element=driver.findElement(GIFT_CARD_LINK);
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", element);
 		Thread.sleep(5000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/products/e-gift-card")) 
 			driver.navigate().back();
@@ -912,7 +915,8 @@ public class HomePageComponents extends HomePageLocators {
 		text = driver.findElement(FABRIC_GUIDE_LINK).getText();
 		if(!text.equals("Fabric Guide"))
 			throw new Exception("Fabric Guide link text is changed");	
-		driver.findElement(FABRIC_GUIDE_LINK).click();
+		element=driver.findElement(FABRIC_GUIDE_LINK);
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", element);
 		Thread.sleep(3000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/fabric-guide")) 
 			driver.navigate().back();
@@ -927,7 +931,8 @@ public class HomePageComponents extends HomePageLocators {
 		text = driver.findElement(SIGN_IN_FOOTER_LINK).getText();
 		if(!text.equals("Sign In"))
 			throw new Exception("Sign In link text is changed");	
-		driver.findElement(SIGN_IN_FOOTER_LINK).click();
+		element=driver.findElement(SIGN_IN_FOOTER_LINK);
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", element);
 		Thread.sleep(3000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/account/login")) 
 			driver.navigate().back();
@@ -942,7 +947,8 @@ public class HomePageComponents extends HomePageLocators {
 		text = driver.findElement(ORDER_HISTORY).getText();
 		if(!text.equals("Order History"))
 			throw new Exception("Order History link text is changed");	
-		driver.findElement(ORDER_HISTORY).click();
+		element=driver.findElement(ORDER_HISTORY);
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", element);
 		Thread.sleep(3000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/account/login")) 
 			driver.navigate().back();
@@ -956,7 +962,8 @@ public class HomePageComponents extends HomePageLocators {
 		// scroll the page at bottom to test all the footer links
 		((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		softassert.assertTrue(driver.findElement(FACEBOOK_ICON).isDisplayed(), "Facebook icon is not displayed on footer");
-		driver.findElement(FACEBOOK_ICON).click();
+		element=driver.findElement(FACEBOOK_ICON);
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", element);
 		Thread.sleep(3000);
 		driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
 		Thread.sleep(3000);
@@ -971,7 +978,8 @@ public class HomePageComponents extends HomePageLocators {
 		// scroll the page at bottom to test all the footer links
 		((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		softassert.assertTrue(driver.findElement(TWITTER_ICON).isDisplayed(), "Twitter icon is not displayed on footer");
-		driver.findElement(TWITTER_ICON).click();
+		element=driver.findElement(TWITTER_ICON);
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", element);
 		Thread.sleep(3000);
 		driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
 		Thread.sleep(3000);
@@ -987,7 +995,8 @@ public class HomePageComponents extends HomePageLocators {
 		// scroll the page at bottom to test all the footer links
 		((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		softassert.assertTrue(driver.findElement(PINTEREST_ICON).isDisplayed(), "Pinterest icon is not displayed on footer");
-		driver.findElement(PINTEREST_ICON).click();
+		element=driver.findElement(PINTEREST_ICON);
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", element);
 		Thread.sleep(3000);
 		driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
 		Thread.sleep(3000);
@@ -1002,7 +1011,8 @@ public class HomePageComponents extends HomePageLocators {
 		// scroll the page at bottom to test all the footer links
 		((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		softassert.assertTrue(driver.findElement(INSTAGRAM_ICON).isDisplayed(), "Instagram icon is not displayed on footer");
-		driver.findElement(INSTAGRAM_ICON).click();
+		element=driver.findElement(INSTAGRAM_ICON);
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", element);
 		Thread.sleep(3000);
 		driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
 		Thread.sleep(3000);
@@ -1018,7 +1028,8 @@ public class HomePageComponents extends HomePageLocators {
 		// scroll the page at bottom to test all the footer links
 		((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		softassert.assertTrue(driver.findElement(YOUTUBE_ICON).isDisplayed(), "Youtube icon is not displayed on footer");
-		driver.findElement(YOUTUBE_ICON).click();
+		element=driver.findElement(YOUTUBE_ICON);
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", element);
 		Thread.sleep(3000);
 		driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
 		Thread.sleep(3000);
