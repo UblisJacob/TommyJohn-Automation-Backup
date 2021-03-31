@@ -32,7 +32,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	double	installment;
 	String price;
 	SoftAssert softAssert=new SoftAssert();
-
+	String Promo_Code = "TJHUSTLE";
 	public CheckoutPageComponents(WebDriver driver) {
 		this.driver = driver;
 	}
@@ -365,7 +365,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	public void CheckPromoCodeApplication() throws Exception
 	{
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		String Promo_Code = "MOBILE25";
+		Promo_Code = "TJHUSTLE";
 		driver.findElement(DISCOUNT_CODE_TEXTBOX).sendKeys(Promo_Code);
 		driver.findElement(APPLY_DISCOUNT_BUTTON).click();
 		//Thread.sleep(3000);
@@ -377,9 +377,6 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		Reporter.log("Validated Promo Code application functionality");
 
 	}
-
-
-
 	public void AfterpayonCheckout() throws Exception
 	{
 		//product add to cart
@@ -512,7 +509,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	{
 		AfterpayonCheckout();
 		jse = (JavascriptExecutor)driver;
-		String Promo_Code = "MOBILE25";
+		Promo_Code = "TJHUSTLE";
 		driver.findElement(DISCOUNT_CODE_TEXTBOX).sendKeys(Promo_Code);
 		driver.findElement(APPLY_DISCOUNT_BUTTON).click();
 		WebDriverWait wait = new WebDriverWait(driver, 30);

@@ -22,7 +22,7 @@ public class ShoppingCartLocators {
 	public static By CART_TOTAL = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__summary >.cart__summary-inner-div> .inline-cart__summary:nth-child(2) > div > span:nth-child(2)");
 	//public static By CHECKOUT_BUTTON = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__summary > a");
 	public static By CONTINUE_SHOPPING = By.cssSelector(" section > div.cart__outer > div.cart__summary > div.cart__summary-inner-div > a.cart__continue.text-link");
-	public static By GIFT_WRAP_LINK = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__summary > div > a");
+	public static By GIFT_WRAP_LINK = By.cssSelector("div.cart__outer > div.cart__summary > div.cart__summary-inner-div > div.cart__gift-wrap > a");
 	public static By ESTIMATE_TOTAL_PRICE = By.cssSelector(".cart__summary>.inline-cart__summary>div>span:nth-child(2)");
 	 public static By CHECKOUT_BUTTON = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__summary > div.cart__summary-inner-div>a.cart__checkout-btn");
 	//AfterPay
@@ -32,4 +32,18 @@ public class ShoppingCartLocators {
 	public static By AFTERPAYTEXT_WITH_INSTALLMENT = By.cssSelector(".inline-cart__summary>.afterpay-cart-container>p");
 	public static By AFTERPAYLOGO_WITH_AVAILABLE_MSG = By.cssSelector(".inline-cart__summary>span>p:nth-child(2)>.afterpay-link");
 	public static By AFTERPAYLOGO_WITH_INSTALLMENT_MSG = By.cssSelector(".afterpay-cart-container>p>p>a.afterpay-link");
+	
+	//Promo code section
+	public static By PROMO_HEADER = By.cssSelector(".inline-cart__promo-header");
+	public static By DISCOUNTCODE_TEXTBOX = By.id("cart-coupon");
+	public static By PROMOCODE_APPLYCTA = By.cssSelector(".inline-cart__promo-input-container>button");
+	public static By PROMO_ERROR_MESSAGE = By.cssSelector(".inline-cart__promo-error-message");
+	public static By PROMO_SUCCESSFUL_MESSAGE = By.cssSelector(".inline-cart__promo-successful-message");
+	public static By SALE_PRICE = By.cssSelector("div.cart__items > div > article:not(.line-item--hidden) > div.line-item__summary > div:nth-child(4) > span.sale");
+	public static By DISCOUNT_ICON = By.cssSelector("div.cart__items > div > article > div.line-item__summary > div:nth-child(4) > .icon-svg");
+	public static By APPLIED_PROMO_CODE = By.cssSelector("div.cart__items > div > article:not(.line-item--hidden)> div.line-item__summary > div:nth-child(4) > .coupon-code");
+	public static By APPLIED_PROMOCODE_FLYCART = By.cssSelector("div.inline-cart__col1 > div:nth-child(6) > article:nth-child(1) > div.line-item__summary > div:nth-child(4) > span.coupon-code"); 
+	public static By DISCOUNTED_GIFTWRAP_PRICE = By.cssSelector("div.cart__outer > div.cart__summary > div.cart__summary-inner-div > div.cart__gift-wrap > span:nth-child(3)");
+	public static By SUBTOTAL_PRICE = By.cssSelector(".cart__summary>.cart__discount-subtotal>div>span:nth-child(3)");
+	
 }
