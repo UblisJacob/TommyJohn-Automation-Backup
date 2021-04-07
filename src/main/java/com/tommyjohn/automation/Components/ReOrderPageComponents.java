@@ -25,6 +25,7 @@ public class ReOrderPageComponents extends ReOrderPageLocators{
 	public Actions action;
 	WebElement element;
 	String text;
+	
 
 	public ReOrderPageComponents(WebDriver driver) {
 
@@ -71,7 +72,17 @@ public class ReOrderPageComponents extends ReOrderPageLocators{
 		softAssert.assertTrue(driver.findElement(REORDER_ITEM_PRICE).isDisplayed(), "Reorder item price is not present");
 		softAssert.assertTrue(driver.findElement(REORDER_ITEM_ATC).isDisplayed(), "Add to cart option is not present on reorder page");
 		softAssert.assertTrue(driver.findElement(REORDER_ITEM_WRITEREVIEW).isDisplayed(), "Write a review option is not present on reorder page");
-
+       //Check gift box is hidden
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		Thread.sleep(3000);
+        List<WebElement> element = driver.findElements(REORDER_ITEM_TITLE);
+        System.out.println("total products in reorder page is: "+element.size());
+		for(WebElement titles : element)
+		{
+			if(titles.getText().contains("Gift Box"))
+				throw new Exception("Product tile of gift box is not hidden from reorder page");
+		}
 		softAssert.assertAll();
 	}
 
