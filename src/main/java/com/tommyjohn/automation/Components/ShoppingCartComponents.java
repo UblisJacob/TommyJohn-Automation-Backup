@@ -285,7 +285,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		softAssert.assertTrue(driver.findElement(APPLIED_PROMO_CODE).isDisplayed(), "Applied promo code is getting removed after applied invalid promo code");
 
 		driver.navigate().refresh();
-		Thread.sleep(2000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(APPLIED_PROMO_CODE));
 		softAssert.assertTrue(driver.findElement(APPLIED_PROMO_CODE).isDisplayed(), "Applied promo code is getting removed after refresh the page");
 
 		new ProductDetailsPageComponents(driver).Add_Bundle_toCart();
@@ -294,6 +294,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 
 		driver.findElement(HomePageLocators.CART_ICON).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+		Thread.sleep(3000);
 		softAssert.assertTrue(driver.findElement(APPLIED_PROMOCODE_FLYCART).isDisplayed(), "Applied promo code from cart page is not displayed on flycart");
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		Thread.sleep(3000);

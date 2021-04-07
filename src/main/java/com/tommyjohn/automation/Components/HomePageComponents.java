@@ -1497,14 +1497,14 @@ public class HomePageComponents extends HomePageLocators {
 	//navigate to Mens underwear quiz page
 	public void navigateToMensQuizPage()
 	{
-		driver.get("https://tommyjohn.com/pages/underwear-quiz?quizID=MN-UW-QZ");
+		driver.get("https://tommyjohn.com/pages/quiz?quizID=MN-UW-QZ");
 
 	}
 
 	//navigate to Womens underwear quiz page
 	public void navigateToWomensQuizPage()
 	{
-		driver.get("https://tommyjohn.com/pages/underwear-quiz?quizID=WN-UW-QZ");
+		driver.get("https://tommyjohn.com/pages/quiz?quizID=WN-UW-QZ");
 	}
 
 

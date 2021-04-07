@@ -6,7 +6,7 @@ import org.openqa.selenium.By.ByLinkText;
 public class HomePageLocators{
 
 	public static By HOMEPAGE_LOGO = By.cssSelector("a.header-logo");
-	public static By SEARCH_ICON_IMAGE= By.cssSelector(".header-search-form>div>form>.header-search-input-icon>svg");
+	public static By SEARCH_ICON_IMAGE= By.cssSelector("form>.header-search-input-icon>svg");
 	//public static By NEWARRIVALS_CATEGORY = By.cssSelector(".header-desktop-left > ul > li:nth-child(1) > a");
 	//public static By MEN_IN_NEWARRIVALS_CATEGORY = By.cssSelector(".header-desktop-left > ul > li:nth-child(1) > div > ul > li:nth-child(1) > div");
 
