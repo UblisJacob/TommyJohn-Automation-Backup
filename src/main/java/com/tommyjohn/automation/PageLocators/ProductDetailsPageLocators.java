@@ -168,16 +168,16 @@ public class ProductDetailsPageLocators {
         public static By REVIEW_FILTER_MESSAGE = By.cssSelector(".yotpo-bottomline__filter-message");
 	    
         //Ask Questions
-        public static By Ask_a_Question_CTA = By.cssSelector(".ask-question-button");
+        public static By Ask_a_Question_CTA = By.cssSelector("div.write-button.ask-question-button");
         public static By ASK_A_QSN_CONTAINER = By.cssSelector(".yotpo-reviews-widget>section>form");
         public static By ASK_A_QUESTION_TITLE = By.cssSelector(".qna-form-title");
-        public static By QSN_ANS_NAME_TEXTBOX = By.name("name");
-        public static By QSN_ANS_EMAIL_TEXTBOX = By.cssSelector(".qna-form > div:nth-child(3) > input[type=email]");
-        public static By QSN_ANS_QUESTION_TEXTBOX = By.name("question");
-        public static By SUBMIT_QUESTION_CTA = By.cssSelector(".qna-form-submit>input");
-        public static By QSN_ANS_NAME_ERROR = By.className("qna-form-error--name");
-        public static By QSN_ANS_EMAIL_ERROR = By.className("qna-form-error--email");
-        public static By QSN_ANS_QUESTION_ERROR = By.className("qna-form-error--question");
+        public static By QSN_ANS_NAME_TEXTBOX = By.cssSelector("form:not(.zero-reviews) > div:nth-child(2) > input[type=text]");
+        public static By QSN_ANS_EMAIL_TEXTBOX = By.cssSelector("form:not(.zero-reviews) > div:nth-child(3) > input[type=email]");
+        public static By QSN_ANS_QUESTION_TEXTBOX = By.cssSelector("form:not(.zero-reviews) > div:nth-child(4) > textarea[name=question]");
+        public static By SUBMIT_QUESTION_CTA = By.cssSelector("form:not(.zero-reviews) > div.qna-form-submit>input");
+        public static By QSN_ANS_NAME_ERROR = By.cssSelector("form:not(.zero-reviews) > div:nth-child(2) >p");
+        public static By QSN_ANS_EMAIL_ERROR = By.cssSelector("form:not(.zero-reviews) > div:nth-child(3) >p");
+        public static By QSN_ANS_QUESTION_ERROR = By.cssSelector("form:not(.zero-reviews) > div:nth-child(4) >p");
         
         
 }

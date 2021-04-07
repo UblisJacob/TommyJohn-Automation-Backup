@@ -1,7 +1,10 @@
 package com.tommyjohn.automation.Components;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -288,20 +291,26 @@ public class QuizPageComponents extends QuizPageLocators
 		driver.findElement(NEXT_CTA).click();
 		wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.presenceOfElementLocated(SUMMARY_CARD_HEADING));
-		text= driver.findElement(PREFERENCES_SUMMARY_ANSWER).getText();
-		list1= text.split(",");
-		for(int j=0;j<=list1.length-1;j++)
-		{
-			summary_result.add(list1[j].toLowerCase().toString().trim());
-		}
+		List <WebElement> summary_answer= driver.findElements(SUMMARY_ANSWER);
 
+
+		//		text= driver.findElement(PREFERENCES_SUMMARY_ANSWER).getText();
+		//		list1= text.split(",");
+		//		for(int j=0;j<=list1.length-1;j++)
+		//		{
+		//			summary_result.add(list1[j].toLowerCase().toString().trim());
+		//		}
+		for(int j=0;j<=summary_answer.size()-1;j++)
+		{
+			summary_result.add(summary_answer.get(j).getText().toLowerCase().toString().trim());
+		}
 		element = driver.findElement(SEE_RESULT_CTA);
 		js.executeScript("arguments[0].click();", element);
 		Reporter.log("Quiz Summary Card is displayed :: Correct");
 		//Result Page
 		//		if(!driver.getCurrentUrl().equals("https://tommyjohn.com/pages/quiz-results"))
 		//			throw new Exception("Incorrect page is opened after click on see result CTA from summary page");
-		//		Thread.sleep(5000);
+		Thread.sleep(5000);
 
 		softassert.assertTrue(driver.findElement(RETAKE_QUIZ_CTA).isDisplayed(), "Retake quiz CTA is not displayed on result page or Incorrect page opened after click on see result CTA");
 
@@ -364,28 +373,37 @@ public class QuizPageComponents extends QuizPageLocators
 	}
 
 	public void ResultPage() throws Exception
-	{
-		// Verify selected options on result page
+	{	// Verify selected options on result page
 		Thread.sleep(3000);
 		softassert.assertTrue(driver.findElement(QUIZ_RESULT_PRODUCT_IMAGE).isDisplayed(), "products are displayed on quiz result page");
 		text= driver.findElement(RESULT_PAGE_SELECTED_VALUES).getText();
-		list2=text.split("\\| ");
-		System.out.println("list2 is: "+list2);
-		for(int k=0;k<list2.length-1;k++)
+		System.out.println("text is: "+text);
+		list2=text.split("[|]");
+		System.out.println("list2 is: "+Arrays.asList(list2));
+		for(int k=0;k<list2.length;k++)
 		{
-			result_page_selected_value.add(list2[k].toLowerCase().toString().trim());
+			result_page_selected_value.add(list2[k].toString().toLowerCase().trim());
 		}
-		System.out.println("summary: "+summary_result+" Result page: "+result_page_selected_value);
-		for(String temp: result_page_selected_value) {
-			if(!summary_result.contains(temp))
-			{
-				throw new Exception("Result is not based on combination of selected options for: "+temp);
-			}
+		System.out.println("Summary page: "+summary_result);
+		System.out.println("Result page: "+result_page_selected_value);
+		List<String> Common_Values = result_page_selected_value.stream().filter(e -> (summary_result.stream().filter(d -> d.equals(e)).count()) < 1).collect(Collectors.toList());
+		System.out.println("common values are: "+Common_Values);
+		for(String temp: Common_Values) {
+		if (!result_page_selected_value.contains(temp)) {
+			System.out.println(temp);
+			throw new Exception("Result is not based on combination of selected options for :"+temp);
 		}
+		}
+//				for(String temp: result_page_selected_value) {
+//					System.out.println(temp);
+//					System.out.println("Match:"+summary_result.stream().anyMatch(d-> d.equalsIgnoreCase(temp)));
+//							if(!summary_result.stream().filter(d-> d.equals(temp)).findFirst().equals(temp))
+//							{
+//								throw new Exception("Result is not based on combination of selected options for :"+temp);
+//							}
+//				
+//				}
 		softassert.assertAll();
 		Reporter.log("Result page is Displayed:: Correct");
-
 	}
-
-
 }

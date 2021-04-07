@@ -1693,21 +1693,24 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 		new CollectionPageComponent(driver).navigateToProductDetailsPage();
 
-		Thread.sleep(3000);
-		driver.findElement(RATING_NUMBER).click();
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(Ask_a_Question_CTA));
-		softassert.assertEquals(driver.findElement(Ask_a_Question_CTA).getText(), "Ask a Question", "Text change for 'Ask a question'CTA");
-		element=driver.findElement(Ask_a_Question_CTA);
+		//Thread.sleep(5000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(RATING_STARS));
+		element=driver.findElement(RATING_NUMBER);
 		jse.executeScript("arguments[0].click();", element);
 		Thread.sleep(3000);
-		jse.executeScript("window.scrollBy(0, 30)");
+		softassert.assertEquals(driver.findElement(Ask_a_Question_CTA).getText(), "Ask a Question", "Text change for 'Ask a question'CTA");
+		WebElement AQ_CTA=driver.findElement(Ask_a_Question_CTA);
+		jse.executeScript("arguments[0].click();", AQ_CTA);
+		Thread.sleep(3000);
+	//	jse.executeScript("window.scrollBy(0, 30)");
 		List<String> arraylist = new ArrayList<String>();
 		String classes = driver.findElement(ASK_A_QSN_CONTAINER).getAttribute("class");
 		for(String a: classes.split(" "))
 		{
 			arraylist.add(a);
 		}
+		System.out.println("arraylist: "+ arraylist);
 		softassert.assertTrue(arraylist.contains("show"), "Ask a Question form is not displayed on cta click");
 		softassert.assertTrue(driver.findElement(QSN_ANS_NAME_TEXTBOX).isDisplayed(), "Q&A Name textbox is not displayed");
 		softassert.assertTrue(driver.findElement(QSN_ANS_EMAIL_TEXTBOX).isDisplayed(), "Q&A Email textbox is not displayed");
