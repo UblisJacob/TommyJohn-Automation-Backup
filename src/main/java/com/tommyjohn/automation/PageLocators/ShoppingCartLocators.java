@@ -42,7 +42,7 @@ public class ShoppingCartLocators {
 	public static By SALE_PRICE = By.cssSelector("div.cart__items > div > article:not(.line-item--hidden) > div.line-item__summary > div:nth-child(4) > span.sale");
 	public static By DISCOUNT_ICON = By.cssSelector("div.cart__items > div > article > div.line-item__summary > div:nth-child(4) > .icon-svg");
 	public static By APPLIED_PROMO_CODE = By.cssSelector("div.cart__items > div > article:not(.line-item--hidden)> div.line-item__summary > div:nth-child(4) > .coupon-code");
-	public static By APPLIED_PROMOCODE_FLYCART = By.cssSelector("div.inline-cart__col1 > div:nth-child(6) > article:nth-child(1) > div.line-item__summary > div:nth-child(4) > span.coupon-code"); 
+	public static By APPLIED_PROMOCODE_FLYCART = By.cssSelector("span.coupon-code"); 
 	public static By DISCOUNTED_GIFTWRAP_PRICE = By.cssSelector("div.cart__outer > div.cart__summary > div.cart__summary-inner-div > div.cart__gift-wrap > span:nth-child(3)");
 	public static By SUBTOTAL_PRICE = By.cssSelector(".cart__summary>.cart__discount-subtotal>div>span:nth-child(3)");
 	
