@@ -488,29 +488,29 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		try
 		{
 			driver.get(url);
-			WebDriverWait wait = new WebDriverWait(driver, 20);
+			System.out.println(url);
+			WebDriverWait wait = new WebDriverWait(driver, 15);
 			wait.until(ExpectedConditions.presenceOfElementLocated(FIRST_PRODUCT));
 			List<WebElement> items =driver.findElements(By.cssSelector(".product-item"));
 			Reporter.log("No. of items present in " + url + " is " + items.size());
-			if(items.size()==0)
-			{
-				sendmail(url);
-			}
+			
 		}
 
 		catch (Exception e){
-			sendnotification(url);
+			sendmail(url);
 		}
 	}
 
 	private void sendmail(String url) {
+		
+		
 
 
 
 		// Recipient's email ID needs to be mentioned.
 		String to1 = "vijeta@tommyjohnwear.com";
-		String to2 = "shweta.garhewal@tommyjohnwear.com";
-		String to3 = "daniel.lee@tommyjohnwear.com";
+//		String to2 = "shweta.garhewal@tommyjohnwear.com";
+//		String to3 = "tyler.tremblay@tommyjohnwear.com";
 
 
 		// Sender's email ID needs to be mentioned
@@ -542,8 +542,8 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			message.setFrom(new InternetAddress(from));
 			// Set To: header field of the header.
 			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to1));
-			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to2));
-			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to3));
+//			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to2));
+//			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to3));
 
 
 			// Set Subject: header field
