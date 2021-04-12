@@ -159,7 +159,7 @@ public class ValidateNavigationFlow
 //			e.printStackTrace();
 //		}
 		
-		driver.close();
+	//	driver.close();
 	     driver.quit();
 		//driver.quit();
 	}
