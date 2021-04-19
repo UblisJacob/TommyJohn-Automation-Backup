@@ -17,5 +17,8 @@ public class StoreLocatorPageLocators
 		public static By MAP = By.cssSelector("#bh-sl-map > div > div > div:nth-child(1) > div:nth-child(3)");
 		public static By MAP_TEXT = By.cssSelector("#bh-sl-map > div > div >div:nth-child(4)> div>div:nth-child(1)>button");
 		public static By SATELLITE_TEXT = By.cssSelector("#bh-sl-map > div > div >div:nth-child(4)> div>div:nth-child(2)>button");
+		
+		public static By FILTER_TAG_TITLE = By.cssSelector(".form-input>.scasl-tag>label");
+		public static By FILTER_TAG_STORE_NAME = By.cssSelector("#scasl-tags>.scasl-tags");
 
 }
