@@ -12,10 +12,13 @@ public class StoreLocatorPageLocators
 		public static By STORE_GET_DIRECTION_LINK = By.cssSelector("#storeDirection");
 		public static By FIND_A_RETAILER_TITLE = By.cssSelector(".bh-sl-heading");
 		public static By USER_LOCATION_INPUT = By.cssSelector(".user-location-input");
-		public static By FIND_A_STORE_BUTTON =By.cssSelector(".form-input>button:nth-child(3)");
+		public static By FIND_A_STORE_BUTTON =By.cssSelector(".form-input>div>button:nth-child(3)");
 		public static By GET_DIRECTION_BUTTON = By.cssSelector("#scasl-direction > a");
 		public static By MAP = By.cssSelector("#bh-sl-map > div > div > div:nth-child(1) > div:nth-child(3)");
 		public static By MAP_TEXT = By.cssSelector("#bh-sl-map > div > div >div:nth-child(4)> div>div:nth-child(1)>button");
 		public static By SATELLITE_TEXT = By.cssSelector("#bh-sl-map > div > div >div:nth-child(4)> div>div:nth-child(2)>button");
+		
+		public static By FILTER_TAG_TITLE = By.cssSelector(".form-input>.scasl-tag>label");
+		public static By FILTER_TAG_STORE_NAME = By.cssSelector("#scasl-tags>.scasl-tags");
 
 }

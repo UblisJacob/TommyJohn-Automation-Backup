@@ -117,8 +117,11 @@ public class ReOrderPageComponents extends ReOrderPageLocators{
 
 		SoftAssert softAssert = new SoftAssert();
 		ReorderPagevalidation();
-		driver.findElement(REORDER_ITEM_DETAILS).click();
-		Thread.sleep(3000);
+		element=driver.findElement(REORDER_ITEM_DETAILS);
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();", element);
+
+		Thread.sleep(2000);
 		softAssert.assertTrue(driver.findElement(ORDERDETAILS_TITLE).isDisplayed(), "Order details page didnt opened");
 		softAssert.assertAll();		
 	}
@@ -144,7 +147,11 @@ public class ReOrderPageComponents extends ReOrderPageLocators{
 		JavascriptExecutor executore = (JavascriptExecutor) driver;
 		ReorderPagevalidation();
 		Thread.sleep(3000);
-		driver.findElement(REORDER_ITEM_WRITEREVIEW).click();
+		WebElement ele = driver.findElement(REORDER_ITEM_WRITEREVIEW);
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();", ele);
+
+	//	driver.findElement(REORDER_ITEM_WRITEREVIEW).click();
 		Thread.sleep(5000);
 		softAssert.assertEquals(driver.findElement(ProductDetailsPageLocators.WRITE_REVIEW_TITLE).getText(), "Write a Review", "Language mismatch for Write a Review title");
 		softAssert.assertEquals(driver.findElement(ProductDetailsPageLocators.NAME).getText(), "* Name", "Laguage mismatch for Name ");

@@ -31,7 +31,7 @@ public class StoreLocatorComponent extends StoreLocatorPageLocators
 	List<WebElement> allElements;
 	Properties properties = CustomUtilities.properties;
 	String text;
-
+	String Selected_filter ;
 
 	public StoreLocatorComponent(WebDriver driver) {
 
@@ -136,7 +136,7 @@ public class StoreLocatorComponent extends StoreLocatorPageLocators
 		Reporter.log("User location input box is Displayed :: Clickable.");
 
 		//validate location list
-	//	driver.findElement(FIND_A_STORE_BUTTON).click();
+		//	driver.findElement(FIND_A_STORE_BUTTON).click();
 		Thread.sleep(5000);
 		text = driver.findElement(By.cssSelector(".bh-sl-loc-list>ul>li:nth-child(1)>div>div>div:nth-child(5)>span:nth-child(1)")).getText();
 		System.out.println("First displayed city location is: "+text);
@@ -160,7 +160,27 @@ public class StoreLocatorComponent extends StoreLocatorPageLocators
 		if(!driver.getCurrentUrl().contains("www.google.com/maps"))
 			throw new Exception("Wrong page opened after 'Get Direction' link clicked");
 		driver.switchTo().window(list.get(0));
+		Thread.sleep(3000);
 		Reporter.log("'Get Directions' Button is Displayed :: Clickable.");
+
+		//validate filter tags
+		softassert.assertTrue(driver.findElement(FILTER_TAG_TITLE).isDisplayed(), "Filter tag title is not displayed on store locator page");
+		List<WebElement> FILTER_OPTIONS= driver.findElements(By.cssSelector(".form-input>.scasl-tag>ul>li>label>input"));
+		for(int i=0;i<FILTER_OPTIONS.size();i++)
+		{
+			WebElement filter = driver.findElement(By.cssSelector(".form-input>.scasl-tag>ul>li:nth-child("+(i+1)+")>label>input"));
+			System.out.println("selected filter option is: "+filter.getAttribute("value"));
+			filter.click();
+			Thread.sleep(3000);
+			Selected_filter = filter.getAttribute("value");
+			allElements = driver.findElements(FILTER_TAG_STORE_NAME);
+			for(WebElement storeType : allElements)
+			{
+				if(!storeType.getText().equalsIgnoreCase(Selected_filter))
+					throw new Exception("Wrong store name is displayed with "+Selected_filter+" filter option");
+			}
+			filter.click();
+		}
 		softassert.assertAll();			
 	}
 }
