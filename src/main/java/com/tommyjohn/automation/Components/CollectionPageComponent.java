@@ -509,12 +509,12 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 		// Recipient's email ID needs to be mentioned.
 		String to1 = "vijeta@tommyjohnwear.com";
-//		String to2 = "shweta.garhewal@tommyjohnwear.com";
-//		String to3 = "tyler.tremblay@tommyjohnwear.com";
+		String to2 = "shweta.garhewal@tommyjohnwear.com";
+		String to3 = "tyler.tremblay@tommyjohnwear.com";
 
 
 		// Sender's email ID needs to be mentioned
-		String from = "noreplymw@tommyjohnwear.com";
+		String from = "edw_job_alerts@aretove.com";
 		// Assuming you are sending email from localhost
 		String host = "secure.emailsrvr.com";
 		// Get system properties
@@ -542,8 +542,8 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			message.setFrom(new InternetAddress(from));
 			// Set To: header field of the header.
 			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to1));
-//			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to2));
-//			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to3));
+			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to2));
+			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to3));
 
 
 			// Set Subject: header field

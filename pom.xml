@@ -208,7 +208,7 @@
 						<inherited>true</inherited>
 						<configuration>
 							<!-- From Email address -->
-							<from>noreplymw@tommyjohnwear.com</from>
+							<from>edw_job_alerts@aretove.com</from>
 							<!-- Email subject -->
 							<subject>Test Automation Report</subject>
 							<!-- Fail the build if the mail doesn't reach -->
@@ -256,7 +256,7 @@
 				<version>3.0.0-M3</version>
 				<configuration>
 					<suiteXmlFiles>
-						<suiteXmlFile>criticalchecks.xml</suiteXmlFile>
+						<suiteXmlFile>testngChrome.xml</suiteXmlFile>
 					</suiteXmlFiles>
 				</configuration>
 			</plugin>
