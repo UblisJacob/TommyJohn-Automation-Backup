@@ -7,178 +7,178 @@
 	</listeners>
 	
 	
-	<test thread-count="1" name="NavigationFlow" verbose="1"
-		parallel="tests">
-		<parameter name="browser" value="chrome" />
-		<classes>
-			<class name="TestScenario.ValidateNavigationFlow" />
-		</classes>
-	</test>
+<!-- 	<test thread-count="1" name="NavigationFlow" verbose="1" -->
+<!-- 		parallel="tests"> -->
+<!-- 		<parameter name="browser" value="chrome" /> -->
+<!-- 		<classes> -->
+<!-- 			<class name="TestScenario.ValidateNavigationFlow" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
 
-	<test thread-count="1" name="HomePageTests" verbose="1"
-		parallel="tests">
-		<parameter name="browser" value="chrome" />
-		<classes>
-			<class name="TestScenario.ValidateHomePage" />
-		</classes>
-	</test>
+<!-- 	<test thread-count="1" name="HomePageTests" verbose="1" -->
+<!-- 		parallel="tests"> -->
+<!-- 		<parameter name="browser" value="chrome" /> -->
+<!-- 		<classes> -->
+<!-- 			<class name="TestScenario.ValidateHomePage" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
 
- 	<test thread-count="1" name="AccountLoginAndCreationTests"
-		verbose="1" parallel="tests">
-		<parameter name="browser" value="chrome" />
-		<classes>
-			<class name="TestScenario.ValidateAccountLoginFunctionality" />
-		</classes>
-	</test>
+<!--  	<test thread-count="1" name="AccountLoginAndCreationTests" -->
+<!-- 		verbose="1" parallel="tests"> -->
+<!-- 		<parameter name="browser" value="chrome" /> -->
+<!-- 		<classes> -->
+<!-- 			<class name="TestScenario.ValidateAccountLoginFunctionality" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
 		
-	<test thread-count="1" name="VerifyAccountPage"
-		verbose="1" parallel="tests">
-		<parameter name="browser" value="chrome" />
-		<classes>
-			<class name="TestScenario.ValidateAccountPage" />
-		</classes>
-	</test>
+<!-- 	<test thread-count="1" name="VerifyAccountPage" -->
+<!-- 		verbose="1" parallel="tests"> -->
+<!-- 		<parameter name="browser" value="chrome" /> -->
+<!-- 		<classes> -->
+<!-- 			<class name="TestScenario.ValidateAccountPage" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
 
-	<test thread-count="1" name="SingleCollectionTests" verbose="1"
-		parallel="tests">
-		<parameter name="browser" value="chrome" />
-		<classes>
-			<class name="TestScenario.ValidateSingleCollectionPages">
-			</class>
-		</classes>
-	</test>
+<!-- 	<test thread-count="1" name="SingleCollectionTests" verbose="1" -->
+<!-- 		parallel="tests"> -->
+<!-- 		<parameter name="browser" value="chrome" /> -->
+<!-- 		<classes> -->
+<!-- 			<class name="TestScenario.ValidateSingleCollectionPages"> -->
+<!-- 			</class> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
 
-	<test thread-count="1" name="MegaCollectionTests" verbose="1"
-		parallel="tests">
-		<parameter name="browser" value="chrome" />
-		<classes>
-			<class name="TestScenario.ValidateMegaCollectionPages" />
+<!-- 	<test thread-count="1" name="MegaCollectionTests" verbose="1" -->
+<!-- 		parallel="tests"> -->
+<!-- 		<parameter name="browser" value="chrome" /> -->
+<!-- 		<classes> -->
+<!-- 			<class name="TestScenario.ValidateMegaCollectionPages" /> -->
 
-		</classes>
-	</test>
+<!-- 		</classes> -->
+<!-- 	</test> -->
 	
-	<test thread-count="1" name="GiftCardCollectionTests" verbose="1"
-		parallel="tests">
-		<parameter name="browser" value="chrome" />
-		<classes>
-			<class name="TestScenario.ValidateGiftCardPLP" />
+<!-- 	<test thread-count="1" name="GiftCardCollectionTests" verbose="1" -->
+<!-- 		parallel="tests"> -->
+<!-- 		<parameter name="browser" value="chrome" /> -->
+<!-- 		<classes> -->
+<!-- 			<class name="TestScenario.ValidateGiftCardPLP" /> -->
 
-		</classes>
-	</test>
+<!-- 		</classes> -->
+<!-- 	</test> -->
 
-	<test thread-count="1" name="ProductPageTests" verbose="1"
-		parallel="tests">
-		<parameter name="browser" value="chrome" />
-		<classes>
-			<class name="TestScenario.ValidateProductDetailsPage" />
-		</classes>
-	</test>
+<!-- 	<test thread-count="1" name="ProductPageTests" verbose="1" -->
+<!-- 		parallel="tests"> -->
+<!-- 		<parameter name="browser" value="chrome" /> -->
+<!-- 		<classes> -->
+<!-- 			<class name="TestScenario.ValidateProductDetailsPage" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
 
-	<test thread-count="1" name="AddToCartTests" verbose="1"
-		parallel="tests">
-		<parameter name="browser" value="chrome" />
-		<classes>
-			<class name="TestScenario.AddToCartTests" />
-		</classes>
-	</test>
+<!-- 	<test thread-count="1" name="AddToCartTests" verbose="1" -->
+<!-- 		parallel="tests"> -->
+<!-- 		<parameter name="browser" value="chrome" /> -->
+<!-- 		<classes> -->
+<!-- 			<class name="TestScenario.AddToCartTests" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
 
-	<test thread-count="1" name="FlyCartTests" verbose="1"
-		parallel="tests">
-		<parameter name="browser" value="chrome" />
-		<classes>
-			<class name="TestScenario.ValidateFlyCartPage" />
-		</classes>
-	</test>
+<!-- 	<test thread-count="1" name="FlyCartTests" verbose="1" -->
+<!-- 		parallel="tests"> -->
+<!-- 		<parameter name="browser" value="chrome" /> -->
+<!-- 		<classes> -->
+<!-- 			<class name="TestScenario.ValidateFlyCartPage" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
 
-	<test thread-count="1" name="ShoppingCartTests" verbose="1"
-		parallel="tests">
-		<parameter name="browser" value="chrome" />
-		<classes>
-			<class name="TestScenario.ValidateShoppingCart" />
-		</classes>
-	</test>
+<!-- 	<test thread-count="1" name="ShoppingCartTests" verbose="1" -->
+<!-- 		parallel="tests"> -->
+<!-- 		<parameter name="browser" value="chrome" /> -->
+<!-- 		<classes> -->
+<!-- 			<class name="TestScenario.ValidateShoppingCart" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
 
-	<test thread-count="1" name="Checkout Tests" verbose="1"
-		parallel="tests">
-		<parameter name="browser" value="chrome" />
-		<classes>
-			<class name="TestScenario.ValidateCheckoutPage" />
-		</classes>
-	</test>
-
-
-	<test thread-count="1" name="ReorderPagetests" verbose="1"
-		parallel="tests">
-		<parameter name="browser" value="chrome" />
-		<classes>
-			<class name="TestScenario.ValidateReOrderPage" />
-		</classes>
-	</test>
-
-	<test thread-count="1" name="GiftCardPageTests" verbose="1"
-		parallel="tests">
-		<parameter name="browser" value="chrome" />
-		<classes>
-			<class name="TestScenario.ValidateGiftCardFunctionality" />
-		</classes>
-	</test>
-
-	<test thread-count="1" name="SizeGuideTests" verbose="1"
-		parallel="tests">
-		<parameter name="browser" value="chrome" />
-		<classes>
-			<class name="TestScenario.ValidateSizeGuide" />
-		</classes>
-	</test>
+<!-- 	<test thread-count="1" name="Checkout Tests" verbose="1" -->
+<!-- 		parallel="tests"> -->
+<!-- 		<parameter name="browser" value="chrome" /> -->
+<!-- 		<classes> -->
+<!-- 			<class name="TestScenario.ValidateCheckoutPage" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
 
 
-	<test thread-count="1" name="ContactUs" verbose="1"
-		parallel="tests">
-		<parameter name="browser" value="chrome" />
-		<classes>
-			<class name="TestScenario.ValidateContactUsPage" />
-		</classes>
-	</test>
+<!-- 	<test thread-count="1" name="ReorderPagetests" verbose="1" -->
+<!-- 		parallel="tests"> -->
+<!-- 		<parameter name="browser" value="chrome" /> -->
+<!-- 		<classes> -->
+<!-- 			<class name="TestScenario.ValidateReOrderPage" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
 
-	<test thread-count="1" name="QuickShop" verbose="1"
-		parallel="tests">
-		<parameter name="browser" value="chrome" />
-		<classes>
-			<class name="TestScenario.ValidateQuickShop" />
-		</classes>
-	</test>
+<!-- 	<test thread-count="1" name="GiftCardPageTests" verbose="1" -->
+<!-- 		parallel="tests"> -->
+<!-- 		<parameter name="browser" value="chrome" /> -->
+<!-- 		<classes> -->
+<!-- 			<class name="TestScenario.ValidateGiftCardFunctionality" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
 
-	<test thread-count="1" name="StoreLocator" verbose="1"
-		parallel="tests">
-		<parameter name="browser" value="chrome" />
-		<classes>
-			<class name="TestScenario.ValidateStoreLocator" />
-		</classes>
-	</test>
+<!-- 	<test thread-count="1" name="SizeGuideTests" verbose="1" -->
+<!-- 		parallel="tests"> -->
+<!-- 		<parameter name="browser" value="chrome" /> -->
+<!-- 		<classes> -->
+<!-- 			<class name="TestScenario.ValidateSizeGuide" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
+
+
+<!-- 	<test thread-count="1" name="ContactUs" verbose="1" -->
+<!-- 		parallel="tests"> -->
+<!-- 		<parameter name="browser" value="chrome" /> -->
+<!-- 		<classes> -->
+<!-- 			<class name="TestScenario.ValidateContactUsPage" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
+
+<!-- 	<test thread-count="1" name="QuickShop" verbose="1" -->
+<!-- 		parallel="tests"> -->
+<!-- 		<parameter name="browser" value="chrome" /> -->
+<!-- 		<classes> -->
+<!-- 			<class name="TestScenario.ValidateQuickShop" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
+
+<!-- 	<test thread-count="1" name="StoreLocator" verbose="1" -->
+<!-- 		parallel="tests"> -->
+<!-- 		<parameter name="browser" value="chrome" /> -->
+<!-- 		<classes> -->
+<!-- 			<class name="TestScenario.ValidateStoreLocator" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
 	
-	<test thread-count="1" name="PhysicalGiftCard" verbose="1"
-		parallel="tests">
-		<parameter name="browser" value="chrome" />
-		<classes>
-			<class name="TestScenario.ValidatePhysicalGiftCard" />
-		</classes>
-	</test>
+<!-- 	<test thread-count="1" name="PhysicalGiftCard" verbose="1" -->
+<!-- 		parallel="tests"> -->
+<!-- 		<parameter name="browser" value="chrome" /> -->
+<!-- 		<classes> -->
+<!-- 			<class name="TestScenario.ValidatePhysicalGiftCard" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
 	
-	<test thread-count="1" name="QuizFlow" verbose="1"
-		parallel="tests">
-		<parameter name="browser" value="chrome" />
-		<classes>
-			<class name="TestScenario.ValidateQuizFlow" />
-		</classes>
-	</test>
+<!-- 	<test thread-count="1" name="QuizFlow" verbose="1" -->
+<!-- 		parallel="tests"> -->
+<!-- 		<parameter name="browser" value="chrome" /> -->
+<!-- 		<classes> -->
+<!-- 			<class name="TestScenario.ValidateQuizFlow" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
 
-	<!-- <test thread-count="1" name="LoadingALlCollectionPages"
+	<test thread-count="1" name="LoadingALlCollectionPages"
 		verbose="1" parallel="tests">
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="TestScenario.ValidateCollectionPage" />
 		</classes>
-	</test> -->
+	</test> 
 
 <!-- 	<test thread-count="1" name="VerifyHeapEvents" -->
 <!-- 		verbose="1" parallel="tests"> -->
