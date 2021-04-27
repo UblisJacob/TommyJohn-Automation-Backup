@@ -23,41 +23,67 @@ public class ValidateQuizFlow
 	}
 
 	@Test
-	public void ValidateMensQuizFlow() throws Exception
+	public void ValidateMensUnderwearQuizFlow() throws Exception
 	{
 		new QuizPage(driver).VerifyMensQuizFlow();
 	}
 
 	@Test
-	public void ValidateMensRetakeQuizFlow() throws Exception
+	public void ValidateMensUnderwearRetakeQuizFlow() throws Exception
 	{
 		new QuizPage(driver).VerifyMensRetakeQuizFlow();
 	}
 	
 	@Test
-	public void ValidateMensResultPage() throws Exception
+	public void ValidateMensUnderwearResultPage() throws Exception
 	{
 		new QuizPage(driver).VerifyMensResultPage();
 	}
 
 	@Test
-	public void ValidateWomensQuizFlow() throws Exception
+	public void ValidateWomensUnderwearQuizFlow() throws Exception
 	{
 		new QuizPage(driver).VerifyWomensQuizFlow();
 	}
 
 	@Test
-	public void ValidateWomensRetakeQuizFlow() throws Exception
+	public void ValidateWomensUnderwearRetakeQuizFlow() throws Exception
 	{
 		new QuizPage(driver).VerifyWomensRetakeQuizFlow();
 	}
 	
 	@Test
-	public void ValidateWomensResultPage() throws Exception
+	public void ValidateWomensUnderwearResultPage() throws Exception
 	{
 		new QuizPage(driver).VerifyWomensResultPage();
 	}
-
+	
+	@Test
+	public void ValidateBraQuizFlow() throws Exception
+	{
+		new QuizPage(driver).VerifyBraQuizFlow();
+	}
+	@Test
+	public void ValidateBraRetakeQuizFlow() throws Exception
+	{
+		new QuizPage(driver).VerifyBraRetakeQuizFlow();
+	}
+	
+	@Test
+	public void ValidateBraResultPage() throws Exception
+	{
+		new QuizPage(driver).VerifyBraResultPage();
+	}
+	@Test
+	public void ValidateBraQuizWithCustomInput() throws Exception
+	{
+		new QuizPage(driver).VerifyBraQuizWithCustomInput();
+	}
+	@Test
+	public void ValidateBraQuizWithNoPreferenceOption() throws Exception
+	{
+		new QuizPage(driver).VerifyBraQuizWithNoPreferenceOption();
+	}
 	@AfterMethod(alwaysRun = true)
 	void tearDown() {
 

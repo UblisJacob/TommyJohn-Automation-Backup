@@ -1507,5 +1507,8 @@ public class HomePageComponents extends HomePageLocators {
 		driver.get("https://tommyjohn.com/pages/quiz?quizID=WN-UW-QZ");
 	}
 
-
+	public void navigateToWomensBraQuizPage()
+	{
+		driver.get("https://tommyjohn.com/pages/quiz?quizID=BR-10005-QZ");
+	}
 }
