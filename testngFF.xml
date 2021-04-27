@@ -5,7 +5,8 @@
 	<listeners>
 		<listener class-name="TestScenario.ListenerClass"></listener>
 	</listeners>
-
+	
+	
 	<test thread-count="1" name="NavigationFlow" verbose="1"
 		parallel="tests">
 		<parameter name="browser" value="firefox" />
@@ -22,11 +23,19 @@
 		</classes>
 	</test>
 
-	<test thread-count="1" name="AccountLoginAndCreationTests"
+ 	<test thread-count="1" name="AccountLoginAndCreationTests"
 		verbose="1" parallel="tests">
 		<parameter name="browser" value="firefox" />
 		<classes>
 			<class name="TestScenario.ValidateAccountLoginFunctionality" />
+		</classes>
+	</test>
+		
+	<test thread-count="1" name="VerifyAccountPage"
+		verbose="1" parallel="tests">
+		<parameter name="browser" value="firefox" />
+		<classes>
+			<class name="TestScenario.ValidateAccountPage" />
 		</classes>
 	</test>
 
@@ -44,6 +53,15 @@
 		<parameter name="browser" value="firefox" />
 		<classes>
 			<class name="TestScenario.ValidateMegaCollectionPages" />
+
+		</classes>
+	</test>
+	
+	<test thread-count="1" name="GiftCardCollectionTests" verbose="1"
+		parallel="tests">
+		<parameter name="browser" value="firefox" />
+		<classes>
+			<class name="TestScenario.ValidateGiftCardPLP" />
 
 		</classes>
 	</test>
@@ -113,13 +131,6 @@
 		</classes>
 	</test>
 
-	<test thread-count="1" name="CompareTool" verbose="1"
-		parallel="tests">
-		<parameter name="browser" value="firefox" />
-		<classes>
-			<class name="TestScenario.ValidateCompareTool" />
-		</classes>
-	</test>
 
 	<test thread-count="1" name="ContactUs" verbose="1"
 		parallel="tests">
@@ -144,7 +155,22 @@
 			<class name="TestScenario.ValidateStoreLocator" />
 		</classes>
 	</test>
-
+	
+	<test thread-count="1" name="PhysicalGiftCard" verbose="1"
+		parallel="tests">
+		<parameter name="browser" value="firefox" />
+		<classes>
+			<class name="TestScenario.ValidatePhysicalGiftCard" />
+		</classes>
+	</test>
+	
+	<test thread-count="1" name="QuizFlow" verbose="1"
+		parallel="tests">
+		<parameter name="browser" value="firefox" />
+		<classes>
+			<class name="TestScenario.ValidateQuizFlow" />
+		</classes>
+	</test>
 
 	<test thread-count="1" name="LoadingALlCollectionPages"
 		verbose="1" parallel="tests">
@@ -152,11 +178,25 @@
 		<classes>
 			<class name="TestScenario.ValidateCollectionPage" />
 		</classes>
-	</test>
+	</test> 
 
-	<!-- <test thread-count="1" name="AfterPayTests" verbose="1" parallel="tests"> 
-		<classes> <class name="TestScenario.ValidateAfterPay" /> </classes> </test> 
-		<test thread-count="1" name="MixAndMatch" verbose="1" parallel="tests"> <classes> 
+<!-- 	<test thread-count="1" name="VerifyHeapEvents" -->
+<!-- 		verbose="1" parallel="tests"> -->
+<!-- 		<classes> -->
+<!-- 			<class name="TestScenario.ValidateHeapEvents" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
+
+ 
+ 
+<!-- 	 <test thread-count="1" name="AfterPayTests" verbose="1" parallel="tests"> 
+	 <parameter name="browser" value="firefox" />
+		<classes>
+		 <class name="TestScenario.ValidateAfterPay" /> 
+		 </classes>
+	 </test> 
+ -->		
+	<!--	<test thread-count="1" name="MixAndMatch" verbose="1" parallel="tests"> <classes> 
 		<class name="TestScenario.ValidateMixAndMatchPage" /> </classes> </test> 
 		<test thread-count="1" name="LoyaltyOptInTests" verbose="1" parallel="tests"> 
 		<classes> <class name="TestScenario.ValidateLoyaltyOptIn" /> </classes> </test> -->
