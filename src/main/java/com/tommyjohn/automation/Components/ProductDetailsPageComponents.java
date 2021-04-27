@@ -1263,7 +1263,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		element= driver.findElement(RFY_SECTION);
 		jse = (JavascriptExecutor)driver;
 		jse.executeScript("arguments[0].scrollIntoView(true);",element);
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		softAssert.assertTrue(driver.findElement(RFY_TITLE).isDisplayed() ,"Recommended for you section not present");
 		softAssert.assertTrue(driver.findElement(RFY_SECTION).isDisplayed(), "Recommended for you section not present");
 		softAssert.assertTrue(driver.findElement(RFY_PRODUCT_TITLE).isDisplayed(), "Recommended for you product title not present");
