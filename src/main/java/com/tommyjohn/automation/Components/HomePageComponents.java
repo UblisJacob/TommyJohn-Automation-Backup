@@ -1106,7 +1106,7 @@ public class HomePageComponents extends HomePageLocators {
 		NavigateToDoNotSellMyPersonalInfoPage();
 		stateoptions = new Select(driver.findElement(STATE_DROPDOWN));
 		stateoptions.selectByValue("California");
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		softassert.assertTrue(driver.findElement(CALIFORNIA_USER_FORM_HEADING).isDisplayed(), "Form heading for California user is not displayed");
 		softassert.assertTrue(driver.findElement(NAME_LABEL).isDisplayed(), "Name label for California user is not displayed");
 		softassert.assertTrue(driver.findElement(NAME_TEXTBOX).isDisplayed(), "Name Textbox for California user is not displayed");
