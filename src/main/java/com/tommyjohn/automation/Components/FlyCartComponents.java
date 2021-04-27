@@ -323,7 +323,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		softAssert.assertFalse(price1.equals(price2), "Total price not changing after adding more items");
 
 		((JavascriptExecutor)driver).executeScript("arguments[0].click();", driver.findElement(MINUS_BUTTON));
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 
 		String quantity2 = driver.findElement(QUANTITY).getAttribute("data-item-qty");
 		System.out.println("quantity2 :: "+quantity2);

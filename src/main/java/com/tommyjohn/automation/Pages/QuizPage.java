@@ -41,5 +41,25 @@ public class QuizPage extends QuizPageComponents
 	{
 		new QuizPageComponents(driver).WomensResultPage();
 	}
-
+	
+	public void VerifyBraQuizFlow() throws Exception
+	{
+		new QuizPageComponents(driver).BraQuizFlow();
+	}
+	public void VerifyBraRetakeQuizFlow() throws Exception
+	{
+		new QuizPageComponents(driver).BraRetakeQuizFlow();
+	}
+	public void VerifyBraResultPage() throws Exception
+	{
+		new QuizPageComponents(driver).BraResultPage();
+	}
+	public void VerifyBraQuizWithCustomInput() throws Exception
+	{
+		new QuizPageComponents(driver).BraQuiz_CustomInputs();
+	}
+	public void VerifyBraQuizWithNoPreferenceOption() throws Exception
+	{
+		new QuizPageComponents(driver).Bra_NoPreferenceFunctionality();
+	}
 }

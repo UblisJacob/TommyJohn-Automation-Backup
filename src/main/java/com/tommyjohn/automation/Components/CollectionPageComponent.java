@@ -896,9 +896,26 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			throw new Exception("Product tile hover functionality is not correct on plp");
 		Reporter.log("Verified Product tile hover functionality on plp");	
 	}
+	
+    public void UpdatedSizeFilter()
+    {
+    	List<WebElement> allElements = null;
+    	allElements = driver.findElements(ALL_FILTERS);
+    	int filterList = 0;
+    	filterList = allElements.size();
+    	for(int i = 2; i <= filterList+1; i++) 
+    	{
+			element=driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child("+i+") > a"));
+			if(element.getAttribute("title").equalsIgnoreCase("Size"))
+				{ 
+				element.click();
+				break;
+				}
+		}
+    }
+    
+    }
 
 
 
-
-}
 
