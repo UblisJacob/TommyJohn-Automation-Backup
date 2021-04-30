@@ -208,7 +208,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		softAssert.assertTrue(driver.findElement(ALREADYHAVEANACCOUNT_TEXT).isDisplayed(), "Already have an account? text is not displayed");
 		softAssert.assertTrue(driver.findElement(LOGIN_LINK).isDisplayed(), "Login link is not displayed");
 		softAssert.assertTrue(driver.findElement(SHIPPINGADD_TEXT).isDisplayed(), "Shipping address text is not displayed");
-		softAssert.assertTrue(driver.findElement(REMEMBERME_CHCKBOX).isDisplayed(), "Save this information for next time checkbox is not displayed");
+		//softAssert.assertTrue(driver.findElement(REMEMBERME_CHCKBOX).isDisplayed(), "Save this information for next time checkbox is not displayed");
 		softAssert.assertTrue(driver.findElement(RETURN_TO_CART_LINK).isDisplayed(), "Return to cart link is not displayed");
 		softAssert.assertTrue(driver.findElement(CONTINUE_TO_SHIPPING_BUTTON).isDisplayed(), "Continue to shipping method button is not displayed");
 		sidebar();
