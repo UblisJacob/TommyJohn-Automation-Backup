@@ -187,7 +187,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		executor.executeScript("arguments[0].click();", ele);
 		//	driver.findElement(SIZEGUIDE).click();
 		Thread.sleep(3000);
-		if (!driver.findElement(By.cssSelector(".size-chart-content")).isDisplayed())
+		if (!driver.findElement(By.cssSelector(".size-chart-content > .size-guide-title")).isDisplayed())
 			throw new Exception("Sizes chart overlay is not displayed after Size guide button was clicked");
 		Reporter.log("Size guide is Displayed :: Clickable");
 		driver.findElement(By.cssSelector(".close_chart_modal")).click();
