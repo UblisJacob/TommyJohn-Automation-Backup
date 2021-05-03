@@ -55,7 +55,8 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
 		// get text and click on the first product
-		text = driver.findElement(FIRST_PRODUCT_URL).getAttribute("href");
+	//	text = driver.findElement(FIRST_PRODUCT_URL).getAttribute("href");
+		text= driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT).getText();
 		WebElement el = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", el);
@@ -136,7 +137,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		if(!driver.findElement(FIRST_PRODUCT_REVIEW_STARS).isDisplayed())
 			throw new Exception("Product review stars are not present");
 		text = driver.findElement(FIRST_PRODUCT_URL).getAttribute("href");
-		driver.findElement(FIRST_PRODUCT_REVIEW_STARS).click();
+		driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT).click();
 		Thread.sleep(3000);
 		Reporter.log(driver.getCurrentUrl());
 		// check correct Product details page opened or not

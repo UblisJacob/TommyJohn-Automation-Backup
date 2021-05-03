@@ -249,10 +249,15 @@ public class FlyCartComponents extends FlyCartPageLocator{
 
 		driver.findElement(INLINE_CART_CLOSE_BUTTON).click();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		text1 = driver.getCurrentUrl();
+		String currenturl = driver.getCurrentUrl();
+		String[] part= currenturl.split("\\?");
+		 text1 = part[0];
 		System.out.println(text1);
 		System.out.println(CustomUtilities.baseUrl);
-		softAssert.assertTrue(text1.equals(CustomUtilities.baseUrl), "Continue shopping button is not working correctly");
+		String preview_theme = CustomUtilities.baseUrl;
+		String[] part1= preview_theme.split("\\?");
+		String Base_URL = part1[0];
+		softAssert.assertTrue(text1.equals(Base_URL), "Continue shopping button is not working correctly");
 		Thread.sleep(2000);
 
 		driver.findElement(HomePageLocators.CART_ICON).click();
@@ -305,7 +310,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 
 
 		((JavascriptExecutor)driver).executeScript("arguments[0].click();", driver.findElement(PLUS_BUTTON));
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		String quantity1 = driver.findElement(QUANTITY).getAttribute("data-item-qty");
 		System.out.println("quantity1 :: "+quantity1);
 		// check quantity added by 1 or not 
