@@ -252,7 +252,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		text1 = driver.getCurrentUrl();
 		System.out.println(text1);
 		System.out.println(CustomUtilities.baseUrl);
-		softAssert.assertTrue(text1.equals(CustomUtilities.baseUrl), "Continue shopping button is not working correctly");
+		softAssert.assertTrue((text1.contains("https://tommyjohn.com/")), "Continue shopping button is not working correctly");
 		Thread.sleep(2000);
 
 		driver.findElement(HomePageLocators.CART_ICON).click();
