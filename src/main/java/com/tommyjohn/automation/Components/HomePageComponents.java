@@ -209,7 +209,8 @@ public class HomePageComponents extends HomePageLocators {
 
 		//Check auto-suggestions
 		driver.findElement(SEARCH_ICON).sendKeys("b");
-		Thread.sleep(5000);
+		//Thread.sleep(5000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(AUTO_SUGGESTED_LINKS));
 		softAssert.assertTrue(driver.findElement(AUTO_SUGGESTED_LINKS).isDisplayed(),"Popular searches section not displayed ");
 		softAssert.assertEquals(driver.findElement(PRODUCT_MATCHES_TITLE).getText(),"Product Matches","Text changed for Product matches title on autosuggestion container");
 		softAssert.assertTrue(driver.findElement(AUTO_SUGGESTED_PRODUCT_IMG).isDisplayed(), "Auto suggested product images are not displayed");
@@ -631,10 +632,13 @@ public class HomePageComponents extends HomePageLocators {
 		// scroll the page at bottom to test all the footer links
 		((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		// check About link
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ABOUT_LINK));
 		text = driver.findElement(ABOUT_LINK).getText();
 		if(!text.equals("About"))
 			throw new Exception("About footer link text is changed");	
-		driver.findElement(ABOUT_LINK).click();
+		WebElement aboutlink= driver.findElement(ABOUT_LINK);
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", aboutlink);
 		Thread.sleep(5000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/about-us")) 
 			driver.navigate().back();
