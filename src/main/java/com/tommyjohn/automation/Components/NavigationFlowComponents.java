@@ -27,7 +27,8 @@ public class NavigationFlowComponents extends NavigationFlowPageLocators
 	public void NavigatetoAllNewArrivalsInMenCategory() throws Exception
 	{
 		ValidateMenCategory();
-		Validate_First_Level1_Category();
+	//	Validate_First_Level1_Category();
+		Validate_Second_Level1_Category();
 		if(!driver.findElement(MENS_ALL_NEWARRIVALS).isDisplayed())
 			throw new Exception("All New Arrivals link in Men category is not displayed");
 
@@ -44,7 +45,8 @@ public class NavigationFlowComponents extends NavigationFlowPageLocators
 	public void NavigatetoAllNewArrivalsInWomenCategory() throws Exception
 	{
 		ValidateWomenCategory();
-		Validate_First_Level1_Category();
+		//Validate_First_Level1_Category();
+		Validate_Second_Level1_Category();
 		if(!driver.findElement(WOMENS_ALL_NEWARRIVALS).isDisplayed())
 			throw new Exception("All New Arrivals link in Women category is not displayed");
 
