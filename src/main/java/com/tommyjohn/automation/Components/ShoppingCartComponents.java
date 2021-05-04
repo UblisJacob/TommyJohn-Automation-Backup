@@ -96,9 +96,11 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		SoftAssert softAssert = new SoftAssert();
 		text = new AddToCartComponents(driver).addToCart();
 		System.out.println("Text is:"+text);
-		String[] part = text.split("/");
-		String part1 = part[part.length-2];
-		String part2 = part1.replace("-", " ");
+//		String[] part = text.split("/");
+//		String part1 = part[part.length-2];
+//		String part2 = part1.replace("-", " ");
+		String[] part = text.split(",");
+		String part2 = part[0];
 		System.out.println("Title text is:" +part2);
 		driver.findElement(HomePageLocators.CART_ICON).click();
 		WebDriverWait wait = new WebDriverWait(driver, 20);
