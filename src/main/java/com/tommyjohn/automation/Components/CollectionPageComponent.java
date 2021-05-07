@@ -785,7 +785,8 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			System.out.println("product details are correct on Fly cart.");
 			Thread.sleep(3000);
 			Reporter.log("Product details are validated on Inline cart.");
-			driver.findElement(FlyCartPageLocator.INLINE_CART_CLOSE_BUTTON).click();
+			WebElement btn = driver.findElement(FlyCartPageLocator.INLINE_CART_CLOSE_BUTTON);
+			js.executeScript("arguments[0].click();", btn);
 			//	}
 			//If selected size is OOS/Unavailable
 			/*
