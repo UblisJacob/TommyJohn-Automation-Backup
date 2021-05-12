@@ -33,7 +33,7 @@ public class HomePageComponents extends HomePageLocators {
 	public Actions action;
 	JavascriptExecutor executor = (JavascriptExecutor)driver;
 	SoftAssert softassert = new SoftAssert();
-
+	WebElement footer_link ;
 	String text;
 
 	public HomePageComponents(WebDriver driver) {
@@ -54,7 +54,7 @@ public class HomePageComponents extends HomePageLocators {
 
 			executor.executeScript("arguments[0].click();", element);	
 			Thread.sleep(3000);
-			
+
 			String currentUrl2 = driver.getCurrentUrl();
 			if(!currentUrl1.contains(currentUrl2))
 				throw new Exception("HomePage logo not working correctly");
@@ -210,7 +210,7 @@ public class HomePageComponents extends HomePageLocators {
 		//Check auto-suggestions
 		driver.findElement(SEARCH_ICON).sendKeys("b");
 		//Thread.sleep(5000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(AUTO_SUGGESTED_LINKS));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(AUTO_SUGGESTED_PRODUCT_IMG));
 		softAssert.assertTrue(driver.findElement(AUTO_SUGGESTED_LINKS).isDisplayed(),"Popular searches section not displayed ");
 		softAssert.assertEquals(driver.findElement(PRODUCT_MATCHES_TITLE).getText(),"Product Matches","Text changed for Product matches title on autosuggestion container");
 		softAssert.assertTrue(driver.findElement(AUTO_SUGGESTED_PRODUCT_IMG).isDisplayed(), "Auto suggested product images are not displayed");
@@ -229,7 +229,8 @@ public class HomePageComponents extends HomePageLocators {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(AUTO_SUGGESTED_PRODUCT_TILE_TITLE));
 		WebElement FIRST_SUGGESTED_PRODUCT_TILE_TITLE = driver.findElement(By.cssSelector(".search-product-tile:nth-child(1)>a"));
 		String suggested_title = FIRST_SUGGESTED_PRODUCT_TILE_TITLE.getText().replace(",", "").toLowerCase();
-		FIRST_SUGGESTED_PRODUCT_TILE_TITLE.click();
+		//FIRST_SUGGESTED_PRODUCT_TILE_TITLE.click();
+		executor.executeScript("arguments[0].click();", FIRST_SUGGESTED_PRODUCT_TILE_TITLE);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_TITLE));
 		String actual = driver.findElement(ProductDetailsPageLocators.PRODUCT_TITLE).getText().replace(",", "").toLowerCase();
 		System.out.println("actual is: "+actual+" expected is: "+suggested_title);
@@ -265,7 +266,7 @@ public class HomePageComponents extends HomePageLocators {
 		catch(Exception e){
 			System.out.println("Badging is not applicable for this product.");
 		}
-		
+
 		WebElement pname  = driver.findElement(SEARCHPAGE_PRODUCT_NAME);
 		text= pname.getText();
 		executor.executeScript("arguments[0].click();", pname );
@@ -288,6 +289,7 @@ public class HomePageComponents extends HomePageLocators {
 
 		element = driver.findElement(SEARCH_ICON);
 		executor = (JavascriptExecutor)driver;
+		Thread.sleep(3000);
 		executor.executeScript("arguments[0].click();", element);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(RECENT_SEARCHES_TITLE));
 		softAssert.assertTrue(driver.findElement(CLEAR_RECENT_SEARCHES).isDisplayed(), "Clear recent search link is not displayed");
@@ -311,14 +313,15 @@ public class HomePageComponents extends HomePageLocators {
 		int count = 0;
 		List<WebElement> allProductsOnPage = null;
 		String totalDisplayedCount = null;
-
+		WebDriverWait wait = new WebDriverWait(driver, 50);
 		// get total no of filters
 		allElements = driver.findElements(SEARCHPAGE_ALL_FILTERS);
 		filterList = allElements.size();
 		System.out.println("All filters list :: "+ filterList);
 
 		// loop for total not of filters
-		for(int i = 2; i <= filterList+1; i++) {
+		for(int i = 2; i <= filterList+1; i++) 
+		{
 			element=driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child("+i+") > a"));
 			JavascriptExecutor jse = (JavascriptExecutor)driver;
 			jse.executeScript("arguments[0].click();", element);
@@ -366,6 +369,9 @@ public class HomePageComponents extends HomePageLocators {
 
 			// check total not of count and products are correct
 			totalDisplayedCount = driver.findElement(SEARCHPAGE_ITEMCOUNT).getText();
+			System.out.println(totalDisplayedCount);
+			Thread.sleep(3000);
+		//	wait.until(ExpectedConditions.visibilityOfElementLocated(SEARCHPAGE_PRODUCT_IMAGE));
 			allProductsOnPage = driver.findElements(SEARCHPAGE_PRODUCT_IMAGE);
 			int allProductsOnPage1 = allProductsOnPage.size();
 			System.out.println("Out ddd :: "+allProductsOnPage1);
@@ -434,7 +440,7 @@ public class HomePageComponents extends HomePageLocators {
 		Reporter.log("All selected items are displayed in list and removing from list");
 		Reporter.log("Clear filters button works correctly");
 
-		WebDriverWait wait = new WebDriverWait(driver, 50);
+		//WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SEARCHPAGE_LAST_FILTER));
 		if(driver.findElement(SEARCHPAGE_LAST_FILTER).isDisplayed()) 
 		{
@@ -604,7 +610,8 @@ public class HomePageComponents extends HomePageLocators {
 	public void validateAccountIcon() throws Exception {
 		if(!driver.findElement(ACCOUNT_NAV_DROPDOWN).isDisplayed())
 			throw new Exception("Account Icon is not present");
-		driver.findElement(ACCOUNT_NAV_DROPDOWN).click();
+		element=driver.findElement(ACCOUNT_NAV_DROPDOWN);
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", element);
 		Thread.sleep(5000);
 		if(!driver.getCurrentUrl().startsWith("https://tommyjohn.com/account/login"))
 			throw new Exception("Wrong page opened after clicked on Account Icon");
@@ -637,8 +644,8 @@ public class HomePageComponents extends HomePageLocators {
 		text = driver.findElement(ABOUT_LINK).getText();
 		if(!text.equals("About"))
 			throw new Exception("About footer link text is changed");	
-		WebElement aboutlink= driver.findElement(ABOUT_LINK);
-		((JavascriptExecutor)driver).executeScript("arguments[0].click();", aboutlink);
+		footer_link= driver.findElement(ABOUT_LINK);
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", footer_link);
 		Thread.sleep(5000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/about-us")) 
 			driver.navigate().back();
@@ -651,7 +658,10 @@ public class HomePageComponents extends HomePageLocators {
 		text = driver.findElement(Careers).getText();
 		if(!text.equals("Careers"))
 			throw new Exception("Careers footer link text is changed");	
-		driver.findElement(Careers).click();
+		footer_link= driver.findElement(Careers);
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", footer_link);
+
+		//driver.findElement(Careers).click();
 		Thread.sleep(3000);
 		driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
 		Thread.sleep(5000);
@@ -668,7 +678,10 @@ public class HomePageComponents extends HomePageLocators {
 		text = driver.findElement(PRESS_LINK).getText();
 		if(!text.equals("Press"))
 			throw new Exception("Press link text is changed");	
-		driver.findElement(PRESS_LINK).click();
+		footer_link= driver.findElement(PRESS_LINK);
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", footer_link);
+
+		//driver.findElement(PRESS_LINK).click();
 		Thread.sleep(5000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/press")) 
 			driver.navigate().back();
@@ -683,7 +696,10 @@ public class HomePageComponents extends HomePageLocators {
 		text = driver.findElement(BLOG_LINK).getText();
 		if(!text.equals("Blog"))
 			throw new Exception("blog link text is changed");	
-		driver.findElement(BLOG_LINK).click();
+		footer_link= driver.findElement(BLOG_LINK);
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", footer_link);
+
+		//driver.findElement(BLOG_LINK).click();
 		Thread.sleep(5000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/blogs/news")) 
 			driver.navigate().back();
@@ -698,7 +714,10 @@ public class HomePageComponents extends HomePageLocators {
 		text = driver.findElement(Reviews).getText();
 		if(!text.equals("Reviews"))
 			throw new Exception("Reviews link text is changed");	
-		driver.findElement(Reviews).click();
+		footer_link= driver.findElement(Reviews);
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", footer_link);
+
+		//driver.findElement(Reviews).click();
 		Thread.sleep(5000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/reviews")) 
 			driver.navigate().back();
@@ -714,9 +733,13 @@ public class HomePageComponents extends HomePageLocators {
 		text = driver.findElement(MILITARY_DISCOUNT_LINK).getText();
 		if(!text.equals("Military Discount"))
 			throw new Exception("Military Discount link text is changed");	
-		driver.findElement(MILITARY_DISCOUNT_LINK).click();
+		footer_link= driver.findElement(MILITARY_DISCOUNT_LINK);
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", footer_link);
+
+		//driver.findElement(MILITARY_DISCOUNT_LINK).click();
 		Thread.sleep(3000);
-		driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
+		WebElement popup=driver.findElement(By.cssSelector(".LeaveSiteButtons > a"));
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", popup);
 		Thread.sleep(5000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.sheerid.com/")) 
 			driver.navigate().back();
@@ -731,7 +754,10 @@ public class HomePageComponents extends HomePageLocators {
 		text = driver.findElement(TEACHER_DISCOUNT_LINK).getText();
 		if(!text.equals("Student & Teacher Discount"))
 			throw new Exception("Teacher Discount link text is changed");	
-		driver.findElement(TEACHER_DISCOUNT_LINK).click();
+		footer_link= driver.findElement(TEACHER_DISCOUNT_LINK);
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", footer_link);
+
+		//driver.findElement(TEACHER_DISCOUNT_LINK).click();
 		Thread.sleep(5000);
 		driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
 		Thread.sleep(5000);
@@ -748,7 +774,10 @@ public class HomePageComponents extends HomePageLocators {
 		text = driver.findElement(HEALTHCARE_DISC_LINK).getText();
 		if(!text.equals("Healthcare Hero Discount"))
 			throw new Exception("Healthcare Hero Discount link text is changed");	
-		driver.findElement(HEALTHCARE_DISC_LINK).click();
+		footer_link= driver.findElement(HEALTHCARE_DISC_LINK);
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", footer_link);
+
+		//driver.findElement(HEALTHCARE_DISC_LINK).click();
 		Thread.sleep(3000);
 		driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
 		Thread.sleep(5000);
@@ -782,7 +811,10 @@ public class HomePageComponents extends HomePageLocators {
 		text = driver.findElement(CONTACT_US_LINK).getText();
 		if(!text.equals("Contact & FAQ"))
 			throw new Exception("Contact Us link text is changed");	
-		driver.findElement(CONTACT_US_LINK).click();
+		footer_link= driver.findElement(CONTACT_US_LINK);
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", footer_link);
+
+		//driver.findElement(CONTACT_US_LINK).click();
 		Thread.sleep(3000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://help.tommyjohn.com/hc/en-us")) 
 			driver.navigate().back();
@@ -797,7 +829,10 @@ public class HomePageComponents extends HomePageLocators {
 		text = driver.findElement(RETAILERS_LINK).getText();
 		if(!text.equals("Retailers"))
 			throw new Exception("Retailers link text is changed");	
-		driver.findElement(RETAILERS_LINK).click();
+		footer_link= driver.findElement(RETAILERS_LINK);
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", footer_link);
+
+		//driver.findElement(RETAILERS_LINK).click();
 		Thread.sleep(5000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/retailers")) 
 			driver.navigate().back();
@@ -814,7 +849,10 @@ public class HomePageComponents extends HomePageLocators {
 		text = driver.findElement(TOMMY_JOHN_STORES).getText();
 		if(!text.equals("Tommy John Stores"))
 			throw new Exception("Tommy John Stores link text is changed");	
-		driver.findElement(TOMMY_JOHN_STORES).click();
+		footer_link= driver.findElement(TOMMY_JOHN_STORES);
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", footer_link);
+
+		//driver.findElement(TOMMY_JOHN_STORES).click();
 		Thread.sleep(5000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/store-directory")) 
 			driver.navigate().back();
@@ -829,7 +867,10 @@ public class HomePageComponents extends HomePageLocators {
 		text = driver.findElement(STORE_LOCATOR_LINK).getText();
 		if(!text.equals("Store Locator"))
 			throw new Exception("Store Locator link text is changed");	
-		driver.findElement(STORE_LOCATOR_LINK).click();
+		footer_link= driver.findElement(STORE_LOCATOR_LINK);
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", footer_link);
+
+		//driver.findElement(STORE_LOCATOR_LINK).click();
 		Thread.sleep(5000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/store-locator")) 
 			driver.navigate().back();
@@ -844,7 +885,10 @@ public class HomePageComponents extends HomePageLocators {
 		text = driver.findElement(RETURNS_AND_EXCHANGES).getText();
 		if(!text.equals("Returns & Exchanges"))
 			throw new Exception("Shipping & Returns link text is changed");	
-		driver.findElement(RETURNS_AND_EXCHANGES).click();
+		footer_link= driver.findElement(RETURNS_AND_EXCHANGES);
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", footer_link);
+
+		//driver.findElement(RETURNS_AND_EXCHANGES).click();
 		Thread.sleep(3000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://help.tommyjohn.com/hc/en-us/sections/360000065123-Returns-Exchanges")) 
 			driver.navigate().back();
@@ -860,7 +904,10 @@ public class HomePageComponents extends HomePageLocators {
 		text = driver.findElement(SHIPPING_AND_RETURNS_LINK).getText();
 		if(!text.equals("Shipping & Return Policy"))
 			throw new Exception("Shipping & Returns link text is changed");	
-		driver.findElement(SHIPPING_AND_RETURNS_LINK).click();
+		footer_link= driver.findElement(SHIPPING_AND_RETURNS_LINK);
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", footer_link);
+
+		//driver.findElement(SHIPPING_AND_RETURNS_LINK).click();
 		Thread.sleep(3000);
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://help.tommyjohn.com/hc/en-us/articles/360000507746-Shipping-Returns")) 
 			driver.navigate().back();
@@ -877,6 +924,7 @@ public class HomePageComponents extends HomePageLocators {
 		element=driver.findElement(SHOP_WOMEN);
 		((JavascriptExecutor)driver).executeScript("arguments[0].click();", element);
 		Thread.sleep(5000);
+		System.out.println("shop women url: "+driver.getCurrentUrl());
 		if(driver.getCurrentUrl().contains("https://tommyjohn.com/collections/womens-all")) 
 			driver.navigate().back();
 		else
@@ -1150,6 +1198,7 @@ public class HomePageComponents extends HomePageLocators {
 	public void VerifyQuickShopOnDYRecs() throws Exception
 	{
 		Actions action = new Actions(driver);
+		Thread.sleep(3000);
 		element= driver.findElement(ProductDetailsPageLocators.RFY_SECTION);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		jse.executeScript("arguments[0].scrollIntoView(true);",element);
@@ -1167,6 +1216,7 @@ public class HomePageComponents extends HomePageLocators {
 	{
 		SoftAssert softassert = new SoftAssert();
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		Thread.sleep(4000);
 		element= driver.findElement(ProductDetailsPageLocators.RFY_SECTION);
 		jse = (JavascriptExecutor)driver;
 		jse.executeScript("arguments[0].scrollIntoView(true);",element);
@@ -1198,11 +1248,11 @@ public class HomePageComponents extends HomePageLocators {
 					colornew1 = element.getAttribute("title"); 
 					//	String colornew = colornew1.replace("/", " ");
 					System.out.println("swatch color is: "+colornew1);
-					if(colornew1.equalsIgnoreCase(Img_colortext)) 
+					if(colornew1.replace("/", " ").equalsIgnoreCase(Img_colortext)) 
 					{
 						WebElement elemen =driver.findElement(By.cssSelector(".dy-rec--products>div:nth-child(1) > div > div.product-item__swatches:nth-child(2)> div > div:nth-child("+(i+1)+")>div"));
 						jse.executeScript("arguments[0].click();", elemen);
-						softassert.assertTrue(Img_colortext.equalsIgnoreCase(colornew1), "Color not changing");
+					//	softassert.assertTrue(Img_colortext.equalsIgnoreCase(colornew1), "Color not changing");
 						Reporter.log("Color swatches are changing correctly");
 					}
 					else {
@@ -1313,10 +1363,10 @@ public class HomePageComponents extends HomePageLocators {
 	public void navigateToAllMensCollectionsInMenCategory() throws Exception {
 		driver.get("https://tommyjohn.com/collections/mens");
 		Thread.sleep(10000);
-//		element = driver.findElement(By.cssSelector("div.mega-collection-filters--controls > a"));
-//		WebDriverWait wait = new WebDriverWait(driver, 30);
-//		wait.until(ExpectedConditions.presenceOfElementLocated((By) element));
-//		((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);",element);
+		//		element = driver.findElement(By.cssSelector("div.mega-collection-filters--controls > a"));
+		//		WebDriverWait wait = new WebDriverWait(driver, 30);
+		//		wait.until(ExpectedConditions.presenceOfElementLocated((By) element));
+		//		((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);",element);
 	}
 
 	// navigate to New Arrivals in Women category
