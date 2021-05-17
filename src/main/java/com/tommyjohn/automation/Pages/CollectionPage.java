@@ -1,5 +1,6 @@
 package com.tommyjohn.automation.Pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
 import com.tommyjohn.automation.Components.CollectionPageComponent;
@@ -19,6 +20,8 @@ public class CollectionPage extends CollectionPageComponent{
 		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
 		Verify_ProductTile_HoverFunctionality();
 		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
+		JavascriptExecutor jse=(JavascriptExecutor)driver;
+		jse.executeScript("window.scrollBy(0,250)");
 		validateProductImageOnCollectionPage();
 	}
 
