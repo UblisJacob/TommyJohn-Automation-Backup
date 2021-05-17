@@ -116,7 +116,8 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 
 		String text2= p_name.replace("-", " ");
 		System.out.println("text2 is: "+text2.toLowerCase());
-		if(!text2.equalsIgnoreCase(part2))
+		System.out.println(p_name);
+		if(!p_name.equalsIgnoreCase(text2))
 			throw new Exception("Wrong Product added to cart");
 		quant= driver.findElement(PRODUCT_QUANTITY).getAttribute("value");
 

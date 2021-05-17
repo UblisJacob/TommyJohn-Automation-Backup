@@ -57,7 +57,7 @@ public class AddToCartComponents extends AddToCartLocators{
 				elementsCount = allElements.size();
 				System.out.println("All sizes list :: "+ elementsCount);
 				JavascriptExecutor executor = (JavascriptExecutor)driver;
-			    
+					    
 			    try {
 				if(driver.findElement(By.cssSelector("div.radio-options-container")).isDisplayed())
 				{
@@ -65,7 +65,7 @@ public class AddToCartComponents extends AddToCartLocators{
 					//radio			
 					for(int i=3;i<=elementsCount;i=i+2) {
 						boolean flag = false;
-						
+						element = driver.findElement(By.cssSelector(".radio-options-container > .Size > label:nth-child("+i+")"));
 						if (element.getAttribute("class").contains("oosVariant")) {
 							{
 								if(!driver.findElement(ProductDetailsPageComponents.PRODUCT_TITLE).getText().contains("Pack"))
