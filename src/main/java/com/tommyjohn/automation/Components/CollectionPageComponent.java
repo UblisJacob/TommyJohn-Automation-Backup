@@ -70,7 +70,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	public void validateProductImageOnCollectionPage() throws Exception {
 		String text = null;
 
-		WebDriverWait wait = new WebDriverWait(driver, 20);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_IMAGE));
 		// get product title and click on image if present
 		text = driver.findElement(FIRST_PRODUCT_URL).getAttribute("href");
@@ -102,6 +102,9 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	public void validateProductHeadingTextOnCollectionPage() throws Exception {
 		String text = null;
 		WebDriverWait wait = new WebDriverWait(driver, 30);
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("window.scrollBy(0,250)");
+
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
 		// get product title and click on product heading text if present
 
@@ -249,6 +252,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 				int allProductsOnPage1 = allProductsOnPage.size();
 				System.out.println("Out ddd :: "+allProductsOnPage1);
 				// check for hoverable class (if image is hoverable then it count two images for one image)
+				Thread.sleep(2000);
 				element = driver.findElement(FIRST_PRODUCT_IMAGE);
 				System.out.println("total displayed product on page :: "+allProductsOnPage1);
 				System.out.println("total displayed count of product :: "+totalDisplayedCount);
@@ -404,8 +408,8 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		// check selected option in style and respected corosal is active or not
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.mega-collection-filters > div:nth-child("+i+") > a")));
-		driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child("+i+") > a")).click();
-
+	WebElement filter=	driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child("+i+") > a"));
+	((JavascriptExecutor)driver).executeScript("arguments[0].click();", filter);
 		// get all the options list available in ith filter
 		allElements = driver.findElements(By.cssSelector("div.mega-collection-filters > div:nth-child("+i+") > ul > li"));
 		//loop for clicking all the options in ith filter
