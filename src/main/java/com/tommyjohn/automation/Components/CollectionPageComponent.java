@@ -55,8 +55,8 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
 		// get text and click on the first product
-	//	text = driver.findElement(FIRST_PRODUCT_URL).getAttribute("href");
-		text= driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT).getText();
+		text = driver.findElement(FIRST_PRODUCT_URL).getAttribute("href");
+		//text= driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT).getText();
 		WebElement el = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", el);
