@@ -55,7 +55,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		String text = null;
 
 		// call method to navigate to collection page
-		new HomePageComponents(driver).navigateToCamisoleInwomensCategory();
+		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
 
 		// call method to nevigate product details page
 		text = new CollectionPageComponent(driver).navigateToProductDetailsPage();
@@ -72,10 +72,12 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		String text2 = null;
 		String[] list;
+		Thread.sleep(4000);
 		wait.until(ExpectedConditions.presenceOfElementLocated(ADD_TO_CART_BUTTON));
-		list =driver.getCurrentUrl().split("/");
-		text2 = list[list.length-1];
-		list = text2.split("\\?");
+	//	list =driver.getCurrentUrl().split("/");
+		list= driver.findElement(PRODUCT_TITLE).getText().split(",");
+//		text2 = list[list.length-1];
+//		list = text2.split("\\?");
 		text2 = list[0];
 
 		list=text1.split("/");
@@ -130,6 +132,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		String quantity;
 		SoftAssert softAssert =  new SoftAssert();
 		System.out.println(driver.getCurrentUrl());
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_PRICE));
@@ -172,33 +175,32 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			System.out.println("Promo Message is not applicable for this product.");
 		}
 
-		Thread.sleep(5000);
+		Thread.sleep(7000);
 		//Check vertical image(carousel)
 		WebElement VERTICAL_IMAGE = driver.findElement(By.cssSelector(".slick-vertical > div > div > div.slick-slide.slick-current.slick-active"));
 		softAssert.assertTrue(VERTICAL_IMAGE.isDisplayed(), "Vertical images are not displayed on PDP.");
 		System.out.println("Vertical images are displayed on PDP.");
 		Reporter.log("Vertical images are displayed on PDP.");
 
-        //To avoid bounceX pop-up
-		driver.findElement(PRODUCT_TITLE).click();
+		//To avoid bounceX pop-up
+		WebElement p_title=driver.findElement(PRODUCT_TITLE);
+		executor.executeScript("arguments[0].click();", p_title);
 		// check for Size Guide button 
 		WebElement ele = driver.findElement(SIZEGUIDE);
-		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", ele);
 		//	driver.findElement(SIZEGUIDE).click();
 		Thread.sleep(3000);
 		if (!driver.findElement(By.cssSelector(".size-chart-content > .size-guide-title")).isDisplayed())
 			throw new Exception("Sizes chart overlay is not displayed after Size guide button was clicked");
 		Reporter.log("Size guide is Displayed :: Clickable");
-		driver.findElement(By.cssSelector(".close_chart_modal")).click();
-
+		WebElement close_icon=driver.findElement(By.cssSelector(".close_chart_modal"));
+		executor.executeScript("arguments[0].click();", close_icon);
 		//check rating n reviews
 		wait.until(ExpectedConditions.visibilityOfElementLocated(RATING_STARS));
 		if(driver.findElement(RATING_STARS).isDisplayed()) {
 
 			WebElement elem = driver.findElement(RATING_STARS);
-			JavascriptExecutor executore = (JavascriptExecutor)driver;
-			executore.executeScript("arguments[0].click();", elem);
+			executor.executeScript("arguments[0].click();", elem);
 			// wait for scroll it down
 			wait.until(ExpectedConditions.presenceOfElementLocated(WRITE_REVIEW_BUTTON));
 			Reporter.log("Review Stars Are Displayed :: Clickable :: Clicked");
@@ -263,7 +265,9 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 						WebElement elemen = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper > ul  > li:nth-child(" + i + ") > label"));
 						//elem.click();
 						executore.executeScript("arguments[0].click();", elemen);
-
+						//Thread.sleep(5000);
+						wait.until(ExpectedConditions.visibilityOfElementLocated(COLOR_TEXT));
+						System.out.println("expected is: "+driver.findElement(COLOR_TEXT).getText()+" Actual is: "+colornew);
 						softAssert.assertEquals(driver.findElement(COLOR_TEXT).getText().equalsIgnoreCase(colornew), true, "Color not changing");
 					}
 				}
@@ -1612,7 +1616,9 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		Thread.sleep(5000);
 		if(!driver.findElement(RATING_NUMBER).getText().equals("(0)"))
 		{
-			driver.findElement(RATING_NUMBER).click();
+			WebElement rating=driver.findElement(RATING_NUMBER);
+			jse.executeScript("arguments[0].click();" , rating);
+
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(SORT_BY));
 
@@ -1810,7 +1816,10 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 				{
 					Thread.sleep(3000);
 					System.out.println(packtitle.getText());
-					packtitle.click();
+				//	packtitle.click();
+					jse = (JavascriptExecutor)driver;
+					jse.executeScript("arguments[0].click();" , packtitle);
+
 					break;
 				}
 			}
@@ -1924,7 +1933,10 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			//new AddToCartComponents(driver).selectSize();
 			Thread.sleep(2000);
 			WebElement second_size = driver.findElement(By.cssSelector("div.radios-wrapper > div.radio-options-container > div > label:nth-child(5)"));
-			second_size.click();
+			//second_size.click();
+			jse = (JavascriptExecutor)driver;
+			jse.executeScript("arguments[0].click();" , second_size);
+
 			allElements = driver.findElements(By.cssSelector("input.sizeOption"));
 			for(int i=1;i<allElements.size();i++)
 			{
@@ -2044,6 +2056,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 	public void SelectSizeOnBundlePDP() throws Exception
 	{
 		allElements = driver.findElements(ALL_SIZE_LIST);
+		jse = (JavascriptExecutor)driver;
 		elementsCount = allElements.size();
 		System.out.println("All sizes list :: "+ elementsCount);
 		if(driver.findElement(By.cssSelector(".radio-options-container")).isDisplayed())
@@ -2059,7 +2072,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 				System.out.println("All sizes list count is :: "+ elementsCount);
 
 				WebElement second_size_option = driver.findElement(By.cssSelector("div.radios-wrapper > div.radio-options-container:nth-child("+i+")> div > label:nth-child(5)"));
-				second_size_option.click();
+				//second_size_option.click();
+				jse.executeScript("arguments[0].click();" , second_size_option);
 			}
 		}
 	}

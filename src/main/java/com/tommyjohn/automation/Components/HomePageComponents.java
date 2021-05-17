@@ -1396,7 +1396,7 @@ public class HomePageComponents extends HomePageLocators {
 
 	// navigate to All Womens Packs in Packs category
 	public void navigateToAllWomensPacksInPacksCategory() throws Exception {
-		driver.get("https://tommyjohn.com/collections/womens-underwear-packs");
+		driver.get("https://tommyjohn.com/collections/womens-packs");
 		Thread.sleep(5000);
 	}
 
