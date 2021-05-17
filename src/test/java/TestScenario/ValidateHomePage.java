@@ -49,7 +49,7 @@ public class ValidateHomePage {
 	}
 
 	@Test
-	public void TC_ValidateSearchFunctionalityviaPopularSearches() throws
+	public void TC_ValidateSearchFunctionality() throws
 	Exception {
 
 		new HomePage(driver).validateSearchFunctionality();

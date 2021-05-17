@@ -30,8 +30,7 @@
 					<include name="TC_verifyLogoAndCategoriesOnHomePage" />
 					<include name="TC_verifyAccountdropdownOnHomePage" />
 					<include name="TC_verifyAccountAndCartIconOnHomePage" />
-					<include
-						name="TC_ValidateSearchFunctionalityviaPopularSearches" />
+					<include name="TC_ValidateSearchFunctionalityviaPopularSearches" />
 				</methods>
 			</class>
 		</classes>
