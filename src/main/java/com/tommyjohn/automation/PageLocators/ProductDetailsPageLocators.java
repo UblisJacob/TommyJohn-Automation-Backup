@@ -32,7 +32,7 @@ public class ProductDetailsPageLocators {
 	public static By ALL_COLOR_LIST = By.cssSelector(".product-option__color-swatches-wrapper > ul >li");
 	public static By PRODUCT_DETAILS = By.cssSelector("div.product-accordion.container> ul > li:nth-child(1) > div:nth-child(1) > a");
 	public static By SIZEGUIDE = By.cssSelector("button.product-info__header-btn.size-guide");
-	public static By SIZE_GUIDE_BUTTON = By.cssSelector(".product-info__header-btn.size-guide");
+	public static By SIZE_GUIDE_BUTTON = By.cssSelector("button.product-info__header-btn.size-guide");
 	public static By ADD_TO_CART_BUTTON = By.cssSelector("button.product-info__atc.button.js-loop-atc");
 	public static By JOIN_THE_WAITLIST = By.cssSelector("button.product-info__atc.button.button--red.button--full.js-loop-atc.email-when-in-stock");
 	//public static By QUANTITY = By.cssSelector(".qty-selector.desktop>#updatedQty.pdp.prodQty");

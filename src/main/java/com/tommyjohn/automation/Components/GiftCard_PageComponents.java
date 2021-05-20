@@ -54,22 +54,22 @@ public class GiftCard_PageComponents extends GiftCard_PageLocators {
 		allElements = driver.findElements(PRICE_OPTIONS);
 		elementsCount = allElements.size();
 		System.out.println("All sizes list :: "+ elementsCount);
-		 try {
-				if(driver.findElement(By.cssSelector("div.radio-options-container")).isDisplayed())
-				{
-					allElements.get(0).click();
-				}
-				}
-		
-		 catch(Exception e)
-		 {
-		for(int i=1;i<=elementsCount;i++) {
-			driver.findElement(PRICE_DROPDOWN).click();
-			element = driver.findElement(By.cssSelector(".select--options__list > li:nth-child("+i+") > div"));
-			element.click();
-			Thread.sleep(3000);
+		try {
+			if(driver.findElement(By.cssSelector("div.radio-options-container")).isDisplayed())
+			{
+				allElements.get(0).click();
+			}
 		}
-		 }
+
+		catch(Exception e)
+		{
+			for(int i=1;i<=elementsCount;i++) {
+				driver.findElement(PRICE_DROPDOWN).click();
+				element = driver.findElement(By.cssSelector(".select--options__list > li:nth-child("+i+") > div"));
+				element.click();
+				Thread.sleep(3000);
+			}
+		}
 		driver.findElement(RECIPIENT_MAIL_TEXTBOX).sendKeys("testaccount00001@gmail.com");
 		Thread.sleep(3000);
 		driver.findElement(CONFIRM_MAIL_TEXTBOX).sendKeys("testaccount00001@gmail.com");
@@ -89,49 +89,44 @@ public class GiftCard_PageComponents extends GiftCard_PageLocators {
 
 	public void GoToOnGiftCardPage() throws Exception{
 		String GC_price =null;
+		action = new Actions(driver);
+		
 		new HomePageComponents(driver).navigateToGiftCard();
 		Thread.sleep(3000);
 
 		//Price selector
 
-				allElements = driver.findElements(PRICE_OPTIONS);
-				softAssert.assertTrue(allElements.get(0).isDisplayed(),"Gift card Amount radio buttons are not displayed.");
-				System.out.println("all amount list is: "+allElements.size());
-				allElements.get(0).click();
-				GC_price= driver.findElement(PRICE_OPTIONS).getText();
-				Thread.sleep(3000);
-				Reporter.log("Gift Cart amount radio buttons are displayed :: Clickable");
+		allElements = driver.findElements(PRICE_OPTIONS);
+		softAssert.assertTrue(allElements.get(0).isDisplayed(),"Gift card Amount radio buttons are not displayed.");
+		System.out.println("all amount list is: "+allElements.size());
+		WebElement GC_size=allElements.get(0);
+		jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].click();", GC_size);
+		GC_price= driver.findElement(PRICE_OPTIONS).getText();
+		Thread.sleep(3000);
+		Reporter.log("Gift Cart amount radio buttons are displayed :: Clickable");
 
-		/*
-		 * softAssert.assertTrue(driver.findElement(PRICE_DROPDOWN).isDisplayed(),
-		 * "Price dropdown is not present."); allElements =
-		 * driver.findElements(PRICE_OPTIONS); elementsCount = allElements.size();
-		 * System.out.println("All sizes list :: "+ elementsCount);
-		 * 
-		 * for(int i=0;i<=elementsCount-1;i++) {
-		 * driver.findElement(PRICE_DROPDOWN).click();
-		 * GC_price=allElements.get(i).getText(); allElements.get(i).click();
-		 * System.out.println("price is: "+GC_price); Thread.sleep(3000); }
-		 * 
-		 * Reporter.log("Gift Cart amount drop-down is displayed :: Clickable");
-		 * 
-		 */		
-				
-				
+		driver.navigate().refresh();
+		Thread.sleep(3000);
 		Rec_mail=driver.findElement(RECIPIENT_MAIL_TEXTBOX);
 		Rec_mail.sendKeys(properties.getProperty("checkoutemail"));
 		System.out.println("Entered recipient mail id is: "+Rec_mail.getAttribute("value"));
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		driver.findElement(CONFIRM_MAIL_TEXTBOX).sendKeys(properties.getProperty("checkoutemail"));
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 
 
 		//Select Today's Delivery date
 		softAssert.assertTrue(driver.findElement(DATE_TIME_PICKER_INPUT).isDisplayed(), "Date time picker input is not displayed.");
-		driver.findElement(DATE_TIME_PICKER_INPUT).click();
+		WebElement date_picker=driver.findElement(DATE_TIME_PICKER_INPUT);
+		jse.executeScript("arguments[0].click();", date_picker);
+		//action.moveToElement(date_picker).click().build().perform();
+		Thread.sleep(5000);
+		WebElement date=driver.findElement(TODAY);
+		jse.executeScript("arguments[0].click();", date);
 		Thread.sleep(3000);
-		driver.findElement(TODAY).click();
-		Delivery_date = driver.findElement(DATE_TIME_PICKER_INPUT).getAttribute("value");
+		WebElement new_date= driver.findElement(By.cssSelector("#gift-card-section >input#delivery_date"));
+		Delivery_date = new_date.getAttribute("value");
 		System.out.println("Selected delivery date is: "+Delivery_date);
 
 		DateTimeFormatter formatter = new DateTimeFormatterBuilder().appendPattern("MMMM d, yyyy").toFormatter();
@@ -193,22 +188,18 @@ public class GiftCard_PageComponents extends GiftCard_PageLocators {
 	}
 
 	public void verifyFieldsforGC() throws Exception {
-		/*
-		 * action = new Actions(driver); //navigate to Gift card PDP
-		 * if(driver.findElement(NEW_ARRIVALS_OPTION).isDisplayed()) {
-		 * 
-		 * new HomePageComponents(driver).navigateToGiftCard();
-		 * Reporter.log("Gift card link is clickable :: Clickable"); } else
-		 */			
+		
 		new HomePageComponents(driver).navigateToGiftCard();
-		Thread.sleep(3000);
+		Thread.sleep(4000);
 		//GC image
+		wait = new WebDriverWait(driver, 20);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(GIFT_CARD_DISPLAY_IMAGE));
 		softAssert.assertTrue(driver.findElement(GIFT_CARD_DISPLAY_IMAGE).isDisplayed(), "Gift Card image is not displayed");
 		Reporter.log("Gift Card delivery message text is displayed");
 		softAssert.assertTrue(driver.findElement(GIFT_CARD_DISPLAY_IMAGE_SMALL_1).isDisplayed(), "Gift card first side image is not present");
 		Reporter.log("Gift Card first side image is displayed");
-		softAssert.assertTrue(driver.findElement(GIFT_CARD_DISPLAY_IMAGE_SMALL_2).isDisplayed(), "Gift card second side image is not present");
-		Reporter.log("Gift Card second side image is displayed");
+	//	softAssert.assertTrue(driver.findElement(GIFT_CARD_DISPLAY_IMAGE_SMALL_2).isDisplayed(), "Gift card second side image is not present");
+	//	Reporter.log("Gift Card second side image is displayed");
 
 
 		//GiftCard Title
@@ -237,7 +228,7 @@ public class GiftCard_PageComponents extends GiftCard_PageLocators {
 		 * "Gift card price dropdown is not displayed.");
 		 * Reporter.log("Gift Card price drop-down is displayed");
 		 */
-		
+
 		//Amount radio buttons
 		List<WebElement> Amountlist = driver.findElements(By.cssSelector("div.radio-options-container>div>label.mainLabel>label"));
 		System.out.println("Total amount list are : "+Amountlist.size());
@@ -327,9 +318,9 @@ public class GiftCard_PageComponents extends GiftCard_PageLocators {
 			jse.executeScript("arguments[0].click();", element);
 		}
 		else throw new Exception("SHIPING_AND_RETURNS accordion not present or not clikable");	
-		
+
 		softAssert.assertAll();
-		
+
 		Reporter.log("Shipping & Returns accordion is Displayed and clikable");
 
 
@@ -359,14 +350,14 @@ public class GiftCard_PageComponents extends GiftCard_PageLocators {
 		softAssert.assertEquals(driver.findElement(SELECT_AN_AMOUNT_BUTTON).getText(), properties.getProperty("GCSelectAnAmountButton"),"Text changed for Select An amount button in GC.");
 
 		//When amount is selected
-		
+
 		List<WebElement> Amountlist = driver.findElements(PRICE_OPTIONS);
 		softAssert.assertTrue(Amountlist.get(0).isDisplayed(),"Gift card Amount radio buttons are not displayed.");
 		Amountlist.get(0).click();
 		Thread.sleep(3000);
 		Reporter.log("Gift Cart amount radio buttons are displayed :: Clickable");
 
-		
+
 		/*
 		 * softAssert.assertTrue(driver.findElement(PRICE_DROPDOWN).isDisplayed(),
 		 * "Price dropdown is not present."); allElements =
@@ -380,7 +371,9 @@ public class GiftCard_PageComponents extends GiftCard_PageLocators {
 		Thread.sleep(3000);
 
 		// if all fields are empty
-		driver.findElement(ATC_BUTTON).click();
+		WebElement atc=driver.findElement(ATC_BUTTON);
+		jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].click();", atc);
 		Thread.sleep(3000);
 		softAssert.assertTrue(driver.findElement(EMAIL_ERROR_MESSAGES_GC).isDisplayed(), "Error message for empty Recipient email is not displayed");
 		softAssert.assertEquals(driver.findElement(EMAIL_ERROR_MESSAGES_GC).getText(), properties.getProperty("GCEmptyErrorEmail"),"Error message text change for empty Recipient email");
@@ -399,7 +392,8 @@ public class GiftCard_PageComponents extends GiftCard_PageLocators {
 		//if invalid email is entered and mismatched email
 		driver.findElement(RECIPIENT_MAIL_TEXTBOX).sendKeys(invalidemail);
 		driver.findElement(CONFIRM_MAIL_TEXTBOX).sendKeys("test@tommyjohn.com");
-		driver.findElement(ATC_BUTTON).click();
+		//driver.findElement(ATC_BUTTON).click();
+		jse.executeScript("arguments[0].click();", atc);
 		Thread.sleep(3000);
 
 		softAssert.assertTrue(driver.findElement(EMAIL_ERROR_MESSAGES_GC).isDisplayed(), "Error message for Invalid Recipient email is not displayed");

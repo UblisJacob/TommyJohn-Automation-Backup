@@ -359,7 +359,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		int list1 = allElements.size();
 
 		driver.findElement(By.cssSelector("article:nth-child("+list1+") > div.line-item__summary > button")).click();
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 
 		allElements = driver.findElements(LIST_OF_ITEMS_IN_FLYCART);
 		System.out.println("List of items after click :: "+allElements.size());
@@ -412,7 +412,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		}
 		// click on apply button
 		driver.findElement(GIFT_WRAP_APPLY).click();
-		Thread.sleep(5000);
+		Thread.sleep(7000);
 
 		// check the $5 price is applying or not
 		price2 = driver.findElement(GIFT_WRAP_PRICE).getText();
