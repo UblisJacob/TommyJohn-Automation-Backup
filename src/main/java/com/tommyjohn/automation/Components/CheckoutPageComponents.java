@@ -131,13 +131,16 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		entershippingdetails();
 		Reporter.log("Shipping Address Details entered");
 
-		driver.findElement(CONTINUE_TO_SHIPPING_BUTTON).click();
+		WebElement Continue_shipping=driver.findElement(CONTINUE_TO_SHIPPING_BUTTON);
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", Continue_shipping);
 		Reporter.log("User is navigated to select shipping method");
 
 		Thread.sleep(7000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SHIPPING_TEXT));
 		softAssert.assertEquals(driver.findElement(SHIPPING_TEXT).getText(), "Shipping method");
-		driver.findElement(CONTINUE_TO_PAYMENT_BUTTON).click();
+		//driver.findElement(CONTINUE_TO_PAYMENT_BUTTON).click();
+		WebElement Continue_payment=driver.findElement(CONTINUE_TO_PAYMENT_BUTTON);
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", Continue_payment);
 		Reporter.log("Selected shipping method and user is navigated to payment page");
 
 		softAssert.assertTrue(driver.findElement(COMPLETE_ORDER_BUTTON).isDisplayed() , "Complete Order button is not displayed");	
@@ -173,7 +176,10 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		entershippingdetails();
 		Reporter.log("Shipping Address Details entered");
 
-		driver.findElement(CONTINUE_TO_SHIPPING_BUTTON).click();
+		//driver.findElement(CONTINUE_TO_SHIPPING_BUTTON).click();
+		WebElement Continue_shipping=driver.findElement(CONTINUE_TO_SHIPPING_BUTTON);
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", Continue_shipping);
+
 		Reporter.log("User is navigated to select shipping method");
 		Thread.sleep(8000);
 		softAssert.assertEquals(driver.findElement(SHIPPING_TEXT).getText(), "Shipping method");
@@ -227,7 +233,10 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ShoppingCartComponents.CART_TITLE));
-		driver.findElement(ShoppingCartComponents.CHECKOUT_BUTTON).click();
+	//	driver.findElement(ShoppingCartComponents.CHECKOUT_BUTTON).click();
+		WebElement checkout_btn=driver.findElement(ShoppingCartComponents.CHECKOUT_BUTTON);
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", checkout_btn);
+
 		Reporter.log("Checkout page displayed");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
 		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
@@ -235,7 +244,9 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		entershippingdetails();
 		Reporter.log("Shipping Address Details entered");
 
-		driver.findElement(CONTINUE_TO_SHIPPING_BUTTON).click();
+		//driver.findElement(CONTINUE_TO_SHIPPING_BUTTON).click();
+		WebElement Continue_shipping=driver.findElement(CONTINUE_TO_SHIPPING_BUTTON);
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", Continue_shipping);
 		Reporter.log("User is navigated to select shipping method");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACT_EMAIL));
 		CheckBreadcrumbs();
@@ -278,7 +289,10 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		entershippingdetails();
 		Reporter.log("Shipping Address Details entered");
 
-		driver.findElement(CONTINUE_TO_SHIPPING_BUTTON).click();
+		//driver.findElement(CONTINUE_TO_SHIPPING_BUTTON).click();
+		WebElement Continue_shipping=driver.findElement(CONTINUE_TO_SHIPPING_BUTTON);
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", Continue_shipping);
+
 		Reporter.log("User is navigated to select shipping method");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SHIPPING_RADIO_BUTTON));
 		jse.executeScript("window.scrollBy(0,100)");
