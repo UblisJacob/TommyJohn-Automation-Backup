@@ -121,7 +121,7 @@ public class ReOrderPageComponents extends ReOrderPageLocators{
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", element);
 
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		softAssert.assertTrue(driver.findElement(ORDERDETAILS_TITLE).isDisplayed(), "Order details page didnt opened");
 		softAssert.assertAll();		
 	}

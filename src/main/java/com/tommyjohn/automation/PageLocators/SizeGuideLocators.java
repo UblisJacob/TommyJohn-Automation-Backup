@@ -52,7 +52,7 @@ public class SizeGuideLocators
 	public static By SECOND_SIZE_CHART_TABLE_DIV = By.xpath("//div[@class='size-chart-overlay' ][@style='display: flex;']//div[@class='product-fit-guide']");
 	public static By SIZE_GUIDE_CHART_TABLE = By.cssSelector(".product-fit-guide>table.size-chart-table");
 	public static By SECOND_SIZE_GUIDE_CHART_TABLE = By.xpath("//div[@class='size-chart-overlay' ][@style='display: flex;']//table[@class='size-chart-table']");
-	public static By CUP_SIZE_INCHES_TEXT = By.cssSelector(".product-fit-guide>table.size-chart-table>tr:nth-child(4)>td:nth-child(1)");
+	public static By CUP_SIZE_INCHES_TEXT = By.cssSelector(".product-fit-guide>table.size-chart-table>tr:nth-child(4)>td:nth-child(1)>div");
 	public static By BAND_SIZE_INCHES_TEXT = By.cssSelector(".product-fit-guide>table.size-chart-table>tr:nth-child(1)>td");
 	public static By SIZE_GUIDE_INSTRUCTION_CONTENT = By.cssSelector(".size-guide-instructions");
 	public static By SECOND_SIZE_GUIDE_INSTRUCTION_CONTENT = By.xpath("//div[@class='size-chart-overlay' ][@style='display: flex;']//*[@class='size-guide-instructions-content']");

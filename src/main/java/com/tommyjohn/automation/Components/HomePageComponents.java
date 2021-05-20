@@ -1533,7 +1533,7 @@ public class HomePageComponents extends HomePageLocators {
 	//navigate to packs in men category
 	public void nevigateToAllMensPacksInPacksCategory() 
 	{
-		driver.get("https://tommyjohn.com/collections/clothing-packs");
+		driver.get("https://tommyjohn.com/collections/mens-packs-all");
 
 	}
 

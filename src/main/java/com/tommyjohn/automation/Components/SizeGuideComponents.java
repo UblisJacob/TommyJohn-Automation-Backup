@@ -60,12 +60,16 @@ public class SizeGuideComponents extends SizeGuideLocators
 	public void validateMenDressShirtSizeGuidePage() throws Exception
 	{
 		new HomePageComponents(driver).navigateToButtonDownShirtInMenCategory();
+		jse = (JavascriptExecutor)driver;
+		jse.executeScript("window.scrollBy(0,100)");
+
 		List<WebElement> producttitle = driver.findElements(By.cssSelector(".product-meta__title"));
 		for (WebElement title : producttitle)
 		{
 			if(title.getText().contains("Shirt"))
 			{
-				title.click();
+				//title.click();
+				((JavascriptExecutor)driver).executeScript("arguments[0].click();", title);
 				break;
 			}
 
@@ -412,6 +416,10 @@ public class SizeGuideComponents extends SizeGuideLocators
 		//Bra Size Guide Chart Table Validations	
 		if(!driver.findElement(SIZE_GUIDE_CHART_TABLE).isDisplayed())
 			throw new Exception("Size Chart table is not displayed.");
+		WebElement cup_size_inches_text= driver.findElement(CUP_SIZE_INCHES_TEXT);
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", driver.findElement(SIZE_GUIDE_CHART_TABLE));
+		Thread.sleep(3000);
+		System.out.println(cup_size_inches_text.getText());
 		if(!driver.findElement(CUP_SIZE_INCHES_TEXT).getText().equalsIgnoreCase("Cup Size/Full Bust Circumference (Inches)"))
 			throw new Exception("Text changed for 'Cup Size/Full Bust Circumference (Inches)'");
 		if(!driver.findElement(BAND_SIZE_INCHES_TEXT).getText().equalsIgnoreCase("Band Size/Underbust Circumference (Inches)"))
@@ -531,7 +539,11 @@ public class SizeGuideComponents extends SizeGuideLocators
 		Reporter.log("Men's Dress Shirt size guide is Displayed :: Clickable");
 
 		//Close size guide window
-		driver.findElement(By.cssSelector(".close_chart_modal")).click();
+		WebElement close=driver.findElement(By.cssSelector(".close_chart_modal"));
+		jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].click();",close);
+
+		
 	}
 
 	public void validateMenUnderShirtSizeGuide() throws Exception
@@ -983,8 +995,8 @@ public class SizeGuideComponents extends SizeGuideLocators
 			{
 				Thread.sleep(3000);
 				System.out.println(title.getText());
-
-				title.click();
+jse.executeScript("arguments[0].click();", title);
+				//title.click();
 
 				break;
 			}
