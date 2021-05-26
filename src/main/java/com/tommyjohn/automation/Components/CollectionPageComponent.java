@@ -55,7 +55,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
 		// get text and click on the first product
-		text = driver.findElement(FIRST_PRODUCT_URL).getAttribute("href");
+		text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
 		//text= driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT).getText();
 		WebElement el = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
@@ -73,7 +73,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_IMAGE));
 		// get product title and click on image if present
-		text = driver.findElement(FIRST_PRODUCT_URL).getAttribute("href");
+		text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
 
 		WebElement Prod_Image = driver.findElement(FIRST_PRODUCT_IMAGE);
 		if(!Prod_Image.isDisplayed())
@@ -108,7 +108,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
 		// get product title and click on product heading text if present
 
-		text = driver.findElement(FIRST_PRODUCT_URL).getAttribute("href");
+		text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
 		driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT).click();
 		Thread.sleep(3000);
 		Reporter.log(driver.getCurrentUrl());
@@ -139,7 +139,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		//		try {
 		if(!driver.findElement(FIRST_PRODUCT_REVIEW_STARS).isDisplayed())
 			throw new Exception("Product review stars are not present");
-		text = driver.findElement(FIRST_PRODUCT_URL).getAttribute("href");
+		text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
 		driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT).click();
 		Thread.sleep(3000);
 		Reporter.log(driver.getCurrentUrl());

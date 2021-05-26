@@ -80,9 +80,9 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 //		list = text2.split("\\?");
 		text2 = list[0];
 
-		list=text1.split("/");
-		text1=list[list.length-1];
-		list = text1.split("\\?");
+		list=text1.split(",");
+//		text1=list[list.length-1];
+//		list = text1.split("\\?");
 		text1 = list[0];
 
 		System.out.println("text2 is: "+text2+" and text1 is: "+text1);
