@@ -1018,7 +1018,7 @@ jse.executeScript("arguments[0].click();", title);
 		for (WebElement title : producttitle)
 		{
 			System.out.println("product title is: "+title.getText());
-			if(title.getText().contains("Lounge Set"))
+			if(title.getText().contains("Set"))
 			{
 				Thread.sleep(3000);
 				System.out.println(title.getText());
