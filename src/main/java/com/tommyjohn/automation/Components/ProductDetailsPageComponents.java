@@ -79,7 +79,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 //		text2 = list[list.length-1];
 //		list = text2.split("\\?");
 		text2 = list[0];
-
+        text2 = text2.replace("\"","" );
 		list=text1.split(",");
 //		text1=list[list.length-1];
 //		list = text1.split("\\?");
@@ -279,7 +279,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		elementsCount = allElements.size();
 		System.out.println("All sizes list :: "+ elementsCount);
 		try {
-			if(driver.findElement(By.cssSelector("div.radio-options-container")).isDisplayed())
+			if(driver.findElement(By.cssSelector("div.radios-wrapper")).isDisplayed())
 			{
 
 				//radio			
@@ -288,7 +288,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 					element = driver.findElement(By.cssSelector("div.radios-wrapper > div.radio-options-container > div > label:nth-child("+i+")"));
 					if (element.getAttribute("class").contains("oosVariant")) {
 						{
-							if(!driver.findElement(PRODUCT_TITLE).getText().contains("Pack"))
+							if(!(driver.findElement(PRODUCT_TITLE).getText().contains("Pack")|| driver.findElement(PRODUCT_TITLE).getText().contains("Set")))
 							{
 
 								Thread.sleep(3000);
@@ -375,7 +375,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 				// check size available or not
 				for (String c : allClasses.split(" ")) {
 					if (c.equals("unavailable")) {
-						if(!driver.findElement(PRODUCT_TITLE).getText().contains("Pack"))
+						if(!(driver.findElement(PRODUCT_TITLE).getText().contains("Pack")||driver.findElement(PRODUCT_TITLE).getText().contains("Set")))
 						{
 
 							Thread.sleep(3000);
@@ -424,6 +424,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 					{
 						jse = (JavascriptExecutor)driver;
 						jse.executeScript("arguments[0].click();" , element);
+						Thread.sleep(3000);
 					}
 				}
 				if(i==elementsCount) {
