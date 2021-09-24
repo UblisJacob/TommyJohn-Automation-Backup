@@ -1,8 +1,7 @@
 package com.tommyjohn.automation.Components;
 
+import java.util.Iterator;
 import java.util.List;
-
-import javax.naming.spi.DirStateFactory;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -15,8 +14,6 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
-
-import com.tommyjohn.automation.PageLocators.CollectionPageLocator;
 import com.tommyjohn.automation.PageLocators.HomePageLocators;
 import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
 import com.tommyjohn.automation.utils.CustomUtilities;
@@ -371,7 +368,7 @@ public class HomePageComponents extends HomePageLocators {
 			totalDisplayedCount = driver.findElement(SEARCHPAGE_ITEMCOUNT).getText();
 			System.out.println(totalDisplayedCount);
 			Thread.sleep(3000);
-		//	wait.until(ExpectedConditions.visibilityOfElementLocated(SEARCHPAGE_PRODUCT_IMAGE));
+			//	wait.until(ExpectedConditions.visibilityOfElementLocated(SEARCHPAGE_PRODUCT_IMAGE));
 			allProductsOnPage = driver.findElements(SEARCHPAGE_PRODUCT_IMAGE);
 			int allProductsOnPage1 = allProductsOnPage.size();
 			System.out.println("Out ddd :: "+allProductsOnPage1);
@@ -736,57 +733,101 @@ public class HomePageComponents extends HomePageLocators {
 		footer_link= driver.findElement(MILITARY_DISCOUNT_LINK);
 		((JavascriptExecutor)driver).executeScript("arguments[0].click();", footer_link);
 
-		//driver.findElement(MILITARY_DISCOUNT_LINK).click();
 		Thread.sleep(3000);
-		WebElement popup=driver.findElement(By.cssSelector(".LeaveSiteButtons > a"));
+		Handle_GovX_Popup();
+
+		WebElement popup=driver.findElement(By.cssSelector(".LeaveSiteButtons > button"));
 		((JavascriptExecutor)driver).executeScript("arguments[0].click();", popup);
 		Thread.sleep(5000);
-		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.sheerid.com/")) 
-			driver.navigate().back();
-		else
-			throw new Exception("Wrong page opened after Military Discount footer link clicked");
+		//		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.sheerid.com/")) 
+		//			driver.navigate().back();
+
 		Reporter.log("Military Discount footer link is Displayed :: Clickable");
 		Thread.sleep(5000);
 
+		// check First Responder link
+				((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+				text = driver.findElement(FIRST_RESPONDER).getText();
+				if(!text.equals("First Responder"))
+					throw new Exception("First Responder link text is changed");	
+				footer_link= driver.findElement(FIRST_RESPONDER);
+				((JavascriptExecutor)driver).executeScript("arguments[0].click();", footer_link);
+
+				Thread.sleep(3000);
+				Handle_GovX_Popup();
+
+				popup=driver.findElement(By.cssSelector(".LeaveSiteButtons > button"));
+				((JavascriptExecutor)driver).executeScript("arguments[0].click();", popup);
+				Thread.sleep(5000);
+				//		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.sheerid.com/")) 
+				//			driver.navigate().back();
+
+				Reporter.log("First Responder footer link is Displayed :: Clickable");
+				Thread.sleep(5000);
+
+				// check Government Employee Discount link
+				((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+				text = driver.findElement(GOVERNMENT_EMPLOYEE_DISCOUNT).getText();
+				if(!text.equals("Government Employee Discount"))
+					throw new Exception("Government Employee Discount link text is changed");	
+				footer_link= driver.findElement(GOVERNMENT_EMPLOYEE_DISCOUNT);
+				((JavascriptExecutor)driver).executeScript("arguments[0].click();", footer_link);
+
+				Thread.sleep(3000);
+				Handle_GovX_Popup();
+
+				popup=driver.findElement(By.cssSelector(".LeaveSiteButtons > button"));
+				((JavascriptExecutor)driver).executeScript("arguments[0].click();", popup);
+				Thread.sleep(5000);
+				Reporter.log("Government Employee Discount footer link is Displayed :: Clickable");
+				Thread.sleep(5000);
+
+				
 		// check Teacher Discount  link
 		// scroll the page at bottom to test all the footer links
 		((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		text = driver.findElement(TEACHER_DISCOUNT_LINK).getText();
-		if(!text.equals("Student & Teacher Discount"))
+		if(!text.equals("Teacher Discount"))
 			throw new Exception("Teacher Discount link text is changed");	
 		footer_link= driver.findElement(TEACHER_DISCOUNT_LINK);
 		((JavascriptExecutor)driver).executeScript("arguments[0].click();", footer_link);
+		Thread.sleep(5000);
+		Handle_GovX_Popup();
 
-		//driver.findElement(TEACHER_DISCOUNT_LINK).click();
-		Thread.sleep(5000);
-		driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
-		Thread.sleep(5000);
-		if(driver.getCurrentUrl().equalsIgnoreCase("https://offers.sheerid.com/tommy-john-landing-page/")) 
-			driver.navigate().back();
-		else
-			throw new Exception("Wrong page opened after Teacher Discount footer link clicked");
+		popup=driver.findElement(By.cssSelector(".LeaveSiteButtons > button"));
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", popup);	Thread.sleep(5000);
+		//	if(driver.getCurrentUrl().equalsIgnoreCase("https://offers.sheerid.com/tommy-john-landing-page/")) 
+		//		driver.navigate().back();
+		//	else
+		//		throw new Exception("Wrong page opened after Teacher Discount footer link clicked");
 		Reporter.log("Teacher Discount footer link is Displayed :: Clickable");
 		Thread.sleep(5000);
 
 		// check  Healthcare  link
 		// scroll the page at bottom to test all the footer links
-		((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-		text = driver.findElement(HEALTHCARE_DISC_LINK).getText();
-		if(!text.equals("Healthcare Hero Discount"))
-			throw new Exception("Healthcare Hero Discount link text is changed");	
-		footer_link= driver.findElement(HEALTHCARE_DISC_LINK);
-		((JavascriptExecutor)driver).executeScript("arguments[0].click();", footer_link);
-
-		//driver.findElement(HEALTHCARE_DISC_LINK).click();
-		Thread.sleep(3000);
-		driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
-		Thread.sleep(5000);
-		if(driver.getCurrentUrl().equalsIgnoreCase("https://services.sheerid.com/verify/5eb057b19c1d181bd389bf0d/")) 
-			driver.navigate().back();
-		else
-			throw new Exception("Wrong page opened after Healthcare Hero Discount footer link clicked");
-		Reporter.log("Healthcare Hero Discount footer link is Displayed :: Clickable");
-		Thread.sleep(5000);
+		/*
+		 * ((JavascriptExecutor)driver).
+		 * executeScript("window.scrollTo(0, document.body.scrollHeight)"); text =
+		 * driver.findElement(HEALTHCARE_DISC_LINK).getText();
+		 * if(!text.equals("Healthcare Hero Discount")) throw new
+		 * Exception("Healthcare Hero Discount link text is changed"); footer_link=
+		 * driver.findElement(HEALTHCARE_DISC_LINK);
+		 * ((JavascriptExecutor)driver).executeScript("arguments[0].click();",
+		 * footer_link);
+		 * 
+		 * //driver.findElement(HEALTHCARE_DISC_LINK).click(); Thread.sleep(3000);
+		 * Handle_GovX_Popup();
+		 * 
+		 * popup=driver.findElement(By.cssSelector(".LeaveSiteButtons > button"));
+		 * ((JavascriptExecutor)driver).executeScript("arguments[0].click();", popup);
+		 * // Thread.sleep(5000); // if(driver.getCurrentUrl().equalsIgnoreCase(
+		 * "https://services.sheerid.com/verify/5eb057b19c1d181bd389bf0d/")) //
+		 * driver.navigate().back(); // else // throw new
+		 * Exception("Wrong page opened after Healthcare Hero Discount footer link clicked"
+		 * );
+		 * Reporter.log("Healthcare Hero Discount footer link is Displayed :: Clickable"
+		 * ); Thread.sleep(5000);
+		 */
 
 
 
@@ -1252,7 +1293,7 @@ public class HomePageComponents extends HomePageLocators {
 					{
 						WebElement elemen =driver.findElement(By.cssSelector(".dy-rec--products>div:nth-child(1) > div > div.product-item__swatches:nth-child(2)> div > div:nth-child("+(i+1)+")>div"));
 						jse.executeScript("arguments[0].click();", elemen);
-					//	softassert.assertTrue(Img_colortext.equalsIgnoreCase(colornew1), "Color not changing");
+						//	softassert.assertTrue(Img_colortext.equalsIgnoreCase(colornew1), "Color not changing");
 						Reporter.log("Color swatches are changing correctly");
 					}
 					else {
@@ -1288,6 +1329,30 @@ public class HomePageComponents extends HomePageLocators {
 		if(!Hover_on_plp.equalsIgnoreCase(Second_image_pdp))
 			throw new Exception("Product tile hover functionality is not correct");
 		Reporter.log("Verified Product tile hover functionality");	
+
+	}
+
+	public void Handle_GovX_Popup() throws Exception
+	{
+		String parent = driver.getWindowHandle();
+		java.util.Set<String> s= driver.getWindowHandles();
+		Iterator<String> I1 = s.iterator();
+		while(I1.hasNext())
+		{
+			String child_window= I1.next();
+			if(!parent.equals(child_window))
+			{
+				driver.switchTo().window(child_window);
+				System.out.println("pop-up url is: "+driver.getCurrentUrl());
+				if(driver.getCurrentUrl().contains("https://auth.govx.com/"))
+				{
+					driver.close();
+				}
+				else
+					throw new Exception("Wrong page opened after footer link clicked");
+			}
+		}
+		driver.switchTo().window(parent);
 
 	}
 

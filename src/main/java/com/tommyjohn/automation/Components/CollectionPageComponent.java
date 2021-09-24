@@ -147,6 +147,9 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		//new ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);	
 
 		// validate product details page by calling the method
+		if(driver.findElement(ProductDetailsPageLocators.PRODUCT_TITLE).getText().contains("Set"))
+			new ProductDetailsPageComponents(driver).verifybundlepages();
+		else
 		new ProductDetailsPageComponents(driver).validatePage();
 
 		Reporter.log("Product review stars on collection page is Displayed :: Clickable and validated successfully");
@@ -221,10 +224,11 @@ public class CollectionPageComponent extends CollectionPageLocator {
 					continue;
 				count++;
 				jse.executeScript("arguments[0].click();", Filter_option_item);
-				Thread.sleep(2000);
+				Thread.sleep(3000);
 
-				// get the name of selected option
-				selectedOption = driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child("+i+") > ul > li:nth-child(1) > label > input")).getAttribute("data-filter-btn");
+				//get the name of selected option
+				//selectedOption = driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child("+i+") > ul > li:nth-child(1) > label > input")).getAttribute("data-filter-btn");
+				selectedOption = driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child("+i+") > ul > li:nth-child(1) > label > span")).getText();
 				System.out.println("selected option :: "+selectedOption);
 
 				// get all selected displayed optioins
@@ -239,7 +243,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 				System.out.println("ct :: "+ct);
 				System.out.println("ct th ele :: "+allElements.get(ct).getText());
-				if(!(allElements.get(ct).getText()).equals(selectedOption))
+				if(!(allElements.get(ct).getText().replace("\"", "")).equals(selectedOption.replace("\"", "")))
 					throw new Exception("Selected item is not present in displayed item list");
 
 				// check total no of count is displayed or not
@@ -279,8 +283,8 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			jse = (JavascriptExecutor)driver;
 			jse.executeScript("arguments[0].click();", element);
 			Thread.sleep(1000);
-			System.out.println("last item :: "+driver.findElement(By.cssSelector("div.js-mega-collection-desktop-filter-tags > button:nth-child("+ct+")")).getText());
-			element=driver.findElement(By.cssSelector("div.js-mega-collection-desktop-filter-tags > button:nth-child("+ct+")"));
+			System.out.println("last item :: "+driver.findElement(By.cssSelector("div.js-mega-collection-desktop-filter-tags >div> button:nth-child("+ct+")")).getText());
+			element=driver.findElement(By.cssSelector("div.js-mega-collection-desktop-filter-tags >div> button:nth-child("+ct+")"));
 			jse = (JavascriptExecutor)driver;
 			jse.executeScript("arguments[0].click();", element);
 			//driver.findElement(PLUS_BUTTON).click();
@@ -299,8 +303,8 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 			if(ct!=0 && ct!=-1) {
 				System.out.println("ct :: "+allElements.get(ct).getText());
-				System.out.println("ct :: "+driver.findElement(By.cssSelector("div.js-mega-collection-desktop-filter-tags > button:nth-child("+ct+")")).getText());
-				if((allElements.get(ct).getText()).equals(driver.findElement(By.cssSelector("div.js-mega-collection-desktop-filter-tags > button:nth-child("+ct+")")).getText()))
+				System.out.println("ct :: "+driver.findElement(By.cssSelector("div.js-mega-collection-desktop-filter-tags >div> button:nth-child("+ct+")")).getText());
+				if((allElements.get(ct).getText()).equals(driver.findElement(By.cssSelector("div.js-mega-collection-desktop-filter-tags >div> button:nth-child("+ct+")")).getText()))
 					throw new Exception("Item is not removed from displayed list when click on it");
 			}
 			ct = 0;
@@ -335,7 +339,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		{
 			//driver.findElement(LAST_FILTER).click();
 			Select selectElement = new Select(driver.findElement(LAST_FILTER));
-			selectElement.selectByValue("price:asc");
+			selectElement.selectByValue("Price:ascending");
 
 			// click on second option
 

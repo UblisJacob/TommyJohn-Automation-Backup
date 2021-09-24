@@ -216,7 +216,9 @@ public class HomePageLocators{
 	public static By PRESS_LINK = By.linkText("Press");
 	public static By Reviews = By.linkText("Reviews");
 	public static By MILITARY_DISCOUNT_LINK = By.linkText("Military Discount");
-	public static By TEACHER_DISCOUNT_LINK = By.linkText("Student & Teacher Discount");
+	public static By FIRST_RESPONDER = By.linkText("First Responder");
+	public static By GOVERNMENT_EMPLOYEE_DISCOUNT = By.linkText("Government Employee Discount");
+	public static By TEACHER_DISCOUNT_LINK = By.linkText("Teacher Discount");
 	public static By HEALTHCARE_DISC_LINK = By.linkText("Healthcare Hero Discount");
 	public static By JOBS_LINK = By.linkText("Jobs");
 	public static By PRIVACY_POLICY_LINK = By.linkText("Privacy Policy");
