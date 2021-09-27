@@ -38,10 +38,10 @@ public class ValidateSingleCollectionPages {
 			throws Exception { new
 		CollectionPage(driver).validateproductreviewstarsonOnSecondSkin(); }
 
-	@Test
-	public void TC_ValidateFiltersAndSortingOnSecondSkinInMenCategory()
-			throws Exception { new
-		CollectionPage(driver).validatefilterandsortonOnSecondSkin(); }
+//	@Test
+//	public void TC_ValidateFiltersAndSortingOnSecondSkinInMenCategory()
+//			throws Exception { new
+//		CollectionPage(driver).validatefilterandsortonOnSecondSkin(); }
 
 	@Test
 	public void TC_ValidateProductImageOnCoolCottonInMenCategory() throws
