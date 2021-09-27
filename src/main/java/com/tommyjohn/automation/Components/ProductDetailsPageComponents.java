@@ -1791,7 +1791,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			for (WebElement packtitle : producttitle)
 			{
 				System.out.println("product title is: "+packtitle.getText());
-				if(packtitle.getText().contains("Lounge Set"))
+				if(packtitle.getText().contains("Set"))
 				{
 					Thread.sleep(3000);
 					System.out.println(packtitle.getText());
@@ -1813,7 +1813,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			for (WebElement packtitle : producttitle)
 			{
 				System.out.println("product title is: "+packtitle.getText());
-				if(packtitle.getText().contains("Lounge Set"))
+				if(packtitle.getText().contains("Set"))
 				{
 					Thread.sleep(3000);
 					System.out.println(packtitle.getText());
@@ -1858,10 +1858,10 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 				try {
 					for (WebElement packtitle : Bundleproducttitle)
 					{
-						if(packtitle.getText().contains("Lounge Set"))
+						if(packtitle.getText().contains("Set"))
 						{
 							Thread.sleep(3000);
-							element = driver.findElement(By.cssSelector("div.mega-collection-grid > div:nth-child(3) > div:nth-child("+k+") > a> h2"));
+							element = driver.findElement(By.cssSelector("div.mega-collection-grid >div>div> div:nth-child("+(k+1)+") > a> span"));
 							break;
 						}
 					}
@@ -1873,10 +1873,10 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 				{
 					for (WebElement packtitle : Bundleproducttitle)
 					{
-						if(packtitle.getText().contains("Lounge Set"))
+						if(packtitle.getText().contains("Set"))
 						{
 							Thread.sleep(3000);
-							element = driver.findElement(By.cssSelector("div.mega-collection-grid> div > div:nth-child("+(k+1)+") > a> h2"));
+							element = driver.findElement(By.cssSelector("div.mega-collection-grid> div >div> div:nth-child("+(k+2)+") > a> span"));
 							break;
 						}
 					}
@@ -1966,18 +1966,18 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 				try {
 					if(driver.findElement(By.cssSelector("div.collection-hero--interactive-inner")).isDisplayed())
 						((JavascriptExecutor)driver).executeScript("window.scrollBy(0,250)");
-					element = driver.findElement(By.cssSelector("div.mega-collection-grid > div:nth-child(3) > div:nth-child("+j+") > a> h2"));
+					element = driver.findElement(By.cssSelector("div.mega-collection-grid > div:nth-child(3) > div:nth-child("+j+") > a> span"));
 				}
 				catch(Exception e)
 				{
 					((JavascriptExecutor)driver).executeScript("window.scrollBy(0,100)");
 					wait.until(ExpectedConditions.visibilityOfElementLocated(CollectionPageLocator.FIRST_PRODUCT));
 					try {
-						element= driver.findElement(By.cssSelector("div.mega-collection-grid > div > div > div:nth-child("+j+")> a > h2"));
+						element= driver.findElement(By.cssSelector("div.mega-collection-grid > div > div > div:nth-child("+j+")> a > span"));
 					}
 					catch(Exception ex)
 					{
-						element= driver.findElement(By.cssSelector("div.mega-collection-grid > div > div > div:nth-child("+(j+1)+")> a > h2"));
+						element= driver.findElement(By.cssSelector("div.mega-collection-grid > div > div > div:nth-child("+(j+1)+")> a > span"));
 					}
 				}
 				if(element.getText().endsWith(Product_type))

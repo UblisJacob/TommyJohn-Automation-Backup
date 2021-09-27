@@ -93,7 +93,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		new ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);	
 
 		// validate product details page by calling the method
-		new ProductDetailsPageComponents(driver).validatePage();
+		new ProductDetailsPageComponents(driver).verifybundlepages();
 
 		Reporter.log("Product image on collection page is Displayed :: Clickable and validated successfully");
 	}
@@ -117,7 +117,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		new ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);	
 
 		// validate product details page by calling the method
-		if(!(driver.getCurrentUrl().contains("pack")||driver.getCurrentUrl().contains("gift-cards")))		
+		if(!(driver.getCurrentUrl().contains("pack")||driver.getCurrentUrl().contains("set")||driver.getCurrentUrl().contains("gift-cards")))		
 			new ProductDetailsPageComponents(driver).validatePage();
 
 		Reporter.log("Product head line text on collection page is Displayed :: Clickable and validated successfully");
@@ -283,8 +283,8 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			jse = (JavascriptExecutor)driver;
 			jse.executeScript("arguments[0].click();", element);
 			Thread.sleep(1000);
-			System.out.println("last item :: "+driver.findElement(By.cssSelector("div.js-mega-collection-desktop-filter-tags >div> button:nth-child("+ct+")")).getText());
-			element=driver.findElement(By.cssSelector("div.js-mega-collection-desktop-filter-tags >div> button:nth-child("+ct+")"));
+			System.out.println("last item :: "+driver.findElement(By.cssSelector("div.js-mega-collection-desktop-filter-tags > button:nth-child("+ct+")")).getText());
+			element=driver.findElement(By.cssSelector("div.js-mega-collection-desktop-filter-tags > button:nth-child("+ct+")"));
 			jse = (JavascriptExecutor)driver;
 			jse.executeScript("arguments[0].click();", element);
 			//driver.findElement(PLUS_BUTTON).click();
@@ -339,7 +339,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		{
 			//driver.findElement(LAST_FILTER).click();
 			Select selectElement = new Select(driver.findElement(LAST_FILTER));
-			selectElement.selectByValue("Price:ascending");
+			selectElement.selectByValue("price:asc");
 
 			// click on second option
 

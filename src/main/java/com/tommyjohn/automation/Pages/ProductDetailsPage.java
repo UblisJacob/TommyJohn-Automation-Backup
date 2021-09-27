@@ -116,7 +116,7 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 		element=driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child(2) > a"));
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		jse.executeScript("arguments[0].click();", element);
-		WebElement Triangle_Bralette = driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child(2) > ul > li>label>input#option-style-triangle-bralette"));
+		WebElement Triangle_Bralette = driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child(2) > ul > li>label>input#option-style-triangle-bralettes"));
 		jse.executeScript("arguments[0].click();", Triangle_Bralette);
 		((JavascriptExecutor)driver).executeScript("window.scrollBy(0,150)");
 		Check_Preselected_Size();
