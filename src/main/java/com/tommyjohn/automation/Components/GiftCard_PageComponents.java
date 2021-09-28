@@ -119,17 +119,19 @@ public class GiftCard_PageComponents extends GiftCard_PageLocators {
 		//Select Today's Delivery date
 		softAssert.assertTrue(driver.findElement(DATE_TIME_PICKER_INPUT).isDisplayed(), "Date time picker input is not displayed.");
 		WebElement date_picker=driver.findElement(DATE_TIME_PICKER_INPUT);
-		jse.executeScript("arguments[0].click();", date_picker);
-		//action.moveToElement(date_picker).click().build().perform();
+		//jse.executeScript("arguments[0].click();", date_picker);
+		action.moveToElement(date_picker).click(date_picker).build().perform();
 		Thread.sleep(5000);
 		WebElement date=driver.findElement(TODAY);
-		jse.executeScript("arguments[0].click();", date);
+	//	jse.executeScript("arguments[0].click();", date);
+		action.moveToElement(date).click(date).build().perform();
 		Thread.sleep(3000);
 		WebElement new_date= driver.findElement(By.cssSelector("#gift-card-section >input#delivery_date"));
 		Delivery_date = new_date.getAttribute("value");
 		System.out.println("Selected delivery date is: "+Delivery_date);
 
-		DateTimeFormatter formatter = new DateTimeFormatterBuilder().appendPattern("MMMM d, yyyy").toFormatter();
+		//DateTimeFormatter formatter = new DateTimeFormatterBuilder().appendPattern("MMMM d, yyyy").toFormatter();
+		DateTimeFormatter formatter = new DateTimeFormatterBuilder().appendPattern("yyyy-MM-dd").toFormatter();
 		LocalDate parseDate = LocalDate.parse(Delivery_date, formatter);
 		DateTimeFormatter formatter2= DateTimeFormatter.ofPattern("MM/dd/yyyy");
 		newDelivery_Date = parseDate.format(formatter2);
