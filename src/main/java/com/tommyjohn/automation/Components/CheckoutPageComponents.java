@@ -44,10 +44,15 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		new AddToCartComponents(driver).addToCart();
 		driver.findElement(HomePageLocators.CART_ICON).click();
 		WebDriverWait wait = new WebDriverWait(driver, 20);
+		try {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ShoppingCartComponents.CART_TITLE));
-
+		}
+		catch(Exception e)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(ShoppingCartComponents.CART_TITLE));
+		}
 		driver.findElement(ShoppingCartComponents.CHECKOUT_BUTTON).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EXPRESS_CHECKOUT_TEXT));
 		Thread.sleep(3000);
@@ -117,10 +122,15 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		new AddToCartComponents(driver).addToCart();
 		driver.findElement(HomePageLocators.CART_ICON).click();
 		WebDriverWait wait = new WebDriverWait(driver, 30);
+		try {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ShoppingCartComponents.CART_TITLE));
-
+		}
+		catch(Exception e)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(ShoppingCartComponents.CART_TITLE));
+		}
 		driver.findElement(ShoppingCartComponents.CHECKOUT_BUTTON).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CHECKOUT_EMAIL));
 		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
@@ -202,9 +212,16 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		new AddToCartComponents(driver).addToCart();
 		driver.findElement(HomePageLocators.CART_ICON).click();
 		WebDriverWait wait = new WebDriverWait(driver, 20);
+		try {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ShoppingCartComponents.CART_TITLE));
+		}
+		catch(Exception e)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(ShoppingCartComponents.CART_TITLE));
+		}
+		
 		driver.findElement(ShoppingCartComponents.CHECKOUT_BUTTON).click();
 		Reporter.log("Checkout page displayed");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EXPRESS_CHECKOUT_TEXT));
@@ -230,10 +247,15 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		new AddToCartComponents(driver).addToCart();
 		driver.findElement(HomePageLocators.CART_ICON).click();
 		WebDriverWait wait = new WebDriverWait(driver, 20);
+		try {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ShoppingCartComponents.CART_TITLE));
-	//	driver.findElement(ShoppingCartComponents.CHECKOUT_BUTTON).click();
+		}
+		catch(Exception e)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(ShoppingCartComponents.CART_TITLE));
+		}
 		WebElement checkout_btn=driver.findElement(ShoppingCartComponents.CHECKOUT_BUTTON);
 		((JavascriptExecutor)driver).executeScript("arguments[0].click();", checkout_btn);
 

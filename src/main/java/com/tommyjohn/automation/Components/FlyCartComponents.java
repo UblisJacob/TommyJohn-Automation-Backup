@@ -300,7 +300,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		colorAndSize2 = driver.findElement(COLOR_AND_SIZE_IN_CART).getText();
 		System.out.println("color and size2 :: "+colorAndSize2);
 
-		softAssert.assertTrue(colorAndSize.equals(colorAndSize2), "Color and size is mismatch from PDP and Cart");
+		softAssert.assertTrue(colorAndSize.equalsIgnoreCase(colorAndSize2), "Color and size is mismatch from PDP and Cart");
 
 		// check price before adding more item
 		price1 = driver.findElement(PRICE_IN_QUANTITY_LINE).getText();
