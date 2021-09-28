@@ -96,17 +96,20 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		SoftAssert softAssert = new SoftAssert();
 		text = new AddToCartComponents(driver).addToCart();
 		System.out.println("Text is:"+text);
-//		String[] part = text.split("/");
-//		String part1 = part[part.length-2];
-//		String part2 = part1.replace("-", " ");
 		String[] part = text.split(",");
 		String part2 = part[0];
 		System.out.println("Title text is:" +part2);
 		driver.findElement(HomePageLocators.CART_ICON).click();
 		WebDriverWait wait = new WebDriverWait(driver, 20);
+		try {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CART_TITLE));
+		}
+		catch(Exception e) {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(CART_TITLE));
+		}
+		
 		softAssert.assertTrue(driver.findElement(PRODUCT_TITLE).isDisplayed(), "Product title for added item not present on Cart");
 		text1 = driver.findElement(PRODUCT_TITLE).getText();
 		//softAssert.assertEquals(text1, part2, "Wrong Product added to cart");
@@ -252,11 +255,16 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		new AddToCartComponents(driver).addToCart();
 		driver.findElement(HomePageLocators.CART_ICON).click();
 		WebDriverWait wait = new WebDriverWait(driver, 30);
+		try {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		Thread.sleep(3000);
+		}
+		catch(Exception e) {
+			System.out.println("Inline cart is not getting expanded after click on cart icon on home page, while clicking on cart icon it just navigating to cart page.");
+		}
 
-		softAssert.assertEquals(driver.findElement(PROMO_HEADER).getText(), "Gift Card / Discount Code", "Text chneged for Discount code header on cart page");
+		softAssert.assertEquals(driver.findElement(PROMO_HEADER).getText(), "Discount Code", "Text changed for Discount code header on cart page");
 		softAssert.assertTrue(driver.findElement(DISCOUNTCODE_TEXTBOX).isDisplayed(), "Promo code text box is not displayed on cart page");
 		softAssert.assertTrue(driver.findElement(PROMOCODE_APPLYCTA).isDisplayed(), "Promo code 'apply' cta is not displayed");
 
@@ -264,7 +272,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		driver.findElement(PROMOCODE_APPLYCTA).click();
 		element= driver.findElement(PROMO_ERROR_MESSAGE);
 		wait.until(ExpectedConditions.visibilityOf(element));
-		softAssert.assertEquals(element.getText(), "Enter a valid discount code or gift card", "Text changed for promo code error message on cart page");
+		softAssert.assertEquals(element.getText(), "Enter a valid discount code", "Text changed for promo code error message on cart page");
 		Reporter.log("Promo code error message is displayed :: Correct");
 
 		//Verify with valid promo code
@@ -284,7 +292,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		Thread.sleep(2000);
 		element= driver.findElement(PROMO_ERROR_MESSAGE);
 		wait.until(ExpectedConditions.visibilityOf(element));
-		softAssert.assertEquals(element.getText(), "Enter a valid discount code or gift card", "Text changed for promo code error message on cart page");
+		softAssert.assertEquals(element.getText(), "Enter a valid discount code", "Text changed for promo code error message on cart page");
 		softAssert.assertTrue(driver.findElement(APPLIED_PROMO_CODE).isDisplayed(), "Applied promo code is getting removed after applied invalid promo code");
 
 		driver.navigate().refresh();
