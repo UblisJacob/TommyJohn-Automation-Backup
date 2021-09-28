@@ -96,7 +96,7 @@ public class ReOrderPageComponents extends ReOrderPageLocators{
 		
 		for(int i=0; i<list.size(); i++)
 		{
-		   	if(list.get(i).getAttribute("title").equalsIgnoreCase("Add to Cart"))
+		   	if(list.get(i).getText().equalsIgnoreCase("Add to Cart"))
 		   	{
 		   		text= driver.findElement(By.cssSelector(".account-reorder-grid>.reorder-item:nth-child("+(i+1)+")>a:nth-child(2)>span")).getText();
 		   		executor.executeScript("arguments[0].click();", list.get(i));
@@ -106,6 +106,7 @@ public class ReOrderPageComponents extends ReOrderPageLocators{
 		
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.FIRST_PRODUCT_TITLE_IN_CART));
+		//executor.executeScript("arguments[0].scrollIntoView();", driver.findElement(FlyCartPageLocator.FIRST_PRODUCT_TITLE_IN_CART));
 		softAssert.assertEquals(driver.findElement(FlyCartPageLocator.FIRST_PRODUCT_TITLE_IN_CART).getText(), text , "Wrong product added to cart");
 		WebElement elem= driver.findElement(FlyCartPageLocator.CHECKOUT_BUTTON);
 		executor.executeScript("arguments[0].click();", elem);
