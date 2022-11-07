@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Regression Test Suite">
+
+	<listeners>
+		<listener class-name="TestScenario.ListenerClass"></listener>
+	</listeners>
+	
+	
+	<!-- changed -->
+	<test thread-count="1" name="SingleCollectionTests" verbose="1"
+		parallel="tests">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="TestScenario.ValidatePLP_SingleCollectionPage" />
+		</classes>
+	</test>
+	
+
+ 	
+
+</suite>
