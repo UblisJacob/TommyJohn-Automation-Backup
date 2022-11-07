@@ -53,4 +53,16 @@ public class CollectionPageLocator {
 		public static By PRODUCT_TITLE_ON_FLYCART = By.cssSelector("div.inline-cart__col1 > div:nth-child(6) > .line-item >.line-item__summary>a");
 	    public static By PRODUCT_LINE_ITEM_OPTION = By.cssSelector(" div.line-item__summary > div.line-item__option");
 	    public static By PRODUCT_AMOUNT_ON_FLYCART = By.cssSelector(".line-item__price>span");
+	    
+	//changed
+	    public static By SORTBYPRICE_DROPDOWN = By.xpath("//select[@title='Sort By']");
+	    public static By PLP_PRICE = By.cssSelector("span.product-meta__price");
+	    public static By PLP_PRICE_FILTER = By.xpath("//a[@title='Price']//span");
+	    public static By PRICE_LESS_THAN_25= By.xpath("(//input[contains(@data-filter-btn,'Less than $25')])[1]");
+	    public static By LESS_THAN_25_PILL= By.xpath("(//button[@title='Less than $25'])[1]");
+	    public static By NEW_ARRIVALS_CTC= By.xpath("//a[contains(text(),'New Arrivals')]");
+	    public static By NEW_ARRIVALS_TITLE= By.xpath("//h1[@class='collection-title-bar__title']");
+	    public static By NEW_ARRIVALS_BREADCRUMB= By.xpath("//div[@itemprop='itemListElement']//a//span[contains(text(),'New Arrivals')]");
+	  
+	    
 }
