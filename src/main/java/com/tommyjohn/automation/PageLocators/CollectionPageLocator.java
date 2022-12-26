@@ -19,6 +19,9 @@ public class CollectionPageLocator {
 	public static By FIRST_PRODUCT = By.cssSelector(".product-item");
 	public static By COMPARE_PRODUCT = By.cssSelector(".product-image-container > div.has-compare");
 	public static By FIRST_PRODUCT_IMAGE = By.cssSelector(".product-image");
+	//changed
+	public static String PRODUCT_IMAGES = "//div[contains(@class,'product-image')]//a";
+	public static By PRODUCT_COUNT_TEXT = By.xpath("//div[contains(@class,'controls__count')]//span");
 	public static By HOVERED_PRODUCT_IMAGE = By.cssSelector(".product-image--hover");
 	public static By FIRST_PRODUCT_HEAD_LINE_TEXT = By.cssSelector(".product-meta__title");
 	public static By FIRST_PRODUCT_REVIEW_STARS = By.cssSelector(".yotpo-bottomline");
@@ -32,7 +35,8 @@ public class CollectionPageLocator {
 	
 	public static By MAIN_HEADING_OF_SELECTED_CATEGORY = By.cssSelector("div.collection-title-bar__content > h1");
 	public static By ALL_FILTERS = By.cssSelector("div.mega-collection-filters > div > a");
-	public static By DISPLAYED_ALL_SELECTED_OPTIONS = By.cssSelector("div.js-mega-collection-desktop-filter-tags > button");
+	//changed
+	public static By DISPLAYED_ALL_SELECTED_OPTIONS = By.xpath("(//div[contains(@class,'mega-collection-filter-tags mega-collection-filter-tags--desktop')]//button)");
 	public static By CLEAR_FILTER_BUTTON = By.cssSelector("div.mega-collection-filters--controls > a");
 	public static By FIRST_ITEM_IN_DISPLAYED_LIST = By.cssSelector("div.js-mega-collection-desktop-filter-tags > button:nth-child(1)");
 	public static By TOTAL_COUNTS_OF_ITEMS = By.cssSelector("div.mega-collection-filters--controls__count > span");
@@ -53,4 +57,14 @@ public class CollectionPageLocator {
 		public static By PRODUCT_TITLE_ON_FLYCART = By.cssSelector("div.inline-cart__col1 > div:nth-child(6) > .line-item >.line-item__summary>a");
 	    public static By PRODUCT_LINE_ITEM_OPTION = By.cssSelector(" div.line-item__summary > div.line-item__option");
 	    public static By PRODUCT_AMOUNT_ON_FLYCART = By.cssSelector(".line-item__price>span");
+	    
+	    //changed
+	    public static By SORTBYPRICE_DROPDOWN = By.xpath("//select[@title='Sort By']");
+	    public static By PLP_PRICE = By.cssSelector("span.product-meta__price");
+	    public static By PLP_PRICE_FILTER = By.xpath("//a[@title='Price']//span");
+	    public static By PRICE_LESS_THAN_25= By.xpath("(//input[contains(@data-filter-btn,'Less than $25')])[1]");
+	    public static By LESS_THAN_25_PILL= By.xpath("(//button[@title='Less than $25'])[1]");
+	    public static By NEW_ARRIVALS_CTC= By.xpath("//a[contains(text(),'New Arrivals')]");
+	    public static By NEW_ARRIVALS_TITLE= By.xpath("//h1[@class='collection-title-bar__title']");
+	    public static By NEW_ARRIVALS_BREADCRUMB= By.xpath("//div[@itemprop='itemListElement']//a//span[contains(text(),'New Arrivals')]");
 }

@@ -24,6 +24,16 @@ public class CollectionPage extends CollectionPageComponent{
 		jse.executeScript("window.scrollBy(0,250)");
 		validateProductImageOnCollectionPage();
 	}
+	
+	public void validateproductimageonMegaCollectionPLP() throws Exception
+	{
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
+		Verify_ProductTile_HoverFunctionality();
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
+		JavascriptExecutor jse=(JavascriptExecutor)driver;
+		jse.executeScript("window.scrollBy(0,250)");
+		validateProductImageOnPLP();
+	}
 
 	public void validateproductnameonAllpanties() throws Exception
 	{
@@ -171,7 +181,7 @@ public class CollectionPage extends CollectionPageComponent{
 
 		new HomePageComponents(driver).navigateToSecondSkinInMenCategory();
 		//Verify_ProductTile_HoverFunctionality();
-		validateProductImageOnCollectionPage();
+		validateProductImageOnPLP();
 	}
 
 	public void validateproductnameonOnSecondSkin() throws Exception 

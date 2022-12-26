@@ -1605,7 +1605,10 @@ public class HomePageComponents extends HomePageLocators {
 	//navigate to lounge wear packs in women category
 	public void navigateToLoungeWearPacksInWomenPacksCategory(){
 
-		driver.get("https://tommyjohn.com/collections/womens-lounge-sleep-packs");
+		//changed
+		//driver.get("https://tommyjohn.com/collections/womens-lounge-sleep-packs");
+		driver.get("https://www.tommyjohn.com/collections/womens-air-mesh-brief-3-pack/?variant=41126176915501");
+		
 
 	}
 
