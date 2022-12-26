@@ -89,9 +89,9 @@
 		<!-- <scope>system</scope> -->
 		<!-- <systemPath>${basedir}/libs/ATUTestRecorder_2.1.jar</systemPath> -->
 		<!-- </dependency> -->
-		
-		
-		
+
+
+
 		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
 		<dependency>
 			<groupId>commons-io</groupId>
@@ -170,6 +170,14 @@
 			<version>3.3.1</version>
 
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
+		<dependency>
+			<groupId>com.aventstack</groupId>
+			<artifactId>extentreports</artifactId>
+			<version>5.0.9</version>
+		</dependency>
+
 
 
 
