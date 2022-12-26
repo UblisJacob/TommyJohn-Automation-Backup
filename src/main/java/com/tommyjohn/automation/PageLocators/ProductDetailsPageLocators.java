@@ -5,8 +5,10 @@ import org.openqa.selenium.By;
 public class ProductDetailsPageLocators {
 
 	public static By FIRST_PRODUCT_REVIEW_STARS = By.cssSelector("div.mega-collection-grid__row:nth-child(3) > div:nth-child(3) > a > div");
-
-	public static By PRODUCT_TITLE = By.cssSelector("div.multi-pdp-title-wrap.desktop-view.desktop > div.product-info__title-wrap > h1");
+	//changed
+	public static By PRODUCT_TITLE = By.xpath("(//h1[@class='product-info__title'])[1]");
+	//changed
+	public static By PRODUCT_TITLE_1 = By.xpath("//div[@class='multi-pdp-title-wrap desktop-view desktop']//h1");//changed
 	//	public static By PRODUCT_PRICE = By.cssSelector("div.product-info__inner-top > span > span:nth-child(2)");
 	public static By PRODUCT_PRICE = By.cssSelector("div.multi-pdp-title-wrap.desktop-view > div.product-info__price-wrap >span > span:nth-child(2)");
 

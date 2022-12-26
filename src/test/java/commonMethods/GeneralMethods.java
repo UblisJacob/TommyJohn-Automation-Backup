@@ -1,0 +1,108 @@
+package commonMethods;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.Reporter;
+
+public class GeneralMethods {
+	
+	/*public GeneralMethods(WebDriver driver) {
+		this.driver = driver;
+	}
+	public WebDriver driver;*/
+	
+	// Method for page loading
+	public void waitTillPageLoad(WebDriver objDriver)
+	{
+		(new WebDriverWait(objDriver, 20)).until(new ExpectedCondition<Boolean>()
+		{
+			public Boolean apply(WebDriver objDriver)
+			{
+				return (((JavascriptExecutor) objDriver).executeScript("return document.readyState").equals("complete")
+						||((JavascriptExecutor) objDriver).executeScript("return document.readyState").equals("loaded"));
+			}
+		});
+	}
+	
+	//Method to click button by JavascriptExecutor
+	public void clickButtonByJS(WebDriver objDriver, By objectPath) throws Exception
+	{
+		if(verifyElementExists(objDriver, objectPath))
+		{
+			JavascriptExecutor executor = (JavascriptExecutor)objDriver;
+			executor.executeScript("arguments[0].click();", objDriver.findElement(objectPath));
+			waitTillPageLoad(objDriver);
+		}
+	}
+	
+	//To verify the element till exists
+	public boolean verifyElementExists(WebDriver objDriver, By objectPath) throws Exception
+	{
+		boolean boolResultFlag = false;
+		try
+		{
+			waitTillPageLoad(objDriver);
+			objDriver.findElement(objectPath);
+			boolResultFlag = true;
+		}
+		catch(Exception e)
+		{
+			boolResultFlag = false;	
+		}
+		return boolResultFlag;
+	}
+	
+	//To verify Element is clickable
+	public void assertElementClickable(WebDriver objDriver, By objectPath, String strTrueMsg) throws Exception
+    {
+    	Assert.assertTrue(objDriver.findElement(objectPath).isEnabled(),"Element Clickable");
+    	Reporter.log(strTrueMsg);
+    }
+	
+	//To verify element is displayed
+    public void assertElementDisplayed(WebDriver objDriver, By objectPath, String strTrueMsg) throws Exception
+    {
+    	Assert.assertTrue(objDriver.findElement(objectPath).isDisplayed(),"Element Displayed");
+    	Reporter.log(strTrueMsg);
+    }
+    
+    //Implicit wait
+    public void implicitWait(WebDriver objDriver) throws Exception
+	{
+		objDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	}
+    
+    //To verify Element is displayed
+    public boolean isElementVisible(WebDriver objDriver, By objectPath)
+	{
+		boolean boolResultFlag = false;
+		try
+		{
+			waitTillPageLoad(objDriver);
+			(new WebDriverWait(objDriver, 20)).until(ExpectedConditions.visibilityOfElementLocated(objectPath));
+			boolResultFlag = true;
+		}
+		catch(Exception exception)
+		{
+			boolResultFlag = false;
+		}
+		return boolResultFlag;
+	}
+    
+    //To scroll into view od the element
+    public void scrollElementIntoView(WebDriver objDriver,By objectPath) throws InterruptedException
+	{
+		((JavascriptExecutor) objDriver).executeScript("arguments[0].scrollIntoView(true);", objDriver.findElement(objectPath));
+		Thread.sleep(2000);
+	}
+    
+    
+	
+}
