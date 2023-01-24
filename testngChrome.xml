@@ -7,13 +7,13 @@
 	</listeners>
 	
 	
-	<!-- <test thread-count="1" name="NavigationFlow" verbose="1"
+	<test thread-count="1" name="NavigationFlow" verbose="1"
 		parallel="tests">
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="TestScenario.ValidateNavigationFlow" />
 		</classes>
-	</test> -->
+	</test>
 
 	<test thread-count="1" name="HomePageTests" verbose="1"
 		parallel="tests">
@@ -23,7 +23,7 @@
 		</classes>
 	</test>
 
- 	<!-- <test thread-count="1" name="AccountLoginAndCreationTests"
+ 	<test thread-count="1" name="AccountLoginAndCreationTests"
 		verbose="1" parallel="tests">
 		<parameter name="browser" value="chrome" />
 		<classes>
@@ -178,7 +178,7 @@
 		<classes>
 			<class name="TestScenario.ValidateCollectionPage" />
 		</classes>
-	</test>  -->
+	</test> 
 
 <!-- 	<test thread-count="1" name="VerifyHeapEvents" -->
 <!-- 		verbose="1" parallel="tests"> -->
