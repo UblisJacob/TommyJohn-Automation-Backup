@@ -144,5 +144,10 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 		ErrorMessagewithMaxQTYonPDP();
 	}
+	
+	/*public void validateFilterPillOnPLP() throws Exception{
+		new HomePageComponents(driver).navigateToAllMenLoungewearCategory();
+		validateFilterPillOnCollectionPage();
+	}*/
 		
-	}
+}

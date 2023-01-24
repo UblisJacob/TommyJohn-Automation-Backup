@@ -2,8 +2,11 @@ package com.tommyjohn.automation.Components;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 import javax.mail.Authenticator;
 import javax.mail.BodyPart;
@@ -923,8 +926,138 @@ public class CollectionPageComponent extends CollectionPageLocator {
 				}
 		}
     }
-    
+    //changed
+    public void validatePriceOnCollectionPage() throws Exception
+    {
+    	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    	driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+    	String price=null;
+    	String updatedPrice=null;
+    	double priceValue=0;
+    	Select drpCountry = new Select(driver.findElement(SORTBYPRICE_DROPDOWN));
+		drpCountry.selectByIndex(3);
+		Thread.sleep(5000);
+    	JavascriptExecutor js = (JavascriptExecutor)driver;
+    	element = driver.findElement(PLP_PRICE);
+    	js.executeScript("arguments[0].scrollIntoView();", element);
+    	Thread.sleep(5000);
+    	js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
+    	Thread.sleep(5000);
+    	List<WebElement> list = driver.findElements(PLP_PRICE);
+    	ArrayList<Double> productPrice = new ArrayList<Double>();
+    	ArrayList<Double> sortedList = new ArrayList<Double>();
+    	;
+    	for(int i=0;i<list.size();i++)
+    	{
+    		price=list.get(i).getText();
+    		updatedPrice=price.replaceAll("[^0-9.]", "");
+    		priceValue=Double.parseDouble(updatedPrice);
+    		sortedList.add(priceValue);
+    		productPrice.add(priceValue);
+    	}
+    	
+    	System.out.println(productPrice);
+    	Collections.sort(sortedList);
+    	System.out.println(sortedList);
+    	if(!sortedList.equals(productPrice))
+    	{
+    		throw new Exception("The products are sorted not successfully");
+    	}
+    	else
+    	{
+    		Reporter.log("The products are sorted successfully");
+    	}
+
+    	js.executeScript("window.scrollTo(0, -document.body.scrollHeight)");
+    	Thread.sleep(5000);
+		drpCountry.selectByIndex(2);
+		js.executeScript("arguments[0].scrollIntoView();", element);
+    	Thread.sleep(5000);
+    	js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
+    	Thread.sleep(5000);
+		List<WebElement> list1 = driver.findElements(PLP_PRICE);
+    	ArrayList<Double> productPrice1 = new ArrayList<Double>();
+    	ArrayList<Double> sortedList1 = new ArrayList<Double>();
+    	
+    	for(int i=0;i<list.size();i++)
+    	{
+    		price=list.get(i).getText();
+    		updatedPrice=price.replaceAll("[^0-9.]", "");
+    		priceValue=Double.parseDouble(updatedPrice);
+    		sortedList1.add(priceValue);
+    		productPrice1.add(priceValue);
+    	}
+    	System.out.println(productPrice1);
+    	Collections.reverse(sortedList1);
+    	System.out.println(sortedList1);
+    	if(!sortedList1.equals(productPrice1))
+    	{
+    		throw new Exception("The products are sorted not successfully");
+    	}
+    	else
+    	{
+    		Reporter.log("The products are sorted successfully");
+    	}
     }
+    
+    //changed
+    public void validateFilterPillOnCollectionPage() throws Exception{
+    	
+    	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    	driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+    	JavascriptExecutor js = (JavascriptExecutor)driver;
+		js.executeScript("arguments[0].click();", driver.findElement(PLP_PRICE_FILTER));
+		Thread.sleep(3000);
+		js.executeScript("arguments[0].click();", driver.findElement(PRICE_LESS_THAN_25));
+		Thread.sleep(3000);
+		js.executeScript("arguments[0].click();", driver.findElement(PLP_PRICE_FILTER));
+		Thread.sleep(3000);
+		String priceFilter=driver.findElement(PRICE_LESS_THAN_25).getText();
+		System.out.println(priceFilter);
+		String filterPill=driver.findElement(LESS_THAN_25_PILL).getText();
+		System.out.println(priceFilter);
+		if(priceFilter.contains(filterPill))
+		{
+			System.out.println("The filter is applied");
+			Reporter.log("The filter is applied");
+		}
+		else
+    	{
+    		Reporter.log("The filter is not applied");
+    		throw new Exception("The filter is not applied");
+    	}
+		
+    }
+    
+  //changed
+    public void validateCollectionCTA() throws Exception{
+    	
+    	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    	driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+    	JavascriptExecutor js = (JavascriptExecutor)driver;
+    	String CTA_PLP= driver.findElement(NEW_ARRIVALS_CTC).getText();
+    	System.out.println(CTA_PLP);
+		js.executeScript("arguments[0].click();", driver.findElement(NEW_ARRIVALS_CTC));
+		Thread.sleep(3000);
+		String title_PLP= driver.findElement(NEW_ARRIVALS_TITLE).getText();
+		String breadcrumb_PLP = driver.findElement(NEW_ARRIVALS_BREADCRUMB).getText();
+		if(title_PLP.contains(CTA_PLP))
+		{
+			System.out.println("CTA text is matching with title");
+			if(breadcrumb_PLP.contains(CTA_PLP))
+			{
+				System.out.println("CTA text is matching with title");
+			}
+		}
+		else
+    	{
+    		Reporter.log("CTA text is not matching with title and breadcrumb");
+    		throw new Exception("CTA text is not matching with title and breadcrumb");
+    	}
+		
+    }
+    
+}
 
 
 
