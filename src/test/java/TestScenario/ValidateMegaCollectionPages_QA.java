@@ -24,11 +24,38 @@ public class ValidateMegaCollectionPages_QA {
 	}
 
 
-	@Test
+	/*@Test
 	public void TC_ValidateProductImageOnMegaCollectionPLP() throws
 	Exception
 	{
 		new CollectionPage(driver).validateproductimageonMegaCollectionPLP();
+
+	}*/
+	
+	/*@Test 
+	public void TC_ValidateProductNameOnMegaCollectionPLP() throws
+	Exception 
+	{ 
+		new CollectionPage(driver).validateproductnameonMegaCollectionPLP();
+	}*/
+	
+	@Test 
+	public void TC_ValidateProductReviewStarsOnMegaCollectionPLP()
+			throws Exception
+	{ new
+		CollectionPage(driver).validateproductreviewstarsonMegaCollectionPLP(); }
+	
+	@Test 
+	public void TC_ValidateFiltersAndSortingOnMegaCollectionPLP()
+			throws Exception
+	{ new
+		CollectionPage(driver).validatefilterandsortonMegaCollectionPLP(); }
+	
+	@Test
+	public void TC_ValidateColorSwatchOnMegaCollectionPLP() throws
+	Exception
+	{
+		new CollectionPage(driver).MethodToCheckColorSwatchChangingOnPLP();
 
 	}
 

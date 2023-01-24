@@ -1362,8 +1362,14 @@ public class HomePageComponents extends HomePageLocators {
 	}
 
 	// navigate to all underwear in men category 
+	public void navigateToPLP(String url) throws Exception {
+		driver.get(url);
+		Thread.sleep(5000);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("window.scrollBy(0,250)");
+	}
 	public void navigateToAllUnderwearInMenCategory() throws Exception {
-		driver.get("https://tommyjohn.com/collections/mens-underwear");
+		driver.get("https://www.tommyjohn.com/collections/mens-underwear");
 		Thread.sleep(5000);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		jse.executeScript("window.scrollBy(0,250)");

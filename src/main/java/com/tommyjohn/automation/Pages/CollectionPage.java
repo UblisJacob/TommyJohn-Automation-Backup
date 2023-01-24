@@ -5,9 +5,15 @@ import org.openqa.selenium.WebDriver;
 
 import com.tommyjohn.automation.Components.CollectionPageComponent;
 import com.tommyjohn.automation.Components.HomePageComponents;
+import commonMethods.GeneralMethods;
+import commonMethods.ExcelUtils;
+	
+	
 
 public class CollectionPage extends CollectionPageComponent{
 
+	GeneralMethods objGeneralMethods = new GeneralMethods();
+	ExcelUtils objExcelUtils = new ExcelUtils();
 	public CollectionPage(WebDriver driver) {
 		super(driver);
 		this.driver=driver;
@@ -25,7 +31,7 @@ public class CollectionPage extends CollectionPageComponent{
 		validateProductImageOnCollectionPage();
 	}
 	
-	public void validateproductimageonMegaCollectionPLP() throws Exception
+	/*public void validateproductimageonMegaCollectionPLP() throws Exception
 	{
 		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 		Verify_ProductTile_HoverFunctionality();
@@ -33,7 +39,40 @@ public class CollectionPage extends CollectionPageComponent{
 		JavascriptExecutor jse=(JavascriptExecutor)driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		validateProductImageOnPLP();
+	}*/
+	public void validateproductimageonMegaCollectionPLP() throws Exception
+	{
+		
+		String url = objExcelUtils.readExcelValue("C:\\Users\\Annada Behera\\eclipse-workspace\\TJ_Automation\\src\\main\\resources\\PLP_url.xlsx", "Mega_PLP", "Mega_Collection");
+		new HomePageComponents(driver).navigateToPLP(url);
+		validateProductImageOnPLP();
 	}
+	public void validateproductnameonMegaCollectionPLP() throws Exception
+	{
+		String url = objExcelUtils.readExcelValue("C:\\Users\\Annada Behera\\eclipse-workspace\\TJ_Automation\\src\\main\\resources\\PLP_url.xlsx", "Mega_PLP", "Mega_Collection");
+		new HomePageComponents(driver).navigateToPLP(url);
+		validateProductHeadingTextOnPLP();
+	}
+	public void validateproductreviewstarsonMegaCollectionPLP() throws Exception
+	{
+		String url = objExcelUtils.readExcelValue("C:\\Users\\Annada Behera\\eclipse-workspace\\TJ_Automation\\src\\main\\resources\\PLP_url.xlsx", "Mega_PLP", "Mega_Collection");
+		new HomePageComponents(driver).navigateToPLP(url);
+		validateProductReviewStarsOnPLP();
+	}
+
+	public void validatefilterandsortonMegaCollectionPLP() throws Exception
+	{
+		String url = objExcelUtils.readExcelValue("C:\\Users\\Annada Behera\\eclipse-workspace\\TJ_Automation\\src\\main\\resources\\PLP_url.xlsx", "Mega_PLP", "Mega_Collection");
+		new HomePageComponents(driver).navigateToPLP(url);
+		methodToCheckAllFilters();
+	}
+	public void validateColorSwatcheonMegaCollectionPLP() throws Exception
+	{
+		String url = objExcelUtils.readExcelValue("C:\\Users\\Annada Behera\\eclipse-workspace\\TJ_Automation\\src\\main\\resources\\PLP_url.xlsx", "Mega_PLP", "Mega_Collection");
+		new HomePageComponents(driver).navigateToPLP(url);
+		MethodToCheckColorSwatchChanging();
+	}
+	
 
 	public void validateproductnameonAllpanties() throws Exception
 	{
