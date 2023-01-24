@@ -39,7 +39,7 @@ public class CustomUtilities {
 
 	public static WebDriver driver;
 	public EdgeDriver edgedriver;
-	public static String baseUrl = "https://tommyjohn.com/?fts=0&preview_theme_id=34570141741";
+	public static String baseUrl = "https://tommyjohn.com";
 	public static BufferedReader reader;
 	public static Properties properties;
 	public static final String propertiesFilePath = "src/main/resources/configuration.properties";
@@ -68,7 +68,7 @@ public class CustomUtilities {
 			// System.setProperty("webdriver.chrome.driver" ,"/tmp/chromedriver.exe");
 			System.setProperty("webdriver.chrome.driver", properties.getProperty("chromeDriverPath"));
 			ChromeOptions chromeOptions = new ChromeOptions();
-			chromeOptions.addArguments("--headless");
+			//chromeOptions.addArguments("--headless");
 			chromeOptions.addArguments("--window-size=1280,800");
 			chromeOptions.addArguments("--disable-gpu");
 			chromeOptions.addArguments("--no-sandbox");
@@ -86,10 +86,10 @@ public class CustomUtilities {
 			//chromeOptions.setCapability(CapabilityType.PROXY, selproxy);
 
 			//	new
-			chromeOptions.addArguments("--host-resolver-rules=MAP events.bouncex.net 127.0.0.1");
-			chromeOptions.addArguments("--host-resolver-rules=MAP assets.bounceexchange.com 127.0.0.1");
-			chromeOptions.addArguments("--host-resolver-rules=MAP api.bounceexchange.com 127.0.0.1");
-			chromeOptions.addArguments("--host-resolver-rules=MAP tag.bounceexchange.com 127.0.0.1");
+			chromeOptions.addArguments("--host-resolver-rules=MAP cdn.attn.tv 127.0.0.1");
+			chromeOptions.addArguments("--host-resolver-rules=MAP tommyjohn.attn.tv 127.0.0.1");
+			chromeOptions.addArguments("--host-resolver-rules=MAP creatives.attn.tv 127.0.0.1");
+		//	chromeOptions.addArguments("--host-resolver-rules=MAP tag.bounceexchange.com 127.0.0.1");
 
 			driver = new ChromeDriver(chromeOptions);
 			driver.get(baseUrl);
