@@ -10,7 +10,7 @@ public class HomePageLocators{
 	//public static By NEWARRIVALS_CATEGORY = By.cssSelector(".header-desktop-left > ul > li:nth-child(1) > a");
 	//public static By MEN_IN_NEWARRIVALS_CATEGORY = By.cssSelector(".header-desktop-left > ul > li:nth-child(1) > div > ul > li:nth-child(1) > div");
 
-	public static By MEN_CATEGORY = By.cssSelector(".level-zero-list>.level-zero-container:nth-child(1)> .level-zero-item >a");
+	public static By MEN_CATEGORY = By.xpath("//a[@aria-label='Men link']");
 	public static By WOMEN_CATEGORY = By.cssSelector(".level-zero-list>.level-zero-container:nth-child(2)> .level-zero-item >a");
 	public static By FINAL_SALE = By.cssSelector(".level-zero-list>.level-zero-container:nth-child(3)> .level-zero-item >a");
 	
