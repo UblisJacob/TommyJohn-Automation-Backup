@@ -2,8 +2,11 @@ package com.tommyjohn.automation.Components;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 import javax.mail.Authenticator;
 import javax.mail.BodyPart;
@@ -35,9 +38,12 @@ import com.tommyjohn.automation.PageLocators.CollectionPageLocator;
 import com.tommyjohn.automation.PageLocators.FlyCartPageLocator;
 import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
 
+import commonMethods.GeneralMethods;
 import net.bytebuddy.asm.Advice.Exit;
 
 public class CollectionPageComponent extends CollectionPageLocator {
+	
+	GeneralMethods objGeneralMethods = new GeneralMethods();
 
 	public CollectionPageComponent(WebDriver driver) {
 		this.driver = driver;
@@ -70,8 +76,10 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	public void validateProductImageOnCollectionPage() throws Exception {
 		String text = null;
 
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_IMAGE));
+		//changed
+		/*WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_IMAGE));*/
+		objGeneralMethods.isElementVisible(driver, FIRST_PRODUCT_IMAGE);
 		// get product title and click on image if present
 		text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
 
@@ -97,6 +105,145 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 		Reporter.log("Product image on collection page is Displayed :: Clickable and validated successfully");
 	}
+	
+	@SuppressWarnings("static-access")
+	public void validateProductImageOnPLP() throws Exception {
+		String text = null;
+
+		//changed
+		objGeneralMethods.implicitWait(driver);
+		objGeneralMethods.waitTillPageLoad(driver);
+		objGeneralMethods.isElementVisible(driver, FIRST_PRODUCT_IMAGE);
+		// get product title and click on image if present
+		text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		
+		WebElement Prod_Image = driver.findElement(FIRST_PRODUCT_IMAGE);
+		if(!Prod_Image.isDisplayed())
+			//#		if(!driver.findElement(THIRD_PRODUCT_IMAGE).isDisplayed())
+			throw new Exception("Product image is not present");
+
+		WebElement ele = driver.findElement(FIRST_PRODUCT_IMAGE);
+		
+		executor.executeScript("arguments[0].click();", ele);
+		
+		//	driver.findElement(THIRD_PRODUCT_IMAGE).click();
+		Thread.sleep(7000);
+		Reporter.log(driver.getCurrentUrl());
+
+		// check correct Product details page opened or not
+		new ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);	
+
+		Reporter.log("Product image on collection page is Displayed :: Clickable and validated successfully");
+		
+		driver.navigate().back();
+		objGeneralMethods.waitTillPageLoad(driver);
+		executor.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+		Thread.sleep(20000);
+		objGeneralMethods.waitTillPageLoad(driver);
+		
+		
+		List<WebElement> list = driver.findElements(By.xpath(PRODUCT_IMAGES));
+		int count =0;
+    	for(int i=0;i<list.size();i++)
+    	{
+    		if(objGeneralMethods.isElementVisible(driver,By.xpath(PRODUCT_IMAGES)))
+    		{
+    			count++;
+    		}
+    		else
+    		{
+    			Reporter.log("Product image is not present");
+    			break;
+    		}
+    	}
+    	System.out.println(count);
+    	String no_of_products = driver.findElement(PRODUCT_COUNT_TEXT).getText();
+    	no_of_products=no_of_products.replaceAll("[^0-9.]", "");
+    	int count_1 = Integer.parseInt(no_of_products);
+    	
+    	if (count_1 == count)
+    	{
+    		Reporter.log("All Product images are present");
+    	}
+    	else {
+    		throw new Exception("Product image are present");
+    	}
+    	
+    	
+	}
+	public void validatePriceOnCollectionPage() throws Exception
+    {
+    	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    	driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+    	String price=null;
+    	String updatedPrice=null;
+    	double priceValue=0;
+    	Select drpCountry = new Select(driver.findElement(SORTBYPRICE_DROPDOWN));
+		drpCountry.selectByIndex(3);
+		Thread.sleep(5000);
+    	JavascriptExecutor js = (JavascriptExecutor)driver;
+    	element = driver.findElement(PLP_PRICE);
+    	js.executeScript("arguments[0].scrollIntoView();", element);
+    	Thread.sleep(5000);
+    	js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
+    	Thread.sleep(5000);
+    	List<WebElement> list = driver.findElements(PLP_PRICE);
+    	ArrayList<Double> productPrice = new ArrayList<Double>();
+    	ArrayList<Double> sortedList = new ArrayList<Double>();
+    	;
+    	for(int i=0;i<list.size();i++)
+    	{
+    		price=list.get(i).getText();
+    		updatedPrice=price.replaceAll("[^0-9.]", "");
+    		priceValue=Double.parseDouble(updatedPrice);
+    		sortedList.add(priceValue);
+    		productPrice.add(priceValue);
+    	}
+    	
+    	System.out.println(productPrice);
+    	Collections.sort(sortedList);
+    	System.out.println(sortedList);
+    	if(!sortedList.equals(productPrice))
+    	{
+    		throw new Exception("The products are sorted not successfully");
+    	}
+    	else
+    	{
+    		Reporter.log("The products are sorted successfully");
+    	}
+
+    	js.executeScript("window.scrollTo(0, -document.body.scrollHeight)");
+    	Thread.sleep(5000);
+		drpCountry.selectByIndex(2);
+		js.executeScript("arguments[0].scrollIntoView();", element);
+    	Thread.sleep(5000);
+    	js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
+    	Thread.sleep(5000);
+		List<WebElement> list1 = driver.findElements(PLP_PRICE);
+    	ArrayList<Double> productPrice1 = new ArrayList<Double>();
+    	ArrayList<Double> sortedList1 = new ArrayList<Double>();
+    	
+    	for(int i=0;i<list.size();i++)
+    	{
+    		price=list.get(i).getText();
+    		updatedPrice=price.replaceAll("[^0-9.]", "");
+    		priceValue=Double.parseDouble(updatedPrice);
+    		sortedList1.add(priceValue);
+    		productPrice1.add(priceValue);
+    	}
+    	System.out.println(productPrice1);
+    	Collections.reverse(sortedList1);
+    	System.out.println(sortedList1);
+    	if(!sortedList1.equals(productPrice1))
+    	{
+    		throw new Exception("The products are sorted not successfully");
+    	}
+    	else
+    	{
+    		Reporter.log("The products are sorted successfully");
+    	}
+    }
 
 	@SuppressWarnings("static-access")
 	public void validateProductHeadingTextOnCollectionPage() throws Exception {
@@ -119,6 +266,30 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		// validate product details page by calling the method
 		if(!(driver.getCurrentUrl().contains("pack")||driver.getCurrentUrl().contains("set")||driver.getCurrentUrl().contains("gift-cards")))		
 			new ProductDetailsPageComponents(driver).validatePage();
+
+		Reporter.log("Product head line text on collection page is Displayed :: Clickable and validated successfully");
+
+	}
+	public void validateProductHeadingTextOnPLP() throws Exception {
+		String text = null;
+		objGeneralMethods.waitTillPageLoad(driver);
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+
+        objGeneralMethods.isElementVisible(driver, FIRST_PRODUCT_HEAD_LINE_TEXT);
+		// get product title and click on product heading text if present
+
+		text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
+		objGeneralMethods.clickButtonByJS(driver, FIRST_PRODUCT_HEAD_LINE_TEXT);
+		//driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT).click();
+		Thread.sleep(3000);
+		Reporter.log(driver.getCurrentUrl());
+
+		// check correct Product details page opened or not
+		new ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);	
+
+		/*// validate product details page by calling the method
+		if(!(driver.getCurrentUrl().contains("pack")||driver.getCurrentUrl().contains("set")||driver.getCurrentUrl().contains("gift-cards")))		
+			new ProductDetailsPageComponents(driver).validatePage();*/
 
 		Reporter.log("Product head line text on collection page is Displayed :: Clickable and validated successfully");
 
@@ -154,11 +325,43 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 		Reporter.log("Product review stars on collection page is Displayed :: Clickable and validated successfully");
 		}
+	@SuppressWarnings("static-access")
+	public void validateProductReviewStarsOnPLP() throws Exception {
+		String text = null;
+		
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.presenceOfElementLocated(TOTAL_COUNTS_OF_ITEMS));
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		
+		jse.executeScript("window.scrollBy(0,250)");
+		
+		Thread.sleep(3000);
+		// get product title and click on product heading text if present
+		//		try {
+		if(!driver.findElement(FIRST_PRODUCT_REVIEW_STARS).isDisplayed())
+			throw new Exception("Product review stars are not present");
+		text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
+		objGeneralMethods.clickButtonByJS(driver, FIRST_PRODUCT_HEAD_LINE_TEXT);
+		Thread.sleep(3000);
+		Reporter.log(driver.getCurrentUrl());
+		// check correct Product details page opened or not
+		new ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);	
+
+		/*// validate product details page by calling the method
+		if(driver.findElement(ProductDetailsPageLocators.PRODUCT_TITLE).getText().contains("Set"))
+			new ProductDetailsPageComponents(driver).verifybundlepages();
+		else
+		new ProductDetailsPageComponents(driver).validatePage();*/
+
+		Reporter.log("Product review stars on collection page is Displayed :: Clickable and validated successfully");
+		}
 
 	public void validateReviewStarOnGCPLP() throws Exception
 	{
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.presenceOfElementLocated(TOTAL_COUNTS_OF_ITEMS));
+		//changed
+		/*WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.presenceOfElementLocated(TOTAL_COUNTS_OF_ITEMS));*/
+		objGeneralMethods.isElementVisible(driver, TOTAL_COUNTS_OF_ITEMS);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		Thread.sleep(3000);
@@ -206,8 +409,10 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		// loop for total not of filters
 		for(int i = 2; i <= filterList+1; i++) {
 			element=driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child("+i+") > a"));
+			//changed
 			JavascriptExecutor jse = (JavascriptExecutor)driver;
 			jse.executeScript("arguments[0].click();", element);
+			//objGeneralMethods.clickButtonByJS(driver, element);
 			// get all the options list available in ith filter
 			allElements = driver.findElements(By.cssSelector("div.mega-collection-filters > div:nth-child("+i+") > ul > li"));
 			optionsList = allElements.size();
@@ -228,7 +433,14 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 				//get the name of selected option
 				//selectedOption = driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child("+i+") > ul > li:nth-child(1) > label > input")).getAttribute("data-filter-btn");
-				selectedOption = driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child("+i+") > ul > li:nth-child(1) > label > span")).getText();
+				if(i==5 || i==8 || i==9)
+				{
+					selectedOption = driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child(2) > ul > li:nth-child(1) > label > span")).getText();
+				}
+				else {
+					selectedOption = driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child("+i+") > ul > li:nth-child(1) > label > span")).getText();
+				}
+				//selectedOption = driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child("+i+") > ul > li:nth-child(1) > label > span")).getText();
 				System.out.println("selected option :: "+selectedOption);
 
 				// get all selected displayed optioins
@@ -283,8 +495,8 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			jse = (JavascriptExecutor)driver;
 			jse.executeScript("arguments[0].click();", element);
 			Thread.sleep(1000);
-			System.out.println("last item :: "+driver.findElement(By.cssSelector("div.js-mega-collection-desktop-filter-tags > button:nth-child("+ct+")")).getText());
-			element=driver.findElement(By.cssSelector("div.js-mega-collection-desktop-filter-tags > button:nth-child("+ct+")"));
+			System.out.println("last item :: "+driver.findElement(By.xpath("(//div[contains(@class,'mega-collection-filter-tags mega-collection-filter-tags--desktop')]//button)["+ct+"]")).getText());
+			element=driver.findElement(By.xpath("(//div[contains(@class,'mega-collection-filter-tags mega-collection-filter-tags--desktop')]//button)["+ct+"]"));
 			jse = (JavascriptExecutor)driver;
 			jse.executeScript("arguments[0].click();", element);
 			//driver.findElement(PLUS_BUTTON).click();
@@ -303,8 +515,8 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 			if(ct!=0 && ct!=-1) {
 				System.out.println("ct :: "+allElements.get(ct).getText());
-				System.out.println("ct :: "+driver.findElement(By.cssSelector("div.js-mega-collection-desktop-filter-tags >div> button:nth-child("+ct+")")).getText());
-				if((allElements.get(ct).getText()).equals(driver.findElement(By.cssSelector("div.js-mega-collection-desktop-filter-tags >div> button:nth-child("+ct+")")).getText()))
+				System.out.println("ct :: "+driver.findElement(By.xpath("(//div[contains(@class,'mega-collection-filter-tags mega-collection-filter-tags--desktop')]//button)["+ct+"]")).getText());
+				if((allElements.get(ct).getText()).equals(driver.findElement(By.xpath("(//div[contains(@class,'mega-collection-filter-tags mega-collection-filter-tags--desktop')]//button)["+ct+"]")).getText()))
 					throw new Exception("Item is not removed from displayed list when click on it");
 			}
 			ct = 0;
@@ -339,7 +551,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		{
 			//driver.findElement(LAST_FILTER).click();
 			Select selectElement = new Select(driver.findElement(LAST_FILTER));
-			selectElement.selectByValue("price:asc");
+			selectElement.selectByValue("Price:ascending");
 
 			// click on second option
 
@@ -354,15 +566,15 @@ public class CollectionPageComponent extends CollectionPageLocator {
 					String text1 = null;
 					String text2 = null;
 
-					text = driver.findElement(By.cssSelector(".mega-collection-grid__row > div.product-item:nth-child("+i+") > div.product-meta__prices")).getText();
+					text = driver.findElement(By.cssSelector(".mega-collection-grid__row > div.product-meta__prices("+i+") > span.product-meta__price")).getText();
 					System.out.println("Text :: "+text);
 					for (String a : text.split("\\$")) 
 						text1 = a;
 					System.out.println("text 1 :: "+text1);
 					// loop to check previous and next price
 					int j = i+1;
-					System.out.println("Text :: "+driver.findElement(By.cssSelector(".mega-collection-grid__row > div.product-item:nth-child("+j+") > div.product-meta__prices")).getText());
-					for (String a : driver.findElement(By.cssSelector(".mega-collection-grid__row > div.product-item:nth-child("+j+") > div.product-meta__prices")).getText().split("\\$")) 
+					System.out.println("Text :: "+driver.findElement(By.cssSelector(".mega-collection-grid__row > div.product-meta__prices("+j+") > span.product-meta__price")).getText());
+					for (String a : driver.findElement(By.cssSelector(".mega-collection-grid__row > div.product-meta__prices("+j+") > span.product-meta__price")).getText().split("\\$")) 
 						text2 = a;
 					System.out.println("text2 :: "+text2);
 					if(Float.parseFloat(text1) > Float.parseFloat(text2))
@@ -860,6 +1072,74 @@ public class CollectionPageComponent extends CollectionPageLocator {
 				}
 			}
 		}
+		
+
+		// Check slick arrows of color Swatches
+		if(elementsCount > 8)
+		{
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			element = driver.findElement(COLOR_SWATCH_NEXT_SLICK_ARROWS);
+			softAssert.assertTrue(element.getAttribute("aria-disabled").equals("false"), "Color swatch next slick arrow is not enabled.");
+			if(element.getAttribute("aria-disabled").equals("false"))
+			{
+				js.executeScript("arguments[0].click();", element);
+			}		
+
+			element = driver.findElement(COLOR_SWATCH_PREV_SLICK_ARROWS);
+			softAssert.assertTrue(element.getAttribute("aria-disabled").equals("false"), "Color swatch prev slick arrow is not enabled.");
+			if(element.getAttribute("aria-disabled").equals("false"))
+			{
+				js.executeScript("arguments[0].click();", element);
+			}	
+			Reporter.log("Color swatch slick arrows are displayed :: Clickable");
+		}
+
+	}
+	public void MethodToCheckColorSwatchChangingOnPLP() throws Exception {
+		Thread.sleep(5000);
+		JavascriptExecutor executore = (JavascriptExecutor) driver;
+		executore.executeScript("window.scrollBy(0, 350)", "");
+		Thread.sleep(5000);
+
+		List<WebElement> allElements = driver.findElements(ALL_COLOR_LIST);
+		int elementsCount = allElements.size();
+		System.out.println("Color Element count :: " + elementsCount);
+
+		if (elementsCount > 1)
+		{
+			element = driver.findElement(By.cssSelector("div.mega-collection-grid.js-mega-collection-grid > div:nth-child(3) > div:nth-child(1)>div:nth-child(2)>.product-item__swatch-list>.slick-list>.slick-track>div:nth-child(1)>div"));
+			element.click();
+
+			for (int i = 1; i < elementsCount; i++) {
+				if (i < 4) {
+					String Img_colortext = null;
+					String colornew1 = null;
+					text = driver.findElement(PRODUCT_IMAGE_COLOR_NAME).getAttribute("href");
+					String[] strarray = text.split("[=]");
+					String text1 = strarray[strarray.length - 1];
+					Img_colortext = text1.replace("-", " ");
+
+					System.out.println("Product image color name is: " + Img_colortext);
+
+
+					element = driver.findElement(By.cssSelector("div.mega-collection-grid.js-mega-collection-grid > div:nth-child(3) > div:nth-child(1)>div:nth-child(2)>.product-item__swatch-list>.slick-list>.slick-track>div:nth-child("+ i +")>div"));
+					colornew1 = element.getAttribute("title"); 
+					String colornew = colornew1.replace("/", " ");
+					System.out.println(colornew);
+					if(colornew.equalsIgnoreCase(Img_colortext)) 
+					{
+						WebElement elemen =driver.findElement(By.cssSelector("div.mega-collection-grid.js-mega-collection-grid > div:nth-child(3) > div:nth-child(1)>div:nth-child(2)>.product-item__swatch-list>.slick-list>.slick-track>div:nth-child( "+ (i+1) + ")>div"));
+						executore.executeScript("arguments[0].click();", elemen);
+						softAssert.assertEquals(Img_colortext , colornew , "Color not changing");
+						Reporter.log("Color swatches are changing correctly");
+					}
+					else {
+						throw new Exception("Color not changing");
+					}
+				}
+			}
+		}
+		
 
 		// Check slick arrows of color Swatches
 		if(elementsCount > 8)
@@ -885,6 +1165,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	
 	public void Verify_ProductTile_HoverFunctionality() throws Exception
 	{
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		JavascriptExecutor js = (JavascriptExecutor)driver;
 		Thread.sleep(8000);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
