@@ -29,7 +29,7 @@ public class ValidateMegaCollectionPages {
 	Exception
 	{
 		new CollectionPage(driver).validateproductimageonAllpanties();
-
+		
 	}
 
 	@Test 
