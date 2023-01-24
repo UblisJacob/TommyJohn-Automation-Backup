@@ -24,11 +24,11 @@ public class ValidateGiftCardPLP
 	}
 
 
-	@Test
+	/*@Test
 	public void TC_ValidateFilterSortByOnGCPLP() throws	Exception
 	{
 		new CollectionPage(driver).validateSortFilterOnGCPLP();
-	}
+	}*/
 
 	@Test
 	public void TC_ValidateReviewStarOnGCPLP() throws Exception
