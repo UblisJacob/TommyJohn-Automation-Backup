@@ -304,62 +304,12 @@ public class CollectionPage extends CollectionPageComponent{
 		new HomePageComponents(driver).NavigateToGCPLP();
 		validateProductHeadingTextOnCollectionPage();
 	}
-	
 
 	// All collection URLs
 	public void validateallcollectionurls() throws Exception
 	{
 		validateallurls();
 	}
-	
-	//changed
-	// validate functionalities of the Socks Category
-	
-	public void validateProductImageonOnSocks() throws Exception {
-		new HomePageComponents(driver).navigateToSocksInMenLoungewearCategory();
-		//Verify_ProductTile_HoverFunctionality();
-		validateProductImageOnCollectionPage();	
-	}
-	
-	public void validateproductnameonOnSocks() throws Exception 
-	{
-		new HomePageComponents(driver).navigateToSocksInMenLoungewearCategory();
-		validateProductHeadingTextOnCollectionPage();
-	}
-	
-	public void validateproductreviewstarsonOnSocks() throws Exception
-	{
-		new HomePageComponents(driver).navigateToSocksInMenLoungewearCategory();
-		validateProductReviewStarsOnCollectionPage();
-	}
-
-	public void validatefilterandsortonOnSocks() throws Exception
-	{
-		new HomePageComponents(driver).navigateToSocksInMenLoungewearCategory();
-		methodToCheckAllFilters();
-	}
-	public void validateColorSwatcheonSocks() throws Exception
-	{
-		new HomePageComponents(driver).navigateToSocksInMenLoungewearCategory();
-		MethodToCheckColorSwatchChanging();
-	}
-	
-	public void validatePriceOnPLP() throws Exception
-	{
-		new HomePageComponents(driver).navigateToAllMenLoungewearCategory();
-		validatePriceOnCollectionPage();
-	}
-	
-	public void validateFilterPillOnPLP() throws Exception{
-		new HomePageComponents(driver).navigateToAllMenLoungewearCategory();
-		validateFilterPillOnCollectionPage();
-	}
-	
-	public void validateCollectionCTAOnPLP() throws Exception{
-		new HomePageComponents(driver).navigateToAllMenLoungewearCategory();
-		validateCollectionCTA();
-	}
-	
 
 }
 
