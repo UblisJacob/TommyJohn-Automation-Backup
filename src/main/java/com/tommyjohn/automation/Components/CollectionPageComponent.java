@@ -112,6 +112,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 		//changed
 		objGeneralMethods.implicitWait(driver);
+		objGeneralMethods.waitTillPageLoad(driver);
 		objGeneralMethods.isElementVisible(driver, FIRST_PRODUCT_IMAGE);
 		// get product title and click on image if present
 		text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
@@ -138,7 +139,8 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		driver.navigate().back();
 		objGeneralMethods.waitTillPageLoad(driver);
 		executor.executeScript("window.scrollBy(0,document.body.scrollHeight)");
-		Thread.sleep(7000);
+		Thread.sleep(20000);
+		objGeneralMethods.waitTillPageLoad(driver);
 		
 		
 		List<WebElement> list = driver.findElements(By.xpath(PRODUCT_IMAGES));
@@ -268,6 +270,30 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		Reporter.log("Product head line text on collection page is Displayed :: Clickable and validated successfully");
 
 	}
+	public void validateProductHeadingTextOnPLP() throws Exception {
+		String text = null;
+		objGeneralMethods.waitTillPageLoad(driver);
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+
+        objGeneralMethods.isElementVisible(driver, FIRST_PRODUCT_HEAD_LINE_TEXT);
+		// get product title and click on product heading text if present
+
+		text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
+		objGeneralMethods.clickButtonByJS(driver, FIRST_PRODUCT_HEAD_LINE_TEXT);
+		//driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT).click();
+		Thread.sleep(3000);
+		Reporter.log(driver.getCurrentUrl());
+
+		// check correct Product details page opened or not
+		new ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);	
+
+		/*// validate product details page by calling the method
+		if(!(driver.getCurrentUrl().contains("pack")||driver.getCurrentUrl().contains("set")||driver.getCurrentUrl().contains("gift-cards")))		
+			new ProductDetailsPageComponents(driver).validatePage();*/
+
+		Reporter.log("Product head line text on collection page is Displayed :: Clickable and validated successfully");
+
+	}
 
 	@SuppressWarnings("static-access")
 	public void validateProductReviewStarsOnCollectionPage() throws Exception {
@@ -296,6 +322,36 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			new ProductDetailsPageComponents(driver).verifybundlepages();
 		else
 		new ProductDetailsPageComponents(driver).validatePage();
+
+		Reporter.log("Product review stars on collection page is Displayed :: Clickable and validated successfully");
+		}
+	@SuppressWarnings("static-access")
+	public void validateProductReviewStarsOnPLP() throws Exception {
+		String text = null;
+		
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.presenceOfElementLocated(TOTAL_COUNTS_OF_ITEMS));
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		
+		jse.executeScript("window.scrollBy(0,250)");
+		
+		Thread.sleep(3000);
+		// get product title and click on product heading text if present
+		//		try {
+		if(!driver.findElement(FIRST_PRODUCT_REVIEW_STARS).isDisplayed())
+			throw new Exception("Product review stars are not present");
+		text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
+		objGeneralMethods.clickButtonByJS(driver, FIRST_PRODUCT_HEAD_LINE_TEXT);
+		Thread.sleep(3000);
+		Reporter.log(driver.getCurrentUrl());
+		// check correct Product details page opened or not
+		new ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);	
+
+		/*// validate product details page by calling the method
+		if(driver.findElement(ProductDetailsPageLocators.PRODUCT_TITLE).getText().contains("Set"))
+			new ProductDetailsPageComponents(driver).verifybundlepages();
+		else
+		new ProductDetailsPageComponents(driver).validatePage();*/
 
 		Reporter.log("Product review stars on collection page is Displayed :: Clickable and validated successfully");
 		}
@@ -1016,6 +1072,74 @@ public class CollectionPageComponent extends CollectionPageLocator {
 				}
 			}
 		}
+		
+
+		// Check slick arrows of color Swatches
+		if(elementsCount > 8)
+		{
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			element = driver.findElement(COLOR_SWATCH_NEXT_SLICK_ARROWS);
+			softAssert.assertTrue(element.getAttribute("aria-disabled").equals("false"), "Color swatch next slick arrow is not enabled.");
+			if(element.getAttribute("aria-disabled").equals("false"))
+			{
+				js.executeScript("arguments[0].click();", element);
+			}		
+
+			element = driver.findElement(COLOR_SWATCH_PREV_SLICK_ARROWS);
+			softAssert.assertTrue(element.getAttribute("aria-disabled").equals("false"), "Color swatch prev slick arrow is not enabled.");
+			if(element.getAttribute("aria-disabled").equals("false"))
+			{
+				js.executeScript("arguments[0].click();", element);
+			}	
+			Reporter.log("Color swatch slick arrows are displayed :: Clickable");
+		}
+
+	}
+	public void MethodToCheckColorSwatchChangingOnPLP() throws Exception {
+		Thread.sleep(5000);
+		JavascriptExecutor executore = (JavascriptExecutor) driver;
+		executore.executeScript("window.scrollBy(0, 350)", "");
+		Thread.sleep(5000);
+
+		List<WebElement> allElements = driver.findElements(ALL_COLOR_LIST);
+		int elementsCount = allElements.size();
+		System.out.println("Color Element count :: " + elementsCount);
+
+		if (elementsCount > 1)
+		{
+			element = driver.findElement(By.cssSelector("div.mega-collection-grid.js-mega-collection-grid > div:nth-child(3) > div:nth-child(1)>div:nth-child(2)>.product-item__swatch-list>.slick-list>.slick-track>div:nth-child(1)>div"));
+			element.click();
+
+			for (int i = 1; i < elementsCount; i++) {
+				if (i < 4) {
+					String Img_colortext = null;
+					String colornew1 = null;
+					text = driver.findElement(PRODUCT_IMAGE_COLOR_NAME).getAttribute("href");
+					String[] strarray = text.split("[=]");
+					String text1 = strarray[strarray.length - 1];
+					Img_colortext = text1.replace("-", " ");
+
+					System.out.println("Product image color name is: " + Img_colortext);
+
+
+					element = driver.findElement(By.cssSelector("div.mega-collection-grid.js-mega-collection-grid > div:nth-child(3) > div:nth-child(1)>div:nth-child(2)>.product-item__swatch-list>.slick-list>.slick-track>div:nth-child("+ i +")>div"));
+					colornew1 = element.getAttribute("title"); 
+					String colornew = colornew1.replace("/", " ");
+					System.out.println(colornew);
+					if(colornew.equalsIgnoreCase(Img_colortext)) 
+					{
+						WebElement elemen =driver.findElement(By.cssSelector("div.mega-collection-grid.js-mega-collection-grid > div:nth-child(3) > div:nth-child(1)>div:nth-child(2)>.product-item__swatch-list>.slick-list>.slick-track>div:nth-child( "+ (i+1) + ")>div"));
+						executore.executeScript("arguments[0].click();", elemen);
+						softAssert.assertEquals(Img_colortext , colornew , "Color not changing");
+						Reporter.log("Color swatches are changing correctly");
+					}
+					else {
+						throw new Exception("Color not changing");
+					}
+				}
+			}
+		}
+		
 
 		// Check slick arrows of color Swatches
 		if(elementsCount > 8)
