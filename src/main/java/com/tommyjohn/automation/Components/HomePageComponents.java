@@ -16,6 +16,7 @@ import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
 import com.tommyjohn.automation.PageLocators.HomePageLocators;
 import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
+import com.tommyjohn.automation.utils.AccessPropertiesFiles;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
 public class HomePageComponents extends HomePageLocators {
@@ -32,7 +33,9 @@ public class HomePageComponents extends HomePageLocators {
 	SoftAssert softassert = new SoftAssert();
 	WebElement footer_link ;
 	String text;
-
+	
+	
+	
 	public HomePageComponents(WebDriver driver) {
 
 		this.driver = driver;
@@ -1478,6 +1481,22 @@ public class HomePageComponents extends HomePageLocators {
 	// navigate to second skin in men catagory
 	public void navigateToSecondSkinInMenCategory() throws Exception {
 		driver.get("https://tommyjohn.com/collections/mens-second-skin");
+		Thread.sleep(5000);
+
+	}
+	//changed
+	// navigate to socks in men-loungewear category
+	public void navigateToSocksInMenLoungewearCategory() throws Exception {
+		
+		driver.get("https://www.tommyjohn.com/collections/mens-socks");
+		Thread.sleep(5000);
+
+	}
+	//changed
+	// navigate to all men loungewear category
+	public void navigateToAllMenLoungewearCategory() throws Exception {
+		String menLoungewearPage = AccessPropertiesFiles.readTestData("menLoungewearPage");
+		driver.get(menLoungewearPage);
 		Thread.sleep(5000);
 
 	}
