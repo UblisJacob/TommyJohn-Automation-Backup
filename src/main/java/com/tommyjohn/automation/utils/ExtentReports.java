@@ -6,14 +6,17 @@ import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
+
 public class ExtentReports {
 
 	@BeforeSuite
 	public void setUp() {
 		
 		ExtentSparkReporter htmlReporter = new ExtentSparkReporter("extent.html");
+		
 		ExtentReports extent = new ExtentReports();
-        extent.attachReporter(htmlReporter);
+	//	extent.attachReporter(htmlReporter);
+        
 	}
 
 	@Test
