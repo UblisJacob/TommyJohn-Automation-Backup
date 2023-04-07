@@ -360,6 +360,16 @@ public class CollectionPage extends CollectionPageComponent{
 		validateallurls();
 	}
 
+	public void validateallplpsareloading() {
+		validateallurls();
+		
+	}
+
+	public void validateproductgrid() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
 
 
