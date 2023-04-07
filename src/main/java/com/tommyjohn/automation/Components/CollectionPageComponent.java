@@ -39,7 +39,6 @@ import com.tommyjohn.automation.PageLocators.FlyCartPageLocator;
 import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
 
 import commonMethods.GeneralMethods;
-import net.bytebuddy.asm.Advice.Exit;
 
 public class CollectionPageComponent extends CollectionPageLocator {
 	
