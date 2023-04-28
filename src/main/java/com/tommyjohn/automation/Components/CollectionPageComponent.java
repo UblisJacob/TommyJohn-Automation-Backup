@@ -2,6 +2,7 @@ package com.tommyjohn.automation.Components;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -31,6 +32,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
 
@@ -1204,7 +1206,79 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		}
     }
     
-    }
+    //new
+	public void validatePLPProducts() throws Exception
+	{
+		objGeneralMethods.isElementVisible(driver, By.xpath(PLP_PRODUCTS));
+		for(int i=1;i<4;i++)
+		{
+			if(objGeneralMethods.verifyElementExists(driver, By.xpath(PLP_PRODUCTS+"["+i+"]")))
+			{
+				System.out.println("Product "+i+" is displayed successfully");
+			}
+			else
+			{
+				System.out.println("Product "+i+" is not displayed");
+			}
+		}
+	}
+	
+	//new
+		public void validatePLPBreadcrumbLinks() throws Exception
+		{
+			driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
+			/*new WebDriverWait(driver, Duration.ofSeconds(30)).until(
+			webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));*/
+			WebDriverWait wait = new WebDriverWait(driver,10);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PLP_BREADCRUMB_TEXT)));
+			
+			
+			Assert.assertTrue(driver.findElement(PLP_BREADCRUMB_LINK).isEnabled(),"Element Clickable");
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			
+			//js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+			js.executeScript("arguments[0].scrollIntoView(true);", driver.findElement(PLP_BREADCRUMB_LINK));
+			
+			js.executeScript("arguments[0].click();", driver.findElement(PLP_BREADCRUMB_LINK));
+			//driver.findElement(PLP_BREADCRUMB_LINK).click();
+			
+			System.out.println(driver.findElement(PLP_TITLE).getText());
+			
+			if(driver.findElement(PLP_TITLE).getText().equals("Men's All"))
+			{
+				System.out.println("Breadcrumb link is working properly");
+				
+			}
+			else
+			{
+				System.out.println("Breadcrumb link is not working");
+			}
+
+		}
+		
+		public void validatePLPInlineBanner() throws Exception
+		{
+			driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+		
+			WebDriverWait wait = new WebDriverWait(driver,10);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_INLINE_BANNER));
+			
+			String strUrl = driver.getCurrentUrl();
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("arguments[0].click();", driver.findElement(PLP_INLINE_BANNER));
+			
+			
+			if(!(driver.getCurrentUrl().equals(strUrl)))
+			{
+				System.out.println("User navigated to Inline banner designated url");
+			}
+			else
+			{
+				System.out.println("User didn't navigate to Inline banner designated url");
+			}
+		}
+		
+}
 
 
 
