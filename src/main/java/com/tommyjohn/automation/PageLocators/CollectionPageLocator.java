@@ -67,4 +67,16 @@ public class CollectionPageLocator {
 	    public static By NEW_ARRIVALS_CTC= By.xpath("//a[contains(text(),'New Arrivals')]");
 	    public static By NEW_ARRIVALS_TITLE= By.xpath("//h1[@class='collection-title-bar__title']");
 	    public static By NEW_ARRIVALS_BREADCRUMB= By.xpath("//div[@itemprop='itemListElement']//a//span[contains(text(),'New Arrivals')]");
+	    
+	    
+	    //new
+	    public static String PLP_PRODUCTS= "(//span[@class='product-meta__title'])";
+	    public static String PLP_BREADCRUMB_TEXT= "(//div[@itemprop='itemListElement'])[2]//a//span";
+	    public static By PLP_BREADCRUMB_LINK= By.xpath("(//div[@itemprop='itemListElement'])[2]//a");
+	    public static By PLP_TITLE= By.xpath("//h1[@class='collection-title-bar__title']");
+	    public static By PLP_INLINE_BANNER= By.xpath("(//img[@class='inline-section-banner__image'])[1]");
+	    
+	  
+	    
+	    
 }

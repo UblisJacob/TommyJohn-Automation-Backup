@@ -80,5 +80,10 @@ public class HomePage extends HomePageComponents {
 		new HomePageComponents(driver).RFY_ProductTileHoverFunctionality();
 	}
 
+	//new
+	public void validateNavigationToMensLoungewearCategory() throws Exception
+	{
+		new HomePageComponents(driver).navigateToMensLoungewearCategory();
+	}
 	
 }
