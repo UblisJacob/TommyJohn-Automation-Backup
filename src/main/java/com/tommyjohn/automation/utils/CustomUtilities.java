@@ -43,6 +43,7 @@ public class CustomUtilities {
 	public static BufferedReader reader;
 	public static Properties properties;
 	public static final String propertiesFilePath = "src/main/resources/configuration.properties";
+	
 	//	public static ATUTestRecorder recorder;
 
 	/**
@@ -79,6 +80,7 @@ public class CustomUtilities {
 			chromeOptions.addArguments("--ignore-certificate-errors");
 			chromeOptions.addArguments("--no-default-browser-check");
 			chromeOptions.addArguments("--disable-popup-blocking");
+			chromeOptions.addArguments("--remote-allow-origins=*");
 			chromeOptions.setAcceptInsecureCerts(true);
 
 
@@ -239,6 +241,7 @@ public class CustomUtilities {
 		}
 
 	}
+	
 
 	public static void takessiffailed(String mname) throws Exception
 	{

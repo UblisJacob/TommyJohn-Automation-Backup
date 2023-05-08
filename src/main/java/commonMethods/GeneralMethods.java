@@ -1,10 +1,15 @@
 package commonMethods;
 
+import java.io.FileReader;
+import java.time.Duration;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -13,6 +18,7 @@ import org.testng.Reporter;
 
 public class GeneralMethods {
 	
+	public static final String dataPropertiesFile = "src/main/resources/data.properties";
 	/*public GeneralMethods(WebDriver driver) {
 		this.driver = driver;
 	}
@@ -21,7 +27,7 @@ public class GeneralMethods {
 	// Method for page loading
 	public void waitTillPageLoad(WebDriver objDriver)
 	{
-		(new WebDriverWait(objDriver, 30)).until(new ExpectedCondition<Boolean>()
+		(new WebDriverWait(objDriver, 20)).until(new ExpectedCondition<Boolean>()
 		{
 			public Boolean apply(WebDriver objDriver)
 			{
@@ -41,7 +47,22 @@ public class GeneralMethods {
 			waitTillPageLoad(objDriver);
 		}
 	}
-	
+	// Mouse Actions - left click
+	public void clickButtonByAction(WebDriver objDriver, By objectPath) throws Exception
+	{
+		WebElement clickable = objDriver.findElement(objectPath);
+	     new Actions(objDriver)
+	             .click(clickable)
+	             .perform();
+	}
+	 
+	public void clickButton(WebDriver objDriver, By objectPath) throws Exception
+	{
+		if(verifyElementExists(objDriver, objectPath))
+		{
+			objDriver.findElement(objectPath).click();
+		}
+	}
 	//To verify the element till exists
 	public boolean verifyElementExists(WebDriver objDriver, By objectPath) throws Exception
 	{
@@ -76,7 +97,7 @@ public class GeneralMethods {
     //Implicit wait
     public void implicitWait(WebDriver objDriver) throws Exception
 	{
-		objDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    	objDriver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 	}
     
     //To verify Element is displayed
@@ -86,7 +107,7 @@ public class GeneralMethods {
 		try
 		{
 			waitTillPageLoad(objDriver);
-			(new WebDriverWait(objDriver, 20)).until(ExpectedConditions.visibilityOfElementLocated(objectPath));
+			(new WebDriverWait(objDriver, 10)).until(ExpectedConditions.visibilityOfElementLocated(objectPath));
 			boolResultFlag = true;
 		}
 		catch(Exception exception)
@@ -101,6 +122,25 @@ public class GeneralMethods {
 	{
 		((JavascriptExecutor) objDriver).executeScript("arguments[0].scrollIntoView(true);", objDriver.findElement(objectPath));
 		Thread.sleep(2000);
+	}
+    
+    // To read properties file
+    public static String readPropertiesFile(String data) throws Exception {
+    	
+		 FileReader reader=new FileReader(dataPropertiesFile);  
+	      
+		 Properties p=new Properties();  
+		 p.load(reader);
+		 
+		 String url="";
+		 
+		 url=p.getProperty(data);  
+		 System.out.println(p.getProperty(url));  
+		 
+		 reader.close();
+		 
+		 return url;
+		 
 	}
     
     
