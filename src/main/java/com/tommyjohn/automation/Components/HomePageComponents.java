@@ -18,6 +18,8 @@ import com.tommyjohn.automation.PageLocators.HomePageLocators;
 import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
+import commonMethods.GeneralMethods;
+
 public class HomePageComponents extends HomePageLocators {
 
 	public WebDriver driver;
@@ -32,6 +34,7 @@ public class HomePageComponents extends HomePageLocators {
 	SoftAssert softassert = new SoftAssert();
 	WebElement footer_link ;
 	String text;
+	GeneralMethods objGeneralMethods = new GeneralMethods();
 
 	public HomePageComponents(WebDriver driver) {
 
@@ -190,7 +193,6 @@ public class HomePageComponents extends HomePageLocators {
 		softAssert.assertAll();
 
 	}
-
 
 	public void validateSearchFunctionality() throws Exception {
 
@@ -1640,4 +1642,26 @@ public class HomePageComponents extends HomePageLocators {
 	{
 		driver.get("https://tommyjohn.com/pages/quiz?quizID=BR-10005-QZ");
 	}
+	
+	// new
+	// To navigate to Mens Loungewear Category page
+	public void navigateToMensLoungewearCategory() throws Exception
+	{
+		String url = objGeneralMethods.readPropertiesFile("mensLoungewearUrl");
+		driver.get(url);
+		objGeneralMethods.implicitWait(driver);
+		if((driver.findElement(MENS_LOUNGEWEAR_TITLE).getText()).equals(MENS_LOUNGEWEAR_TITLE_1))
+		{
+			System.out.println("User has navigated to Mens Loungewear successfully");
+		}
+		else
+		{
+			System.out.println("User hasn't navigated to Mens Loungewear");
+		}
+		//objGeneralMethods.clickButtonByJS(driver, MEN_CATEGORY);
+	}
+	
+	
+	
+	
 }
