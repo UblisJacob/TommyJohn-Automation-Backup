@@ -369,6 +369,12 @@ public class CollectionPage extends CollectionPageComponent{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	//new
+		public void validateProductsInMensLoungewearCategory() throws Exception
+		{
+			new CollectionPageComponent(driver).validatePLPProducts();
+		}
 
 }
 
