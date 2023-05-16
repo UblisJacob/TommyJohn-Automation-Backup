@@ -28,16 +28,16 @@ public class ValidateCategoryPages {
 		}
 	}
 
-		/*@Test
+		@Test
 		public void TC_LoadCategoryPage() throws
 		Exception { new CollectionPage(driver).validateallplpsareloading(); }
 		
 		
 		@Test
 		public void TC_ViewProductGrid() throws
-		Exception { new CollectionPage(driver).validateproductgrid(); }*/
+		Exception { new CollectionPage(driver).validateproductgrid(); }
 		
-		/*@Test
+		@Test
 		public void TC_01_CategoryPage() throws Exception
 		{
 			new HomePage(driver).validateNavigationToMensLoungewearCategory();
@@ -55,14 +55,14 @@ public class ValidateCategoryPages {
 		{
 			new HomePage(driver).validateNavigationToMensLoungewearCategory();
 			new CollectionPage(driver).validateProductsInMensLoungewearCategory();
-		}*/
+		}
 		
-		/*@Test
+		@Test
 		public void TC_04_CategoryPage() throws Exception
 		{
 			new HomePage(driver).validateNavigationToMensLoungewearCategory();
 			new CollectionPage(driver).validatePLPBreadcrumbLinks();
-		}*/
+		}
 		
 		@Test
 		public void TC_05_CategoryPage() throws Exception
