@@ -27,7 +27,7 @@ public class GeneralMethods {
 	// Method for page loading
 	public void waitTillPageLoad(WebDriver objDriver)
 	{
-		(new WebDriverWait(objDriver, 20)).until(new ExpectedCondition<Boolean>()
+		(new WebDriverWait(objDriver, Duration.ofSeconds(10))).until(new ExpectedCondition<Boolean>()
 		{
 			public Boolean apply(WebDriver objDriver)
 			{

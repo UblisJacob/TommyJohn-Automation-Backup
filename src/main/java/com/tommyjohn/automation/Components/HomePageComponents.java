@@ -1,8 +1,13 @@
 package com.tommyjohn.automation.Components;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.time.Duration;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -1649,7 +1654,7 @@ public class HomePageComponents extends HomePageLocators {
 	{
 		String url = objGeneralMethods.readPropertiesFile("mensLoungewearUrl");
 		driver.get(url);
-		objGeneralMethods.implicitWait(driver);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		if((driver.findElement(MENS_LOUNGEWEAR_TITLE).getText()).equals(MENS_LOUNGEWEAR_TITLE_1))
 		{
 			System.out.println("User has navigated to Mens Loungewear successfully");
@@ -1658,7 +1663,6 @@ public class HomePageComponents extends HomePageLocators {
 		{
 			System.out.println("User hasn't navigated to Mens Loungewear");
 		}
-		//objGeneralMethods.clickButtonByJS(driver, MEN_CATEGORY);
 	}
 	
 	
