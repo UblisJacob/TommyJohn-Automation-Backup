@@ -1,11 +1,15 @@
 package com.tommyjohn.automation.Components;
 
+import java.time.Duration;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.Reporter;
 import com.tommyjohn.automation.PageLocators.HomePageLocators;
 import com.tommyjohn.automation.PageLocators.NavigationFlowPageLocators;
@@ -27,14 +31,27 @@ public class NavigationFlowComponents extends NavigationFlowPageLocators
 	public void NavigatetoAllNewArrivalsInMenCategory() throws Exception
 	{
 		ValidateMenCategory();
-	//	Validate_First_Level1_Category();
-		Validate_Second_Level1_Category();
+		Validate_First_Level1_Category();
+		
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		WebElement mensNewArrivals = driver.findElement(MENS_ALL_NEWARRIVALS);
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(MENS_ALL_NEWARRIVALS));
+		Assert.assertTrue(mensNewArrivals.isEnabled(), "Mens New Arrival is Clickable");
+		
+		//Validate_Second_Level1_Category();
 		if(!driver.findElement(MENS_ALL_NEWARRIVALS).isDisplayed())
 			throw new Exception("All New Arrivals link in Men category is not displayed");
 
-		driver.findElement(MENS_ALL_NEWARRIVALS).click();
+		js.executeScript("arguments[0].click();", mensNewArrivals);
 		Thread.sleep(3000);
-		if(driver.getCurrentUrl().startsWith("https://tommyjohn.com/collections")) 
+		
+		System.out.println(driver.getCurrentUrl());
+		if(driver.getCurrentUrl().contains("https://www.tommyjohn.com/collections/new-arrivals-mens")) 
 			System.out.println("Navigate to all new arrival in mens category: " + driver.getCurrentUrl());
 		else
 			throw new Exception("Wrong page opened after Mens All New arrivals link clicked");
@@ -45,16 +62,24 @@ public class NavigationFlowComponents extends NavigationFlowPageLocators
 	public void NavigatetoAllNewArrivalsInWomenCategory() throws Exception
 	{
 		ValidateWomenCategory();
-		//Validate_First_Level1_Category();
-		Validate_Second_Level1_Category();
-		if(!driver.findElement(WOMENS_ALL_NEWARRIVALS).isDisplayed())
+		Validate_First_Level1_Category();
+		//Validate_Second_Level1_Category();
+		
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		WebElement womensNewArrivals = driver.findElement(WOMENS_ALL_NEWARRIVALS);
+		
+		if(!womensNewArrivals.isDisplayed())
 			throw new Exception("All New Arrivals link in Women category is not displayed");
 
-		driver.findElement(WOMENS_ALL_NEWARRIVALS).click();
+		js.executeScript("arguments[0].click();", womensNewArrivals);
 		Thread.sleep(3000);
-		if(driver.getCurrentUrl().startsWith("https://tommyjohn.com/collections")) 
-
-		//if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/collections/womens-new-arrivals")) 
+		
+		System.out.println(driver.getCurrentUrl());
+		if(driver.getCurrentUrl().contains("https://www.tommyjohn.com/collections/new-arrivals-womens")) 
 			System.out.println("Navigate to all new arrival in Womens category: " + driver.getCurrentUrl());
 		else
 			throw new Exception("Wrong page opened after Womens New Arrivals link clicked");
@@ -101,22 +126,48 @@ public class NavigationFlowComponents extends NavigationFlowPageLocators
 	public void NavigatetoAllUnderwearInWomenCategory() throws Exception
 	{
 		ValidateWomenCategory();
-		Validate_Third_Level1_Category();
+		Validate_Second_Level1_Category();
+		
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		WebElement womensAllUnderWear = driver.findElement(WOMEN_UNDERWEAR_ALLUNDERWEAR);
+		
 		if(!driver.findElement(WOMEN_UNDERWEAR_ALLUNDERWEAR).isDisplayed())
 			throw new Exception("All underwear link in Women category is not displayed");
 
-		driver.findElement(WOMEN_UNDERWEAR_ALLUNDERWEAR).click();
+		js.executeScript("arguments[0].click();", womensAllUnderWear);
 		Thread.sleep(3000);
-		if(driver.getCurrentUrl().startsWith("https://tommyjohn.com/collections")) 
-
-		//if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/collections/womens-underwear")) 
-			System.out.println("Navigate to All unerwear in women category: " + driver.getCurrentUrl());
+		
+		System.out.println(driver.getCurrentUrl());
+		if(driver.getCurrentUrl().contains("https://www.tommyjohn.com/collections/womens-underwear"))  
+			System.out.println("Navigate to All underwear in women category: " + driver.getCurrentUrl());
 		else
 			throw new Exception("Wrong page opened after All Women underwear link clicked");
 
 		Reporter.log("All underwear link in Women category is displayed :: Clickable");
 	}
+	
+	public void NavigatetoAllUnderwearInMenCategory() throws Exception
+	{
+		ValidateMenCategory();
+		Validate_Second_Level1_Category();
+		if(!driver.findElement(MEN_UNDERWEAR_ALLUNDERWEAR).isDisplayed())
+			throw new Exception("All underwear link in Women category is not displayed");
 
+		driver.findElement(MEN_UNDERWEAR_ALLUNDERWEAR).click();
+		Thread.sleep(3000);
+		if(driver.getCurrentUrl().startsWith("https://tommyjohn.com/collections")) 
+
+		//if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/collections/womens-underwear")) 
+			System.out.println("Navigate to All underwear in Men category: " + driver.getCurrentUrl());
+		else
+			throw new Exception("Wrong page opened after All Men underwear link clicked");
+
+		Reporter.log("All underwear link in Men category is displayed :: Clickable");
+	}
 	
 	
 	public void NavigatetoBoxerBriefInMensUnderwearCategory() throws Exception
@@ -356,7 +407,7 @@ public class NavigationFlowComponents extends NavigationFlowPageLocators
 	public void ValidateMenCategory() throws Exception
 	{
 		action = new Actions(driver);
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(HomePageLocators.MEN_CATEGORY));
 		if(!driver.findElement(HomePageLocators.MEN_CATEGORY).isDisplayed())
 			throw new Exception("Men category is not present");	
@@ -372,7 +423,7 @@ public class NavigationFlowComponents extends NavigationFlowPageLocators
 	public void ValidateWomenCategory() throws Exception
 	{
 		action = new Actions(driver);
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(WOMEN_CATEGORY));
 		if(!driver.findElement(WOMEN_CATEGORY).isDisplayed())
 			throw new Exception("Women category is not displayed");
@@ -388,7 +439,7 @@ public class NavigationFlowComponents extends NavigationFlowPageLocators
 	public void ValidateFinalSaleCategory() throws Exception
 	{
 		action = new Actions(driver);
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(FINAL_SALE));
 		if(!driver.findElement(FINAL_SALE).isDisplayed())
 			throw new Exception("Final Sale category is not displayed");
