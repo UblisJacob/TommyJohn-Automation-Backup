@@ -71,10 +71,18 @@ public class CollectionPageLocator {
 	    
 	    //new
 	    public static String PLP_PRODUCTS= "(//span[@class='product-meta__title'])";
-	    public static String PLP_BREADCRUMB_TEXT= "(//div[@itemprop='itemListElement'])[2]//a//span";
-	    public static By PLP_BREADCRUMB_LINK= By.xpath("(//div[@itemprop='itemListElement'])[2]//a");
-	    public static By PLP_TITLE= By.xpath("//h1[@class='collection-title-bar__title']");
-	    public static By PLP_INLINE_BANNER= By.xpath("(//img[@class='inline-section-banner__image'])[1]");
+	    public static By PLP_BREADCRUMB= By.cssSelector("nav.breadcrumbs>div:nth-child(2)>a");
+	    public static By PLP_TITLE= By.cssSelector("div.collection-title-bar__content>h1");
+	    public static By PLP_INLINE_BANNER= By.cssSelector("div.dy-inline-banner>a");
+	    public static String PLP_SECTION_HEADER = "(//h2[@class='mega-collection-grid__title'])";
+	    
+	    public static By PLP_SEO_DESCRIPTION = By.xpath("//h2[@class='collection-seo-title']");
+	    public static By PLP_SEO_BODY = By.xpath("//div[@class='collection-seo-body']");
+	    
+	    public static By PLP_PRODUCT_IMAGE_BADGE = By.xpath("//div[@class='productImage-item__badge']//span");
+	    public static By PLP_PRODUCT_SECONDARY_BADGE = By.xpath("//div[@class='productImage-item__badge']//span");
+	    
+	    
 	    
 	  
 	    
