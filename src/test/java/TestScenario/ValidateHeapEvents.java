@@ -1,4 +1,5 @@
 package TestScenario;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import org.openqa.selenium.By;
@@ -92,7 +93,7 @@ public class ValidateHeapEvents {
 		//int count=0;
 		List<String> expectedevents = new ArrayList<String>();
 		driver = ChromeExtensionUtility.launchchromewithextension();
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		WebElement element;
 		Actions action = new Actions(driver);
 
@@ -314,7 +315,7 @@ public class ValidateHeapEvents {
 	{
 		List<String> expectedevents = new ArrayList<String>();
 		driver = ChromeExtensionUtility.launchchromewithextension();
-        WebDriverWait wait = new WebDriverWait(driver, 30);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		String script = "console.clear();";
 		js.executeScript(script);
@@ -417,7 +418,7 @@ public class ValidateHeapEvents {
 
 		new AddToCartComponents(driver).addToCart();
 		driver.findElement(HomePageLocators.CART_ICON).click();
-		WebDriverWait wait = new WebDriverWait(driver, 20);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ShoppingCartComponents.CART_TITLE));
@@ -490,7 +491,7 @@ public class ValidateHeapEvents {
 
 		new AddToCartComponents(driver).addToCart();
 		driver.findElement(HomePageLocators.CART_ICON).click();
-		WebDriverWait wait = new WebDriverWait(driver, 20);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ShoppingCartComponents.CART_TITLE));
@@ -557,7 +558,7 @@ public class ValidateHeapEvents {
 
 		new AddToCartComponents(driver).addToCart();
 		driver.findElement(HomePageLocators.CART_ICON).click();
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ShoppingCartComponents.CART_TITLE));
