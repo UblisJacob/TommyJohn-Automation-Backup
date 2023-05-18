@@ -1,5 +1,6 @@
 package com.tommyjohn.automation.Components;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class AccountPageComponents extends AccountPageLocators
 
 	public void NavigateTo_AccountPage() throws Exception
 	{
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HomePageLocators.ACCOUNT_NAV_DROPDOWN));
 		driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN).click();
 		Thread.sleep(3000);

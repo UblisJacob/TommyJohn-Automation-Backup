@@ -60,7 +60,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		String text = null;
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollBy(0,250)");
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
 		// get text and click on the first product
 		text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
@@ -237,7 +237,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	@SuppressWarnings("static-access")
 	public void validateProductHeadingTextOnCollectionPage() throws Exception {
 		String text = null;
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		jse.executeScript("window.scrollBy(0,250)");
 
@@ -293,7 +293,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	public void validateProductReviewStarsOnCollectionPage() throws Exception {
 		String text = null;
 
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(TOTAL_COUNTS_OF_ITEMS));
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 
@@ -325,7 +325,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	public void validateProductReviewStarsOnPLP() throws Exception {
 		String text = null;
 
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(TOTAL_COUNTS_OF_ITEMS));
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 
@@ -565,7 +565,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		// JavascriptExecutor js = (JavascriptExecutor) driver;
 		// js.executeScript("arguments[0].scrollIntoView();", element);
 		//
-		WebDriverWait wait = new WebDriverWait(driver, 20);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(LAST_FILTER));
 		if (driver.findElement(LAST_FILTER).isDisplayed()) {
 			// driver.findElement(LAST_FILTER).click();
@@ -645,7 +645,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		}
 		Reporter.log("All corosals are Displayed :: And by default not active");
 		// check selected option in style and respected corosal is active or not
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(
 				By.cssSelector("div.mega-collection-filters > div:nth-child(" + i + ") > a")));
 		WebElement filter = driver
@@ -729,7 +729,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 		} catch (Exception e) {
 			Reporter.log("File not found");
-		
+
 		}
 	}
 
@@ -898,7 +898,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		Actions action = new Actions(driver);
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		Thread.sleep(8000);
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		js.executeScript("window.scrollBy(0,500)");
 
 		wait.until(ExpectedConditions.presenceOfElementLocated(FIRST_PRODUCT_IMAGE));
@@ -1186,7 +1186,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		Thread.sleep(8000);
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		js.executeScript("window.scrollBy(0,500)");
 
 		wait.until(ExpectedConditions.presenceOfElementLocated(FIRST_PRODUCT_IMAGE));
@@ -1196,7 +1196,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		element = driver.findElement(FIRST_PRODUCT_IMAGE);
 		js.executeScript("arguments[0].click();", element);
 		Thread.sleep(3000);
-		wait = new WebDriverWait(driver, 30);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.SECOND_VERTICAL_IMAGE));
 		String text = driver.findElement(ProductDetailsPageLocators.SECOND_VERTICAL_IMAGE).getAttribute("src");
 		String[] list1 = text.split(".jpg");
@@ -1221,9 +1221,12 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	}
 
 	// new
-	public void validatePLPProducts() throws Exception {
-		objGeneralMethods.isElementVisible(driver, By.xpath(PLP_PRODUCTS));
-		for (int i = 1; i < 4; i++) {
+	public void validateProductGrid() throws Exception {
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PLP_PRODUCTS)));
+
+		for (int i = 1; i < 5; i++) {
 			if (objGeneralMethods.verifyElementExists(driver, By.xpath(PLP_PRODUCTS + "[" + i + "]"))) {
 				System.out.println("Product " + i + " is displayed successfully");
 			} else {
@@ -1234,31 +1237,76 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 	// new
 	public void validatePLPBreadcrumbLinks() throws Exception {
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		/*
-		 * new WebDriverWait(driver, Duration.ofSeconds(30)).until( webDriver ->
-		 * ((JavascriptExecutor)
-		 * webDriver).executeScript("return document.readyState").equals("complete"));
-		 */
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PLP_BREADCRUMB_TEXT)));
 
-		Assert.assertTrue(driver.findElement(PLP_BREADCRUMB_LINK).isEnabled(), "Element Clickable");
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 
-		// js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
-		js.executeScript("arguments[0].scrollIntoView(true);", driver.findElement(PLP_BREADCRUMB_LINK));
+		WebElement breadcrumb = driver.findElement(PLP_BREADCRUMB);
+		WebElement pageHeading = driver.findElement(PLP_TITLE);
 
-		js.executeScript("arguments[0].click();", driver.findElement(PLP_BREADCRUMB_LINK));
-		// driver.findElement(PLP_BREADCRUMB_LINK).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_BREADCRUMB));
+		Assert.assertTrue(breadcrumb.isEnabled(), "Element Clickable");
+		js.executeScript("arguments[0].click();", breadcrumb);
 
-		System.out.println(driver.findElement(PLP_TITLE).getText());
+		System.out.println(pageHeading.getText());
 
-		if (driver.findElement(PLP_TITLE).getText().equals("Men's All")) {
+		if (pageHeading.getText().equals("Women's New Arrivals")) {
 			System.out.println("Breadcrumb link is working properly");
+			Reporter.log("Breadcrumb link is working properly");
 
 		} else {
 			System.out.println("Breadcrumb link is not working");
+			throw new Exception("Breadcrumb link is not working");
+		}
+
+	}
+
+	// new
+	public void validatePLPHeader() throws Exception {
+
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		WebElement pageHeader = driver.findElement(PLP_TITLE);
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_TITLE));
+		Assert.assertTrue(pageHeader.isDisplayed(), "The Category page header is displayed");
+
+		if ((pageHeader.isDisplayed())) {
+			Reporter.log("The Category page header is displayed");
+			System.out.println("Page Header is - " + pageHeader.getText());
+
+		} else {
+			throw new Exception("Page Header is not displayed");
+		}
+
+	}
+
+	// new
+	public void validatePLPSectionHeaders() throws Exception {
+
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		WebElement sectionHeader = driver.findElement(By.xpath(PLP_SECTION_HEADER));
+		List<WebElement> sectionHeaders = driver.findElement(By.xpath(PLP_SECTION_HEADER));
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_TITLE));
+		Assert.assertTrue(sectionHeader.isDisplayed(), "The Category page section header is displayed");
+
+		for (int i = )
+		if ((sectionHeader.isDisplayed())) {
+			Reporter.log("The Category page header is displayed");
+			System.out.println("Section Header - " + sectionHeader.getText());
+
+		} else {
+			throw new Exception("Section Header is not displayed");
 		}
 
 	}
@@ -1266,7 +1314,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	public void validatePLPInlineBanner() throws Exception {
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
 
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_INLINE_BANNER));
 
 		String strUrl = driver.getCurrentUrl();

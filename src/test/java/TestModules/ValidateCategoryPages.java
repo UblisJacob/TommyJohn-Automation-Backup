@@ -34,42 +34,30 @@ public class ValidateCategoryPages {
 		
 		
 		@Test
-		public void TC_ViewProductGrid() throws
-		Exception { new CollectionPage(driver).validateproductgrid(); }
+		public void TC_ViewProductGrid() throws Exception 
+		{ 
+			new CollectionPage(driver).validateproductgrid(); 
+		}
+		
 		
 		@Test
-		public void TC_01_CategoryPage() throws Exception
+		public void TC_InteractWithBreadcrumbs() throws Exception
 		{
-			new HomePage(driver).validateNavigationToMensLoungewearCategory();
+			new CollectionPage(driver).validateBreadcrumbLinks();
+		}
+	
+		@Test
+		public void TC_ViewH1() throws Exception
+		{
+			new CollectionPage(driver).validateCategoryPageHeader();
 		}
 		
 		@Test
-		public void TC_02_CategoryPage() throws Exception
+		public void TC_ViewSectionHeaders() throws Exception
 		{
-			new HomePage(driver).validateNavigationToMensLoungewearCategory();
-			new CollectionPage(driver).validateProductsInMensLoungewearCategory();
+			new CollectionPage(driver).validateCategorySectionHeaders();
 		}
 		
-		@Test
-		public void TC_03_CategoryPage() throws Exception
-		{
-			new HomePage(driver).validateNavigationToMensLoungewearCategory();
-			new CollectionPage(driver).validateProductsInMensLoungewearCategory();
-		}
-		
-		@Test
-		public void TC_04_CategoryPage() throws Exception
-		{
-			new HomePage(driver).validateNavigationToMensLoungewearCategory();
-			new CollectionPage(driver).validatePLPBreadcrumbLinks();
-		}
-		
-		@Test
-		public void TC_05_CategoryPage() throws Exception
-		{
-			new HomePage(driver).validateNavigationToMensLoungewearCategory();
-			new CollectionPage(driver).validatePLPInlineBanner();
-		}
 		
 		@AfterMethod(alwaysRun = true)
 		void teardown () {
