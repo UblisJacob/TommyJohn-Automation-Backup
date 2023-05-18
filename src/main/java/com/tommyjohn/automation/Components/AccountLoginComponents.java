@@ -1,6 +1,8 @@
 package com.tommyjohn.automation.Components;
 
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -34,7 +36,7 @@ public class AccountLoginComponents extends AccountLoginLocators{
 
 	public String createAccount() throws Exception
 	{
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		actions = new Actions(driver);
 		testemail = "testaccount" + System.currentTimeMillis() +"@gmail.com";
 		password = CustomUtilities.properties.getProperty("password");
@@ -167,7 +169,7 @@ public class AccountLoginComponents extends AccountLoginLocators{
 	{
 
 
-		WebDriverWait wait = new WebDriverWait (driver, 30);
+		WebDriverWait wait = new WebDriverWait (driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HomePageLocators.ACCOUNT_NAV_DROPDOWN));
 
 		//	driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN).click();
@@ -292,7 +294,7 @@ public class AccountLoginComponents extends AccountLoginLocators{
 
 	public void verifyAllErrorsOnRecoverPasswordPage() throws Exception{
 		String text = null;
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
 		// click on accout icon from home page
 		//		driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN).click();
@@ -341,7 +343,7 @@ public class AccountLoginComponents extends AccountLoginLocators{
 
 	public void verifyAllFieldsOnLoginPage() throws Exception {
 		String text = null;
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
 		// click on accout icon from home page
 		//		driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN).click();
