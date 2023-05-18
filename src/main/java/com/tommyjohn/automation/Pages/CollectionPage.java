@@ -362,19 +362,31 @@ public class CollectionPage extends CollectionPageComponent{
 
 	public void validateallplpsareloading() {
 		validateallurls();
-		
 	}
 
-	public void validateproductgrid() {
+	public void validateproductgrid() throws Exception {
 		// TODO Auto-generated method stub
-		
+		new NavigationFlowPage(driver).NavigateToAllNewArrivalInMenCategory();
+		validateProductGrid();
 	}
 	
-	//new
-		public void validateProductsInMensLoungewearCategory() throws Exception
-		{
-			new CollectionPageComponent(driver).validatePLPProducts();
-		}
+	public void validateBreadcrumbLinks() throws Exception {
+		// TODO Auto-generated method stub
+		new NavigationFlowPage(driver).NavigateToAllNewArrivalInWomenCategory();
+		validatePLPBreadcrumbLinks();
+	}
+	
+	public void validateCategoryPageHeader() throws Exception {
+		// TODO Auto-generated method stub
+		new NavigationFlowPage(driver).NavigateToAllUnderwearInWomenCategory();
+		validatePLPHeader();
+	}
+	
+	public void validateCategorySectionHeaders() throws Exception {
+		// TODO Auto-generated method stub
+		new NavigationFlowPage(driver).NavigateToAllUnderwearInMenCategory();
+		validatePLPHeader();
+	}
 
 }
 
