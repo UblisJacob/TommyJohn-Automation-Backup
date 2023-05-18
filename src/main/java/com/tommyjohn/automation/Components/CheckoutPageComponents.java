@@ -1,6 +1,7 @@
 package com.tommyjohn.automation.Components;
 
 
+import java.time.Duration;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -43,7 +44,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		String text = null;
 		new AddToCartComponents(driver).addToCart();
 		driver.findElement(HomePageLocators.CART_ICON).click();
-		WebDriverWait wait = new WebDriverWait(driver, 20);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		try {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
