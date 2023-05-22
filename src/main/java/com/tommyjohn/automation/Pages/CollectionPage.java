@@ -385,9 +385,57 @@ public class CollectionPage extends CollectionPageComponent{
 	public void validateCategorySectionHeaders() throws Exception {
 		// TODO Auto-generated method stub
 		new NavigationFlowPage(driver).NavigateToAllUnderwearInMenCategory();
-		validatePLPHeader();
+		validatePLPSectionHeaders();
 	}
 
+	public void validateInlineBanner() throws Exception {
+		// TODO Auto-generated method stub
+		new NavigationFlowPage(driver).NavigateToAllBrasInWomenCategory();
+		validatePLPInlineBanner();
+	}
+	
+	public void validateFilters() throws Exception {
+		// TODO Auto-generated method stub
+		new NavigationFlowPage(driver).NavigateToAllLoungewearInMenCategory();
+		methodToCheckAllFilters();
+	}
+	
+	public void validateSortBy() throws Exception {
+		// TODO Auto-generated method stub
+		new NavigationFlowPage(driver).NavigateToAllLoungewearInMenCategory();
+		methodToSortByPrice();
+	}
+	
+	public void validateOnImageAndSecondaryBadging() throws Exception {
+		// TODO Auto-generated method stub
+		new NavigationFlowPage(driver).NavigateToAllSaleInSaleCategory();
+		validateOnImageAndSecondaryBadges();
+	}
+	
+	public void validateSEOCopy() throws Exception {
+		// TODO Auto-generated method stub
+		new NavigationFlowPage(driver).NavigateToAllLoungewearInWomenCategory();
+		validateSEO();
+	}
+	
+	public void validateProductTile() throws Exception {
+		// TODO Auto-generated method stub
+		new NavigationFlowPage(driver).NavigateToAllSleepwearInMenCategory();
+		validateProductImageOnPLP();
+		validateProductHeadingTextOnCollectionPage();
+		validateProductReviewStarsOnCollectionPage();
+		validateProductReviewStarsOnPLP();
+		MethodToCheckColorSwatchChanging();
+		Verify_ProductTile_HoverFunctionality();
+	}
+	public void validateQuickshopFunctionality() throws Exception {
+		// TODO Auto-generated method stub
+		new NavigationFlowPage(driver).NavigateToAllUnderwearInMenCategory();
+		MethodToCheckColorSwatchChanging();
+		QuickShopOnMegaCollection();
+	}
+	
+	
 }
 
 
