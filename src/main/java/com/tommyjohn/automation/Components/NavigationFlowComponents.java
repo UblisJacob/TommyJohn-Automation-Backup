@@ -33,8 +33,8 @@ public class NavigationFlowComponents extends NavigationFlowPageLocators
 		ValidateMenCategory();
 		Validate_First_Level1_Category();
 		
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 
@@ -65,8 +65,8 @@ public class NavigationFlowComponents extends NavigationFlowPageLocators
 		Validate_First_Level1_Category();
 		//Validate_Second_Level1_Category();
 		
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 
@@ -86,50 +86,14 @@ public class NavigationFlowComponents extends NavigationFlowPageLocators
 
 		Reporter.log("All New Arrival in Women category is displayed :: Clickable");
 	}
-	public void NavigatetoAllMensSaleInFinalSaleCategory() throws Exception
-	{
-		ValidateFinalSaleCategory();
-		Validate_First_Level1_Category();
-		if(!driver.findElement(ALL_MENS_SALE).isDisplayed())
-			throw new Exception("All New Arrivals link in Men category is not displayed");
-
-		driver.findElement(ALL_MENS_SALE).click();
-		Thread.sleep(3000);
-		System.out.println("Navigate to All Mens sale: " + driver.getCurrentUrl());
-		if(driver.getCurrentUrl().startsWith("https://tommyjohn.com/collections")) 
-
-		//if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/collections/mens-sale")) 
-			System.out.println("Navigate to All Mens sale: " + driver.getCurrentUrl());
-		else
-			throw new Exception("Wrong page opened after All Mens Sale link clicked");
-
-		Reporter.log("All Men sale in Final Sale category is displayed :: Clickable");
-	}
-	public void NavigatetoAllSocksInMenCategory() throws Exception
-	{
-		ValidateMenCategory();
-		Validate_Sixth_Level1_Category();
-		if(!driver.findElement(MEN_SOCKS_ALLSOCKS).isDisplayed())
-			throw new Exception("All socks link in Men category is not displayed");
-
-		driver.findElement(MEN_SOCKS_ALLSOCKS).click();
-		Thread.sleep(3000);
-		if(driver.getCurrentUrl().startsWith("https://tommyjohn.com/collections")) 
-
-		//if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/collections/mens-socks")) 
-			System.out.println("Navigate to All Men socks: " + driver.getCurrentUrl());
-		else
-			throw new Exception("Wrong page opened after All Mens Socks link clicked");
-
-		Reporter.log("All Men socks is displayed :: Clickable");
-	}
+	
 	public void NavigatetoAllUnderwearInWomenCategory() throws Exception
 	{
 		ValidateWomenCategory();
 		Validate_Second_Level1_Category();
 		
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 
@@ -154,14 +118,21 @@ public class NavigationFlowComponents extends NavigationFlowPageLocators
 	{
 		ValidateMenCategory();
 		Validate_Second_Level1_Category();
-		if(!driver.findElement(MEN_UNDERWEAR_ALLUNDERWEAR).isDisplayed())
-			throw new Exception("All underwear link in Women category is not displayed");
+		
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		
+		WebElement mensAllUnderWear = driver.findElement(MEN_UNDERWEAR_ALLUNDERWEAR);
+		
+		if(!mensAllUnderWear.isDisplayed())
+			throw new Exception("All underwear link in Men category is not displayed");
 
-		driver.findElement(MEN_UNDERWEAR_ALLUNDERWEAR).click();
+		mensAllUnderWear.click();
 		Thread.sleep(3000);
-		if(driver.getCurrentUrl().startsWith("https://tommyjohn.com/collections")) 
-
-		//if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/collections/womens-underwear")) 
+		
+		if(driver.getCurrentUrl().contains("https://www.tommyjohn.com/collections/mens-underwear")) 
 			System.out.println("Navigate to All underwear in Men category: " + driver.getCurrentUrl());
 		else
 			throw new Exception("Wrong page opened after All Men underwear link clicked");
@@ -169,6 +140,154 @@ public class NavigationFlowComponents extends NavigationFlowPageLocators
 		Reporter.log("All underwear link in Men category is displayed :: Clickable");
 	}
 	
+	public void NavigatetoAllBrasInWomenCategory() throws Exception
+	{
+		ValidateWomenCategory();
+		Validate_Third_Level1_Category();
+		
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		
+		WebElement womenAllBras = driver.findElement(WOMEN_ALL_BRAS);
+		
+		if(!womenAllBras.isDisplayed())
+			throw new Exception("All Bras link in Women category is not displayed");
+
+		womenAllBras.click();
+		Thread.sleep(3000);
+		
+		if(driver.getCurrentUrl().contains("https://www.tommyjohn.com/collections/bras")) 
+			System.out.println("Navigate to All Bras link in Women category: " + driver.getCurrentUrl());
+		else
+			throw new Exception("Wrong page opened after All Bras link in Women category is clicked");
+
+		Reporter.log("All Bras link in Women category is displayed :: Clickable");
+	}
+	
+	public void NavigatetoAllLoungewearInMenCategory() throws Exception
+	{
+		ValidateMenCategory();
+		Validate_Fifth_Level1_Category();
+		
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		WebElement mensAllLoungewear = driver.findElement(MEN_ALL_LOUNGEWEAR);
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(MEN_ALL_LOUNGEWEAR));
+		Assert.assertTrue(mensAllLoungewear.isEnabled(), "Mens All Loungewear is Clickable");
+		
+		//Validate_Second_Level1_Category();
+		if(!mensAllLoungewear.isDisplayed())
+			throw new Exception("All Mens Loungewear link in Men category is not displayed");
+
+		js.executeScript("arguments[0].click();", mensAllLoungewear);
+		Thread.sleep(3000);
+		
+		System.out.println(driver.getCurrentUrl());
+		if(driver.getCurrentUrl().contains("https://www.tommyjohn.com/collections/loungewear")) 
+			System.out.println("Navigate to Mens All Loungewear in mens category: " + driver.getCurrentUrl());
+		else
+			throw new Exception("Wrong page opened after Mens All Loungewear link is clicked");
+
+		Reporter.log("Mens All Loungewear in Men category is displayed :: Clickable");
+	}
+	
+	public void NavigatetoAllSaleInSaleCategory() throws Exception
+	{
+		ValidateMenCategory();
+		Validate_Seventh_Level1_Category();
+		
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		WebElement allSale = driver.findElement(ALL_SALE);
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ALL_SALE));
+		Assert.assertTrue(allSale.isEnabled(), "All Sale link is Clickable");
+		
+		//Validate_Second_Level1_Category();
+		if(!allSale.isDisplayed())
+			throw new Exception("All Sale link in Men category is not displayed");
+
+		js.executeScript("arguments[0].click();", allSale);
+		Thread.sleep(3000);
+		
+		System.out.println(driver.getCurrentUrl());
+		if(driver.getCurrentUrl().contains("https://www.tommyjohn.com/collections/sale-mens-womens")) 
+			System.out.println("Navigate to All Sale in Sales category: " + driver.getCurrentUrl());
+		else
+			throw new Exception("Wrong page opened after all sale link is clicked");
+
+		Reporter.log("all sale in Sales category is displayed :: Clickable");
+	}
+	public void NavigatetoAllLoungewearInWomenCategory() throws Exception
+	{
+		ValidateWomenCategory();
+		Validate_Fourth_Level1_Category();
+		
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		WebElement womenAllLoungewear = driver.findElement(WOMEN_ALL_LOUNGEWEAR);
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(WOMEN_ALL_LOUNGEWEAR));
+		Assert.assertTrue(womenAllLoungewear.isEnabled(), "All Women Loungewear link is Clickable");
+		
+		//Validate_Second_Level1_Category();
+		if(!womenAllLoungewear.isDisplayed())
+			throw new Exception("All Women Loungewear in Women category is not displayed");
+
+		js.executeScript("arguments[0].click();", womenAllLoungewear);
+		Thread.sleep(3000);
+		
+		System.out.println(driver.getCurrentUrl());
+		if(driver.getCurrentUrl().contains("https://www.tommyjohn.com/collections/loungewear-womens")) 
+			System.out.println("Navigate to All Women Loungewear in Women category: " + driver.getCurrentUrl());
+		else
+			throw new Exception("Wrong page opened after all sale link is clicked");
+
+		Reporter.log("All Women Loungewear in Women category is displayed :: Clickable");
+	}
+	
+	public void NavigatetoAllSleepwearInMenCategory() throws Exception
+	{
+		ValidateMenCategory();
+		Validate_Sixth_Level1_Category();
+		
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		WebElement menAllSleepwear = driver.findElement(MEN_ALL_SLEEPWEAR);
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(WOMEN_ALL_LOUNGEWEAR));
+		Assert.assertTrue(menAllSleepwear.isEnabled(), "All Men Sleepwear link is Clickable");
+		
+		//Validate_Second_Level1_Category();
+		if(!menAllSleepwear.isDisplayed())
+			throw new Exception("All Men Sleepwear in Men category is not displayed");
+
+		js.executeScript("arguments[0].click();", menAllSleepwear);
+		Thread.sleep(3000);
+		
+		System.out.println(driver.getCurrentUrl());
+		if(driver.getCurrentUrl().contains("https://www.tommyjohn.com/collections/pajamas-mens")) 
+			System.out.println("Navigate to All Men Sleepwear in Men category: " + driver.getCurrentUrl());
+		else
+			throw new Exception("Wrong page opened after all sale link is clicked");
+
+		Reporter.log("All Men Sleepwear in Men category is displayed :: Clickable");
+	}
 	
 	public void NavigatetoBoxerBriefInMensUnderwearCategory() throws Exception
 	{
@@ -400,7 +519,44 @@ public class NavigationFlowComponents extends NavigationFlowPageLocators
 
 		Reporter.log("Packs in Women's Lounge & Sleep category is displayed :: Clickable");
 	}
+	
+	public void NavigatetoAllMensSaleInFinalSaleCategory() throws Exception
+	{
+		ValidateFinalSaleCategory();
+		Validate_First_Level1_Category();
+		if(!driver.findElement(ALL_MENS_SALE).isDisplayed())
+			throw new Exception("All New Arrivals link in Men category is not displayed");
 
+		driver.findElement(ALL_MENS_SALE).click();
+		Thread.sleep(3000);
+		System.out.println("Navigate to All Mens sale: " + driver.getCurrentUrl());
+		if(driver.getCurrentUrl().startsWith("https://tommyjohn.com/collections")) 
+
+		//if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/collections/mens-sale")) 
+			System.out.println("Navigate to All Mens sale: " + driver.getCurrentUrl());
+		else
+			throw new Exception("Wrong page opened after All Mens Sale link clicked");
+
+		Reporter.log("All Men sale in Final Sale category is displayed :: Clickable");
+	}
+	public void NavigatetoAllSocksInMenCategory() throws Exception
+	{
+		ValidateMenCategory();
+		Validate_Sixth_Level1_Category();
+		if(!driver.findElement(MEN_SOCKS_ALLSOCKS).isDisplayed())
+			throw new Exception("All socks link in Men category is not displayed");
+
+		driver.findElement(MEN_SOCKS_ALLSOCKS).click();
+		Thread.sleep(3000);
+		if(driver.getCurrentUrl().startsWith("https://tommyjohn.com/collections")) 
+
+		//if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/collections/mens-socks")) 
+			System.out.println("Navigate to All Men socks: " + driver.getCurrentUrl());
+		else
+			throw new Exception("Wrong page opened after All Mens Socks link clicked");
+
+		Reporter.log("All Men socks is displayed :: Clickable");
+	}
 
 
 
@@ -449,6 +605,8 @@ public class NavigationFlowComponents extends NavigationFlowPageLocators
 			throw new Exception("Final Sale category is not hoverable");
 		Reporter.log("Final Sale category is Displayed :: Hoverable :: clickable");
 	}
+	
+	
 	public void Validate_First_Level1_Category() throws Exception
 	{
 		element = driver.findElement(HomePageLocators.FIRST_lEVEL1_CATEGORY);
