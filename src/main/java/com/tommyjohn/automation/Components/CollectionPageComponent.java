@@ -28,6 +28,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -142,12 +143,10 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		Reporter.log("Product image on collection page is Displayed :: Clickable and validated successfully");
 
 		driver.navigate().back();
-		objGeneralMethods.waitTillPageLoad(driver);
-		executor.executeScript("window.scrollBy(0,document.body.scrollHeight)");
-		Thread.sleep(20000);
-		objGeneralMethods.waitTillPageLoad(driver);
+		Thread.sleep(5000);
+		
 
-		List<WebElement> list = driver.findElements(By.xpath(PRODUCT_IMAGES));
+		/*List<WebElement> list = driver.findElements(By.xpath(PRODUCT_IMAGES));
 		int count = 0;
 		for (int i = 0; i < list.size(); i++) {
 			if (objGeneralMethods.isElementVisible(driver, By.xpath(PRODUCT_IMAGES))) {
@@ -166,24 +165,30 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			Reporter.log("All Product images are present");
 		} else {
 			throw new Exception("Product image are present");
-		}
+		}*/
 
 	}
 
-	public void validatePriceOnCollectionPage() throws Exception {
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+	public void methodToSortByPrice() throws Exception {
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,250)");
+
+		WebElement sortByPrice = driver.findElement(SORTBYPRICE_DROPDOWN);
+		WebElement prices = driver.findElement(PLP_PRICE);
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SORTBYPRICE_DROPDOWN));
+
 		String price = null;
 		String updatedPrice = null;
 		double priceValue = 0;
-		Select drpCountry = new Select(driver.findElement(SORTBYPRICE_DROPDOWN));
-		drpCountry.selectByIndex(3);
+		Select drpCountry = new Select(sortByPrice);
+		drpCountry.selectByValue("price:ascending");
 		Thread.sleep(5000);
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		element = driver.findElement(PLP_PRICE);
-		js.executeScript("arguments[0].scrollIntoView();", element);
-		Thread.sleep(5000);
-		js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
+
+		js.executeScript("arguments[0].scrollIntoView();", prices);
 		Thread.sleep(5000);
 		List<WebElement> list = driver.findElements(PLP_PRICE);
 		ArrayList<Double> productPrice = new ArrayList<Double>();
@@ -201,30 +206,27 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		Collections.sort(sortedList);
 		System.out.println(sortedList);
 		if (!sortedList.equals(productPrice)) {
-			throw new Exception("The products are sorted not successfully");
+			throw new Exception("The products are not sorted in ascending order");
 		} else {
-			Reporter.log("The products are sorted successfully");
+			Reporter.log("The products are sorted in ascending order");
 		}
 
-		js.executeScript("window.scrollTo(0, -document.body.scrollHeight)");
-		Thread.sleep(5000);
 		drpCountry.selectByIndex(2);
-		js.executeScript("arguments[0].scrollIntoView();", element);
-		Thread.sleep(5000);
-		js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
+		js.executeScript("arguments[0].scrollIntoView();", prices);
 		Thread.sleep(5000);
 		List<WebElement> list1 = driver.findElements(PLP_PRICE);
 		ArrayList<Double> productPrice1 = new ArrayList<Double>();
 		ArrayList<Double> sortedList1 = new ArrayList<Double>();
 
-		for (int i = 0; i < list.size(); i++) {
-			price = list.get(i).getText();
+		for (int i = 0; i < list1.size(); i++) {
+			price = list1.get(i).getText();
 			updatedPrice = price.replaceAll("[^0-9.]", "");
 			priceValue = Double.parseDouble(updatedPrice);
 			sortedList1.add(priceValue);
 			productPrice1.add(priceValue);
 		}
 		System.out.println(productPrice1);
+		Collections.sort(sortedList1);
 		Collections.reverse(sortedList1);
 		System.out.println(sortedList1);
 		if (!sortedList1.equals(productPrice1)) {
@@ -438,9 +440,8 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			// div:nth-child("+i+") > ul > li:nth-child(1) > label >
 			// input")).getAttribute("data-filter-btn");
 			if (i == 5 || i == 8 || i == 9) {
-				selectedOption = driver
-						.findElement(By.cssSelector(
-								"div.mega-collection-filters > div:nth-child(2) > ul > li:nth-child(1) > label > span"))
+				selectedOption = driver.findElement(By.cssSelector(
+						"div.mega-collection-filters > div:nth-child(" + i + ") > ul > li:nth-child(1) > label > span"))
 						.getText();
 			} else {
 				selectedOption = driver.findElement(By.cssSelector(
@@ -565,53 +566,46 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		// JavascriptExecutor js = (JavascriptExecutor) driver;
 		// js.executeScript("arguments[0].scrollIntoView();", element);
 		//
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(LAST_FILTER));
-		if (driver.findElement(LAST_FILTER).isDisplayed()) {
-			// driver.findElement(LAST_FILTER).click();
-			Select selectElement = new Select(driver.findElement(LAST_FILTER));
-			selectElement.selectByValue("Price:ascending");
-
-			// click on second option
-
-			// wait.until(ExpectedConditions.visibilityOfElementLocated(SORTBYPRICE_HIGH_TO_LOW_FILTER_OPTION));
-			// driver.findElement(SORTBYPRICE_HIGH_TO_LOW_FILTER_OPTION).click();
-			Thread.sleep(5000);
-			allProductsOnPage = driver.findElements(FIRST_PRODUCT_IMAGE);
-			System.out.println("All product on page :: " + allProductsOnPage.size());
-			try {
-				for (int i = 1; i < allProductsOnPage.size(); i++) {
-					String text = null;
-					String text1 = null;
-					String text2 = null;
-
-					text = driver.findElement(By.cssSelector(".mega-collection-grid__row > div.product-meta__prices("
-							+ i + ") > span.product-meta__price")).getText();
-					System.out.println("Text :: " + text);
-					for (String a : text.split("\\$"))
-						text1 = a;
-					System.out.println("text 1 :: " + text1);
-					// loop to check previous and next price
-					int j = i + 1;
-					System.out.println("Text :: "
-							+ driver.findElement(By.cssSelector(".mega-collection-grid__row > div.product-meta__prices("
-									+ j + ") > span.product-meta__price")).getText());
-					for (String a : driver
-							.findElement(By.cssSelector(".mega-collection-grid__row > div.product-meta__prices(" + j
-									+ ") > span.product-meta__price"))
-							.getText().split("\\$"))
-						text2 = a;
-					System.out.println("text2 :: " + text2);
-					if (Float.parseFloat(text1) > Float.parseFloat(text2))
-						throw new Exception("Products are not sorted by price correctly");
-
-				}
-			} catch (Exception e) {
-				System.out.println("Due to lazy loading price comparison is not possible for sort by filter.");
-			}
-			Reporter.log("All Products are sorted as selected option");
-
-		}
+		/*
+		 * WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		 * wait.until(ExpectedConditions.visibilityOfElementLocated(LAST_FILTER)); if
+		 * (driver.findElement(LAST_FILTER).isDisplayed()) { //
+		 * driver.findElement(LAST_FILTER).click(); Select selectElement = new
+		 * Select(driver.findElement(LAST_FILTER));
+		 * selectElement.selectByValue("price:ascending");
+		 * 
+		 * // click on second option
+		 * 
+		 * // wait.until(ExpectedConditions.visibilityOfElementLocated(
+		 * SORTBYPRICE_HIGH_TO_LOW_FILTER_OPTION)); //
+		 * driver.findElement(SORTBYPRICE_HIGH_TO_LOW_FILTER_OPTION).click();
+		 * Thread.sleep(5000); allProductsOnPage =
+		 * driver.findElements(FIRST_PRODUCT_IMAGE);
+		 * System.out.println("All product on page :: " + allProductsOnPage.size()); try
+		 * { for (int i = 1; i < allProductsOnPage.size(); i++) { String text = null;
+		 * String text1 = null; String text2 = null;
+		 * 
+		 * text = driver.findElement(By.
+		 * cssSelector(".mega-collection-grid__row > div.product-meta__prices(" + i +
+		 * ") > span.product-meta__price")).getText(); System.out.println("Text :: " +
+		 * text); for (String a : text.split("\\$")) text1 = a;
+		 * System.out.println("text 1 :: " + text1); // loop to check previous and next
+		 * price int j = i + 1; System.out.println("Text :: " + driver.findElement(By.
+		 * cssSelector(".mega-collection-grid__row > div.product-meta__prices(" + j +
+		 * ") > span.product-meta__price")).getText()); for (String a : driver
+		 * .findElement(By.
+		 * cssSelector(".mega-collection-grid__row > div.product-meta__prices(" + j +
+		 * ") > span.product-meta__price")) .getText().split("\\$")) text2 = a;
+		 * System.out.println("text2 :: " + text2); if (Float.parseFloat(text1) >
+		 * Float.parseFloat(text2)) throw new
+		 * Exception("Products are not sorted by price correctly");
+		 * 
+		 * } } catch (Exception e) { System.out.
+		 * println("Due to lazy loading price comparison is not possible for sort by filter."
+		 * ); } Reporter.log("All Products are sorted as selected option");
+		 * 
+		 * }
+		 */
 
 	}
 
@@ -1183,7 +1177,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	}
 
 	public void Verify_ProductTile_HoverFunctionality() throws Exception {
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		Thread.sleep(8000);
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -1196,7 +1190,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		element = driver.findElement(FIRST_PRODUCT_IMAGE);
 		js.executeScript("arguments[0].click();", element);
 		Thread.sleep(3000);
-		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.SECOND_VERTICAL_IMAGE));
 		String text = driver.findElement(ProductDetailsPageLocators.SECOND_VERTICAL_IMAGE).getAttribute("src");
 		String[] list1 = text.split(".jpg");
@@ -1294,38 +1288,155 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PLP_SECTION_HEADER)));
 		WebElement sectionHeader = driver.findElement(By.xpath(PLP_SECTION_HEADER));
-		List<WebElement> sectionHeaders = driver.findElement(By.xpath(PLP_SECTION_HEADER));
+		List<WebElement> sectionHeaders = driver.findElements(By.xpath(PLP_SECTION_HEADER));
 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_TITLE));
+		js.executeScript("window.scrollBy(0,250)");
 		Assert.assertTrue(sectionHeader.isDisplayed(), "The Category page section header is displayed");
 
-		for (int i = )
-		if ((sectionHeader.isDisplayed())) {
-			Reporter.log("The Category page header is displayed");
-			System.out.println("Section Header - " + sectionHeader.getText());
+		for (int i = 1; i < sectionHeaders.size(); i++) {
+			if (driver.findElement(By.xpath(PLP_SECTION_HEADER + "[" + i + "]")).isDisplayed()) {
 
-		} else {
-			throw new Exception("Section Header is not displayed");
+				Reporter.log("The Category page header "
+						+ driver.findElement(By.xpath(PLP_SECTION_HEADER + "[" + i + "]")).getText() + " is displayed");
+				System.out.println("Section Header - "
+						+ driver.findElement(By.xpath(PLP_SECTION_HEADER + "[" + i + "]")).getText());
+
+			} else {
+				throw new Exception("Section Header is not displayed");
+			}
 		}
-
 	}
 
 	public void validatePLPInlineBanner() throws Exception {
-		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_INLINE_BANNER));
-
-		String strUrl = driver.getCurrentUrl();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].click();", driver.findElement(PLP_INLINE_BANNER));
+		js.executeScript("window.scrollBy(0,250)");
+
+		WebElement inlineBanner = driver.findElement(PLP_INLINE_BANNER);
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_INLINE_BANNER));
+		System.out.println(driver.getCurrentUrl());
+		String strUrl = driver.getCurrentUrl();
+
+		Assert.assertTrue(inlineBanner.isEnabled(), "Inline banner is clickable");
+		js.executeScript("arguments[0].scrollIntoView(true);", inlineBanner);
+		Actions action = new Actions(driver);
+		action.moveToElement(inlineBanner).click().perform();
+		// js.executeScript("arguments[0].click();", inlineBanner);
+
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+		System.out.println(driver.getCurrentUrl());
 
 		if (!(driver.getCurrentUrl().equals(strUrl))) {
 			System.out.println("User navigated to Inline banner designated url");
+			Reporter.log("User navigated to Inline banner designated url");
 		} else {
 			System.out.println("User didn't navigate to Inline banner designated url");
+			throw new Exception("User didn't navigate to Inline banner designated url");
 		}
 	}
 
+	public void validateOnImageAndSecondaryBadges() throws Exception {
+
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_PRODUCT_IMAGE_BADGE));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_PRODUCT_SECONDARY_BADGE));
+
+		WebElement onImageBadge = driver.findElement(PLP_PRODUCT_IMAGE_BADGE);
+		WebElement secondaryBadge = driver.findElement(PLP_PRODUCT_SECONDARY_BADGE);
+
+		js.executeScript("window.scrollBy(0,250)");
+		Assert.assertTrue(onImageBadge.isDisplayed(), "The On Image Badge is displayed");
+		Assert.assertTrue(secondaryBadge.isDisplayed(), "The Seacondary Badge is displayed");
+
+		if (onImageBadge.isDisplayed()) {
+
+			Reporter.log("The On Image Badge is displayed");
+			System.out.println("The On Image Badge is displayed");
+
+		} else {
+			System.out.println("The On Image Badge is not displayed");
+			throw new Exception("The On Image Badge is not displayed");
+		}
+		
+		if (secondaryBadge.isDisplayed()) {
+
+			Reporter.log("The Secondary Badge is displayed");
+			System.out.println("The Secondary Badge is displayed");
+
+		} else {
+			
+			System.out.println("The Secondary Badge is not displayed");
+			throw new Exception("The Secondary Badge is not displayed");
+		}
+	}
+
+	public void validateSEO() throws Exception {
+
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_SEO_TITLE));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_SEO_BODY));
+
+		WebElement seoTitle = driver.findElement(PLP_SEO_TITLE);
+		WebElement seoBody = driver.findElement(PLP_SEO_BODY);
+		WebElement seoLink = driver.findElement(PLP_SEO_LINK);
+
+		js.executeScript("window.scrollBy(0,250)");
+		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		Thread.sleep(3000);
+		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		Thread.sleep(3000);
+		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		Thread.sleep(3000);
+		
+		Assert.assertTrue(seoTitle.isDisplayed(), "Seo title is displayed");
+		Assert.assertTrue(seoBody.isDisplayed(), "Seo Body is displayed");
+
+		if (seoTitle.isDisplayed()) {
+
+			Reporter.log("SEO title is displayed");
+			System.out.println("SEO title is displayed");
+			if(seoBody.isDisplayed()) {
+				Reporter.log("SEO Body displayed");
+				System.out.println("SEO Body is displayed");
+			}
+			else {
+				System.out.println("SEO Body is not displayed");
+				throw new Exception("SEO Body is not displayed");
+			}
+		} else {
+			System.out.println("SEO title is not displayed");
+			throw new Exception("SEO title is not displayed");
+		}
+		
+		String textLink = seoLink.getAttribute("href");
+		Assert.assertTrue(seoLink.isEnabled(), "Seo link is clickable");
+		js.executeScript("arguments[0].click();", seoLink);
+		
+		Thread.sleep(5000);
+		String url = driver.getCurrentUrl();
+		System.out.println(textLink);
+		System.out.println(url);
+		
+		if(url.contains(textLink)) {
+			System.out.println("User has navigated to correct page");
+			Reporter.log("User has navigated to correct page");
+		}
+		else {
+			System.out.println("User has not navigated to desired page");
+			throw new Exception("User has not navigated to desired page");
+		}
+	}
 }

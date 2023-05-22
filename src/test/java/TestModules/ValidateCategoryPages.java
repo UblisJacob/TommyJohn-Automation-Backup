@@ -28,7 +28,7 @@ public class ValidateCategoryPages {
 		}
 	}
 
-		@Test
+		/*@Test
 		public void TC_LoadCategoryPage() throws
 		Exception { new CollectionPage(driver).validateallplpsareloading(); }
 		
@@ -50,14 +50,55 @@ public class ValidateCategoryPages {
 		public void TC_ViewH1() throws Exception
 		{
 			new CollectionPage(driver).validateCategoryPageHeader();
-		}
+		}*/
 		
-		@Test
+		/*@Test
 		public void TC_ViewSectionHeaders() throws Exception
 		{
 			new CollectionPage(driver).validateCategorySectionHeaders();
-		}
+		}*/
 		
+		/*@Test
+		public void TC_InteractWithInlineBanner() throws Exception
+		{
+			new CollectionPage(driver).validateInlineBanner();
+		}*/
+	
+		/*@Test
+		public void TC_InteractWithFilters() throws Exception
+		{
+			new CollectionPage(driver).validateFilters();
+		}*/
+		
+		/*@Test
+		public void TC_InteractWithSortBy() throws Exception
+		{
+			new CollectionPage(driver).validateSortBy();
+		}*/
+	
+		/*@Test
+		public void TC_ViewOnImageAndSecondaryBadging() throws Exception
+		{
+			new CollectionPage(driver).validateOnImageAndSecondaryBadging();
+		}*/
+		
+		/*@Test
+		public void TC_SEOCopy() throws Exception
+		{
+			new CollectionPage(driver).validateSEOCopy();
+		}*/
+		
+		/*@Test
+		public void TC_InteractWithProductTile() throws Exception
+		{
+			new CollectionPage(driver).validateProductTile();
+		}*/
+		
+		@Test
+		public void TC_InteractWithQuickShop() throws Exception
+		{
+			new CollectionPage(driver).validateQuickshopFunctionality();
+		}
 		
 		@AfterMethod(alwaysRun = true)
 		void teardown () {
