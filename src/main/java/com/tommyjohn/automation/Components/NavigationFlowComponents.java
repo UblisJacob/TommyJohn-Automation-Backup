@@ -253,7 +253,7 @@ public class NavigationFlowComponents extends NavigationFlowPageLocators
 		if(driver.getCurrentUrl().contains("https://www.tommyjohn.com/collections/loungewear-womens")) 
 			System.out.println("Navigate to All Women Loungewear in Women category: " + driver.getCurrentUrl());
 		else
-			throw new Exception("Wrong page opened after all sale link is clicked");
+			throw new Exception("Wrong page opened after All Women Loungewear link is clicked");
 
 		Reporter.log("All Women Loungewear in Women category is displayed :: Clickable");
 	}
@@ -284,9 +284,40 @@ public class NavigationFlowComponents extends NavigationFlowPageLocators
 		if(driver.getCurrentUrl().contains("https://www.tommyjohn.com/collections/pajamas-mens")) 
 			System.out.println("Navigate to All Men Sleepwear in Men category: " + driver.getCurrentUrl());
 		else
-			throw new Exception("Wrong page opened after all sale link is clicked");
+			throw new Exception("Wrong page opened after All Men Sleepwear link is clicked");
 
 		Reporter.log("All Men Sleepwear in Men category is displayed :: Clickable");
+	}
+	
+	public void NavigatetoAllSleepwearInWomenCategory() throws Exception
+	{
+		ValidateWomenCategory();
+		Validate_Fifth_Level1_Category();
+		
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		WebElement womenAllSleepwear = driver.findElement(WOMEN_ALL_SLEEPWEAR);
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(WOMEN_ALL_LOUNGEWEAR));
+		Assert.assertTrue(womenAllSleepwear.isEnabled(), "All Women Sleepwear link is Clickable");
+		
+		//Validate_Second_Level1_Category();
+		if(!womenAllSleepwear.isDisplayed())
+			throw new Exception("All Women Sleepwear in Women category is not displayed");
+
+		js.executeScript("arguments[0].click();", womenAllSleepwear);
+		Thread.sleep(3000);
+		
+		System.out.println(driver.getCurrentUrl());
+		if(driver.getCurrentUrl().contains("https://www.tommyjohn.com/collections/pajamas-womens")) 
+			System.out.println("Navigate to All Women Sleepwear in Women category: " + driver.getCurrentUrl());
+		else
+			throw new Exception("Wrong page opened after all Women Sleepwear is clicked");
+
+		Reporter.log("All Women Sleepwear in women category is displayed :: Clickable");
 	}
 	
 	public void NavigatetoBoxerBriefInMensUnderwearCategory() throws Exception
