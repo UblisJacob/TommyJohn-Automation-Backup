@@ -13,6 +13,7 @@ public class NavigationFlowPageLocators extends HomePageLocators
 	public static By MEN_ALL_LOUNGEWEAR = SHOPALL_LINK;
 	public static By WOMEN_ALL_LOUNGEWEAR = SHOPALL_LINK;
 	public static By MEN_ALL_SLEEPWEAR = SHOPALL_LINK;
+	public static By WOMEN_ALL_SLEEPWEAR = SHOPALL_LINK;
 	public static By ALL_SALE = SHOPALL_LINK;
 	
 		

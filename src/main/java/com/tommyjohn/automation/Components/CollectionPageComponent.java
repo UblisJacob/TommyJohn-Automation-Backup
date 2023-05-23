@@ -695,6 +695,62 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		// driver.findElement(CLEAR_FILTER_BUTTON).click();
 		Reporter.log("Corosals gets active when respective option selected");
 	}
+	
+	public void validateStyleCarousel() throws Exception {
+		boolean flag1 = false;
+		int i = 2;
+		List<WebElement> allElements = null;
+		List<WebElement> allCorosals = null;
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		Thread.sleep(10000);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		
+		WebElement carouselFilter;
+		WebElement filterPill = driver.findElement(FILTER_PILL);
+
+		// check carosals are displayed on top of page or not
+		if (!driver.findElement(STYLE_COROSALS).isDisplayed())
+			throw new Exception("Carousels are not displayed on top of page");
+
+		allCorosals = driver.findElements(TOTAL_NO_OF_COROSALS);
+		System.out.println("Total no of corosals :: " + allCorosals.size());
+
+		// first check all corosals are not active by default
+		for (int k = 1; k <= allCorosals.size(); k++) {
+			element = driver.findElement(By.cssSelector("div.dyHero-interactive__slider>button:nth-child(" + k + ")"));
+			String classes = element.getAttribute("class");
+			for (String c : classes.split(" ")) {
+				if (c.equals("active")) {
+					flag1 = true;
+				}
+			}
+			if (flag1 == true)
+				throw new Exception("All corosals are not deactive by default");
+			flag1 = false;
+		}
+		Reporter.log("All corosals are Displayed :: And by default not active");
+		
+		for (int k = 1; k <= allCorosals.size(); k++) {
+			carouselFilter = driver.findElement(By.cssSelector("div.dyHero-interactive__slider>button:nth-child(" + k + ")"));
+			if(carouselFilter.isEnabled()) {
+				System.out.println("Carousel filter is clickable");
+				js.executeScript("arguments[0].click();", carouselFilter);
+			}
+			wait.until(ExpectedConditions.visibilityOfElementLocated(FILTER_PILL));
+			js.executeScript("arguments[0].click();", filterPill);
+		}
+		// clear all filters
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CLEAR_FILTER_BUTTON));
+		WebElement ele = driver.findElement(CLEAR_FILTER_BUTTON);
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		executor.executeScript("arguments[0].click();", ele);
+
+		// driver.findElement(CLEAR_FILTER_BUTTON).click();
+		Reporter.log("Corosals gets active when respective option selected");
+	}
 
 	public void validateallurls()
 
@@ -1346,7 +1402,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-
+		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_PRODUCT_IMAGE_BADGE));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_PRODUCT_SECONDARY_BADGE));
 
@@ -1385,7 +1441,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-
+		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_SEO_TITLE));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_SEO_BODY));
 
@@ -1437,6 +1493,66 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		else {
 			System.out.println("User has not navigated to desired page");
 			throw new Exception("User has not navigated to desired page");
+		}
+	}
+	
+	public void validateSingleTile() throws Exception {
+
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		
+		js.executeScript("window.scrollBy(0,250)");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_PRICE_FILTER));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_IMAGE));
+
+		WebElement priceFilter = driver.findElement(PLP_PRICE_FILTER);
+		WebElement singleProductFilter = driver.findElement(PLP_FILTER_SINGLE_PROODUCT);
+		WebElement productImage = driver.findElement(PRODUCT_IMAGE);
+		String width = "";
+		String marginLeft="";
+		String marginRight="";
+		
+		Assert.assertTrue(priceFilter.isDisplayed(), "Price Filter is displayed");
+		Assert.assertTrue(priceFilter.isEnabled(), "Price Filter is clickable");
+
+		if (priceFilter.isDisplayed()) {
+
+			Reporter.log("Price Filter is displayed");
+			System.out.println("Price Filter is displayed");
+			js.executeScript("arguments[0].click();", priceFilter);
+			
+			if(singleProductFilter.isEnabled())
+			{
+				Reporter.log("Single Product Filter is clickable");
+				System.out.println("Single Product Filter is clickable");
+				js.executeScript("arguments[0].click();", singleProductFilter);
+				js.executeScript("arguments[0].click();", priceFilter);
+				Thread.sleep(5000);
+			}
+			else {
+				System.out.println("Single Product Filter is not clickable");
+				throw new Exception("Single Product Filter is not clickable");
+			}
+		} else {
+			System.out.println("Price Filter is not displayed");
+			throw new Exception("Price Filter is not displayed");
+		}
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_IMAGE));
+		width = productImage.getCssValue("width");
+		marginLeft = productImage.getCssValue("margin-left");
+		marginRight = productImage.getCssValue("margin-right");
+		System.out.println(width + " " + marginLeft + " " + marginRight);
+		
+		if(width.equals("290px") && marginLeft.equals("145px") && marginRight.equals("145px")) {
+			Reporter.log("Single Product Tile annotations are correct");
+			System.out.println("Single Product Tile annotations are correct");
+		}
+		else {
+			System.out.println("Single Product Tile annotations are not correct");
+			throw new Exception("Single Product Tile annotations are not correct");
 		}
 	}
 }
