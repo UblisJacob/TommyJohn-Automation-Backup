@@ -428,6 +428,7 @@ public class CollectionPage extends CollectionPageComponent{
 		MethodToCheckColorSwatchChanging();
 		Verify_ProductTile_HoverFunctionality();
 	}
+	
 	public void validateQuickshopFunctionality() throws Exception {
 		// TODO Auto-generated method stub
 		new NavigationFlowPage(driver).NavigateToAllUnderwearInMenCategory();
@@ -435,7 +436,17 @@ public class CollectionPage extends CollectionPageComponent{
 		QuickShopOnMegaCollection();
 	}
 	
+	public void validateSingleTileProduct() throws Exception {
+		// TODO Auto-generated method stub
+		new NavigationFlowPage(driver).NavigateToAllSleepwearInWomenCategory();
+		validateSingleTile();
+	}
 	
+	public void validateStyleCarousels() throws Exception {
+		// TODO Auto-generated method stub
+		new NavigationFlowPage(driver).NavigateToAllUnderwearInMenCategory();
+		validateStyleCarousel();
+	}
 }
 
 
