@@ -4,18 +4,29 @@ import org.openqa.selenium.By;
 
 public class NavigationFlowPageLocators extends HomePageLocators
 {			
-	public static By MENS_ALL_NEWARRIVALS = By.xpath("(//li[@arial-label='open Men menu']//a[@aria-label='New Arrivals link']//span)[1]");
-	public static By WOMENS_ALL_NEWARRIVALS = By.xpath("(//li[@arial-label='open Women menu']//a[@aria-label='New Arrivals link']//span)[1]");
+	
 	public static By ALL_MENS_SALE = SHOPALL_LINK;
 	public static By MEN_SOCKS_ALLSOCKS = SHOPALL_LINK;
 	public static By WOMEN_UNDERWEAR_ALLUNDERWEAR = SHOPALL_LINK;
 	public static By MEN_UNDERWEAR_ALLUNDERWEAR = SHOPALL_LINK;
+	public static By WOMEN_ALL_BRAS = SHOPALL_LINK;
+	public static By MEN_ALL_LOUNGEWEAR = SHOPALL_LINK;
+	public static By WOMEN_ALL_LOUNGEWEAR = SHOPALL_LINK;
+	public static By MEN_ALL_SLEEPWEAR = SHOPALL_LINK;
+	public static By WOMEN_ALL_SLEEPWEAR = SHOPALL_LINK;
+	public static By ALL_SALE = SHOPALL_LINK;
+	
 		
+	public static By MENS_ALL_NEWARRIVALS = By.xpath("(//li[@arial-label='open Men menu']//a[@aria-label='New Arrivals link']//span)[1]");
+	public static By WOMENS_ALL_NEWARRIVALS = By.xpath("(//li[@arial-label='open Women menu']//a[@aria-label='New Arrivals link']//span)[1]");
+	//public static By WOMENS_ALL_NEWARRIVALS = By.xpath("(//li[@arial-label='open Women menu']//a[@aria-label='New Arrivals link']//span)[1]");
+	
 	public static By MEN_UNDERWEAR_BOXERBRIEF = SECOND_lEVEL2_CATEGORY;
 	public static By MEN_CLOTHING_TEESandPOLOS = FIRST_lEVEL2_CATEGORY;
 	public static By WOMEN_BRAS_SCOOPBRALETTE = SECOND_lEVEL2_CATEGORY;
 	public static By WOMEN_COLLECTION_COMFORTSMOOTHING = FIRST_lEVEL2_CATEGORY;
     public static By FINALSALE_WOMENSALE_UNDERWEAR = FIRST_lEVEL2_CATEGORY;
+    
     
     public static By MEN_UNDERSHIRTS_VNECK = SECOND_lEVEL2_CATEGORY;
     public static By MEN_LOUNGEANDSLEEP_TOPS = SECOND_lEVEL2_CATEGORY;
