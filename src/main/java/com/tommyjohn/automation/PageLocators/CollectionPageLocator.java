@@ -4,8 +4,9 @@ import org.openqa.selenium.By;
 
 public class CollectionPageLocator {
 	
-	public static By STYLE_COROSALS = By.cssSelector("div.hero-interactive__slider.slick-initialized");
-	public static By TOTAL_NO_OF_COROSALS = By.cssSelector(".hero-interactive-slide.slick-slide");
+	public static By STYLE_COROSALS = By.cssSelector("div.dyCollection-hero__interactive-inner");
+	public static By TOTAL_NO_OF_COROSALS = By.cssSelector("div.dyHero-interactive__slider>button");
+	public static By FILTER_PILL = By.xpath("//div[@class='collection-filters__active-controls']//button");
 //	public static By MENS_ALL_UNDERWEAR_FIRST_PRODUCT_IMAGE = By.cssSelector(".product-image-container > a");
 //	public static By THIRD_PRODUCT_IMAGE = By.cssSelector("div.mega-collection-grid__row:nth-child(3) > div:nth-child(3) > div:nth-child(1) > a > img");
 //	public static By THIRD_PRODUCT_HEAD_LINE_TEXT = By.cssSelector("div.mega-collection-grid__row:nth-child(3) > div:nth-child(3) > a > h2");
@@ -62,6 +63,7 @@ public class CollectionPageLocator {
 	    public static By SORTBYPRICE_DROPDOWN = By.xpath("//select[@title='Sort By']");
 	    public static By PLP_PRICE = By.cssSelector("span.product-meta__price");
 	    public static By PLP_PRICE_FILTER = By.xpath("//a[@title='Price']//span");
+	    
 	    public static By PRICE_LESS_THAN_25= By.xpath("(//input[contains(@data-filter-btn,'Less than $25')])[1]");
 	    public static By LESS_THAN_25_PILL= By.xpath("(//button[@title='Less than $25'])[1]");
 	    public static By NEW_ARRIVALS_CTC= By.xpath("//a[contains(text(),'New Arrivals')]");
@@ -73,15 +75,18 @@ public class CollectionPageLocator {
 	    public static String PLP_PRODUCTS= "(//span[@class='product-meta__title'])";
 	    public static By PLP_BREADCRUMB= By.cssSelector("nav.breadcrumbs>div:nth-child(2)>a");
 	    public static By PLP_TITLE= By.cssSelector("div.collection-title-bar__content>h1");
-	    public static By PLP_INLINE_BANNER= By.cssSelector("div.dy-inline-banner>a");
+	    public static By PLP_INLINE_BANNER= By.xpath("//div[contains(@class,'dy-inline-banner')]");
 	    public static String PLP_SECTION_HEADER = "(//h2[@class='mega-collection-grid__title'])";
 	    
-	    public static By PLP_SEO_DESCRIPTION = By.xpath("//h2[@class='collection-seo-title']");
+	    public static By PRODUCT_IMAGE = By.cssSelector("img.product-image:nth-child(1)");
+	    public static By PLP_FILTER_SINGLE_PROODUCT = By.cssSelector("div.mega-collection-filters>div:nth-child(7)>ul>li>label>span[data-result-count='1']");
+	    
+	    public static By PLP_SEO_TITLE = By.xpath("//h2[@class='collection-seo-title']");
 	    public static By PLP_SEO_BODY = By.xpath("//div[@class='collection-seo-body']");
+	    public static By PLP_SEO_LINK = By.xpath("//div[@class='collection-seo-body']//a");
 	    
 	    public static By PLP_PRODUCT_IMAGE_BADGE = By.xpath("//div[@class='productImage-item__badge']//span");
-	    public static By PLP_PRODUCT_SECONDARY_BADGE = By.xpath("//div[@class='productImage-item__badge']//span");
-	    
+	    public static By PLP_PRODUCT_SECONDARY_BADGE = By.xpath("//div[contains(@class,'product-item__badge')]//span");
 	    
 	    
 	  

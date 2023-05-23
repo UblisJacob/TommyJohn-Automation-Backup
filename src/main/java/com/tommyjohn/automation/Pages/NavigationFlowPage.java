@@ -36,6 +36,38 @@ public class NavigationFlowPage extends NavigationFlowComponents
 	{
 		new NavigationFlowComponents(driver).NavigatetoAllUnderwearInWomenCategory();
 	}	
+	public void NavigateToAllUnderwearInMenCategory() throws Exception
+	{
+		new NavigationFlowComponents(driver).NavigatetoAllUnderwearInMenCategory();
+	}
+	public void NavigateToAllBrasInWomenCategory() throws Exception
+	{
+		new NavigationFlowComponents(driver).NavigatetoAllBrasInWomenCategory();
+	}
+	public void NavigateToAllLoungewearInMenCategory() throws Exception
+	{
+		new NavigationFlowComponents(driver).NavigatetoAllLoungewearInMenCategory();
+	}
+	
+	public void NavigateToAllSaleInSaleCategory() throws Exception
+	{
+		new NavigationFlowComponents(driver).NavigatetoAllSaleInSaleCategory();
+	}
+	
+	public void NavigateToAllLoungewearInWomenCategory() throws Exception
+	{
+		new NavigationFlowComponents(driver).NavigatetoAllLoungewearInWomenCategory();
+	}
+	
+	public void NavigateToAllSleepwearInMenCategory() throws Exception
+	{
+		new NavigationFlowComponents(driver).NavigatetoAllSleepwearInMenCategory();
+	}
+	
+	public void NavigateToAllSleepwearInWomenCategory() throws Exception
+	{
+		new NavigationFlowComponents(driver).NavigatetoAllSleepwearInWomenCategory();
+	}
 	
 	public void NavigateToBoxerBriefInMensUnderwearCategory() throws Exception
 	{
