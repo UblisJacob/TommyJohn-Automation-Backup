@@ -39,7 +39,7 @@ public class CustomUtilities {
 
 	public static WebDriver driver;
 	public EdgeDriver edgedriver;
-	public static String baseUrl = "https://tommyjohn.myshopify.com/?preview_theme_id=34570141741";
+	public static String baseUrl = "https://tommyjohn.myshopify.com/";
 	public static BufferedReader reader;
 	public static Properties properties;
 	public static final String propertiesFilePath = "src/main/resources/configuration.properties";
@@ -69,7 +69,7 @@ public class CustomUtilities {
 			// System.setProperty("webdriver.chrome.driver" ,"/tmp/chromedriver.exe");
 			System.setProperty("webdriver.chrome.driver", properties.getProperty("chromeDriverPath"));
 			ChromeOptions chromeOptions = new ChromeOptions();
-			//chromeOptions.addArguments("--headless");
+//			chromeOptions.addArguments("--headless");
 			chromeOptions.addArguments("--window-size=1280,800");
 			chromeOptions.addArguments("--disable-gpu");
 			chromeOptions.addArguments("--no-sandbox");
@@ -84,7 +84,7 @@ public class CustomUtilities {
 			chromeOptions.setAcceptInsecureCerts(true);
 
 
-			//	chromeOptions.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
+			chromeOptions.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 			//chromeOptions.setCapability(CapabilityType.PROXY, selproxy);
 
 			//	new
