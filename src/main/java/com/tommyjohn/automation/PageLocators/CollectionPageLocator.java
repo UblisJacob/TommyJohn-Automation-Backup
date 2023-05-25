@@ -49,7 +49,9 @@ public class CollectionPageLocator {
 		public static By QUICK_SHOP_SIZE_OVERLAY = By.cssSelector(".inline-quick-shop");
 		public static By QUICK_SHOP_SIZE_OVERLAY_CLOSE = By.cssSelector(".inline-quick-shop>.icon-close");
 		public static By QUICK_SHOP_SIZE_OVERLAY_HEADING = By.cssSelector(".inline-quick-shop>.inline-quick-shop__option-heading");
-		public static By QUICK_SHOP_SIZE_LIST = By.cssSelector(".quickshop-open>.inline-quick-shop>ul>li");
+		//public static By QUICK_SHOP_SIZE_LIST = By.cssSelector(".quickshop-open>.inline-quick-shop>ul>li");
+		public static By QUICK_SHOP_SIZE_LIST_1 = By.cssSelector(".quickshop-open>.inline-quick-shop>ul:nth-child(4)>li");
+		public static By QUICK_SHOP_SIZE_LIST_2 = By.cssSelector(".quickshop-open>.inline-quick-shop>ul:nth-child(6)>li");
 		public static By QUICK_SHOP_SIZE_LABEL = By.cssSelector(".quickshop-open>.inline-quick-shop>ul>li>label");
 		public static By QUICK_SHOP_SIZE_OVERLAY_ATC = By.cssSelector(".inline-quick-shop>.inline-quick-shop__button");
 		public static By PRODUCT_TITLE_ON_COLLECTION = By.cssSelector(".product-meta__title");
