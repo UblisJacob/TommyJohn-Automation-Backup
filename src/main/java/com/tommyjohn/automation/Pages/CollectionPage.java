@@ -447,6 +447,12 @@ public class CollectionPage extends CollectionPageComponent{
 		new NavigationFlowPage(driver).NavigateToAllUnderwearInMenCategory();
 		validateStyleCarousel();
 	}
+	
+	public void validateMultiVariantSizeInQuickshop() throws Exception {
+		// TODO Auto-generated method stub
+		new NavigationFlowPage(driver).NavigateToLoungewearSetsInWomenCategory();
+		QuickShopOnMegaCollection();
+	}
 }
 
 

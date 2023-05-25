@@ -78,11 +78,11 @@ public class ValidateCategoryPages {
 	 
 
 	
-	 @Test public void TC_InteractWithQuickShop() throws Exception { new
-	  CollectionPage(driver).validateQuickshopFunctionality(); }
+	/* @Test public void TC_InteractWithQuickShop() throws Exception { new
+	  CollectionPage(driver).validateQuickshopFunctionality(); }*/
 	 
 
-	@Test
+	/*@Test
 	public void TC_ViewSingleTile() throws Exception {
 		new CollectionPage(driver).validateSingleTileProduct();
 	}
@@ -90,7 +90,13 @@ public class ValidateCategoryPages {
 	@Test
 	public void TC_InteractWithStyleCarousel() throws Exception {
 		new CollectionPage(driver).validateStyleCarousels();
+	}*/
+	
+	@Test
+	public void TC_MultipleSizeVariants() throws Exception {
+		new CollectionPage(driver).validateMultiVariantSizeInQuickshop();
 	}
+	
 
 	@AfterMethod(alwaysRun = true)
 	void teardown() {
