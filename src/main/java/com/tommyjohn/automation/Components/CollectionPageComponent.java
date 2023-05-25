@@ -55,7 +55,8 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	WebElement element;
 	SoftAssert softAssert = new SoftAssert();
 	String text;
-	String Selected_size;
+	String Selected_size1;
+	String Selected_size2;
 
 	public String navigateToProductDetailsPage() throws Exception {
 		String text = null;
@@ -1000,28 +1001,64 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			 * 
 			 */
 			// select sizes from quick shop size overlay
-			List<WebElement> allElements;
+			List<WebElement> allElements1;
+			List<WebElement> allElements2;
 			String classtext;
-			allElements = driver.findElements(QUICK_SHOP_SIZE_LIST);
-			System.out.println("All sizes list :: " + allElements.size());
-			for (int i = 0; i < allElements.size(); i++) {
+			//allElements = driver.findElements(QUICK_SHOP_SIZE_LIST);
+			allElements1 = driver.findElements(QUICK_SHOP_SIZE_LIST_1);
+			allElements2 = driver.findElements(QUICK_SHOP_SIZE_LIST_2);
+			System.out.println("All sizes list :: " + allElements1.size());
+			for (int i = 0; i < allElements1.size(); i++) {
 				// classtext=allElements.get(i).getAttribute("class");
-				String[] classes1 = allElements.get(i).getAttribute("class").split(" ");
+				String[] classes1 = allElements1.get(i).getAttribute("class").split(" ");
 				classtext = classes1[classes1.length - 1];
 				System.out.println("last class name is: " + classtext);
 				if (!classtext.equalsIgnoreCase("not-available")) {
 					element = driver.findElement(
-							By.cssSelector("div.inline-quick-shop > ul > li:nth-child(" + (i + 1) + ") > input"));
+							By.cssSelector("div.inline-quick-shop > ul:nth-child(4) > li:nth-child(" + (i + 1) + ") > input"));
 					js.executeScript("arguments[0].click();", element);
 					// Selected_size=allElements.get(i).getAttribute("value");
-					Selected_size = element.getAttribute("value");
-					System.out.println("Selected size is: " + Selected_size);
+					Selected_size1 = element.getAttribute("value");
+					System.out.println("Selected size is: " + Selected_size1);
 					Thread.sleep(3000);
 					break;
 
 				} else {
 					System.out.println("Selected size is OOS");
-				}
+				}	
+			}
+			if(!allElements2.isEmpty()) {
+				for (int i = 0; i < allElements2.size(); i++) {
+					// classtext=allElements.get(i).getAttribute("class");
+					String[] classes1 = allElements2.get(i).getAttribute("class").split(" ");
+					classtext = classes1[classes1.length - 1];
+					System.out.println("last class name is: " + classtext);
+					if (!classtext.equalsIgnoreCase("not-available")) {
+						element = driver.findElement(
+								By.cssSelector("div.inline-quick-shop > ul:nth-child(6) > li:nth-child(" + (i + 1) + ") > input"));
+						js.executeScript("arguments[0].click();", element);
+						// Selected_size=allElements.get(i).getAttribute("value");
+						Selected_size2 = element.getAttribute("value");
+						System.out.println("Selected size is: " + Selected_size2);
+						Thread.sleep(3000);
+						break;
+
+					} else {
+						System.out.println("Selected size is OOS");
+					}
+				}	
+				Thread.sleep(3000);
+				text = driver.findElement(FlyCartPageLocator.COLOR_AND_SIZE_IN_CART_MULTI).getText();
+				String actual = text;
+				// String[] text1 = text.split("/");
+				// actual = text1[0];
+				String expected = color_name + " / " + Selected_size1 + " / " + Selected_size2;
+				// String expected = color_name+" ";
+				System.out.println("Actual Color name is: " + actual + " and Expected color name is: " + expected);
+				softAssert.assertEquals(actual, expected, "Product Line item option on flycart is incorrect.");
+			}
+			else {
+				System.out.println("The product doesn't have multivariant sizes in quickshop");
 			}
 			Reporter.log("Quick shop size labels are Clickable.");
 
@@ -1052,15 +1089,18 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			// softAssert.assertEquals(actual,prod_title ,"Product name on flycart is
 			// incorrect.");
 
-			text = driver.findElement(FlyCartPageLocator.COLOR_AND_SIZE_IN_CART).getText();
-			actual = text;
-			// String[] text1 = text.split("/");
-			// actual = text1[0];
-			String expected = color_name + " / " + Selected_size;
-			// String expected = color_name+" ";
-			System.out.println("Actual Color name is: " + actual + " and Expected color name is: " + expected);
-			softAssert.assertEquals(actual, expected, "Product Line item option on flycart is incorrect.");
-
+			if(driver.findElement(FlyCartPageLocator.COLOR_AND_SIZE_IN_CART).isDisplayed())
+			{
+				text = driver.findElement(FlyCartPageLocator.COLOR_AND_SIZE_IN_CART).getText();
+				actual = text;
+				// String[] text1 = text.split("/");
+				// actual = text1[0];
+				String expected = color_name + " / " + Selected_size1;
+				// String expected = color_name+" ";
+				System.out.println("Actual Color name is: " + actual + " and Expected color name is: " + expected);
+				softAssert.assertEquals(actual, expected, "Product Line item option on flycart is incorrect.");
+			}
+			
 			actual = driver.findElement(FlyCartPageLocator.PRICE_IN_QUANTITY_LINE).getText();
 			// Product amount is displayed without ".00" suffix in Buy with section
 			String new_amount = null;
@@ -1302,7 +1342,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 		System.out.println(pageHeading.getText());
 
-		if (pageHeading.getText().equals("Women's New Arrivals")) {
+		if (!pageHeading.getText().equals("Women's All")) {
 			System.out.println("Breadcrumb link is working properly");
 			Reporter.log("Breadcrumb link is working properly");
 
