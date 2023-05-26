@@ -2,6 +2,7 @@ package com.tommyjohn.automation.Components;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -37,6 +38,7 @@ import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
 
+import com.opencsv.CSVReader;
 import com.tommyjohn.automation.PageLocators.CollectionPageLocator;
 import com.tommyjohn.automation.PageLocators.FlyCartPageLocator;
 import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
@@ -171,6 +173,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	}
 
 	public void methodToSortByPrice() throws Exception {
+		
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
@@ -178,7 +181,6 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		js.executeScript("window.scrollBy(0,250)");
 
 		WebElement sortByPrice = driver.findElement(SORTBYPRICE_DROPDOWN);
-		WebElement prices = driver.findElement(PLP_PRICE);
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SORTBYPRICE_DROPDOWN));
 
@@ -189,7 +191,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		drpCountry.selectByValue("price:ascending");
 		Thread.sleep(5000);
 
-		js.executeScript("arguments[0].scrollIntoView();", prices);
+		js.executeScript("window.scrollBy(0,250)");
 		Thread.sleep(5000);
 		List<WebElement> list = driver.findElements(PLP_PRICE);
 		ArrayList<Double> productPrice = new ArrayList<Double>();
@@ -212,8 +214,10 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			Reporter.log("The products are sorted in ascending order");
 		}
 
-		drpCountry.selectByIndex(2);
-		js.executeScript("arguments[0].scrollIntoView();", prices);
+		
+		js.executeScript("window.scrollBy(0,250)");
+		Thread.sleep(5000);
+		drpCountry.selectByValue("price:descending");
 		Thread.sleep(5000);
 		List<WebElement> list1 = driver.findElements(PLP_PRICE);
 		ArrayList<Double> productPrice1 = new ArrayList<Double>();
@@ -235,6 +239,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		} else {
 			Reporter.log("The products are sorted successfully");
 		}
+		 
 	}
 
 	@SuppressWarnings("static-access")
@@ -567,46 +572,46 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		// JavascriptExecutor js = (JavascriptExecutor) driver;
 		// js.executeScript("arguments[0].scrollIntoView();", element);
 		//
-		/*
-		 * WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		 * wait.until(ExpectedConditions.visibilityOfElementLocated(LAST_FILTER)); if
-		 * (driver.findElement(LAST_FILTER).isDisplayed()) { //
-		 * driver.findElement(LAST_FILTER).click(); Select selectElement = new
-		 * Select(driver.findElement(LAST_FILTER));
-		 * selectElement.selectByValue("price:ascending");
-		 * 
-		 * // click on second option
-		 * 
-		 * // wait.until(ExpectedConditions.visibilityOfElementLocated(
-		 * SORTBYPRICE_HIGH_TO_LOW_FILTER_OPTION)); //
-		 * driver.findElement(SORTBYPRICE_HIGH_TO_LOW_FILTER_OPTION).click();
-		 * Thread.sleep(5000); allProductsOnPage =
-		 * driver.findElements(FIRST_PRODUCT_IMAGE);
-		 * System.out.println("All product on page :: " + allProductsOnPage.size()); try
-		 * { for (int i = 1; i < allProductsOnPage.size(); i++) { String text = null;
-		 * String text1 = null; String text2 = null;
-		 * 
-		 * text = driver.findElement(By.
-		 * cssSelector(".mega-collection-grid__row > div.product-meta__prices(" + i +
-		 * ") > span.product-meta__price")).getText(); System.out.println("Text :: " +
-		 * text); for (String a : text.split("\\$")) text1 = a;
-		 * System.out.println("text 1 :: " + text1); // loop to check previous and next
-		 * price int j = i + 1; System.out.println("Text :: " + driver.findElement(By.
-		 * cssSelector(".mega-collection-grid__row > div.product-meta__prices(" + j +
-		 * ") > span.product-meta__price")).getText()); for (String a : driver
-		 * .findElement(By.
-		 * cssSelector(".mega-collection-grid__row > div.product-meta__prices(" + j +
-		 * ") > span.product-meta__price")) .getText().split("\\$")) text2 = a;
-		 * System.out.println("text2 :: " + text2); if (Float.parseFloat(text1) >
-		 * Float.parseFloat(text2)) throw new
-		 * Exception("Products are not sorted by price correctly");
-		 * 
-		 * } } catch (Exception e) { System.out.
-		 * println("Due to lazy loading price comparison is not possible for sort by filter."
-		 * ); } Reporter.log("All Products are sorted as selected option");
-		 * 
-		 * }
-		 */
+		
+		/* WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		 wait.until(ExpectedConditions.visibilityOfElementLocated(LAST_FILTER)); if
+		 (driver.findElement(LAST_FILTER).isDisplayed()) { //
+		 driver.findElement(LAST_FILTER).click(); Select selectElement = new
+		 Select(driver.findElement(LAST_FILTER));
+		 selectElement.selectByValue("price:ascending");*/
+		 
+		 // click on second option
+		 
+		 /*wait.until(ExpectedConditions.visibilityOfElementLocated(
+		 SORTBYPRICE_HIGH_TO_LOW_FILTER_OPTION));
+		 driver.findElement(SORTBYPRICE_HIGH_TO_LOW_FILTER_OPTION).click();
+		 Thread.sleep(5000); allProductsOnPage =
+		 driver.findElements(FIRST_PRODUCT_IMAGE);
+		 System.out.println("All product on page :: " + allProductsOnPage.size()); try
+		 { for (int i = 1; i < allProductsOnPage.size(); i++) { String text = null;
+		 String text1 = null; String text2 = null;
+		  
+		 text = driver.findElement(By.
+		 cssSelector(".mega-collection-grid__row > div.product-meta__prices(" + i +
+		 ") > span.product-meta__price")).getText(); System.out.println("Text :: " +
+		 text); for (String a : text.split("\\$")) text1 = a;
+		 System.out.println("text 1 :: " + text1); // loop to check previous and next
+		 price int j = i + 1; System.out.println("Text :: " + driver.findElement(By.
+		 cssSelector(".mega-collection-grid__row > div.product-meta__prices(" + j +
+		 ") > span.product-meta__price")).getText()); for (String a : driver
+		 .findElement(By.
+		 cssSelector(".mega-collection-grid__row > div.product-meta__prices(" + j +
+		 ") > span.product-meta__price")) .getText().split("\\$")) text2 = a;
+		 System.out.println("text2 :: " + text2); if (Float.parseFloat(text1) >
+		 Float.parseFloat(text2)) throw new
+		 Exception("Products are not sorted by price correctly");
+		 
+		 } } catch (Exception e) { System.out.
+		 println("Due to lazy loading price comparison is not possible for sort by filter."
+		 ); } Reporter.log("All Products are sorted as selected option");
+		 
+		 }*/
+		 
 
 	}
 
@@ -757,6 +762,30 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 	{
 		try {
+			  
+	        // Create an object of filereader
+	        // class with CSV file as a parameter.
+	        FileReader filereader = new FileReader("src/main/resources/Category_PLPs.csv");
+	  
+	        // create csvReader object passing
+	        // file reader as a parameter
+	        CSVReader csvReader = new CSVReader(filereader);
+	        String[] nextRecord;
+	  
+	        // we are going to read data line by line
+	        while ((nextRecord = csvReader.readNext()) != null) {
+	            for (String cell : nextRecord) {
+	                System.out.print(cell + "\t");
+	                checkurl(cell);
+	            }
+	            System.out.println();
+	        }
+	    }
+	    catch (Exception e) {
+	        e.printStackTrace();
+	    }
+		
+		/*try {
 			File src = new File("src/main/resources/AllCollectionPages.xlsx");
 
 			// load file
@@ -781,7 +810,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		} catch (Exception e) {
 			Reporter.log("File not found");
 
-		}
+		}*/
 	}
 
 	private void checkurl(String url) throws InterruptedException {
@@ -1047,7 +1076,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 						System.out.println("Selected size is OOS");
 					}
 				}	
-				Thread.sleep(3000);
+				Thread.sleep(5000);
 				text = driver.findElement(FlyCartPageLocator.COLOR_AND_SIZE_IN_CART_MULTI).getText();
 				String actual = text;
 				// String[] text1 = text.split("/");
