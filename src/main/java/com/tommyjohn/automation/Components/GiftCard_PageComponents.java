@@ -1,6 +1,7 @@
 package com.tommyjohn.automation.Components;
 
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
@@ -194,7 +195,7 @@ public class GiftCard_PageComponents extends GiftCard_PageLocators {
 		new HomePageComponents(driver).navigateToGiftCard();
 		Thread.sleep(4000);
 		//GC image
-		wait = new WebDriverWait(driver, 20);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(GIFT_CARD_DISPLAY_IMAGE));
 		softAssert.assertTrue(driver.findElement(GIFT_CARD_DISPLAY_IMAGE).isDisplayed(), "Gift Card image is not displayed");
 		Reporter.log("Gift Card delivery message text is displayed");
@@ -533,7 +534,7 @@ public class GiftCard_PageComponents extends GiftCard_PageLocators {
 
 		}
 		//navigate to shopping cart
-		wait = new WebDriverWait(driver, 20);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		Thread.sleep(3000);
@@ -561,7 +562,7 @@ public class GiftCard_PageComponents extends GiftCard_PageLocators {
 
 		}
 
-		wait = new WebDriverWait(driver, 20);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ShoppingCartLocators.CHECKOUT_BUTTON));
 		driver.findElement(ShoppingCartLocators.CHECKOUT_BUTTON).click();
@@ -574,7 +575,7 @@ public class GiftCard_PageComponents extends GiftCard_PageLocators {
 		Thread.sleep(5000);
 		System.out.println("payment page");
 		Thread.sleep(10000);
-		wait = new WebDriverWait(driver, 30);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CheckoutPageComponents.CONTINUE_TO_PAYMENT_BUTTON));
 		WebElement element = driver.findElement(CheckoutPageComponents.CONTINUE_TO_PAYMENT_BUTTON);
 		if(!element.isDisplayed())

@@ -86,7 +86,7 @@ public class HomePageComponents extends HomePageLocators {
 		//		Thread.sleep(3000);
 
 		// Verify Men category
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(MEN_CATEGORY));
 		if(!driver.findElement(MEN_CATEGORY).isDisplayed())
 			throw new Exception("Men category is not present");	
@@ -102,7 +102,7 @@ public class HomePageComponents extends HomePageLocators {
 
 
 		// Verify Women category
-		wait = new WebDriverWait(driver, 30);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(WOMEN_CATEGORY));
 		if(!driver.findElement(WOMEN_CATEGORY).isDisplayed())
 			throw new Exception("Women category is not displayed");
@@ -115,7 +115,7 @@ public class HomePageComponents extends HomePageLocators {
 		Thread.sleep(3000);
 
 		// Verify Sale category
-		wait = new WebDriverWait(driver, 30);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(FINAL_SALE));
 		if(!driver.findElement(FINAL_SALE).isDisplayed())
 			throw new Exception("Final Sale category is not displayed");
@@ -203,7 +203,7 @@ public class HomePageComponents extends HomePageLocators {
 
 		SoftAssert softAssert = new SoftAssert();
 		action = new Actions(driver);
-		WebDriverWait wait = new WebDriverWait(driver,50);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		String Search_keyword = "tees";
 		if(!driver.findElement(SEARCH_ICON).isDisplayed())
 			throw new Exception("Search option is not present");
@@ -317,7 +317,7 @@ public class HomePageComponents extends HomePageLocators {
 		int count = 0;
 		List<WebElement> allProductsOnPage = null;
 		String totalDisplayedCount = null;
-		WebDriverWait wait = new WebDriverWait(driver, 50);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		// get total no of filters
 		allElements = driver.findElements(SEARCHPAGE_ALL_FILTERS);
 		filterList = allElements.size();
@@ -444,7 +444,7 @@ public class HomePageComponents extends HomePageLocators {
 		Reporter.log("All selected items are displayed in list and removing from list");
 		Reporter.log("Clear filters button works correctly");
 
-		//WebDriverWait wait = new WebDriverWait(driver, 50);
+		//WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SEARCHPAGE_LAST_FILTER));
 		if(driver.findElement(SEARCHPAGE_LAST_FILTER).isDisplayed()) 
 		{
@@ -487,7 +487,7 @@ public class HomePageComponents extends HomePageLocators {
 	}
 
 	public void validateaccountdropdown() throws Exception {
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		element = driver.findElement(ACCOUNT_NAV_DROPDOWN);
 		action = new Actions(driver);
 		wait.until(ExpectedConditions.presenceOfElementLocated(ACCOUNT_NAV_DROPDOWN));
@@ -626,7 +626,7 @@ public class HomePageComponents extends HomePageLocators {
 		// Check for Cart icon
 
 		driver.navigate().to(baseUrl);
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(CART_ICON));
 		driver.findElement(CART_ICON).click();
 		Thread.sleep(2000);
@@ -643,7 +643,7 @@ public class HomePageComponents extends HomePageLocators {
 		// scroll the page at bottom to test all the footer links
 		((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		// check About link
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ABOUT_LINK));
 		text = driver.findElement(ABOUT_LINK).getText();
 		if(!text.equals("About"))
@@ -1168,10 +1168,10 @@ public class HomePageComponents extends HomePageLocators {
 	{
 		driver.get(baseUrl);
 		((JavascriptExecutor)driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(DO_NOT_SELL_PERSONAL_INFO_LINK));
 		driver.findElement(DO_NOT_SELL_PERSONAL_INFO_LINK).click();
-		wait = new WebDriverWait(driver, 30);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(CCPA_FORM_TITLE));
 		softassert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/do-not-sell-my-personal-information"), "Wrong page opened after click on 'Do not sell my personal information link'");
 		Reporter.log("Do not sell my personal information link is displayed :: Clickable");
@@ -1229,7 +1229,7 @@ public class HomePageComponents extends HomePageLocators {
 		}
 		softassert.assertTrue(driver.findElement(SUBMIT_REQUEST_CTA).isDisplayed(), "Submit Request CTA is not displayed for california user");
 		driver.findElement(SUBMIT_REQUEST_CTA).click();
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(SUCCESSFULLY_SUBMIT_MESSAGE));
 		softassert.assertTrue(driver.findElement(SUCCESSFULLY_SUBMIT_MESSAGE).isDisplayed(), "Successful submit message is not displayed for california user");
 		softassert.assertTrue(driver.findElement(BACK_TO_HOME_CTA).isDisplayed(), "'Back to Home' CTA is not displayed after successful submission by california user");
@@ -1315,7 +1315,7 @@ public class HomePageComponents extends HomePageLocators {
 	public void RFY_ProductTileHoverFunctionality() throws Exception
 	{
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		element= driver.findElement(ProductDetailsPageLocators.RFY_SECTION);
 		jse = (JavascriptExecutor)driver;
 		jse.executeScript("arguments[0].scrollIntoView(true);",element);
@@ -1328,7 +1328,7 @@ public class HomePageComponents extends HomePageLocators {
 		element = driver.findElement(ProductDetailsPageLocators.RFY_PRODUCT_IMAGE);
 		jse.executeScript("arguments[0].click();", element);
 		Thread.sleep(3000);
-		wait = new WebDriverWait(driver, 30);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.SECOND_VERTICAL_IMAGE));
 		String text = driver.findElement(ProductDetailsPageLocators.SECOND_VERTICAL_IMAGE).getAttribute("src");
 		String[] list1 = text.split(".jpg");
@@ -1442,7 +1442,7 @@ public class HomePageComponents extends HomePageLocators {
 		driver.get("https://tommyjohn.com/collections/mens");
 		Thread.sleep(10000);
 		//		element = driver.findElement(By.cssSelector("div.mega-collection-filters--controls > a"));
-		//		WebDriverWait wait = new WebDriverWait(driver, 30);
+		//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		//		wait.until(ExpectedConditions.presenceOfElementLocated((By) element));
 		//		((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);",element);
 	}
@@ -1664,6 +1664,41 @@ public class HomePageComponents extends HomePageLocators {
 			System.out.println("User hasn't navigated to Mens Loungewear");
 		}
 	}
+
+	public void NavigateToAllLoungewearInMenCategory() {
+		// TODO Auto-generated method stub
+		driver.get("https://www.tommyjohn.com/collections/loungewear");
+		
+	}
+
+	public void NavigateToAllSaleInSaleCategory() {
+		// TODO Auto-generated method stub
+		driver.get("https://www.tommyjohn.com/collections/sale-mens-womens");
+		
+	}
+
+	public void NavigateToAllLoungewearInWomenCategory() {
+		// TODO Auto-generated method stub
+		driver.get("https://www.tommyjohn.com/collections/loungewear-womens");
+		
+	}
+
+	public void NavigateToAllSleepwearInMenCategory() {
+		// TODO Auto-generated method stub
+		driver.get("https://www.tommyjohn.com/collections/pajamas-mens");
+		
+	}
+
+	public void NavigateToAllSleepwearInWomenCategory() {
+		// TODO Auto-generated method stub
+		driver.get("https://www.tommyjohn.com/collections/pajamas-womens");
+	}
+
+	public void NavigateToLoungewearSetsInWomenCategory() {
+		// TODO Auto-generated method stub
+		driver.get("https://www.tommyjohn.com/collections/womens-lounge-sets");
+	}
+	
 	
 	
 	

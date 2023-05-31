@@ -1,5 +1,6 @@
 package com.tommyjohn.automation.Components;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -38,7 +39,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 
 		new HomePageComponents(driver).validateCartIcon();
 		driver.findElement(HomePageLocators.CART_ICON).click();
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CART_TITLE));
@@ -66,7 +67,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 
 		new AddToCartComponents(driver).addToCart();
 		driver.findElement(HomePageLocators.CART_ICON).click();
-		WebDriverWait wait = new WebDriverWait(driver, 20);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CART_TITLE));
@@ -100,7 +101,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		String part2 = part[0];
 		System.out.println("Title text is:" +part2);
 		driver.findElement(HomePageLocators.CART_ICON).click();
-		WebDriverWait wait = new WebDriverWait(driver, 20);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		try {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
@@ -142,7 +143,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		SoftAssert softAssert = new SoftAssert();
 		new AddToCartComponents(driver).addToCart();
 		driver.findElement(HomePageLocators.CART_ICON).click();
-		WebDriverWait wait = new WebDriverWait(driver, 20);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CART_TITLE));
@@ -177,7 +178,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		new AddToCartComponents(driver).atc();
 
 		driver.findElement(HomePageLocators.CART_ICON).click();
-		WebDriverWait wait = new WebDriverWait(driver, 20);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CART_TITLE));
@@ -203,7 +204,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		new AddToCartComponents(driver).addToCart();
 		//navigate to shopping cart page
 		driver.findElement(HomePageLocators.CART_ICON).click();
-		WebDriverWait wait = new WebDriverWait(driver, 20);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		Thread.sleep(3000);
@@ -254,7 +255,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		boolean flag = false;
 		new AddToCartComponents(driver).addToCart();
 		driver.findElement(HomePageLocators.CART_ICON).click();
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		try {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
@@ -345,7 +346,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 
 	public void AddPromoCode_OnCart_ThroughURL()
 	{
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		String parameter = "/?coupon="+Promo_Code;
 		String current_url = driver.getCurrentUrl();
 		String Url_withPromocode = current_url.concat(parameter);
@@ -363,7 +364,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 
 	public void Check_Promocode_onCheckout_throughCart()
 	{
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		price = driver.findElement(SUBTOTAL_PRICE).getText();
 		String[] price1 = price.split("\\$");
 		String EstimateTotal_onCart = price1[price1.length-1];

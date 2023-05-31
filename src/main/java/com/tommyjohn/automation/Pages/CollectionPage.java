@@ -366,86 +366,94 @@ public class CollectionPage extends CollectionPageComponent{
 
 	public void validateproductgrid() throws Exception {
 		// TODO Auto-generated method stub
-		new NavigationFlowPage(driver).NavigateToAllNewArrivalInMenCategory();
+		new HomePageComponents(driver).navigateToNewArrivalsInMenCategory();
 		validateProductGrid();
 	}
 	
 	public void validateBreadcrumbLinks() throws Exception {
 		// TODO Auto-generated method stub
-		new NavigationFlowPage(driver).NavigateToAllNewArrivalInWomenCategory();
+		new HomePageComponents(driver).navigateToNewArrivalsInWomenCategory();
 		validatePLPBreadcrumbLinks();
 	}
 	
 	public void validateCategoryPageHeader() throws Exception {
 		// TODO Auto-generated method stub
-		new NavigationFlowPage(driver).NavigateToAllUnderwearInWomenCategory();
+		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
 		validatePLPHeader();
 	}
 	
 	public void validateCategorySectionHeaders() throws Exception {
 		// TODO Auto-generated method stub
-		new NavigationFlowPage(driver).NavigateToAllUnderwearInMenCategory();
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 		validatePLPSectionHeaders();
 	}
 
 	public void validateInlineBanner() throws Exception {
 		// TODO Auto-generated method stub
-		new NavigationFlowPage(driver).NavigateToAllBrasInWomenCategory();
+		new HomePageComponents(driver).navigateToBraCategory();
 		validatePLPInlineBanner();
 	}
 	
 	public void validateFilters() throws Exception {
 		// TODO Auto-generated method stub
-		new NavigationFlowPage(driver).NavigateToAllLoungewearInMenCategory();
+		new HomePageComponents(driver).NavigateToAllLoungewearInMenCategory();
 		methodToCheckAllFilters();
 	}
 	
 	public void validateSortBy() throws Exception {
 		// TODO Auto-generated method stub
-		new NavigationFlowPage(driver).NavigateToAllLoungewearInMenCategory();
+		new HomePageComponents(driver).NavigateToAllLoungewearInMenCategory();
 		methodToSortByPrice();
 	}
 	
 	public void validateOnImageAndSecondaryBadging() throws Exception {
 		// TODO Auto-generated method stub
-		new NavigationFlowPage(driver).NavigateToAllSaleInSaleCategory();
+		new HomePageComponents(driver).NavigateToAllSaleInSaleCategory();
 		validateOnImageAndSecondaryBadges();
 	}
 	
 	public void validateSEOCopy() throws Exception {
 		// TODO Auto-generated method stub
-		new NavigationFlowPage(driver).NavigateToAllLoungewearInWomenCategory();
+		new HomePageComponents(driver).NavigateToAllLoungewearInWomenCategory();
 		validateSEO();
 	}
 	
 	public void validateProductTile() throws Exception {
 		// TODO Auto-generated method stub
-		new NavigationFlowPage(driver).NavigateToAllSleepwearInMenCategory();
-		validateProductImageOnPLP();
+		new HomePageComponents(driver).NavigateToAllSleepwearInMenCategory();
 		validateProductHeadingTextOnCollectionPage();
-		validateProductReviewStarsOnCollectionPage();
-		validateProductReviewStarsOnPLP();
-		MethodToCheckColorSwatchChanging();
+		
+		validateProductImageOnPLP();
+		
 		Verify_ProductTile_HoverFunctionality();
+		MethodToCheckColorSwatchChanging();
+		validateProductReviewStarsOnCollectionPage();
+		
 	}
 	
 	public void validateQuickshopFunctionality() throws Exception {
 		// TODO Auto-generated method stub
-		new NavigationFlowPage(driver).NavigateToAllUnderwearInMenCategory();
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 		MethodToCheckColorSwatchChanging();
 		QuickShopOnMegaCollection();
 	}
 	
 	public void validateSingleTileProduct() throws Exception {
 		// TODO Auto-generated method stub
-		new NavigationFlowPage(driver).NavigateToAllSleepwearInWomenCategory();
+		new HomePageComponents(driver).NavigateToAllSleepwearInWomenCategory();
 		validateSingleTile();
 	}
 	
 	public void validateStyleCarousels() throws Exception {
 		// TODO Auto-generated method stub
-		new NavigationFlowPage(driver).NavigateToAllUnderwearInMenCategory();
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 		validateStyleCarousel();
+	}
+	
+	public void validateMultiVariantSizeInQuickshop() throws Exception {
+		// TODO Auto-generated method stub
+		new HomePageComponents(driver).NavigateToLoungewearSetsInWomenCategory();
+		QuickShopOnMegaCollection();
 	}
 }
 

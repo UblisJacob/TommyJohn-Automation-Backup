@@ -4,10 +4,8 @@ package com.tommyjohn.automation.Components;
 import java.time.Duration;
 import java.util.Iterator;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Set;
 import org.openqa.selenium.By;
-import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -122,7 +120,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		SoftAssert softAssert = new SoftAssert();
 		new AddToCartComponents(driver).addToCart();
 		driver.findElement(HomePageLocators.CART_ICON).click();
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		try {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
@@ -166,7 +164,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		String password = CustomUtilities.properties.getProperty("password");
 		new AddToCartComponents(driver).addToCart();
 		driver.findElement(HomePageLocators.CART_ICON).click();
-		WebDriverWait wait = new WebDriverWait(driver, 20);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ShoppingCartComponents.CART_TITLE));
@@ -212,7 +210,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		SoftAssert softAssert = new SoftAssert();
 		new AddToCartComponents(driver).addToCart();
 		driver.findElement(HomePageLocators.CART_ICON).click();
-		WebDriverWait wait = new WebDriverWait(driver, 20);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		try {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
@@ -247,7 +245,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		SoftAssert softAssert = new SoftAssert();
 		new AddToCartComponents(driver).addToCart();
 		driver.findElement(HomePageLocators.CART_ICON).click();
-		WebDriverWait wait = new WebDriverWait(driver, 20);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		try {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
@@ -298,7 +296,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		SoftAssert softAssert = new SoftAssert();
 		new AddToCartComponents(driver).addToCart();
 		driver.findElement(HomePageLocators.CART_ICON).click();
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ShoppingCartComponents.CART_TITLE));
@@ -364,7 +362,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 
 	public void entershippingdetails() throws Exception
 	{
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(FIRSTNAME_TEXTBOX));
 		driver.findElement(FIRSTNAME_TEXTBOX).sendKeys("Vijeta");
 		driver.findElement(LASTNAME_TEXTBOX).sendKeys("Juneja");
@@ -401,7 +399,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 
 	public void CheckPromoCodeApplication() throws Exception
 	{
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		Promo_Code = "TJHUSTLE";
 		driver.findElement(DISCOUNT_CODE_TEXTBOX).sendKeys(Promo_Code);
 		driver.findElement(APPLY_DISCOUNT_BUTTON).click();
@@ -423,7 +421,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		new AddToCartComponents(driver).addToCart();
 		//navigate to Checkout page
 		driver.findElement(HomePageLocators.CART_ICON).click();
-		WebDriverWait wait = new WebDriverWait(driver, 20);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.CHECKOUT_BUTTON));
 		driver.findElement(FlyCartPageLocator.CHECKOUT_BUTTON).click();
 		Thread.sleep(5000);
@@ -434,7 +432,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		Thread.sleep(5000);
 		System.out.println("payment page");
 		Thread.sleep(10000);
-		wait = new WebDriverWait(driver, 30);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTINUE_TO_PAYMENT_BUTTON));
 		WebElement element = driver.findElement(CONTINUE_TO_PAYMENT_BUTTON);
 		if(!element.isDisplayed())
@@ -444,7 +442,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		Thread.sleep(10000);
 
 		//Check AfterPay message is display
-		wait = new WebDriverWait(driver, 50);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(AFTERPAY_OPTION));
 		if(!driver.findElement(AFTERPAY_OPTION).isDisplayed())
 			throw new Exception("After pay option is not displayed on checkout page.");
@@ -489,7 +487,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	public void CheckAfterPayForAddressOtherThanUS() throws Exception
 	{
 		//add product to cart
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		new AddToCartComponents(driver).addToCart();
 		driver.findElement(HomePageLocators.CART_ICON).click();
 
@@ -507,7 +505,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		Thread.sleep(5000);
 		System.out.println("payment page");
 		Thread.sleep(10000);
-		wait = new WebDriverWait(driver, 30);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTINUE_TO_PAYMENT_BUTTON));
 		WebElement element = driver.findElement(CONTINUE_TO_PAYMENT_BUTTON);
 		if(!element.isDisplayed())
@@ -549,7 +547,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		Promo_Code = "TJHUSTLE";
 		driver.findElement(DISCOUNT_CODE_TEXTBOX).sendKeys(Promo_Code);
 		driver.findElement(APPLY_DISCOUNT_BUTTON).click();
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(APPLIED_PROMO_CODE));
 		softAssert.assertEquals(driver.findElement(APPLIED_PROMO_CODE).getText(), Promo_Code, "Wrong/Invalid Promo Code applied");
 		WebElement cancel_code= driver.findElement(CANCEL_PROMO_CODE);

@@ -121,4 +121,9 @@ public class NavigationFlowPage extends NavigationFlowComponents
 	{
 		new NavigationFlowComponents(driver).NavigatetoPacks_LoungeAndSleep_InWomenCategory();
 	}
+	
+	public void NavigateToLoungewearSetsInWomenCategory() throws Exception
+	{
+		new NavigationFlowComponents(driver).NavigatetoLoungewearSetsInWomenCategory();
+	}
 }

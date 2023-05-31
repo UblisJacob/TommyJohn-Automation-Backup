@@ -1,5 +1,6 @@
 package com.tommyjohn.automation.Components;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.Properties;
 
@@ -110,7 +111,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 	public void validateWomenT_ShirtsSizeGuidePage() throws Exception
 	{
 		new HomePageComponents(driver).navigateToTopsAndTeesInwomensCategory();
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(CollectionPageComponent.FIRST_PRODUCT_HEAD_LINE_TEXT));
 		List<WebElement> producttitle = driver.findElements(By.cssSelector(".product-meta__title"));
 		for (WebElement title : producttitle)
@@ -126,7 +127,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 	public void validate_WomensTop_SizeGuidePage() throws Exception
 	{
 		new HomePageComponents(driver).navigateToTopsAndTeesInwomensCategory();
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(CollectionPageComponent.FIRST_PRODUCT_HEAD_LINE_TEXT));
 		jse = (JavascriptExecutor)driver;
 		jse.executeScript("window.scrollBy(0,250)");
@@ -294,7 +295,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 
 		//scroll down to fit-meter
 		jse.executeScript("window.scrollBy(0,-250)", "");
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SECOND_SIZE_GUIDE_FITMETER_GRAPH));
 		if(!driver.findElement(SECOND_SIZE_GUIDE_FITMETER_GRAPH).isDisplayed())
 			throw new Exception("Product's second size guide fit-meter is not displayed");
@@ -622,7 +623,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 	{
 
 		driver.navigate().refresh();
-		WebDriverWait wait = new WebDriverWait(driver, 50);
+		WebDriverWait wait =  new WebDriverWait(driver, Duration.ofSeconds(50));
 
 		wait.until(ExpectedConditions.presenceOfElementLocated(ProductDetailsPageLocators.SIZE_GUIDE_BUTTON));	
 		if(!driver.findElement(SIZEGUIDE).isEnabled())
@@ -790,7 +791,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 
 		//scroll down to fit-meter
 		jse.executeScript("window.scrollBy(0,-250)", "");
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SIZE_GUIDE_FITMETER_GRAPH));
 		if(!driver.findElement(SIZE_GUIDE_FITMETER_GRAPH).isDisplayed())
 			throw new Exception("Product size guide fit-meter is not displayed");
@@ -851,7 +852,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 
 		//scroll down to fit-meter
 		jse.executeScript("window.scrollBy(0,-250)", "");
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SIZE_GUIDE_FITMETER_GRAPH));
 		if(!driver.findElement(SIZE_GUIDE_FITMETER_GRAPH).isDisplayed())
 			throw new Exception("Product size guide fit-meter is not displayed");
@@ -898,7 +899,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 		String text = null;
 		jse = (JavascriptExecutor)driver;
 		jse.executeScript("window.scrollBy(0,250)");
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(THIRD_PRODUCT_HEAD_LINE_TEXT));
 		// get text and click on the first product
 		if(!driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT).isDisplayed())
@@ -918,7 +919,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 	//		driver.findElement(BRA).click();
 	//		Thread.sleep(3000);
 	//		driver.findElement(FIRST_ANCHOR_BUTTON).click();
-	//		WebDriverWait wait = new WebDriverWait(driver, 30);
+	//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 	//		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_BRA_PRODUCT_HEAD_LINE_TEXT_LINK));
 	//		// get text and click on the first product
 	//		if(!driver.findElement(FIRST_BRA_PRODUCT_HEAD_LINE_TEXT_LINK).isDisplayed())
@@ -957,7 +958,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 
 	public void navigateToScoopBralettePDP() throws Exception 
 	{
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		new HomePageComponents(driver).navigateToScoopBraletteCategory();
 
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".collection-title-bar__title")));
