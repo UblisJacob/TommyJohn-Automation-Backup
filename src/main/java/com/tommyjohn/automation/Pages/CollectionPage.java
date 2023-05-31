@@ -400,15 +400,31 @@ public class CollectionPage extends CollectionPageComponent{
 		methodToCheckAllFilters();
 	}
 	
+	public void validateFiltersSearch() throws Exception {
+		// TODO Auto-generated method stub
+		clickOnSearchPageFilter();
+		methodToCheckAllFilters();
+	}
+	
 	public void validateSortBy() throws Exception {
 		// TODO Auto-generated method stub
 		new NavigationFlowPage(driver).NavigateToAllLoungewearInMenCategory();
 		methodToSortByPrice();
 	}
 	
+	public void validateSortBySearch() throws Exception {	
+		methodToSortByPrice();
+	}
+	
 	public void validateOnImageAndSecondaryBadging() throws Exception {
 		// TODO Auto-generated method stub
 		new NavigationFlowPage(driver).NavigateToAllSaleInSaleCategory();
+		validateOnImageAndSecondaryBadges();
+	}
+	
+	public void validateOnImageBadgeSearch() throws Exception {
+		
+		//validateOnImageBadging();
 		validateOnImageAndSecondaryBadges();
 	}
 	

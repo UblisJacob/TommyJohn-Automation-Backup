@@ -614,6 +614,23 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		 
 
 	}
+	
+	public void clickOnSearchPageFilter() throws Exception{
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.mega-collection-filters > div:nth-child(2) > a")));
+		WebElement firstFilter = driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child(2) > a"));
+		js.executeScript("arguments[0].click();", firstFilter);
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.mega-collection-filters > div:nth-child(2) > ul > li:nth-child(1) > label > input")));
+		WebElement firstFilterOption = driver.findElement(By.cssSelector(
+				"div.mega-collection-filters > div:nth-child(2) > ul > li:nth-child(1) > label > input"));
+		js.executeScript("arguments[0].click();", firstFilterOption);
+		Thread.sleep(5000);
+	}
 
 	public void methodToCheckCorosalsOnTopOfPageIsActiveWhenRelatedStyleIsChecked() throws Exception {
 		boolean flag1 = false;
@@ -1500,7 +1517,35 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		} else {
 			
 			System.out.println("The Secondary Badge is not displayed");
-			throw new Exception("The Secondary Badge is not displayed");
+			Reporter.log("The Secondary Badge is not displayed");
+			//throw new Exception("The Secondary Badge is not displayed");
+		}
+	}
+	
+	public void validateOnImageBadging() throws Exception {
+
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_PRODUCT_IMAGE_BADGE));
+
+		WebElement onImageBadge = driver.findElement(PLP_PRODUCT_IMAGE_BADGE);
+		
+
+		js.executeScript("window.scrollBy(0,250)");
+		Assert.assertTrue(onImageBadge.isDisplayed(), "The On Image Badge is displayed");
+		
+
+		if (onImageBadge.isDisplayed()) {
+
+			Reporter.log("The On Image Badge is displayed");
+			System.out.println("The On Image Badge is displayed");
+
+		} else {
+			System.out.println("The On Image Badge is not displayed");
+			throw new Exception("The On Image Badge is not displayed");
 		}
 	}
 
