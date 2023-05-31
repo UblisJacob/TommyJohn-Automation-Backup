@@ -1,5 +1,6 @@
 package com.tommyjohn.automation.Components;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -40,7 +41,7 @@ public class StoreLocatorComponent extends StoreLocatorPageLocators
 	public void StoreLocatorLayout() throws Exception
 	{
 		JavascriptExecutor js = (JavascriptExecutor)driver;
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		SoftAssert softassert = new SoftAssert();
 		// navigate to Store Locator  page
 		text = driver.findElement(HomePageLocators.STORE_LOCATOR_LINK).getText();
@@ -108,7 +109,7 @@ public class StoreLocatorComponent extends StoreLocatorPageLocators
 		jse.executeScript("arguments[0].scrollIntoView();", driver.findElement(FIND_A_STORE_BUTTON));
 
 		//Thread.sleep(8000);
-		wait= new WebDriverWait(driver, 50);
+		wait= new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(MAP));
 		softassert.assertTrue(driver.findElement(MAP).isDisplayed(), "Map is not displayed.");
 		Reporter.log("Map is displayed on store locator page.");

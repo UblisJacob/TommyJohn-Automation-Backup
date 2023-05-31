@@ -1,5 +1,6 @@
 package com.tommyjohn.automation.Components;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.Properties;
 
@@ -29,7 +30,7 @@ public class ContactUsComponent extends ContactUsPageLocators
 	}
 	public void ContactUsFlow() throws Exception
 	{
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(EMAIL_US_LINK));
 		driver.findElement(EMAIL_US_LINK).click();
 		

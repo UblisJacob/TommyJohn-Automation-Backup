@@ -27,6 +27,7 @@ public class FlyCartPageLocator {
 	public static By QUANTITY = By.cssSelector(".qty-selector.line-item__qty > input");
 	public static By CROSS_CLOSE_BUTTON = By.cssSelector("article > div.line-item__summary > button");
 	public static By COLOR_AND_SIZE_IN_CART = By.cssSelector("article:nth-child(1) > div.line-item__summary > div:nth-child(2)");
+	public static By COLOR_AND_SIZE_IN_CART_MULTI = By.cssSelector("div.line-item__summary > div:nth-child(2)");
 	public static By PRICE_IN_QUANTITY_LINE = By.cssSelector("article:nth-child(1) > div.line-item__summary > div.line-item__total > div.line-item__subtotal > span");
 	public static By GIFT_WRAP = By.cssSelector("div.inline-cart__gift-wrap > a");
 	public static By GIFT_WRAP_POPUP = By.cssSelector(".modal-overlay.gift-option.active");
@@ -43,6 +44,7 @@ public class FlyCartPageLocator {
 	public static By AFTERPAY_FLYCART = By.cssSelector(".afterpay-incart-container > p > span");
 	
 	public static By QUICK_SHOP_SIZE_LIST = By.cssSelector(".quickshop-open>.inline-quick-shop>ul>li");
+	
 	
 	
 	
