@@ -1,5 +1,6 @@
 package com.tommyjohn.automation.Components;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -70,7 +71,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 	}
 
 	public void checkCorrectProductDetailsPageOpenedOrNot(String text1) throws Exception {
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		String text2 = null;
 		String[] list;
 		Thread.sleep(4000);
@@ -91,6 +92,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		if(!text2.equals(text1))
 			throw new Exception("Wrong product details page opened");
 		Reporter.log("Product details page is Correct :: Product title is Displayed");
+		driver.navigate().back();
 
 	}
 
@@ -135,7 +137,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		System.out.println(driver.getCurrentUrl());
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_PRICE));
 		// check product price is displayed or not
 		if(!driver.findElement(PRODUCT_PRICE).isEnabled())
@@ -607,7 +609,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 	public void verifyReviewsDisplay() throws Exception
 	{
-		WebDriverWait  wait= new WebDriverWait(driver, 30);
+		WebDriverWait  wait= new WebDriverWait(driver, Duration.ofSeconds(30));
 		String text = null;
 		SoftAssert softAssert = new SoftAssert();
 		// call method to navigate to collection page
@@ -1605,7 +1607,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		softassert.assertEquals(element.getText(), "Add To Cart", "Text changed for scrolling CTA Add to cart");
 		Thread.sleep(3000);
 		element.click();
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.INLINE_CART_TITLE));
 		softassert.assertTrue(driver.findElement(FlyCartPageLocator.INLINE_CART_TITLE).isDisplayed(), "Fly cart is not expanded after ATC on PDP");
 		softassert.assertAll();
@@ -1624,7 +1626,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			WebElement rating=driver.findElement(RATING_NUMBER);
 			jse.executeScript("arguments[0].click();" , rating);
 
-			WebDriverWait wait = new WebDriverWait(driver, 30);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(SORT_BY));
 
 			softassert.assertEquals(driver.findElement(SORT_BY).getText(), "Sort By", "Default text is not 'Sort By' for reviews sort option");
@@ -1705,7 +1707,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 		new CollectionPageComponent(driver).navigateToProductDetailsPage();
 
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		//Thread.sleep(5000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(RATING_STARS));
 		element=driver.findElement(RATING_NUMBER);
@@ -1761,7 +1763,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			executor.executeScript("arguments[0].click();", element);
 			WebElement el = driver.findElement(CollectionPageLocator.FIRST_PRODUCT_HEAD_LINE_TEXT);
 			executor.executeScript("arguments[0].click();", el);
-			WebDriverWait wait = new WebDriverWait(driver, 30);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_TITLE));
 			String colortext_pdp = driver.findElement(COLOR_TEXT).getText();
 
@@ -1779,7 +1781,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		SoftAssert softassert = new SoftAssert();
 		List<String> selected_bundle_size1 = new ArrayList<String>();
 		List<String> selected_bundle_size2 = new ArrayList<String>();
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CollectionPageLocator.FIRST_PRODUCT));
 		Thread.sleep(3000);
 		String[] title1 = driver.findElement(CollectionPageLocator.FIRST_PRODUCT).getAttribute("data-name").split(",");
@@ -2028,7 +2030,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 	public void ErrorMessagewithMaxQTYonPDP() throws Exception
 	{
 		SoftAssert softassert = new SoftAssert();
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CollectionPageLocator.FIRST_PRODUCT));
 		Thread.sleep(3000);
 		new CollectionPageComponent(driver).navigateToProductDetailsPage();
