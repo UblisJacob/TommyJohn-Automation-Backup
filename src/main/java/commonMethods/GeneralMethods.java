@@ -107,7 +107,7 @@ public class GeneralMethods {
 		try
 		{
 			waitTillPageLoad(objDriver);
-			(new WebDriverWait(objDriver, 10)).until(ExpectedConditions.visibilityOfElementLocated(objectPath));
+			(new WebDriverWait(objDriver, Duration.ofSeconds(10))).until(ExpectedConditions.visibilityOfElementLocated(objectPath));
 			boolResultFlag = true;
 		}
 		catch(Exception exception)

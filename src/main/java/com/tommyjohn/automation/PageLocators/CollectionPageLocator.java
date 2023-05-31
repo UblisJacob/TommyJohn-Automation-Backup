@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 
 public class CollectionPageLocator {
 	
-	public static By STYLE_COROSALS = By.cssSelector("div.dyCollection-hero__interactive-inner");
+	//public static By STYLE_COROSALS = By.cssSelector("dyHero-interactive__slide>button");
 	public static By TOTAL_NO_OF_COROSALS = By.cssSelector("div.dyHero-interactive__slider>button");
 	public static By FILTER_PILL = By.xpath("//div[@class='collection-filters__active-controls']//button");
 //	public static By MENS_ALL_UNDERWEAR_FIRST_PRODUCT_IMAGE = By.cssSelector(".product-image-container > a");
@@ -49,7 +49,8 @@ public class CollectionPageLocator {
 		public static By QUICK_SHOP_SIZE_OVERLAY = By.cssSelector(".inline-quick-shop");
 		public static By QUICK_SHOP_SIZE_OVERLAY_CLOSE = By.cssSelector(".inline-quick-shop>.icon-close");
 		public static By QUICK_SHOP_SIZE_OVERLAY_HEADING = By.cssSelector(".inline-quick-shop>.inline-quick-shop__option-heading");
-		public static By QUICK_SHOP_SIZE_LIST = By.cssSelector(".quickshop-open>.inline-quick-shop>ul>li");
+		public static By QUICK_SHOP_SIZE_LIST_1 = By.cssSelector(".quickshop-open>.inline-quick-shop>ul:nth-child(4)>li");
+		public static By QUICK_SHOP_SIZE_LIST_2 = By.cssSelector(".quickshop-open>.inline-quick-shop>ul:nth-child(6)>li");
 		public static By QUICK_SHOP_SIZE_LABEL = By.cssSelector(".quickshop-open>.inline-quick-shop>ul>li>label");
 		public static By QUICK_SHOP_SIZE_OVERLAY_ATC = By.cssSelector(".inline-quick-shop>.inline-quick-shop__button");
 		public static By PRODUCT_TITLE_ON_COLLECTION = By.cssSelector(".product-meta__title");
