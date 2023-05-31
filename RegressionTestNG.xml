@@ -9,7 +9,8 @@
 	<test name="MegaCollectionTests" >
 		<parameter name="browser" value="chrome" />
 		<classes>
-			<class name="TestModules.ValidateCategoryPages" />
+			<!-- <class name="TestModules.ValidateCategoryPages" /> -->
+			<class name="TestModules.ValidateSearchPages" />
 
 		</classes>
 	</test>

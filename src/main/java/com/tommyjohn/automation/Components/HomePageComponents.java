@@ -1,5 +1,7 @@
 package com.tommyjohn.automation.Components;
 
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.time.Duration;
@@ -177,7 +179,8 @@ public class HomePageComponents extends HomePageLocators {
 		WebElement element = driver.findElement(SEARCH_ICON);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", element);
-		driver.findElement(SEARCH_ICON).sendKeys("tees");
+		String searchKeyWord = "second skin";
+		driver.findElement(SEARCH_ICON).sendKeys(searchKeyWord);
 
 		WebElement search = driver.findElement(SEARCH_ICON);
 		action.moveToElement(driver.findElement(SEARCH_ICON)).build().perform();
@@ -186,14 +189,46 @@ public class HomePageComponents extends HomePageLocators {
 				"Popular searches section not displayed ");
 		softAssert.assertTrue(driver.findElement(PRODUCT_MATCHES_TITLE).isDisplayed(),
 				"Product matches section is not displayed");
+		
+		/*driver.findElement(SEARCH_ICON).sendKeys(Keys.RETURN);*/
+		/*Robot robot = new Robot();
+		Thread.sleep(4000);
+		robot.keyPress(KeyEvent.VK_ENTER);*/
 
-		WebElement pm = driver.findElement(PRODUCT_MATCHES_TITLE);
+		WebElement pm = driver.findElement(PRODUCT_SUGGESTION);
+		String productName = pm.getText();
+		System.out.println(productName);
 		executor.executeScript("arguments[0].click();", pm);
 		Thread.sleep(8000);
-		if(driver.findElement(ProductDetailsPageLocators.PRODUCT_DETAILS).getText().contains("Pack"))
+		
+		
+		if(driver.findElement(SEARCHPAGE_TITLE).isDisplayed())
+		{
+			System.out.println("Search Page Title is displayed");
+			Reporter.log("Search Page Title is displayed");
+			if(driver.findElement(SEARCHPAGE_TITLE).getText().equals("Results for \""+ productName +"\""))
+			{
+				System.out.println("Search Page Title is correct");
+				Reporter.log("Search Page Title is correct");
+			}
+			else
+			{
+				Reporter.log("Search Page Title is not correct");
+				throw new Exception("Search Page Title is not correct");
+			}
+		}
+		else
+		{
+			Reporter.log("Search Page Title is not displayed");
+			throw new Exception("Search Page Title is not displayed");
+		}
+			
+		
+		
+		/*if(driver.findElement(ProductDetailsPageLocators.PRODUCT_DETAILS).getText().contains("Pack"))
 			new ProductDetailsPageComponents(driver).verifybundlepages();
 		else
-			new ProductDetailsPageComponents(driver).validatePage();
+			new ProductDetailsPageComponents(driver).validatePage();*/
 
 		softAssert.assertAll();
 
