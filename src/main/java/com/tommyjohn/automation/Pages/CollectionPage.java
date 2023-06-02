@@ -360,7 +360,7 @@ public class CollectionPage extends CollectionPageComponent{
 		validateallurls();
 	}
 
-	public void validateallplpsareloading() {
+	public void validateallplpsareloading() throws Exception {
 		validateallurls();
 	}
 
@@ -422,10 +422,10 @@ public class CollectionPage extends CollectionPageComponent{
 		// TODO Auto-generated method stub
 		new HomePageComponents(driver).NavigateToAllSleepwearInMenCategory();
 		validateProductHeadingTextOnCollectionPage();
-		
 		validateProductImageOnPLP();
 		
 		Verify_ProductTile_HoverFunctionality();
+		
 		MethodToCheckColorSwatchChanging();
 		validateProductReviewStarsOnCollectionPage();
 		

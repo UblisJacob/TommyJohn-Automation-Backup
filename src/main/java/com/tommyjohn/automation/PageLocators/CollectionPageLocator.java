@@ -17,7 +17,7 @@ public class CollectionPageLocator {
 //	public static By FIRST_PRODUCT_HEAD_LINE_TEXT_LINK = By.cssSelector("div.mega-collection-grid__row:nth-child(3) > div:nth-child(1) > a > h2");
 //	public static By FIRST_PRODUCT_REVIEW_STARS = By.cssSelector("div.mega-collection-grid__row:nth-child(3) > div:nth-child(1) > a > div");
 	
-	public static By FIRST_PRODUCT = By.cssSelector(".product-item");
+	public static By FIRST_PRODUCT = By.cssSelector("div.product-image-container");
 	public static By COMPARE_PRODUCT = By.cssSelector(".product-image-container > div.has-compare");
 	public static By FIRST_PRODUCT_IMAGE = By.cssSelector(".product-image");
 	//changed

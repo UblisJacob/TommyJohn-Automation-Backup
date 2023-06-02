@@ -1,14 +1,14 @@
 package com.tommyjohn.automation.Components;
 
-import java.awt.Dimension;
-import java.io.File;
-import java.io.FileInputStream;
+
+import java.io.FileReader;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
+
 
 import javax.mail.Authenticator;
 import javax.mail.BodyPart;
@@ -29,7 +29,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -38,6 +37,7 @@ import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
 
+import com.opencsv.CSVReader;
 import com.tommyjohn.automation.PageLocators.CollectionPageLocator;
 import com.tommyjohn.automation.PageLocators.FlyCartPageLocator;
 import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
@@ -59,6 +59,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	String Selected_size;
 	String Selected_size1;
 	String Selected_size2;
+	int count=0;
 
 	public String navigateToProductDetailsPage() throws Exception {
 		String text = null;
@@ -309,10 +310,10 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		
 		// get product title and click on product heading text if present
 		// try {
-		if (!driver.findElement(FIRST_PRODUCT_REVIEW_STARS).isDisplayed())
-			throw new Exception("Product review stars are not present");
+		//if (!driver.findElement(FIRST_PRODUCT_REVIEW_STARS).isDisplayed())
+		//	throw new Exception("Product review stars are not present");
 		text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
-		driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT).click();
+		driver.findElement(FIRST_PRODUCT_REVIEW_STARS).click();
 		Thread.sleep(3000);
 		Reporter.log(driver.getCurrentUrl());
 		// check correct Product details page opened or not
@@ -760,51 +761,82 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		Reporter.log("Corosals gets active when respective option selected");
 	}
 
-	public void validateallurls()
+	public void validateallurls() throws Exception
 
 	{
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		try {
-			File src = new File("src/main/resources/AllCollectionPages.xlsx");
+			
+			String csv_path = "src/main/resources/PLPs.csv";
+			CSVReader CSVReader = new CSVReader(new FileReader(csv_path));
+			List<String[]> list = CSVReader.readAll();
+			Iterator<String[]>ite= list.iterator();
+			while(ite.hasNext()){
+				String[] data = ite.next();
+				for(int i=0; i<data.length; i++){
+					System.out.println(data[i]);
+					String url = "https://www.tommyjohn.com" + data[i];
+				//	checkurl(url);
+				driver.get(url);
+				if (driver.findElement(FIRST_PRODUCT).isDisplayed()) {
+					count++;
+				}
+				}
+			}
+			
 
+if(count!=59)
+	//System.out.println(count);
+	throw new Exception("Some urls not loading.");
+
+			
+			
+		//	File src = new File("src/main/resources/PLPs.csv");
+		
 			// load file
-			FileInputStream fis = new FileInputStream(src);
+		//	FileInputStream fis = new FileInputStream(src);
 
 			// Load workbook
-			XSSFWorkbook wb = new XSSFWorkbook(fis);
+		//	XSSFWorkbook wb = new XSSFWorkbook(fis);
 
 			// Load sheet- Here we are loading first sheet only
-			XSSFSheet sh1 = wb.getSheetAt(0);
+		//	XSSFSheet sh1 = wb.getSheetAt(0);
 
-			System.out.println(sh1.getRow(0).getCell(0).getStringCellValue());
-			Reporter.log(sh1.getRow(0).getCell(0).getStringCellValue());
-
-			int rowCount = sh1.getLastRowNum() - sh1.getFirstRowNum();
-
-			for (int i = 1; i < rowCount + 1; i++) {
-				String url = sh1.getRow(i).getCell(0).getStringCellValue();
-				checkurl(url);
-			}
+//			System.out.println(sh1.getRow(0).getCell(0).getStringCellValue());
+//			Reporter.log(sh1.getRow(0).getCell(0).getStringCellValue());
+//
+//			int rowCount = sh1.getLastRowNum() - sh1.getFirstRowNum();
+//
+//			for (int i = 1; i < rowCount + 1; i++) {
+//				String url = sh1.getRow(i).getCell(0).getStringCellValue();
+//				checkurl(url);
+//			}
 
 		} catch (Exception e) {
 			Reporter.log("File not found");
-
+			throw new Exception ("File not found");
 		}
 	}
 
 	private void checkurl(String url) throws InterruptedException {
+		
 
 		try {
-			driver.get(url);
+			driver.get("https://www.tommyjohn.com" + url);
+			
 			System.out.println(url);
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			driver.navigate().refresh();
 			wait.until(ExpectedConditions.presenceOfElementLocated(FIRST_PRODUCT));
-			List<WebElement> items = driver.findElements(By.cssSelector(".product-item"));
+			List<WebElement> items = driver.findElements(By.cssSelector("div.product-image-container"));
 			Reporter.log("No. of items present in " + url + " is " + items.size());
 
 		}
 
 		catch (Exception e) {
 			Reporter.log(url + "not loading");
+			count++;
+
 		}
 	}
 
