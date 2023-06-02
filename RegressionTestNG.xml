@@ -7,19 +7,27 @@
 	</listeners>
 	
 	<test name="MegaCollectionTests" >
-		<parameter name="browser" value="chrome" />
-		<classes>
-			<class name="TestModules.ValidateCategoryPages" />
-
+	<parameter name="browser" value="chrome" />
+	<classes>
+		<class name="TestModules.ValidateCategoryPages" />
 		</classes>
 	</test>
-	
-	<test name="AllQuizTests" >
-		<parameter name="browser" value="chrome" />
-		<classes>
+
+		<test name="AllQuizTests" >
+			<parameter name="browser" value="chrome" />
+			<classes>
 			<class name="TestModules.ValidateQuiz" />
-
-		</classes>
+			</classes>
 	</test>
+		
+		<test name="CreateAccountAndLoginTests" >
+			<parameter name="browser" value="chrome" />
+			<classes>
+				<class name="TestModules.ValidateCreateAccount_Login" />
+			</classes>
+		</test>
+		
+		
+		
 
 </suite>

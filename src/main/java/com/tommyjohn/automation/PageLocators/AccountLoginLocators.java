@@ -7,6 +7,7 @@ public class AccountLoginLocators {
 	//on account login page
 	
 	public static By CREATEACCOUNT_TEXT1 = By.cssSelector(".account-logged-out-row.two-tiles.second-row-mobile.on-load > h2");
+	public static By CREATEACCOUNT_TITLE = By.cssSelector("#shopify-section-account-benefits .account-row-title");
 	public static By CREATEACCOUNT_TEXT2 = By.cssSelector(".account-registration > p");
 	public static By CREATEACCOUNT_BTN = By.cssSelector(".account-registration > a");
 	public static By LOGIN_HEADING_TEXT = By.cssSelector("#customer-login-form > h2");
@@ -15,12 +16,12 @@ public class AccountLoginLocators {
 	public static By PASSWORD_LABEL1 = By.cssSelector("#customer_login > div:nth-child(5) > label");
 	public static By CUSTOMER_PASSWORD_INPUTBOX = By.cssSelector("#customer-password");
 	public static By LOGIN_BUTTON = By.cssSelector("#customer_login > button");
-	
+	public static By ERROR_MSG = By.cssSelector(".form-note.is-error");
 	
 	
 	
 	//on create account page
-	public static By CREATEACCOUNT_TEXT = By.cssSelector(".account-logged-out-row.two-tiles.create-account.on-load > h2");
+	public static By CREATEACCOUNT_TEXT = By.cssSelector(".account-row-title.register-headline");
 	public static By ALREADYHAVEANACCOUNT_LINK = By.cssSelector(".account-registration > form > a");
 	public static By CREATEACCOUNT_EMAIL  = By.cssSelector("#email");
 	public static By CREATEACCOUNT_PASSWORD= By.cssSelector("#create-password");
@@ -41,17 +42,30 @@ public class AccountLoginLocators {
 	
 	
 //	on recover password page
-	public static By BACK_TO_lOGIN_LINK = By.cssSelector("#recover-password-form-new > a");
+	public static By RECOVER_PASSWORD_CONTAINER = By.cssSelector(".recover-password-container");
+	public static By BACK_TO_lOGIN_LINK = By.cssSelector(".recover-password-container>a");
 	public static By FORGOT_YOUR_PASSWORD_LINK = By.cssSelector("#customer_login > a");
 	public static By RECOVER_YOUR_PASSWORD_HEADING = By.cssSelector("#recover-password-form-validate > div > h2");
 	public static By PLEAZE_ENTER_YOUR_EMAIL_HEADING = By.cssSelector("#recover-password-form-validate > div > p");
 	public static By EMAIL_ADDRESS_LABEL = By.cssSelector(".form-row.input-group > label");
-	public static By INPUT_BOX_FOR_EMAIL = By.cssSelector("#recover-email");
-	public static By SUBMIT_BUTTON = By.cssSelector("input.btn.account-button.button.button--full.button--red");
+	public static By INPUT_BOX_FOR_EMAIL = By.cssSelector("input[data-tj-qa='forgot-password-email-input']");
+	public static By SUBMIT_BUTTON = By.cssSelector("input[data-tj-qa='forgot-password-email-submit']");
 //	public static By SUBMIT_BUTTON = By.cssSelector("#recover-password-form-new > div:nth-child(4) > input");
 	public static By ERROR_MESSAGE = By.cssSelector("li.reset-fail");
 	public static By EMAIL_RECIEVED_SUCCESS_MESSAGE = By.cssSelector("div.account-reset-password-sent.reset-success > p");
 	public static By LINK_IN_ERROR_MESSAGE_FROM_RECOVER_PASSWORD = By.cssSelector("div.input-group > ul > li > a");
 	
-
+	
+//	On Create New Password Page
+	public static By CREATE_NEW_PASSWORD_HEADING = By.cssSelector(".account-row-title.account-text-center");
+	public static By CREATE_NEW_PASSWORD_SUB_HEADING = By.cssSelector(".account-row-title.account-text-center+p");
+	public static By CREATE_NEW_PASSWORD_LABEL = By.cssSelector(".account-logged-out-row form .input-group:nth-child(3)>label");
+	public static By CREATE_NEW_PASSWORD_INPUT = By.cssSelector(".account-logged-out-row form .input-group:nth-child(3)>input");
+	public static By CONFIRM_NEW_PASSWORD_LABEL = By.cssSelector(".account-logged-out-row form .input-group:nth-child(4)>label");
+	public static By CONFIRM_NEW_PASSWORD_INPUT = By.cssSelector(".account-logged-out-row form .input-group:nth-child(4)>input");
+	public static By CHANGE_PASSWORD_BTN = By.cssSelector(".account-logged-out-row form .input-group:nth-child(5)>button");
+	public static By BACK_TO_LOGIN = By.cssSelector("a[aria-label='Back to Login']");
+	
+	
+	
 }
