@@ -13,6 +13,7 @@ public class AccountPageLocators
 	public static By ORDER_HISTORY_TITLE= By.cssSelector(".account-logged-content>div:nth-child(3)>h2");
 	public static By ORDER_HISTORY_TABLE_TITLE_HEADING = By.cssSelector(".account-logged-content>div:nth-child(3)>.account-orders-table>table>thead>tr>th");
 	public static By FIRST_ORDER_NUMBER= By.cssSelector(".account-logged-content>div:nth-child(3)>.account-orders-table>table>tbody>tr:nth-child(1)>td:nth-child(1)>a");
+	public static By ACCOUNT_CREATE_SUCCESS_MSG = By.cssSelector(".new-customer.account-create-success");
 	
 	
 	
