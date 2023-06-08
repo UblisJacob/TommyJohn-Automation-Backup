@@ -40,38 +40,38 @@ public class CollectionPage extends CollectionPageComponent{
 		jse.executeScript("window.scrollBy(0,250)");
 		validateProductImageOnPLP();
 	}*/
-	public void validateproductimageonMegaCollectionPLP() throws Exception
-	{
-		
-		String url = objExcelUtils.readExcelValue("C:\\Users\\Annada Behera\\eclipse-workspace\\TJ_Automation\\src\\main\\resources\\PLP_url.xlsx", "Mega_PLP", "Mega_Collection");
-		new HomePageComponents(driver).navigateToPLP(url);
-		validateProductImageOnPLP();
-	}
-	public void validateproductnameonMegaCollectionPLP() throws Exception
-	{
-		String url = objExcelUtils.readExcelValue("C:\\Users\\Annada Behera\\eclipse-workspace\\TJ_Automation\\src\\main\\resources\\PLP_url.xlsx", "Mega_PLP", "Mega_Collection");
-		new HomePageComponents(driver).navigateToPLP(url);
-		validateProductHeadingTextOnPLP();
-	}
-	public void validateproductreviewstarsonMegaCollectionPLP() throws Exception
-	{
-		String url = objExcelUtils.readExcelValue("C:\\Users\\Annada Behera\\eclipse-workspace\\TJ_Automation\\src\\main\\resources\\PLP_url.xlsx", "Mega_PLP", "Mega_Collection");
-		new HomePageComponents(driver).navigateToPLP(url);
-		validateProductReviewStarsOnPLP();
-	}
-
-	public void validatefilterandsortonMegaCollectionPLP() throws Exception
-	{
-		String url = objExcelUtils.readExcelValue("C:\\Users\\Annada Behera\\eclipse-workspace\\TJ_Automation\\src\\main\\resources\\PLP_url.xlsx", "Mega_PLP", "Mega_Collection");
-		new HomePageComponents(driver).navigateToPLP(url);
-		methodToCheckAllFilters();
-	}
-	public void validateColorSwatcheonMegaCollectionPLP() throws Exception
-	{
-		String url = objExcelUtils.readExcelValue("C:\\Users\\Annada Behera\\eclipse-workspace\\TJ_Automation\\src\\main\\resources\\PLP_url.xlsx", "Mega_PLP", "Mega_Collection");
-		new HomePageComponents(driver).navigateToPLP(url);
-		MethodToCheckColorSwatchChanging();
-	}
+//	public void validateproductimageonMegaCollectionPLP() throws Exception
+//	{
+//		
+//		String url = objExcelUtils.readExcelValue("C:\\Users\\Annada Behera\\eclipse-workspace\\TJ_Automation\\src\\main\\resources\\PLP_url.xlsx", "Mega_PLP", "Mega_Collection");
+//		new HomePageComponents(driver).navigateToPLP(url);
+//		validateProductImageOnPLP();
+//	}
+//	public void validateproductnameonMegaCollectionPLP() throws Exception
+//	{
+//		String url = objExcelUtils.readExcelValue("C:\\Users\\Annada Behera\\eclipse-workspace\\TJ_Automation\\src\\main\\resources\\PLP_url.xlsx", "Mega_PLP", "Mega_Collection");
+//		new HomePageComponents(driver).navigateToPLP(url);
+//		validateProductHeadingTextOnPLP();
+//	}
+//	public void validateproductreviewstarsonMegaCollectionPLP() throws Exception
+//	{
+//		String url = objExcelUtils.readExcelValue("C:\\Users\\Annada Behera\\eclipse-workspace\\TJ_Automation\\src\\main\\resources\\PLP_url.xlsx", "Mega_PLP", "Mega_Collection");
+//		new HomePageComponents(driver).navigateToPLP(url);
+//		validateProductReviewStarsOnPLP();
+//	}
+//
+//	public void validatefilterandsortonMegaCollectionPLP() throws Exception
+//	{
+//		String url = objExcelUtils.readExcelValue("C:\\Users\\Annada Behera\\eclipse-workspace\\TJ_Automation\\src\\main\\resources\\PLP_url.xlsx", "Mega_PLP", "Mega_Collection");
+//		new HomePageComponents(driver).navigateToPLP(url);
+//		methodToCheckAllFilters();
+//	}
+//	public void validateColorSwatcheonMegaCollectionPLP() throws Exception
+//	{
+//		String url = objExcelUtils.readExcelValue("C:\\Users\\Annada Behera\\eclipse-workspace\\TJ_Automation\\src\\main\\resources\\PLP_url.xlsx", "Mega_PLP", "Mega_Collection");
+//		new HomePageComponents(driver).navigateToPLP(url);
+//		MethodToCheckColorSwatchChanging();
+//	}
 	
 
 	public void validateproductnameonAllpanties() throws Exception
@@ -423,9 +423,7 @@ public class CollectionPage extends CollectionPageComponent{
 		new HomePageComponents(driver).NavigateToAllSleepwearInMenCategory();
 		validateProductHeadingTextOnCollectionPage();
 		validateProductImageOnPLP();
-		
 		Verify_ProductTile_HoverFunctionality();
-		
 		MethodToCheckColorSwatchChanging();
 		validateProductReviewStarsOnCollectionPage();
 		

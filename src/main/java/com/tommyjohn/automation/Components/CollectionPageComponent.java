@@ -1389,7 +1389,7 @@ if(count!=59)
 		Assert.assertTrue(breadcrumb.isEnabled(), "Element Clickable");
 		js.executeScript("arguments[0].click();", breadcrumb);
 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_TITLE));
+		Thread.sleep(6000);
 		pageHeading = driver.findElement(PLP_TITLE);
 
 		if (pageHeading.getText().equals("Women's All")) {
