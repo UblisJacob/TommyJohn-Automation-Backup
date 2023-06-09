@@ -12,8 +12,8 @@ public class AccountLoginPage extends AccountLoginComponents {
 		// TODO Auto-generated constructor stub
 	}
 
-	public String createCustomerAccount() throws Exception {
-		return createAccount();
+	public String createCustomerAccount(String email, String password) throws Exception {
+		return createAccount(email, password);
 	}
 
 	public void verifyfieldsandtextsoncreateaccountpage() throws Exception {
@@ -40,8 +40,8 @@ public class AccountLoginPage extends AccountLoginComponents {
 		verifyAllFieldsOnLoginPage();
 	}
 
-	public void loginCustomerAccount(String email) throws Exception {
-		verifyAccountLoginFuctionality(email);
+	public void loginCustomerAccount(String email, String password) throws Exception {
+		verifyAccountLoginFuctionality(email, password);
 	}
 
 	public void verifyErrorsOnLoginPage() throws Exception {
@@ -53,14 +53,21 @@ public class AccountLoginPage extends AccountLoginComponents {
 	}
 
 	/**
-	 * Helps create a new password when provided the reset password link
-	 * received on user email
+	 * Helps create a new password when provided the reset password link received on
+	 * user email
+	 * 
 	 * @param resetLink
 	 * @param newPassword
+	 * @param Email       To Re-Login With
 	 * @throws Exception
 	 */
-	public void verifyCreateNewPasswordFunctionality(String resetLink, String newPassword) throws Exception {
+	public void verifyCreateNewPasswordFunctionality(String resetLink, String email, String newPassword)
+			throws Exception {
 		createNewPasswordFunctionality(resetLink, newPassword);
+
+//		To Verify if password is successfully changed, 
+//		Signing out and Signing back in with the changed password
+		verifyLoginFunctionality(email, newPassword);
 	}
 
 }
