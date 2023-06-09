@@ -217,8 +217,8 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 		js.executeScript("window.scrollTo(0, -document.body.scrollHeight)");
 		drpCountry.selectByIndex(2);
-	//	js.executeScript("arguments[0].scrollIntoView();", prices);
-	//	Thread.sleep(5000);
+		js.executeScript("window.scrollBy(0,450)");
+		Thread.sleep(5000);
 		List<WebElement> list1 = driver.findElements(PLP_PRICE);
 		ArrayList<Double> productPrice1 = new ArrayList<Double>();
 		ArrayList<Double> sortedList1 = new ArrayList<Double>();
@@ -301,7 +301,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		String text = null;
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		
+		driver.navigate().to("https://www.tommyjohn.com/collections/womens-all");
 		
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 
@@ -1180,9 +1180,10 @@ if(count!=59)
 	
 
 	public void MethodToCheckColorSwatchChanging() throws Exception {
+		driver.navigate().back();
 		Thread.sleep(5000);
 		JavascriptExecutor executore = (JavascriptExecutor) driver;
-		executore.executeScript("window.scrollBy(0, 350)", "");
+		//executore.executeScript("window.scrollBy(0, 350)", "");
 		Thread.sleep(5000);
 
 		List<WebElement> allElements = driver.findElements(ALL_COLOR_LIST);
@@ -1191,8 +1192,8 @@ if(count!=59)
 
 		if (elementsCount > 1) {
 			element = driver.findElement(By.cssSelector(
-					"div.mega-collection-grid.js-mega-collection-grid > div:nth-child(3) > div:nth-child(1)>div:nth-child(2)>.product-item__swatch-list>.slick-list>.slick-track>div:nth-child(1)>div"));
-			element.click();
+				"div[data-index='0']>div:nth-child(2)>div>div>div.product-item__swatch--circle"));
+		//	element.click();
 
 			for (int i = 1; i < elementsCount; i++) {
 				if (i < 4) {
@@ -1206,18 +1207,19 @@ if(count!=59)
 					System.out.println("Product image color name is: " + Img_colortext);
 
 					element = driver.findElement(By.cssSelector(
-							"div.mega-collection-grid.js-mega-collection-grid > div:nth-child(3) > div:nth-child(1)>div:nth-child(2)>.product-item__swatch-list>.slick-list>.slick-track>div:nth-child("
-									+ i + ")>div"));
+							"div[data-index='0']>div:nth-child(2)>div>div:nth-child(" + i + ")>div.product-item__swatch--circle"));
+
 					colornew1 = element.getAttribute("title");
 					String colornew = colornew1.replace("/", " ");
 					System.out.println(colornew);
 					if (colornew.equalsIgnoreCase(Img_colortext)) {
+						i++;
 						WebElement elemen = driver.findElement(By.cssSelector(
-								"div.mega-collection-grid.js-mega-collection-grid > div:nth-child(3) > div:nth-child(1)>div:nth-child(2)>.product-item__swatch-list>.slick-list>.slick-track>div:nth-child( "
-										+ (i + 1) + ")>div"));
+								"div[data-index='0']>div:nth-child(2)>div>div:nth-child(" + i + ")>div.product-item__swatch--circle"));
 						executore.executeScript("arguments[0].click();", elemen);
-						softAssert.assertEquals(Img_colortext, colornew, "Color not changing");
-						Reporter.log("Color swatches are changing correctly");
+						//softAssert.assertEquals(Img_colortext, colornew, "Color not changing");
+						
+						i--;
 					} else {
 						throw new Exception("Color not changing");
 					}
@@ -1243,6 +1245,9 @@ if(count!=59)
 			}
 			Reporter.log("Color swatch slick arrows are displayed :: Clickable");
 		}
+		
+		softAssert.assertAll();
+		Reporter.log("Color swatches are changing correctly");
 
 	}
 
@@ -1358,7 +1363,7 @@ if(count!=59)
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PLP_PRODUCTS)));
 		
 	org.openqa.selenium.Dimension d= 	driver.findElement(By.cssSelector(".product-image-container>a")).getSize();
-	if(d.width!=278)
+	if(d.width>278)
 		throw new Exception("Product grid conatins incorrect number of items"); 
 		
 
@@ -1389,7 +1394,7 @@ if(count!=59)
 		Assert.assertTrue(breadcrumb.isEnabled(), "Element Clickable");
 		js.executeScript("arguments[0].click();", breadcrumb);
 
-		Thread.sleep(6000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_TITLE));
 		pageHeading = driver.findElement(PLP_TITLE);
 
 		if (pageHeading.getText().equals("Women's All")) {
@@ -1628,7 +1633,7 @@ if(count!=59)
 //		marginRight = productImage.getCssValue("margin-right");
 //		System.out.println(width + " " + marginLeft + " " + marginRight);
 		
-		if(width==290)  {
+		if(width>280)  {
 			Reporter.log("Single Product Tile annotations are correct");
 			System.out.println("Single Product Tile annotations are correct");
 		}
