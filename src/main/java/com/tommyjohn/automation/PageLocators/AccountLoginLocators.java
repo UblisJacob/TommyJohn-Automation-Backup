@@ -9,13 +9,14 @@ public class AccountLoginLocators {
 	public static By CREATEACCOUNT_TEXT1 = By.cssSelector(".account-logged-out-row.two-tiles.second-row-mobile.on-load > h2");
 	public static By CREATEACCOUNT_TITLE = By.cssSelector("#shopify-section-account-benefits .account-row-title");
 	public static By CREATEACCOUNT_TEXT2 = By.cssSelector(".account-registration > p");
-	public static By CREATEACCOUNT_BTN = By.cssSelector(".account-registration > a");
+	public static By CREATEACCOUNT_BTN = By.cssSelector("button[data-tj-qa='account-create-account-btn']");
 	public static By LOGIN_HEADING_TEXT = By.cssSelector("#customer-login-form > h2");
 	public static By EMAIL_LABEL1 = By.cssSelector("#customer_login > div:nth-child(4) > label");
 	public static By CUSTOMER_EMAIL_INPUT = By.cssSelector("#customer-email");
 	public static By PASSWORD_LABEL1 = By.cssSelector("#customer_login > div:nth-child(5) > label");
 	public static By CUSTOMER_PASSWORD_INPUTBOX = By.cssSelector("#customer-password");
-	public static By LOGIN_BUTTON = By.cssSelector("#customer_login > button");
+//	public static By LOGIN_BUTTON = By.cssSelector("#customer_login > button");
+	public static By LOGIN_BUTTON = By.cssSelector("button[data-tj-qa='account-signup-login']");
 	public static By ERROR_MSG = By.cssSelector(".form-note.is-error");
 	
 	
@@ -23,13 +24,13 @@ public class AccountLoginLocators {
 	//on create account page
 	public static By CREATEACCOUNT_TEXT = By.cssSelector(".account-row-title.register-headline");
 	public static By ALREADYHAVEANACCOUNT_LINK = By.cssSelector(".account-registration > form > a");
-	public static By CREATEACCOUNT_EMAIL  = By.cssSelector("#email");
-	public static By CREATEACCOUNT_PASSWORD= By.cssSelector("#create-password");
-	public static By CREATEACCOUNT_BUTTON = By.cssSelector("#create_customer > button");
+	public static By CREATEACCOUNT_EMAIL  = By.cssSelector("input[data-tj-qa='create-account-email-input']");
+	public static By CREATEACCOUNT_PASSWORD= By.cssSelector("input[data-tj-qa='create-account-password-input']");
+	public static By CREATEACCOUNT_BUTTON = By.cssSelector("button[data-tj-qa='create-account-submit']");
 	public static By EMAIL_LABEL = By.cssSelector("#create_customer > div:nth-child(7) > label");
 	public static By PASSWORD_LABEL = By.cssSelector("#create_customer > div:nth-child(8) > label");
 	public static By MARKETING_LABEL = By.cssSelector(".account-checkbox-label");
-	public static By MARKETING_CHCKBOX = By.cssSelector("#accept_marketing");
+	public static By MARKETING_CHCKBOX = By.cssSelector("input[data-tj-qa='accept-marketing-checkbox']");
 	public static By CREATEACCOUNT_DISCLAIMER = By.cssSelector(".disclaimer.gdpr_Privacy_Policy");
 	public static By PRIVACYPOLICY_LINK = By.cssSelector(".disclaimer.gdpr_Privacy_Policy > a.privacyPolicy_Textlink");
 	public static By TERMS_LINK = By.cssSelector(".disclaimer.gdpr_Privacy_Policy> a:nth-child(2)");

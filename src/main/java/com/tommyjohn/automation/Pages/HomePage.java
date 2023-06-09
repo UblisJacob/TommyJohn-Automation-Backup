@@ -2,7 +2,6 @@ package com.tommyjohn.automation.Pages;
 
 import org.openqa.selenium.WebDriver;
 
-import com.tommyjohn.automation.Components.CollectionPageComponent;
 import com.tommyjohn.automation.Components.HomePageComponents;
 import com.tommyjohn.automation.Components.ProductDetailsPageComponents;
 
@@ -18,10 +17,18 @@ public class HomePage extends HomePageComponents {
 		ValidateLogoAndCategoriesPresence();
 	}
 
-	public void verifyfooterlinks() throws Exception
+	public void verifyFooterSection() throws Exception
 	{
-		validateFooterLinks();
+		validateFooterShopSection();
+		validateFooterPromotionsSection();
+		validateFooterAccountSection();
+		validateFooterSupportSection();
+		validateFooterCompanySection();
+		validateFooterSocialLinks();
+		validateFooterCopyrightCCPASection();
+		validateFooterNewsletter();
 	}
+	
 
 	public void verifyaccountdropdown() throws Exception
 	{

@@ -27,6 +27,7 @@ public class AccountLoginComponents extends AccountLoginLocators {
 	Wait<WebDriver> wait;
 	SoftAssert softly;
 	String testemail;
+	String email;
 	String password;
 	String currentUrl;
 	String invalidemail = "drewstrr@tre.vik";
@@ -39,53 +40,60 @@ public class AccountLoginComponents extends AccountLoginLocators {
 		wait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds(30))
 				.pollingEvery(Duration.ofMillis(500)).ignoring(NoSuchElementException.class);
 	}
+	
+	/**
+	 * Creates a new account with the specified email and password, without validations
+	 * @param uniqueEmail
+	 * @param password
+	 * @throws InterruptedException 
+	 */
 
-	public String createAccount() throws Exception {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+	public String createAccount(String email, String password) throws Exception {
 		actions = new Actions(driver);
-		testemail = "testaccount" + System.currentTimeMillis() + "@gmail.com";
-		password = CustomUtilities.properties.getProperty("password");
-		// driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN).click();
+		softly = new SoftAssert();
+//		testemail = "testaccount" + System.currentTimeMillis() + "@gmail.com";
+		
+		email = email.concat(System.currentTimeMillis()+"@gmail.com");
+		
+		System.out.println(email);
+		
 		WebElement element = driver.findElement((HomePageLocators.ACCOUNT_NAV_DROPDOWN));
+		
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		
 		executor.executeScript("arguments[0].click();", element);
-		wait.until(ExpectedConditions.presenceOfElementLocated(CREATEACCOUNT_BTN));
+		
+		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(CREATEACCOUNT_BTN, 0));
 		driver.findElement(CREATEACCOUNT_BTN).click();
-		wait.until(ExpectedConditions.presenceOfElementLocated(CREATEACCOUNT_EMAIL));
-		driver.findElement(CREATEACCOUNT_EMAIL).clear();
-		Thread.sleep(2000);
-		driver.findElement(CREATEACCOUNT_EMAIL).sendKeys(testemail);
-		driver.findElement(CREATEACCOUNT_PASSWORD).clear();
-		Thread.sleep(2000);
-
+		
+		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(CREATEACCOUNT_EMAIL,0));
+		driver.findElement(CREATEACCOUNT_EMAIL).sendKeys(email);
 		driver.findElement(CREATEACCOUNT_PASSWORD).sendKeys(password);
-		// driver.findElement(By.id("privacyPolicy")).click();
+		
+		Thread.sleep(2000);
+		
 		driver.findElement(CREATEACCOUNT_BUTTON).click();
-
-		wait.until(ExpectedConditions.presenceOfElementLocated(AccountPageLocators.ACCOUNT_PAGE_HEADING));
+		
+//		On Account Page after Log in
+		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(AccountPageLocators.ACCOUNT_PAGE_HEADING,0));
 		currentUrl = driver.getCurrentUrl();
-
 		String loggedInUsername = driver.findElement(AccountPageLocators.LOGGED_IN_ID).getText();
-
-		WebElement successMsgElement = driver.findElement(AccountPageLocators.ACCOUNT_CREATE_SUCCESS_MSG);
-		String successMsg = successMsgElement.getText();
-
-		System.out.println(successMsg);
-
-		if (!loggedInUsername.contains(testemail) && successMsgElement.isDisplayed())
-			throw new Exception("account page is not displayed after creating account");
-
-//		if(!currentUrl.equals(CustomUtilities.properties.getProperty("accountpage")))
-//			throw new Exception("account page is not displayed after creating account");
-
-		// logout the account
+		
+		softly.assertEquals(loggedInUsername, email);
+		softly.assertEquals(currentUrl, "https://www.tommyjohn.com/account");
+		softly.assertAll();
+		
+		System.out.println("Account Creation Flow Successfull");
+		
+//		Logout the account
 		element = driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN);
 		actions.moveToElement(element).perform();
 		executor.executeScript("arguments[0].click();", driver.findElement(LOGOUT_OPTION_IN_ACCOUNT_ICON));
 		Thread.sleep(3000);
 
 		Reporter.log("Account Created Successfully :: User is brought to account page");
-		return testemail;
+		
+		return email;
 	}
 
 	public void verifyFieldsOnCreateAccount() throws Exception {
@@ -286,7 +294,7 @@ public class AccountLoginComponents extends AccountLoginLocators {
 	public void recoverPassword(String createdAccountEmail) throws Exception {
 		String text = null;
 
-		driver.navigate().to("https://tommyjohn.com/");
+		driver.navigate().to("https://www.tommyjohn.com/");
 		// click on accout icon from home page
 		// driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN).click();
 		WebElement element = driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN);
@@ -427,7 +435,7 @@ public class AccountLoginComponents extends AccountLoginLocators {
 		Reporter.log("All displayed fields and texts are verified on account login page");
 	}
 
-	public void verifyAccountLoginFuctionality(String createdAccountEmail) throws Exception {
+	public void verifyAccountLoginFuctionality(String createdAccountEmail, String password) throws Exception {
 
 		actions = new Actions(driver);
 		// click on account icon from home page
@@ -450,8 +458,7 @@ public class AccountLoginComponents extends AccountLoginLocators {
 				throw new Exception("Email inputbox is not present");
 			driver.findElement(CUSTOMER_PASSWORD_INPUTBOX).clear();
 			Thread.sleep(2000);
-			driver.findElement(CUSTOMER_PASSWORD_INPUTBOX).sendKeys(CustomUtilities.properties.getProperty("password"));
-
+			driver.findElement(CUSTOMER_PASSWORD_INPUTBOX).sendKeys(password);
 			// click login button if present
 			if (!driver.findElement(LOGIN_BUTTON).isDisplayed())
 				throw new Exception("Login button is not present");
@@ -511,13 +518,18 @@ public class AccountLoginComponents extends AccountLoginLocators {
 
 		Reporter.log("All error messages are verified on login page");
 	}
-
+	
+	
 	/**
 	 * Used for validating the "Forgot your Password?" functionality
 	 * @param email to reset password of
 	 * @throws Exception
 	 */
 	public void resetPasswordFunctionality(String email) throws Exception {
+		
+		System.out.println("Resetting Password for Account: " + email);
+		
+		this.email = email;
 		
 		softly = new SoftAssert();
 
@@ -530,18 +542,19 @@ public class AccountLoginComponents extends AccountLoginLocators {
 		wait.until(ExpectedConditions.elementToBeClickable(FORGOT_YOUR_PASSWORD_LINK));
 		driver.findElement(FORGOT_YOUR_PASSWORD_LINK).click();
 		
-		String recoveryPageURL = "https://www.tommyjohn.com/account/login#recover";
-		
 //		Wait for Reset Password Page
-		wait.until(ExpectedConditions.presenceOfElementLocated(RECOVER_YOUR_PASSWORD_HEADING));
+		wait.until(ExpectedConditions.elementToBeClickable(SUBMIT_BUTTON));
+		
+		String recoveryPageURL = "https://www.tommyjohn.com/account/login#recover";
 		softly.assertTrue(driver.getCurrentUrl().equals(recoveryPageURL), 
 				"Reset Password Page doesn't seem to have opened, current URL is " + recoveryPageURL);
 		
 //		Entering Email address to get Password Recovery Link
 		driver.findElement(INPUT_BOX_FOR_EMAIL).sendKeys(email);
-
+		
 //		Click on Submit
 		driver.findElement(SUBMIT_BUTTON).click();
+		
 		String loginPageURL = "https://www.tommyjohn.com/account/login";
 		
 		wait.until(ExpectedConditions.urlToBe(loginPageURL));
@@ -551,10 +564,7 @@ public class AccountLoginComponents extends AccountLoginLocators {
 
 		softly.assertAll();
 		
-		System.out.println("Done");
-
-		Thread.sleep(3000);
-
+		System.out.println("Password Reset Flow Complete");
 	}
 
 	/**
@@ -567,7 +577,7 @@ public class AccountLoginComponents extends AccountLoginLocators {
 	 * @throws Exception
 	 */
 	public void createNewPasswordFunctionality(String resetLink, String newPassword) throws Exception {
-		/**
+
 		System.out.println("Attempting Reset Password");
 
 		driver.navigate().to(resetLink);
@@ -591,15 +601,8 @@ public class AccountLoginComponents extends AccountLoginLocators {
 		driver.findElement(CHANGE_PASSWORD_BTN).click();
 
 		Thread.sleep(3000);
-
-//		To Verify if password is successfully changed, Signing out and Signing in
-
-//		From Account Page click on Sign Out
-//		Need to first Sign in, clicking with JS on sign in drop down
 		
-		**/
-		
-		verifyLoginFunctionality("thebayharborbutcher14+13@gmail.com", "changed");
+		System.out.println("Create New Passwowrd Flow Complete, Validating if Password Change is successful");
 
 	}
 
@@ -611,15 +614,13 @@ public class AccountLoginComponents extends AccountLoginLocators {
 	 */
 	public void verifyLoginFunctionality(String email, String password) throws InterruptedException {
 		
+		if (!driver.getCurrentUrl().equals("https://www.tommyjohn.com/account/login")) {
+			driver.navigate().to("https://www.tommyjohn.com/account/login");
+		}
+		
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 
-		wait.until(ExpectedConditions.presenceOfElementLocated(HomePageLocators.SIGNIN_OPTION));
-
-		WebElement signIn = driver.findElement(By.cssSelector(".header-nav-dropdown > ul >li:nth-child(3) > a"));
-
-		js.executeScript("arguments[0].click()", signIn);
-
-		wait.until(ExpectedConditions.elementToBeClickable(LOGIN_BUTTON));
+		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(LOGIN_BUTTON, 0));
 
 		driver.findElement(CUSTOMER_EMAIL_INPUT).sendKeys(email);
 		driver.findElement(CUSTOMER_PASSWORD_INPUTBOX).sendKeys(password);
@@ -654,10 +655,6 @@ public class AccountLoginComponents extends AccountLoginLocators {
 		softly.assertAll();
 
 		System.out.println("Sign Out Successfull!");
-
-		System.out.println("Header Text says " + accountStatus);
-
-		System.out.println("done");
 
 	}
 

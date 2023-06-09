@@ -28,10 +28,17 @@
 	</test>
 
 
-	<test thread-count="1" name="ProductPageTests" verbose="1" parallel="tests">
+	<test thread-count="1" name="ProductPageTests">
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="TestModules.ValidatePDP" />
+		</classes>
+	</test>
+	
+	<test thread-count="1" name="HomePageTests">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="TestModules.ValidateHomePage" />
 		</classes>
 	</test>
 
