@@ -17,7 +17,7 @@ public class CollectionPageLocator {
 //	public static By FIRST_PRODUCT_HEAD_LINE_TEXT_LINK = By.cssSelector("div.mega-collection-grid__row:nth-child(3) > div:nth-child(1) > a > h2");
 //	public static By FIRST_PRODUCT_REVIEW_STARS = By.cssSelector("div.mega-collection-grid__row:nth-child(3) > div:nth-child(1) > a > div");
 	
-	public static By FIRST_PRODUCT = By.cssSelector(".product-item");
+	public static By FIRST_PRODUCT = By.cssSelector("div.product-image-container");
 	public static By COMPARE_PRODUCT = By.cssSelector(".product-image-container > div.has-compare");
 	public static By FIRST_PRODUCT_IMAGE = By.cssSelector(".product-image");
 	//changed
@@ -28,8 +28,8 @@ public class CollectionPageLocator {
 	public static By FIRST_PRODUCT_REVIEW_STARS = By.cssSelector(".yotpo-bottomline");
 	public static By FIRST_PRODUCT_URL = By.cssSelector(".product-meta");
 	
-	public static By ALL_COLOR_LIST = By.cssSelector("div.mega-collection-grid.js-mega-collection-grid > div:nth-child(3) > div:nth-child(1)>div:nth-child(2)>.product-item__swatch-list>.slick-list>.slick-track>div");
-	public static By PRODUCT_IMAGE_COLOR_NAME= By.cssSelector("div.mega-collection-grid.js-mega-collection-grid > div:nth-child(3) > div:nth-child(1)>div:nth-child(1)>a");
+	public static By ALL_COLOR_LIST = By.cssSelector("div[data-index='0']>div:nth-child(2)>div>div>div.product-item__swatch--circle");
+	public static By PRODUCT_IMAGE_COLOR_NAME= By.cssSelector("div[data-index='0']>div>a");
 	public static By COLOR_SWATCH_PREV_SLICK_ARROWS = By.cssSelector("div.mega-collection-grid.js-mega-collection-grid > div:nth-child(3) > div:nth-child(1)>div:nth-child(2)>.product-item__swatch-list>.slick-next");
 	public static By COLOR_SWATCH_NEXT_SLICK_ARROWS = By.cssSelector("div.mega-collection-grid.js-mega-collection-grid > div:nth-child(3) > div:nth-child(1)>div:nth-child(2)>.product-item__swatch-list>.slick-prev");
 
@@ -49,7 +49,6 @@ public class CollectionPageLocator {
 		public static By QUICK_SHOP_SIZE_OVERLAY = By.cssSelector(".inline-quick-shop");
 		public static By QUICK_SHOP_SIZE_OVERLAY_CLOSE = By.cssSelector(".inline-quick-shop>.icon-close");
 		public static By QUICK_SHOP_SIZE_OVERLAY_HEADING = By.cssSelector(".inline-quick-shop>.inline-quick-shop__option-heading");
-		//public static By QUICK_SHOP_SIZE_LIST = By.cssSelector(".quickshop-open>.inline-quick-shop>ul>li");
 		public static By QUICK_SHOP_SIZE_LIST_1 = By.cssSelector(".quickshop-open>.inline-quick-shop>ul:nth-child(4)>li");
 		public static By QUICK_SHOP_SIZE_LIST_2 = By.cssSelector(".quickshop-open>.inline-quick-shop>ul:nth-child(6)>li");
 		public static By QUICK_SHOP_SIZE_LABEL = By.cssSelector(".quickshop-open>.inline-quick-shop>ul>li>label");
@@ -65,11 +64,6 @@ public class CollectionPageLocator {
 	    public static By SORTBYPRICE_DROPDOWN = By.xpath("//select[@title='Sort By']");
 	    public static By PLP_PRICE = By.cssSelector("span.product-meta__price");
 	    public static By PLP_PRICE_FILTER = By.xpath("//a[@title='Price']//span");
-	    
-	    public static By SEARCH_PRICE_FILTER = By.xpath("//a[@data-filter-group='facet_price_range']//span[contains(text(),'Price')]");
-	    public static By SEARCH_PRICE_FILTER_1=By.xpath("//label[contains(@for,'25to50')]//span");
-	    public static By SEARCH_PRICE_FILTER_PILL_1=By.xpath("//button[contains(text(),'$25 to $50')]");
-	  
 	    
 	    public static By PRICE_LESS_THAN_25= By.xpath("(//input[contains(@data-filter-btn,'Less than $25')])[1]");
 	    public static By LESS_THAN_25_PILL= By.xpath("(//button[@title='Less than $25'])[1]");
@@ -95,8 +89,11 @@ public class CollectionPageLocator {
 	    public static By PLP_PRODUCT_IMAGE_BADGE = By.xpath("//div[@class='productImage-item__badge']//span");
 	    public static By PLP_PRODUCT_SECONDARY_BADGE = By.xpath("//div[contains(@class,'product-item__badge')]//span");
 	    
-	    
+	     public static By SEARCH_PRICE_FILTER = By.xpath("//a[@data-filter-group='facet_price_range']//span[contains(text(),'Price')]");
+	    public static By SEARCH_PRICE_FILTER_1=By.xpath("//label[contains(@for,'25to50')]//span");
+	    public static By SEARCH_PRICE_FILTER_PILL_1=By.xpath("//button[contains(text(),'$25 to $50')]");
 	  
 	    
 	    
 }
+

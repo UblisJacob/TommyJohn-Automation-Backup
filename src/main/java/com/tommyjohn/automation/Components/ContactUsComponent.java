@@ -1,9 +1,9 @@
 package com.tommyjohn.automation.Components;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.Properties;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -29,7 +29,7 @@ public class ContactUsComponent extends ContactUsPageLocators
 	}
 	public void ContactUsFlow() throws Exception
 	{
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(EMAIL_US_LINK));
 		driver.findElement(EMAIL_US_LINK).click();
 		
