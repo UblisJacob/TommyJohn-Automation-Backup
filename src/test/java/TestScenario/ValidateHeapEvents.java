@@ -131,7 +131,7 @@ public class ValidateHeapEvents {
 		element = driver.findElement(CollectionPageComponent.QUICK_SHOP_ATC);
 		List<WebElement> allElements;
 		String classtext;
-		allElements = driver.findElements(CollectionPageComponent.QUICK_SHOP_SIZE_LIST);
+		allElements = driver.findElements(CollectionPageComponent.QUICK_SHOP_SIZE_LIST_1);
 		System.out.println("All sizes list :: "+ allElements.size());
 		for(int i=0;i<allElements.size();i++) 
 		{
