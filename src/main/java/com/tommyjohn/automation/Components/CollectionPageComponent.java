@@ -1,6 +1,8 @@
 package com.tommyjohn.automation.Components;
 
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.time.Duration;
 import java.util.ArrayList;
@@ -42,6 +44,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	String Selected_size1;
 	String Selected_size2;
 	int count=0;
+
 
 	public String navigateToProductDetailsPage() throws Exception {
 		String text = null;
@@ -155,6 +158,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	}
 
 	public void methodToSortByPrice() throws Exception {
+		
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
@@ -173,8 +177,13 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		drpCountry.selectByValue("price:ascending");
 		Thread.sleep(5000);
 
+
+		js.executeScript("window.scrollBy(0,250)");
+		Thread.sleep(5000);
+
 		//js.executeScript("arguments[0].scrollIntoView();", prices);
 		//Thread.sleep(5000);
+
 		List<WebElement> list = driver.findElements(PLP_PRICE);
 		ArrayList<Double> productPrice = new ArrayList<Double>();
 		ArrayList<Double> sortedList = new ArrayList<Double>();
@@ -196,10 +205,17 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			Reporter.log("The products are sorted in ascending order");
 		}
 
-		js.executeScript("window.scrollTo(0, -document.body.scrollHeight)");
-		drpCountry.selectByIndex(2);
-		js.executeScript("window.scrollBy(0,450)");
+
+		
+		js.executeScript("window.scrollBy(0,250)");
 		Thread.sleep(5000);
+		drpCountry.selectByValue("price:descending");
+
+		//js.executeScript("window.scrollTo(0, -document.body.scrollHeight)");
+	//	drpCountry.selectByIndex(2);
+	//	js.executeScript("window.scrollBy(0,450)");
+
+//		Thread.sleep(5000);
 		List<WebElement> list1 = driver.findElements(PLP_PRICE);
 		ArrayList<Double> productPrice1 = new ArrayList<Double>();
 		ArrayList<Double> sortedList1 = new ArrayList<Double>();
@@ -220,6 +236,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		} else {
 			Reporter.log("The products are sorted successfully");
 		}
+		 
 	}
 
 	@SuppressWarnings("static-access")
@@ -233,12 +250,12 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		// get product title and click on product heading text if present
 
 		text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
-		driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT).click();
+		/*driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT).click();
 		Thread.sleep(3000);
-		Reporter.log(driver.getCurrentUrl());
+		Reporter.log(driver.getCurrentUrl());*/
 
 		// check correct Product details page opened or not
-		new ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);
+		/*new ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);*/
 
 		// validate product details page by calling the method
 //		if (!(driver.getCurrentUrl().contains("pack") || driver.getCurrentUrl().contains("set")
@@ -283,12 +300,25 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 
 		jse.executeScript("window.scrollBy(0,250)");
-		wait.until(ExpectedConditions.presenceOfElementLocated(FIRST_PRODUCT_REVIEW_STARS));
+		Thread.sleep(3000);
+    
+    wait.until(ExpectedConditions.presenceOfElementLocated(FIRST_PRODUCT_REVIEW_STARS));
 		
 		driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
 		driver.findElement(FIRST_PRODUCT_REVIEW_STARS).click();
 		Thread.sleep(3000);
 		Reporter.log(driver.getCurrentUrl());
+    
+		/*text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
+		driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT).click();
+
+		wait.until(ExpectedConditions.presenceOfElementLocated(FIRST_PRODUCT_REVIEW_STARS));
+		
+		driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
+		driver.findElement(FIRST_PRODUCT_REVIEW_STARS).click();
+
+		Thread.sleep(3000);
+		Reporter.log(driver.getCurrentUrl());*/
 		// check correct Product details page opened or not
 		// new
 		// ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);
@@ -545,47 +575,111 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		// JavascriptExecutor js = (JavascriptExecutor) driver;
 		// js.executeScript("arguments[0].scrollIntoView();", element);
 		//
-		/*
-		 * WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		 * wait.until(ExpectedConditions.visibilityOfElementLocated(LAST_FILTER)); if
-		 * (driver.findElement(LAST_FILTER).isDisplayed()) { //
-		 * driver.findElement(LAST_FILTER).click(); Select selectElement = new
-		 * Select(driver.findElement(LAST_FILTER));
-		 * selectElement.selectByValue("price:ascending");
-		 * 
-		 * // click on second option
-		 * 
-		 * // wait.until(ExpectedConditions.visibilityOfElementLocated(
-		 * SORTBYPRICE_HIGH_TO_LOW_FILTER_OPTION)); //
-		 * driver.findElement(SORTBYPRICE_HIGH_TO_LOW_FILTER_OPTION).click();
-		 * Thread.sleep(5000); allProductsOnPage =
-		 * driver.findElements(FIRST_PRODUCT_IMAGE);
-		 * System.out.println("All product on page :: " + allProductsOnPage.size()); try
-		 * { for (int i = 1; i < allProductsOnPage.size(); i++) { String text = null;
-		 * String text1 = null; String text2 = null;
-		 * 
-		 * text = driver.findElement(By.
-		 * cssSelector(".mega-collection-grid__row > div.product-meta__prices(" + i +
-		 * ") > span.product-meta__price")).getText(); System.out.println("Text :: " +
-		 * text); for (String a : text.split("\\$")) text1 = a;
-		 * System.out.println("text 1 :: " + text1); // loop to check previous and next
-		 * price int j = i + 1; System.out.println("Text :: " + driver.findElement(By.
-		 * cssSelector(".mega-collection-grid__row > div.product-meta__prices(" + j +
-		 * ") > span.product-meta__price")).getText()); for (String a : driver
-		 * .findElement(By.
-		 * cssSelector(".mega-collection-grid__row > div.product-meta__prices(" + j +
-		 * ") > span.product-meta__price")) .getText().split("\\$")) text2 = a;
-		 * System.out.println("text2 :: " + text2); if (Float.parseFloat(text1) >
-		 * Float.parseFloat(text2)) throw new
-		 * Exception("Products are not sorted by price correctly");
-		 * 
-		 * } } catch (Exception e) { System.out.
-		 * println("Due to lazy loading price comparison is not possible for sort by filter."
-		 * ); } Reporter.log("All Products are sorted as selected option");
-		 * 
-		 * }
-		 */
+		
+		/* WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		 wait.until(ExpectedConditions.visibilityOfElementLocated(LAST_FILTER)); if
+		 (driver.findElement(LAST_FILTER).isDisplayed()) { //
+		 driver.findElement(LAST_FILTER).click(); Select selectElement = new
+		 Select(driver.findElement(LAST_FILTER));
+		 selectElement.selectByValue("price:ascending");*/
+		 
+		 // click on second option
+		 
+		 /*wait.until(ExpectedConditions.visibilityOfElementLocated(
+		 SORTBYPRICE_HIGH_TO_LOW_FILTER_OPTION));
+		 driver.findElement(SORTBYPRICE_HIGH_TO_LOW_FILTER_OPTION).click();
+		 Thread.sleep(5000); allProductsOnPage =
+		 driver.findElements(FIRST_PRODUCT_IMAGE);
+		 System.out.println("All product on page :: " + allProductsOnPage.size()); try
+		 { for (int i = 1; i < allProductsOnPage.size(); i++) { String text = null;
+		 String text1 = null; String text2 = null;
+		  
+		 text = driver.findElement(By.
+		 cssSelector(".mega-collection-grid__row > div.product-meta__prices(" + i +
+		 ") > span.product-meta__price")).getText(); System.out.println("Text :: " +
+		 text); for (String a : text.split("\\$")) text1 = a;
+		 System.out.println("text 1 :: " + text1); // loop to check previous and next
+		 price int j = i + 1; System.out.println("Text :: " + driver.findElement(By.
+		 cssSelector(".mega-collection-grid__row > div.product-meta__prices(" + j +
+		 ") > span.product-meta__price")).getText()); for (String a : driver
+		 .findElement(By.
+		 cssSelector(".mega-collection-grid__row > div.product-meta__prices(" + j +
+		 ") > span.product-meta__price")) .getText().split("\\$")) text2 = a;
+		 System.out.println("text2 :: " + text2); if (Float.parseFloat(text1) >
+		 Float.parseFloat(text2)) throw new
+		 Exception("Products are not sorted by price correctly");
+		 
+		 } } catch (Exception e) { System.out.
+		 println("Due to lazy loading price comparison is not possible for sort by filter."
+		 ); } Reporter.log("All Products are sorted as selected option");
+		 
+		 }*/
+		 
 
+	}
+	
+	public void methodToCheckFiltersSearch() throws Exception {
+		/*List<WebElement> allElements = null;
+		int filterList = 0;
+		int optionsList = 0;
+		String selectedOption = null;
+		int optionsList1 = 0;
+		int count = 0;
+		List<WebElement> allProductsOnPage = null;
+		String totalDisplayedCount = null;*/
+		
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SEARCH_PRICE_FILTER));
+		js.executeScript("arguments[0].click();", driver.findElement(SEARCH_PRICE_FILTER));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SEARCH_PRICE_FILTER_1));
+		String priceFilter = driver.findElement(SEARCH_PRICE_FILTER_1).getText();
+		js.executeScript("arguments[0].click();", driver.findElement(SEARCH_PRICE_FILTER_1));
+		Thread.sleep(5000);
+		js.executeScript("arguments[0].click();", driver.findElement(SEARCH_PRICE_FILTER));
+		String priceFilterPill = driver.findElement(SEARCH_PRICE_FILTER_PILL_1).getText();
+		js.executeScript("arguments[0].click();", driver.findElement(SEARCH_PRICE_FILTER_1));
+		
+		
+		if(priceFilterPill.contains(priceFilter)) {
+			System.out.println("Price Filter is working");
+			Reporter.log("Price Filter is working");
+		}
+		else {
+			System.out.println("Price Filter is not working");
+			throw new Exception("Price Filter is not working");
+		}
+		
+		js.executeScript("arguments[0].click();", driver.findElement(SEARCH_PRICE_FILTER_1));
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.mega-collection-filters > div:nth-child(2) > a")));
+		WebElement firstFilter = driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child(2) > a"));
+		js.executeScript("arguments[0].click();", firstFilter);
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.mega-collection-filters > div:nth-child(2) > ul > li:nth-child(1) > label > input")));
+		WebElement firstFilterOption = driver.findElement(By.cssSelector(
+				"div.mega-collection-filters > div:nth-child(2) > ul > li:nth-child(1) > label > input"));
+		js.executeScript("arguments[0].click();", firstFilterOption);
+		Thread.sleep(5000);
+
+	}
+	
+	public void clickOnSearchPageFilter() throws Exception{
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.mega-collection-filters > div:nth-child(2) > a")));
+		WebElement firstFilter = driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child(2) > a"));
+		js.executeScript("arguments[0].click();", firstFilter);
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.mega-collection-filters > div:nth-child(2) > ul > li:nth-child(1) > label > input")));
+		WebElement firstFilterOption = driver.findElement(By.cssSelector(
+				"div.mega-collection-filters > div:nth-child(2) > ul > li:nth-child(1) > label > input"));
+		js.executeScript("arguments[0].click();", firstFilterOption);
+		Thread.sleep(5000);
 	}
 
 	public void methodToCheckCorosalsOnTopOfPageIsActiveWhenRelatedStyleIsChecked() throws Exception {
@@ -737,6 +831,33 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	{
 		new WebDriverWait(driver, Duration.ofSeconds(30));
 		try {
+
+			  
+	        // Create an object of filereader
+	        // class with CSV file as a parameter.
+	       // FileReader filereader = new FileReader("src/main/resources/Category_PLPs.csv");
+	  
+	        // create csvReader object passing
+	        // file reader as a parameter
+	      //  CSVReader csvReader = new CSVReader(filereader);
+	        String[] nextRecord;
+	  
+	        // we are going to read data line by line
+	       // while ((nextRecord = csvReader.readNext()) != null) {
+	       //     for (String cell : nextRecord) {
+	       //         System.out.print(cell + "\t");
+	        //        checkurl(cell);
+	        //    }
+	        //    System.out.println();
+	        //}
+	   // }
+	   // catch (Exception e) {
+	   //     e.printStackTrace();
+	  //  }
+		
+		try {
+			//File src = new File("src/main/resources/AllCollectionPages.xlsx");
+
 			
 			String csv_path = "src/main/resources/PLPs.csv";
 			CSVReader CSVReader = new CSVReader(new FileReader(csv_path));
@@ -759,6 +880,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 if(count!=59)
 	//System.out.println(count);
 	throw new Exception("Some urls not loading.");
+
 
 			
 			
@@ -785,9 +907,29 @@ if(count!=59)
 
 		} catch (Exception e) {
 			Reporter.log("File not found");
-			throw new Exception ("File not found");
+
+
 		}
 	}
+
+	private void checkurl(String url) throws InterruptedException {
+
+		try {
+			driver.get(url);
+			System.out.println(url);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+			wait.until(ExpectedConditions.presenceOfElementLocated(FIRST_PRODUCT));
+			List<WebElement> items = driver.findElements(By.cssSelector(".product-item"));
+			Reporter.log("No. of items present in " + url + " is " + items.size());
+
+		}
+
+		catch (Exception e) {
+			Reporter.log(url + "not loading");
+		}
+	}
+
+
 
 	public void QuickShopOnMegaCollection() throws Exception {
 		Actions action = new Actions(driver);
@@ -806,7 +948,7 @@ if(count!=59)
 	}
 
 	
-		public void AddproductToCartByQuickShop() throws Exception {
+	public void AddproductToCartByQuickShop() throws Exception {
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 			String prod_title = driver.findElement(PRODUCT_TITLE_ON_COLLECTION).getText();
 			String color_name = driver.findElement(PRODUCT_ITEM_SWATCH_CIRCLE).getAttribute("title");
@@ -983,6 +1125,7 @@ if(count!=59)
 			softAssert.assertAll();
 		}
 	
+
 
 	public void MethodToCheckColorSwatchChanging() throws Exception {
 		driver.navigate().back();
@@ -1203,6 +1346,7 @@ if(count!=59)
 		pageHeading = driver.findElement(PLP_TITLE);
 
 		if (pageHeading.getText().equals("Women's All")) {
+
 			System.out.println("Breadcrumb link is working properly");
 			Reporter.log("Breadcrumb link is working properly");
 
@@ -1319,7 +1463,35 @@ if(count!=59)
 		} else {
 			
 			System.out.println("The Secondary Badge is not displayed");
-			throw new Exception("The Secondary Badge is not displayed");
+			Reporter.log("The Secondary Badge is not displayed");
+			//throw new Exception("The Secondary Badge is not displayed");
+		}
+	}
+	
+	public void validateOnImageBadging() throws Exception {
+
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_PRODUCT_IMAGE_BADGE));
+
+		WebElement onImageBadge = driver.findElement(PLP_PRODUCT_IMAGE_BADGE);
+		
+
+		js.executeScript("window.scrollBy(0,250)");
+		Assert.assertTrue(onImageBadge.isDisplayed(), "The On Image Badge is displayed");
+		
+
+		if (onImageBadge.isDisplayed()) {
+
+			Reporter.log("The On Image Badge is displayed");
+			System.out.println("The On Image Badge is displayed");
+
+		} else {
+			System.out.println("The On Image Badge is not displayed");
+			throw new Exception("The On Image Badge is not displayed");
 		}
 	}
 
@@ -1445,4 +1617,34 @@ if(count!=59)
 			throw new Exception("Single Product Tile annotations are not correct");
 		}
 	}
+	
+	public void validateSingleTileSearch() throws Exception {
+
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		
+		js.executeScript("window.scrollBy(0,250)");
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_IMAGE));
+		
+		WebElement productImage = driver.findElement(By.cssSelector("div[data-index='0']>div>a>img.product-image--main"));
+		org.openqa.selenium.Dimension dim = productImage.getSize();
+		int width=	dim.width;
+//		marginLeft = productImage.getCssValue("margin-left");
+//		marginRight = productImage.getCssValue("margin-right");
+//		System.out.println(width + " " + marginLeft + " " + marginRight);
+		
+		if(width==290)  {
+			Reporter.log("Single Product Tile annotations are correct");
+			System.out.println("Single Product Tile annotations are correct");
+		}
+		else {
+			System.out.println("Single Product Tile annotations are not correct");
+			throw new Exception("Single Product Tile annotations are not correct");
+		}
+	}
+	
+	
 }

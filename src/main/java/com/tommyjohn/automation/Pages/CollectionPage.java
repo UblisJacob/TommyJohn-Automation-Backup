@@ -31,7 +31,7 @@ public class CollectionPage extends CollectionPageComponent{
 		validateProductImageOnCollectionPage();
 	}
 	
-	/*public void validateproductimageonMegaCollectionPLP() throws Exception
+	public void validateproductimageonMegaCollectionPLP() throws Exception
 	{
 		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 		Verify_ProductTile_HoverFunctionality();
@@ -39,7 +39,7 @@ public class CollectionPage extends CollectionPageComponent{
 		JavascriptExecutor jse=(JavascriptExecutor)driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		validateProductImageOnPLP();
-	}*/
+	}
 //	public void validateproductimageonMegaCollectionPLP() throws Exception
 //	{
 //		
@@ -453,6 +453,43 @@ public class CollectionPage extends CollectionPageComponent{
 		new HomePageComponents(driver).NavigateToLoungewearSetsInWomenCategory();
 		QuickShopOnMegaCollection();
 	}
+  
+  
+   public void validateFiltersSearch() throws Exception {
+                // TODO Auto-generated method stub
+                methodToCheckFiltersSearch();
+   }
+      public void validateOnImageBadgeSearch() throws Exception {
+                
+                //validateOnImageBadging();
+                validateOnImageAndSecondaryBadges();
+                
+        }
+     
+      public void validateProductTileSearch() throws Exception {
+                // TODO Auto-generated method stub
+                validateProductImageOnPLP();
+                MethodToCheckColorSwatchChanging();
+                MethodToCheckColorSwatchChanging();
+                validateProductReviewStarsOnCollectionPage();
+                validateProductReviewStarsOnCollectionPage();
+                Verify_ProductTile_HoverFunctionality();
+                
+                validateProductHeadingTextOnCollectionPage();
+        }
+     
+      public void validateQuickshopFunctionalityOnSearchPLP() throws Exception {
+                // TODO Auto-generated method stub
+                MethodToCheckColorSwatchChanging();
+                MethodToCheckColorSwatchChanging();
+                QuickShopOnMegaCollection();
+                QuickShopOnMegaCollection();
+        }
+     
+     public void validateSingleTileProductSearch() throws Exception {
+                // TODO Auto-generated method stub
+                validateSingleTileSearch();
+        }
 }
 
 
@@ -486,3 +523,4 @@ public class CollectionPage extends CollectionPageComponent{
 //	{
 //		validateProductReviewStarsForSingleCollection();
 //	}
+
