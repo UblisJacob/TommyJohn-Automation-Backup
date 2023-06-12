@@ -1,8 +1,8 @@
 package com.tommyjohn.automation.Components;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -44,7 +44,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 
 		new HomePageComponents(driver).validateCartIcon();
 		driver.findElement(HomePageLocators.CART_ICON).click();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		Thread.sleep(3000);
 		// check for continue shopping button text and is displayed, enabled or not		
 		softAssert.assertTrue(driver.findElement(INLINE_CART_CLOSE_BUTTON).isDisplayed(), "Inline cart close button is not displayed");
@@ -129,7 +129,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 
 		//		new HomePageComponents().validateCartIcon();
 		driver.findElement(HomePageLocators.CART_ICON).click();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		//driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		Thread.sleep(3000);
 
 		// check for continue shopping button text and is displayed, enabled or not		
@@ -248,7 +248,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		Thread.sleep(3000);
 
 		driver.findElement(INLINE_CART_CLOSE_BUTTON).click();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+	//	driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		String currenturl = driver.getCurrentUrl();
 		String[] part= currenturl.split("\\?");
 		 text1 = part[0];
@@ -497,7 +497,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		JavascriptExecutor js = (JavascriptExecutor)driver;
 		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 		Thread.sleep(8000);
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		js.executeScript("window.scrollBy(0,500)");
 
 		wait.until(ExpectedConditions.presenceOfElementLocated(CollectionPageLocator.FIRST_PRODUCT_IMAGE));

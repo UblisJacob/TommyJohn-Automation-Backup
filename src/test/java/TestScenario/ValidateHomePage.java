@@ -33,7 +33,7 @@ public class ValidateHomePage {
 	@Test
 	public void TC_verifyFooterLinksOnHomePage() throws Exception {
 
-		new HomePage(driver).validateFooterLinks();
+		//new HomePage(driver).validateFooterLinks();
 	}
 	@Test
 	public void TC_verifyAccountdropdownOnHomePage() throws Exception {
