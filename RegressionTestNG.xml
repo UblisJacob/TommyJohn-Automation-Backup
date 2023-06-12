@@ -41,6 +41,14 @@
 			<class name="TestModules.ValidateHomePage" />
 		</classes>
 	</test>
+  
+  <test name="SearchPageTests">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="TestModules.ValidateSearchPages" />
+		</classes>
+	</test>
+  
 
 	<!--	<test thread-count="1" name="InlineCartTests" verbose="1" parallel="tests">-->
 	<!--		<parameter name="browser" value="chrome" />-->

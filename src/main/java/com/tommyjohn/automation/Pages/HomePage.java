@@ -52,11 +52,20 @@ public class HomePage extends HomePageComponents {
 		validateSearchFunctionality();
 
 	}
-	public void validateSearchPM() throws Exception
+	public void validateSearchPM(String searchText) throws Exception
 	{
-		validateSearchFunction();
+		
+		validateSearchFunction(searchText);
 
 	}
+	public void validateSearchFunctionEnterKeyword(String searchText) throws Exception
+	{
+		
+		validateSearchFunctionEnter(searchText);
+
+	}
+	
+	
 
 	public void validateDoNotSellMyPersonalInformation() throws Exception
 	{
