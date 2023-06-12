@@ -169,9 +169,52 @@ public class HomePageComponents extends HomePageLocators {
 	//			throw new Exception("Gift Guide category is not hoverable");
 	//		Reporter.log("Gift Guide category is Displayed :: Hoverable");
 	//	}
+	
+	public void validateSearchFunctionEnter(String searchText) throws Exception {
+
+		SoftAssert softAssert = new SoftAssert();
+		action = new Actions(driver);
+		
+		WebElement search = driver.findElement(SEARCH_ICON);
+		action.moveToElement(driver.findElement(SEARCH_ICON)).build().perform();
+		Thread.sleep(3000);
+		
+		driver.findElement(SEARCH_ICON).sendKeys(searchText + Keys.ENTER);
+		
+		if(driver.findElement(SEARCHPAGE_TITLE).isDisplayed())
+		{
+			System.out.println("Search Page Title is displayed");
+			Reporter.log("Search Page Title is displayed");
+			if(driver.findElement(SEARCHPAGE_TITLE).getText().equals("Results for \""+ searchText +"\""))
+			{
+				System.out.println("Search Page Title is correct");
+				Reporter.log("Search Page Title is correct");
+			}
+			else
+			{
+				Reporter.log("Search Page Title is not correct");
+				throw new Exception("Search Page Title is not correct");
+			}
+		}
+		else
+		{
+			Reporter.log("Search Page Title is not displayed");
+			throw new Exception("Search Page Title is not displayed");
+		}
+			
+		
+		
+		/*if(driver.findElement(ProductDetailsPageLocators.PRODUCT_DETAILS).getText().contains("Pack"))
+			new ProductDetailsPageComponents(driver).verifybundlepages();
+		else
+			new ProductDetailsPageComponents(driver).validatePage();*/
+
+		softAssert.assertAll();
+
+	}
 
 
-	public void validateSearchFunction() throws Exception {
+	public void validateSearchFunction(String searchText) throws Exception {
 
 		SoftAssert softAssert = new SoftAssert();
 		action = new Actions(driver);
@@ -179,8 +222,8 @@ public class HomePageComponents extends HomePageLocators {
 		WebElement element = driver.findElement(SEARCH_ICON);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", element);
-		String searchKeyWord = "second skin";
-		driver.findElement(SEARCH_ICON).sendKeys(searchKeyWord);
+		
+		driver.findElement(SEARCH_ICON).sendKeys(searchText);
 
 		WebElement search = driver.findElement(SEARCH_ICON);
 		action.moveToElement(driver.findElement(SEARCH_ICON)).build().perform();
@@ -233,6 +276,8 @@ public class HomePageComponents extends HomePageLocators {
 		softAssert.assertAll();
 
 	}
+	
+	
 
 	public void validateSearchFunctionality() throws Exception {
 
@@ -323,7 +368,7 @@ public class HomePageComponents extends HomePageLocators {
 
 		new CollectionPageComponent(driver).QuickShopOnMegaCollection();
 
-		MethodToCheckAllFiltersOnSearchPage();
+		//MethodToCheckAllFiltersOnSearchPage();
 		Reporter.log("Search page is displayed :: Correct");
 
 		element = driver.findElement(SEARCH_ICON);

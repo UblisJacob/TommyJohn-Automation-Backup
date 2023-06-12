@@ -159,7 +159,7 @@ public class HomePageLocators{
 //	public static By MYSTERYPACK_IN_PACKS = By.cssSelector(".header-desktop-left > ul > li:nth-child(6) > div > ul > li:nth-child(2) > ul > li:nth-child(3) > a");
 //	public static By TEMP_TAB = By.cssSelector(".header-desktop-left > ul > li:nth-child(7) > a");
 //
-	public static By SEARCH_ICON = By.id("constructorio-search");
+	public static By SEARCH_ICON = By.cssSelector("input[data-tj-qa=header-search-input]");
 	public static By SEARCH_ICON_FORM_TAG = By.cssSelector(".header-search-form");
 	public static By SEARCH_TEXTBOX = By.cssSelector(".nextopia-search");
 	public static By POPULAR_SEARCHES = By.cssSelector(".autocomplete-suggestions-content");
