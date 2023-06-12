@@ -18,7 +18,7 @@ import org.testng.Reporter;
 
 public class GeneralMethods {
 	
-	public static final String dataPropertiesFile = "src/main/resources/data.properties";
+	public static final String dataPropertiesFile = "src/main/resources/configuration.properties";
 	/*public GeneralMethods(WebDriver driver) {
 		this.driver = driver;
 	}
