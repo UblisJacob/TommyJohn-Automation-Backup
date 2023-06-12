@@ -402,8 +402,7 @@ public class CollectionPage extends CollectionPageComponent{
 	
 	public void validateFiltersSearch() throws Exception {
 		// TODO Auto-generated method stub
-		clickOnSearchPageFilter();
-		methodToCheckAllFilters();
+		methodToCheckFiltersSearch();
 	}
 	
 	public void validateSortBy() throws Exception {
@@ -440,9 +439,17 @@ public class CollectionPage extends CollectionPageComponent{
 		validateProductImageOnPLP();
 		validateProductHeadingTextOnCollectionPage();
 		validateProductReviewStarsOnCollectionPage();
-		validateProductReviewStarsOnPLP();
 		MethodToCheckColorSwatchChanging();
 		Verify_ProductTile_HoverFunctionality();
+	}
+	
+	public void validateProductTileSearch() throws Exception {
+		// TODO Auto-generated method stub
+		validateProductImageOnPLP();
+		MethodToCheckColorSwatchChanging();
+		validateProductReviewStarsOnCollectionPage();
+		Verify_ProductTile_HoverFunctionality();
+		validateProductHeadingTextOnCollectionPage();
 	}
 	
 	public void validateQuickshopFunctionality() throws Exception {
@@ -452,10 +459,22 @@ public class CollectionPage extends CollectionPageComponent{
 		QuickShopOnMegaCollection();
 	}
 	
+	public void validateQuickshopFunctionalityOnSearchPLP() throws Exception {
+		// TODO Auto-generated method stub
+		MethodToCheckColorSwatchChanging();
+		QuickShopOnMegaCollection();
+	}
+	
 	public void validateSingleTileProduct() throws Exception {
 		// TODO Auto-generated method stub
 		new NavigationFlowPage(driver).NavigateToAllSleepwearInWomenCategory();
 		validateSingleTile();
+	}
+	
+	
+	public void validateSingleTileProductSearch() throws Exception {
+		// TODO Auto-generated method stub
+		validateSingleTileSearch();
 	}
 	
 	public void validateStyleCarousels() throws Exception {
