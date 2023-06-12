@@ -66,6 +66,11 @@ public class CollectionPageLocator {
 	    public static By PLP_PRICE = By.cssSelector("span.product-meta__price");
 	    public static By PLP_PRICE_FILTER = By.xpath("//a[@title='Price']//span");
 	    
+	    public static By SEARCH_PRICE_FILTER = By.xpath("//a[@data-filter-group='facet_price_range']//span[contains(text(),'Price')]");
+	    public static By SEARCH_PRICE_FILTER_1=By.xpath("//label[contains(@for,'25to50')]//span");
+	    public static By SEARCH_PRICE_FILTER_PILL_1=By.xpath("//button[contains(text(),'$25 to $50')]");
+	  
+	    
 	    public static By PRICE_LESS_THAN_25= By.xpath("(//input[contains(@data-filter-btn,'Less than $25')])[1]");
 	    public static By LESS_THAN_25_PILL= By.xpath("(//button[@title='Less than $25'])[1]");
 	    public static By NEW_ARRIVALS_CTC= By.xpath("//a[contains(text(),'New Arrivals')]");
