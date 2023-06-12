@@ -7,24 +7,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Properties;
-
-
-import javax.mail.Authenticator;
-import javax.mail.BodyPart;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Multipart;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
-
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -116,7 +98,6 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		Reporter.log("Product image on collection page is Displayed :: Clickable and validated successfully");
 	}
 
-	@SuppressWarnings("static-access")
 	public void validateProductImageOnPLP() throws Exception {
 		String text = null;
 
@@ -181,7 +162,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		js.executeScript("window.scrollBy(0,250)");
 
 		WebElement sortByPrice = driver.findElement(SORTBYPRICE_DROPDOWN);
-		WebElement prices = driver.findElement(PLP_PRICE);
+		driver.findElement(PLP_PRICE);
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SORTBYPRICE_DROPDOWN));
 
@@ -271,8 +252,6 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	public void validateProductHeadingTextOnPLP() throws Exception {
 		String text = null;
 		objGeneralMethods.waitTillPageLoad(driver);
-		JavascriptExecutor jse = (JavascriptExecutor) driver;
-
 		objGeneralMethods.isElementVisible(driver, FIRST_PRODUCT_HEAD_LINE_TEXT);
 		// get product title and click on product heading text if present
 
@@ -298,8 +277,6 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 	@SuppressWarnings("static-access")
 	public void validateProductReviewStarsOnCollectionPage() throws Exception {
-		String text = null;
-
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		driver.navigate().to("https://www.tommyjohn.com/collections/womens-all");
 		
@@ -308,11 +285,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		jse.executeScript("window.scrollBy(0,250)");
 		wait.until(ExpectedConditions.presenceOfElementLocated(FIRST_PRODUCT_REVIEW_STARS));
 		
-		// get product title and click on product heading text if present
-		// try {
-		//if (!driver.findElement(FIRST_PRODUCT_REVIEW_STARS).isDisplayed())
-		//	throw new Exception("Product review stars are not present");
-		text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
+		driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
 		driver.findElement(FIRST_PRODUCT_REVIEW_STARS).click();
 		Thread.sleep(3000);
 		Reporter.log(driver.getCurrentUrl());
@@ -704,8 +677,6 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	
 	public void validateStyleCarousel() throws Exception {
 		boolean flag1 = false;
-		int i = 2;
-		List<WebElement> allElements = null;
 		List<WebElement> allCorosals = null;
 		
 		JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -764,7 +735,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	public void validateallurls() throws Exception
 
 	{
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		new WebDriverWait(driver, Duration.ofSeconds(30));
 		try {
 			
 			String csv_path = "src/main/resources/PLPs.csv";
@@ -815,172 +786,6 @@ if(count!=59)
 		} catch (Exception e) {
 			Reporter.log("File not found");
 			throw new Exception ("File not found");
-		}
-	}
-
-	private void checkurl(String url) throws InterruptedException {
-		
-
-		try {
-			driver.get("https://www.tommyjohn.com" + url);
-			
-			System.out.println(url);
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-			driver.navigate().refresh();
-			wait.until(ExpectedConditions.presenceOfElementLocated(FIRST_PRODUCT));
-			List<WebElement> items = driver.findElements(By.cssSelector("div.product-image-container"));
-			Reporter.log("No. of items present in " + url + " is " + items.size());
-
-		}
-
-		catch (Exception e) {
-			Reporter.log(url + "not loading");
-			count++;
-
-		}
-	}
-
-	private void sendmail(String url) {
-
-		// Recipient's email ID needs to be mentioned.
-		String to1 = "vijeta@tommyjohnwear.com";
-		String to2 = "shweta.garhewal@tommyjohnwear.com";
-		String to3 = "tyler.tremblay@tommyjohnwear.com";
-
-		// Sender's email ID needs to be mentioned
-		String from = "edw_job_alerts@aretove.com";
-		// Assuming you are sending email from localhost
-		String host = "secure.emailsrvr.com";
-		// Get system properties
-		Properties properties = System.getProperties();
-		// Setup mail server
-		properties.setProperty("mail.smtp.host", host);
-		properties.setProperty("mail.smtp.port", "587");
-		properties.setProperty("mail.smtp.auth", "true");
-
-		Authenticator auth = new Authenticator() {
-			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("edw_job_alerts@aretove.com", "K79bh@typ");
-			}
-		};
-
-		// Get the default Session object.
-		Session session = Session.getDefaultInstance(properties, auth);
-		System.out.println("Session Created");
-
-		try {
-			// Create a default MimeMessage object.
-			MimeMessage message = new MimeMessage(session);
-			// Set From: header field of the header.
-			message.setFrom(new InternetAddress(from));
-			// Set To: header field of the header.
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to1));
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to2));
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to3));
-
-			// Set Subject: header field
-			message.setSubject("Collection Page may be down ");
-
-			// Create the message part
-			BodyPart messageBodyPart = new MimeBodyPart();
-
-			// Fill the message
-			messageBodyPart.setText("Please check for collection as it may be down or very slow to load : " + url);
-
-			// Create a multipar message
-			Multipart multipart = new MimeMultipart();
-
-			// Set text message part
-			multipart.addBodyPart(messageBodyPart);
-
-			// Part two is attachment
-			// messageBodyPart = new MimeBodyPart();
-			// String filename = "<Enter File Path of Emailable Report>";
-			// DataSource source = new FileDataSource(filename);
-			// messageBodyPart.setDataHandler(new DataHandler(source));
-			// messageBodyPart.setFileName(filename);
-			// multipart.addBodyPart(messageBodyPart);
-
-			// Send the complete message parts
-			message.setContent(multipart);
-			System.out.println(message.getSubject());
-			// Send message
-			Transport.send(message);
-			System.out.println("Sent message successfully....");
-		} catch (MessagingException mex) {
-			mex.printStackTrace();
-		}
-	}
-
-	private void sendnotification(String url) {
-
-		// Recipient's email ID needs to be mentioned.
-		String to1 = "vijeta@tommyjohnwear.com";
-		// String to2 = "shweta.garhewal@tommyjohnwear.com";
-
-		// Sender's email ID needs to be mentioned
-		String from = "noreplymw@tommyjohnwear.com";
-		// Assuming you are sending email from localhost
-		String host = "secure.emailsrvr.com";
-		// Get system properties
-		Properties properties = System.getProperties();
-		// Setup mail server
-		properties.setProperty("mail.smtp.host", host);
-		properties.setProperty("mail.smtp.port", "587");
-		properties.setProperty("mail.smtp.auth", "true");
-
-		Authenticator auth = new Authenticator() {
-			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("edw_job_alerts@aretove.com", "K79bh@typ");
-			}
-		};
-
-		// Get the default Session object.
-		Session session = Session.getDefaultInstance(properties, auth);
-		System.out.println("Session Created");
-
-		try {
-			// Create a default MimeMessage object.
-			MimeMessage message = new MimeMessage(session);
-			// Set From: header field of the header.
-			message.setFrom(new InternetAddress(from));
-			// Set To: header field of the header.
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to1));
-			// message.addRecipient(Message.RecipientType.TO,new InternetAddress(to2));
-
-			// Set Subject: header field
-			message.setSubject("Collection Page suite notification ");
-
-			// Create the message part
-			BodyPart messageBodyPart = new MimeBodyPart();
-
-			// Fill the message
-			messageBodyPart.setText(
-					"Please check for collection page suite if you havent got notification for the pages to be down : "
-							+ url);
-
-			// Create a multipar message
-			Multipart multipart = new MimeMultipart();
-
-			// Set text message part
-			multipart.addBodyPart(messageBodyPart);
-
-			// Part two is attachment
-			// messageBodyPart = new MimeBodyPart();
-			// String filename = "<Enter File Path of Emailable Report>";
-			// DataSource source = new FileDataSource(filename);
-			// messageBodyPart.setDataHandler(new DataHandler(source));
-			// messageBodyPart.setFileName(filename);
-			// multipart.addBodyPart(messageBodyPart);
-
-			// Send the complete message parts
-			message.setContent(multipart);
-			System.out.println(message.getSubject());
-			// Send message
-			Transport.send(message);
-			System.out.println("Sent message successfully....");
-		} catch (MessagingException mex) {
-			mex.printStackTrace();
 		}
 	}
 
@@ -1413,8 +1218,6 @@ if(count!=59)
 
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-
-		JavascriptExecutor js = (JavascriptExecutor) driver;
 
 		WebElement pageHeader = driver.findElement(PLP_TITLE);
 

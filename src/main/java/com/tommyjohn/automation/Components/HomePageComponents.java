@@ -1,14 +1,10 @@
 package com.tommyjohn.automation.Components;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.time.Duration;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.testng.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -199,7 +195,6 @@ public class HomePageComponents extends HomePageLocators {
 		executor.executeScript("arguments[0].click();", element);
 		driver.findElement(SEARCH_ICON).sendKeys("tees");
 
-		WebElement search = driver.findElement(SEARCH_ICON);
 		action.moveToElement(driver.findElement(SEARCH_ICON)).build().perform();
 		Thread.sleep(3000);
 		softAssert.assertTrue(driver.findElement(POPULAR_SEARCHES).isDisplayed(),
