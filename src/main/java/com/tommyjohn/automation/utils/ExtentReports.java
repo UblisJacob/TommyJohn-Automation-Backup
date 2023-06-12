@@ -9,8 +9,10 @@ import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 public class ExtentReports {
 
+	@SuppressWarnings("unused")
 	@BeforeSuite
 	public void setUp() {
+		
 		
 		ExtentSparkReporter htmlReporter = new ExtentSparkReporter("extent.html");
 		

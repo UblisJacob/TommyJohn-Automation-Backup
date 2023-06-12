@@ -2,9 +2,6 @@ package com.tommyjohn.automation.Components;
 
 import java.time.Duration;
 import java.util.List;
-import java.util.NoSuchElementException;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -184,14 +181,14 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CART_TITLE));
 
 		System.out.println("cart " + driver.findElement(PRODUCT_COLOR_SIZE).getText());
-		System.out.println("pdp " + pdp1.productcolor + " / " + pdp1.prodsize);
+		System.out.println("pdp " + ProductDetailsPageComponents.productcolor + " / " + ProductDetailsPageComponents.prodsize);
 		System.out.println("ex " + driver.findElement(PRODUCT_QUANTITY).getAttribute("value"));
-		System.out.println("ac " + pdp1.productquant);
+		System.out.println("ac " + ProductDetailsPageComponents.productquant);
 
-		softAssert.assertEquals(driver.findElement(PRODUCT_TITLE).getText(), pdp1.productname, "Wrong product title displayed in cart");
-		softAssert.assertEquals(driver.findElement(PRODUCT_QUANTITY).getAttribute("value"), pdp1.productquant, "Wrong quantity added to cart");
-		softAssert.assertEquals(driver.findElement(PRODUCT_PRICE).getText(), pdp1.productprice, "Wrong product price displayed in cart");
-		if(!driver.findElement(PRODUCT_COLOR_SIZE).getText().equalsIgnoreCase(pdp1.productcolor + " / " + pdp1.prodsize))
+		softAssert.assertEquals(driver.findElement(PRODUCT_TITLE).getText(), ProductDetailsPageComponents.productname, "Wrong product title displayed in cart");
+		softAssert.assertEquals(driver.findElement(PRODUCT_QUANTITY).getAttribute("value"), ProductDetailsPageComponents.productquant, "Wrong quantity added to cart");
+		softAssert.assertEquals(driver.findElement(PRODUCT_PRICE).getText(), ProductDetailsPageComponents.productprice, "Wrong product price displayed in cart");
+		if(!driver.findElement(PRODUCT_COLOR_SIZE).getText().equalsIgnoreCase(ProductDetailsPageComponents.productcolor + " / " + ProductDetailsPageComponents.prodsize))
 			throw new Exception("Wrong color & size added to cart");
 		softAssert.assertAll();
 	}

@@ -19,6 +19,7 @@ import org.testng.asserts.SoftAssert;
 import com.tommyjohn.automation.PageLocators.AccountLoginLocators;
 import com.tommyjohn.automation.PageLocators.AccountPageLocators;
 import com.tommyjohn.automation.PageLocators.HomePageLocators;
+
 import com.tommyjohn.automation.utils.CustomUtilities;
 
 public class AccountLoginComponents extends AccountLoginLocators {
@@ -584,6 +585,7 @@ public class AccountLoginComponents extends AccountLoginLocators {
 
 		wait.until(ExpectedConditions.presenceOfElementLocated(CREATE_NEW_PASSWORD_HEADING));
 
+		@SuppressWarnings("unused")
 		String text = driver.findElement(CREATE_NEW_PASSWORD_HEADING).getText();
 
 		System.out.println("Currently on " + " Page");
