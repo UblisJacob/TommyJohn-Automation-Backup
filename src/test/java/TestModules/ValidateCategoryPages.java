@@ -74,7 +74,7 @@ public class ValidateCategoryPages {
 	 
 
 	
-	 @Test public void TC_InteractWithQuickShop() throws Exception { new
+	@Test public void TC_InteractWithQuickShop() throws Exception { new
 	  CollectionPage(driver).validateQuickshopFunctionality(); }
 	 
 
@@ -93,6 +93,12 @@ public class ValidateCategoryPages {
 	public void TC_MultipleSizeVariants() throws Exception {
 		new CollectionPage(driver).validateMultiVariantSizeInQuickshop();
 	}
+	
+	@Test
+	public void TC_MultipleSizeVariants() throws Exception {
+		new CollectionPage(driver).validateMultiVariantSizeInQuickshop();
+	}
+	
 
 	@AfterMethod(alwaysRun = true)
 	void teardown() {
