@@ -2,7 +2,6 @@ package com.tommyjohn.automation.Components;
 
 import java.time.Duration;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -66,7 +65,7 @@ public class NavigationFlowComponents extends NavigationFlowPageLocators
 		//Validate_Second_Level1_Category();
 		
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		new WebDriverWait(driver, Duration.ofSeconds(30));
 		
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 
@@ -93,7 +92,7 @@ public class NavigationFlowComponents extends NavigationFlowPageLocators
 		Validate_Second_Level1_Category();
 		
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		new WebDriverWait(driver, Duration.ofSeconds(30));
 		
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 
@@ -120,9 +119,7 @@ public class NavigationFlowComponents extends NavigationFlowPageLocators
 		Validate_Second_Level1_Category();
 		
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		
-		JavascriptExecutor js = (JavascriptExecutor) driver;
+		new WebDriverWait(driver, Duration.ofSeconds(30));
 		
 		WebElement mensAllUnderWear = driver.findElement(MEN_UNDERWEAR_ALLUNDERWEAR);
 		
@@ -146,9 +143,7 @@ public class NavigationFlowComponents extends NavigationFlowPageLocators
 		Validate_Third_Level1_Category();
 		
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		
-		JavascriptExecutor js = (JavascriptExecutor) driver;
+		new WebDriverWait(driver, Duration.ofSeconds(30));
 		
 		WebElement womenAllBras = driver.findElement(WOMEN_ALL_BRAS);
 		

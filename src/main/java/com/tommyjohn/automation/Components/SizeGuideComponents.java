@@ -10,14 +10,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 
 import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
 import com.tommyjohn.automation.PageLocators.SizeGuideLocators;
-import com.tommyjohn.automation.utils.CustomUtilities;
 
 
 
@@ -46,13 +44,13 @@ public class SizeGuideComponents extends SizeGuideLocators
 		this.driver=driver;
 	}
 	public void validateMenUnderwearSizeGuidePage() throws Exception {
-		String text = null;
+		
 
 		// call method to navigate to collection page
 		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 
 		// call method to navigate product details page
-		text = navigateToProductDetailsPage();
+		 navigateToProductDetailsPage();
 
 		// call method for Size Guide validation
 		validateMenUnderwearSizeGuide();
@@ -820,6 +818,7 @@ public class SizeGuideComponents extends SizeGuideLocators
 
 	public void New_common_contents_InAllSizeGuide()
 	{
+		@SuppressWarnings("unused")
 		WebElement Size_Guide_overlay= driver.findElement(By.cssSelector("div[class=size-chart-overlay][style='display: flex;']"));
 
 	}

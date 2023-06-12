@@ -1,9 +1,6 @@
 package com.tommyjohn.automation.Components;
 
 import java.time.Duration;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import java.util.List;
 import java.util.Properties;
 
@@ -73,7 +70,6 @@ public class PhysicalGiftCardComponents extends PhysicalGiftCardPageLocators
 		 catch(Exception e)
 		 {
 			 for(int i=1;i<=elementsCount;i++) {
-					boolean flag = false;
 					jse.executeScript("arguments[0].click();", driver.findElement(ProductDetailsPageComponents.SIZE_DROPDOWN));
 					element = driver.findElement(By.cssSelector(".select--options__list > li:nth-child("+i+") > div"));
                     Thread.sleep(3000);

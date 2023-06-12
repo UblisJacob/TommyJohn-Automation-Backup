@@ -3,36 +3,17 @@ package com.tommyjohn.automation.utils;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import java.util.Properties;
-import java.util.Set;
 import java.util.logging.Level;
 
-import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 /*import org.openqa.selenium.devtools.DevTools;*/
 import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.logging.LogEntries;
-import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
-import org.openqa.selenium.net.NetworkUtils;
-import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.Reporter;
-import org.testng.annotations.Test;
-
-import net.lightbody.bmp.BrowserMobProxy;
-import net.lightbody.bmp.BrowserMobProxyServer;
-import net.lightbody.bmp.client.ClientUtil;
-import net.lightbody.bmp.core.har.Har;
-import net.lightbody.bmp.core.har.HarEntry;
-import net.lightbody.bmp.proxy.CaptureType;
 
 
 public class ChromeExtensionUtility {
@@ -44,7 +25,6 @@ public class ChromeExtensionUtility {
 	public static Properties properties;
 	public static final String propertiesFilePath = "src/main/resources/configuration.properties";
 
-	@SuppressWarnings("deprecation")
 	public static WebDriver launchchromewithextension() throws Exception
 	{
 
