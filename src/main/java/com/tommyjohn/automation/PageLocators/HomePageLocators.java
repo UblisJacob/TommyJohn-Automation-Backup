@@ -1,7 +1,7 @@
 package com.tommyjohn.automation.PageLocators;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.By.ByLinkText;
+
 
 public class HomePageLocators{
 

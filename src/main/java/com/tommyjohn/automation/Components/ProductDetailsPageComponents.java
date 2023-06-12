@@ -4,8 +4,6 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -15,13 +13,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
-import org.xbill.DNS.ISDNRecord;
-
 import com.tommyjohn.automation.PageLocators.CollectionPageLocator;
 import com.tommyjohn.automation.PageLocators.FlyCartPageLocator;
 import com.tommyjohn.automation.PageLocators.HomePageLocators;
 import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
-import com.tommyjohn.automation.PageLocators.SizeGuideLocators;
 import com.tommyjohn.automation.Pages.ProductDetailsPage;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
@@ -104,23 +99,23 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
 		new CollectionPageComponent(driver).navigateToProductDetailsPage();
 		new AddToCartComponents(driver).selectSize();
-		pdp.productname = driver.findElement(PRODUCT_TITLE).getText();
-		pdp.productprice = driver.findElement(PRODUCT_PRICE).getText();
+		ProductDetailsPageComponents.productname = driver.findElement(PRODUCT_TITLE).getText();
+		ProductDetailsPageComponents.productprice = driver.findElement(PRODUCT_PRICE).getText();
 		List<WebElement> productcolors = driver.findElements(COLOR_TEXT);
 		for( WebElement color : productcolors )
 		{
 			System.out.println(color.getText());
 			if(!color.getText().isEmpty()) {
-				pdp.productcolor = color.getText();
+				ProductDetailsPageComponents.productcolor = color.getText();
 				break;
 			}
 		}
 
-		pdp.productsize = driver.findElement(SIZE_TEXT).getText();
-		pdp.productquant =  driver.findElement(By.cssSelector(".product-info-quant-atc-container>.qty-selector")).getAttribute("data-item-qty");
-		pdp.prodsize = driver.findElement(SIZE_TEXT).getAttribute("value");
-		String[] arrOfStr = pdp.prodsize.split(","); 
-		pdp.prodsize = arrOfStr[0];
+		ProductDetailsPageComponents.productsize = driver.findElement(SIZE_TEXT).getText();
+		ProductDetailsPageComponents.productquant =  driver.findElement(By.cssSelector(".product-info-quant-atc-container>.qty-selector")).getAttribute("data-item-qty");
+		ProductDetailsPageComponents.prodsize = driver.findElement(SIZE_TEXT).getAttribute("value");
+		String[] arrOfStr = ProductDetailsPageComponents.prodsize.split(","); 
+		ProductDetailsPageComponents.prodsize = arrOfStr[0];
 
 		new AddToCartComponents(driver).selectSize();
 		return pdp;
@@ -129,11 +124,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 
 	public void validatePage() throws Exception {
-		String text1 = null;
-		String allClasses = null;
 		String colornew = null;
 		String colortext = null;
-		String quantity;
 		SoftAssert softAssert =  new SoftAssert();
 		System.out.println(driver.getCurrentUrl());
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
@@ -781,7 +773,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 	public void verifybundlepages() throws Exception
 	{
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	//	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		jse = (JavascriptExecutor)driver;
 		String allClasses = null;
 		String allClass = null;
@@ -2441,7 +2433,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 						WebElement elemen = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper>ul>li:nth-child(" + i + ") > label"));
 						jse = (JavascriptExecutor)driver;
 						jse.executeScript("arguments[0].click();", elemen);
-						String colortext = driver.findElement(COLOR_TEXT).getText();
+						driver.findElement(COLOR_TEXT).getText();
 						
 						
 						List<WebElement> inactivesizes = driver.findElements(INACTIVE_SIZES);
@@ -2869,12 +2861,10 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		
 		}
 		public void verifyReviewForm() throws Exception {
-			String text = null;
 			SoftAssert softAssert = new SoftAssert();
 			// call method to navigate to collection page
 			new HomePageComponents(driver).navigateToAllWomensCollectionInWomensCategory();
-			// call method to navigate product details page
-			text = new CollectionPageComponent(driver).navigateToProductDetailsPage();
+			new CollectionPageComponent(driver).navigateToProductDetailsPage();
 			// call method to check correct PDP opend or not
 		//	checkCorrectProductDetailsPageOpenedOrNot(text);
 			Thread.sleep(5000);
@@ -2915,15 +2905,12 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		
 		public void verifyReviewFormErrorMessages() throws Exception {
 			
-			String text = null;
 			SoftAssert softAssert = new SoftAssert();
 			// call method to navigate to collection page
 			new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 			jse=(JavascriptExecutor)driver;
 			jse.executeScript("window.scrollBy(0,250)");
-			// call method to navigate product details page
-			text = new CollectionPageComponent(driver).navigateToProductDetailsPage();
-			// call method to check correct PDP opend or not
+			new CollectionPageComponent(driver).navigateToProductDetailsPage();
 			
 			WebElement elem = driver.findElement(RATING_STARS);
 			JavascriptExecutor executore = (JavascriptExecutor)driver;
@@ -2948,7 +2935,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		
 		public void verifyAddToCart() throws Exception {
 			String text = null;
-			SoftAssert softAssert = new SoftAssert();
+			new SoftAssert();
 			// call method to navigate to collection page
 			new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 			jse=(JavascriptExecutor)driver;

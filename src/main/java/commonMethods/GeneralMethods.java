@@ -3,8 +3,6 @@ package commonMethods;
 import java.io.FileReader;
 import java.time.Duration;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -97,7 +95,7 @@ public class GeneralMethods {
     //Implicit wait
     public void implicitWait(WebDriver objDriver) throws Exception
 	{
-    	objDriver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+    	//objDriver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 	}
     
     //To verify Element is displayed
@@ -125,7 +123,7 @@ public class GeneralMethods {
 	}
     
     // To read properties file
-    public static String readPropertiesFile(String data) throws Exception {
+    public String readPropertiesFile(String data) throws Exception {
     	
 		 FileReader reader=new FileReader(dataPropertiesFile);  
 	      
