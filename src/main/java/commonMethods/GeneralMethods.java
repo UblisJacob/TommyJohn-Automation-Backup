@@ -16,7 +16,7 @@ import org.testng.Reporter;
 
 public class GeneralMethods {
 	
-	public static final String dataPropertiesFile = "src/main/resources/data.properties";
+	public static final String dataPropertiesFile = "src/main/resources/configuration.properties";
 	/*public GeneralMethods(WebDriver driver) {
 		this.driver = driver;
 	}
@@ -113,6 +113,15 @@ public class GeneralMethods {
 			boolResultFlag = false;
 		}
 		return boolResultFlag;
+	}
+    
+    public void clickButtonByJS(WebDriver objDriver, WebElement element) throws Exception
+	{
+		
+			JavascriptExecutor executor = (JavascriptExecutor)objDriver;
+			executor.executeScript("arguments[0].click();", element);
+			waitTillPageLoad(objDriver);
+		
 	}
     
     //To scroll into view od the element

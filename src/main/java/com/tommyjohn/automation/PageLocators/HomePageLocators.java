@@ -159,11 +159,12 @@ public class HomePageLocators{
 //	public static By MYSTERYPACK_IN_PACKS = By.cssSelector(".header-desktop-left > ul > li:nth-child(6) > div > ul > li:nth-child(2) > ul > li:nth-child(3) > a");
 //	public static By TEMP_TAB = By.cssSelector(".header-desktop-left > ul > li:nth-child(7) > a");
 //
-	public static By SEARCH_ICON = By.id("constructorio-search");
+	public static By SEARCH_ICON = By.cssSelector("input[data-tj-qa=header-search-input]");
 	public static By SEARCH_ICON_FORM_TAG = By.cssSelector(".header-search-form");
 	public static By SEARCH_TEXTBOX = By.cssSelector(".nextopia-search");
-	public static By POPULAR_SEARCHES = By.cssSelector(".autocomplete-suggestion-search-suggestions");
+	public static By POPULAR_SEARCHES = By.cssSelector(".autocomplete-suggestions-content");
 	public static By PRODUCT_MATCHES_TITLE = By.cssSelector(".desktop-search-product-tile-title");
+	public static By PRODUCT_SUGGESTION = By.cssSelector("div.autocomplete-suggestions-content>a>div>span");
 //	public static By SEARCHRESULT_KEYWORD = By.cssSelector(".nxt-ac-section-container > .nxt-ac-item");
 //	public static By SEARCHRESULT_PRODUCT = By.cssSelector(".nxt-ac-products-container > .nxt-ac-item");
 	
