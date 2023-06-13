@@ -72,7 +72,7 @@ public class NavigationFlowPage extends NavigationFlowComponents
 		new NavigationFlowComponents(driver).NavigatetoAllSleepwearInWomenCategory();
 	}
 	
-	public void NavigateToLoungewearSetsInWomenCategory() throws Exception
+	public void NavigateToLoungewearSetsInWomenCategory1() throws Exception
 	{
 		new NavigationFlowComponents(driver).NavigatetoLoungewearSetsInWomenCategory();
 	}
