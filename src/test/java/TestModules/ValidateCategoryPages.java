@@ -94,10 +94,7 @@ public class ValidateCategoryPages {
 		new CollectionPage(driver).validateMultiVariantSizeInQuickshop();
 	}
 	
-	@Test
-	public void TC_MultipleSizeVariants() throws Exception {
-		new CollectionPage(driver).validateMultiVariantSizeInQuickshop();
-	}
+	
 	
 
 	@AfterMethod(alwaysRun = true)

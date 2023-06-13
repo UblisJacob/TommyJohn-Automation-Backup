@@ -830,9 +830,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 	{
 		new WebDriverWait(driver, Duration.ofSeconds(30));
-		try {
-
-			  
+	  
 	        // Create an object of filereader
 	        // class with CSV file as a parameter.
 	       // FileReader filereader = new FileReader("src/main/resources/Category_PLPs.csv");
@@ -908,9 +906,11 @@ if(count!=59)
 		} catch (Exception e) {
 			Reporter.log("File not found");
 
-
 		}
+		
+		
 	}
+
 
 	private void checkurl(String url) throws InterruptedException {
 
