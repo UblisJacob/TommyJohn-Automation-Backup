@@ -315,6 +315,37 @@ public class NavigationFlowComponents extends NavigationFlowPageLocators
 		Reporter.log("All Women Sleepwear in women category is displayed :: Clickable");
 	}
 	
+//	public void NavigatetoLoungewearSetsInWomenCategory() throws Exception
+//	{
+//		ValidateWomenCategory();
+//		Validate_Fourth_Level1_Category();
+//		
+//		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+//		
+//		JavascriptExecutor js = (JavascriptExecutor) driver;
+//
+//		WebElement womenLoungewearSets = driver.findElement(WOMEN_LOUNGEANDSLEEP_PACKS);
+//
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(WOMEN_ALL_LOUNGEWEAR));
+//		Assert.assertTrue(womenLoungewearSets.isEnabled(), "Women Loungewear sets link is Clickable");
+//		
+//		//Validate_Second_Level1_Category();
+//		if(!womenLoungewearSets.isDisplayed())
+//			throw new Exception("Loungewear sets in Women category is not displayed");
+//
+//		js.executeScript("arguments[0].click();", womenLoungewearSets);
+//		Thread.sleep(3000);
+//		
+//		System.out.println(driver.getCurrentUrl());
+//		if(driver.getCurrentUrl().contains("https://www.tommyjohn.com/collections/womens-lounge-sets")) 
+//			System.out.println("Navigate to Loungewear sets in Women category: " + driver.getCurrentUrl());
+//		else
+//			throw new Exception("Wrong page opened after Women Loungewear sets is clicked");
+//
+//		Reporter.log("Loungewear sets in women category is displayed :: Clickable");
+//	}
+	
 	public void NavigatetoBoxerBriefInMensUnderwearCategory() throws Exception
 	{
 		ValidateMenCategory();
