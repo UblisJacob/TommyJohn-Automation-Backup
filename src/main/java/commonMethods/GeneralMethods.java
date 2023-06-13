@@ -115,6 +115,15 @@ public class GeneralMethods {
 		return boolResultFlag;
 	}
     
+    public void clickButtonByJS(WebDriver objDriver, WebElement element) throws Exception
+	{
+		
+			JavascriptExecutor executor = (JavascriptExecutor)objDriver;
+			executor.executeScript("arguments[0].click();", element);
+			waitTillPageLoad(objDriver);
+		
+	}
+    
     //To scroll into view od the element
     public void scrollElementIntoView(WebDriver objDriver,By objectPath) throws InterruptedException
 	{

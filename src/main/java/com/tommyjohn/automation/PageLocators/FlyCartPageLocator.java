@@ -28,7 +28,7 @@ public class FlyCartPageLocator {
 	public static By CROSS_CLOSE_BUTTON = By.cssSelector("article > div.line-item__summary > button");
 	public static By COLOR_AND_SIZE_IN_CART = By.cssSelector("article:nth-child(1) > div.line-item__summary > div:nth-child(2)");
 
-	public static By COLOR_AND_SIZE_IN_CART_MULTI = By.xpath("(//div[@class='line-item__summary'])[2]//div[@class='line-item__option']");
+	public static By COLOR_AND_SIZE_IN_CART_MULTI = By.xpath("(//div[@class='line-item__summary'])[1]//div[@class='line-item__option']");
 
 	//public static By COLOR_AND_SIZE_IN_CART_MULTI = By.cssSelector("div.line-item__summary > div:nth-child(2)");
 

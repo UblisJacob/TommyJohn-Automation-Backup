@@ -41,39 +41,39 @@ public class ValidateSearchPages {
 	@Test
 	public void TC_Search_InteractWithFilters() throws Exception {
 		searchText = objGeneralMethods.readPropertiesFile("searchSports");
-		new HomePage(driver).validateSearchPM(searchText);
+		new HomePage(driver).validateSearchFunctionEnter(searchText);
 		new CollectionPage(driver).validateFiltersSearch();
 	}
 	
 	@Test public void TC_Search_InteractWithSortBy() throws Exception { 
 		searchText = objGeneralMethods.readPropertiesFile("searchSports");
-		new HomePage(driver).validateSearchPM(searchText);
+		new HomePage(driver).validateSearchFunctionEnter(searchText);
 		new CollectionPage(driver).validateSortBySearch();
 	}
 	
 	@Test public void TC_Search_ViewOnImageAndSecondaryBadging() throws Exception { 
-		searchText = objGeneralMethods.readPropertiesFile("searchSports");
-		new HomePage(driver).validateSearchPM(searchText);
+		searchText = objGeneralMethods.readPropertiesFile("searchFeatured");
+		new HomePage(driver).validateSearchFunctionEnter(searchText);
 		new CollectionPage(driver).validateOnImageBadgeSearch();
 	}
 	
 	@Test public void TC_Search_InteractWithQuickShop() throws Exception { 
 		searchText = objGeneralMethods.readPropertiesFile("searchSports");
-		new HomePage(driver).validateSearchPM(searchText);
+		new HomePage(driver).validateSearchFunctionEnter(searchText);
 		new CollectionPage(driver).validateQuickshopFunctionalityOnSearchPLP();
 	}
 	
 	@Test
 	public void TC_Search_ValidateProductTile() throws Exception {
 		searchText = objGeneralMethods.readPropertiesFile("searchSports");
-		new HomePage(driver).validateSearchPM(searchText);
+		new HomePage(driver).validateSearchFunctionEnter(searchText);
 		new CollectionPage(driver).validateProductTileSearch();
 	}
 	
 	@Test
 	public void TC_Search_ValidateSingleProductTile() throws Exception {
 		searchText = objGeneralMethods.readPropertiesFile("searchSocks");
-		new HomePage(driver).validateSearchPM(searchText);
+		new HomePage(driver).validateSearchFunctionEnter(searchText);
 		new CollectionPage(driver).validateSingleTileProductSearch();
 	}
 	

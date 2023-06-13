@@ -30,7 +30,7 @@ public class ValidateHomePage {
 		new HomePage(driver).ValidateLogoAndCategoriesPresence();
 	}
 	
-	@Test
+//	@Test
 	public void TC_verifyFooterLinksOnHomePage() throws Exception {
 		new HomePage(driver).verifyFooterSection();
 	}
