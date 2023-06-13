@@ -490,6 +490,11 @@ public class CollectionPage extends CollectionPageComponent{
                 // TODO Auto-generated method stub
                 validateSingleTileSearch();
         }
+
+	public void validateSortBySearch() throws Exception {
+		// TODO Auto-generated method stub
+		validateSortBy();
+	}
 }
 
 
