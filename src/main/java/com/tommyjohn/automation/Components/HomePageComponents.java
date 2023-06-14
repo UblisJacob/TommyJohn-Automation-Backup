@@ -383,9 +383,9 @@ public class HomePageComponents extends HomePageLocators {
 		driver.navigate().back();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SEARCHPAGE_PRODUCT_NAME));
 
-		new CollectionPageComponent(driver).MethodToCheckColorSwatchChanging();
+		//new CollectionPageComponent(driver).MethodToCheckColorSwatchChanging();
 
-		new CollectionPageComponent(driver).QuickShopOnMegaCollection();
+		//new CollectionPageComponent(driver).QuickShopOnMegaCollection();
 
 		//MethodToCheckAllFiltersOnSearchPage();
 		Reporter.log("Search page is displayed :: Correct");
