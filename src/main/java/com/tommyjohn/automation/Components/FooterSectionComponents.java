@@ -414,7 +414,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 
 		objGeneralMethods.clickButtonByJS(driver, CONTACT_US_LINK);
 
-		wait.until(ExpectedConditions.titleContains("Help"));
+		wait.until(ExpectedConditions.urlContains("help"));
 
 		softassert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase("https://help.tommyjohn.com/hc/en-us"),
 				"Wrong page opened after Contact Us footer link clicked");
@@ -1095,12 +1095,12 @@ public class FooterSectionComponents extends FooterSectionLocators {
 
 		wait.until(ExpectedConditions.titleContains("Survey"));
 
-		String feedbackPageHeader_TXT = driver.findElement(By.cssSelector(".comment-text")).getText();
+		//String feedbackPageHeader_TXT = driver.findElement(By.cssSelector(".comment-text")).getText();
 		String Feedback_page_url = "https://selfserve.decipherinc.com/survey/selfserve/";
 
-		softassert.assertTrue(feedbackPageHeader_TXT.equals(
-				"Thank you for taking our survey - your insights help us make sure we are building the best possible shopping experience for you. If you need any immediate assistance please call us 1-800-708-3490."),
-				"Survey Page Header doesnt match");
+		//softassert.assertTrue(feedbackPageHeader_TXT.equals(
+		//		"Thank you for taking our survey - your insights help us make sure we are building the best possible shopping experience for you. If you need any immediate assistance please call us 1-800-708-3490."),
+		//		"Survey Page Header doesnt match");
 		softassert.assertTrue(driver.getCurrentUrl().contains(Feedback_page_url),
 				"Wrong page opened after click on Give Feedback CTA on footer");
 

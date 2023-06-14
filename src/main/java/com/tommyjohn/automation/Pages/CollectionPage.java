@@ -468,22 +468,19 @@ public class CollectionPage extends CollectionPageComponent{
      
       public void validateProductTileSearch() throws Exception {
                 // TODO Auto-generated method stub
-                validateProductImageOnPLP();
-                MethodToCheckColorSwatchChanging();
-                MethodToCheckColorSwatchChanging();
-                validateProductReviewStarsOnCollectionPage();
-                validateProductReviewStarsOnCollectionPage();
-                Verify_ProductTile_HoverFunctionality();
-                
-                validateProductHeadingTextOnCollectionPage();
+    	  validateProductHeadingTextOnCollectionPage();
+  		validateProductImageOnPLP();
+  		Verify_ProductTile_HoverFunctionality();
+  		MethodToCheckColorSwatchChanging();
+  		validateProductReviewStarsOnCollectionPage();
         }
      
       public void validateQuickshopFunctionalityOnSearchPLP() throws Exception {
                 // TODO Auto-generated method stub
-                MethodToCheckColorSwatchChanging();
+               driver.findElement(FIRST_PRODUCT).click();
                 MethodToCheckColorSwatchChanging();
                 QuickShopOnMegaCollection();
-                QuickShopOnMegaCollection();
+               
         }
      
      public void validateSingleTileProductSearch() throws Exception {
