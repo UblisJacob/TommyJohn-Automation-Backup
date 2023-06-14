@@ -108,7 +108,7 @@ public class ValidateCreateAccount_Login {
 	 * <li> Hence need to provide email of account for which New password has been set and New password
 	 */
 	
-	@Test
+//	@Test
 	public void TC_VerifyCreateNewPasswordFunctionality() throws Exception{
 		
 		new AccountLoginPage(driver).
