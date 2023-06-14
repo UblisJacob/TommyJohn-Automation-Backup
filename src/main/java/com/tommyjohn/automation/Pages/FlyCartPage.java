@@ -6,17 +6,16 @@ import com.tommyjohn.automation.Components.FlyCartComponents;
 
 public class FlyCartPage extends FlyCartComponents {
 
-	public FlyCartPage(WebDriver driver) 
-	{
-	super(driver);
-	this.driver=driver;
+	public FlyCartPage(WebDriver driver) {
+		super(driver);
+		this.driver = driver;
 		// TODO Auto-generated constructor stub
 	}
 
 	public void verifyAllFields() throws Exception {
 		new FlyCartComponents(driver).verifyAllTextsAndFieldsOnEmptyFlyCart();
 	}
-	
+
 	public void verifyAllFieldsOnNonEmptyFlyCart() throws Exception {
 		new FlyCartComponents(driver).verifyAllTextsAndFieldsOnNonEmptyFlyCart();
 	}
@@ -25,7 +24,15 @@ public class FlyCartPage extends FlyCartComponents {
 		new FlyCartComponents(driver).validateNonEmptyFlyCart();
 	}
 
+	public void verifygiftWrap() throws Exception {
+		new FlyCartComponents(driver).verifygiftWrap();
+	}
+
 	public void validateFlyCartOpenedWithQSandPDP() throws Exception {
 		new FlyCartComponents(driver).VerifyFlyCartOpenWithQSAndPDP();
+	}
+
+	public void validateOOSonInlinecart() throws Exception {
+		new FlyCartComponents(driver).validateOOSonInlinecart();
 	}
 }

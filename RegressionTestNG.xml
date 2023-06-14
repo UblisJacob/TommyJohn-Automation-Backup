@@ -43,7 +43,7 @@
 	<test thread-count="1" name="InlineCartTests" verbose="1" parallel="tests">
 		<parameter name="browser" value="chrome" />
 		<classes>
-			<class name="TestModules.ValidateInlineCart" />
+			<class name="TestModules.ValidateInlineCartPage" />
 		</classes>
 	</test>
 
