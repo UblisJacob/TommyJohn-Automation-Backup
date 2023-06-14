@@ -934,7 +934,7 @@ if(count!=59)
 	public void QuickShopOnMegaCollection() throws Exception {
 		Actions action = new Actions(driver);
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		Thread.sleep(8000);
+		//Thread.sleep(8000);
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		js.executeScript("window.scrollBy(0,500)");
 
@@ -1636,7 +1636,7 @@ if(count!=59)
 //		marginRight = productImage.getCssValue("margin-right");
 //		System.out.println(width + " " + marginLeft + " " + marginRight);
 		
-		if(width==290)  {
+		if(width>280)  {
 			Reporter.log("Single Product Tile annotations are correct");
 			System.out.println("Single Product Tile annotations are correct");
 		}

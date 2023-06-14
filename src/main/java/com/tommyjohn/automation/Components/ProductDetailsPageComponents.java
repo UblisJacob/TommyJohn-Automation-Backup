@@ -192,12 +192,16 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		WebElement close_icon=driver.findElement(By.cssSelector(".close_chart_modal"));
 		executor.executeScript("arguments[0].click();", close_icon);
 		//check rating n reviews
+		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(RATING_STARS));
 		if(driver.findElement(RATING_STARS).isDisplayed()) {
 
 			WebElement elem = driver.findElement(RATING_STARS);
 			executor.executeScript("arguments[0].click();", elem);
+			Thread.sleep(2000);
 			// wait for scroll it down
+			executor.executeScript("window.scrollBy(0,750)", "");
+
 			wait.until(ExpectedConditions.presenceOfElementLocated(WRITE_REVIEW_BUTTON));
 			Reporter.log("Review Stars Are Displayed :: Clickable :: Clicked");
 			// check for Rating and Reviews are present or not
