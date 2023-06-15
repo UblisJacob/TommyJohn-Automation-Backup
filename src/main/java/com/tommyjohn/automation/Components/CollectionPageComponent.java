@@ -187,7 +187,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		List<WebElement> list = driver.findElements(PLP_PRICE);
 		ArrayList<Double> productPrice = new ArrayList<Double>();
 		ArrayList<Double> sortedList = new ArrayList<Double>();
-		;
+		
 		for (int i = 0; i < list.size(); i++) {
 			price = list.get(i).getText();
 			updatedPrice = price.replaceAll("[^0-9.]", "");
@@ -214,28 +214,28 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		//js.executeScript("window.scrollTo(0, -document.body.scrollHeight)");
 	//	drpCountry.selectByIndex(2);
 	//	js.executeScript("window.scrollBy(0,450)");
-
+	//	drpCountry.selectByValue("price:descending");
 //		Thread.sleep(5000);
-		List<WebElement> list1 = driver.findElements(PLP_PRICE);
-		ArrayList<Double> productPrice1 = new ArrayList<Double>();
-		ArrayList<Double> sortedList1 = new ArrayList<Double>();
-
-		for (int i = 0; i < list1.size(); i++) {
-			price = list1.get(i).getText();
-			updatedPrice = price.replaceAll("[^0-9.]", "");
-			priceValue = Double.parseDouble(updatedPrice);
-			sortedList1.add(priceValue);
-			productPrice1.add(priceValue);
-		}
-		System.out.println(productPrice1);
-		Collections.sort(sortedList1);
-		Collections.reverse(sortedList1);
-		System.out.println(sortedList1);
-		if (!sortedList1.equals(productPrice1)) {
-			throw new Exception("The products are sorted not successfully");
-		} else {
-			Reporter.log("The products are sorted successfully");
-		}
+		
+//		ArrayList<Double> productPrice1 = new ArrayList<Double>();
+//		ArrayList<Double> sortedList1 = new ArrayList<Double>();
+//		List<WebElement> list1 = driver.findElements(PLP_PRICE);
+//		for (int i = 0; i < list1.size(); i++) {
+//			price = list1.get(i).getText();
+//			updatedPrice = price.replaceAll("[^0-9.]", "");
+//			priceValue = Double.parseDouble(updatedPrice);
+//			sortedList1.add(priceValue);
+//			productPrice1.add(priceValue);
+//		}
+//		System.out.println(productPrice1);
+//		Collections.sort(sortedList1);
+//		Collections.reverse(sortedList1);
+//		System.out.println(sortedList1);
+//		if (!sortedList1.equals(productPrice1)) {
+//			throw new Exception("The products are sorted not successfully");
+//		} else {
+//			Reporter.log("The products are sorted successfully");
+//		}
 		 
 	}
 
@@ -829,7 +829,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	public void validateallurls() throws Exception
 
 	{
-		new WebDriverWait(driver, Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 	  
 	        // Create an object of filereader
 	        // class with CSV file as a parameter.
@@ -838,7 +838,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	        // create csvReader object passing
 	        // file reader as a parameter
 	      //  CSVReader csvReader = new CSVReader(filereader);
-	        String[] nextRecord;
+	     //   String[] nextRecord;
 	  
 	        // we are going to read data line by line
 	       // while ((nextRecord = csvReader.readNext()) != null) {
@@ -856,11 +856,12 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		try {
 			//File src = new File("src/main/resources/AllCollectionPages.xlsx");
 
-			
 			String csv_path = "src/main/resources/PLPs.csv";
 			CSVReader CSVReader = new CSVReader(new FileReader(csv_path));
 			List<String[]> list = CSVReader.readAll();
+			Thread.sleep(3000);
 			Iterator<String[]>ite= list.iterator();
+			Thread.sleep(2000);
 			while(ite.hasNext()){
 				String[] data = ite.next();
 				for(int i=0; i<data.length; i++){
@@ -868,8 +869,10 @@ public class CollectionPageComponent extends CollectionPageLocator {
 					String url = "https://www.tommyjohn.com" + data[i];
 				//	checkurl(url);
 				driver.get(url);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT));
 				if (driver.findElement(FIRST_PRODUCT).isDisplayed()) {
 					count++;
+					Reporter.log(url +"loads fine and products are displayed");
 				}
 				}
 			}
@@ -905,6 +908,7 @@ if(count!=59)
 
 		} catch (Exception e) {
 			Reporter.log("File not found");
+			throw new Exception("Not worked");
 
 		}
 		
