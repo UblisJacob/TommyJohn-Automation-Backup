@@ -6,7 +6,7 @@
 		<listener class-name="TestScenario.ListenerClass"></listener>
 	</listeners>
 
-	<test name="MegaCollectionTests">
+	<test name="CategoryTests">
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="TestModules.ValidateCategoryPages" />
@@ -40,7 +40,7 @@
 		</classes>
 	</test>
 
-	<test thread-count="1" name="InlineCartTests" verbose="1" parallel="tests">
+	<test thread-count="1" name="InlineCartTests">
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="TestModules.ValidateInlineCartPage" />
