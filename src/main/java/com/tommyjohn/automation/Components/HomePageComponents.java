@@ -200,7 +200,7 @@ public class HomePageComponents extends HomePageLocators {
 		Thread.sleep(3000);
 		
 		driver.findElement(SEARCH_ICON).sendKeys(searchText + Keys.ENTER);
-		
+		Thread.sleep(2000);
 		if(driver.findElement(SEARCHPAGE_TITLE).isDisplayed())
 		{
 			System.out.println("Search Page Title is displayed");

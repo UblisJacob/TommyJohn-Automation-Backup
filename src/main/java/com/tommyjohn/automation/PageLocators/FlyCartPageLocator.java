@@ -24,7 +24,7 @@ public class FlyCartPageLocator {
 	public static By ESTIMATE_TOTAL_SMALL = By.cssSelector("div.inline-cart__summary > div > div > small");
 	public static By CHECKOUT_BUTTON = By
 			.cssSelector("div.inline-cart__action-btns > a.button.button--red.button--auto");
-	public static By FIRST_PRODUCT_TITLE_IN_CART = By.cssSelector(".line-item__title"); // ("div.inline-cart__col1 >
+	public static By FIRST_PRODUCT_TITLE_IN_CART = By.cssSelector("div.line-item__summary>a"); // ("div.inline-cart__col1 >
 																						// div:nth-child(7) > article >
 																						// div.line-item__summary > a");
 	public static By PLUS_BUTTON = By.cssSelector(".qty-selector.line-item__qty > button:nth-child(3)");
@@ -42,11 +42,11 @@ public class FlyCartPageLocator {
 	public static By GIFT_WRAP_PRICE = By.cssSelector("div.inline-cart__gift-wrap > span:nth-child(2)");
 	public static By ESTIMATE_TOTAL_PRICE = By.cssSelector("div.inline-cart__summary > div > span");
 
-	public static By COLOR_AND_SIZE_IN_CART_MULTI = By
-			.xpath("(//div[@class='line-item__summary'])[1]//div[@class='line-item__option']");
+//	public static By COLOR_AND_SIZE_IN_CART_MULTI = By
+	//		.xpath("(//div[@class='line-item__summary'])[1]//div[@class='line-item__option']");
 
-	// public static By COLOR_AND_SIZE_IN_CART_MULTI =
-	// By.cssSelector("div.line-item__summary > div:nth-child(2)");
+	 public static By COLOR_AND_SIZE_IN_CART_MULTI =
+	 By.cssSelector("div.line-item__summary > div:nth-child(2)");
 
 	// OOS
 	public static By OOS_MESSAGE_ON_TOP = By

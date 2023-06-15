@@ -47,7 +47,7 @@ public class ValidateSearchPages {
 	
 	@Test public void TC_Search_InteractWithSortBy() throws Exception { 
 		searchText = objGeneralMethods.readPropertiesFile("searchSports");
-		new HomePage(driver).validateSearchPM(searchText);
+		new HomePage(driver).validateSearchFunctionEnter(searchText);
 		new CollectionPage(driver).validateSortBySearch();
 	}
 	
