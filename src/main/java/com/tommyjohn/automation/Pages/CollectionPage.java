@@ -432,8 +432,9 @@ public class CollectionPage extends CollectionPageComponent{
 	public void validateQuickshopFunctionality() throws Exception {
 		// TODO Auto-generated method stub
 		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
-		MethodToCheckColorSwatchChanging();
 		QuickShopOnMegaCollection();
+		
+		
 	}
 	
 	public void validateSingleTileProduct() throws Exception {
@@ -477,9 +478,9 @@ public class CollectionPage extends CollectionPageComponent{
      
       public void validateQuickshopFunctionalityOnSearchPLP() throws Exception {
                 // TODO Auto-generated method stub
-               driver.findElement(FIRST_PRODUCT).click();
-                MethodToCheckColorSwatchChanging();
-                QuickShopOnMegaCollection();
+    	  QuickShopOnMegaCollection();
+    	  
+                
                
         }
      

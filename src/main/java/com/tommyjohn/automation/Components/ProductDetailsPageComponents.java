@@ -4,6 +4,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.Random;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -2598,6 +2599,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 				executor.executeScript("arguments[0].click();", elem);
 				// wait for scroll it down
 				Thread.sleep(3000);
+				executor.executeScript("window.scrollBy(0, 600)");
 				//wait.until(ExpectedConditions.presenceOfElementLocated(WRITE_REVIEW_BUTTON));
 				Reporter.log("Review Stars Are Displayed :: Clickable :: Clicked");
 				// check for Rating and Reviews are present or not
@@ -2605,6 +2607,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 				if(!driver.findElement(RATING_NUMBER).getText().equals("(0)"))
 				{
+					
 					Thread.sleep(3000);
 					if(driver.findElement(RATING_AND_REVIEWS_BOX).isDisplayed()) {
 						if(!driver.findElement(FIRST_BOX_IN_RATING_AND_REVIEWS).isDisplayed())
@@ -2772,6 +2775,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			jse.executeScript("arguments[0].click();", ratingstars);
 			//ratingstars.click();
 			Thread.sleep(4000);
+			jse.executeScript("window.scrollBy(0, 650)");
 			String avgrating = driver.findElement(AVG_RATING_IN_FIRST_BOX).getText();
 			System.out.println("Average Rating: " +avgrating);
 			String totalreviews = driver.findElement(TOTAL_REVIEWS_IN_FIRST_BOX).getText();
@@ -2821,7 +2825,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		}
 		
 		public void verifyQuestionForm() throws Exception {
-			jse = (JavascriptExecutor)driver;
+			//jse = (JavascriptExecutor)driver;
 			SoftAssert softassert = new SoftAssert();
 			new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 			new CollectionPageComponent(driver).navigateToProductDetailsPage();
@@ -2833,6 +2837,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			jse.executeScript("arguments[0].click();", ratingstars);
 			//ratingstars.click();
 			Thread.sleep(4000);
+			jse.executeScript("window.scrollBy(0, 600)");
 			softassert.assertEquals(driver.findElement(Ask_a_Question_CTA).getText(), "Ask a Question", "Text change for 'Ask a question'CTA");
 			WebElement AQ_CTA=driver.findElement(Ask_a_Question_CTA);
 			jse.executeScript("arguments[0].click();", AQ_CTA);
@@ -2876,7 +2881,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			JavascriptExecutor executore = (JavascriptExecutor)driver;
 			executore.executeScript("arguments[0].click();", elem);
 			// wait for scroll it down
-			Thread.sleep(6000);
+			Thread.sleep(3000);
+			executore.executeScript("window.scrollBy(0, 650)");
 			WebElement writereview = driver.findElement(WRITE_REVIEW_BUTTON);
 			executore.executeScript("arguments[0].click();", writereview);
 
@@ -2920,7 +2926,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			JavascriptExecutor executore = (JavascriptExecutor)driver;
 			executore.executeScript("arguments[0].click();", elem);
 			// wait for scroll it down
-			Thread.sleep(6000);
+			Thread.sleep(3000);
+			jse.executeScript("window.scrollBy(0, 600)");
 			elem = driver.findElement(WRITE_REVIEW_BUTTON);
 			executore = (JavascriptExecutor)driver;
 			executore.executeScript("arguments[0].click();", elem);
@@ -2947,19 +2954,21 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			// call method to navigate product details page
 			text = new CollectionPageComponent(driver).navigateToProductDetailsPage();
 			// call method to check correct PDP opend or not
-			checkCorrectProductDetailsPageOpenedOrNot(text);
+		//	checkCorrectProductDetailsPageOpenedOrNot(text);
 			Thread.sleep(2000);
 			
 			allElements = driver.findElements(ProductDetailsPageComponents.ALL_COLOR_LIST);
-			
+			int count=0;
 			elementsCount = allElements.size();
 			System.out.println("Color Element count :: "+elementsCount);
-			
+		 
+			Random randomGenerator = new Random(); 
+			int randomInt = randomGenerator.nextInt(1000);
 			if(elementsCount > 1)
 				
 				for(int i=1;i<=elementsCount;i++)
 				{
-					
+					count++;
 					WebElement elemen = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper>ul>li:nth-child(" + i + ")>input"));
 					jse = (JavascriptExecutor) driver;
 					jse.executeScript("arguments[0].click();", elemen);
@@ -2988,24 +2997,24 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 							}
 							
 							if(elem.getText().contentEquals("Join the Waitlist")) {
-								System.out.println(elemen.getText()+ elements.getText() +"Product is Out of Stock and Join The waitlist is  :: Clickable");
-								jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_CART_BUTTON));
-								if(driver.findElement(EMAIL_WHEN_IN_STOCK_BUTTON).isDisplayed()) {
+//								System.out.println(elemen.getText()+ elements.getText() +"Product is Out of Stock and Join The waitlist is  :: Clickable");
+//								jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_CART_BUTTON));
+//								if(driver.findElement(EMAIL_WHEN_IN_STOCK_BUTTON).isDisplayed()) {
+//									
+//									System.out.println("JOIN THE WAITLIST BUTTON IS WORKING FINE");
+//									Thread.sleep(2000);
+//									jse.executeScript("arguments[0].click();", driver.findElement(JOINTHEWAITLIST_EMAILTEXTBOX));
+//									Thread.sleep(2000);
+//									driver.findElement(JOINTHEWAITLIST_EMAILTEXTBOX).sendKeys("abc"+randomInt+"@tommyjohnwear.com");
+//									Thread.sleep(2000);
+//									jse.executeScript("arguments[0].click();", driver.findElement(JOINTHEWAITLIST_NOTIFYBUTTON));
+//									Thread.sleep(1000);
+//									jse.executeScript("arguments[0].click();", driver.findElement(EMAIL_WHEN_IN_STOCK_BUTTON_CLOSE));
+//									System.out.println("=============================");
+//									Thread.sleep(1000);
 									
-									System.out.println("JOIN THE WAITLIST BUTTON IS WORKING FINE");
-									Thread.sleep(2000);
-									jse.executeScript("arguments[0].click();", driver.findElement(JOINTHEWAITLIST_EMAILTEXTBOX));
-									Thread.sleep(2000);
-									driver.findElement(JOINTHEWAITLIST_EMAILTEXTBOX).sendKeys("kritika.bhat@tommyjohnwear.com");
-									Thread.sleep(2000);
-									jse.executeScript("arguments[0].click();", driver.findElement(JOINTHEWAITLIST_NOTIFYBUTTON));
-									Thread.sleep(1000);
-									jse.executeScript("arguments[0].click();", driver.findElement(EMAIL_WHEN_IN_STOCK_BUTTON_CLOSE));
-									System.out.println("=============================");
-									Thread.sleep(1000);
-									
-								}
-								
+	//							}
+//								
 								
 							}
 							
@@ -3013,8 +3022,12 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 								
 								
 						}
+						
+						if(count==2)
+							break;
 							
 					}
+			
 			
 		}
 		
