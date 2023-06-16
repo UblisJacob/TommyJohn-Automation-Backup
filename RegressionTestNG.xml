@@ -67,5 +67,12 @@
 			<class name="TestModules.ValidateCreateAccount_Login" />
 		</classes>
 	</test>
+	
+	<test name="CheckoutPageTests">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="TestModules.ValidateCheckoutPage" />
+		</classes>
+	</test>
 
 </suite>
