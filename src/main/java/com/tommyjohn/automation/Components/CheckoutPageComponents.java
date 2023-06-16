@@ -40,19 +40,11 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	{
 		SoftAssert softAssert = new SoftAssert();
 		String text = null;
+		
 		new AddToCartComponents(driver).addToCart();
 		driver.findElement(HomePageLocators.CART_ICON).click();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		try {
-		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
-		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ShoppingCartComponents.CART_TITLE));
-		}
-		catch(Exception e)
-		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(ShoppingCartComponents.CART_TITLE));
-		}
-		driver.findElement(ShoppingCartComponents.CHECKOUT_BUTTON).click();
+		driver.findElement(FlyCartComponents.CHECKOUT_BUTTON).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EXPRESS_CHECKOUT_TEXT));
 		Thread.sleep(3000);
 		driver.switchTo().frame(driver.findElement(By.className("paypalLight")));
@@ -131,6 +123,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(ShoppingCartComponents.CART_TITLE));
 		}
 		driver.findElement(ShoppingCartComponents.CHECKOUT_BUTTON).click();
+	//	navigatetocheckoutpage();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CHECKOUT_EMAIL));
 		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
 
@@ -162,14 +155,15 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	{
 		SoftAssert softAssert = new SoftAssert();
 		String password = CustomUtilities.properties.getProperty("password");
-		new AddToCartComponents(driver).addToCart();
-		driver.findElement(HomePageLocators.CART_ICON).click();
+//		new AddToCartComponents(driver).addToCart();
+//		driver.findElement(HomePageLocators.CART_ICON).click();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
-		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ShoppingCartComponents.CART_TITLE));
-
-		driver.findElement(ShoppingCartComponents.CHECKOUT_BUTTON).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+//		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(ShoppingCartComponents.CART_TITLE));
+//
+//		driver.findElement(ShoppingCartComponents.CHECKOUT_BUTTON).click();
+		
 		Reporter.log("Checkout page displayed");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
 		driver.findElement(LOGIN_LINK).click();
@@ -208,6 +202,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	public void informationpage() throws Exception
 	{
 		SoftAssert softAssert = new SoftAssert();
+		
 		new AddToCartComponents(driver).addToCart();
 		driver.findElement(HomePageLocators.CART_ICON).click();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
@@ -614,6 +609,14 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		softAssert.assertAll();
 	}
 
+	
+	public void navigatetocheckoutpage() throws Exception 
+	{
+		new CollectionPageComponent(driver).AddproductToCartByQuickShop();
+		driver.findElement(HomePageLocators.CART_ICON).click();
+		driver.findElement(FlyCartComponents.CHECKOUT_BUTTON).click();	
+		}
+	
 
 }
 

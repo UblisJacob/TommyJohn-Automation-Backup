@@ -24,7 +24,7 @@ public class ValidateHomePage {
 		}
 	}
 
-//	@Test
+	@Test
 	public void TC_verifyLogoAndCategoriesOnHomePage() throws Exception {
 
 		new HomePage(driver).ValidateLogoAndCategoriesPresence();
