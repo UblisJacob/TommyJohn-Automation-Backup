@@ -41,18 +41,18 @@ public class ValidateSearchPages {
 	@Test
 	public void TC_Search_InteractWithFilters() throws Exception {
 		searchText = objGeneralMethods.readPropertiesFile("searchSports");
-		new HomePage(driver).validateSearchPM(searchText);
+		new HomePage(driver).validateSearchFunctionEnter(searchText);
 		new CollectionPage(driver).validateFiltersSearch();
 	}
 	
 	@Test public void TC_Search_InteractWithSortBy() throws Exception { 
 		searchText = objGeneralMethods.readPropertiesFile("searchSports");
-		new HomePage(driver).validateSearchPM(searchText);
+		new HomePage(driver).validateSearchFunctionEnter(searchText);
 		new CollectionPage(driver).validateSortBySearch();
 	}
 	
 	@Test public void TC_Search_ViewOnImageAndSecondaryBadging() throws Exception { 
-		searchText = objGeneralMethods.readPropertiesFile("searchSports");
+		searchText = objGeneralMethods.readPropertiesFile("searchFeatured");
 		new HomePage(driver).validateSearchPM(searchText);
 		new CollectionPage(driver).validateOnImageBadgeSearch();
 	}
@@ -73,7 +73,7 @@ public class ValidateSearchPages {
 	@Test
 	public void TC_Search_ValidateSingleProductTile() throws Exception {
 		searchText = objGeneralMethods.readPropertiesFile("searchSocks");
-		new HomePage(driver).validateSearchPM(searchText);
+		new HomePage(driver).validateSearchFunctionEnter(searchText);
 		new CollectionPage(driver).validateSingleTileProductSearch();
 	}
 	
