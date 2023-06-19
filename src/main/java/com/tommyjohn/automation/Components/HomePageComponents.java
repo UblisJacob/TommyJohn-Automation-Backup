@@ -174,13 +174,15 @@ public class HomePageComponents extends HomePageLocators {
 
 		SoftAssert softAssert = new SoftAssert();
 		action = new Actions(driver);
-		
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(30));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		WebElement search = driver.findElement(SEARCH_ICON);
 		action.moveToElement(driver.findElement(SEARCH_ICON)).build().perform();
 		Thread.sleep(3000);
 		
 		driver.findElement(SEARCH_ICON).sendKeys(searchText + Keys.ENTER);
 		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SEARCHPAGE_TITLE));
 		if(driver.findElement(SEARCHPAGE_TITLE).isDisplayed())
 		{
 			System.out.println("Search Page Title is displayed");
@@ -283,7 +285,7 @@ public class HomePageComponents extends HomePageLocators {
 
 		SoftAssert softAssert = new SoftAssert();
 		action = new Actions(driver);
-		WebDriverWait wait = new WebDriverWait(driver,50);
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(30));
 		String Search_keyword = "tees";
 		if(!driver.findElement(SEARCH_ICON).isDisplayed())
 			throw new Exception("Search option is not present");
@@ -1700,7 +1702,7 @@ public class HomePageComponents extends HomePageLocators {
 
 		//changed
 		//driver.get("https://tommyjohn.com/collections/womens-lounge-sleep-packs");
-		driver.get("https://www.tommyjohn.com/collections/womens-air-mesh-brief-3-pack/?variant=41126176915501");
+		driver.get("https://www.tommyjohn.com/collections/womens-air-brief-3-pack/?variant=41591736467501");
 		
 
 	}
