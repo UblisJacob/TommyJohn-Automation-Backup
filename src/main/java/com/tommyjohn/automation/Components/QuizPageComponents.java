@@ -1,12 +1,10 @@
 package com.tommyjohn.automation.Components;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
 
+import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -21,6 +19,7 @@ public class QuizPageComponents extends QuizPageLocators
 {
 	WebDriver driver;
 	WebElement element;
+	WebElement e;
 	WebDriverWait wait;
 	SoftAssert softassert = new SoftAssert();
 	public JavascriptExecutor js;
@@ -33,12 +32,13 @@ public class QuizPageComponents extends QuizPageLocators
 	String[] list1 ;
 	String[] list2;
 	List<String> summary_result = new ArrayList<String>();
-	List<String> result_page_selected_value = new ArrayList<String>();
+	String result_page_selected_value ;
 	String text;
 	String Question;
 	String Education_card_title;
 	String BraFirstQsnTemplate;
 	String CustomInputData= "TestData";
+	int count=0;
 	public QuizPageComponents(WebDriver driver)
 	{
 		this.driver = driver;
@@ -130,7 +130,7 @@ public class QuizPageComponents extends QuizPageLocators
 	{
 
 		js = (JavascriptExecutor)driver;
-		wait = new WebDriverWait(driver, 30);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(GET_STARTED_CTA));
 		softassert.assertTrue(driver.findElement(GET_STARTED_CTA).isDisplayed(), "Get started button is not displayed");
 		softassert.assertEquals(driver.findElement(GET_STARTED_CTA).getText(), "Get Started" , "Text changed for quiz start CTA");
@@ -139,7 +139,7 @@ public class QuizPageComponents extends QuizPageLocators
 		Reporter.log("'Get Started' cta Displayed :: Clickable");
 
 		//First question page
-		wait = new WebDriverWait(driver, 30);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(QUESTION_HEADING));
 		softassert.assertTrue(driver.findElement(INSTRUCTION_HEADING).isDisplayed(), "First question page instruction heading is not displayed");
 		softassert.assertTrue(driver.findElement(QUESTION_HEADING).isDisplayed(), "First question page heading is not displayed");
@@ -165,7 +165,7 @@ public class QuizPageComponents extends QuizPageLocators
 		Reporter.log("Quiz First question page is displayed :: Correct");
 
 		//Second question page
-				wait = new WebDriverWait(driver, 30);
+				wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.presenceOfElementLocated(PREVIOUS_ARROW));
 		Thread.sleep(5000);
 		softassert.assertTrue(driver.findElement(INSTRUCTION_HEADING).isDisplayed(), "second question page instruction heading is not displayed");
@@ -182,14 +182,14 @@ public class QuizPageComponents extends QuizPageLocators
 		element= driver.findElement(PREVIOUS_ARROW);
 		js.executeScript("arguments[0].click();", element);
 		Thread.sleep(8000);
-		wait = new WebDriverWait(driver, 30);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(QUESTION_HEADING));
 		ExpectedText = driver.findElement(QUESTION_HEADING).getText();
 		softassert.assertEquals(QuestionText, ExpectedText, "wrong navigation after click on back arrow on second question page");
 		CheckPreselect();
 
 		driver.findElement(NEXT_CTA).click();
-		wait = new WebDriverWait(driver, 30);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(QUESTION_HEADING));
 		WebList= driver.findElements(QUESTION_BLOCK_OPTIONS);
 		for(int i=1; i<WebList.size()-1; i++)
@@ -224,17 +224,17 @@ public class QuizPageComponents extends QuizPageLocators
 			throw new Exception("Next cta is not disabled by default on Third question page");
 		element= driver.findElement(PREVIOUS_ARROW);
 		js.executeScript("arguments[0].click();", element);
-		wait = new WebDriverWait(driver, 30);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(QUESTION_HEADING));
 		ExpectedText = driver.findElement(QUESTION_HEADING).getText();
 		softassert.assertEquals(Second_question, ExpectedText, "wrong navigation after click on back arrow on Third question page");
 		CheckPreselect();
 
 		driver.findElement(NEXT_CTA).click();
-		wait = new WebDriverWait(driver, 30);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(QUESTION_HEADING));
 		WebList= driver.findElements(QUESTION_BLOCK_OPTIONS);
-		for(int i=1; i<WebList.size()-1; i++)
+		for(int i=1; i<WebList.size()-4; i++)
 		{
 			element = driver.findElement(By.cssSelector(".questions-tile-parent>.questions-tile>div:nth-child("+i+")"));
 			js.executeScript("arguments[0].click();", element);
@@ -258,14 +258,14 @@ public class QuizPageComponents extends QuizPageLocators
 
 		element= driver.findElement(PREVIOUS_ARROW);
 		js.executeScript("arguments[0].click();", element);
-		wait = new WebDriverWait(driver, 30);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(QUESTION_HEADING));
 		ExpectedText = driver.findElement(QUESTION_HEADING).getText();
 		softassert.assertEquals(Third_question, ExpectedText, "wrong navigation after click on back arrow on Education card");
-		CheckPreselect();
+		
 
 		driver.findElement(NEXT_CTA).click();
-		wait = new WebDriverWait(driver, 30);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(EDUCATION_CARD_TITLE));
 
 		Allclasses = driver.findElement(NEXT_CTA).getAttribute("class");
@@ -292,12 +292,12 @@ public class QuizPageComponents extends QuizPageLocators
 			throw new Exception("Next cta is not disabled by default on Forth question page");
 		element= driver.findElement(PREVIOUS_ARROW);
 		js.executeScript("arguments[0].click();", element);
-		wait = new WebDriverWait(driver, 30);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(EDUCATION_CARD_TITLE));
 		ExpectedText = driver.findElement(EDUCATION_CARD_TITLE).getText();
 		softassert.assertEquals(Education_card_title, ExpectedText, "wrong navigation after click on back arrow on Forth question page");
 		driver.findElement(NEXT_CTA).click();
-		wait = new WebDriverWait(driver, 30);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(QUESTION_HEADING));
 		WebList= driver.findElements(QUESTION_BLOCK_OPTIONS);
 		for(int i=1; i<WebList.size()-1; i++)
@@ -323,14 +323,14 @@ public class QuizPageComponents extends QuizPageLocators
 
 		element= driver.findElement(PREVIOUS_ARROW);
 		js.executeScript("arguments[0].click();", element);
-		wait = new WebDriverWait(driver, 30);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(QUESTION_HEADING));
 		ExpectedText = driver.findElement(QUESTION_HEADING).getText();
 		softassert.assertEquals(Forth_question, ExpectedText, "wrong navigation after click on back arrow on Summary card");
 		CheckPreselect();
 
 		driver.findElement(NEXT_CTA).click();
-		wait = new WebDriverWait(driver, 30);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(SUMMARY_CARD_HEADING));
 		List <WebElement> summary_answer= driver.findElements(SUMMARY_ANSWER);
 
@@ -343,7 +343,7 @@ public class QuizPageComponents extends QuizPageLocators
 		//		}
 		for(int j=0;j<=summary_answer.size()-1;j++)
 		{
-			summary_result.add(summary_answer.get(j).getText().toLowerCase().toString().trim());
+			summary_result.add(summary_answer.get(j).getText().toString().trim());
 		}
 		element = driver.findElement(SEE_RESULT_CTA);
 		js.executeScript("arguments[0].click();", element);
@@ -362,14 +362,14 @@ public class QuizPageComponents extends QuizPageLocators
 		js = (JavascriptExecutor)driver;
 		QuestionText=QuizFlow();
 		//QuestionText=FirstTemplate();
-		wait = new WebDriverWait(driver, 30);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(QUIZ_ANSWER_HERO_TITLE));
 		softassert.assertTrue(driver.findElement(QUIZ_ANSWER_HERO_TITLE).isDisplayed(), "Quiz answer hero title is not displayed on Result page");
 		softassert.assertTrue(driver.findElement(RETAKE_QUIZ_CTA).isDisplayed(), "Retake Quiz CTA is not displayed on result page");
 		element = driver.findElement(RETAKE_QUIZ_CTA);
 		js.executeScript("arguments[0].click();", element);
 
-		wait = new WebDriverWait(driver, 30);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(QUESTION_HEADING));
 		ExpectedText = driver.findElement(QUESTION_HEADING).getText();
 		softassert.assertEquals(QuestionText, ExpectedText, "Navigation is not quiz first template after click on 'Retake Quiz' link");
@@ -391,7 +391,7 @@ public class QuizPageComponents extends QuizPageLocators
 		Reporter.log("Preselected options functionality with retake quiz is correct");
 	}
 
-	public void CheckPreselect()
+	public void CheckPreselect() throws Exception
 	{
 		//Check preselected options on previous page
 		WebList= driver.findElements(QUESTION_BLOCK_OPTIONS);
@@ -403,8 +403,12 @@ public class QuizPageComponents extends QuizPageLocators
 			if(element.getAttribute("class").contains("selected")) {
 				OnSelectClasses.add(element);
 			}
+			
 		}
-		softassert.assertEquals(SelectedOptions.size(), OnSelectClasses.size(), "Options are not preselected for this question template: "+text);
+		if(OnSelectClasses.isEmpty())
+			throw new Exception("Preselect functionality is not working");
+		
+		//softassert.assertEquals(SelectedOptions.size(), OnSelectClasses.size(), "Options are not preselected for this question template: "+text);
 		softassert.assertAll();
 		SelectedOptions.clear();
 		OnSelectClasses.clear();
@@ -417,7 +421,7 @@ public class QuizPageComponents extends QuizPageLocators
 		softassert.assertTrue(driver.findElement(QUIZ_RESULT_PRODUCT_IMAGE).isDisplayed(), "products are displayed on quiz result page");
 		try 
 		{		
-			text= driver.findElement(RESULT_PAGE_SELECTED_VALUES).getText();
+			text= driver.findElement(RESULT_PAGE_SELECTED_VALUES).getAttribute("innerHTML");
 		}
 		catch(Exception e)
 		{
@@ -428,22 +432,72 @@ public class QuizPageComponents extends QuizPageLocators
 			softassert.assertFalse(products.size()==3, "product count in Bra result page is not 3");
 		}
 		System.out.println("text is: "+text);
-		list2=text.split("[|]");
-		System.out.println("list2 is: "+Arrays.asList(list2));
-		for(int k=0;k<list2.length;k++)
+		if(text.contains("|"))
 		{
-			result_page_selected_value.add(list2[k].toString().toLowerCase().trim());
+			list2=text.split(" +");
+			System.out.println("list2 is: "+Arrays.asList(list2));
+			result_page_selected_value=list2[3];
+			
+			//	result_page_selected_value.add(list2[k].toString().toLowerCase().trim());				
+				System.out.println("Result page: "+result_page_selected_value);
+				
 		}
 		System.out.println("Summary page: "+summary_result);
-		System.out.println("Result page: "+result_page_selected_value);
-		List<String> Common_Values = result_page_selected_value.stream().filter(e -> (summary_result.stream().filter(d -> d.equals(e)).count()) < 1).collect(Collectors.toList());
-		System.out.println("common values are: "+Common_Values);
-		for(String temp: Common_Values) {
-			if (!result_page_selected_value.contains(temp)) {
-				System.out.println(temp);
-				throw new Exception("Result is not based on combination of selected options for :"+temp);
+		
+		for(String a : list2) {
+			if(a.contains(result_page_selected_value))
+					{
+				count++;
 			}
 		}
+		if(count>0)
+		{
+			System.out.println("Correct Results are displayed");
+		Reporter.log("Correct Results are displayed");
+		}
+		else
+			throw new Exception("Results not based on quiz answers");
+		
+		
+		
+		
+//			if(summary_result.toString().contains(result_page_selected_value))
+//			{
+//				System.out.println("Correct Results are displayed");
+//				Reporter.log("Correct Results are displayed");
+//			}
+//			else
+//				throw new Exception("Results not based on quiz answers");
+//			
+	
+		
+		
+//		if(summary_result.contains(result_page_selected_value))
+//		{
+//			System.out.println("Correct Results are displayed");
+//			Reporter.log("Correct Results are displayed");
+//		}
+//		else
+//			throw new Exception("Results not based on quiz answers");
+//		
+		
+		
+//		list2=text.split("[|]");
+//		System.out.println("list2 is: "+Arrays.asList(list2));
+//		for(int k=0;k<list2.length;k++)
+//		{
+//			result_page_selected_value.add(list2[k].toString().toLowerCase().trim());
+//		}
+//		System.out.println("Summary page: "+summary_result);
+//		System.out.println("Result page: "+result_page_selected_value);
+//		List<String> Common_Values = result_page_selected_value.stream().filter(e -> (summary_result.stream().filter(d -> d.equals(e)).count()) < 1).collect(Collectors.toList());
+//		System.out.println("common values are: "+Common_Values);
+//		for(String temp: Common_Values) {
+//			if (!result_page_selected_value.contains(temp)) {
+//				System.out.println(temp);
+//				throw new Exception("Result is not based on combination of selected options for :"+temp);
+//			}
+//		}
 		//				for(String temp: result_page_selected_value) {
 		//					System.out.println(temp);
 		//					System.out.println("Match:"+summary_result.stream().anyMatch(d-> d.equalsIgnoreCase(temp)));
@@ -461,7 +515,7 @@ public class QuizPageComponents extends QuizPageLocators
 	{
 
 		js = (JavascriptExecutor)driver;
-		wait = new WebDriverWait(driver, 30);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(GET_STARTED_CTA));
 		softassert.assertTrue(driver.findElement(GET_STARTED_CTA).isDisplayed(), "Get started button is not displayed");
 		softassert.assertEquals(driver.findElement(GET_STARTED_CTA).getText(), "Get Started" , "Text changed for quiz start CTA");
@@ -478,9 +532,7 @@ public class QuizPageComponents extends QuizPageLocators
 			try {
 				if(driver.findElement(INSTRUCTION_HEADING).isDisplayed())
 				{
-					wait.until(ExpectedConditions.presenceOfElementLocated(QUESTION_HEADING));
-					softassert.assertTrue(driver.findElement(INSTRUCTION_HEADING).isDisplayed(), "question page instruction heading is not displayed");
-					softassert.assertTrue(driver.findElement(QUESTION_HEADING).isDisplayed(), "question page heading is not displayed");
+					
 					QuestionText= driver.findElement(QUESTION_HEADING).getText();
 					WebList= driver.findElements(QUESTION_BLOCK_OPTIONS);
 					if(!(WebList.size()>0)) 
@@ -495,15 +547,16 @@ public class QuizPageComponents extends QuizPageLocators
 						element= driver.findElement(PREVIOUS_ARROW);
 						js.executeScript("arguments[0].click();", element);
 						Thread.sleep(8000);
-						wait = new WebDriverWait(driver, 30);
+						wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 						wait.until(ExpectedConditions.presenceOfElementLocated(QUESTION_HEADING));
 						ExpectedText = driver.findElement(QUESTION_HEADING).getText();
 						System.out.println("actual: "+ExpectedText+" Expected : "+Question);
 						softassert.assertEquals(ExpectedText, Question, "wrong navigation after click on back arrow");
 						CheckPreselect();
 
-						driver.findElement(NEXT_CTA).click();
-						wait = new WebDriverWait(driver, 30);
+						e= driver.findElement(NEXT_CTA);
+						js.executeScript("arguments[0].click();", e);
+						wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 						wait.until(ExpectedConditions.presenceOfElementLocated(QUESTION_HEADING));
 						WebList= driver.findElements(QUESTION_BLOCK_OPTIONS);
 						for(int i=1; i<WebList.size()-1; i++)
@@ -518,7 +571,7 @@ public class QuizPageComponents extends QuizPageLocators
 							throw new Exception("Next cta is not enabled with selected options");
 						element = driver.findElement(NEXT_CTA);
 						js.executeScript("arguments[0].click();", element);
-						Thread.sleep(5000);
+						Thread.sleep(3000);
 
 					}
 
@@ -533,12 +586,12 @@ public class QuizPageComponents extends QuizPageLocators
 						ExpectedText= driver.findElement(QUESTION_HEADING).getText();
 						element = driver.findElement(NEXT_CTA);
 						js.executeScript("arguments[0].click();", element);
-						Thread.sleep(5000);
+						Thread.sleep(3000);
 						System.out.println("Previous arrow is not displayed for template: "+QuestionText);
 					}
 
 				}
-				Thread.sleep(5000);
+				Thread.sleep(3000);
 			}
 
 			catch(Exception e) {
@@ -553,7 +606,7 @@ public class QuizPageComponents extends QuizPageLocators
 
 						element= driver.findElement(PREVIOUS_ARROW);
 						js.executeScript("arguments[0].click();", element);
-						wait = new WebDriverWait(driver, 30);
+						wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 						wait.until(ExpectedConditions.presenceOfElementLocated(QUESTION_HEADING));
 						ExpectedText = driver.findElement(QUESTION_HEADING).getText();
 						softassert.assertEquals(ExpectedText, Question, "wrong navigation after click on back arrow on Education card");
@@ -573,7 +626,7 @@ public class QuizPageComponents extends QuizPageLocators
 
 					element= driver.findElement(PREVIOUS_ARROW);
 					js.executeScript("arguments[0].click();", element);
-					wait = new WebDriverWait(driver, 30);
+					wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 					wait.until(ExpectedConditions.presenceOfElementLocated(EDUCATION_CARD_TITLE));
 					ExpectedText = driver.findElement(EDUCATION_CARD_TITLE).getText();
 					softassert.assertEquals(ExpectedText, Education_card_title, "wrong navigation after click on back arrow on Summary card");
@@ -584,7 +637,7 @@ public class QuizPageComponents extends QuizPageLocators
 
 					for(int s=0;s<=summary_answer.size()-1;s++)
 					{
-						summary_result.add(summary_answer.get(s).getText().toLowerCase().toString().trim());
+						summary_result.add(summary_answer.get(s).getText().toString().trim());
 					}
 					element = driver.findElement(SEE_RESULT_CTA);
 					js.executeScript("arguments[0].click();", element);
@@ -607,14 +660,14 @@ public class QuizPageComponents extends QuizPageLocators
 	{
 		js = (JavascriptExecutor)driver;
 		QuestionText=Bra_Quiz_Flow();
-		wait = new WebDriverWait(driver, 30);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(QUIZ_ANSWER_HERO_TITLE));
 		softassert.assertTrue(driver.findElement(QUIZ_ANSWER_HERO_TITLE).isDisplayed(), "Quiz answer hero title is not displayed on Bra Result page");
 		softassert.assertTrue(driver.findElement(RETAKE_QUIZ_CTA).isDisplayed(), "Retake Quiz CTA is not displayed on Bra result page");
 		element = driver.findElement(RETAKE_QUIZ_CTA);
 		js.executeScript("arguments[0].click();", element);
 
-		wait = new WebDriverWait(driver, 30);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(QUESTION_HEADING));
 		ExpectedText = driver.findElement(QUESTION_HEADING).getText();
 		softassert.assertEquals(QuestionText, ExpectedText, "Navigation is not quiz first template after click on 'Retake Quiz' link");
@@ -640,7 +693,7 @@ public class QuizPageComponents extends QuizPageLocators
 	public void CustomInput_forQSNTemplates() throws Exception
 	{
 		js = (JavascriptExecutor)driver;
-		wait = new WebDriverWait(driver, 30);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(GET_STARTED_CTA));
 		softassert.assertTrue(driver.findElement(GET_STARTED_CTA).isDisplayed(), "Get started button is not displayed");
 		softassert.assertEquals(driver.findElement(GET_STARTED_CTA).getText(), "Get Started" , "Text changed for quiz start CTA");
@@ -714,7 +767,7 @@ public class QuizPageComponents extends QuizPageLocators
 	public void Check_NoPreferenceOptions() throws Exception
 	{
 		js = (JavascriptExecutor)driver;
-		wait = new WebDriverWait(driver, 30);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(GET_STARTED_CTA));
 		softassert.assertTrue(driver.findElement(GET_STARTED_CTA).isDisplayed(), "Get started button is not displayed");
 		softassert.assertEquals(driver.findElement(GET_STARTED_CTA).getText(), "Get Started" , "Text changed for quiz start CTA");

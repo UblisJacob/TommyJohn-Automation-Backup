@@ -1,8 +1,6 @@
 package com.tommyjohn.automation.Components;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
+import java.time.Duration;
 import java.util.List;
 import java.util.Properties;
 
@@ -72,7 +70,6 @@ public class PhysicalGiftCardComponents extends PhysicalGiftCardPageLocators
 		 catch(Exception e)
 		 {
 			 for(int i=1;i<=elementsCount;i++) {
-					boolean flag = false;
 					jse.executeScript("arguments[0].click();", driver.findElement(ProductDetailsPageComponents.SIZE_DROPDOWN));
 					element = driver.findElement(By.cssSelector(".select--options__list > li:nth-child("+i+") > div"));
                     Thread.sleep(3000);
@@ -285,7 +282,7 @@ public class PhysicalGiftCardComponents extends PhysicalGiftCardPageLocators
 
 		}
 		//navigate to shopping cart
-		wait = new WebDriverWait(driver, 20);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		Thread.sleep(3000);
@@ -313,7 +310,7 @@ public class PhysicalGiftCardComponents extends PhysicalGiftCardPageLocators
 
 		}
 
-		wait = new WebDriverWait(driver, 20);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ShoppingCartLocators.CHECKOUT_BUTTON));
 		driver.findElement(ShoppingCartLocators.CHECKOUT_BUTTON).click();
@@ -325,7 +322,7 @@ public class PhysicalGiftCardComponents extends PhysicalGiftCardPageLocators
 		Thread.sleep(5000);
 		System.out.println("payment page");
 		Thread.sleep(10000);
-		wait = new WebDriverWait(driver, 30);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CheckoutPageComponents.CONTINUE_TO_PAYMENT_BUTTON));
 		WebElement element = driver.findElement(CheckoutPageComponents.CONTINUE_TO_PAYMENT_BUTTON);
 		if(!element.isDisplayed())

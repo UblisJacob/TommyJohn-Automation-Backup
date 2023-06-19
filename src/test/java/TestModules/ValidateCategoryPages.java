@@ -6,10 +6,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import com.tommyjohn.automation.Components.CollectionPageComponent;
-import com.tommyjohn.automation.Components.HomePageComponents;
 import com.tommyjohn.automation.Pages.CollectionPage;
-import com.tommyjohn.automation.Pages.HomePage;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
 public class ValidateCategoryPages {
@@ -41,7 +38,6 @@ public class ValidateCategoryPages {
 	 @Test public void TC_ViewH1() throws Exception { new
 	 CollectionPage(driver).validateCategoryPageHeader(); }
 	 
-
 	
 	 @Test public void TC_ViewSectionHeaders() throws Exception { new
 	 CollectionPage(driver).validateCategorySectionHeaders(); }
@@ -90,12 +86,15 @@ public class ValidateCategoryPages {
 	@Test
 	public void TC_InteractWithStyleCarousel() throws Exception {
 		new CollectionPage(driver).validateStyleCarousels();
+	
 	}
 	
 	@Test
 	public void TC_MultipleSizeVariants() throws Exception {
 		new CollectionPage(driver).validateMultiVariantSizeInQuickshop();
 	}
+	
+	
 	
 
 	@AfterMethod(alwaysRun = true)
