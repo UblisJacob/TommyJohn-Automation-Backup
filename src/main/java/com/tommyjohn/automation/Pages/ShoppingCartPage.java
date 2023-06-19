@@ -18,6 +18,11 @@ public class ShoppingCartPage extends ShoppingCartComponents{
 		new ShoppingCartComponents(driver).EmptyCart();
 	}
 	
+	public void ValidateViewCartLink() throws Exception
+	{
+		new ShoppingCartComponents(driver).clickOnViewCartLink();
+	}
+	
 	public void ValidateShoppingCartWithProducts() throws Exception
 	{
 		new ShoppingCartComponents(driver).CartwithProduct();
