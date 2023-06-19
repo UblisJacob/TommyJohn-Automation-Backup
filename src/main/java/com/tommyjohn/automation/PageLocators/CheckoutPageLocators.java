@@ -12,6 +12,7 @@ public class CheckoutPageLocators {
 	public static By PAYPAL_BUTTON = By.cssSelector(".paypal-button");
 	public static By GPAY_BUTTON = By.xpath("//div[@data-testid = 'GooglePay-button']");
 	public static By AMZ_PAY = By.xpath("//form[@action = 'https://payments.amazon.com/checkout/signin'] /button" );
+	public static By SHOP_PAY = By.xpath("//div[@data-testid='ShopifyPay-button']" );
 	public static By BREADCRUMB_LINK_CART = By.cssSelector("ol.breadcrumb>li:nth-child(1) >a");
 	public static By BREADCRUMB_LINK_INFORMATION = By.cssSelector("ol.breadcrumb>li:nth-child(2)");
 	public static By BREADCRUMB_LINK_SHIPPING = By.cssSelector("ol.breadcrumb>li:nth-child(3)");
@@ -49,7 +50,7 @@ public class CheckoutPageLocators {
 	public static By SUBTOTAL = By.cssSelector("td.total-line__price > .order-summary__emphasis");
 	public static By SHIPPING = By.cssSelector(".total-line--shipping > .total-line__price > span");
 	public static By APPLIED_PROMO_CODE = By.cssSelector(".tag__text>span.reduction-code>span");
-	public static By CANCEL_PROMO_CODE = By.cssSelector("button.tag__button");
+	public static By CANCEL_PROMO_CODE = By.cssSelector(".tag>form[data-reduction-form='true']");
 	public static By TOTAL = By.cssSelector(".payment-due__price");
 
 	//                                          Shipping
