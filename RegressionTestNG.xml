@@ -10,7 +10,8 @@
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<!-- <class name="TestModules.ValidateCategoryPages" /> -->
-			<class name="TestModules.ValidateSearchPages" />
+			<!-- <class name="TestModules.ValidateSearchPages" /> -->
+			<class name="TestModules.ValidateCartPage" />
 
 		</classes>
 	</test>

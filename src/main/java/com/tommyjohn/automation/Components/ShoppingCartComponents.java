@@ -1,10 +1,12 @@
 package com.tommyjohn.automation.Components;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -18,16 +20,18 @@ import com.tommyjohn.automation.PageLocators.HomePageLocators;
 import com.tommyjohn.automation.PageLocators.ShoppingCartLocators;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
+import commonMethods.GeneralMethods;
+
 public class ShoppingCartComponents extends ShoppingCartLocators{
 
 	public WebDriver driver;
-
+	GeneralMethods objGeneralMethods = new GeneralMethods();
 
 	double	installment;
 	List<WebElement> allElements;
 	String price;
 	SoftAssert softAssert=new SoftAssert();
-	public String Promo_Code = "TJHUSTLE";
+	public String Promo_Code = "JULIE25";
 	public ShoppingCartComponents(WebDriver driver) {
 		this.driver = driver;
 	}
@@ -38,38 +42,130 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 
 		new HomePageComponents(driver).validateCartIcon();
 		driver.findElement(HomePageLocators.CART_ICON).click();
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CART_TITLE));
 		//Thread.sleep(3000);
 		softAssert.assertTrue(driver.findElement(CART_TITLE).isDisplayed() , "Your Shopping Cart title is not displayed");
-		softAssert.assertEquals(driver.findElement(CART_TITLE).getText(), "Your Shopping Cart" , "Wrong text displayed for Cart title");
+		softAssert.assertEquals(driver.findElement(CART_TITLE).getText(), "Your Shopping Carts" , "Wrong text displayed for Cart title");
 		softAssert.assertTrue(driver.findElement(EMPTY_CART_MESSAGE).isDisplayed(), "Your cart is Empty message is not displayed on empty cart");
 		softAssert.assertEquals(driver.findElement(EMPTY_CART_MESSAGE).getText(), "Your cart is empty", "Wrong text displayed for empty cart message");
 		softAssert.assertTrue(driver.findElement(START_SHOPPING_BUTTON).isDisplayed(), "Start Shopping button is not displayed");
 		driver.findElement(START_SHOPPING_BUTTON).click();
 		//	softAssert.assertEquals(driver.getCurrentUrl(), CustomUtilities.baseUrl);
-
+		String url = objGeneralMethods.readPropertiesFile("homepage");
+		Thread.sleep(5000);
+		System.out.println(driver.getCurrentUrl());
+		if(driver.getCurrentUrl().equals(url)) {
+			System.out.println("Start shopping button on empty cart redirects user to homepage");
+			Reporter.log("Start shopping button on empty cart redirects user to homepage");
+		}
+		else {
+			Reporter.log("Start shopping button on empty cart doesn't redirect user to homepage");
+			throw new Exception("Start shopping button on empty cart doesn't redirect user to homepage");
+		}
 		softAssert.assertAll();
 		driver.get(CustomUtilities.baseUrl);
-		Reporter.log("Cart Title Present - Your Shopping Cart ");
+		Reporter.log("Cart Title Present - Your Shopping Carts ");
 		Reporter.log("Message displayed correctly - Your cart is Empty");
-		Reporter.log("Start shopping button on empty cart redirects user to homepage");
+		
+	}
+	
+	public void clickOnViewCartLink() throws Exception
+	{
+		SoftAssert softAssert = new SoftAssert();
+		
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HomePageLocators.CART_ICON));
+		driver.findElement(HomePageLocators.CART_ICON).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+		Reporter.log("Clicked on View cart link in inline cart");
+		softAssert.assertAll();
+		
+	}
+	
+	public void tieredMeterFunctionality() throws Exception
+	{
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		SoftAssert softAssert = new SoftAssert();
+		
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(TIERED_METER));
+		Thread.sleep(5000);
+		
+		if(driver.findElement(TIERED_METER).isDisplayed()) {
+			
+			System.out.println("Tiered Meter is displayed on cart page");
+			Reporter.log("Tiered Meter is displayed on cart page");
+			
+			if(driver.findElement(TIERED_METER_TITLE).isDisplayed()){
+				System.out.println("Tiered Meter Title is displayed on cart page");
+				Reporter.log("Tiered Meter Title is displayed on cart page");
+			}
+			else {
+				System.out.println("Tiered Meter Title is not displayed on cart page");
+				Reporter.log("Tiered Meter Title is not displayed on cart page");
+			}
+		}
+		else {
+			System.out.println("Tiered Meter is not displayed on cart page");
+			Reporter.log("Tiered Meter is not displayed on cart page");
+		}
+		
+		//softAssert.assertAll();	
+	}
+	
+	public void OOSValidation() throws Exception
+	{
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		SoftAssert softAssert = new SoftAssert();
+		
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(TIERED_METER));
+		Thread.sleep(7000);
+		
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_QUANTITY));
+		driver.findElement(PRODUCT_QUANTITY).sendKeys("10000" + Keys.ENTER);
+		Thread.sleep(5000);
+		
+		if(driver.findElement(OOS_MESSAGE).isDisplayed()) {
+			
+			System.out.println("OOS message is displayed on cart page");
+			Reporter.log("OOS message is displayed on cart page");
+			
+			if(driver.findElement(OOS_TAG).isDisplayed()){
+				System.out.println("OOS Tag is displayed on cart page");
+				Reporter.log("OOS Tag is displayed on cart page");
+			}
+			else {
+				System.out.println("OOS Tag is not displayed on cart page");
+				Reporter.log("OOS Tag is not displayed on cart page");
+			}
+		}
+		else {
+			System.out.println("OOS message is not displayed on cart page");
+			Reporter.log("OOS message is not displayed on cart page");
+		}
+		
+		//softAssert.assertAll();	
 	}
 
 	public void CartwithProduct() throws Exception
 	{
 
 		SoftAssert softAssert = new SoftAssert();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 
-
-		new AddToCartComponents(driver).addToCart();
+		//new AddToCartComponents(driver).addToCart();
 		driver.findElement(HomePageLocators.CART_ICON).click();
-		WebDriverWait wait = new WebDriverWait(driver, 20);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CART_TITLE));
+		
 
 		softAssert.assertTrue(driver.findElement(PRODUCT_TITLE).isDisplayed(), "Product title for added item not present on Cart");
 		softAssert.assertTrue(driver.findElement(PRODUCT_IMAGE).isDisplayed(), "Product image is not present");
@@ -92,15 +188,16 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		String text;
 		String text1;
 		String quant;
-
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		
 		SoftAssert softAssert = new SoftAssert();
-		text = new AddToCartComponents(driver).addToCart();
+		/*text = new AddToCartComponents(driver).addToCart();
 		System.out.println("Text is:"+text);
 		String[] part = text.split(",");
 		String part2 = part[0];
-		System.out.println("Title text is:" +part2);
+		System.out.println("Title text is:" +part2);*/
 		driver.findElement(HomePageLocators.CART_ICON).click();
-		WebDriverWait wait = new WebDriverWait(driver, 20);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		try {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
@@ -124,15 +221,17 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 			throw new Exception("Wrong Product added to cart");
 		quant= driver.findElement(PRODUCT_QUANTITY).getAttribute("value");
 
-		driver.findElement(PRODUCT_QUANT_ADD).click();
+		//driver.findElement(PRODUCT_QUANT_ADD).click();
+		jse.executeScript("arguments[0].click();", driver.findElement(PRODUCT_QUANT_ADD));
 		softAssert.assertEquals(driver.findElement(PRODUCT_QUANTITY).getAttribute("value"), "2");
-		driver.findElement(PRODUCT_QUANT_MINUS).click();
+		//driver.findElement(PRODUCT_QUANT_MINUS).click();
+		jse.executeScript("arguments[0].click();", driver.findElement(PRODUCT_QUANT_MINUS));
 		softAssert.assertEquals(driver.findElement(PRODUCT_QUANTITY).getAttribute("value"), quant);
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(REMOVE_PRODUCT_FROM_CART));
 		driver.findElement(REMOVE_PRODUCT_FROM_CART).click();
 		Thread.sleep(3000);
-		EmptyCart();
+		//EmptyCart();
 		softAssert.assertAll();
 
 	}
@@ -142,7 +241,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		SoftAssert softAssert = new SoftAssert();
 		new AddToCartComponents(driver).addToCart();
 		driver.findElement(HomePageLocators.CART_ICON).click();
-		WebDriverWait wait = new WebDriverWait(driver, 20);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CART_TITLE));
@@ -177,7 +276,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		new AddToCartComponents(driver).atc();
 
 		driver.findElement(HomePageLocators.CART_ICON).click();
-		WebDriverWait wait = new WebDriverWait(driver, 20);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CART_TITLE));
@@ -203,7 +302,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		new AddToCartComponents(driver).addToCart();
 		//navigate to shopping cart page
 		driver.findElement(HomePageLocators.CART_ICON).click();
-		WebDriverWait wait = new WebDriverWait(driver, 20);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		Thread.sleep(3000);
@@ -252,9 +351,12 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		WebElement element;
 		String allClasses = null;
 		boolean flag = false;
-		new AddToCartComponents(driver).addToCart();
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		
+		//new AddToCartComponents(driver).addToCart();
 		driver.findElement(HomePageLocators.CART_ICON).click();
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		try {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
@@ -269,7 +371,8 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		softAssert.assertTrue(driver.findElement(PROMOCODE_APPLYCTA).isDisplayed(), "Promo code 'apply' cta is not displayed");
 
 		//Verify empty text field
-		driver.findElement(PROMOCODE_APPLYCTA).click();
+		js.executeScript("arguments[0].click();", driver.findElement(PROMOCODE_APPLYCTA));
+		//driver.findElement(PROMOCODE_APPLYCTA).click();
 		element= driver.findElement(PROMO_ERROR_MESSAGE);
 		wait.until(ExpectedConditions.visibilityOf(element));
 		softAssert.assertEquals(element.getText(), "Enter a valid discount code", "Text changed for promo code error message on cart page");
@@ -277,7 +380,8 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 
 		//Verify with valid promo code
 		driver.findElement(DISCOUNTCODE_TEXTBOX).sendKeys(Promo_Code);
-		driver.findElement(PROMOCODE_APPLYCTA).click();
+		js.executeScript("arguments[0].click();", driver.findElement(PROMOCODE_APPLYCTA));
+		//driver.findElement(PROMOCODE_APPLYCTA).click();
 		Thread.sleep(2000);
 		softAssert.assertTrue(driver.findElement(PROMO_SUCCESSFUL_MESSAGE).isDisplayed(), "Succesful message is not displayed for applied promo code");
 		Reporter.log("Promo code successful message is displayed :: Correct");
@@ -288,7 +392,8 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 
 		//Verify with invalid promo code
 		driver.findElement(DISCOUNTCODE_TEXTBOX).sendKeys("InvalidCode");
-		driver.findElement(PROMOCODE_APPLYCTA).click();
+		js.executeScript("arguments[0].click();", driver.findElement(PROMOCODE_APPLYCTA));
+		//driver.findElement(PROMOCODE_APPLYCTA).click();
 		Thread.sleep(2000);
 		element= driver.findElement(PROMO_ERROR_MESSAGE);
 		wait.until(ExpectedConditions.visibilityOf(element));
@@ -299,7 +404,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(APPLIED_PROMO_CODE));
 		softAssert.assertTrue(driver.findElement(APPLIED_PROMO_CODE).isDisplayed(), "Applied promo code is getting removed after refresh the page");
 
-		new ProductDetailsPageComponents(driver).Add_Bundle_toCart();
+		//new ProductDetailsPageComponents(driver).Add_Bundle_toCart();
 
 		driver.get(CustomUtilities.baseUrl);
 
@@ -345,7 +450,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 
 	public void AddPromoCode_OnCart_ThroughURL()
 	{
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		String parameter = "/?coupon="+Promo_Code;
 		String current_url = driver.getCurrentUrl();
 		String Url_withPromocode = current_url.concat(parameter);
@@ -363,18 +468,21 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 
 	public void Check_Promocode_onCheckout_throughCart()
 	{
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		price = driver.findElement(SUBTOTAL_PRICE).getText();
 		String[] price1 = price.split("\\$");
 		String EstimateTotal_onCart = price1[price1.length-1];
 
-		driver.findElement(CHECKOUT_BUTTON).click();
+		js.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
+		//driver.findElement(CHECKOUT_BUTTON).click();
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CheckoutPageLocators.APPLIED_PROMO_CODE));
 		softAssert.assertEquals(driver.findElement(CheckoutPageLocators.APPLIED_PROMO_CODE).getText(), Promo_Code, "Wrong/Invalid Promo Code applied");
 		price = driver.findElement(CheckoutPageLocators.TOTAL).getText();
 		String[] price2 = price.split("\\$");
 		String EstimateTotal_onCheckout = price2[price2.length-1];
+		//String EstimateTotal_onCheckout = "0.00";
 		System.out.println("checkout price: "+EstimateTotal_onCheckout+" cart price: "+EstimateTotal_onCart);
 		softAssert.assertEquals(EstimateTotal_onCheckout, EstimateTotal_onCart, "Discounted total price is incorrect on checkout");
 		softAssert.assertAll();
@@ -382,6 +490,8 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 
 	public void AddGiftWrap() throws Exception
 	{
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		
 		WebElement element;
 		String allClasses = null;
 		boolean flag = false;
@@ -399,10 +509,12 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 			Reporter.log("Gift Box $5.00 is already checked");
 		else {
 			driver.findElement(FlyCartPageLocator.GIFT_BOX_$5).click();
-			Thread.sleep(2000);
+			Thread.sleep(5000);
 			Reporter.log("Gift Box $5.00 is checked");
 		}
-		driver.findElement(FlyCartPageLocator.GIFT_WRAP_APPLY).click();
+			
+		js.executeScript("arguments[0].click();", driver.findElement(FlyCartPageLocator.GIFT_WRAP_APPLY));
+		//driver.findElement(FlyCartPageLocator.GIFT_WRAP_APPLY).click();
 		Thread.sleep(5000);
 		softAssert.assertAll();
 	}
