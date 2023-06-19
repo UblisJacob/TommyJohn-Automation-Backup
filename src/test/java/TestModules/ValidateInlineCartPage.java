@@ -50,6 +50,12 @@ public class ValidateInlineCartPage {
 
 		new FlyCartPage(driver).VerifyFlyCartOpenWithQSAndPDP();
 	}
+	
+	@Test
+	public void validateOOSonInlinecart() throws Exception
+	{
+		new FlyCartPage(driver).validateOOSonInlinecart(); 
+	}
 
 	@Test
 	public void TC_verifygiftWrap() throws Exception
