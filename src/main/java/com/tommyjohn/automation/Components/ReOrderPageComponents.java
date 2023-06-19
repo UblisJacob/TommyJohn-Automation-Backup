@@ -1,5 +1,6 @@
 package com.tommyjohn.automation.Components;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class ReOrderPageComponents extends ReOrderPageLocators{
 	{
 
 		SoftAssert softAssert = new SoftAssert();
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HomePageLocators.ACCOUNT_NAV_DROPDOWN));
 		driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN).click();
 		Thread.sleep(3000);
@@ -61,7 +62,7 @@ public class ReOrderPageComponents extends ReOrderPageLocators{
 //		driver.findElement(HomePageLocators.REORDER).click();
 
 		driver.navigate().to(driver.getCurrentUrl()+"?view=reorder");
-		wait = new WebDriverWait(driver, 30);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(REORDER_TEXT));
 
 		softAssert.assertEquals(driver.findElement(REORDER_TEXT).getText(), "Reorder", "Reorder title is not present on Reorder page");
@@ -104,7 +105,7 @@ public class ReOrderPageComponents extends ReOrderPageLocators{
 		   	}
 		 }
 		
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.FIRST_PRODUCT_TITLE_IN_CART));
 		//executor.executeScript("arguments[0].scrollIntoView();", driver.findElement(FlyCartPageLocator.FIRST_PRODUCT_TITLE_IN_CART));
 		softAssert.assertEquals(driver.findElement(FlyCartPageLocator.FIRST_PRODUCT_TITLE_IN_CART).getText(), text , "Wrong product added to cart");

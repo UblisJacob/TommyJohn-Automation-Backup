@@ -1,11 +1,12 @@
 package com.tommyjohn.automation.PageLocators;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.By.ByLinkText;
+
 
 public class HomePageLocators{
 
-	public static By HOMEPAGE_LOGO = By.cssSelector("a.header-logo");
+	public static By HOMEPAGE_LOGO = By.cssSelector("a.header-logo, a[data-tj-qa='header-logo']");
+	//
 	public static By SEARCH_ICON_IMAGE= By.cssSelector("form>.header-search-input-icon>svg");
 	//public static By NEWARRIVALS_CATEGORY = By.cssSelector(".header-desktop-left > ul > li:nth-child(1) > a");
 	//public static By MEN_IN_NEWARRIVALS_CATEGORY = By.cssSelector(".header-desktop-left > ul > li:nth-child(1) > div > ul > li:nth-child(1) > div");
@@ -205,68 +206,111 @@ public class HomePageLocators{
 	public static By CALL_US_OPTION = By.cssSelector(".header-nav-dropdown > ul > li:nth-child(3) > a");
 	public static By TEXT_US_OPTION = By.cssSelector(".header-nav-dropdown > ul > li:nth-child(4) > a");
 	public static By EMAIL_US = By.cssSelector(".header-nav-dropdown > ul > li:nth-child(5) > a");
-
+	
 	public static By ACCOUNT_NAV_DROPDOWN = By.cssSelector(".header-account-item-container > a");
+	public static By HEADER_LOGIN_TITLE = By.cssSelector("span[data-tj-qa='header-login']");
 	public static By REORDER = By.cssSelector("header-desktop-right > li:nth-child(3) >div > ul > li:nth-child(2) > a ");
 	//	public static By CART_ICON = By.cssSelector("i.icon-shopping-cart");
 	public static By CART_ICON = By.cssSelector("button.header-cart-btn > i");
 	public static By CART_HEADING_TEXT = By.cssSelector(".inline-cart__col1 > h3");
 
-	public static By ABOUT_LINK = By.linkText("About");
-	public static By Careers = By.linkText("Careers");
-	public static By PRESS_LINK = By.linkText("Press");
-	public static By Reviews = By.linkText("Reviews");
-	public static By MILITARY_DISCOUNT_LINK = By.linkText("Military Discount");
-	public static By FIRST_RESPONDER = By.linkText("First Responder");
-	public static By GOVERNMENT_EMPLOYEE_DISCOUNT = By.linkText("Government Employee Discount");
-	public static By TEACHER_DISCOUNT_LINK = By.linkText("Teacher Discount");
+	public static By ABOUT_LINK = By.cssSelector("a[data-tj-qa='footer-about']");
+	public static By CAREERS_LINK = By.cssSelector("a[data-tj-qa='footer-careers']");
+	public static By PRESS_LINK = By.cssSelector("a[data-tj-qa='footer-press']");
+	public static By BLOG_LINK = By.cssSelector("a[data-tj-qa='footer-blog']");
+	public static By REVIEWS_LINK = By.cssSelector("a[data-tj-qa='footer-reviews']");
+	public static By SITEWIDE_PROMOTION_LINK = By.cssSelector("a[data-tj-qa='footer-sitewide-promotion']");
+	public static By MILITARY_DISCOUNT_LINK = By.cssSelector("a[data-tj-qa='footer-military-discount']");
+	public static By FIRST_RESPONDER = By.cssSelector("a[data-tj-qa='footer-first-responder']");
+	public static By GOVERNMENT_EMPLOYEE_DISCOUNT = By.cssSelector("a[data-tj-qa='footer-government-employee-discount']");
+	public static By TEACHER_DISCOUNT_LINK = By.cssSelector("a[data-tj-qa='footer-teacher-discount']");
+	public static By REFERRAL_LINK = By.cssSelector("a[data-tj-qa='footer-give-$25,-get-$25']");
 	public static By HEALTHCARE_DISC_LINK = By.linkText("Healthcare Hero Discount");
 	public static By JOBS_LINK = By.linkText("Jobs");
-	public static By PRIVACY_POLICY_LINK = By.linkText("Privacy Policy");
-	public static By TERMS_AND_CONDITION_LINK = By.linkText("Terms & Conditions");
-	public static By BLOG_LINK = By.linkText("Blog");
+//	public static By PRIVACY_POLICY_LINK = By.linkText("Privacy Policy");
+	public static By PRIVACY_POLICY_LINK = By.cssSelector("a[data-tj-qa='footer-privacy-policy']");
+//	public static By TERMS_AND_CONDITION_LINK = By.linkText("Terms & Conditions");
+	public static By TERMS_AND_CONDITION_LINK = By.cssSelector("a[data-tj-qa='footer-terms-&-conditions']");
+	public static By LEAVE_SITE_POPUP = By.cssSelector(".LeaveSiteModalContainer.active .LeaveSiteModalContent");
+	public static By LEAVE_SITE_POPUP_OK_BTN = By.cssSelector(".LeaveSiteModalContainer.active button[data-leave-site='ok']");
+	public static By LEAVE_SITE_POPUP_CANCEL_BTN = By.cssSelector(".LeaveSiteModalContainer.active button[data-leave-site='cancel']");
 
 	public static By HELP_LINK = By.linkText("Help");
-	public static By CONTACT_US_LINK = By.linkText("Contact & FAQ");
-	public static By RETURNS_AND_EXCHANGES = By.linkText("Returns & Exchanges");
-	public static By RETAILERS_LINK = By.linkText("Retailers");
+//	public static By CONTACT_US_LINK = By.linkText("Contact & FAQ");
+	public static By CONTACT_US_LINK = By.cssSelector("a[data-tj-qa='footer-contact-&-faq']");
+//	public static By RETURNS_AND_EXCHANGES = By.linkText("Returns & Exchanges");
+	public static By RETURNS_AND_EXCHANGES = By.cssSelector("a[data-tj-qa='footer-returns-&-exchanges']");
+//	public static By RETAILERS_LINK = By.linkText("Retailers");
+	public static By RETAILERS_LINK = By.cssSelector("a[data-tj-qa='footer-retailers']");
+	public static By AFFILIATES_LINK = By.cssSelector("a[data-tj-qa='footer-affiliates']");
 	public static By KING_OF_PURSSIA_STORE_LINK = By.linkText("King of Prussia Store");
 	public static By CHARLOTTE_STORE_LINK = By.linkText("Charlotte Store");
-	public static By TOMMY_JOHN_STORES = By.linkText("Tommy John Stores");
-	public static By STORE_LOCATOR_LINK = By.linkText("Store Locator");
-	public static By SHIPPING_AND_RETURNS_LINK = By.linkText("Shipping & Return Policy");
+//	public static By TOMMY_JOHN_STORES = By.linkText("Tommy John Stores");
+	public static By TOMMY_JOHN_STORES = By.cssSelector("a[data-tj-qa='footer-tommy-john-stores']");
+//	public static By STORE_LOCATOR_LINK = By.linkText("Store Locator");
+	public static By STORE_LOCATOR_LINK = By.cssSelector("a[data-tj-qa='footer-store-locator']");
+//	public static By SHIPPING_AND_RETURNS_LINK = By.linkText("Shipping & Return Policy");
+	public static By SHIPPING_AND_RETURNS_LINK = By.cssSelector("a[data-tj-qa='footer-shipping-&-return-policy']");
+	public static By GIFT_CARD_BALANCE_CHECK = By.cssSelector("a[data-tj-qa='footer-check-gift-card-balance']");
 	public static By NUMBER_LINK = By.linkText("1-800-708-3490");
 	public static By LOYALTY_LINK = By.linkText("Loyalty");
 
 	public static By TOMMYJOHN_REWARDS_LINK = By.linkText("Tommy John Rewards");
-	public static By SHOP_WOMEN = By.linkText("Shop Women");
-	public static By SHOP_MEN = By.linkText("Shop Men");
-	public static By GIFT_CARD_LINK = By.linkText("Gift Cards");
-	public static By FABRIC_GUIDE_LINK = By.linkText("Fabric Guide");
+//	public static By SHOP_WOMEN = By.linkText("Shop Women");
+	public static By SHOP_WOMEN = By.cssSelector("a[data-tj-qa='footer-shop-women']");
+//	public static By SHOP_MEN = By.linkText("Shop Men");
+	public static By SHOP_MEN = By.cssSelector("a[data-tj-qa='footer-shop-men']");
+//	public static By GIFT_CARD_LINK = By.linkText("Gift Cards");
+	public static By GIFT_CARD_LINK = By.cssSelector("a[data-tj-qa='footer-gift-cards']");
+//	public static By FABRIC_GUIDE_LINK = By.linkText("Fabric Guide");
+	public static By FABRIC_GUIDE_LINK = By.cssSelector("a[data-tj-qa='footer-fabric-guide']");
 	
-	public static By SIGN_IN_FOOTER_LINK= By.linkText("Sign In");
-	public static By ORDER_HISTORY = By.linkText("Order History");
+	public static By SIGN_IN_FOOTER_LINK= By.cssSelector("a[data-tj-qa='footer-sign-in']");
+	public static By ORDER_HISTORY = By.cssSelector("a[data-tj-qa='footer-order-history']");
 
-	public static By FACEBOOK_LINK = By.linkText("Facebook");
-	public static By TWITTER_LINK = By.linkText("Twitter");
-	public static By PINTEREST_LINK = By.linkText("Pinterest");
-	public static By INSTAGRAM_LINK = By.linkText("Instagram");
-	public static By YOUTUBE_LINK = By.linkText("YouTube");
+//	public static By FACEBOOK_LINK = By.linkText("Facebook");
+	public static By FACEBOOK_LINK = By.cssSelector("a[data-tj-qa='footer-facebook']");
+//	public static By TWITTER_LINK = By.linkText("Twitter");
+	public static By TWITTER_LINK = By.cssSelector("a[data-tj-qa='footer-twitter']");
+//	public static By PINTEREST_LINK = By.linkText("Pinterest");
+	public static By PINTEREST_LINK = By.cssSelector("a[data-tj-qa='footer-pinterest']");
+//	public static By INSTAGRAM_LINK = By.linkText("Instagram");
+	public static By INSTAGRAM_LINK = By.cssSelector("a[data-tj-qa='footer-instagram']");
+//	public static By YOUTUBE_LINK = By.linkText("YouTube");
+	public static By YOUTUBE_LINK = By.cssSelector("a[data-tj-qa='footer-youtube']");
 	public static By GOOGLE_PLUS_LINK = By.linkText("Google+");
 	
-	public static By FACEBOOK_ICON = By.cssSelector(".footer-social_icons>div.footer-icons>a:nth-child(1)");
-	public static By TWITTER_ICON = By.cssSelector(".footer-social_icons>div.footer-icons>a:nth-child(2)");
-	public static By PINTEREST_ICON = By.cssSelector(".footer-social_icons>div.footer-icons>a:nth-child(3)");
-	public static By INSTAGRAM_ICON = By.cssSelector(".footer-social_icons>div.footer-icons>a:nth-child(4)");
-	public static By YOUTUBE_ICON = By.cssSelector(".footer-social_icons>div.footer-icons>a:nth-child(5)");
+//	public static By FACEBOOK_ICON = By.cssSelector(".footer-social_icons>div.footer-icons>a:nth-child(1)");
+	public static By FACEBOOK_ICON = By.cssSelector("a[data-tj-qa='footer-facebook']>svg");
+//	public static By TWITTER_ICON = By.cssSelector(".footer-social_icons>div.footer-icons>a:nth-child(2)");
+	public static By TWITTER_ICON = By.cssSelector("a[data-tj-qa='footer-twitter']>svg");
+//	public static By PINTEREST_ICON = By.cssSelector(".footer-social_icons>div.footer-icons>a:nth-child(3)");
+	public static By PINTEREST_ICON = By.cssSelector("a[data-tj-qa='footer-pinterest']>svg");
+//	public static By INSTAGRAM_ICON = By.cssSelector(".footer-social_icons>div.footer-icons>a:nth-child(4)");
+	public static By INSTAGRAM_ICON = By.cssSelector("a[data-tj-qa='footer-instagram']>svg");
+//	public static By YOUTUBE_ICON = By.cssSelector(".footer-social_icons>div.footer-icons>a:nth-child(5)");
+	public static By YOUTUBE_ICON = By.cssSelector("a[data-tj-qa='footer-youtube']>svg");
 	
-	public static By NEWSLETTER_TITLE= By.cssSelector(".footer-section_one>div>.shopify-section>.footer-newsletter>.newsletter_title");
-	public static By NEWSLETTER_RADIO_BUTTONS = By.cssSelector(".footer-section_one>div>.shopify-section>section>form>.gender-container>span");
-	public static By NEWSLETTER_INPUT_TEXTBOX = By.cssSelector(".footer-section_one>div>.shopify-section>section>form>.footer-newsletter__submit-form>input");
-	public static By NEWSLETTER_SIGN_UP_BUTTON = By.cssSelector(".footer-section_one>div>.shopify-section>section>form>.footer-newsletter__submit-form>button");
-	public static By NEWSLETTER_FORM_SUCCESS_MESSAGE = By.cssSelector(".footer-section_one>div>.shopify-section>section>form>div.footer-newsletter__form-success");
+//	public static By NEWSLETTER_TITLE= By.cssSelector(".footer-section_one>div>.shopify-section>.footer-newsletter>.newsletter_title");
+	public static By NEWSLETTER_TITLE= By.cssSelector(".desktop-footer-newsletter div[data-tj-qa='footer-newsletter-title']");
+//	public static By NEWSLETTER_RADIO_BUTTONS = By.cssSelector(".footer-section_one>div>.shopify-section>section>form>.gender-container>span");
+	public static By NEWSLETTER_MEN_RADIO_BUTTON = By.cssSelector(".desktop-footer-newsletter input[data-tj-qa='footer-newsletter-mens']");
+	public static By NEWSLETTER_WOMEN_RADIO_BUTTON = By.cssSelector(".desktop-footer-newsletter input[data-tj-qa='footer-newsletter-women']");
+	public static By NEWSLETTER_BOTH_RADIO_BUTTON = By.cssSelector(".desktop-footer-newsletter input[data-tj-qa='footer-newsletter-both']");
+//	public static By NEWSLETTER_INPUT_TEXTBOX = By.cssSelector(".footer-section_one>div>.shopify-section>section>form>.footer-newsletter__submit-form>input");
+	public static By NEWSLETTER_INPUT_TEXTBOX = By.cssSelector(".desktop-footer-newsletter input[data-tj-qa='footer-newsletter-email']");
+//	public static By NEWSLETTER_SIGN_UP_BUTTON = By.cssSelector(".footer-section_one>div>.shopify-section>section>form>.footer-newsletter__submit-form>button");
+	public static By NEWSLETTER_SIGN_UP_BUTTON = By.cssSelector(".desktop-footer-newsletter button[data-tj-qa='footer-newsletter-sign-up']");
+//	public static By NEWSLETTER_FORM_SUCCESS_MESSAGE = By.cssSelector(".footer-section_one>div>.shopify-section>section>form>div.footer-newsletter__form-success");
+	public static By NEWSLETTER_FORM_SUCCESS_MESSAGE = By.cssSelector(".desktop-footer-newsletter span[data-tj-qa='footer-newsletter-success']");
+	public static By NEWSLETTER_FORM_SUCCESS_MESSAGE_VISIBLE = By.cssSelector(".desktop-footer-newsletter div[style='display: inline-flex;']");
+	public static By NEWSLETTER_FORM_FAIL_MESSAGE = By.cssSelector(".desktop-footer-newsletter span[data-tj-qa='footer-newsletter-error']");
+	public static By NEWSLETTER_FORM_FAIL_MESSAGE_VISIBLE = By.cssSelector(".desktop-footer-newsletter div[style='display: block;']");
+//	public static By DO_NOT_SELL_PERSONAL_INFO_LINK= By.linkText("Do Not Sell My Information");
+	public static By GIVE_FEEDBACK_TITLE = By.cssSelector("div[data-tj-qa='footer-feedback-title']");
 	public static By GIVE_FEEDBACK_CTA = By.cssSelector(".footer-feedback_btn");
-	public static By DO_NOT_SELL_PERSONAL_INFO_LINK= By.linkText("Do Not Sell My Information");
+	public static By DO_NOT_SELL_PERSONAL_INFO_LINK= By.cssSelector("a[data-tj-qa='footer-ccpa']");
+	public static By CA_SUPPLY_CHAINS_ACT_LINK= By.cssSelector("a[data-tj-qa='footer-transparency-sca']");
 	
 	public static By CCPA_FORM_TITLE = By.cssSelector(".ccpa-form-first-step-container>.ccpa-form-title");
 	public static By CCPA_STATE_OF_RESIDENCE_QSN = By.cssSelector(".ccpa-form-first-step-container>.ccpa-form>div>label");

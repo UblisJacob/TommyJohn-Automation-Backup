@@ -1,6 +1,7 @@
 package com.tommyjohn.automation.Components;
 
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
@@ -511,7 +512,7 @@ public class GiftCardPageComponents extends GiftCardPageLocators {
   				
   			}
   		//navigate to shopping cart
-      		wait = new WebDriverWait(driver, 20);
+      		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
       		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
     		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
     		Thread.sleep(3000);
@@ -539,7 +540,7 @@ public class GiftCardPageComponents extends GiftCardPageLocators {
     			
     		}
 	
-  		wait = new WebDriverWait(driver, 20);
+  		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
   		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ShoppingCartLocators.CHECKOUT_BUTTON));
 		driver.findElement(ShoppingCartLocators.CHECKOUT_BUTTON).click();
@@ -551,7 +552,7 @@ public class GiftCardPageComponents extends GiftCardPageLocators {
 		Thread.sleep(5000);
 		System.out.println("payment page");
 		Thread.sleep(10000);
-		wait = new WebDriverWait(driver, 30);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CheckoutPageComponents.CONTINUE_TO_PAYMENT_BUTTON));
 		WebElement element = driver.findElement(CheckoutPageComponents.CONTINUE_TO_PAYMENT_BUTTON);
 		if(!element.isDisplayed())
