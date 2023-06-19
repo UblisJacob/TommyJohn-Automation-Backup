@@ -8,10 +8,9 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
 import org.testng.Reporter;
-import org.testng.asserts.SoftAssert;
+
 
 import com.tommyjohn.automation.PageLocators.AddToCartLocators;
 import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
@@ -30,30 +29,13 @@ public class AddToCartComponents extends AddToCartLocators{
 	Properties properties = CustomUtilities.properties;
 	List<WebElement> allElements;
 	int elementsCount;
+	String text = null;
 
 	String allClasses = null;
-	/*public String addToCart() throws Exception {
-		String text = null;
-
-		// navigate to any product collection page
-		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
-
-		// call method to navigate product details page
-		text = new CollectionPageComponent(driver).navigateToProductDetailsPage();
-
-		// call method to check correct PDP opened or not
-		//new ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);
-		// select size and add product to cart
-		selectSize();
-		 atc();
-		return text;
-		
-		
-	}*/
 	
-	public void addToCart() throws Exception {
-		String text = null;
-		SoftAssert softAssert = new SoftAssert();
+	public String addToCart() throws Exception {
+		
+	
 		// call method to navigate to collection page
 		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 		jse=(JavascriptExecutor)driver;
@@ -69,7 +51,7 @@ public class AddToCartComponents extends AddToCartLocators{
 		System.out.println("Color Element count :: "+elementsCount);
 		
 		if(elementsCount > 1)
-			
+		{
 			for(int i=1;i<=2;i++)
 			{
 				
@@ -107,11 +89,13 @@ public class AddToCartComponents extends AddToCartLocators{
 						}
 						
 													
-							
+			}
 							
 					}
+		return text;
 						
 			}
+	
 
 	public void selectSize() throws Exception {
 		

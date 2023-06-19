@@ -31,7 +31,7 @@ public class CollectionPage extends CollectionPageComponent{
 		validateProductImageOnCollectionPage();
 	}
 	
-	/*public void validateproductimageonMegaCollectionPLP() throws Exception
+	public void validateproductimageonMegaCollectionPLP() throws Exception
 	{
 		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 		Verify_ProductTile_HoverFunctionality();
@@ -39,39 +39,39 @@ public class CollectionPage extends CollectionPageComponent{
 		JavascriptExecutor jse=(JavascriptExecutor)driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		validateProductImageOnPLP();
-	}*/
-	public void validateproductimageonMegaCollectionPLP() throws Exception
-	{
-		
-		String url = objExcelUtils.readExcelValue("C:\\Users\\Annada Behera\\eclipse-workspace\\TJ_Automation\\src\\main\\resources\\PLP_url.xlsx", "Mega_PLP", "Mega_Collection");
-		new HomePageComponents(driver).navigateToPLP(url);
-		validateProductImageOnPLP();
 	}
-	public void validateproductnameonMegaCollectionPLP() throws Exception
-	{
-		String url = objExcelUtils.readExcelValue("C:\\Users\\Annada Behera\\eclipse-workspace\\TJ_Automation\\src\\main\\resources\\PLP_url.xlsx", "Mega_PLP", "Mega_Collection");
-		new HomePageComponents(driver).navigateToPLP(url);
-		validateProductHeadingTextOnPLP();
-	}
-	public void validateproductreviewstarsonMegaCollectionPLP() throws Exception
-	{
-		String url = objExcelUtils.readExcelValue("C:\\Users\\Annada Behera\\eclipse-workspace\\TJ_Automation\\src\\main\\resources\\PLP_url.xlsx", "Mega_PLP", "Mega_Collection");
-		new HomePageComponents(driver).navigateToPLP(url);
-		validateProductReviewStarsOnPLP();
-	}
-
-	public void validatefilterandsortonMegaCollectionPLP() throws Exception
-	{
-		String url = objExcelUtils.readExcelValue("C:\\Users\\Annada Behera\\eclipse-workspace\\TJ_Automation\\src\\main\\resources\\PLP_url.xlsx", "Mega_PLP", "Mega_Collection");
-		new HomePageComponents(driver).navigateToPLP(url);
-		methodToCheckAllFilters();
-	}
-	public void validateColorSwatcheonMegaCollectionPLP() throws Exception
-	{
-		String url = objExcelUtils.readExcelValue("C:\\Users\\Annada Behera\\eclipse-workspace\\TJ_Automation\\src\\main\\resources\\PLP_url.xlsx", "Mega_PLP", "Mega_Collection");
-		new HomePageComponents(driver).navigateToPLP(url);
-		MethodToCheckColorSwatchChanging();
-	}
+//	public void validateproductimageonMegaCollectionPLP() throws Exception
+//	{
+//		
+//		String url = objExcelUtils.readExcelValue("C:\\Users\\Annada Behera\\eclipse-workspace\\TJ_Automation\\src\\main\\resources\\PLP_url.xlsx", "Mega_PLP", "Mega_Collection");
+//		new HomePageComponents(driver).navigateToPLP(url);
+//		validateProductImageOnPLP();
+//	}
+//	public void validateproductnameonMegaCollectionPLP() throws Exception
+//	{
+//		String url = objExcelUtils.readExcelValue("C:\\Users\\Annada Behera\\eclipse-workspace\\TJ_Automation\\src\\main\\resources\\PLP_url.xlsx", "Mega_PLP", "Mega_Collection");
+//		new HomePageComponents(driver).navigateToPLP(url);
+//		validateProductHeadingTextOnPLP();
+//	}
+//	public void validateproductreviewstarsonMegaCollectionPLP() throws Exception
+//	{
+//		String url = objExcelUtils.readExcelValue("C:\\Users\\Annada Behera\\eclipse-workspace\\TJ_Automation\\src\\main\\resources\\PLP_url.xlsx", "Mega_PLP", "Mega_Collection");
+//		new HomePageComponents(driver).navigateToPLP(url);
+//		validateProductReviewStarsOnPLP();
+//	}
+//
+//	public void validatefilterandsortonMegaCollectionPLP() throws Exception
+//	{
+//		String url = objExcelUtils.readExcelValue("C:\\Users\\Annada Behera\\eclipse-workspace\\TJ_Automation\\src\\main\\resources\\PLP_url.xlsx", "Mega_PLP", "Mega_Collection");
+//		new HomePageComponents(driver).navigateToPLP(url);
+//		methodToCheckAllFilters();
+//	}
+//	public void validateColorSwatcheonMegaCollectionPLP() throws Exception
+//	{
+//		String url = objExcelUtils.readExcelValue("C:\\Users\\Annada Behera\\eclipse-workspace\\TJ_Automation\\src\\main\\resources\\PLP_url.xlsx", "Mega_PLP", "Mega_Collection");
+//		new HomePageComponents(driver).navigateToPLP(url);
+//		MethodToCheckColorSwatchChanging();
+//	}
 	
 
 	public void validateproductnameonAllpanties() throws Exception
@@ -360,133 +360,138 @@ public class CollectionPage extends CollectionPageComponent{
 		validateallurls();
 	}
 
-	public void validateallplpsareloading() {
+	public void validateallplpsareloading() throws Exception {
 		validateallurls();
 	}
 
 	public void validateproductgrid() throws Exception {
 		// TODO Auto-generated method stub
-		new NavigationFlowPage(driver).NavigateToAllNewArrivalInMenCategory();
+		new HomePageComponents(driver).navigateToNewArrivalsInMenCategory();
 		validateProductGrid();
 	}
 	
 	public void validateBreadcrumbLinks() throws Exception {
 		// TODO Auto-generated method stub
-		new NavigationFlowPage(driver).NavigateToAllNewArrivalInWomenCategory();
+		new HomePageComponents(driver).navigateToNewArrivalsInWomenCategory();
 		validatePLPBreadcrumbLinks();
 	}
 	
 	public void validateCategoryPageHeader() throws Exception {
 		// TODO Auto-generated method stub
-		new NavigationFlowPage(driver).NavigateToAllUnderwearInWomenCategory();
+		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
 		validatePLPHeader();
 	}
 	
 	public void validateCategorySectionHeaders() throws Exception {
 		// TODO Auto-generated method stub
-		new NavigationFlowPage(driver).NavigateToAllUnderwearInMenCategory();
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 		validatePLPSectionHeaders();
 	}
 
 	public void validateInlineBanner() throws Exception {
 		// TODO Auto-generated method stub
-		new NavigationFlowPage(driver).NavigateToAllBrasInWomenCategory();
+		new HomePageComponents(driver).navigateToBraCategory();
 		validatePLPInlineBanner();
 	}
 	
 	public void validateFilters() throws Exception {
 		// TODO Auto-generated method stub
-		new NavigationFlowPage(driver).NavigateToAllLoungewearInMenCategory();
+		new HomePageComponents(driver).NavigateToAllLoungewearInMenCategory();
 		methodToCheckAllFilters();
-	}
-	
-	public void validateFiltersSearch() throws Exception {
-		// TODO Auto-generated method stub
-		methodToCheckFiltersSearch();
 	}
 	
 	public void validateSortBy() throws Exception {
 		// TODO Auto-generated method stub
-		new NavigationFlowPage(driver).NavigateToAllLoungewearInMenCategory();
-		methodToSortByPrice();
-	}
-	
-	public void validateSortBySearch() throws Exception {	
+		new HomePageComponents(driver).NavigateToAllLoungewearInMenCategory();
 		methodToSortByPrice();
 	}
 	
 	public void validateOnImageAndSecondaryBadging() throws Exception {
 		// TODO Auto-generated method stub
-		new NavigationFlowPage(driver).NavigateToAllSaleInSaleCategory();
-		validateOnImageAndSecondaryBadges();
-	}
-	
-	public void validateOnImageBadgeSearch() throws Exception {
-		
-		//validateOnImageBadging();
+		new HomePageComponents(driver).NavigateToAllSaleInSaleCategory();
 		validateOnImageAndSecondaryBadges();
 	}
 	
 	public void validateSEOCopy() throws Exception {
 		// TODO Auto-generated method stub
-		new NavigationFlowPage(driver).NavigateToAllLoungewearInWomenCategory();
+		new HomePageComponents(driver).NavigateToAllLoungewearInWomenCategory();
 		validateSEO();
 	}
 	
 	public void validateProductTile() throws Exception {
 		// TODO Auto-generated method stub
-		new NavigationFlowPage(driver).NavigateToAllSleepwearInMenCategory();
-		validateProductImageOnPLP();
+		new HomePageComponents(driver).NavigateToAllSleepwearInMenCategory();
 		validateProductHeadingTextOnCollectionPage();
-		validateProductReviewStarsOnCollectionPage();
-		MethodToCheckColorSwatchChanging();
-		Verify_ProductTile_HoverFunctionality();
-	}
-	
-	public void validateProductTileSearch() throws Exception {
-		// TODO Auto-generated method stub
 		validateProductImageOnPLP();
+		Verify_ProductTile_HoverFunctionality();
 		MethodToCheckColorSwatchChanging();
 		validateProductReviewStarsOnCollectionPage();
-		Verify_ProductTile_HoverFunctionality();
-		validateProductHeadingTextOnCollectionPage();
+		
 	}
 	
 	public void validateQuickshopFunctionality() throws Exception {
 		// TODO Auto-generated method stub
-		new NavigationFlowPage(driver).NavigateToAllUnderwearInMenCategory();
-		MethodToCheckColorSwatchChanging();
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 		QuickShopOnMegaCollection();
-	}
-	
-	public void validateQuickshopFunctionalityOnSearchPLP() throws Exception {
-		// TODO Auto-generated method stub
-		MethodToCheckColorSwatchChanging();
-		QuickShopOnMegaCollection();
+		
+		
 	}
 	
 	public void validateSingleTileProduct() throws Exception {
 		// TODO Auto-generated method stub
-		new NavigationFlowPage(driver).NavigateToAllSleepwearInWomenCategory();
+		new HomePageComponents(driver).NavigateToAllSleepwearInWomenCategory();
 		validateSingleTile();
-	}
-	
-	
-	public void validateSingleTileProductSearch() throws Exception {
-		// TODO Auto-generated method stub
-		validateSingleTileSearch();
 	}
 	
 	public void validateStyleCarousels() throws Exception {
 		// TODO Auto-generated method stub
-		new NavigationFlowPage(driver).NavigateToAllUnderwearInMenCategory();
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 		validateStyleCarousel();
 	}
 	
 	public void validateMultiVariantSizeInQuickshop() throws Exception {
 		// TODO Auto-generated method stub
-		new NavigationFlowPage(driver).NavigateToLoungewearSetsInWomenCategory();
+		new HomePageComponents(driver).NavigateToLoungewearSetsInWomenCategory();
 		QuickShopOnMegaCollection();
+	}
+  
+  
+   public void validateFiltersSearch() throws Exception {
+                // TODO Auto-generated method stub
+                methodToCheckFiltersSearch();
+   }
+      public void validateOnImageBadgeSearch() throws Exception {
+                
+                //validateOnImageBadging();
+                validateOnImageAndSecondaryBadges();
+                
+        }
+     
+      public void validateProductTileSearch() throws Exception {
+                // TODO Auto-generated method stub
+    	  validateProductHeadingTextOnCollectionPage();
+  		validateProductImageOnPLP();
+  		Verify_ProductTile_HoverFunctionality();
+  		MethodToCheckColorSwatchChanging();
+  		validateProductReviewStarsOnCollectionPage();
+        }
+     
+      public void validateQuickshopFunctionalityOnSearchPLP() throws Exception {
+                // TODO Auto-generated method stub
+    	  QuickShopOnMegaCollection();
+    	  
+                
+               
+        }
+     
+     public void validateSingleTileProductSearch() throws Exception {
+                // TODO Auto-generated method stub
+                validateSingleTileSearch();
+        }
+
+	public void validateSortBySearch() throws Exception {
+		// TODO Auto-generated method stub
+		validateSortBy();
 	}
 }
 
@@ -521,3 +526,4 @@ public class CollectionPage extends CollectionPageComponent{
 //	{
 //		validateProductReviewStarsForSingleCollection();
 //	}
+
