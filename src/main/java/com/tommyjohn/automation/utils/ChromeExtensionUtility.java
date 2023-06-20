@@ -49,7 +49,7 @@ public class ChromeExtensionUtility {
 		ChromeOptions chromeOptions = new ChromeOptions();
 		//chromeOptions.addArguments("load-extension=src/main/resources/heapdebugger.crx");
 		chromeOptions.addExtensions(new File("src/main/resources/heapdebugger.crx"));
-//		chromeOptions.addArguments("--headless");
+		chromeOptions.addArguments("--headless");
 		chromeOptions.setExperimentalOption("w3c", false);
 
 		chromeOptions.addArguments("start-maximized");
