@@ -103,7 +103,7 @@ public class GiftCardPageComponents extends GiftCardPageLocators {
 			Thread.sleep(3000);
 		}
 
-		Reporter.log("Gift Cart amount drop-down is displayed :: Clickable");
+		Reporter.log("Gift Cart amount is displayed :: Clickable");
 
 		// Enter valid Recipient’s and Confirm Recipient’s Email  
 		Rec_mail=driver.findElement(RECIPIENT_MAIL_TEXTBOX);
@@ -211,7 +211,7 @@ public class GiftCardPageComponents extends GiftCardPageLocators {
 			Thread.sleep(2000);
 		}
 
-		Reporter.log("Gift Cart amount drop-down is displayed :: Clickable");
+		Reporter.log("Gift Cart amount is displayed :: Clickable");
 		
 		GC_Price_PDP =driver.findElement(ProductDetailsPageLocators.PRODUCT_PRICE).getText();
 		
@@ -237,14 +237,10 @@ public class GiftCardPageComponents extends GiftCardPageLocators {
 	public void verifyFieldsforGC() throws Exception {
 		action = new Actions(driver);
 		//navigate to Gift card PDP
-		if(driver.findElement(NEW_ARRIVALS_OPTION).isDisplayed()) {
-
+		
 			new HomePageComponents(driver).navigateToGiftCard();
 			Reporter.log("Gift card link is clickable :: Clickable");
-		}
-		else
-			throw new Exception("New Arrivals category is not present.");
-		Thread.sleep(3000);
+	
 		//GC image
 		softAssert.assertTrue(driver.findElement(GIFT_CARD_DISPLAY_IMAGE).isDisplayed(), "Gift Card image is not displayed");
 		Reporter.log("Gift Card delivery message text is displayed");
@@ -375,14 +371,10 @@ public class GiftCardPageComponents extends GiftCardPageLocators {
 	{
 		action = new Actions(driver);
 
-		//navigate to Gift card PDP
-		if(driver.findElement(NEW_ARRIVALS_OPTION).isDisplayed()) {
-
+		
 			new HomePageComponents(driver).navigateToGiftCard();
 			Reporter.log("Gift card link is clickable :: Clickable");
-		}
-		else
-			throw new Exception("New Arrivals category is not present.");
+	
 		Thread.sleep(3000);
 
 		//When amount is not selected
@@ -401,7 +393,7 @@ public class GiftCardPageComponents extends GiftCardPageLocators {
 			Thread.sleep(3000);
 		}
 		softAssert.assertEquals(driver.findElement(SELECT_AN_AMOUNT_BUTTON).getText(), properties.getProperty("GCATCButton"),"Text changed for Add to Cart button in GC.");
-		Thread.sleep(3000);
+	
 
 		// if all fields are empty
 		driver.findElement(ATC_BUTTON).click();
