@@ -103,7 +103,7 @@ public class GiftCardPageComponents extends GiftCardPageLocators {
 			Thread.sleep(1000);
 		}
 
-		Reporter.log("Gift Cart amount drop-down is displayed :: Clickable");
+		Reporter.log("Gift Cart amount is displayed :: Clickable");
 
 		// Enter valid Recipient’s and Confirm Recipient’s Email  
 		Rec_mail=driver.findElement(RECIPIENT_MAIL_TEXTBOX);
@@ -211,7 +211,7 @@ public class GiftCardPageComponents extends GiftCardPageLocators {
 			Thread.sleep(2000);
 		}
 
-		Reporter.log("Gift Cart amount drop-down is displayed :: Clickable");
+		Reporter.log("Gift Cart amount is displayed :: Clickable");
 		
 		GC_Price_PDP =driver.findElement(ProductDetailsPageLocators.PRODUCT_PRICE).getText();
 		
@@ -237,10 +237,13 @@ public class GiftCardPageComponents extends GiftCardPageLocators {
 	public void verifyFieldsforGC() throws Exception {
 		action = new Actions(driver);
 		//navigate to Gift card PDP
-		jse=(JavascriptExecutor)driver;
+
 		new HomePageComponents(driver).navigateToGiftCard();
 		
 		Thread.sleep(3000);
+
+			Reporter.log("Gift card link is clickable :: Clickable");
+
 		//GC image
 		softAssert.assertTrue(driver.findElement(GIFT_CARD_DISPLAY_IMAGE).isDisplayed(), "Gift Card image is not displayed");
 		Reporter.log("Gift Card delivery message text is displayed");
@@ -368,11 +371,13 @@ public class GiftCardPageComponents extends GiftCardPageLocators {
 	{
 		action = new Actions(driver);
 
+
 		//navigate to Gift card PDP
 		jse=(JavascriptExecutor)driver;
 		new HomePageComponents(driver).navigateToGiftCard();
 		
 		Thread.sleep(2000);
+
 
 		//When amount is not selected
 		softAssert.assertTrue(driver.findElement(SELECT_AN_AMOUNT_BUTTON).isDisplayed(), "Select an amount button is not displayed");
@@ -383,6 +388,7 @@ public class GiftCardPageComponents extends GiftCardPageLocators {
 		allElements = driver.findElements(PRICE_OPTIONS);
 		elementsCount = allElements.size();
 		System.out.println("All sizes list :: "+ elementsCount);
+
 
 		for(int i=1;i<=elementsCount-1;i++) {
 			WebElement amt = driver.findElement(By.cssSelector(".option-swatch__option>li:nth-child("+i+")"));
