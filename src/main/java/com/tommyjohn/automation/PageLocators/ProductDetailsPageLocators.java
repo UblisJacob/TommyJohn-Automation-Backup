@@ -60,6 +60,8 @@ public class ProductDetailsPageLocators {
 	public static By SIZE_DROPDOWN_WOMENS = By.cssSelector(".option-dropdown__option >div[data-option-name = 'Womens Size'] >a");
 	public static By SIZE_TEXT = By.xpath("//input[@class='sizeOption' and @checked='checked']");
 	public static By BRA_BAND_SIZE_DROPDOWN = By.cssSelector(".size-guide-size-finder-dropdowns>span:nth-child(1)>select");
+	public static By BRA_BAND_SIZE_SELECT = By.cssSelector(".size-guide-size-finder-dropdowns>span:nth-child(1)");
+	
 	public static By BRA_CUP_VOLUME_DROPDOWN = By.cssSelector(".size-guide-size-finder-dropdowns>span:nth-child(2)>select");
 	public static By FIND_SIZE_BUTTON = By.cssSelector(".calculate-size-button>button.find-size-button");
 	public static By CALCULATED_SIZE_RESULT = By.cssSelector(".calculate-size-results");
