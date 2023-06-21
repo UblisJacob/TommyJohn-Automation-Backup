@@ -30,31 +30,22 @@ public class ValidateHomePage {
 		new HomePage(driver).ValidateLogoAndCategoriesPresence();
 	}
 	
-//	@Test
-	public void TC_verifyFooterLinksOnHomePage() throws Exception {
-		new HomePage(driver).verifyFooterSection();
-	}
-//	@Test
+	@Test
 	public void TC_verifyAccountdropdownOnHomePage() throws Exception {
 
 		new HomePage(driver).verifyaccountdropdown();
 	}
 
-//	@Test
+	@Test
 	public void TC_verifyAccountAndCartIconOnHomePage() throws Exception {
 
 		new HomePage(driver).validateAccountIcon();
 		new HomePage(driver).validateCartIcon();
 	}
 
-//	@Test
-	public void TC_ValidateSearchFunctionality() throws
-	Exception {
 
-		new HomePage(driver).validateSearchFunctionality();
-	}
 	
-//	@Test
+	@Test
 	public void TC_ValidateDoNotSellMyPersonalInformationPage() throws
 	Exception {
 
@@ -90,10 +81,7 @@ public class ValidateHomePage {
 	}
 
 
-//	@Test public void TC_ValidateSearchFunctionalityviaProductMatches() throws
-//	Exception {
-//
-//		new HomePage(driver).validateSearchFunction(); }
+
 
 
 	@AfterMethod(alwaysRun = true)
