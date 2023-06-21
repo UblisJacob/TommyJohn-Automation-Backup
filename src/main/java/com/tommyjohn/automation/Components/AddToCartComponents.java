@@ -60,7 +60,7 @@ public class AddToCartComponents extends AddToCartLocators{
 				jse.executeScript("arguments[0].click();", elemen);
 				Thread.sleep(3000);
 				
-					for(int k=1;k<=3;k++)				
+					for(int k=1;k<=2;k++)				
 					{	
 						WebElement elements = driver.findElement(By.cssSelector(".option-swatch__option>li:nth-child("+ k +")>input"));
 						jse.executeScript("arguments[0].click();", elements);
@@ -74,7 +74,7 @@ public class AddToCartComponents extends AddToCartLocators{
 							jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_CART_BUTTON));
 							Thread.sleep(2000);
 							jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
-														
+							break;							
 						}
 						
 						if(elem.getText().contentEquals("Join the Waitlist")) {

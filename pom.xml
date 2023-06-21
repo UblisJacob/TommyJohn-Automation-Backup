@@ -45,6 +45,7 @@
 	</dependency>
 
 
+
 		<dependency>
 			<groupId>com.jcraft</groupId>
 			<artifactId>jzlib</artifactId>
@@ -80,12 +81,7 @@
 			<version>1.7.25</version>
 
 		</dependency>
-		
-		<dependency>
-    <groupId>com.opencsv</groupId>
-    <artifactId>opencsv</artifactId>
-    <version>4.1</version>
-</dependency>
+
 
 
 		<!-- <dependency> -->
@@ -171,13 +167,9 @@
 			<version>1.4.7</version>
 		</dependency>
 
-		<!-- Extent Report dependency -->
-		<dependency>
-			<groupId>com.relevantcodes</groupId>
-			<artifactId>extentreports</artifactId>
-			<version>2.41.1</version>
 
-		</dependency>
+
+	
 		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
