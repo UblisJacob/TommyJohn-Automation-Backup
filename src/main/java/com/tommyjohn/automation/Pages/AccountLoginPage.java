@@ -43,6 +43,10 @@ public class AccountLoginPage extends AccountLoginComponents {
 	public void loginCustomerAccount(String email, String password) throws Exception {
 		verifyAccountLoginFuctionality(email, password);
 	}
+	
+	public void loginAccount(String email, String password) throws Exception {
+		verifyAccountLogin(email, password);
+	}
 
 	public void verifyErrorsOnLoginPage() throws Exception {
 		verifyErrorMessagesOnLoginPage();

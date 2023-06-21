@@ -33,6 +33,11 @@ public class ShoppingCartPage extends ShoppingCartComponents{
 		new ShoppingCartComponents(driver).AddRemoveProductsFromCart();
 	}
 	
+	public void validatePromotion() throws Exception
+	{
+		new ShoppingCartComponents(driver).validatePromotionalMessage();
+	}
+	
 	public void verifyCheckoutfromCart() throws Exception
 	{
 		new ShoppingCartComponents(driver).CheckoutPageFromCart();
