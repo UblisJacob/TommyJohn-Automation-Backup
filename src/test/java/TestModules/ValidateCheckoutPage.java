@@ -1,4 +1,4 @@
-package TestScenario;
+package TestModules;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;

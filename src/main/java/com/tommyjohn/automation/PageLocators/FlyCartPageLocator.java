@@ -54,7 +54,7 @@ public class FlyCartPageLocator {
 	public static By OOS_MESSAGE_ON_TOP = By
 			.cssSelector(".inline-cart.active.has-recommendations>div:nth-child(2)>span");
 	public static By OOS_LINE_ITEMS = By
-			.cssSelector(".inline-cart.active.has-recommendations>div:nth-child(2)>div:nth-child(8)>span");
+			.cssSelector("span[data-tj-qa='inline-cart-line-item-oos-message']");
 
 	// AfterPay
 
