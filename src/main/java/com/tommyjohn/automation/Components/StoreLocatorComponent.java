@@ -94,7 +94,7 @@ public class StoreLocatorComponent extends StoreLocatorPageLocators
 		else
 			throw new Exception("Wrong page opened after 'Get Direction' link clicked");
 		Reporter.log("'Get Directions' link is Displayed :: Clickable.");
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 
 
 		

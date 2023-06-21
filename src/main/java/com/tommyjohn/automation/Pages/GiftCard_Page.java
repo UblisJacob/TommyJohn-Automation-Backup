@@ -2,6 +2,7 @@ package com.tommyjohn.automation.Pages;
 
 import org.openqa.selenium.WebDriver;
 
+import com.tommyjohn.automation.Components.GiftCardPageComponents;
 import com.tommyjohn.automation.Components.GiftCard_PageComponents;
 
 public class GiftCard_Page extends GiftCard_PageComponents {
@@ -11,16 +12,23 @@ public class GiftCard_Page extends GiftCard_PageComponents {
 		this.driver = driver;
 	}
 
-	public void giftCardPageCheck() throws Exception
-	{
-		new GiftCard_PageComponents(driver).GoToOnGiftCardPage();
+	
+ 
+	public void giftCardPageCheck() throws Exception {
+		new GiftCardPageComponents(driver).GoToOnGiftCardPage();
+	}
+	
+	public void verifyPGCard() throws Exception {
+		new GiftCardPageComponents(driver).verifyPGCard();
+	}
+	
+	
+	public void verifyfieldsforGCPage() throws Exception{
+		new GiftCardPageComponents(driver).verifyFieldsforGC();
 	}
 
-	public void verifyfieldsforGCPage() throws Exception{
-		new GiftCard_PageComponents(driver).verifyFieldsforGC();
-	}
 	public void verifyerrormessagesongiftcard() throws Exception{
-		new GiftCard_PageComponents(driver).verifyErrorMessagesforGC();
+		new GiftCardPageComponents(driver).verifyErrorMessagesforGC();
 
 	}
 

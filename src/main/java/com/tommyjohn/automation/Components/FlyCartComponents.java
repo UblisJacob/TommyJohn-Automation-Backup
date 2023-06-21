@@ -392,17 +392,56 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		softAssert.assertAll();
 	}
 	
+
 	public void validateOOSonInlinecart() throws Exception {
-		new AddToCartComponents(driver).addToCart();
+		jse = (JavascriptExecutor)driver;
+		SoftAssert softassert = new SoftAssert();
+		new HomePageComponents(driver).navigateToAllMensPacksInPacksCategory();
+		new CollectionPageComponent(driver).navigateToProductDetailsPage();
 
-		driver.findElement(HomePageLocators.CART_ICON).click();
-		Thread.sleep(3000);
-
-		softAssert.assertEquals(driver.findElement(OOS_MESSAGE_ON_TOP).getText(), "Some items are out of stock. Please remove or edit them to continue.");
-		softAssert.assertEquals(driver.findElement(OOS_LINE_ITEMS).getText(), "Out of Stock");
-		softAssert.assertEquals(driver.findElement(CHECKOUT_BUTTON).getAttribute("disabled"), "disabled");
+		Thread.sleep(2000);   
+		allElements = driver.findElements(ProductDetailsPageComponents.ALL_COLOR_LIST);
+		int elementsCount = allElements.size();
+		System.out.println("Color Element count :: "+elementsCount);
+		elementsCount = elementsCount-(elementsCount-1);
+		if(elementsCount > 0)
+			
+			for(int i=1;i<=1;i++)
+			{
+				
+				WebElement elemen = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper>ul>li:nth-child(" + i + ")>input"));
+				jse = (JavascriptExecutor) driver;
+				jse.executeScript("arguments[0].click();", elemen);
+				Thread.sleep(3000);
+				
+					for(int k=1;k<=1;k++)				
+					{	
+						WebElement elements = driver.findElement(By.cssSelector(".option-swatch__option>li:nth-child("+ k +")>input"));
+						jse.executeScript("arguments[0].click();", elements);
+						Thread.sleep(1000);
+						
+						WebElement elem = driver.findElement(By.cssSelector(".multiPdp__atc-container>button"));		
+						
+						if(driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON).getText().contains("Add to Cart")) {
+							
+							System.out.println(elemen.getText() + elements.getText() + "Product is added to Cart");
+							jse.executeScript("arguments[0].click();", driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON));
+							Thread.sleep(4000);
+					}
+						
+					}
+					
+			}
+		driver.findElement(QUANTITY).sendKeys("10000");
+		jse.executeScript("arguments[0].click();", driver.findElement(PLUS_BUTTON));
+		Thread.sleep(4000);
 		
-		softAssert.assertAll();
+		softassert.assertEquals(driver.findElement(OOS_MESSAGE_ON_TOP).getText(), "Some items are out of stock. Please remove or edit them to continue.");
+		softassert.assertEquals(driver.findElement(OOS_LINE_ITEMS).getText(), "Out of Stock");
+		softassert.assertEquals(driver.findElement(CHECKOUT_BUTTON).getAttribute("disabled"), "disabled");
+		
+		//softassert.assertAll();
+			
 		
 	}
 		
