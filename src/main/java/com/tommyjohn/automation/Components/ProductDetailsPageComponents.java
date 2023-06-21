@@ -2511,7 +2511,6 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 				
 				WebElement elemen = driver.findElement(By.cssSelector(".option-swatch__option>li:nth-child("+ i +")>input"));
 				
-				elemen.click();
 				jse.executeScript("arguments[0].click();", elemen);
 				
 				List<WebElement> unavailablecolors = driver.findElements(STRIKED_COLOR_SWATCHES);
@@ -2596,7 +2595,6 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 				WebElement elem = driver.findElement(RATING_STARS);
 				JavascriptExecutor executor = (JavascriptExecutor)driver;
-				elem.click();
 				executor.executeScript("arguments[0].click();", elem);
 				// wait for scroll it down
 				Thread.sleep(3000);
@@ -2670,9 +2668,9 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			Thread.sleep(3000);
 			jse = (JavascriptExecutor)driver;
 			jse.executeScript("arguments[0].click();", element);
-			element.click();
+			
 			Thread.sleep(3000);
-			element.click();
+			
 			if(driver.findElement(PRODUCT_DETAILS_SECTION).isDisplayed()) {
 				System.out.println("PRODUCT_DETAILS_SECTION is Displayed");
 			}
@@ -2687,9 +2685,9 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 				jse = (JavascriptExecutor)driver;
 				jse.executeScript("arguments[0].click();", element);
 				jse.executeScript("window.scrollBy(0,50)");
-				element.click();
+				
 				Thread.sleep(3000);
-				element.click();
+				
 				if(driver.findElement(BEST_PAIR_GUARANTEE_SECTION).isDisplayed()) {
 					System.out.println("BEST_PAIR_GUARANTEE_SECTION is Displayed");
 				}
@@ -2745,7 +2743,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 					jse.executeScript("arguments[0].click();", elemen);
 					Thread.sleep(1000);
 					
-						for(int k=1;k<=6;k++)				
+						for(int k=1;k<6;k++)				
 						{	
 							WebElement elements = driver.findElement(By.cssSelector(".option-swatch__option>li:nth-child("+ k +")>input"));
 							//elements.click();
@@ -2826,8 +2824,9 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		}
 		
 		public void verifyQuestionForm() throws Exception {
-			//jse = (JavascriptExecutor)driver;
+			
 			SoftAssert softassert = new SoftAssert();
+			WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
 			new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 			new CollectionPageComponent(driver).navigateToProductDetailsPage();
 
@@ -2836,11 +2835,13 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			WebElement ratingstars = driver.findElement(RATING_STARS);
 			jse = (JavascriptExecutor) driver;
 			jse.executeScript("arguments[0].click();", ratingstars);
-			//ratingstars.click();
-			Thread.sleep(4000);
-			jse.executeScript("window.scrollBy(0, 600)");
-			softassert.assertEquals(driver.findElement(Ask_a_Question_CTA).getText(), "Ask a Question", "Text change for 'Ask a question'CTA");
+			
+			Thread.sleep(3000);
+			jse.executeScript("window.scrollBy(0, 400)");
 			WebElement AQ_CTA=driver.findElement(Ask_a_Question_CTA);
+			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(Ask_a_Question_CTA));
+			softassert.assertEquals(driver.findElement(Ask_a_Question_CTA).getText(), "Ask a Question", "Text change for 'Ask a question'CTA");
+			
 			jse.executeScript("arguments[0].click();", AQ_CTA);
 			Thread.sleep(3000);
 			//	jse.executeScript("window.scrollBy(0, 30)");
@@ -2924,17 +2925,17 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			new CollectionPageComponent(driver).navigateToProductDetailsPage();
 			
 			WebElement elem = driver.findElement(RATING_STARS);
-			JavascriptExecutor executore = (JavascriptExecutor)driver;
-			executore.executeScript("arguments[0].click();", elem);
+			
+			jse.executeScript("arguments[0].click();", elem);
 			// wait for scroll it down
 			Thread.sleep(3000);
 			jse.executeScript("window.scrollBy(0, 600)");
-			elem = driver.findElement(WRITE_REVIEW_BUTTON);
-			executore = (JavascriptExecutor)driver;
-			executore.executeScript("arguments[0].click();", elem);
+			WebElement reviewinput = driver.findElement(WRITE_REVIEW_BUTTON);
+			jse.executeScript("arguments[0].click();", reviewinput);
 			//driver.findElement(WRITE_REVIEW_BUTTON).click();
-			Thread.sleep(4000);
-			driver.findElement(SUBMIT_BTN).click();
+			Thread.sleep(2000);
+			WebElement submitbtn =	driver.findElement(SUBMIT_BTN);
+			jse.executeScript("arguments[0].click();", submitbtn);
 			softAssert.assertEquals(driver.findElement(NAME_ERROR).getText(), "Please enter a name for this review.", "Laguage mismatch for error message for Name");
 			softAssert.assertEquals(driver.findElement(EMAIL_ERROR).getText(), "Please enter a valid email for this review.", "Laguage mismatch for error message for Email");
 			softAssert.assertEquals(driver.findElement(HEADLINE_ERROR).getText(), "Please enter a headline for this review.", "Laguage mismatch for error message for Headline");
@@ -2975,7 +2976,11 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 					jse.executeScript("arguments[0].click();", elemen);
 					Thread.sleep(3000);
 					
+
+						
+
 						for(int k=1;k<=5;k++)				
+
 						{	
 							WebElement elements = driver.findElement(By.cssSelector(".option-swatch__option>li:nth-child("+ k +")>input"));
 							jse.executeScript("arguments[0].click();", elements);
@@ -3035,16 +3040,16 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		
 
 public void verifySizeCharts() throws Exception {
-	String text = null;
+	//String text = null;
+	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 	SoftAssert softAssert = new SoftAssert();
 	// call method to navigate to collection page
 	new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
 	jse=(JavascriptExecutor)driver;
 	jse.executeScript("window.scrollBy(0,250)");
 	// call method to navigate product details page
-	text = new CollectionPageComponent(driver).navigateToProductDetailsPage();
-	checkCorrectProductDetailsPageOpenedOrNot(text);
-	Thread.sleep(5000);
+	new CollectionPageComponent(driver).navigateToProductDetailsPage();
+	wait.until(ExpectedConditions.visibilityOfElementLocated(SIZEGUIDE));
 	if(driver.findElement(SIZEGUIDE).isDisplayed())
 	{
 		WebElement ele = driver.findElement(SIZEGUIDE);
@@ -3089,17 +3094,17 @@ public void verifySizeCharts() throws Exception {
 }
 public void verifySizeChartTextBralette() throws Exception {
 	String text = null;
+	
 	SoftAssert softAssert = new SoftAssert();
 	// call method to navigate to collection page
 	new HomePageComponents(driver).navigateToTriangleBraletteCategory();
 	jse=(JavascriptExecutor)driver;
 	jse.executeScript("window.scrollBy(0,250)");
 	// call method to navigate product details page
-	text = new CollectionPageComponent(driver).navigateToProductDetailsPage();
-	checkCorrectProductDetailsPageOpenedOrNot(text);
-	Thread.sleep(5000);	
-	
-	
+	new CollectionPageComponent(driver).navigateToProductDetailsPage();
+	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+	wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(SIZEGUIDE));
+		
 	//HOW TO Measure
 	if(driver.findElement(SIZEGUIDE).isDisplayed())
 	{
@@ -3150,17 +3155,22 @@ public void verifySizeChartTextBralette() throws Exception {
 		List<WebElement> BandSize_Options = BandSize_DropDown.getOptions();
 		int BandSize_Options_Count = BandSize_Options.size();
 		System.out.println("All Band Sizes list :: "+ BandSize_Options_Count);
-
-		String BandSize_Default_Text = BandSize_Options.get(0).getText();
-		if(!BandSize_Default_Text.equalsIgnoreCase("Band Size"))
-			throw new Exception("Text change for 'Band Size'");
+		
+	
 		for(int i=1;i<BandSize_Options_Count;i++) {
-			Thread.sleep(500);
-			driver.findElement(By.cssSelector(".size-guide-size-finder-dropdowns.visible>span:nth-child(1)")).click();
-			WebElement element = BandSize_Options.get(i);
-			element.click();
+			
+//			driver.findElement(By.cssSelector(".size-guide-size-finder-dropdowns.visible>span:nth-child(1)>select")).click();
+
+			Thread.sleep(2000);
+			BandSize_DropDown.selectByIndex(i);
+//			WebElement bandopt = BandSize_Options.get(i);
+//			jse.executeScript("arguments[0].click();", bandopt);
+			Thread.sleep(2500);
+			
+			//driver.findElement(By.cssSelector(".size-guide-size-finder-dropdowns.visible>span:nth-child(1)")).click();
+			
+			}
 		}
-	}
 	
 	if(!driver.findElement(BRA_CUP_VOLUME_DROPDOWN).isEnabled())
 	{
@@ -3170,25 +3180,24 @@ public void verifySizeChartTextBralette() throws Exception {
 		Select CupVolume_DropDown = new Select(driver.findElement(BRA_CUP_VOLUME_DROPDOWN));
 		List<WebElement> CupVolume_Options = CupVolume_DropDown.getOptions();
 		int CupVolume_Options_Count = CupVolume_Options.size();
-		System.out.println("All Band Sizes list :: "+ CupVolume_Options_Count);
+		System.out.println("All CupVolume list :: "+ CupVolume_Options_Count);
 		String CupVolume_Default_Text = CupVolume_Options.get(0).getText();
 		
 		if(!CupVolume_Default_Text.equalsIgnoreCase("Cup Size"))
 			throw new Exception("Text change for 'Cup Size'");
 	
 		for(int i=1;i<CupVolume_Options_Count;i++) {
-			Thread.sleep(2000);
-			WebElement ele = driver.findElement(By.cssSelector(".size-guide-size-finder-dropdowns.visible>span:nth-child(2)"));
-			jse = (JavascriptExecutor)driver;
-			jse.executeScript("arguments[0].click();", ele);					
-			WebElement element = CupVolume_Options.get(i);
-			element.click();
+			Thread.sleep(1000);
+			//WebElement ele = driver.findElement(By.cssSelector(".size-guide-size-finder-dropdowns.visible>span:nth-child(2)"));
+			
+			//jse.executeScript("arguments[0].click();", ele);					
+			CupVolume_DropDown.selectByIndex(i);
+		
 		}
 		Thread.sleep(3000);
 
 		WebElement ele = driver.findElement(FIND_SIZE_BUTTON);
 		Thread.sleep(2000);
-		jse = (JavascriptExecutor)driver;
 		jse.executeScript("arguments[0].click();", ele);					
 			
 		if(!driver.findElement(CALCULATED_SIZE_RESULT).isDisplayed())
@@ -3206,9 +3215,9 @@ public void verifySizeChartTextBras() throws Exception {
 	jse=(JavascriptExecutor)driver;
 	jse.executeScript("window.scrollBy(0,250)");
 	// call method to navigate product details page
-	text = new CollectionPageComponent(driver).navigateToProductDetailsPage();
-	checkCorrectProductDetailsPageOpenedOrNot(text);
-	Thread.sleep(5000);	
+	new CollectionPageComponent(driver).navigateToProductDetailsPage();
+	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+	wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(SIZEGUIDE));
 	
 	
 	//HOW TO Measure
@@ -3266,9 +3275,7 @@ public void verifySizeChartTextBras() throws Exception {
 			throw new Exception("Text change for 'Band Size'");
 		for(int i=1;i<BandSize_Options_Count;i++) {
 			Thread.sleep(500);
-			driver.findElement(By.cssSelector(".size-guide-size-finder-dropdowns.visible>span:nth-child(1)")).click();
-			WebElement element = BandSize_Options.get(i);
-			element.click();
+			BandSize_DropDown.selectByIndex(i);
 		}
 	}
 	
@@ -3288,11 +3295,8 @@ public void verifySizeChartTextBras() throws Exception {
 	
 		for(int i=1;i<CupVolume_Options_Count;i++) {
 			Thread.sleep(2000);
-			WebElement ele = driver.findElement(By.cssSelector(".size-guide-size-finder-dropdowns.visible>span:nth-child(2)"));
-			jse = (JavascriptExecutor)driver;
-			jse.executeScript("arguments[0].click();", ele);					
-			WebElement element = CupVolume_Options.get(i);
-			element.click();
+			CupVolume_DropDown.selectByIndex(i);
+			
 		}
 		Thread.sleep(3000);
 
