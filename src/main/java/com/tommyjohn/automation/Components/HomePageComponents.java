@@ -1,10 +1,6 @@
 package com.tommyjohn.automation.Components;
 
 
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
-import java.io.File;
-import java.io.FileInputStream;
 
 import java.time.Duration;
 import java.util.Iterator;
@@ -2296,6 +2292,9 @@ public class HomePageComponents extends HomePageLocators {
 		driver.get("https://www.tommyjohn.com/collections/womens-lounge-sets");
 	}
 	
+	public void navigateToStoreDirectoryPage() {
+		driver.get("https://www.tommyjohn.com/pages/store-directory");
+	}
 	
 	/**
 	 * Helps click on a element with JSExecutor

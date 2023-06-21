@@ -26,6 +26,7 @@
 			<class name="TestModules.ValidateFooterSection" />
 		</classes>
 	</test>
+
 	<test thread-count="1" name="ProductPageTests">
 		<parameter name="browser" value="chrome" />
 		<classes>
@@ -93,6 +94,13 @@
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="TestModules.ValidateAccountPage" />
+		</classes>
+	</test>
+	
+		<test name="StoreDirectoryTests">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="TestModules.ValidateTJStoresPage" />
 		</classes>
 	</test>
 	
