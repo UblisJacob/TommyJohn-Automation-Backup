@@ -237,7 +237,7 @@ public class GiftCardPageComponents extends GiftCardPageLocators {
 	public void verifyFieldsforGC() throws Exception {
 		action = new Actions(driver);
 		//navigate to Gift card PDP
-
+		jse=(JavascriptExecutor)driver;
 		new HomePageComponents(driver).navigateToGiftCard();
 		
 		Thread.sleep(3000);

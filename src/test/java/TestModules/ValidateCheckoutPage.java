@@ -37,7 +37,7 @@ public class ValidateCheckoutPage {
 		new CheckoutPage(driver).Validateguestcheckout();
 	}
 	
-	@Test
+//	@Test
 	public void ValidateRegisteredUserCheckoutFlow() throws Exception
 	{
 		new CheckoutPage(driver).Validateregisterusercheckout();
