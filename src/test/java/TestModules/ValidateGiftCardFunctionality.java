@@ -6,6 +6,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import com.tommyjohn.automation.Pages.GiftCardPage;
 import com.tommyjohn.automation.Pages.GiftCard_Page;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
@@ -25,27 +26,27 @@ public class ValidateGiftCardFunctionality{
 	}
 	
 	@Test
-	public void ValidateGiftCardFlow() throws Exception
+	public void ValidateEGiftCardFlow() throws Exception
 	{
-		new GiftCard_Page(driver).giftCardPageCheck();
+		new GiftCardPage(driver).egiftCardPageCheck(); 
 	}
 
 	@Test
 	public void FieldValidationsForGiftCard() throws Exception
 	{
-		new GiftCard_Page(driver).verifyfieldsforGCPage();
+		new GiftCardPage(driver).verifyfieldsforGCPage();
 	}
 
 	@Test
 	public void ValidateErrorScenariosForGiftCard() throws Exception
 	{
-		new GiftCard_Page(driver).verifyerrormessagesongiftcard();
+		new GiftCardPage(driver).verifyerrormessagesongiftcard();
 	}
 
 	@Test
 	public void TC_verifyPGCard() throws Exception
 	{
-		new GiftCard_Page(driver).verifyPGCard(); 
+		new GiftCardPage(driver).verifyPGCard(); 
 	}
 	
 	@AfterMethod(alwaysRun = true)
