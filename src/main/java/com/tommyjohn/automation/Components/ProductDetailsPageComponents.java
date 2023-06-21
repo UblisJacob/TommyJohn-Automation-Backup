@@ -2976,7 +2976,11 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 					jse.executeScript("arguments[0].click();", elemen);
 					Thread.sleep(3000);
 					
-						for(int k=1;k<6;k++)				
+
+						
+
+						for(int k=1;k<=5;k++)				
+
 						{	
 							WebElement elements = driver.findElement(By.cssSelector(".option-swatch__option>li:nth-child("+ k +")>input"));
 							jse.executeScript("arguments[0].click();", elements);
