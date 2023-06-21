@@ -52,6 +52,8 @@ public class ShoppingCartLocators {
 	public static By APPLIED_PROMOCODE_FLYCART = By.cssSelector("span.coupon-code"); 
 	public static By DISCOUNTED_GIFTWRAP_PRICE = By.cssSelector("div.cart__outer > div.cart__summary > div.cart__summary-inner-div > div.cart__gift-wrap > span:nth-child(3)");
 	public static By SUBTOTAL_PRICE = By.cssSelector(".cart__summary>.cart__discount-subtotal>div>span:nth-child(3)");
+	public static By PROMOTIONAL_MESSAGE = By.xpath("//div[@class='cart__content content']//div[contains(@class,'line-item__message')]");
+	public static By PROMOTIONAL_PRICE = By.xpath("(((//div[@class='cart__content content']//div[@class='line-item__summary'])[1])//span[@class='sale'])[1]");
 	
 	//Tiered-meter
 	public static By TIERED_METER_TITLE = By.cssSelector("p#tier-message-reached-cart");
@@ -60,6 +62,8 @@ public class ShoppingCartLocators {
 	//OOS
 	public static By OOS_TAG = By.xpath("//div[@class='cart__content content']//span[@data-tj-qa='inline-cart-line-item-oos-message']");
 	public static By OOS_MESSAGE = By.xpath("//div[@class='cart__content content']//span[@data-tj-qa='inline-cart-oos-message']");
+	
+
 	
 	
 }

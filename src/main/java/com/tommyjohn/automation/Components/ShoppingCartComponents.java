@@ -83,6 +83,29 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		
 	}
 	
+	public void validatePromotionalMessage() throws Exception
+	{
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		SoftAssert softAssert = new SoftAssert();
+		
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(TIERED_METER));
+		Thread.sleep(5000);
+		
+		softAssert.assertTrue(driver.findElement(PROMOTIONAL_PRICE).isDisplayed(), "Promotional discounted price is displayed on cart page");
+		if(driver.findElement(PROMOTIONAL_MESSAGE).isDisplayed()) {
+			
+			System.out.println("PROMOTIONAL MESSAGE is displayed on cart page");
+			Reporter.log("PROMOTIONAL MESSAGE is displayed on cart page");
+		}
+		else {
+			System.out.println("PROMOTIONAL MESSAGE is not displayed on cart page");
+			Reporter.log("PROMOTIONAL MESSAGE is not displayed on cart page");
+		}
+		
+		//softAssert.assertAll();	
+	}
+	
 	public void tieredMeterFunctionality() throws Exception
 	{
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
