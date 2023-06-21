@@ -11,7 +11,7 @@ public class GiftCardPage extends GiftCardPageComponents {
 		this.driver = driver;
 	}
 
-	public void giftCardPageCheck() throws Exception {
+	public void egiftCardPageCheck() throws Exception {
 		new GiftCardPageComponents(driver).GoToOnGiftCardPage();
 	}
 
@@ -22,6 +22,9 @@ public class GiftCardPage extends GiftCardPageComponents {
 	public void verifyerrormessagesongiftcard() throws Exception{
 		new GiftCardPageComponents(driver).verifyErrorMessagesforGC();
 
+	}
+	public void verifyPGCard() throws Exception {
+		new GiftCardPageComponents(driver).verifyPGCard();
 	}
 
 }
