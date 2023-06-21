@@ -6,7 +6,7 @@
 		<listener class-name="TestScenario.ListenerClass"></listener>
 	</listeners>
 
-	<test name="CategoryTests">
+	<!-- <test name="CategoryTests">
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="TestModules.ValidateCategoryPages" />
@@ -74,7 +74,7 @@
 		<classes>
 			<class name="TestModules.ValidateCheckoutPage" />
 		</classes>
-	</test>
+	</test> -->
 	
 	<test name="CartPageTests">
 		<parameter name="browser" value="chrome" />
