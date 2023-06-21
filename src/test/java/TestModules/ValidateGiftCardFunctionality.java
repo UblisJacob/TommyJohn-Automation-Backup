@@ -1,4 +1,4 @@
-package TestScenario;
+package TestModules;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
@@ -42,6 +42,12 @@ public class ValidateGiftCardFunctionality{
 		new GiftCard_Page(driver).verifyerrormessagesongiftcard();
 	}
 
+	@Test
+	public void TC_verifyPGCard() throws Exception
+	{
+		new GiftCard_Page(driver).verifyPGCard(); 
+	}
+	
 	@AfterMethod(alwaysRun = true)
 	void teardown () {
 

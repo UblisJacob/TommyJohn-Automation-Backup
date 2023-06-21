@@ -6,18 +6,19 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import com.tommyjohn.automation.Pages.AddToCartPage;
 import com.tommyjohn.automation.Pages.ProductDetailsPage;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
 public class ValidatePDP {
-
-	WebDriver driver;
 	
+	WebDriver driver;
+ 	
 	@BeforeMethod(alwaysRun = true)
 	@Parameters("browser")
 	public void setup(String browser) {
 		try {
-			driver = new CustomUtilities().launchtj(browser);
+				driver = new CustomUtilities().launchtj(browser);
 
 		} catch (Exception e1) {
 			e1.printStackTrace();
@@ -99,12 +100,29 @@ public class ValidatePDP {
 		new ProductDetailsPage(driver).verifyAddToCart();
 	}
 	
+	@Test
+	public void verifySizeCharts() throws Exception {
+		new ProductDetailsPage(driver).verifySizeCharts();
+	}
+	@Test
+	public void verifySizeChartTextBralette() throws Exception {
+		new ProductDetailsPage(driver).verifySizeChartTextBralette();
+	}
+	@Test
+	public void verifySizeChartTextBras() throws Exception {
+		new ProductDetailsPage(driver).verifySizeChartTextBras();
+	}
+	@Test
+	public void verifyBundlePDPs() throws Exception {
+		new ProductDetailsPage(driver).verifyBundlePDPs();
+	}
+	
+	
 	@AfterMethod(alwaysRun = true)
 	void teardown () {
 
-//		driver.close();
+		//driver.close();
 		driver.quit();
+	
 	}
-
 }
-  
