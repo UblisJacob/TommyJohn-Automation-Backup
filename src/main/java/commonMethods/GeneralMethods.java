@@ -150,6 +150,26 @@ public class GeneralMethods {
 		 
 	}
     
+	/**
+	 * Used to change index of css locators consisting nth-child
+	 * @param elementToIterate
+	 * @param index
+	 * @param occurence of nth-child
+	 */
+	public WebElement autoIndex(WebDriver driver, By by, int index) {
+
+		String s = by.toString();
+		String locator = s.substring(s.indexOf(' ')+1);
+		
+		String firstPart = locator.substring(0, locator.indexOf('(')+1);
+		String secondPart = locator.substring(locator.indexOf(')'));
+		
+		By finalBy = By.cssSelector(firstPart + index + secondPart);
+		
+		return driver.findElement(finalBy);
+	
+	}
+    
     
 	
 }
