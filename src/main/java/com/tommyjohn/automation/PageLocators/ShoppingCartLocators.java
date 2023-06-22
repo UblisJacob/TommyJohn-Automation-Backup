@@ -63,7 +63,12 @@ public class ShoppingCartLocators {
 	public static By OOS_TAG = By.xpath("//div[@class='cart__content content']//span[@data-tj-qa='inline-cart-line-item-oos-message']");
 	public static By OOS_MESSAGE = By.xpath("//div[@class='cart__content content']//span[@data-tj-qa='inline-cart-oos-message']");
 	
-
+    // PAYMENT
+	public static By PAYPAL_BUTTON = By.cssSelector(".paypal-button");
+	public static By GPAY_BUTTON = By.xpath("//div[@data-testid = 'GooglePay-button']");
+	public static By AMZ_PAY = By.xpath("//form[@action = 'https://payments.amazon.com/checkout/signin'] /button" );
+	public static By SHOP_PAY = By.xpath("//div[@data-testid='ShopifyPay-button']" );
+	
 	
 	
 }
