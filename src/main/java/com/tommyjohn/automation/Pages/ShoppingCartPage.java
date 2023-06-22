@@ -18,6 +18,11 @@ public class ShoppingCartPage extends ShoppingCartComponents{
 		new ShoppingCartComponents(driver).EmptyCart();
 	}
 	
+	public void ValidateViewCartLink() throws Exception
+	{
+		new ShoppingCartComponents(driver).clickOnViewCartLink();
+	}
+	
 	public void ValidateShoppingCartWithProducts() throws Exception
 	{
 		new ShoppingCartComponents(driver).CartwithProduct();
@@ -28,6 +33,15 @@ public class ShoppingCartPage extends ShoppingCartComponents{
 		new ShoppingCartComponents(driver).AddRemoveProductsFromCart();
 	}
 	
+	public void validatePromotion() throws Exception
+	{
+		new ShoppingCartComponents(driver).validatePromotionalMessage();
+	}
+	
+	public void validateCartPaymentMethods() throws Exception
+	{
+		new ShoppingCartComponents(driver).cartPaymentMethods();
+	}
 	public void verifyCheckoutfromCart() throws Exception
 	{
 		new ShoppingCartComponents(driver).CheckoutPageFromCart();
