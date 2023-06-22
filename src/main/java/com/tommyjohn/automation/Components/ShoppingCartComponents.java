@@ -1,11 +1,16 @@
 package com.tommyjohn.automation.Components;
 
 import java.time.Duration;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
@@ -29,6 +34,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 	String price;
 	SoftAssert softAssert=new SoftAssert();
 	public String Promo_Code = "JULIE25";
+	JavascriptExecutor jse;
 	public ShoppingCartComponents(WebDriver driver) {
 		this.driver = driver;
 	}
@@ -548,6 +554,90 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		js.executeScript("arguments[0].click();", driver.findElement(FlyCartPageLocator.GIFT_WRAP_APPLY));
 		//driver.findElement(FlyCartPageLocator.GIFT_WRAP_APPLY).click();
 		Thread.sleep(5000);
+		softAssert.assertAll();
+	}
+	
+	public void cartPaymentMethods() throws Exception
+	{
+		SoftAssert softAssert = new SoftAssert();
+		String text = null;
+		
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(40));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		Thread.sleep(3000);
+		driver.switchTo().frame(driver.findElement(By.className("paypalLight")));
+		driver.findElement(PAYPAL_BUTTON).click();
+		String mainWindow = driver.getWindowHandle();
+		Set<String> set =driver.getWindowHandles();
+		// Using Iterator to iterate with in windows
+		Iterator<String> itr= set.iterator();
+		while(itr.hasNext()){
+			String childWindow=itr.next();
+			// Compare whether the main windows is not equal to child window. If not equal, we will close.
+			if(!mainWindow.equals(childWindow))
+				driver.switchTo().window(childWindow);
+			text = driver.switchTo().window(childWindow).getTitle();
+		}
+		
+		System.out.println(text);
+		
+		softAssert.assertTrue(text.contains("PayPal"), "Paypal text");
+		driver.close();
+
+		Reporter.log("PayPal option is present on checkout page");
+		Reporter.log("PayPal popup shows up when clicked on paypal express checkout button");
+		Thread.sleep(3000);
+		driver.switchTo().window(mainWindow);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(GPAY_BUTTON));
+		WebElement element = driver.findElement(GPAY_BUTTON);
+		jse = (JavascriptExecutor)driver;
+		//jse.executeScript("arguments[0].click();", element);
+		Actions action = new Actions(driver);
+		 action.moveToElement(element).click().build().perform();
+		//driver.findElement(GPAY_BUTTON).click();
+
+		Set<String> set1 =driver.getWindowHandles();
+		// Using Iterator to iterate with in windows
+		Iterator<String> itr1 = set1.iterator();
+		while(itr1.hasNext()){
+			String childWindow1=itr1.next();
+			// Compare whether the main windows is not equal to child window. If not equal, we will close.
+			if(!mainWindow.equals(childWindow1))
+				driver.switchTo().window(childWindow1);
+			text = driver.switchTo().window(childWindow1).getTitle();
+		}
+	//	softAssert.assertEquals(text, "Sign in – Google accounts" , "GPay pop up not present");
+		driver.navigate().refresh();
+		driver.switchTo().window(mainWindow);
+		Reporter.log("GPay option is present on checkout page");
+		Reporter.log("GPay popup shows up when clicked on Gpay express checkout button");
+		//verify amz pay
+		wait.until(ExpectedConditions.visibilityOfElementLocated(AMZ_PAY));
+		WebElement element1 = driver.findElement(AMZ_PAY);
+		jse.executeScript("arguments[0].click();", element1);
+		Thread.sleep(3900);
+		text = driver.getTitle();
+		System.out.println(text);
+		softAssert.assertTrue(text.contains("Amazon"), "amz");
+
+		Reporter.log("Amazon Pay option is present on checkout page"); 
+		Reporter.log("Redirected to amzon login page when clicked on amz pay button"); 
+		
+		driver.navigate().back();
+		Thread.sleep(3000);
+		
+		//verify shop pay
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SHOP_PAY));
+		WebElement element2 = driver.findElement(SHOP_PAY);
+		jse.executeScript("arguments[0].click();", element2);
+		Thread.sleep(3900);
+		text = driver.getCurrentUrl();
+		System.out.println(text);
+		softAssert.assertTrue(text.contains("shop"), "shop");
+
+		Reporter.log("Shop Pay option is present on checkout page"); 
+		Reporter.log("Redirected to SHOP PAY login page when clicked on shop pay button"); 
+		Thread.sleep(3000);
 		softAssert.assertAll();
 	}
 

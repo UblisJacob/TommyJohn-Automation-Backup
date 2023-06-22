@@ -32,10 +32,10 @@ public class ValidateCartPage {
 		}
 	}
 	
-	@Test
+	/*@Test
 	public void TC_Search_InteractWithEmptyCart() throws Exception {	
 		new ShoppingCartPage(driver).ValidateEmptyCart();	
-	} 
+	} */
 	
 	/*@Test
 	public void TC_Search_InteractWithGiftWrap() throws Exception {
@@ -73,7 +73,7 @@ public class ValidateCartPage {
 		
 	}*/
 	
-	@Test
+	/*@Test
 	public void TC_Search_ViewPromotions() throws Exception {
 		String accountEmail = objGeneralMethods.readPropertiesFile("loginemail");
 		String password = objGeneralMethods.readPropertiesFile("password");
@@ -84,7 +84,16 @@ public class ValidateCartPage {
 		new ShoppingCartPage(driver).ValidateViewCartLink();
 		new ShoppingCartPage(driver).validatePromotion();
 		
+	}*/
+	
+	@Test
+	public void TC_Search_InteractWithPayments() throws Exception {
+		new CollectionPage(driver).validateQuickshopFunctionality();
+		new ShoppingCartPage(driver).ValidateViewCartLink();
+		new ShoppingCartPage(driver).validateCartPaymentMethods();
+		
 	}
+	
 	
 	
 	

@@ -38,6 +38,10 @@ public class ShoppingCartPage extends ShoppingCartComponents{
 		new ShoppingCartComponents(driver).validatePromotionalMessage();
 	}
 	
+	public void validateCartPaymentMethods() throws Exception
+	{
+		new ShoppingCartComponents(driver).cartPaymentMethods();
+	}
 	public void verifyCheckoutfromCart() throws Exception
 	{
 		new ShoppingCartComponents(driver).CheckoutPageFromCart();
