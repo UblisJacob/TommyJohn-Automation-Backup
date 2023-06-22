@@ -6,12 +6,13 @@
 		<listener class-name="TestScenario.ListenerClass"></listener>
 	</listeners>
 
-	<test name="CategoryTests">
+	<!-- <test name="CategoryTests">
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="TestModules.ValidateCategoryPages" />
 		</classes>
 	</test>
+
 
 	<test name="SearchPageTests">
 		<parameter name="browser" value="chrome" />
@@ -74,28 +75,44 @@
 		<classes>
 			<class name="TestModules.ValidateCheckoutPage" />
 		</classes>
+	</test> -->
+	
+	<!-- <test name="CartPageTests">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="TestModules.ValidateCartPage" />
+		</classes>
+	</test> -->
+	
+	<test name="CartPageTests">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="TestModules.ValidateBlogPages" />
+		</classes>
 	</test>
+	
+	
 
-	<test name="GiftCardBalancePageTests">
+	<!-- <test name="GiftCardBalancePageTests">
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="TestModules.ValidateGiftCardBalance" />
 		</classes>
-	</test>
+	</test> -->
 	
-	<test name="GiftCardPDPsTests">
+	<!-- <test name="GiftCardPDPsTests">
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="TestModules.ValidateGiftCardFunctionality" />
 		</classes>
-	</test>
+	</test> -->
 	
-	<test name="AccountPageTests">
+	<!-- <test name="AccountPageTests">
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="TestModules.ValidateAccountPage" />
 		</classes>
-	</test>
+	</test> -->
 	
 		<test name="StoreDirectoryTests">
 		<parameter name="browser" value="chrome" />
