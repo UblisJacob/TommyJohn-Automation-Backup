@@ -43,7 +43,7 @@ public class ReOrderPageComponents extends ReOrderPageLocators{
 		Thread.sleep(3000);
 		driver.findElement(AccountLoginLocators.CUSTOMER_EMAIL_INPUT).clear();
 		Thread.sleep(2000);
-		driver.findElement(AccountLoginLocators.CUSTOMER_EMAIL_INPUT).sendKeys("vijeta@tommyjohnwear.com");
+		driver.findElement(AccountLoginLocators.CUSTOMER_EMAIL_INPUT).sendKeys("testQA1@gmail.com");
 		Thread.sleep(2000);
 		driver.findElement(AccountLoginLocators.CUSTOMER_PASSWORD_INPUTBOX).sendKeys(CustomUtilities.properties.getProperty("password"));
 		Thread.sleep(2000);
