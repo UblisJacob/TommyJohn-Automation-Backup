@@ -8,23 +8,30 @@ public class ShoppingCartLocators {
 	public static By EMPTY_CART_MESSAGE = By.cssSelector(".cart__empty > h3");
 	public static By START_SHOPPING_BUTTON = By.cssSelector(".cart__empty > a");
 	public static By LIST_OF_ITEMS_IN_SHOPPING_CART = By.cssSelector(".cart__outer>div:nth-child(1)>div>.line-item");
-	public static By REMOVE_PRODUCT_FROM_CART = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > button");
+	public static By REMOVE_PRODUCT_FROM_CART = By.cssSelector(".main-content > .cart.container > div.cart__content.content > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > button");
 	
-	public static By PRODUCT_IMAGE = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__items > div > article.line-item > .line-item__image > img");
-	public static By PRODUCT_TITLE = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > a");
-	public static By PRODUCT_COLOR_SIZE = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > div");
-	public static By PRODUCT_PRICE = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > div.line-item__price > span");
-	public static By PRODUCT_SUBTOTAL = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > div.line-item__total > div.line-item__subtotal >span");
-	public static By PRODUCT_QUANTITY = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > div.line-item__total > div > .prodQty");
-	public static By PRODUCT_QUANT_MINUS = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > div.line-item__total > div > button");
-	public static By PRODUCT_QUANT_ADD = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > div.line-item__total > div > button:nth-child(3)");
-	public static By CART_TOTAL_TEXT = By.cssSelector("section > div.cart__outer > div.cart__summary > div.cart__summary-inner-div > div:nth-child(2) > div > span:nth-child(2)");
-	public static By CART_TOTAL = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__summary >.cart__summary-inner-div> .inline-cart__summary:nth-child(2) > div > span:nth-child(2)");
+	public static By PRODUCT_IMAGE = By.cssSelector(".main-content > .cart.container > div.cart__content.content > div.cart__outer > .cart__items > div > article.line-item > .line-item__image > img");
+	public static By PRODUCT_TITLE = By.cssSelector(".main-content > .cart.container > div.cart__content.content > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > a");
+	public static By PRODUCT_COLOR_SIZE = By.cssSelector(".main-content > .cart.container > div.cart__content.content > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > div");
+	public static By PRODUCT_PRICE = By.cssSelector(".main-content > .cart.container > div.cart__content.content > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > div.line-item__price > span");
+	public static By PRODUCT_SUBTOTAL = By.cssSelector(".main-content > .cart.container > div.cart__content.content > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > div.line-item__total > div.line-item__subtotal >span");
+	//public static By PRODUCT_QUANTITY = By.cssSelector(".main-content > .cart.container > div.cart__content.content > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > div.line-item__total > div > .prodQty");
+	public static By PRODUCT_QUANTITY = By.xpath("//div[@class='cart__content content']//input[@data-tj-qa='inline-cart-line-item-qty']");
+	
+	//public static By PRODUCT_QUANT_MINUS = By.cssSelector(".main-content > .cart.container > div.cart__content.content > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > div.line-item__total > div > button");
+	public static By PRODUCT_QUANT_MINUS = By.xpath("((//div[@class='cart__content content']//div[@class='qty-selector line-item__qty'])[1])//button[@data-tj-qa='inline-cart-line-item-minus']");
+	
+	//public static By PRODUCT_QUANT_ADD = By.cssSelector(".main-content > .cart.container > div.cart__content.content > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > div.line-item__total > div > button:nth-child(3)");
+	public static By PRODUCT_QUANT_ADD = By.xpath("((//div[@class='cart__content content']//div[@class='qty-selector line-item__qty'])[1])//button[@data-tj-qa='inline-cart-line-item-plus']");
+	
+	public static By CART_TOTAL_TEXT = By.cssSelector("section > div.cart__content.content > div.cart__outer > div.cart__summary > div.cart__summary-inner-div > div:nth-child(2) > div > span:nth-child(2)");
+	public static By CART_TOTAL = By.cssSelector(".main-content > .cart.container > div.cart__content.content > div.cart__outer > .cart__summary >.cart__summary-inner-div> .inline-cart__summary:nth-child(2) > div > span:nth-child(2)");
 	//public static By CHECKOUT_BUTTON = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__summary > a");
-	public static By CONTINUE_SHOPPING = By.cssSelector(" section > div.cart__outer > div.cart__summary > div.cart__summary-inner-div > a.cart__continue.text-link");
+	public static By CONTINUE_SHOPPING = By.cssSelector(" section > div.cart__content.content > div.cart__outer > div.cart__summary > div.cart__summary-inner-div > a.cart__continue.text-link");
 	public static By GIFT_WRAP_LINK = By.cssSelector("div.cart__outer > div.cart__summary > div.cart__summary-inner-div > div.cart__gift-wrap > a");
 	public static By ESTIMATE_TOTAL_PRICE = By.cssSelector(".cart__summary>.inline-cart__summary>div>span:nth-child(2)");
-	 public static By CHECKOUT_BUTTON = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__summary > div.cart__summary-inner-div>a.cart__checkout-btn");
+	//public static By CHECKOUT_BUTTON = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__summary > div.cart__summary-inner-div>a.cart__checkout-btn");
+	public static By CHECKOUT_BUTTON = By.cssSelector("a.cart__checkout-btn");
 	//AfterPay
 	    public static By AFTERPAY_CART = By.cssSelector(".afterpay-cart-container >p> span");
     public static By AFTERPAY_DIV = By.cssSelector(".inline-cart__summary>.afterpay-cart-container>p>.afterpay-paragraph");
@@ -45,5 +52,23 @@ public class ShoppingCartLocators {
 	public static By APPLIED_PROMOCODE_FLYCART = By.cssSelector("span.coupon-code"); 
 	public static By DISCOUNTED_GIFTWRAP_PRICE = By.cssSelector("div.cart__outer > div.cart__summary > div.cart__summary-inner-div > div.cart__gift-wrap > span:nth-child(3)");
 	public static By SUBTOTAL_PRICE = By.cssSelector(".cart__summary>.cart__discount-subtotal>div>span:nth-child(3)");
+	public static By PROMOTIONAL_MESSAGE = By.xpath("//div[@class='cart__content content']//div[contains(@class,'line-item__message')]");
+	public static By PROMOTIONAL_PRICE = By.xpath("(((//div[@class='cart__content content']//div[@class='line-item__summary'])[1])//span[@class='sale'])[1]");
+	
+	//Tiered-meter
+	public static By TIERED_METER_TITLE = By.cssSelector("p#tier-message-reached-cart");
+	public static By TIERED_METER = By.xpath("//div[@class='cart__content content']//div[@data-tj-qa='tiered-meter']//div[@class='meter-tier']");
+	
+	//OOS
+	public static By OOS_TAG = By.xpath("//div[@class='cart__content content']//span[@data-tj-qa='inline-cart-line-item-oos-message']");
+	public static By OOS_MESSAGE = By.xpath("//div[@class='cart__content content']//span[@data-tj-qa='inline-cart-oos-message']");
+	
+    // PAYMENT
+	public static By PAYPAL_BUTTON = By.cssSelector(".paypal-button");
+	public static By GPAY_BUTTON = By.xpath("//div[@data-testid = 'GooglePay-button']");
+	public static By AMZ_PAY = By.xpath("//form[@action = 'https://payments.amazon.com/checkout/signin'] /button" );
+	public static By SHOP_PAY = By.xpath("//div[@data-testid='ShopifyPay-button']" );
+	
+	
 	
 }
