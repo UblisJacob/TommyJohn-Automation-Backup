@@ -6,10 +6,11 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import com.tommyjohn.automation.Components.AddToCartComponents;
+import com.tommyjohn.automation.Components.ProductDetailsPageComponents;
 import com.tommyjohn.automation.Pages.AccountLoginPage;
 import com.tommyjohn.automation.Pages.CollectionPage;
 import com.tommyjohn.automation.Pages.HomePage;
-import com.tommyjohn.automation.Pages.NavigationFlowPage;
 import com.tommyjohn.automation.Pages.ShoppingCartPage;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
@@ -31,50 +32,46 @@ public class ValidateCartPage {
 			e1.printStackTrace();
 		}
 	}
-	
-	/*@Test
-	public void TC_Search_InteractWithEmptyCart() throws Exception {	
+
+	@Test
+	public void TC_Cart_InteractWithEmptyCart() throws Exception {	
 		new ShoppingCartPage(driver).ValidateEmptyCart();	
-	} */
-	
-	/*@Test
-	public void TC_Search_InteractWithGiftWrap() throws Exception {
-		new CollectionPage(driver).validateQuickshopFunctionality();
+	} 
+
+	@Test
+	public void TC_Cart_InteractWithGiftWrap() throws Exception {
+		new AddToCartComponents(driver).addToCart();
 		new ShoppingCartPage(driver).ValidateViewCartLink();
 		new ShoppingCartPage(driver).AddGiftWrap();
-	}*/
-	
-	/*@Test
-	public void TC_Search_ApplyingDiscountCode() throws Exception {
-		new CollectionPage(driver).validateQuickshopFunctionality();
+	}
+
+	@Test
+	public void TC_Cart_ApplyingDiscountCode() throws Exception {
+		new AddToCartComponents(driver).addToCart();
 		new ShoppingCartPage(driver).Promo_Code_OncartPage();
-		
-	}*/
-	
-	/*@Test
-	public void TC_Search_InteractWithActiveCart() throws Exception {
-		searchText = objGeneralMethods.readPropertiesFile("searchSleepwearSets");
-		new HomePage(driver).validateSearchFunctionEnterKeyword(searchText);
-		new CollectionPage(driver).validateQuickshopFunctionalityOnSearchPLP();
-		new CollectionPage(driver).validateQuickshopFunctionality();
+
+	}
+
+	@Test
+	public void TC_Cart_InteractWithActiveCart() throws Exception {
+
+		new AddToCartComponents(driver).addToCart();
 		new ShoppingCartPage(driver).ValidateViewCartLink();
-		new ShoppingCartPage(driver).tieredMeterFunctionality();
+		new ShoppingCartPage(driver).tieredMeterpresence();
 		new ShoppingCartPage(driver).AddRemoveProductsFromCart();
-		
-	}*/
-	
-	/*@Test
-	public void TC_Search_ViewOOSItem() throws Exception {
-		searchText = objGeneralMethods.readPropertiesFile("searchBundle");
-		new HomePage(driver).validateSearchFunctionEnterKeyword(searchText);
-		new CollectionPage(driver).validateQuickshopFunctionalityOnSearchPLP();
+
+	}
+
+	@Test
+	public void TC_Cart_ViewOOSItem() throws Exception {
+		new ProductDetailsPageComponents(driver).verifyBundlePDPs();
 		new ShoppingCartPage(driver).ValidateViewCartLink();
 		new ShoppingCartPage(driver).OOSValidation();
-		
-	}*/
-	
-	/*@Test
-	public void TC_Search_ViewPromotions() throws Exception {
+
+	}
+
+	@Test
+	public void TC_Cart_ViewPromotions() throws Exception {
 		String accountEmail = objGeneralMethods.readPropertiesFile("loginemail");
 		String password = objGeneralMethods.readPropertiesFile("password");
 		new AccountLoginPage(driver).loginAccount(accountEmail, password);
@@ -83,21 +80,30 @@ public class ValidateCartPage {
 		new CollectionPage(driver).validateQuickshopFunctionalityOnSearchPLP();
 		new ShoppingCartPage(driver).ValidateViewCartLink();
 		new ShoppingCartPage(driver).validatePromotion();
-		
-	}*/
-	
+
+	}
+
 	@Test
-	public void TC_Search_InteractWithPayments() throws Exception {
-		new CollectionPage(driver).validateQuickshopFunctionality();
+	public void TC_Cart_InteractWithPayments() throws Exception {
+
+		new AddToCartComponents(driver).addToCart();
 		new ShoppingCartPage(driver).ValidateViewCartLink();
 		new ShoppingCartPage(driver).validateCartPaymentMethods();
-		
+
 	}
-	
-	
-	
-	
-	
+
+	@Test
+	public void TC_Cart_InteractWithTieredMeter() throws Exception {
+
+		new AddToCartComponents(driver).addsingleproductToCart();
+		new ShoppingCartPage(driver).ValidateViewCartLink();
+		new ShoppingCartPage(driver).tieredMeterFunctionality();
+
+
+	}
+
+
+
 
 	@AfterMethod(alwaysRun = true)
 	void teardown() {
@@ -105,5 +111,5 @@ public class ValidateCartPage {
 		// driver.close();
 		driver.quit();
 	}
-	
+
 }

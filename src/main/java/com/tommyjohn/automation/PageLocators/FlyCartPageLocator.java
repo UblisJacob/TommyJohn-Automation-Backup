@@ -64,5 +64,9 @@ public class FlyCartPageLocator {
 	public static By AFTERPAY_FLYCART = By.cssSelector(".afterpay-incart-container > p > span");
 
 	public static By QUICK_SHOP_SIZE_LIST = By.cssSelector(".quickshop-open>.inline-quick-shop>ul>li");
+	public static By TIERED_METER_TITLE = By.cssSelector("p#tier-message-reached-cart");
+	public static By TIERED_METER = By.xpath("//div[@class='cart__content content']//div[@data-tj-qa='tiered-meter']//div[@class='meter-tier']");
+	public static By PROMOTIONAL_MESSAGE = By.xpath("//div[@class='cart__content content']//div[contains(@class,'line-item__message')]");
+	public static By PROMOTIONAL_PRICE = By.xpath("(((//div[@class='cart__content content']//div[@class='line-item__summary'])[1])//span[@class='sale'])[1]");
 
 }

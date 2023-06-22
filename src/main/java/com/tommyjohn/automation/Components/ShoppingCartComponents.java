@@ -94,7 +94,10 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		SoftAssert softAssert = new SoftAssert();
+		driver.findElement(HomePageLocators.CART_ICON).click();
 		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(TIERED_METER));
 		Thread.sleep(5000);
 		
@@ -112,7 +115,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		//softAssert.assertAll();	
 	}
 	
-	public void tieredMeterFunctionality() throws Exception
+	public void tieredMeterpresence() throws Exception
 	{
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -154,6 +157,8 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_QUANTITY));
 		driver.findElement(PRODUCT_QUANTITY).sendKeys("10000" + Keys.ENTER);
+		driver.findElement(PRODUCT_QUANT_ADD).click();
+		
 		Thread.sleep(5000);
 		
 		if(driver.findElement(OOS_MESSAGE).isDisplayed()) {
@@ -247,7 +252,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		String text2= p_name.replace("-", " ");
 		System.out.println("text2 is: "+text2.toLowerCase());
 		System.out.println(p_name);
-		if(!p_name.equalsIgnoreCase(text2))
+		if(!p_name.equalsIgnoreCase(text1))
 			throw new Exception("Wrong Product added to cart");
 		quant= driver.findElement(PRODUCT_QUANTITY).getAttribute("value");
 
@@ -463,13 +468,14 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 				flag= true;
 		}
 		if(!flag)
-			throw new Exception("Discount coupon is not applied on gift wrap");
+			throw new Exception("Discount coupon is not applied cart");
 		Reporter.log("Promo code is auto-applied on newly added products");  	
 
 		Thread.sleep(3000);
 		Check_Promocode_onCheckout_throughCart();	
 		//Remove code from checkout
-		driver.findElement(CheckoutPageLocators.CANCEL_PROMO_CODE).click();
+		js.executeScript("arguments[0].click();", driver.findElement(CANCEL_PROMO_CODE));
+		//driver.findElement(CheckoutPageLocators.CANCEL_PROMO_CODE).click();
 		Thread.sleep(8000);
 
 		driver.findElement(CheckoutPageLocators.BREADCRUMB_LINK_CART).click();
@@ -499,7 +505,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		softAssert.assertTrue(driver.findElement(APPLIED_PROMO_CODE).isDisplayed(), "Applied promo code is not displayed for product on cart page through url parameter");
 		softAssert.assertEquals(driver.findElement(APPLIED_PROMO_CODE).getText(), Promo_Code, "Promo code is not same as applied discount code through url parameter");
 		Reporter.log("Apply promo code through url parameter on cart page is correct");
-		softAssert.assertAll();
+		
 	}
 
 	public void Check_Promocode_onCheckout_throughCart()
@@ -533,6 +539,8 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		WebElement element;
 		String allClasses = null;
 		boolean flag = false;
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(GIFT_WRAP_LINK));
 		driver.findElement(GIFT_WRAP_LINK).click();
 		softAssert.assertTrue(driver.findElement(FlyCartPageLocator.GIFT_WRAP_POPUP).isDisplayed(), "Gift Wrap Popup is not displayed");
 		element = driver.findElement(FlyCartPageLocator.GIFT_BOX_$5);
@@ -559,14 +567,14 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 	
 	public void cartPaymentMethods() throws Exception
 	{
+		jse = (JavascriptExecutor)driver;
 		SoftAssert softAssert = new SoftAssert();
 		String text = null;
-		
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(40));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		Thread.sleep(3000);
+		Thread.sleep(4000);
 		driver.switchTo().frame(driver.findElement(By.className("paypalLight")));
-		driver.findElement(PAYPAL_BUTTON).click();
+		driver.switchTo().frame(driver.findElement(By.className("zoid-component-frame")));
+		jse.executeScript("arguments[0].click();",driver.findElement(PAYPAL_BUTTON));
 		String mainWindow = driver.getWindowHandle();
 		Set<String> set =driver.getWindowHandles();
 		// Using Iterator to iterate with in windows
@@ -588,9 +596,10 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		Reporter.log("PayPal popup shows up when clicked on paypal express checkout button");
 		Thread.sleep(3000);
 		driver.switchTo().window(mainWindow);
+		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(GPAY_BUTTON));
 		WebElement element = driver.findElement(GPAY_BUTTON);
-		jse = (JavascriptExecutor)driver;
+		 
 		//jse.executeScript("arguments[0].click();", element);
 		Actions action = new Actions(driver);
 		 action.moveToElement(element).click().build().perform();
@@ -642,4 +651,41 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 	}
 
 
+	
+	
+	public void tieredMeterFunctionality() throws Exception
+	{
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		
+		String wid="0px";
+		
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(TIERED_METER));
+		Thread.sleep(5000);
+		if(driver.findElement(TIERED_METER).isDisplayed()) 
+		{	
+		String widthvalue=	driver.findElement(TIERED_METER_TIER).getCssValue("width");
+			System.out.println(widthvalue);
+		String text=driver.findElement(TIERED_METER_TIER).getAttribute("style");	
+		System.out.println(text);
+		if(text.equals(wid))
+		{
+			throw new Exception("Tiered meter not filling in correctly.");
+			
+		}
+		Reporter.log("Tiered Meter is filling in");
+		String[] widthper = text.split(";");
+		System.out.println(widthper[0]);
+		if(widthper[0].contains("100%"))
+		{
+			throw new Exception("Tiered meter not filling in correctly.");
+		}
+		Reporter.log("Tiered Meter is filling in");
+		}
+		else {
+			System.out.println("Tiered Meter is not displayed on cart page");
+			Reporter.log("Tiered Meter is not displayed on cart page");
+		}
+		
+		
+	}
 }

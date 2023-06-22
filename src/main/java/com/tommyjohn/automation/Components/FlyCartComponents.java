@@ -393,57 +393,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 	}
 	
 
-	public void validateOOSonInlinecart() throws Exception {
-		jse = (JavascriptExecutor)driver;
-		SoftAssert softassert = new SoftAssert();
-		new HomePageComponents(driver).navigateToAllMensPacksInPacksCategory();
-		new CollectionPageComponent(driver).navigateToProductDetailsPage();
-
-		Thread.sleep(2000);   
-		allElements = driver.findElements(ProductDetailsPageComponents.ALL_COLOR_LIST);
-		int elementsCount = allElements.size();
-		System.out.println("Color Element count :: "+elementsCount);
-		elementsCount = elementsCount-(elementsCount-1);
-		if(elementsCount > 0)
-			
-			for(int i=1;i<=1;i++)
-			{
-				
-				WebElement elemen = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper>ul>li:nth-child(" + i + ")>input"));
-				jse = (JavascriptExecutor) driver;
-				jse.executeScript("arguments[0].click();", elemen);
-				Thread.sleep(3000);
-				
-					for(int k=1;k<=1;k++)				
-					{	
-						WebElement elements = driver.findElement(By.cssSelector(".option-swatch__option>li:nth-child("+ k +")>input"));
-						jse.executeScript("arguments[0].click();", elements);
-						Thread.sleep(1000);
-						
-						WebElement elem = driver.findElement(By.cssSelector(".multiPdp__atc-container>button"));		
-						
-						if(driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON).getText().contains("Add to Cart")) {
-							
-							System.out.println(elemen.getText() + elements.getText() + "Product is added to Cart");
-							jse.executeScript("arguments[0].click();", driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON));
-							Thread.sleep(4000);
-					}
-						
-					}
-					
-			}
-		driver.findElement(QUANTITY).sendKeys("10000");
-		jse.executeScript("arguments[0].click();", driver.findElement(PLUS_BUTTON));
-		Thread.sleep(4000);
-		
-		softassert.assertEquals(driver.findElement(OOS_MESSAGE_ON_TOP).getText(), "Some items are out of stock. Please remove or edit them to continue.");
-		softassert.assertEquals(driver.findElement(OOS_LINE_ITEMS).getText(), "Out of Stock");
-		softassert.assertEquals(driver.findElement(CHECKOUT_BUTTON).getAttribute("disabled"), "disabled");
-		
-		//softassert.assertAll();
-			
-		
-	}
+	
 		
 	
 	public void validateafterpayoninlinecart() throws Exception
@@ -558,4 +508,108 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		Reporter.log("Validated Flyout cart opens with ATC from pdp");
 		softAssert.assertAll();
 	}
+	public void validateOOSonInlinecart() throws Exception {
+		jse = (JavascriptExecutor)driver;
+		SoftAssert softassert = new SoftAssert();
+		new HomePageComponents(driver).navigateToAllMensPacksInPacksCategory();
+		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+
+		Thread.sleep(2000);   
+		allElements = driver.findElements(ProductDetailsPageComponents.ALL_COLOR_LIST);
+		int elementsCount = allElements.size();
+		System.out.println("Color Element count :: "+elementsCount);
+		elementsCount = elementsCount-(elementsCount-1);
+		if(elementsCount > 0)
+			
+			for(int i=1;i<=1;i++)
+			{
+				
+				WebElement elemen = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper>ul>li:nth-child(" + i + ")>input"));
+				jse = (JavascriptExecutor) driver;
+				jse.executeScript("arguments[0].click();", elemen);
+				Thread.sleep(3000);
+				
+					for(int k=1;k<=1;k++)				
+					{	
+						WebElement elements = driver.findElement(By.cssSelector(".option-swatch__option>li:nth-child("+ k +")>input"));
+						jse.executeScript("arguments[0].click();", elements);
+						Thread.sleep(1000);
+						
+						WebElement elem = driver.findElement(By.cssSelector(".multiPdp__atc-container>button"));		
+						
+						if(driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON).getText().contains("Add to Cart")) {
+							
+							System.out.println(elemen.getText() + elements.getText() + "Product is added to Cart");
+							jse.executeScript("arguments[0].click();", driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON));
+							Thread.sleep(4000);
+					}
+						
+					}
+					
+			}
+		driver.findElement(QUANTITY).sendKeys("10000");
+		jse.executeScript("arguments[0].click();", driver.findElement(PLUS_BUTTON));
+		Thread.sleep(4000);
+		
+		softassert.assertEquals(driver.findElement(OOS_MESSAGE_ON_TOP).getText(), "Some items are out of stock. Please remove or edit them to continue.");
+		softassert.assertEquals(driver.findElement(OOS_LINE_ITEMS).getText(), "Out of Stock");
+		softassert.assertEquals(driver.findElement(CHECKOUT_BUTTON).getAttribute("disabled"), "disabled");
+		
+		//softassert.assertAll();
+			
+		
+	}
+	public void tieredMeterFunctionality() throws Exception
+	{
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		SoftAssert softAssert = new SoftAssert();
+
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(TIERED_METER));
+		Thread.sleep(5000);
+
+		if(driver.findElement(TIERED_METER).isDisplayed()) {
+
+			System.out.println("Tiered Meter is displayed on cart page");
+			Reporter.log("Tiered Meter is displayed on cart page");
+
+			if(driver.findElement(TIERED_METER_TITLE).isDisplayed()){
+				System.out.println("Tiered Meter Title is displayed on cart page");
+				Reporter.log("Tiered Meter Title is displayed on cart page");
+			}
+			else {
+				System.out.println("Tiered Meter Title is not displayed on cart page");
+				Reporter.log("Tiered Meter Title is not displayed on cart page");
+			}
+		}
+		else {
+			System.out.println("Tiered Meter is not displayed on cart page");
+			Reporter.log("Tiered Meter is not displayed on cart page");
+		}
+
+		//softAssert.assertAll();	
+	}
+	public void validatePromotionalMessage() throws Exception
+	{
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		SoftAssert softAssert = new SoftAssert();
+
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(TIERED_METER));
+		Thread.sleep(5000);
+
+		softAssert.assertTrue(driver.findElement(PROMOTIONAL_PRICE).isDisplayed(), "Promotional discounted price is displayed on cart page");
+		if(driver.findElement(PROMOTIONAL_MESSAGE).isDisplayed()) {
+
+			System.out.println("PROMOTIONAL MESSAGE is displayed on cart page");
+			Reporter.log("PROMOTIONAL MESSAGE is displayed on cart page");
+		}
+		else {
+			System.out.println("PROMOTIONAL MESSAGE is not displayed on cart page");
+			Reporter.log("PROMOTIONAL MESSAGE is not displayed on cart page");
+		}
+
+		//softAssert.assertAll();	
+	}
+	
 }
