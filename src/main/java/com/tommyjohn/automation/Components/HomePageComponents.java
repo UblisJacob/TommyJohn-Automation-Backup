@@ -2325,6 +2325,12 @@ public class HomePageComponents extends HomePageLocators {
 		((JavascriptExecutor) driver).executeScript("arguments[0].click()", ele);
 
 	}
+
+
+	public void navigateToSocksPage() {
+		driver.get("");
+		
+	}
 	
 	
 }

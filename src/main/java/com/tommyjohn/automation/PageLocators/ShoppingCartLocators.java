@@ -56,19 +56,19 @@ public class ShoppingCartLocators {
 	public static By PROMOTIONAL_PRICE = By.xpath("(((//div[@class='cart__content content']//div[@class='line-item__summary'])[1])//span[@class='sale'])[1]");
 	
 	//Tiered-meter
-	public static By TIERED_METER_TITLE = By.cssSelector("p#tier-message-reached-cart");
+	public static By TIERED_METER_TITLE = By.cssSelector("#tier-message-cart");
 	public static By TIERED_METER = By.xpath("//div[@class='cart__content content']//div[@data-tj-qa='tiered-meter']//div[@class='meter-tier']");
-	
+	public static By TIERED_METER_TIER= By.cssSelector("div[data-tj-qa='tier-0']>div>div");
 	//OOS
 	public static By OOS_TAG = By.xpath("//div[@class='cart__content content']//span[@data-tj-qa='inline-cart-line-item-oos-message']");
 	public static By OOS_MESSAGE = By.xpath("//div[@class='cart__content content']//span[@data-tj-qa='inline-cart-oos-message']");
 	
     // PAYMENT
-	public static By PAYPAL_BUTTON = By.cssSelector(".paypal-button");
+	public static By PAYPAL_BUTTON = By.cssSelector("div[aria-label='PayPal']");
 	public static By GPAY_BUTTON = By.xpath("//div[@data-testid = 'GooglePay-button']");
 	public static By AMZ_PAY = By.xpath("//form[@action = 'https://payments.amazon.com/checkout/signin'] /button" );
 	public static By SHOP_PAY = By.xpath("//div[@data-testid='ShopifyPay-button']" );
 	
 	
-	
+	public static By CANCEL_PROMO_CODE = By.cssSelector(".tag__wrapper>button");
 }

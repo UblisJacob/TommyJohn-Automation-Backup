@@ -320,4 +320,60 @@ public class AddToCartComponents extends AddToCartLocators{
 		Reporter.log("ADD TO CART button is Displayed :: Clickable");
 
 	}
+	
+	public String addsingleproductToCart() throws Exception {
+		
+		
+		// call method to navigate to collection page
+		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
+		jse=(JavascriptExecutor)driver;
+		jse.executeScript("window.scrollBy(0,250)");
+		// call method to navigate product details page
+		text = new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		
+		Thread.sleep(2000);
+		
+		allElements = driver.findElements(ProductDetailsPageComponents.ALL_COLOR_LIST);
+		
+		elementsCount = allElements.size();
+		System.out.println("Color Element count :: "+elementsCount);
+		
+		if(elementsCount > 1)
+		{
+			for(int i=1;i<=3;i++)
+			{
+				
+				WebElement elemen = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper>ul>li:nth-child(" + i + ")>input"));
+				jse = (JavascriptExecutor) driver;
+				jse.executeScript("arguments[0].click();", elemen);
+				Thread.sleep(3000);
+				
+						
+						WebElement elements = driver.findElement(By.cssSelector(".option-swatch__option>li:nth-child(2)>input"));
+						jse.executeScript("arguments[0].click();", elements);
+						Thread.sleep(1000);
+						
+							
+						
+						if(driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON).getText().contains("Add to Cart")) {
+							
+							System.out.println(elemen.getText() + elements.getText() + "Product is added to Cart");
+							jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_CART_BUTTON));
+							Thread.sleep(2000);
+							jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
+							break;							
+						
+							
+							
+						}
+						
+													
+			}
+							
+					}
+		return text;
+						
+			}
+	
+
 }
