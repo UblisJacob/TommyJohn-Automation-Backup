@@ -2,6 +2,7 @@ package com.tommyjohn.automation.Pages;
 
 import org.openqa.selenium.WebDriver;
 
+import com.tommyjohn.automation.Components.BlogPageComponents;
 import com.tommyjohn.automation.Components.HomePageComponents;
 import com.tommyjohn.automation.Components.ProductDetailsPageComponents;
 
@@ -100,6 +101,11 @@ public class HomePage extends HomePageComponents {
 	public void validateNavigationToMensLoungewearCategory() throws Exception
 	{
 		new HomePageComponents(driver).navigateToMensLoungewearCategory();
+	}
+	
+	public void validateBlogPage() throws Exception
+	{
+		new BlogPageComponents(driver).validateBlog();
 	}
 	
 }
