@@ -10,9 +10,8 @@ import com.tommyjohn.automation.Components.CollectionPageComponent;
 import com.tommyjohn.automation.Components.HomePageComponents;
 import com.tommyjohn.automation.Pages.CollectionPage;
 import com.tommyjohn.automation.Pages.HomePage;
+import com.tommyjohn.automation.commonMethods.GeneralMethods;
 import com.tommyjohn.automation.utils.CustomUtilities;
-
-import commonMethods.GeneralMethods;
 
 
 public class ValidateSearchPages {

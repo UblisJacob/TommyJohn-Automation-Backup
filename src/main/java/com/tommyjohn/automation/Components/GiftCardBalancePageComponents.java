@@ -16,8 +16,8 @@ import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
 import com.tommyjohn.automation.PageLocators.FooterSectionLocators;
 import com.tommyjohn.automation.PageLocators.GiftCardBalancePageLocators;
+import com.tommyjohn.automation.commonMethods.GeneralMethods;
 import com.tommyjohn.automation.utils.CustomUtilities;
-import commonMethods.GeneralMethods;
 
 
 public class GiftCardBalancePageComponents extends GiftCardBalancePageLocators {
