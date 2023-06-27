@@ -19,9 +19,8 @@ import org.testng.asserts.SoftAssert;
 import com.tommyjohn.automation.PageLocators.AccountLoginLocators;
 import com.tommyjohn.automation.PageLocators.AccountPageLocators;
 import com.tommyjohn.automation.PageLocators.HomePageLocators;
+import com.tommyjohn.automation.commonMethods.GeneralMethods;
 import com.tommyjohn.automation.utils.CustomUtilities;
-
-import commonMethods.GeneralMethods;
 
 public class AccountPageComponents extends AccountPageLocators {
 	WebDriver driver;

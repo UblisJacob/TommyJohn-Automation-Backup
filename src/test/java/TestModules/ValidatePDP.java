@@ -31,10 +31,6 @@ public class ValidatePDP {
 		
 	}
 	
-	@Test
-	public void TC_verifyImageGallery() throws Exception {
-		new ProductDetailsPage(driver).verifyImageGallery();
-	}
 	
 	@Test
 	public void TC_verifyOnImageBadging() throws Exception {

@@ -21,9 +21,8 @@ import com.tommyjohn.automation.PageLocators.DoNotSellMyInfoPageLocators;
 import com.tommyjohn.automation.PageLocators.FooterSectionLocators;
 import com.tommyjohn.automation.PageLocators.PrivacyPolicyPageLocators;
 import com.tommyjohn.automation.PageLocators.TermsAndConditionsPageLocators;
+import com.tommyjohn.automation.commonMethods.GeneralMethods;
 import com.tommyjohn.automation.utils.CustomUtilities;
-
-import commonMethods.GeneralMethods;
 
 public class FooterSectionComponents extends FooterSectionLocators {
 

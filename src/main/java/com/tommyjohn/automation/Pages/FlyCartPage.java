@@ -2,9 +2,14 @@ package com.tommyjohn.automation.Pages;
 
 import org.openqa.selenium.WebDriver;
 
+import com.tommyjohn.automation.Components.AddToCartComponents;
 import com.tommyjohn.automation.Components.FlyCartComponents;
+import com.tommyjohn.automation.Components.ShoppingCartComponents;
+import com.tommyjohn.automation.commonMethods.GeneralMethods;
 
 public class FlyCartPage extends FlyCartComponents {
+	GeneralMethods objGeneralMethods = new GeneralMethods();
+	String searchText="";
 
 	public FlyCartPage(WebDriver driver) {
 		super(driver);
@@ -34,5 +39,21 @@ public class FlyCartPage extends FlyCartComponents {
 
 	public void validateOOSonInlinecart() throws Exception {
 		new FlyCartComponents(driver).validateOOSonInlinecart();
+	}
+	
+	public void validatePromotionMessaging() throws Exception {
+		String accountEmail = objGeneralMethods.readPropertiesFile("loginemail");
+		String password = objGeneralMethods.readPropertiesFile("password");
+		new AccountLoginPage(driver).loginAccount(accountEmail, password);
+		searchText = objGeneralMethods.readPropertiesFile("searchSleepwearSets");
+		new HomePage(driver).validateSearchFunctionEnterKeyword(searchText);
+		new CollectionPage(driver).validateQuickshopFunctionalityOnSearchPLP();
+		new AddToCartComponents(driver).addToCart();
+		new FlyCartComponents(driver).validatePromotionalMessage();
+	}
+	public void validateTieredMeter() throws Exception {
+		new AddToCartComponents(driver).addsingleproductToCart();
+		new FlyCartComponents(driver).tieredMeterPrsence();
+		new ShoppingCartComponents(driver).tieredMeterFunctionality();
 	}
 }

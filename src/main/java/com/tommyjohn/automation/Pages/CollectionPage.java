@@ -5,8 +5,8 @@ import org.openqa.selenium.WebDriver;
 
 import com.tommyjohn.automation.Components.CollectionPageComponent;
 import com.tommyjohn.automation.Components.HomePageComponents;
-import commonMethods.GeneralMethods;
-import commonMethods.ExcelUtils;
+import com.tommyjohn.automation.commonMethods.ExcelUtils;
+import com.tommyjohn.automation.commonMethods.GeneralMethods;
 	
 	
 
