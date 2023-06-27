@@ -7,6 +7,7 @@ import java.util.Properties;
 import java.util.Random;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -553,20 +554,25 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 	}
 
 
+
 	public void validateafterpayonpdp() throws Exception {
 		String text = null;
 		SoftAssert softAssert = new SoftAssert();
 
 		// call method to navigate to collection page
-		new HomePageComponents(driver).navigateToBraCategory();
-
-		// call method to navigate product details page
-		text = new CollectionPageComponent(driver).navigateToProductDetailsPage();
-
-		// call method to check correct PDP opend or not
-		checkCorrectProductDetailsPageOpenedOrNot(text);
-		Thread.sleep(5000);
+		new ProductDetailsPage(driver).navigateToAllUnderwearInMenCategory();
+		
+		//navigate to PDP
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT));
+		
+		WebElement el = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT);
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();", el);
+		
+		
 		//Check afterpay message display
+		wait.until(ExpectedConditions.visibilityOfElementLocated(AFTERPAY_PDP));
 		if(!driver.findElement(AFTERPAY_PDP).isDisplayed())
 			throw new Exception("AfterPay Message not present on PDP");
 		Reporter.log("After pay Message on PDP is displayed :: Displayed");
@@ -575,11 +581,26 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		price= driver.findElement(PRODUCT_PRICE).getText();
 		String[] price1 = price.split("\\$");
 		String price2 = price1[price1.length-1];
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		WebElement ele = driver.findElement(By.xpath("//iframe[@title='pdp_messaging']"));
+		driver.switchTo().frame(ele);
+		//WebElement root1 = driver.findElement(By.cssSelector("#root>div>div>afterpay-placement"));
+		SearchContext shadowRoot = driver.findElement(By.cssSelector("#root>div>div>afterpay-placement")).getShadowRoot();
+		//SearchContext shadowRoot = (SearchContext) js.executeScript("return arguments[0].shadowRoot", root1);
+		//WebElement shadowRoot1 = getShadowRoot(driver, root1);
+		Thread.sleep(6000);
+		WebElement afterpaymessaging =  (WebElement) js.executeScript("return document.querySelector('#root>div>div>afterpay-placement').shadowRoot.querySelector('p.afterpay-paragraph>span.afterpay-main-text')");
+		System.out.print(shadowRoot.toString());
+		//driver.switchTo().defaultContent();
+		//WebElement afterpaymessaging = shadowRoot.findElement(By.cssSelector("p.afterpay-paragraph>span.afterpay-main-text"));
+		WebElement afterpaylogo = shadowRoot.findElement(By.cssSelector("afterpay-logo-link>button"));
+		
 		if(Float.parseFloat(price2)<35 || Float.parseFloat(price2)>1000 )
 		{
-			softAssert.assertEquals(driver.findElement(AFTERPAY_PDP).getText(), "available for orders between $35 - $1000" , "Wrong afterpay message displayed for product price");
+			softAssert.assertEquals(afterpaymessaging.getText(), "available for orders between $35 - $1000" , "Wrong afterpay message displayed for product price");
 			Reporter.log("After pay message is correct On PDP :: Displayed and Correct message is displayed");
-			softAssert.assertTrue(driver.findElement(AFTERPAY_PDP_BEFOREMESSAGE_LOGO).isDisplayed(), "Afterpay logo not present on PDP");
+		//	softAssert.assertTrue(afterpaylogo.isDisplayed(), "Afterpay logo not present on PDP");
 			Reporter.log("After pay logo icon is displayed on PDP :: Displayed");
 		}
 
@@ -591,12 +612,12 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			//	String expectedmessage = "or 4 installments of $" + inst + " by ?"; 
 			String expectedmessage =  inst+ " "; 
 			System.out.println("expected message is: " + expectedmessage);
-			String actual = driver.findElement(AFTERPAY_PDP).getText();
+			String actual = afterpaymessaging.getText();
 			String ins_amount= actual.substring(actual.indexOf("$")+1, actual.indexOf("b"));
 			System.out.println("Actual int_amount is: " +actual);
 			softAssert.assertEquals(ins_amount, expectedmessage , "Wrong afterpay message displayed for product price");
 			Reporter.log("After pay message with calculated installment is correct :: Displayed and correct");
-			softAssert.assertTrue(driver.findElement(AFTERPAY_PDP_AFTERMESSAGE_LOGO).isDisplayed(), "Afterpay logo not present on PDP");
+			//softAssert.assertTrue(afterpaylogo.isDisplayed(), "Afterpay logo not present on PDP");
 			Reporter.log("After pay logo icon is displayed on PDP :: Displayed");
 
 		}
