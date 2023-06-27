@@ -25,8 +25,7 @@ import com.opencsv.CSVReader;
 import com.tommyjohn.automation.PageLocators.CollectionPageLocator;
 import com.tommyjohn.automation.PageLocators.FlyCartPageLocator;
 import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
-
-import commonMethods.GeneralMethods;
+import com.tommyjohn.automation.commonMethods.GeneralMethods;
 
 public class CollectionPageComponent extends CollectionPageLocator {
 

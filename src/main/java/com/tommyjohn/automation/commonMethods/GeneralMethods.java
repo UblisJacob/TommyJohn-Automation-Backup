@@ -1,4 +1,4 @@
-package commonMethods;
+package com.tommyjohn.automation.commonMethods;
 
 import java.io.FileReader;
 import java.time.Duration;

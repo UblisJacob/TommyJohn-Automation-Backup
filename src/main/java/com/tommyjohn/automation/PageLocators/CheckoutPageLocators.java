@@ -19,11 +19,14 @@ public class CheckoutPageLocators {
 	public static By BREADCRUMB_LINK_PAYMENT = By.cssSelector("ol.breadcrumb>li:nth-child(4)");
 	
 	
-	//Contact info 
+	//Contact info (before logging in)
 	public static By CONTACTINFO_TEXT = By.cssSelector("h2#main-header");
 	public static By ALREADYHAVEANACCOUNT_TEXT = By.cssSelector(".layout-flex__item > span");
 	public static By LOGIN_LINK = By.cssSelector(".layout-flex__item > a");
 	public static By CHECKOUT_EMAIL = By.cssSelector("#checkout_email");
+	
+	//Contact info (after logging in)
+	public static By LOGGED_IN_EMAIL = By.cssSelector(".logged-in-customer-information__paragraph span:nth-child(2)");
 
 	//shipping address
 	public static By SHIPPINGADD_TEXT = By.cssSelector(".section--shipping-address > div > .section__title");
@@ -51,6 +54,7 @@ public class CheckoutPageLocators {
 	public static By SHIPPING = By.cssSelector(".total-line--shipping > .total-line__price > span");
 	public static By APPLIED_PROMO_CODE = By.cssSelector(".tag__text>span.reduction-code>span");
 	public static By CANCEL_PROMO_CODE = By.cssSelector(".tag>form[data-reduction-form='true']");
+//	public static By CANCEL_PROMO_CODE = By.cssSelector("button.tag__button use");
 	public static By TOTAL = By.cssSelector(".payment-due__price");
 
 	//                                          Shipping

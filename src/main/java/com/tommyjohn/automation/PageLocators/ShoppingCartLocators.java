@@ -57,7 +57,7 @@ public class ShoppingCartLocators {
 	
 	//Tiered-meter
 	public static By TIERED_METER_TITLE = By.cssSelector("#tier-message-cart");
-	public static By TIERED_METER = By.xpath("//div[@class='cart__content content']//div[@data-tj-qa='tiered-meter']//div[@class='meter-tier']");
+	public static By TIERED_METER = By.xpath("//div[@data-tj-qa='tiered-meter']");
 	public static By TIERED_METER_TIER= By.cssSelector("div[data-tj-qa='tier-0']>div>div");
 	//OOS
 	public static By OOS_TAG = By.xpath("//div[@class='cart__content content']//span[@data-tj-qa='inline-cart-line-item-oos-message']");

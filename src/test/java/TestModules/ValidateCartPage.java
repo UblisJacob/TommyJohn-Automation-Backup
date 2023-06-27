@@ -12,9 +12,8 @@ import com.tommyjohn.automation.Pages.AccountLoginPage;
 import com.tommyjohn.automation.Pages.CollectionPage;
 import com.tommyjohn.automation.Pages.HomePage;
 import com.tommyjohn.automation.Pages.ShoppingCartPage;
+import com.tommyjohn.automation.commonMethods.GeneralMethods;
 import com.tommyjohn.automation.utils.CustomUtilities;
-
-import commonMethods.GeneralMethods;
 
 public class ValidateCartPage {
 
