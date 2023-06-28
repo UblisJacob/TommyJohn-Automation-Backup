@@ -50,10 +50,10 @@ public class BundlePDPComponent extends BundlePDPLocators{
 		this.driver = driver;
 	}
 	public void verifyImageGallery() throws Exception {
-		new ProductDetailsPage(driver).navigateToBraCategory();
+		new ProductDetailsPage(driver).navigateToAllMensPacksInPacksCategory();
 		
 		SoftAssert softAssert = new SoftAssert();
-		
+		Thread.sleep(3000);
 		//navigate to PDP
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT));
@@ -69,25 +69,22 @@ public class BundlePDPComponent extends BundlePDPLocators{
 		
 		if(elementsCount > 1)
 		{
-			for(int i=1;i<elementsCount;i++)
+			for(int i=1;i<elementsCount-1;i++)
 			{
 				
 				String imagegallery = null;
 				String mainimage = null;
-				Thread.sleep(6000);
-				imagegallery = driver.findElement(By.cssSelector(".pdpVerticalSlides>.slick-list.draggable>div>div:nth-child("+i+")")).getAttribute("data-slide-id");
-				driver.findElement(By.cssSelector(".pdpVerticalSlides>.slick-list.draggable>div>div:nth-child("+i+")>img")).click();
+				Thread.sleep(3000);
+				imagegallery = driver.findElement(By.cssSelector(".pdpVerticalSlides>.slick-list.draggable>div>div:nth-child("+i+")")).getAttribute("data-color");
+				Thread.sleep(2000);
+				WebElement img = driver.findElement(By.cssSelector(".pdpVerticalSlides>.slick-list.draggable>div>div:nth-child("+i+")>img"));
+				executor.executeScript("arguments[0].click();", img);
 				
-				
-				mainimage = driver.findElement(By.cssSelector(".pdpImageSlidesWrapper>div>div>div>div:nth-child("+i+").slick-active")).getAttribute("data-slide-id");
-				System.out.println(imagegallery);
-				System.out.println(mainimage);
-				if(!imagegallery.contentEquals(mainimage))	
-				{
-					System.out.println("Image caraousel does not change");						
-				}else
-					System.out.println("Image carousel changes");
-			
+				mainimage = driver.findElement(By.cssSelector(".pdpImageSlidesWrapper>div>div>div>div:nth-child("+i+").slick-active")).getAttribute("data-color");
+//				System.out.println(imagegallery);
+//				System.out.println(mainimage);
+				softAssert.assertTrue(imagegallery.contentEquals(mainimage), "Image caraousel does not change");
+	
 			}
 		}
 		Reporter.log("Image gallery changes with main image");
@@ -99,10 +96,10 @@ public class BundlePDPComponent extends BundlePDPLocators{
 	public void viewImageGallery() throws Exception {
 		String thumbnail;
 		SoftAssert softAssert = new SoftAssert();
-		new ProductDetailsPage(driver).navigateToAllUnderwearInMenCategory();
-		
+		new ProductDetailsPage(driver).navigateToAllMensPacksInPacksCategory();
+		Thread.sleep(3000);
 		//navigate to PDP
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT));
 		
 		WebElement el = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT);
@@ -118,10 +115,12 @@ public class BundlePDPComponent extends BundlePDPLocators{
 		{	
 			for(int i=1;i<=elementsCount;i++) 
 			{
-				thumbnail = driver.findElement(By.cssSelector(".pdpVerticalSlides>.slick-list.draggable>div>div:nth-child("+i+")")).getAttribute("data-slide-id");
-				driver.findElement(By.cssSelector(".pdpVerticalSlides>.slick-list.draggable>div>div:nth-child("+i+")>img")).click();
-				Thread.sleep(3000);
-				System.out.println(thumbnail);
+				thumbnail = driver.findElement(By.cssSelector(".pdpVerticalSlides>.slick-list.draggable>div>div:nth-child("+i+")")).getAttribute("data-color");
+				WebElement img = driver.findElement(By.cssSelector(".pdpVerticalSlides>.slick-list.draggable>div>div:nth-child("+i+")>img"));
+				executor.executeScript("arguments[0].click();", img);
+				softAssert.assertTrue(img.isDisplayed(), "Corresponding Image is not visible");
+				Thread.sleep(1000);
+				//System.out.println(thumbnail);
 			}
 		}
 			Reporter.log("New Image is visible");
@@ -134,7 +133,7 @@ public class BundlePDPComponent extends BundlePDPLocators{
 	public void verifyOnImageBadging() throws Exception {
 		
 		SoftAssert softAssert = new SoftAssert();
-		new ProductDetailsPage(driver).navigateToNewArrivalsInWomenCategory();
+		new ProductDetailsPage(driver).navigateToAllMensPacksInPacksCategory();
 		
 		//navigate to PDP
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
@@ -233,8 +232,8 @@ public class BundlePDPComponent extends BundlePDPLocators{
 						{
 							
 						
-							colornew = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper > ul  > li:nth-child("+i+") > input")).getAttribute("data-color-variant");
-							imagecolor = driver.findElement(IMAGE_COLOR).getAttribute("data-color-handle");
+							colornew = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper > ul  > li:nth-child("+i+") > input")).getAttribute("data-variant");
+							imagecolor = driver.findElement(IMAGE_COLOR).getAttribute("data-color");
 							
 							System.out.println("For Color Swatch: " +colornew);
 							System.out.println("Active Sizes: " +num );
@@ -598,6 +597,7 @@ public class BundlePDPComponent extends BundlePDPLocators{
 				
 			}
 			//Display Questions
+			
 			WebElement qsntab = driver.findElement(QUESTION_TAB);
 			jse = (JavascriptExecutor) driver;
 			jse.executeScript("arguments[0].click();", qsntab);
