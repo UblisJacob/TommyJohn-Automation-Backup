@@ -46,9 +46,7 @@ public class BundlePDPPage extends BundlePDPComponent{
 	public void verifyLowStockInventory() throws Exception  {
 		new BundlePDPComponent(driver).verifyLowStockInventory();
 	}
-	public void verifyReviewRecommendationsSection() throws Exception  {
-		new BundlePDPComponent(driver).verifyReviewRecommendationsSection();
-	}
+	
 
 	public void verifyAddToCart() throws Exception  {
 		new BundlePDPComponent(driver).verifyAddToCart();

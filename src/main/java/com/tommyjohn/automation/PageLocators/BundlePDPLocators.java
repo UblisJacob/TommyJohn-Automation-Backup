@@ -26,7 +26,7 @@ public class BundlePDPLocators {
 	public static By SECONDARY_BADGING = By.cssSelector("div.multi-pdp-title-wrap.desktop-view.desktop>div:nth-child(2)>span");
 	
 	//image color
-	public static By IMAGE_COLOR = By.cssSelector(".product-gallery.pdp-client-side-container.product-gallery-container>div>div:nth-child(2)>div>div>div>div.slick-active");
+	public static By IMAGE_COLOR = By.cssSelector(".pdpImageSlidesWrapper>div>div>.slick-track>.product_image.slick-slide.slick-current.slick-active");
 	
 	public static By TOTAL_SIZES = By.cssSelector(".option-swatch__option>li>label>span");
 	public static By INACTIVE_SIZES = By.cssSelector(".option-swatch__option>li>.option-swatch__input.unavailable.email-when-in-stock");
@@ -68,7 +68,7 @@ public class BundlePDPLocators {
 
 
 	public static By ALL_COLOR_LIST = By.cssSelector(".product-option__color-swatches-wrapper > ul >li");
-	public static By PRODUCT_DETAILS = By.cssSelector(".product-details-container>div> ul > li:nth-child(1) > div:nth-child(1) > a");
+	public static By PRODUCT_DETAILS = By.cssSelector(".product-info__inner > div:nth-child(2) > ul > li:nth-child(1) > div:nth-child(1) > a");
 	public static By SIZEGUIDE = By.cssSelector("button.product-info__header-btn.size-guide");
 	public static By SIZEGUIDE_FITRANGE = By.cssSelector(".size-guide-yatpo-fit-graph>ul>li");
 	public static By SIZEGUIDE_FITRANGE_DROPDOWN= By.cssSelector(".expand-instructions");
@@ -84,8 +84,8 @@ public class BundlePDPLocators {
 	public static By PLUS_BUTTON = By.cssSelector(".pdp.plusBtn");
 	public static By UPDATED_QUANTITY = By.cssSelector(".pdp.updatedQty");
 	public static By MINUS_BUTTON = By.cssSelector(".pdp.minusBtn");
-	public static By BEST_PAIR_GUARANTEE = By.cssSelector(".product-details-container>div> ul > li:nth-child(2) > div:nth-child(1) > a");
-	public static By FREE_RETURNS = By.cssSelector(".product-details-container>div> ul > li:nth-child(3) > div:nth-child(1) > a");
+	public static By BEST_PAIR_GUARANTEE = By.cssSelector(".product-info__inner > div:nth-child(2) > ul > li:nth-child(2) > div:nth-child(1) > a");
+	public static By FREE_RETURNS = By.cssSelector(".product-info__inner > div:nth-child(2) > ul > li:nth-child(3) > div:nth-child(1) > a");
 	public static By CHECKOUT_BUTTON = By.cssSelector(".inline-cart__action-btns > a");
 	//public static By COLOR_AND_SIZE = By.cssSelector("div.product-info__variant-select > div:nth-child(1) > div.product-info__header.hide > span");
     public static By LOW_INVENTORY_MSG = By.cssSelector("div.product-info_low-inventory-message");
