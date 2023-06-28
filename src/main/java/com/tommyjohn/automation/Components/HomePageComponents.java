@@ -1649,7 +1649,7 @@ public class HomePageComponents extends HomePageLocators {
 		
 		softassert.assertTrue
 		(pageURL.equals("https://www.tommyjohn.com/pages/do-not-sell-my-personal-information"), "Wrong Page opened after clicking on Do Not Sell My Information Link ");
-		softassert.assertTrue(pageHeader.equals("For California residents- CCPA: “Do Not Sell Or Share My Personal Information” Request Form"), "Page Header doesn't match");
+		softassert.assertTrue(pageHeader.equals("For California residents- CCPA: “Do Not Sell Or Share My Personal Information Request Form"), "Page Header doesn't match");
 		
 		softassert.assertAll();
 		
@@ -1985,7 +1985,19 @@ public class HomePageComponents extends HomePageLocators {
 
 		driver.get("https://tommyjohn.com/collections/mens-shirts");
 	}
+	
+	public void navigateToCareersPage() throws Exception {
 
+		driver.get("https://tommyjohn.com/pages/careers");
+	}
+
+	public void navigateToAboutUsPage() throws Exception {
+
+		driver.get("https://tommyjohn.com/pages/about-us");
+	}
+	
+	
+	
 	// navigate to Pants and shorts in Men's category
 	public void navigateToPantsAndShortsInMensCategory() throws Exception {
 		driver.get("https://tommyjohn.com/collections/pants-and-shorts");
