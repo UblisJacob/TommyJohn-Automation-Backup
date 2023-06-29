@@ -2812,7 +2812,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			jse.executeScript("arguments[0].click();", ratingsfit);
 			Thread.sleep(1000);
 			WebElement ratingssortby = driver.findElement(FILTER_SORTBY);
-			ratingssortby.click();
+			jse.executeScript("arguments[0].click();", ratingssortby);
+		
 			Thread.sleep(1000);
 			
 			//sort by dropdown
