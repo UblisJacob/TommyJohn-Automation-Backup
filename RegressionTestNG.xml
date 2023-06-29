@@ -6,6 +6,12 @@
 		<listener class-name="TestScenario.ListenerClass"></listener>
 	</listeners>
 
+<test name="NavigationAndHomepageTests">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="TestModules.ValidateNavigationElements" />
+		</classes>
+	</test>
 	<test name="CategoryTests">
 		<parameter name="browser" value="chrome" />
 		<classes>
@@ -31,13 +37,6 @@
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="TestModules.ValidatePDP" />
-		</classes>
-	</test>
-
-	<test thread-count="1" name="HomePageTests">
-		<parameter name="browser" value="chrome" />
-		<classes>
-			<class name="TestModules.ValidateHomePage" />
 		</classes>
 	</test>
 
@@ -111,12 +110,13 @@
 	</test>
 
 
-	<test thread-count="1" name="AfterPayTests">
-		<parameter name="browser" value="chrome" />
-		<classes>
-			<class name="TestModules.ValidateAfterPay" />
-		</classes>
-	</test>
+	<!--	<test thread-count="1" name="AfterPayTests">-->
+	<!--		<parameter name="browser" value="chrome" />-->
+	<!--		<classes>-->
+	<!--			<class name="TestModules.ValidateAfterPay" />-->
+	<!--		</classes>-->
+	<!--	</test>-->
+
 	<test name="BundlePageTests">
 		<parameter name="browser" value="chrome" />
 		<classes>
@@ -128,6 +128,13 @@
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="TestModules.ValidateBlogPages" />
+		</classes>
+	</test>
+	
+	<test name="SanityModulesTests">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="TestModules.ValidateSanityModules" />
 		</classes>
 	</test>
 

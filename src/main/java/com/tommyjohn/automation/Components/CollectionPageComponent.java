@@ -416,7 +416,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		System.out.println("All filters list :: " + filterList);
 
 		// loop for total not of filters
-		for (int i = 2; i <= filterList + 1; i++) {
+		for (int i = 3; i <= filterList + 1; i++) {
 			element = driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child(" + i + ") > a"));
 			// changed
 			JavascriptExecutor jse = (JavascriptExecutor) driver;

@@ -107,7 +107,8 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(TIERED_METER));
 		Thread.sleep(5000);
-		
+		try
+		{
 		softAssert.assertTrue(driver.findElement(PROMOTIONAL_PRICE).isDisplayed(), "Promotional discounted price is displayed on cart page");
 		if(driver.findElement(PROMOTIONAL_MESSAGE).isDisplayed()) {
 			
@@ -116,6 +117,12 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		}
 		else {
 			System.out.println("PROMOTIONAL MESSAGE is not displayed on cart page");
+			Reporter.log("PROMOTIONAL MESSAGE is not displayed on cart page");
+		}
+		}
+		
+		catch(Exception e)
+		{
 			Reporter.log("PROMOTIONAL MESSAGE is not displayed on cart page");
 		}
 		

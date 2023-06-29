@@ -18,6 +18,8 @@ public class QuizPageLocators
 	public static By SUMMARY_ANSWER = By.cssSelector(".summary-answer");
 	public static By SEE_RESULT_CTA = By.cssSelector(".go-next>button.go-next-button");
 	
+	public static By QUIZ_HERO_WELCOME_TITLE = By.cssSelector("p[class='hero-welcome-title']");
+	public static By QUIZ_HERO_WELCOME_SUBTITLE = By.cssSelector("p[class='hero-welcome-subtitle']");
 	public static By QUIZ_ANSWER_HERO_TITLE = By.cssSelector(".quiz-answers-hero__title>p");
 	public static By RETAKE_QUIZ_CTA = By.cssSelector(".quiz-answers-hero__content>a>button.quiz-answers-hero__text-link");
 	public static By QUIZ_RESULT_PRODUCT_IMAGE= By.cssSelector(".product-image-container");
