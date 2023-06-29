@@ -559,13 +559,12 @@ public class FlyCartComponents extends FlyCartPageLocator{
 			
 		
 	}
-	public void tieredMeterPrsence() throws Exception
+	public void tieredMeterPresence() throws Exception
 	{
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HomePageLocators.CART_ICON));
-		driver.findElement(HomePageLocators.CART_ICON).click();
-
+	
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(TIERED_METER));
 		Thread.sleep(5000);
 
