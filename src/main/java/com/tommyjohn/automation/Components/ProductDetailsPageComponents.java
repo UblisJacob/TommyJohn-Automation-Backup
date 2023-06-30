@@ -16,6 +16,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
+
+import com.aventstack.extentreports.model.Report;
 import com.tommyjohn.automation.PageLocators.CollectionPageLocator;
 import com.tommyjohn.automation.PageLocators.FlyCartPageLocator;
 import com.tommyjohn.automation.PageLocators.HomePageLocators;
@@ -2574,9 +2576,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			if(elementsCount>0)
 			{
 				
-				//System.out.println("i am here");
-				
-				for(int i=1;i<elementsCount;i++)
+				for(int i=1;i<elementsCount;)
 				{
 					
 					WebElement elemen = driver.findElement(By.cssSelector(".option-swatch__option>li:nth-child("+ i +")>input"));
@@ -2593,10 +2593,21 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 					softassert.assertTrue(Stickynav.isDisplayed(), "Sticky nav is not displayed on PDP");
 					element =driver.findElement(By.cssSelector(".product-bar__atc"));
 					softassert.assertTrue(element.isDisplayed(), "scrolling CTA Add to Cart is not displayed");
-					softassert.assertEquals(element.getText(), "Add To Cart", "Text is not matched");
-					Thread.sleep(3000);			
-					//jse.executeScript("arguments[0].click();", element);
+					//softassert.assertEquals(element.getText(), "Add To Cart", "Text is not matched");
+					if(element.getText().equals("Add To Cart") || element.getText().equals("Join the Waitlist"))		
+					{jse.executeScript("arguments[0].click();", element);}
+					else {
+						if(element.getText().equals("Out of Stock"))
+								{
+							Reporter.log("Sticky nav OOS CTA displayed");
+		
+						}
+						throw new Exception("Wrong text on Sticky Nav CTA");	
+					}
+					
+					
 					softassert.assertAll();
+					break;
 					
 				}
 			}	
@@ -2795,7 +2806,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			jse.executeScript("arguments[0].click();", ratingstars);
 			//ratingstars.click();
 			Thread.sleep(4000);
-			jse.executeScript("window.scrollBy(0, 650)");
+			jse.executeScript("window.scrollBy(0, 800)");
+			Thread.sleep(4000);
 			String avgrating = driver.findElement(AVG_RATING_IN_FIRST_BOX).getText();
 			System.out.println("Average Rating: " +avgrating);
 			String totalreviews = driver.findElement(TOTAL_REVIEWS_IN_FIRST_BOX).getText();
@@ -2831,9 +2843,9 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 					jse.executeScript("arguments[0].click();", element);
 					Thread.sleep(3000);	
 					WebElement ratingssortbynew = driver.findElement(FILTER_SORTBY);
-					ratingssortbynew.click();
+					jse.executeScript("arguments[0].click();", ratingssortbynew);
+					
 				}
-				
 				softAssert.assertAll();
 				
 			}

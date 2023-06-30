@@ -6,7 +6,7 @@
 		<listener class-name="TestScenario.ListenerClass"></listener>
 	</listeners>
 
-<test name="NavigationAndHomepageTests">
+	<test name="NavigationAndHomepageTests">
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="TestModules.ValidateNavigationElements" />
@@ -110,12 +110,12 @@
 	</test>
 
 
-	<!--	<test thread-count="1" name="AfterPayTests">-->
-	<!--		<parameter name="browser" value="chrome" />-->
-	<!--		<classes>-->
-	<!--			<class name="TestModules.ValidateAfterPay" />-->
-	<!--		</classes>-->
-	<!--	</test>-->
+	<!--		<test thread-count="1" name="AfterPayTests">-->
+	<!--			<parameter name="browser" value="chrome" />-->
+	<!--			<classes>-->
+	<!--				<class name="TestModules.ValidateAfterPay" />-->
+	<!--			</classes>-->
+	<!--		</test>-->
 
 	<test name="BundlePageTests">
 		<parameter name="browser" value="chrome" />
@@ -130,13 +130,39 @@
 			<class name="TestModules.ValidateBlogPages" />
 		</classes>
 	</test>
-	
+
 	<test name="SanityModulesTests">
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="TestModules.ValidateSanityModules" />
 		</classes>
 	</test>
+	
+<!--	<test name="ReOrderPageTests">-->
+<!--		<parameter name="browser" value="chrome" />-->
+<!--		<classes>-->
+<!--			<class name="TestModules.ValidateReOrderPage" />-->
+<!--		</classes>-->
+<!--	</test>-->
 
+<!--	<test name="CantactUsPageTests">-->
+<!--		<parameter name="browser" value="chrome" />-->
+<!--		<classes>-->
+<!--			<class name="TestModules.ValidateHelpPage" />-->
+<!--		</classes>-->
+<!--	</test>-->
 
+<!--	<test name="ReviewsPage">-->
+<!--		<parameter name="browser" value="chrome" />-->
+<!--		<classes>-->
+<!--			<class name="TestModules.ValidateReviewsPage" />-->
+<!--		</classes>-->
+<!--	</test>-->
+
+<!--	<test name="OrderPlacementTests">-->
+<!--		<parameter name="browser" value="chrome" />-->
+<!--		<classes>-->
+<!--			<class name="TestModules.ValidateOrderPlacement" />-->
+<!--		</classes>-->
+<!--	</test>-->
 </suite>
