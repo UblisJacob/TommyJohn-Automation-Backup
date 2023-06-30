@@ -195,6 +195,8 @@ public class HomePageLocators{
 //	public static By TEMP_TAB = By.cssSelector(".header-desktop-left > ul > li:nth-child(7) > a");
 //
 	public static By SEARCH_ICON = By.cssSelector("label[data-tj-qa='header-search-icon']>svg");
+	public static By SEARCH_ICON_INPUT = By.cssSelector("input[data-tj-qa=header-search-input]");
+	
 	public static By SEARCH_ICON_FORM_TAG = By.cssSelector(".header-search-form");
 	public static By SEARCH_TEXTBOX = By.cssSelector("input[data-tj-qa='header-search-input']");
 	public static By SEARCH_SUGGESTION_CONTAINER = By.cssSelector(".desktop-autosuggestion-container");

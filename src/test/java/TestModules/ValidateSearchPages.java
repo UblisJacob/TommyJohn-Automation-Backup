@@ -33,19 +33,19 @@ public class ValidateSearchPages {
 	
 	@Test
 	public void TC_LoadSearch() throws Exception {
-		searchText = objGeneralMethods.readPropertiesFile("searchSports");
+		searchText = objGeneralMethods.readPropertiesFile("searchFeatured");
 		new HomePage(driver).validateSearchPM(searchText);
 	}	
 	
 	@Test
 	public void TC_Search_InteractWithFilters() throws Exception {
-		searchText = objGeneralMethods.readPropertiesFile("searchSports");
+		searchText = objGeneralMethods.readPropertiesFile("searchFeatured");
 		new HomePage(driver).validateSearchFunctionEnter(searchText);
 		new CollectionPage(driver).validateFiltersSearch();
 	}
 	
 	@Test public void TC_Search_InteractWithSortBy() throws Exception { 
-		searchText = objGeneralMethods.readPropertiesFile("searchSports");
+		searchText = objGeneralMethods.readPropertiesFile("searchFeatured");
 		new HomePage(driver).validateSearchFunctionEnter(searchText);
 		new CollectionPage(driver).validateSortBySearch();
 	}
@@ -57,14 +57,14 @@ public class ValidateSearchPages {
 	}
 	
 	@Test public void TC_Search_InteractWithQuickShop() throws Exception { 
-		searchText = objGeneralMethods.readPropertiesFile("searchSports");
+		searchText = objGeneralMethods.readPropertiesFile("searchFeatured");
 		new HomePage(driver).validateSearchPM(searchText);
 		new CollectionPage(driver).validateQuickshopFunctionalityOnSearchPLP();
 	}
 	
 	@Test
 	public void TC_Search_ValidateProductTile() throws Exception {
-		searchText = objGeneralMethods.readPropertiesFile("searchSports");
+		searchText = objGeneralMethods.readPropertiesFile("searchFeatured");
 		new HomePage(driver).validateSearchPM(searchText);
 		new CollectionPage(driver).validateProductTileSearch();
 	}

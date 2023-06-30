@@ -52,8 +52,9 @@ public class NavigationElementsPage extends NavigationElementComponents{
 	 * Clicking "Sign In" should take the user to the Login page. 
 	 * Clicking "My Account" should take the user to the Login page.
 	 * Clicking "Help Center" should take the user to the Help Center.
+	 * @throws Exception 
 	 */
-	public void validateElementsWhenSignedIn(){
+	public void validateElementsWhenSignedIn() throws Exception{
 		validateElementsWhenSignedInDesktop();
 	}
 	

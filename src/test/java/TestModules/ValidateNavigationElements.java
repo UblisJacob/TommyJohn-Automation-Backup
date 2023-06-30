@@ -49,7 +49,7 @@ public class ValidateNavigationElements {
 	}
 
 	@Test
-	public void TC_validateElementsWhenSignedIn() {
+	public void TC_validateElementsWhenSignedIn() throws Exception {
 		new NavigationElementsPage(driver).validateElementsWhenSignedIn();
 	}
 	
