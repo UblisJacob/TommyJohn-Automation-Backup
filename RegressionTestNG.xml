@@ -6,7 +6,7 @@
 		<listener class-name="TestScenario.ListenerClass"></listener>
 	</listeners>
 
-	<test name="CategoryTests">
+	<!-- <test name="CategoryTests">
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="TestModules.ValidateCategoryPages" />
@@ -129,7 +129,17 @@
 		<classes>
 			<class name="TestModules.ValidateBlogPages" />
 		</classes>
+	</test> -->
+	
+	<test name="NavigationAndHomepageTests">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="TestModules.ValidateContactUsPage" >
+			<methods>
+				<include name = "TC_ValidateContactUsPage" />
+			</methods>
+			</class>
+		</classes>
 	</test>
-
 
 </suite>
