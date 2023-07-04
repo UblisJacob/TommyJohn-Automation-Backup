@@ -15,7 +15,7 @@ public class ContactUsPage  {
 	}
 	public void VerifyContactUsFlow() throws Exception
 	{
-		new HomePageComponents(driver).navigateToHelpPage();
+		new HomePageComponents(driver).navigateToContactUsPage();
 		Thread.sleep(3000);
 		new ContactUsComponent(driver).ContactUsFlow();
         Thread.sleep(3000);
