@@ -21,8 +21,16 @@ public class HomePageLocators{
 	public static By MEN_UNDERWEAR_LINK = By.cssSelector(".nav-item__list.level-zero-list>li:nth-child(1) ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']:nth-child(2)>div a");
 	public static By MEN_UNDERWEAR_QUIZ = By.cssSelector("ul[class='nav-item__list level-one-list'] div:nth-child(7) a:nth-child(1)");
 	
+	public static By GENERIC_SHOP_ALL_LINK = By.cssSelector(".nav-item__list.level-zero-list>li:nth-child(1) ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']:nth-child(2) li[data-tj-qa^='nav-all']");
+	
 	public static By MENS_LEVEL_1_LIST = By.cssSelector(".nav-item__list.level-zero-list>li:nth-child(1) ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']>div a");
 	
+	public static By MENS_UW_NAV_LINK_RELAXED_FIT = By.cssSelector("a[data-tj-qa^='nav-link-Relaxed Fit Boxer 6']");
+	public static By MENS_UW_NAV_LINK_SQUARE_CUT = By.cssSelector("a[data-tj-qa^='nav-link-Square Cut 2']");
+	public static By MENS_UW_NAV_LINK_BRIEF = By.cssSelector("a[data-tj-qa^='nav-link-Brief']");
+	public static By MENS_UW_NAV_LINK_JOHNS = By.cssSelector("a[data-tj-qa^='nav-link-Long Johns']");
+	public static By MENS_UW_NAV_LINK_360SPORT = By.cssSelector("a[data-tj-qa^='nav-link-360 Sport']");
+	public static By MENS_UW_NAV_LINK_UWQUIZ = By.cssSelector("a[data-tj-qa^='nav-link-Underwear Quiz']");	
 	public static By WOMENS_LEVEL_1_LIST = By.cssSelector(".nav-item__list.level-zero-list>li:nth-child(2) ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']>div a");
 	public static By WOMEN_UNDERWEAR_LINK = By.cssSelector(".nav-item__list.level-zero-list>li:nth-child(2) ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']:nth-child(2)>div a");
 	public static By WOMEN_UNDERWEAR_QUIZ = By.cssSelector("ul[class='nav-item__list level-one-list'] img[alt=\"Women's Underwear Quiz\"]");

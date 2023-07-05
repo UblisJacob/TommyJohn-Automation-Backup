@@ -255,7 +255,7 @@
 				<version>2.22.0</version>
 				<configuration>
 					<suiteXmlFiles>
-						<suiteXmlFile>Regression_testng.xml</suiteXmlFile>
+						<suiteXmlFile>RegressionTestNG.xml</suiteXmlFile>
 					</suiteXmlFiles>
 				</configuration>
 			</plugin>

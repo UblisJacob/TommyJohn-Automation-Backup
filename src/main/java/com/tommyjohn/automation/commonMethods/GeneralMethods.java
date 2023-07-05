@@ -125,12 +125,20 @@ public class GeneralMethods {
 		
 	}
     
-    //To scroll into view od the element
+    //To scroll into view of the element
     public void scrollElementIntoView(WebDriver objDriver,By objectPath) throws InterruptedException
 	{
 		((JavascriptExecutor) objDriver).executeScript("arguments[0].scrollIntoView(true);", objDriver.findElement(objectPath));
 		Thread.sleep(2000);
 	}
+    
+    public void scrollElementIntoView(WebDriver objDriver,WebElement element) throws InterruptedException
+   	{
+    	
+    	JavascriptExecutor executor = (JavascriptExecutor)objDriver;
+   		((JavascriptExecutor) objDriver).executeScript("arguments[0].scrollIntoView(true);", element);
+   		Thread.sleep(2000);
+   	}
     
     // To read properties file
     public String readPropertiesFile(String data) throws Exception {
