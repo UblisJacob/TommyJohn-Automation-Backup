@@ -58,10 +58,17 @@ public class ValidateInlineCartPage {
 	}
 
 	@Test
-	public void TC_verifygiftWrap() throws Exception
+	public void TC_verifyPromotionalMessagingPresence() throws Exception
 	{
-		new FlyCartPage(driver).verifygiftWrap(); 
+		new FlyCartPage(driver).validatePromotionMessaging();
 	}
+	@Test
+	public void TC_verifyTieredMeter() throws Exception
+	{
+		
+		new FlyCartPage(driver).validateTieredMeter();
+	}
+	
 	
 	@AfterMethod(alwaysRun = true)
 	void tearDown() {

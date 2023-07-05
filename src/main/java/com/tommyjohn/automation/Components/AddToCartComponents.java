@@ -35,7 +35,7 @@ public class AddToCartComponents extends AddToCartLocators{
 	
 	public String addToCart() throws Exception {
 		
-	
+		
 		// call method to navigate to collection page
 		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 		jse=(JavascriptExecutor)driver;
@@ -73,7 +73,12 @@ public class AddToCartComponents extends AddToCartLocators{
 							System.out.println(elemen.getText() + elements.getText() + "Product is added to Cart");
 							jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_CART_BUTTON));
 							Thread.sleep(2000);
-							jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
+							try{
+								jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
+							}catch (Exception e) {
+								Thread.sleep(2000);
+								jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
+							}
 							break;							
 						}
 						

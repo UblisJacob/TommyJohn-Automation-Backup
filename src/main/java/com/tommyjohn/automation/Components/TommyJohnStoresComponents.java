@@ -16,7 +16,7 @@ import org.testng.asserts.SoftAssert;
 import com.tommyjohn.automation.PageLocators.TommyJohnStoresPageLocators;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
-import commonMethods.GeneralMethods;
+import com.tommyjohn.automation.commonMethods.GeneralMethods;
 
 public class TommyJohnStoresComponents extends TommyJohnStoresPageLocators {
 
@@ -56,10 +56,10 @@ public class TommyJohnStoresComponents extends TommyJohnStoresPageLocators {
 
 		for (int i = 1; i <= 6; i++) {
 
-			String storeName = genMethods.autoIndex(driver, STORE_NAME, i).getText();
+			String storeName = genMethods.autoIndex(driver, STORE_NAME, i, 1).getText();
 
 //			validate store address is present
-			element = genMethods.autoIndex(driver, STORE_ADDRESS, i);
+			element = genMethods.autoIndex(driver, STORE_ADDRESS, i, 1);
 //			element = driver.findElement(By.cssSelector(".stores-section__container>div:nth-child("+i+")>div>div:nth-child(3)>p"));
 			String storeAddress = element.getText();
 			System.out.println(storeName + "Store Address is: " + storeAddress);
@@ -68,7 +68,7 @@ public class TommyJohnStoresComponents extends TommyJohnStoresPageLocators {
 
 //			validate store phone number is present
 			if (!storeName.contains("Opening Soon")) {
-				element = genMethods.autoIndex(driver, STORE_PHONE, i);
+				element = genMethods.autoIndex(driver, STORE_PHONE, i, 1);
 				String phoneNum = element.getText();
 //				element = driver.findElement(By.cssSelector(".stores-section__container>div:nth-child("+i+")>div>div:nth-child(4)>p"));
 				System.out.println("Store Phone Number is: " + phoneNum);
@@ -79,7 +79,7 @@ public class TommyJohnStoresComponents extends TommyJohnStoresPageLocators {
 
 //			validate store hours are present
 			if (!storeName.contains("Opening Soon")) {
-				element = genMethods.autoIndex(driver, STORE_HOURS, i);
+				element = genMethods.autoIndex(driver, STORE_HOURS, i, 1);
 //				element = driver.findElement(By.cssSelector(".stores-section__container>div:nth-child("+i+")>div>div:nth-child(4)>p:nth-child(2)"));
 				String storeHours = element.getText();
 				System.out.println("Store Hours are: " + storeHours);
@@ -89,7 +89,7 @@ public class TommyJohnStoresComponents extends TommyJohnStoresPageLocators {
 
 //			"Get Directions" should open Google maps with the location search.
 			if (!storeName.contains("Opening Soon")) {
-				element = genMethods.autoIndex(driver, STORE_GET_DIRECTIONS, i);
+				element = genMethods.autoIndex(driver, STORE_GET_DIRECTIONS, i, 1);
 //				element = driver.findElement(By.cssSelector(".stores-section__container>div:nth-child("+i+")>div>div+a"));
 				softassert.assertTrue(element.isDisplayed(),
 						"Get Directions button is not present for store " + storeName);

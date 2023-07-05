@@ -28,9 +28,8 @@ import com.tommyjohn.automation.PageLocators.HomePageLocators;
 import com.tommyjohn.automation.PageLocators.PrivacyPolicyPageLocators;
 import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
 import com.tommyjohn.automation.PageLocators.TermsAndConditionsPageLocators;
+import com.tommyjohn.automation.commonMethods.GeneralMethods;
 import com.tommyjohn.automation.utils.CustomUtilities;
-
-import commonMethods.GeneralMethods;
 
 public class HomePageComponents extends HomePageLocators {
 
@@ -192,11 +191,11 @@ public class HomePageComponents extends HomePageLocators {
 		action = new Actions(driver);
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(30));
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-		WebElement search = driver.findElement(SEARCH_ICON);
-		action.moveToElement(driver.findElement(SEARCH_ICON)).build().perform();
+		WebElement search = driver.findElement(SEARCH_ICON_INPUT);
+		action.moveToElement(driver.findElement(SEARCH_ICON_INPUT)).build().perform();
 		Thread.sleep(3000);
 		
-		driver.findElement(SEARCH_ICON).sendKeys(searchText + Keys.ENTER);
+		driver.findElement(SEARCH_ICON_INPUT).sendKeys(searchText + Keys.ENTER);
 
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SEARCHPAGE_TITLE));
@@ -239,20 +238,20 @@ public class HomePageComponents extends HomePageLocators {
 		SoftAssert softAssert = new SoftAssert();
 		action = new Actions(driver);
 
-		WebElement element = driver.findElement(SEARCH_ICON);
+		WebElement element = driver.findElement(SEARCH_ICON_INPUT);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", element);
 		
-		driver.findElement(SEARCH_ICON).sendKeys(searchText);
+		driver.findElement(SEARCH_ICON_INPUT).sendKeys(searchText);
 
-		action.moveToElement(driver.findElement(SEARCH_ICON)).build().perform();
+		action.moveToElement(driver.findElement(SEARCH_ICON_INPUT)).build().perform();
 		Thread.sleep(3000);
 		softAssert.assertTrue(driver.findElement(POPULAR_SEARCHES).isDisplayed(),
 				"Popular searches section not displayed ");
 		softAssert.assertTrue(driver.findElement(PRODUCT_MATCHES_TITLE).isDisplayed(),
 				"Product matches section is not displayed");
 		
-		/*driver.findElement(SEARCH_ICON).sendKeys(Keys.RETURN);*/
+		/*driver.findElement(SEARCH_ICON_INPUT).sendKeys(Keys.RETURN);*/
 		/*Robot robot = new Robot();
 		Thread.sleep(4000);
 		robot.keyPress(KeyEvent.VK_ENTER);*/
@@ -268,6 +267,7 @@ public class HomePageComponents extends HomePageLocators {
 		{
 			System.out.println("Search Page Title is displayed");
 			Reporter.log("Search Page Title is displayed");
+			System.out.println(driver.findElement(SEARCHPAGE_TITLE).getText());
 			if(driver.findElement(SEARCHPAGE_TITLE).getText().equals("Results for \""+ productName +"\""))
 			{
 				System.out.println("Search Page Title is correct");
@@ -306,14 +306,14 @@ public class HomePageComponents extends HomePageLocators {
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(30));
 
 		String Search_keyword = "tees";
-		if(!driver.findElement(SEARCH_ICON).isDisplayed())
+		if(!driver.findElement(SEARCH_ICON_INPUT).isDisplayed())
 			throw new Exception("Search option is not present");
-		WebElement element = driver.findElement(SEARCH_ICON);
+		WebElement element = driver.findElement(SEARCH_ICON_INPUT);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", element);
 
 		//Check auto-suggestions
-		driver.findElement(SEARCH_ICON).sendKeys("b");
+		driver.findElement(SEARCH_ICON_INPUT).sendKeys("b");
 		//Thread.sleep(5000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(AUTO_SUGGESTED_PRODUCT_IMG));
 		softAssert.assertTrue(driver.findElement(AUTO_SUGGESTED_LINKS).isDisplayed(),"Popular searches section not displayed ");
@@ -330,7 +330,7 @@ public class HomePageComponents extends HomePageLocators {
 		text = list1[list1.length-1].replace("\"", "");
 		softAssert.assertEquals(text, search_value, "Search page title is not matched with clicked suggested link");
 
-		driver.findElement(SEARCH_ICON).sendKeys("m");
+		driver.findElement(SEARCH_ICON_INPUT).sendKeys("m");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(AUTO_SUGGESTED_PRODUCT_TILE_TITLE));
 		WebElement FIRST_SUGGESTED_PRODUCT_TILE_TITLE = driver.findElement(By.cssSelector(".search-product-tile:nth-child(1)>a"));
 		String suggested_title = FIRST_SUGGESTED_PRODUCT_TILE_TITLE.getText().replace(",", "").toLowerCase();
@@ -343,7 +343,7 @@ public class HomePageComponents extends HomePageLocators {
 		Reporter.log("Verified Search auto suggestion functionality");		
 
 		//validate search page
-		driver.findElement(SEARCH_ICON).sendKeys(Search_keyword + Keys.ENTER);
+		driver.findElement(SEARCH_ICON_INPUT).sendKeys(Search_keyword + Keys.ENTER);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SEARCHPAGE_PRODUCT_IMAGE));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SEARCHPAGE_PRODUCT_REVIEWS));
 		softAssert.assertTrue(driver.findElement(SEARCHPAGE_TITLE).isDisplayed(), "Search Page title is not displayed on search page");
@@ -392,7 +392,7 @@ public class HomePageComponents extends HomePageLocators {
 		//MethodToCheckAllFiltersOnSearchPage();
 		Reporter.log("Search page is displayed :: Correct");
 
-		element = driver.findElement(SEARCH_ICON);
+		element = driver.findElement(SEARCH_ICON_INPUT);
 		executor = (JavascriptExecutor)driver;
 		Thread.sleep(3000);
 		executor.executeScript("arguments[0].click();", element);
@@ -2175,31 +2175,60 @@ public class HomePageComponents extends HomePageLocators {
 	// navigate to Contact Us Page
 	public void navigateToHelpPage() throws Exception {
 
-		driver.get(("https://help.tommyjohn.com/hc/en-us"));
-		//			text = driver.findElement(CONTACT_US_LINK).getText();
-		//			if(!text.equals("Contact Us"))
-		//				throw new Exception("Contact Us link text is changed");	
-		//			driver.findElement(CONTACT_US_LINK).click();
-		//			Thread.sleep(5000);
-		//			if(driver.getCurrentUrl().equalsIgnoreCase("https://help.tommyjohn.com/hc/en-us")) 
-		//			{
-		//				Thread.sleep(5000);
-		//				driver.findElement(By.cssSelector("#contact-info>p:nth-child(5)>a")).click();
-		//				Thread.sleep(5000);
-		//				if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/contact-us")) 
-		//					System.out.println("Email link on help page is Displayed :: Clickable");
-		//				else
-		//					throw new Exception("Wrong page opened after Email link on help page link clicked");
-		//			}
-		//			
-		//			else {
-		//			if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/contact-us")) 
-		//				//driver.navigate().back();
-		//				System.out.println("Contact Us footer link is Displayed :: Clickable");
-		//			else
-		//				throw new Exception("Wrong page opened after Contact Us footer link clicked");
-		//			Reporter.log("Contact Us footer link is Displayed :: Clickable");
-		//		}							
+		//driver.get(("https://help.tommyjohn.com/hc/en-us"));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		text = driver.findElement(CONTACT_US_LINK).getText();
+		if(!text.contains("Contact & FAQ"))
+			throw new Exception("Contact Us link text is changed");	
+		jse.executeScript("arguments[0].click();", driver.findElement(CONTACT_US_LINK));
+		Thread.sleep(5000);
+					if(driver.getCurrentUrl().contains("help.tommyjohn.com/hc/en-us")) 
+					{
+						System.out.println("Help Us page opened correctly");
+						Reporter.log("Help Us page opened correctly");
+					}
+					
+					else {
+						System.out.println("Help Us page didn't open correctly");			
+						throw new Exception("Help Us page didn't open correctly");
+				}							
+	}
+	
+	public void navigateToContactUsPage() throws Exception {
+
+		//driver.get(("https://tommyjohn.com/pages/contact-us"));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		text = driver.findElement(CONTACT_US_LINK).getText();
+		if(!text.contains("Contact & FAQ"))
+			throw new Exception("Contact Us link text is changed");	
+		jse.executeScript("arguments[0].click();", driver.findElement(CONTACT_US_LINK));
+		Thread.sleep(5000);
+		if(driver.getCurrentUrl().contains("help.tommyjohn.com/hc/en-us")) 
+		{
+			Thread.sleep(5000);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#contact-info>p:nth-child(6)>a")));
+			driver.findElement(By.cssSelector("#contact-info>p:nth-child(6)>a")).click();
+			Thread.sleep(5000);
+			Reporter.log("Contact Us/Email link is Displayed :: Clickable");
+			if(driver.getCurrentUrl().contains("/pages/contact-us")) 
+				System.out.println("Email link on help page is Displayed :: Clickable");
+			else
+				throw new Exception("Wrong page opened after Email link on help page link clicked");
+		}
+		
+		else {
+		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/contact-us")) 
+			//driver.navigate().back();
+			System.out.println("Contact Us footer link is Displayed :: Clickable");
+		else						
+			throw new Exception("Wrong page opened after Contact Us footer link clicked");
+		 Reporter.log("Contact Us footer link is Displayed :: Clickable");
+	}
+							
 	}
 
 	// navigate to mix & match in Bra Category
