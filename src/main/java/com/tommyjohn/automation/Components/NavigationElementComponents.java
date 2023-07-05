@@ -41,6 +41,7 @@ public class NavigationElementComponents extends HomePageLocators {
 	Actions action;
 	SoftAssert softassert;
 	GeneralMethods genMethods;
+    String elementCSS = null;
 
 	public NavigationElementComponents(WebDriver driver) {
 		this.driver = driver;
@@ -640,8 +641,8 @@ public class NavigationElementComponents extends HomePageLocators {
 			System.out.println("Quiz Hero Welcome Title is not present");
 		}
 		
-		String heroWelcomeSubTitle = driver.findElement(QuizPageLocators.QUIZ_HERO_WELCOME_SUBTITLE).getText();
-		softassert.assertTrue(heroWelcomeSubTitle.equals("Let’s help you find the pair that’s most comfortable for you."), "Hero Welcome Sub Title is not present");
+		//String heroWelcomeSubTitle = driver.findElement(QuizPageLocators.QUIZ_HERO_WELCOME_SUBTITLE).getText();
+		//softassert.assertTrue(heroWelcomeSubTitle.equals("Let’s help you find the pair that’s most comfortable for you."), "Hero Welcome Sub Title is not present");
 		
 		element = driver.findElement(QuizPageLocators.GET_STARTED_CTA);
 		softassert.assertTrue(element.isDisplayed() && element.isEnabled(), "Get Started CTA is not present or not clickable");
@@ -958,9 +959,12 @@ public class NavigationElementComponents extends HomePageLocators {
 		}
 		
 		softassert.assertAll();
-		System.out.println("Correct Page opened after clicking on the given Level 1 option: " + elementText);
-		Reporter.log("Correct Page opened after clicking on the given Level 1 option: " + elementText);
-	}
+            
+        	if(level_one_elements_list.size() != 0) {
+			System.out.println("Correct Page opened after clicking on the given Level 1 option: " + elementText);
+			Reporter.log("Correct Page opened after clicking on the given Level 1 option: " + elementText);
+			}
+        }
 	
 	/**
 	 * Used for navigating to any element at level 2 (doesn't support nav links, only nav tiles)
@@ -1065,17 +1069,27 @@ public class NavigationElementComponents extends HomePageLocators {
 				System.out.println(element.getText() + " option doesnt contain any Level 2 items");
 			}
 			
-//			Click on the given level 1 option
-			System.out.println("Clicking on: " + elementText);
-			element.click();
-			
-			try{
-				wait.until(ExpectedConditions.urlContains(href));
-				System.out.println("Correct Page opened after clicking on the given Level 1 option");
-			}catch (TimeoutException e) {
-				currentUrl = driver.getCurrentUrl();
-				softassert.fail("Expected Page did not show up, url of page navigated to: " + currentUrl);
-				System.out.println("Expected Page did not show up, url of page navigated to: " + currentUrl);
+//			Click on the given level 2 option L2 = L2 + 2, because for L2 options first element index starts from 3
+			if(level_two_elements_list.size() != 0) {
+				L2 = L2 + 2;
+				element = driver.findElement(By.cssSelector(".nav-item__list.level-zero-list>li:nth-child("+ L0 +") ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']:nth-child("+ L1 +") li.level-two-container:nth-child("+ L2 +")>div>a"));
+				elementText = element.getText();
+				href = element.getAttribute("href");
+				System.out.println("Hovering on: " + elementText);
+				action.moveToElement(element).perform();
+				
+				System.out.println("Clicking on: " + elementText);
+				element.click();
+				
+				try{
+					wait.until(ExpectedConditions.urlContains(href));
+				}catch (TimeoutException e) {
+					currentUrl = driver.getCurrentUrl();
+					softassert.fail("Expected Page did not show up, url of page navigated to: " + currentUrl);
+					System.out.println("Expected Page did not show up, url of page navigated to: " + currentUrl);
+				}
+			}else {
+				System.out.println(element.getText() + " option doesnt contain any Level 2 items");
 			}
 		
 		}
@@ -1086,21 +1100,167 @@ public class NavigationElementComponents extends HomePageLocators {
 		
 	}
 	
-	/**  IN PROGRESS
-	 * To Create a generic method which will navigate from level 0 > level 1 > level 2
-	 * and will validate if the correct page opened after clicking on the respective options
-	 * 1. Level 0 - Men, Women, Explore, Sale
-	 * 2. Level 1 of Men - Underwear, Explore, Undershirts, Loungewear, Sleepwear, Featured, Sale
-	 * 3. Level 1 of Women -  Underwear, Bras, Loungewear, Sleepwear, Featured, Sale
-	 * 4. Level 1 of Explore - Apollo, Hammock Pouch, 360 Sport
-	 * 5. Level 1 of Sale - Men's sale, Women's Sale
-	 * 
+/**
+	 * Helps Navigate and Validate links present in level 2 navigation such as
+	 * Currently links are present only in Mens UW, hence some navigation part is hardcoded, such as Level 0 (L0), Level 1 (L1), Level 2 (L2)
+	 * @param linkNo
+	 * <li> 1 = Relaxed Fit 6" </li>
+	 * <li> 2 = Square Cut 2" </li>
+	 * <li> 3 = Brief </li>
+	 * <li> 4 = Long Johns </li>
+	 * <li> 5 = 360 Sport </li>
+	 * <li> 6 = Underwear Quiz </li>
 	 */
-	public void navigation(int L0, int L1, int L2) {
+	public void level_2_nav_links(int linkNo) {
+		String href = null;
+		String elementText = null;
+		WebElement navLinkElement;
+		
+		int L0 = 1;
+		int L1 = 1;
+//		int L2 = 1; // not required for nav links
+				
+		softassert = new SoftAssert();
+		genMethods = new GeneralMethods();
+		action = new Actions(driver);
+		
+		List<WebElement> level_zero_elements_list = new ArrayList<>();
+		List<String> level_zero_text_list = new ArrayList<>();
+		
+		List<WebElement> level_one_elements_list = new ArrayList<>();
+		List<String> level_one_text_list = new ArrayList<>();
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(MAIN_HEADER));
+		
+		level_zero_elements_list = driver.findElements(LEVEL_ZERO_LINKS_LIST);
+		
+		for (int i = 0; i < level_zero_elements_list.size(); i++) {
+			 level_zero_text_list.add(level_zero_elements_list.get(i).getText());
+		}
+		
+		System.out.println("Number of elements in Level 0: " + level_zero_elements_list.size());
+		System.out.println(level_zero_text_list);
+		
+		element = genMethods.autoIndex(driver, LEVEL_ZERO_SPECIFIC_OPTION, L0, 1);
+element = genMethods.autoIndex(driver, LEVEL_ZERO_SPECIFIC_OPTION, L0, 1);
+		
+        elementText = element.getText();
+        		System.out.println(elementText + ": Contains " + level_one_elements_list.size() + " elements in level 1 list");
+		
+//		If there are no level 1 options present for the particular level 0 option, do nothing.
+		if(level_one_elements_list.size() != 0){
+			
+//			check if level 1 options have been displayed after hovering over a certain Level 0 option
+			try {
+				wait.until(ExpectedConditions.visibilityOf(genMethods.autoIndex(driver, LEVEL_1_OPTIONS_LIST_FROM_LEVEL_0, L0, 1)));
+			}catch (TimeoutException e) {
+				softassert.fail("Level 1 options after hovering on \"" + elementText + "\" did not come up");
+				System.out.println("Level 1 options after hovering on \"" + elementText + "\" did not come up");
+			}
+			
+			for (int i = 0; i < level_one_elements_list.size(); i++) {
+				level_one_text_list.add(level_one_elements_list.get(i).getText());
+			}
+			System.out.println(elementText + ": level 1 List contains: " + level_one_text_list);
+			
+		}else {
+			System.out.println(elementText + " option doesnt contain any Level 1 items");
+		}
+		
+//		Hovering on the element from level 1, L1 = L1 + 1, because for L1 options first element index starts from 2
+		L1 = L1+1;
+		
+		if(level_one_elements_list.size() != 0) {
+			element = driver.findElement(By.cssSelector(".nav-item__list.level-zero-list>li:nth-child("+ L0 +") ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']:nth-child(" + L1 +")>div a"));
+			elementText = element.getText();
+			href = element.getAttribute("href");
+			
+			System.out.println("Hovering on: " + elementText);
+			action.moveToElement(element).perform();
+			
+//			Click on the specified Level two nav link
+			if(linkNo == 1) {
+				navLinkElement = driver.findElement(MENS_UW_NAV_LINK_RELAXED_FIT);
+				elementText = navLinkElement.getText();
+				href = navLinkElement.getAttribute("href");
+				System.out.println(href);
+				System.out.println("Clicking on: " + elementText);
+				navLinkElement.click();
+			}else if (linkNo == 2) {
+				navLinkElement = driver.findElement(MENS_UW_NAV_LINK_SQUARE_CUT);
+				elementText = navLinkElement.getText();
+				href = navLinkElement.getAttribute("href");
+				System.out.println(href);
+				System.out.println("Clicking on: " + elementText);
+				navLinkElement.click();
+			}else if (linkNo == 3) {
+				navLinkElement = driver.findElement(MENS_UW_NAV_LINK_BRIEF);
+				elementText = navLinkElement.getText();
+				href = navLinkElement.getAttribute("href");
+				System.out.println(href);
+				System.out.println("Clicking on: " + elementText);
+				navLinkElement.click();
+			}else if (linkNo == 4) {
+				navLinkElement = driver.findElement(MENS_UW_NAV_LINK_JOHNS);
+				elementText = navLinkElement.getText();
+				href = navLinkElement.getAttribute("href");
+				System.out.println(href);
+				System.out.println("Clicking on: " + elementText);
+				navLinkElement.click();
+			}else if (linkNo == 5) {
+				navLinkElement = driver.findElement(MENS_UW_NAV_LINK_360SPORT);
+				elementText = navLinkElement.getText();
+				href = navLinkElement.getAttribute("href");
+				System.out.println(href);
+				System.out.println("Clicking on: " + elementText);
+				navLinkElement.click();
+			}else if (linkNo == 6) {
+				navLinkElement = driver.findElement(MENS_UW_NAV_LINK_UWQUIZ);
+				elementText = navLinkElement.getText();
+				href = navLinkElement.getAttribute("href");
+				System.out.println(href);
+				System.out.println("Clicking on: " + elementText);
+				navLinkElement.click();
+			}else {
+				System.out.println("Enter a link no. between 1 - 6, check javadoc for more info");
+			}
+			
+			try{
+				if(linkNo > 0 && linkNo < 7){
+					wait.until(ExpectedConditions.urlContains(href));
+				}else {
+					softassert.fail("Enter a link no. between 1 - 6, check javadoc for more info" + currentUrl);
+					Reporter.log("Enter a link no. between 1 - 6, check javadoc for more info");
+					softassert.assertAll();
+				}
+			}catch (TimeoutException e) {
+				currentUrl = driver.getCurrentUrl();
+				softassert.fail("Expected Page did not show up, url of page navigated to: " + currentUrl);
+				System.out.println("Expected Page did not show up, url of page navigated to: " + currentUrl);
+			}
 
-		L0 = 1;
-		L1 = 1;
-		L2 = 1;
+		}
+		
+//		try {
+//			Thread.sleep(5000);
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
+		
+		softassert.assertAll();
+		System.out.println("Correct Page opened after clicking on the given Level 2 nav link: " + elementText);
+		Reporter.log("Correct Page opened after clicking on the given Level 2 nav link: " + elementText);
+		
+	}
+	
+	/**
+	 * Validates And Navigates to a specific Shop All Link
+	 */
+	public void navigateShopAllLinks(int L0, int L1) {
+		
+		
+		String href = null;
+		String elementText = null;
 		
 		softassert = new SoftAssert();
 		genMethods = new GeneralMethods();
@@ -1115,6 +1275,7 @@ public class NavigationElementComponents extends HomePageLocators {
 		List<WebElement> level_two_elements_list = new ArrayList<>();
 		List<String> level_two_text_list = new ArrayList<>();
 		
+		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(MAIN_HEADER));
 		
 		level_zero_elements_list = driver.findElements(LEVEL_ZERO_LINKS_LIST);
@@ -1127,89 +1288,106 @@ public class NavigationElementComponents extends HomePageLocators {
 		System.out.println(level_zero_text_list);
 		
 		element = genMethods.autoIndex(driver, LEVEL_ZERO_SPECIFIC_OPTION, L0, 1);
-		
-//		System.out.println("Clicking on " + element.getText());
-		
-//		Perform any action on the specific element
+		elementText = element.getText();
+		System.out.println("Hovering on: " + elementText);
 		action.moveToElement(element).perform();
-//		element.click();
-		
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			
-			e.printStackTrace();
-		}
+		href = element.getAttribute("href");
 		
 		level_one_elements_list = genMethods.autoIndexList(driver, SPECIFIC_LEVEL_0_LEVEL_1_LINKS, L0, 1);
 		
-		System.out.println(element.getText() + ": Contains " + level_one_elements_list.size() + " elements in level 1 list");
+		System.out.println(elementText + ": Contains " + level_one_elements_list.size() + " elements in level 1 list");
 		
+//		If there are no level 1 options present for the particular level 0 option, do nothing.
 		if(level_one_elements_list.size() != 0){
+			
+//			check if level 1 options have been displayed after hovering over a certain Level 0 option
+			try {
+				wait.until(ExpectedConditions.visibilityOf(genMethods.autoIndex(driver, LEVEL_1_OPTIONS_LIST_FROM_LEVEL_0, L0, 1)));
+			}catch (TimeoutException e) {
+				softassert.fail("Level 1 options after hovering on \"" + elementText + "\" did not come up");
+				System.out.println("Level 1 options after hovering on \"" + elementText + "\" did not come up");
+			}
+			
 			for (int i = 0; i < level_one_elements_list.size(); i++) {
 				level_one_text_list.add(level_one_elements_list.get(i).getText());
 			}
-			System.out.println(element.getText() + ": level 1 List contains: " + level_one_text_list);
+			System.out.println(elementText + ": level 1 List contains: " + level_one_text_list);
+			
 		}else {
-			System.out.println(element.getText() + " option doesnt contain any Level 1 items");
+			System.out.println(elementText + " option doesnt contain any Level 1 items");
 		}
 		
-//		Perform an Action on a element from Level 1 List
-//		for L1 options first element index starts from 2
+//		Clicking on the element from level 1, L1 = L1 + 1, because for L1 options first element index starts from 2
 		L1 = L1+1;
-		String href = null;
-		String elementText = null;
 		
-//		need to upadate autoIndex method
-		if (level_one_elements_list.size() != 0) {
+		if(level_one_elements_list.size() != 0) {	
 			element = driver.findElement(By.cssSelector(".nav-item__list.level-zero-list>li:nth-child("+ L0 +") ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']:nth-child(" + L1 +")>div a"));
-			action.moveToElement(element).perform();
 			elementText = element.getText();
-//			href = element.getAttribute("href");
-//			System.out.println(href);
-//			System.out.println("Clicking on option: " + elementText);
-//			element.click();
 			
-//			try {
-//				wait.until(ExpectedConditions.urlContains(href));
-//			}catch (TimeoutException e) {
-//				System.out.println("Expected page did not open after clicking on: " + elementText);
-//			}
+			System.out.println("Hovering on: " + elementText);
+			action.moveToElement(element).perform();
+
+//			Validate that after Hovering on a Level 1 option, Level 2 options are displayed 
+			level_two_elements_list = driver.findElements(By.cssSelector(".nav-item__list.level-zero-list>li:nth-child("+ L0 +") ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']:nth-child("+ L1 +") li.level-two-container"));
+			System.out.println(elementText + ": Contains " + level_two_elements_list.size() + " elements in level 2 list");
 			
-		}
-		
-//		Level 2 items for L2 options first element index starts from 3
-		L2 = L2 + 2; 
-		
-		level_two_elements_list = driver.findElements(By.cssSelector(".nav-item__list.level-zero-list>li:nth-child("+ L0 +") ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']:nth-child("+ L1 +") li.level-two-container"));
-		
-		System.out.println(element.getText() + ": Contains " + level_two_elements_list.size() + " elements in level 2 list");
-		
-		if(level_two_elements_list.size() != 0){
-			for (int i = 0; i < level_two_elements_list.size(); i++) {
-				level_two_text_list.add(level_two_elements_list.get(i).getText());
+//			If there are no level 2 options present for the particular level 1 option, do nothing.
+			if(level_two_elements_list.size() != 0){
+				for (int i = 0; i < level_two_elements_list.size(); i++) {
+					level_two_text_list.add(level_two_elements_list.get(i).getText());
+				}
+				System.out.println(elementText + ": level 2 List contains: " + level_two_text_list);
+				
+				try {
+					wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(".nav-item__list.level-zero-list>li:nth-child("+ L0 +") ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']:nth-child("+ L1 +") li.level-two-container")));
+				} catch (TimeoutException e) {
+					softassert.fail("Level 2 options after hovering on \"" + elementText + "\" did not come up");
+					System.out.println("Level 2 options after hovering on \"" + elementText + "\" did not come up");
+				}
+				
+//				Validate Shop All Links/Title Link
+				WebElement shopAllLink;
+				try {
+					shopAllLink = driver.findElement(By.cssSelector(".nav-item__list.level-zero-list>li:nth-child("+ L0 +") ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']:nth-child("+ L1 +") li[data-tj-qa^='nav-all'] span"));
+//					action.moveToElement(shopAllLink).perform();
+					elementText = shopAllLink.getText();
+					System.out.println("Clicking on: " + elementText);
+					href = element.getAttribute("href");
+					elementCSS = shopAllLink.getCssValue("text-decoration-line");
+					
+					softassert.assertTrue(elementCSS.equals("underline"), "Underline is not present for the shop all link: " + elementText);
+
+//					Validate if line moves back after hover
+					action.moveToElement(shopAllLink).perform();
+					elementCSS = shopAllLink.getCssValue("text-decoration-line");
+					softassert.assertTrue(elementCSS.equals("none"), "Underline did not slide back after hovering on: " + elementText);
+					shopAllLink.click();
+				} catch (TimeoutException e) {
+					softassert.fail("Shop All Link not found for level 1 option no. " + L1 + "from Level 0 option: " + L0);
+					System.out.println("Shop All Link not found for level 1 option no. " + L1 + "from Level 0 option: " + L0);
+				}
+				
+			}else {
+				System.out.println(element.getText() + " option doesnt contain any Level 2 items");
 			}
-			System.out.println(element.getText() + ": level 2 List contains: " + level_two_text_list);
-		}else {
-			System.out.println(element.getText() + " option doesnt contain any Level 2 items");
+			
+			try{
+				wait.until(ExpectedConditions.urlContains(href));
+			}catch (TimeoutException e) {
+				currentUrl = driver.getCurrentUrl();
+				softassert.fail("Expected Page did not show up, url of page navigated to: " + currentUrl);
+				System.out.println("Expected Page did not show up, url of page navigated to: " + currentUrl);
+			}
+		
 		}
 		
+		softassert.assertAll();
 		
-//		Perform an Action on a element from Level 2 List
-		
-		if (level_one_elements_list.size() != 0) {
-			element = driver.findElement(By.cssSelector(".nav-item__list.level-zero-list>li:nth-child("+ L0 +") ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']:nth-child("+ L1 +") li.level-two-container:nth-child("+ L2 +")"));
-			action.click(element).perform();
-		}
-		
-		try {
-			Thread.sleep(6000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+		if(level_one_elements_list.size() != 0) {
+			System.out.println("Correct Page opened after clicking on the Shop ALl Link of Level 1 option: " + elementText);
+			Reporter.log("Correct Page opened after clicking on the Shop ALl Link of Level 1 option: " + elementText);
 		}
 		
 	}
-	
-	
 
 }

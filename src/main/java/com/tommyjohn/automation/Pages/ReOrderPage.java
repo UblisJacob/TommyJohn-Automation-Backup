@@ -4,8 +4,7 @@ import org.openqa.selenium.WebDriver;
 
 import com.tommyjohn.automation.Components.ReOrderPageComponents;
 
-public class ReOrderPage extends ReOrderPageComponents{
-
+public class ReOrderPage extends ReOrderPageComponents {
 
 	WebDriver driver;
 
@@ -14,26 +13,24 @@ public class ReOrderPage extends ReOrderPageComponents{
 		this.driver = driver;
 	}
 
-	public void ValidateReOrderPage() throws Exception
-	{
-		new ReOrderPageComponents(driver).ReorderPagevalidation();
+	public void validateReOrderPage() throws Exception {
+		new ReOrderPageComponents(driver).reorderPagevalidation();
 	}
-	
-	public void ReOrderItem() throws Exception
-	{
+
+	public void reOrderItem() throws Exception {
 		new ReOrderPageComponents(driver).reorderitem();
 	}
-	public void ReOrderToPDP() throws Exception
-	{
+
+	public void reOrderToPDP() throws Exception {
 		new ReOrderPageComponents(driver).reorderpagetopdp();
 	}
-	public void OrderDetails() throws Exception
-	{
+
+	public void orderDetails() throws Exception {
 		new ReOrderPageComponents(driver).orderdetails();
 	}
-	public void ReviewPage() throws Exception
-	{
-		new ReOrderPageComponents(driver).ReviewsPage_fromReorder();
+
+	public void reviewPage() throws Exception {
+		new ReOrderPageComponents(driver).reviewsPage_fromReorder();
 	}
 
 }

@@ -63,13 +63,14 @@ public class NavigationElementsPage extends NavigationElementComponents{
 	}
 	
 	/**
-	 * Generic Method for navigation
+	 * Generic Method for navigation and Validation
 	 */
 	public void validateNavigation() {
-//		navigation(3, 0, 0);
-//		level_0_nav(2);
+		level_0_nav(2);
 		level_1_nav(1, 2);
-//		level_2_nav(1, 2, 2);
+		level_2_nav(1, 2, 2);
+		level_2_nav_links(6);
+		navigateShopAllLinks(2, 2);
 	}
 	
 	/**

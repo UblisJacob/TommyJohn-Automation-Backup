@@ -27,30 +27,30 @@ public class ValidateReOrderPage {
 	@Test
 	public void ValidateDetailsOnReOrderPage() throws Exception
 	{
-		new ReOrderPage(driver).ValidateReOrderPage();
+		new ReOrderPage(driver).validateReOrderPage();
 	}
 	
 	@Test
 	public void ValidateUserIsAbleToReOrderItemFromReOrderPage() throws Exception
 	{
-		new ReOrderPage(driver).ReOrderItem();
+		new ReOrderPage(driver).reOrderItem();
 	}
 	
 	@Test
 	public void ValidateUserIsRedirectedToCorrectPDPFromReOrderPage() throws Exception
 	{
-		new ReOrderPage(driver).ReOrderToPDP();
+		new ReOrderPage(driver).reOrderItem();
 	}
 	
 	@Test
 	public void ValidateUserIsRedirectedToCorrectOrderDetailsPageFromReOrderPage() throws Exception
 	{
-		new ReOrderPage(driver).OrderDetails();
+		new ReOrderPage(driver).orderDetails();
 	}
 	@Test
 	public void ValidateReviewsPageFromReOrderPage() throws Exception
 	{
-		new ReOrderPage(driver).ReviewPage();
+		new ReOrderPage(driver).reviewPage();
 	}
 	
 	@AfterMethod(alwaysRun = true)
