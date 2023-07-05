@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 public class CollectionPageLocator {
 	
 	public static By STYLE_COROSALS = By.cssSelector("div.dyCollection-hero__interactive-inner");
-	public static By TOTAL_NO_OF_COROSALS = By.cssSelector("div.dyHero-interactive__slider>button");
+	public static By TOTAL_NO_OF_COROSALS = By.cssSelector("div.dyHero-interactive__slider>button , div.dyHero-interactive__slider>a");
 	public static By FILTER_PILL = By.xpath("//div[@class='collection-filters__active-controls']//button");
 //	public static By MENS_ALL_UNDERWEAR_FIRST_PRODUCT_IMAGE = By.cssSelector(".product-image-container > a");
 //	public static By THIRD_PRODUCT_IMAGE = By.cssSelector("div.mega-collection-grid__row:nth-child(3) > div:nth-child(3) > div:nth-child(1) > a > img");

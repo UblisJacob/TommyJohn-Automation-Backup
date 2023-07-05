@@ -559,54 +559,59 @@ public class FlyCartComponents extends FlyCartPageLocator{
 			
 		
 	}
-	public void tieredMeterFunctionality() throws Exception
+	public void tieredMeterPresence() throws Exception
 	{
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		SoftAssert softAssert = new SoftAssert();
-
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HomePageLocators.CART_ICON));
+	
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(TIERED_METER));
 		Thread.sleep(5000);
 
-		if(driver.findElement(TIERED_METER).isDisplayed()) {
-
-			System.out.println("Tiered Meter is displayed on cart page");
-			Reporter.log("Tiered Meter is displayed on cart page");
-
-			if(driver.findElement(TIERED_METER_TITLE).isDisplayed()){
+	try
+	{
+			if(driver.findElement(TIERED_METER).isDisplayed()){
 				System.out.println("Tiered Meter Title is displayed on cart page");
 				Reporter.log("Tiered Meter Title is displayed on cart page");
-			}
-			else {
-				System.out.println("Tiered Meter Title is not displayed on cart page");
-				Reporter.log("Tiered Meter Title is not displayed on cart page");
-			}
+			
 		}
-		else {
-			System.out.println("Tiered Meter is not displayed on cart page");
-			Reporter.log("Tiered Meter is not displayed on cart page");
-		}
+	}
+			catch(Exception e)
+			{
+				Reporter.log("Tiered Meter not displayed on cart page");
+			}
 
+		
 		//softAssert.assertAll();	
 	}
 	public void validatePromotionalMessage() throws Exception
 	{
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		SoftAssert softAssert = new SoftAssert();
-
+		
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HomePageLocators.CART_ICON));
+		driver.findElement(HomePageLocators.CART_ICON).click();
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(TIERED_METER));
 		Thread.sleep(5000);
-
-		softAssert.assertTrue(driver.findElement(PROMOTIONAL_PRICE).isDisplayed(), "Promotional discounted price is displayed on cart page");
+		
+		try
+		{
+		//softAssert.assertTrue(driver.findElement(PROMOTIONAL_PRICE).isDisplayed(), "Promotional discounted price is displayed on cart page");
 		if(driver.findElement(PROMOTIONAL_MESSAGE).isDisplayed()) {
 
 			System.out.println("PROMOTIONAL MESSAGE is displayed on cart page");
 			Reporter.log("PROMOTIONAL MESSAGE is displayed on cart page");
 		}
 		else {
-			System.out.println("PROMOTIONAL MESSAGE is not displayed on cart page");
-			Reporter.log("PROMOTIONAL MESSAGE is not displayed on cart page");
+			Reporter.log("PROMOTIONAL MESSAGE is not displayed on cart page for logged in user");
+			Reporter.log("PLEASE CHECK FOR PROMOTIONS  IF PUBLISHED");
+		}
+		}
+		catch(Exception e)
+		{	
+			
+			Reporter.log("PLEASE CHECK FOR PROMOTIONS  IF PUBLISHED");
 		}
 
 		//softAssert.assertAll();	

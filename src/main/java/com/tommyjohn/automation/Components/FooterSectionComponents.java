@@ -21,9 +21,8 @@ import com.tommyjohn.automation.PageLocators.DoNotSellMyInfoPageLocators;
 import com.tommyjohn.automation.PageLocators.FooterSectionLocators;
 import com.tommyjohn.automation.PageLocators.PrivacyPolicyPageLocators;
 import com.tommyjohn.automation.PageLocators.TermsAndConditionsPageLocators;
+import com.tommyjohn.automation.commonMethods.GeneralMethods;
 import com.tommyjohn.automation.utils.CustomUtilities;
-
-import commonMethods.GeneralMethods;
 
 public class FooterSectionComponents extends FooterSectionLocators {
 
@@ -1051,6 +1050,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 				"Radio Button 'Both' is not preselected for user");
 
 //		Negative Validation (User does not enter email)
+		wait.until(ExpectedConditions.elementToBeClickable(NEWSLETTER_SIGN_UP_BUTTON));
 		driver.findElement(NEWSLETTER_SIGN_UP_BUTTON).click();
 		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(NEWSLETTER_FORM_FAIL_MESSAGE_VISIBLE, 0));
 
@@ -1090,7 +1090,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		Assert.assertTrue(driver.findElement(GIVE_FEEDBACK_CTA).isDisplayed(), "Give Feedback button is not present");
 		softassert.assertTrue(element.isDisplayed(), "Feedback title is not present");
 		softassert.assertTrue(element.getText().equals("Your feedback matters to us"), "Feedback title does not match");
-
+		wait.until(ExpectedConditions.elementToBeClickable(GIVE_FEEDBACK_CTA));
 		driver.findElement(GIVE_FEEDBACK_CTA).click();
 
 		wait.until(ExpectedConditions.titleContains("Survey"));
