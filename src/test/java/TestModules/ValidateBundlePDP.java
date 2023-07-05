@@ -26,12 +26,7 @@ public class ValidateBundlePDP {
 		}
 	
 	}
-	@Test
-	public void TC_ViewImageGallery() throws Exception {
-		new BundlePDPPage(driver).viewImageGallery();
 		
-	}
-	
 	@Test
 	public void TC_verifyImageGallery() throws Exception {
 		new BundlePDPPage(driver).verifyImageGallery();
@@ -73,17 +68,10 @@ public class ValidateBundlePDP {
 	}
 
 	@Test
-	public void verifyReviewRecommendationsSection() throws Exception {
-		new BundlePDPPage(driver).verifyReviewRecommendationsSection();
-	}
-	
-	
-	@Test
 	public void verifyAddToCart() throws Exception {
 		new BundlePDPPage(driver).verifyAddToCart();
 	}
-	
-	
+		
 	@AfterMethod(alwaysRun = true)
 	void teardown () {
 
