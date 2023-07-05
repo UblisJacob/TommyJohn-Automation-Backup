@@ -29,21 +29,26 @@ public class ContactUsComponent extends ContactUsPageLocators
 	}
 	public void ContactUsFlow() throws Exception
 	{
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(40));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.presenceOfElementLocated(EMAIL_US_LINK));
-		driver.findElement(EMAIL_US_LINK).click();
+		/*wait.until(ExpectedConditions.presenceOfElementLocated(EMAIL_US_LINK));
+		driver.findElement(EMAIL_US_LINK).click();*/
 		
 		wait.until(ExpectedConditions.presenceOfElementLocated(EMAILUS_TITLE));
 		String PageTitle = driver.findElement(EMAILUS_TITLE).getText();
 		softassert.assertEquals(PageTitle, "Email Us", "Email us title not present on contact us page");
 
 		Thread.sleep(3000);
+		softassert.assertTrue(driver.findElement(NAME_TEXTBOX).isDisplayed(), "Name textbox is not displayed");
 		driver.findElement(NAME_TEXTBOX).sendKeys("test");
 		Thread.sleep(3000);
+		softassert.assertTrue(driver.findElement(EMAIL_ADDRESS_TEXTBOX).isDisplayed(), "Email Address textbox is not displayed");
 		driver.findElement(EMAIL_ADDRESS_TEXTBOX).sendKeys("test@tommyjohn.com");
 		Thread.sleep(3000);
+		softassert.assertTrue(driver.findElement(SUBJECT_LIST).isDisplayed(), "Subject list is not displayed");
 		driver.findElement(SUBJECT_LIST).click();
 		Thread.sleep(3000);
+		softassert.assertTrue(driver.findElement(MESSAGE_TEXTAREA).isDisplayed(), "Message text area is not displayed");
 		driver.findElement(MESSAGE_TEXTAREA).sendKeys("Test Message, Please ignore this.");
 		Thread.sleep(3000);
 		softassert.assertTrue(driver.findElement(SEND_MESSAGE_BUTTON).isEnabled(), "Send message button not enabled");
