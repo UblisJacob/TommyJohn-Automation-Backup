@@ -2175,31 +2175,60 @@ public class HomePageComponents extends HomePageLocators {
 	// navigate to Contact Us Page
 	public void navigateToHelpPage() throws Exception {
 
-		driver.get(("https://help.tommyjohn.com/hc/en-us"));
-		//			text = driver.findElement(CONTACT_US_LINK).getText();
-		//			if(!text.equals("Contact Us"))
-		//				throw new Exception("Contact Us link text is changed");	
-		//			driver.findElement(CONTACT_US_LINK).click();
-		//			Thread.sleep(5000);
-		//			if(driver.getCurrentUrl().equalsIgnoreCase("https://help.tommyjohn.com/hc/en-us")) 
-		//			{
-		//				Thread.sleep(5000);
-		//				driver.findElement(By.cssSelector("#contact-info>p:nth-child(5)>a")).click();
-		//				Thread.sleep(5000);
-		//				if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/contact-us")) 
-		//					System.out.println("Email link on help page is Displayed :: Clickable");
-		//				else
-		//					throw new Exception("Wrong page opened after Email link on help page link clicked");
-		//			}
-		//			
-		//			else {
-		//			if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/contact-us")) 
-		//				//driver.navigate().back();
-		//				System.out.println("Contact Us footer link is Displayed :: Clickable");
-		//			else
-		//				throw new Exception("Wrong page opened after Contact Us footer link clicked");
-		//			Reporter.log("Contact Us footer link is Displayed :: Clickable");
-		//		}							
+		//driver.get(("https://help.tommyjohn.com/hc/en-us"));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		text = driver.findElement(CONTACT_US_LINK).getText();
+		if(!text.contains("Contact & FAQ"))
+			throw new Exception("Contact Us link text is changed");	
+		jse.executeScript("arguments[0].click();", driver.findElement(CONTACT_US_LINK));
+		Thread.sleep(5000);
+					if(driver.getCurrentUrl().contains("help.tommyjohn.com/hc/en-us")) 
+					{
+						System.out.println("Help Us page opened correctly");
+						Reporter.log("Help Us page opened correctly");
+					}
+					
+					else {
+						System.out.println("Help Us page didn't open correctly");			
+						throw new Exception("Help Us page didn't open correctly");
+				}							
+	}
+	
+	public void navigateToContactUsPage() throws Exception {
+
+		//driver.get(("https://tommyjohn.com/pages/contact-us"));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		text = driver.findElement(CONTACT_US_LINK).getText();
+		if(!text.contains("Contact & FAQ"))
+			throw new Exception("Contact Us link text is changed");	
+		jse.executeScript("arguments[0].click();", driver.findElement(CONTACT_US_LINK));
+		Thread.sleep(5000);
+		if(driver.getCurrentUrl().contains("help.tommyjohn.com/hc/en-us")) 
+		{
+			Thread.sleep(5000);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#contact-info>p:nth-child(6)>a")));
+			driver.findElement(By.cssSelector("#contact-info>p:nth-child(6)>a")).click();
+			Thread.sleep(5000);
+			Reporter.log("Contact Us/Email link is Displayed :: Clickable");
+			if(driver.getCurrentUrl().contains("/pages/contact-us")) 
+				System.out.println("Email link on help page is Displayed :: Clickable");
+			else
+				throw new Exception("Wrong page opened after Email link on help page link clicked");
+		}
+		
+		else {
+		if(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/pages/contact-us")) 
+			//driver.navigate().back();
+			System.out.println("Contact Us footer link is Displayed :: Clickable");
+		else						
+			throw new Exception("Wrong page opened after Contact Us footer link clicked");
+		 Reporter.log("Contact Us footer link is Displayed :: Clickable");
+	}
+							
 	}
 
 	// navigate to mix & match in Bra Category
