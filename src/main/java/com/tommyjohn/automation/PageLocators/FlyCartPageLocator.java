@@ -33,9 +33,9 @@ public class FlyCartPageLocator {
 	public static By CROSS_CLOSE_BUTTON = By.cssSelector("article > div.line-item__summary > button");
 
 	public static By COLOR_AND_SIZE_IN_CART = By
-			.cssSelector("article:nth-child(1) > div.line-item__summary > div:nth-child(2)");
+			.cssSelector("div[data-tj-qa='inline-cart-line-item-option']");
 	public static By PRICE_IN_QUANTITY_LINE = By.cssSelector(
-			"article:nth-child(1) > div.line-item__summary > div.line-item__total > div.line-item__subtotal > span");
+			"div[data-tj-qa='inline-cart-line-item-subtotal']>span");
 
 	public static By GIFT_WRAP = By.cssSelector("div.inline-cart__gift-wrap > a");
 	public static By GIFT_WRAP_POPUP = By.cssSelector(".modal-overlay.gift-option.active");

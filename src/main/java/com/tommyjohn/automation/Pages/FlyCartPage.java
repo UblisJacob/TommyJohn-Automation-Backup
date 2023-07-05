@@ -52,8 +52,11 @@ public class FlyCartPage extends FlyCartComponents {
 		new FlyCartComponents(driver).validatePromotionalMessage();
 	}
 	public void validateTieredMeter() throws Exception {
+		String accountEmail = objGeneralMethods.readPropertiesFile("loginemail");
+		String password = objGeneralMethods.readPropertiesFile("password");
+		new AccountLoginPage(driver).loginAccount(accountEmail, password);
 		new AddToCartComponents(driver).addsingleproductToCart();
-		new FlyCartComponents(driver).tieredMeterPrsence();
+		new FlyCartComponents(driver).tieredMeterPresence();
 		new ShoppingCartComponents(driver).tieredMeterFunctionality();
 	}
 }
