@@ -11,10 +11,10 @@ public class ContactUsPageLocators
 	public static By CONTACT_INFO_TITLE = By.cssSelector("#contact-info>h2");
 	public static By TIMING_TEXT1 = By.cssSelector("#contact-info>p");
 	public static By TIMING_TEXT2 = By.cssSelector("#contact-info>p:nth-child(3)");
-	public static By EMAIL_US_LINK = By.cssSelector("#contact-info>p:nth-child(6)>a>u");
-	public static By CHAT_LINK = By.cssSelector("#contact-info>p:nth-child(8)>a>u");
-	public static By CALL_US_NUMBER =By.cssSelector("#contact-info>p:nth-child(9)>a>u");
-	public static By TEXT_US_AT =By.cssSelector("#contact-info>p:nth-child(10)>a>u");
+	public static By EMAIL_US_LINK = By.cssSelector("#contact-info>p:nth-child(5)>a>u");
+	public static By CHAT_LINK = By.cssSelector("#contact-info>p:nth-child(7)>a>u");
+	public static By CALL_US_NUMBER =By.cssSelector("#contact-info>p:nth-child(8)>a>u");
+	public static By TEXT_US_AT =By.cssSelector("#contact-info>p:nth-child(9)>a>u");
 	public static By HELP_CATEGORY = By.cssSelector(".category-grid");
 	
 	
