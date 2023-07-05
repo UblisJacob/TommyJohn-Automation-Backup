@@ -1,4 +1,4 @@
-package commonMethods;
+package com.tommyjohn.automation.commonMethods;
 
 import java.io.File;
 import java.io.FileInputStream;

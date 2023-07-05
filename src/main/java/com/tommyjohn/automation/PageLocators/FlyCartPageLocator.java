@@ -34,10 +34,9 @@ public class FlyCartPageLocator {
 	public static By QUANTITY = By.cssSelector("input[data-tj-qa='inline-cart-line-item-qty'],.qty-selector.line-item__qty > input");
 	public static By CROSS_CLOSE_BUTTON = By.cssSelector("button[data-tj-qa='inline-cart-line-item-remove'],article > div.line-item__summary > button");
 
-	public static By COLOR_AND_SIZE_IN_CART = By
-			.cssSelector("div[data-tj-qa='inline-cart-line-item-option'],article:nth-child(1) > div.line-item__summary > div:nth-child(2)");
+	public static By COLOR_AND_SIZE_IN_CART = By.cssSelector("div[data-tj-qa='inline-cart-line-item-option']");
 	public static By PRICE_IN_QUANTITY_LINE = By.cssSelector(
-			"div[data-tj-qa='inline-cart-line-item-subtotal']>span,article:nth-child(1) > div.line-item__summary > div.line-item__total > div.line-item__subtotal > span");
+			"div[data-tj-qa='inline-cart-line-item-subtotal']>span");
 
 	public static By GIFT_WRAP = By.cssSelector("div.inline-cart__gift-wrap > a");
 	public static By GIFT_WRAP_POPUP = By.cssSelector(".modal-overlay.gift-option.active");
@@ -66,9 +65,11 @@ public class FlyCartPageLocator {
 	public static By AFTERPAY_FLYCART = By.cssSelector(".afterpay-incart-container > p > span");
 
 	public static By QUICK_SHOP_SIZE_LIST = By.cssSelector(".quickshop-open>.inline-quick-shop>ul>li");
-	public static By TIERED_METER_TITLE = By.cssSelector("p[data-tj-qa='tier-message-hit'],#tier-message-reached");
-	public static By TIERED_METER = By.cssSelector("div[data-tj-qa='tier-0']");
-	public static By PROMOTIONAL_MESSAGE = By.xpath("//div[@class='cart__content content']//div[contains(@class,'line-item__message')]");
+
+	public static By TIERED_METER_TITLE = By.cssSelector("p[data-tj-qa='tier-message-hit'],p#tier-message-reached-cart");
+	public static By TIERED_METER = By.cssSelector("div[data-tj-qa='tier-0']");	
+	public static By PROMOTIONAL_MESSAGE = By.cssSelector("div[data-tj-qa='inline-cart-promo-message']");
+
 	public static By PROMOTIONAL_PRICE = By.xpath("(((//div[@class='cart__content content']//div[@class='line-item__summary'])[1])//span[@class='sale'])[1]");
 
 }
