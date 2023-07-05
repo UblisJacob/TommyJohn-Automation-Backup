@@ -1,17 +1,18 @@
-//package com.tommyjohn.automation.utils;
-//
-//import org.testng.annotations.AfterSuite;
-//import org.testng.annotations.BeforeSuite;
-//import org.testng.annotations.Test;
-//
-//import com.aventstack.extentreports.reporter.configuration.Theme;
-//
-//
-//
-//
-//
-//public class ExtentReports {
-//	
+package com.tommyjohn.automation.utils;
+
+import java.io.IOException;
+
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Test;
+
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.aventstack.extentreports.reporter.configuration.Theme;
+
+public class ExtentReports {
+	
+	
+
 //	private static ExtentReports extent;
 //    private static String reportFileName = "Test-Automaton-Report"+".html";
 //    private static String fileSeperator = System.getProperty("file.separator");
@@ -62,6 +63,6 @@
 //                System.out.println("Directory already exists: " + path);
 //            }
 //    		return reportFileLocation;
-//        }
+//       }
 //     
-//    }
+   }
