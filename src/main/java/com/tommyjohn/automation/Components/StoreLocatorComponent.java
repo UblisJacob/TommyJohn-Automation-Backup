@@ -90,7 +90,7 @@ public class StoreLocatorComponent extends StoreLocatorPageLocators
 		Thread.sleep(3000);
 		if(driver.getCurrentUrl().contains("www.google.com/maps")) 
 			
-			driver.navigate().back();
+			driver.get("https://www.tommyjohn.com/pages/store-locator");
 		else
 			throw new Exception("Wrong page opened after 'Get Direction' link clicked");
 		Reporter.log("'Get Directions' link is Displayed :: Clickable.");

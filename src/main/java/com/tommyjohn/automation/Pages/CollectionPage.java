@@ -5,8 +5,8 @@ import org.openqa.selenium.WebDriver;
 
 import com.tommyjohn.automation.Components.CollectionPageComponent;
 import com.tommyjohn.automation.Components.HomePageComponents;
-import commonMethods.GeneralMethods;
-import commonMethods.ExcelUtils;
+import com.tommyjohn.automation.commonMethods.ExcelUtils;
+import com.tommyjohn.automation.commonMethods.GeneralMethods;
 	
 	
 
@@ -396,7 +396,7 @@ public class CollectionPage extends CollectionPageComponent{
 	
 	public void validateFilters() throws Exception {
 		// TODO Auto-generated method stub
-		new HomePageComponents(driver).NavigateToAllLoungewearInMenCategory();
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 		methodToCheckAllFilters();
 	}
 	

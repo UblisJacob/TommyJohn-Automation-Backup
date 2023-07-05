@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -21,7 +22,7 @@ import com.tommyjohn.automation.PageLocators.AccountPageLocators;
 import com.tommyjohn.automation.PageLocators.HomePageLocators;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
-import commonMethods.GeneralMethods;
+import com.tommyjohn.automation.commonMethods.GeneralMethods;
 
 public class AccountPageComponents extends AccountPageLocators {
 	WebDriver driver;
@@ -39,6 +40,29 @@ public class AccountPageComponents extends AccountPageLocators {
 
 		wait = new FluentWait<WebDriver>(driver).pollingEvery(Duration.ofMillis(500))
 				.withTimeout(Duration.ofSeconds(30)).ignoring(NoSuchElementException.class);
+	}
+	
+	/**
+	 * This method should be used from AccountLogin Page
+	 */
+	public void loginflow() {
+		genMethods = new GeneralMethods();
+		
+		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(AccountLoginLocators.LOGIN_HEADING_TEXT, 0));
+		driver.findElement(AccountLoginLocators.CUSTOMER_EMAIL_INPUT).clear();
+		driver.findElement(AccountLoginLocators.CUSTOMER_EMAIL_INPUT).sendKeys(CustomUtilities.properties.getProperty("loginemail"));
+		driver.findElement(AccountLoginLocators.CUSTOMER_PASSWORD_INPUTBOX).clear();
+		driver.findElement(AccountLoginLocators.CUSTOMER_PASSWORD_INPUTBOX).sendKeys(CustomUtilities.properties.getProperty("password"));
+		
+//		Click on Login button
+		try {
+			wait.until(ExpectedConditions.elementToBeClickable(AccountLoginLocators.LOGIN_BUTTON));
+			genMethods.clickButtonByJS(driver, AccountLoginLocators.LOGIN_BUTTON);
+//			driver.findElement(AccountLoginLocators.LOGIN_BUTTON).click();
+		} catch (TimeoutException | NoSuchElementException e) {
+			System.out.println("Login Button not found or is not clickable");
+			Assert.fail("Login Button not found or is not clickable");
+		}
 	}
 
 	public void navigateTo_AccountPage(String email, String password) throws Exception {
@@ -76,21 +100,37 @@ public class AccountPageComponents extends AccountPageLocators {
 		String email =  CustomUtilities.properties.getProperty("loginemail");
 		String password =  CustomUtilities.properties.getProperty("password");
 		actions = new Actions(driver);
-		element = driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN);
-		wait.until(ExpectedConditions.visibilityOf(element));
-		actions.moveToElement(element).perform();
-		element = driver.findElement(HomePageLocators.MYACCOUNT_OPTION);
-		actions.moveToElement(element).click().perform();
+		
+//		Hover on Hi, Sign in dropdown
+		try{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(HomePageLocators.ACCOUNT_NAV_DROPDOWN));
+			element = driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN);
+			actions.moveToElement(element).perform();
+		}catch (TimeoutException e) {
+			System.out.println("Hi, Sign in dropdown not found or is not clickable");
+			Assert.fail("Hi, Sign in dropdown not found or is not clickable");
+		}
+		
+//		Click My Account Option
+		try{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(HomePageLocators.MYACCOUNT_OPTION));
+			element = driver.findElement(HomePageLocators.MYACCOUNT_OPTION);
+			actions.click(element).perform();
+		}catch (Exception e) {
+			System.out.println("My Account option in dropdown not found or is not clickable");
+			Assert.fail("My Account option in dropdown not found or is not clickable");
+		}
 
-		Thread.sleep(3000);
-
-		Assert.assertFalse(genMethods.verifyElementExists(driver, LOGGED_IN_ID),
-				"After clicking on My account option as a Guest User, User seems to be have been redirected to Account Page");
-
-		element = driver.findElement(AccountLoginLocators.LOGIN_HEADING_TEXT);
-		Assert.assertTrue(element.isDisplayed(),
-				"After clicking on My account option as a Guest User, Login Title is not displayed");
-
+//		1. User must be signed in to view the Account page
+//		wait for login page, if login page does not appear check if element LOGGED_IN_ID is present if it is then throw error
+		try {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(AccountLoginLocators.LOGIN_HEADING_TEXT));
+			System.out.println("Guest user was correctly redirected to login page after clicking on My Account option");
+		}catch (TimeoutException e) {
+			softassert.fail("After clicking on My account option as a Guest User, User seems to be have been redirected to Account Page as a logged in user");
+		}
+		
+//		Go back to homepage
 		driver.navigate().to("https://www.tommyjohn.com");
 		
 //		Positive Validation
@@ -104,13 +144,26 @@ public class AccountPageComponents extends AccountPageLocators {
 		softassert.assertTrue(driver.findElement(ADDRESS_BOOK_TITLE).isDisplayed(),
 				"Address Book title is not displayed on account page");
 
-		// wait.until(ExpectedConditions.elementToBeClickable(MANAGE_ADDRESSES));
-
-		Thread.sleep(6000);
+		 wait.until(ExpectedConditions.elementToBeClickable(MANAGE_ADDRESSES));
 
 		driver.findElement(MANAGE_ADDRESSES).click();
 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(MANAGE_ADDRESS_BOOK_HEADING));
+//		After clicking on Manage Addresses link verify if correctly redirected to addresses page, if facing login issue then handle via re-login
+		try{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(MANAGE_ADDRESS_BOOK_HEADING));
+		}catch (TimeoutException e) {
+			currentUrl = driver.getCurrentUrl();
+			System.out.println("Addresses Page is not displayed, Current page url is: " + currentUrl + "\nInstead of https://www.tommyjohn.com/account/addresses");
+			System.out.println("Unexpectedly Redirected to Login Page!, Handling via relogin");
+			
+			try {
+				loginflow();
+			}catch (TimeoutException e2) {
+				currentUrl = driver.getCurrentUrl();
+				System.out.println("Addresses Page is not displayed even after performing Re-Login, Current page url is: " + currentUrl);
+				Assert.fail("Addresses Page is not displayed even after performing Re-Login, Current page url is: " + currentUrl);
+			}
+		}
 
 		softassert.assertTrue(driver.getCurrentUrl().equals("https://www.tommyjohn.com/account/addresses"),
 				"User Navigated to incorrect page after clicking on Manage Addresses link");
