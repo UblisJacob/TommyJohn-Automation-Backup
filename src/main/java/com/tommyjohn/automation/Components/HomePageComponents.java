@@ -2198,20 +2198,20 @@ public class HomePageComponents extends HomePageLocators {
 	
 	public void navigateToContactUsPage() throws Exception {
 
-		//driver.get(("https://tommyjohn.com/pages/contact-us"));
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		text = driver.findElement(CONTACT_US_LINK).getText();
-		if(!text.contains("Contact & FAQ"))
-			throw new Exception("Contact Us link text is changed");	
-		jse.executeScript("arguments[0].click();", driver.findElement(CONTACT_US_LINK));
-		Thread.sleep(5000);
+//		driver.get(("https://tommyjohn.com"));
+//		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+//		JavascriptExecutor jse = (JavascriptExecutor)driver;
+//		text = driver.findElement(CONTACT_US_LINK).getText();
+//		if(!text.contains("Contact & FAQ"))
+//			throw new Exception("Contact Us link text is changed");	
+//		jse.executeScript("arguments[0].click();", driver.findElement(CONTACT_US_LINK));
+//		Thread.sleep(5000);
 		if(driver.getCurrentUrl().contains("help.tommyjohn.com/hc/en-us")) 
 		{
 			Thread.sleep(5000);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#contact-info>p:nth-child(6)>a")));
-			driver.findElement(By.cssSelector("#contact-info>p:nth-child(6)>a")).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#contact-info>p:nth-child(5)>a")));
+			driver.findElement(By.cssSelector("#contact-info>p:nth-child(5)>a")).click();
 			Thread.sleep(5000);
 			Reporter.log("Contact Us/Email link is Displayed :: Clickable");
 			if(driver.getCurrentUrl().contains("/pages/contact-us")) 

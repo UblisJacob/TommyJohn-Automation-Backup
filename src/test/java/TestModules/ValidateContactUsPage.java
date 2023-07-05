@@ -27,8 +27,9 @@ public class ValidateContactUsPage {
 	
 	 @Test public void TC_ValidateContactUsPage() throws Exception { 
 		 
-		 //new ContactUsPage(driver).VerifyContactUsFlow(); 
+		 
 		 new ContactUsPage(driver).HelpFieldValidation_page(); 
+		 new ContactUsPage(driver).VerifyContactUsFlow(); 
 		 
 	 }
 	 
