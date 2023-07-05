@@ -2,6 +2,7 @@ package com.tommyjohn.automation.commonMethods;
 
 import java.io.FileReader;
 import java.time.Duration;
+import java.util.List;
 import java.util.Properties;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -36,7 +37,7 @@ public class GeneralMethods {
 	}
 	
 	//Method to click button by JavascriptExecutor
-	public void clickButtonByJS(WebDriver objDriver, By objectPath) throws Exception
+	public void clickButtonByJS(WebDriver objDriver, By objectPath)
 	{
 		if(verifyElementExists(objDriver, objectPath))
 		{
@@ -62,7 +63,7 @@ public class GeneralMethods {
 		}
 	}
 	//To verify the element till exists
-	public boolean verifyElementExists(WebDriver objDriver, By objectPath) throws Exception
+	public boolean verifyElementExists(WebDriver objDriver, By objectPath)
 	{
 		boolean boolResultFlag = false;
 		try
@@ -115,7 +116,7 @@ public class GeneralMethods {
 		return boolResultFlag;
 	}
     
-    public void clickButtonByJS(WebDriver objDriver, WebElement element) throws Exception
+    public void clickButtonByJS(WebDriver objDriver, WebElement element)
 	{
 		
 			JavascriptExecutor executor = (JavascriptExecutor)objDriver;
@@ -156,7 +157,7 @@ public class GeneralMethods {
 	 * @param index
 	 * @param occurence of nth-child
 	 */
-	public WebElement autoIndex(WebDriver driver, By by, int index) {
+	public WebElement autoIndex(WebDriver driver, By by, int index, int OccurenceOfNthChild) {
 
 		String s = by.toString();
 		String locator = s.substring(s.indexOf(' ')+1);
@@ -167,6 +168,26 @@ public class GeneralMethods {
 		By finalBy = By.cssSelector(firstPart + index + secondPart);
 		
 		return driver.findElement(finalBy);
+	
+	}
+	
+	/**
+	 * Used to change index of css locators consisting nth-child
+	 * @param elementToIterate
+	 * @param index
+	 * @param occurence of nth-child
+	 */
+	public List<WebElement> autoIndexList(WebDriver driver, By by, int index, int OccurenceOfNthChild) {
+
+		String s = by.toString();
+		String locator = s.substring(s.indexOf(' ')+1);
+		
+		String firstPart = locator.substring(0, locator.indexOf('(')+1);
+		String secondPart = locator.substring(locator.indexOf(')'));
+		
+		By finalBy = By.cssSelector(firstPart + index + secondPart);
+		
+		return driver.findElements(finalBy);
 	
 	}
     

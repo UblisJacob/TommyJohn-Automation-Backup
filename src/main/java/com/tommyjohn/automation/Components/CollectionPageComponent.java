@@ -416,7 +416,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		System.out.println("All filters list :: " + filterList);
 
 		// loop for total not of filters
-		for (int i = 2; i <= filterList + 1; i++) {
+		for (int i = 3; i <= filterList + 1; i++) {
 			element = driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child(" + i + ") > a"));
 			// changed
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
@@ -790,7 +790,14 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 		// first check all corosals are not active by default
 		for (int k = 1; k <= allCorosals.size(); k++) {
-			element = driver.findElement(By.cssSelector("div.dyHero-interactive__slider>button:nth-child(" + k + ")"));
+			try {
+				element = driver.findElement(By.cssSelector(".dyHero-interactive__slider>button:nth-child(" + k + ")"));
+			}
+			catch(Exception e)
+			{
+				element = driver.findElement(By.cssSelector(".dyHero-interactive__slider>a:nth-child(" + k + ")"));
+			}
+		
 			String classes = element.getAttribute("class");
 			for (String c : classes.split(" ")) {
 				if (c.equals("active")) {
@@ -805,7 +812,15 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		
 		
 		for (int k = 1; k <= allCorosals.size(); k++) {
-			carouselFilter = driver.findElement(By.cssSelector("div.dyHero-interactive__slider>button:nth-child(" + k + ")"));
+			
+			try {
+				carouselFilter = driver.findElement(By.cssSelector("div.dyHero-interactive__slider>button:nth-child(" + k + ")"));
+			}
+			catch(Exception e)
+			{
+				carouselFilter = driver.findElement(By.cssSelector("div.dyHero-interactive__slider>a:nth-child(" + k + ")"));
+			}
+			//carouselFilter = driver.findElement(By.cssSelector("div.dyHero-interactive__slider>button:nth-child(" + k + ")"));
 			if(carouselFilter.isEnabled()) {
 				System.out.println("Carousel filter is clickable");
 				js.executeScript("arguments[0].click();", carouselFilter);
