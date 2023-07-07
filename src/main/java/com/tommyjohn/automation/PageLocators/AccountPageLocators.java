@@ -7,6 +7,7 @@ public class AccountPageLocators
 {
 //	public static By ACCOUNT_PAGE_HEADING =By.cssSelector(".account-logged-in-header");
 	public static By ACCOUNT_PAGE_HEADING =By.cssSelector("h1[data-tj-qa='account-login-title']");
+	public static By ACCOUNT_PAGE_HEADING_LOGIN =By.cssSelector("h2[data-tj-qa='account-login-title']");
 	public static By SIGN_OUT_LINK = By.cssSelector(".header-nav-dropdown > ul >li:nth-child(3) > a");
 	public static By LOGIN_INFORMATION_TITLE = By.cssSelector("div[data-tj-qa='account-login-info'] h2");
 //	public static By LOGGED_IN_ID = By.cssSelector(".account-logged-content>div:nth-child(1)>div>div>.account-row-column>p");

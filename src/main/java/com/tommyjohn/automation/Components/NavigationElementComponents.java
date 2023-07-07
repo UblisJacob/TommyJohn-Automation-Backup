@@ -155,7 +155,7 @@ public class NavigationElementComponents extends HomePageLocators {
 			softassert.assertTrue(display.contains("block"),
 					"Desktop Search Suggestion did not come up after clicking on Search box");
 
-			String searchText = "brief";
+			String searchText = "skin";
 
 			searchTXTBX.sendKeys(searchText);
 
@@ -244,7 +244,8 @@ public class NavigationElementComponents extends HomePageLocators {
 							+ currentUrl);
 			System.out.println("After clicking on Sign in, Page Url is: " + currentUrl);
 		}
-
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(AccountLoginLocators.LOGIN_HEADING_TEXT));
 		pageHeader = driver.findElement(AccountLoginLocators.LOGIN_HEADING_TEXT).getText();
 
 		softassert.assertTrue(pageHeader.equals("Login"),
@@ -261,6 +262,8 @@ public class NavigationElementComponents extends HomePageLocators {
 		WebElement myAccount = driver.findElement(MYACCOUNT_OPTION);
 		action.click(myAccount).perform();
 
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+		
 		try {
 			wait.until(ExpectedConditions.urlContains("https://www.tommyjohn.com/account/login"));
 			currentUrl = driver.getCurrentUrl();
@@ -273,7 +276,8 @@ public class NavigationElementComponents extends HomePageLocators {
 			System.out.println("After clicking on My Account, Page Url is: " + currentUrl);
 		}
 
-		pageHeader = driver.findElement(AccountLoginLocators.LOGIN_HEADING_TEXT).getText();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(AccountPageLocators.ACCOUNT_PAGE_HEADING_LOGIN));
+		pageHeader = driver.findElement(AccountPageLocators.ACCOUNT_PAGE_HEADING_LOGIN).getText();
 
 		softassert.assertTrue(pageHeader.equals("Login"),
 				"Wrong page opened after clicking on My Account option, expected page with header: 'Login'");
@@ -419,6 +423,8 @@ public class NavigationElementComponents extends HomePageLocators {
 		
 		WebElement myAccount = driver.findElement(MYACCOUNT_OPTION);
 		genMethods.clickButtonByJS(driver, myAccount);
+		
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
 
 		try {
 			wait.until(ExpectedConditions.urlContains("https://www.tommyjohn.com/account"));
@@ -432,6 +438,7 @@ public class NavigationElementComponents extends HomePageLocators {
 			System.out.println("After clicking on My Account, Page Url is: " + currentUrl);
 		}
 
+		wait.until(ExpectedConditions.visibilityOfElementLocated(AccountPageLocators.ACCOUNT_PAGE_HEADING));
 		pageHeader = driver.findElement(AccountPageLocators.ACCOUNT_PAGE_HEADING).getText();
 
 		softassert.assertTrue(pageHeader.equals("Account"),
