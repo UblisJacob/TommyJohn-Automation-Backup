@@ -296,8 +296,6 @@ public class HomePageComponents extends HomePageLocators {
 
 	}
 	
-	
-
 	public void validateSearchFunctionality() throws Exception {
 
 		SoftAssert softAssert = new SoftAssert();
@@ -2342,7 +2340,9 @@ public class HomePageComponents extends HomePageLocators {
 	public void navigateToStoreDirectoryPage() {
 		driver.get("https://www.tommyjohn.com/pages/store-directory");
 	}
-	
+	public void navigateToReviewsPage() {
+		driver.get("https://www.tommyjohn.com/pages/reviews");
+	}
 	/**
 	 * Helps click on a element with JSExecutor
 	 * 
