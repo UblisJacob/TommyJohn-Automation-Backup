@@ -589,25 +589,26 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		driver.switchTo().frame(ele);
 		//WebElement root1 = driver.findElement(By.cssSelector("#root>div>div>afterpay-placement"));
 		SearchContext shadowRoot = driver.findElement(By.cssSelector("#root>div>div>afterpay-placement")).getShadowRoot();
-		//SearchContext shadowRoot = (SearchContext) js.executeScript("return arguments[0].shadowRoot", root1);
-		//WebElement shadowRoot1 = getShadowRoot(driver, root1);
 		Thread.sleep(6000);
-		WebElement afterpaymessaging =  (WebElement) js.executeScript("return document.querySelector('#root>div>div>afterpay-placement').shadowRoot.querySelector('p.afterpay-paragraph>span.afterpay-main-text')");
-		System.out.print(shadowRoot.toString());
-		//driver.switchTo().defaultContent();
-		//WebElement afterpaymessaging = shadowRoot.findElement(By.cssSelector("p.afterpay-paragraph>span.afterpay-main-text"));
-		WebElement afterpaylogo = shadowRoot.findElement(By.cssSelector("afterpay-logo-link>button"));
+		WebElement afterpaymessaging = (WebElement) js.executeScript("return document.querySelector(\"#root > div > div > afterpay-placement\").shadowRoot.querySelector(\"p > span\")");
+		//WebElement afterpaymessaging =  (WebElement) js.executeScript("return document.querySelector('#root>div>div>afterpay-placement').shadowRoot.querySelector('p.afterpay-paragraph>span.afterpay-main-text')");
+		System.out.print(afterpaymessaging.getText());
+		
 		
 		if(Float.parseFloat(price2)<35 || Float.parseFloat(price2)>1000 )
 		{
-			softAssert.assertEquals(afterpaymessaging.getText(), "available for orders between $35 - $1000" , "Wrong afterpay message displayed for product price");
+			WebElement afterpaylogo = (WebElement) js.executeScript("return document.querySelector(\"#root > div > div > afterpay-placement\").shadowRoot.querySelector(\"p > button.afterpay-logo.brand-afterpay.type-badge.black-on-mint\")");
+			
+			softAssert.assertTrue(afterpaymessaging.getText().contains("available for orders between $35 - $1,000") , "Wrong afterpay message displayed for product price");
 			Reporter.log("After pay message is correct On PDP :: Displayed and Correct message is displayed");
-		//	softAssert.assertTrue(afterpaylogo.isDisplayed(), "Afterpay logo not present on PDP");
+			softAssert.assertTrue(afterpaylogo.isDisplayed(), "Afterpay logo not present on PDP");
 			Reporter.log("After pay logo icon is displayed on PDP :: Displayed");
 		}
 
 		else
 		{
+			WebElement afterpaylogo = (WebElement) js.executeScript("return document.querySelector(\"#root > div > div > afterpay-placement\").shadowRoot.querySelector(\"p > span.afterpay-logo-link > button.afterpay-logo.brand-afterpay.type-badge.black-on-mint\")");
+
 
 			installment =Float.parseFloat(price2)/4;
 			String inst = String.format("%.2f",installment );
@@ -619,7 +620,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			System.out.println("Actual int_amount is: " +actual);
 			softAssert.assertEquals(ins_amount, expectedmessage , "Wrong afterpay message displayed for product price");
 			Reporter.log("After pay message with calculated installment is correct :: Displayed and correct");
-			//softAssert.assertTrue(afterpaylogo.isDisplayed(), "Afterpay logo not present on PDP");
+			softAssert.assertTrue(afterpaylogo.isDisplayed(), "Afterpay logo not present on PDP");
 			Reporter.log("After pay logo icon is displayed on PDP :: Displayed");
 
 		}
@@ -2360,7 +2361,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			for(int i=1;i<=elementsCount;i++) 
 			{
 				thumbnail = driver.findElement(By.cssSelector(".pdpVerticalSlides>.slick-list.draggable>div>div:nth-child("+i+")")).getAttribute("data-slide-id");
-				driver.findElement(By.cssSelector(".pdpVerticalSlides>.slick-list.draggable>div>div:nth-child("+i+")>img")).click();
+				//driver.findElement(By.cssSelector(".pdpVerticalSlides>.slick-list.draggable>div>div:nth-child("+i+")>img")).click();
 				Thread.sleep(3000);
 				System.out.println(thumbnail);
 			}
@@ -2594,7 +2595,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 					element =driver.findElement(By.cssSelector(".product-bar__atc"));
 					softassert.assertTrue(element.isDisplayed(), "scrolling CTA Add to Cart is not displayed");
 					//softassert.assertEquals(element.getText(), "Add To Cart", "Text is not matched");
-					if(element.getText().equals("Add To Cart") || element.getText().equals("Join the Waitlist"))		
+					if(element.getText().equals("Add To Cart") || element.getText().equals("Join The Waitlist"))		
 					{jse.executeScript("arguments[0].click();", element);}
 					else {
 						if(element.getText().equals("Out of Stock"))

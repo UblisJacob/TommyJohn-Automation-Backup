@@ -6,6 +6,7 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -406,7 +407,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		new AddToCartComponents(driver).addToCart();
 		driver.findElement(HomePageLocators.CART_ICON).click();
 		Thread.sleep(3000);
-
+		JavascriptExecutor js = (JavascriptExecutor)driver;
 		if(!driver.findElement(AFTERPAYTEXT).isDisplayed())
 			throw new Exception("AfterPay Message not present on Fly cart.");
 		Reporter.log("After pay Message is displayed on Inline Cart :: Displayed");
@@ -415,27 +416,40 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		String[] price1 = price.split("\\$");
 		String price2 = price1[price1.length-1];
 		System.out.println("Estimate total is: "+price);
+		
+		WebElement ele = driver.findElement(By.xpath("//iframe[@title='pdp_messaging']"));
+		driver.switchTo().frame(ele);
+		
+		SearchContext shadowRoot = driver.findElement(By.cssSelector("#root>div>div>afterpay-placement")).getShadowRoot();
+		Thread.sleep(6000);
+		WebElement afterpaymessaging = (WebElement) js.executeScript("return document.querySelector(\"#root > div > div > afterpay-placement\").shadowRoot.querySelector(\"p > span\")");
+		
+		System.out.print(afterpaymessaging.getText());
+		
 		if(Float.parseFloat(price2)<35 || Float.parseFloat(price2)>1000 )
 		{
-			softAssert.assertEquals(driver.findElement(AFTERPAYTEXT).getText(), "available for orders between $35 - $1000" , "Wrong afterpay message displayed for product price");
+			WebElement afterpaylogo = (WebElement) js.executeScript("return document.querySelector(\"#root > div > div > afterpay-placement\").shadowRoot.querySelector(\"p > button.afterpay-logo.brand-afterpay.type-badge.black-on-mint\")");
+
+			softAssert.assertTrue(afterpaymessaging.getText().contains("available for orders between $35 - $1000") , "Wrong afterpay message displayed for product price");
 			Reporter.log("After pay message is correct On Inline cart :: Displayed and Correct");
-			softAssert.assertTrue(driver.findElement(AFTERPAYLOGO_ICON).isDisplayed(), "Afterpay logo not present on Fly-out cart.");
+			softAssert.assertTrue(afterpaylogo.isDisplayed(), "Afterpay logo not present on Fly-out cart.");
 			Reporter.log("After pay logo icon is displayed on Inline cart :: Displayed");
 		}
 		else
 		{
+			WebElement afterpaylogo = (WebElement) js.executeScript("return document.querySelector(\"#root > div > div > afterpay-placement\").shadowRoot.querySelector(\"p > span.afterpay-logo-link > button.afterpay-logo.brand-afterpay.type-badge.black-on-mint\")");
 
 			installment =Float.parseFloat(price2)/4;
 			String inst = String.format("%.2f",installment );
 			//	String expectedmessage = "In 4 installments of $" + inst + " by ?"; 
 			String expectedmessage =  inst+ " "; 
 			System.out.println("expected message is: " + expectedmessage);
-			String actual= driver.findElement(AFTERPAYTEXT).getText();
-			String ins_amount= actual.substring(actual.indexOf("$")+1, actual.indexOf("b"));
+			String actual= afterpaymessaging.getText();
+			String ins_amount= actual.substring(actual.indexOf("$")+1, actual.indexOf("w"));
 			System.out.println("Actual int_amount is: " +ins_amount);
 			softAssert.assertEquals(ins_amount, expectedmessage , "Wrong afterpay message displayed for product price");
 			Reporter.log("After pay message with calculated installment is correct on Inline cart :: Displayed and correct");
-			softAssert.assertTrue(driver.findElement(AFTERPAYLOGO_ICON).isDisplayed(), "Afterpay logo not present on PDP");
+			softAssert.assertTrue(afterpaylogo.isDisplayed(), "Afterpay logo not present on PDP");
 			Reporter.log("After pay logo icon is displayed on Inline cart :: Displayed");
 		}
 		Thread.sleep(3000);

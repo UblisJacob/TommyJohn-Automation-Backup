@@ -353,7 +353,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		new AddToCartComponents(driver).addToCart();
 		//navigate to shopping cart page
 		driver.findElement(HomePageLocators.CART_ICON).click();
-
+		JavascriptExecutor js = (JavascriptExecutor)driver;
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
@@ -371,27 +371,33 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		String[] price1 = price.split("\\$");
 		String price2 = price1[price1.length-1];
 		System.out.println("Estimate total is: "+price);
+		WebElement afterpaymessaging = (WebElement) js.executeScript("return document.querySelector(\"#root > div > div > afterpay-placement\").shadowRoot.querySelector(\"p > span\")");
+		
+		System.out.print(afterpaymessaging.getText());
 		if(Float.parseFloat(price2)<35 || Float.parseFloat(price2)>1000 )
 		{
-			softAssert.assertEquals(driver.findElement(AFTERPAYTEXT_WITH_AVAILABLE).getText(), "available for orders between $35 - $1000" , "Wrong afterpay message displayed for product price");
+			WebElement afterpaylogo = (WebElement) js.executeScript("return document.querySelector(\"#root > div > div > afterpay-placement\").shadowRoot.querySelector(\"p > button.afterpay-logo.brand-afterpay.type-badge.black-on-mint\")");
+
+			softAssert.assertTrue(afterpaymessaging.getText().contains("available for orders between $35 - $1000") , "Wrong afterpay message displayed for product price");
 			Reporter.log("After pay message is correct On Shopping cart :: Displayed and Correct");
-			softAssert.assertTrue(driver.findElement(AFTERPAYLOGO_WITH_AVAILABLE_MSG).isDisplayed(), "Afterpay logo not present on Shopping cart.");	
+			softAssert.assertTrue(afterpaylogo.isDisplayed(), "Afterpay logo not present on Shopping cart.");	
 			Reporter.log("After pay logo icon is displayed on Shopping cart :: Displayed");
 		}
 		else
 		{
+			WebElement afterpaylogo = (WebElement) js.executeScript("return document.querySelector(\"#root > div > div > afterpay-placement\").shadowRoot.querySelector(\"p > span.afterpay-logo-link > button.afterpay-logo.brand-afterpay.type-badge.black-on-mint\")");
 
 			installment =Float.parseFloat(price2)/4;
 			String inst = String.format("%.2f",installment );
 			//String expectedmessage = "In 4 installments of $" + inst + " by ?"; 
 			String expectedmessage =  inst+ " "; 
 			System.out.println("expected message is: " + expectedmessage);
-			String Actual = driver.findElement(AFTERPAYTEXT_WITH_INSTALLMENT).getText();
+			String Actual = afterpaymessaging.getText();
 			String ins_amount= Actual.substring(Actual.indexOf("$")+1, Actual.indexOf("b"));
 			System.out.println("Actual ins_amount is: " +ins_amount);
 			softAssert.assertEquals(ins_amount, expectedmessage , "Wrong afterpay message displayed for product price");
 			Reporter.log("After pay message with calculated installment is correct on Inline cart :: Displayed and correct");
-			softAssert.assertTrue(driver.findElement(AFTERPAYLOGO_WITH_INSTALLMENT_MSG).isDisplayed(), "Afterpay logo not present on Shopping cart");
+			softAssert.assertTrue(afterpaylogo.isDisplayed(), "Afterpay logo not present on Shopping cart");
 			Reporter.log("After pay logo icon is displayed on Inline cart :: Displayed");
 		}
 		Thread.sleep(3000);   		

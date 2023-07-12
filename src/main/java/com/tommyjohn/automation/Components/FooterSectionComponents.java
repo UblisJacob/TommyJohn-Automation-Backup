@@ -1,6 +1,7 @@
 package com.tommyjohn.automation.Components;
 
 import java.time.Duration;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -50,8 +51,8 @@ public class FooterSectionComponents extends FooterSectionLocators {
 
 		this.driver = driver;
 
-		wait = new FluentWait<WebDriver>(driver).pollingEvery(Duration.ofMillis(500))
-				.withTimeout(Duration.ofSeconds(30)).ignoring(NoSuchElementException.class);
+//		wait = new FluentWait<WebDriver>(driver).pollingEvery(Duration.ofMillis(500))
+//				.withTimeout(Duration.ofSeconds(30)).ignoring(NoSuchElementException.class);
 
 	}
 
@@ -77,7 +78,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		softassert.assertTrue(text.equals("Shop Women"), "Shop Women link text is changed");
 
 		objGeneralMethods.clickButtonByJS(driver, SHOP_WOMEN);
-
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
 		wait.until(ExpectedConditions.titleContains("Women's All"));
 
 		softassert.assertTrue(driver.getCurrentUrl().contains("https://www.tommyjohn.com/collections/womens-all"),
@@ -894,7 +895,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		softassert.assertTrue(linkText.equals("Privacy Policy"), "Privacy Policy Link Text is Incorrect");
 
 		objGeneralMethods.clickButtonByJS(driver, element);
-
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
 		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(PrivacyPolicyPageLocators.PAGE_HEADER, 0));
 
 		pageURL = driver.getCurrentUrl();
@@ -1048,7 +1049,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 
 		softassert.assertTrue(driver.findElement(NEWSLETTER_BOTH_RADIO_BUTTON).isSelected(),
 				"Radio Button 'Both' is not preselected for user");
-
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
 //		Negative Validation (User does not enter email)
 		wait.until(ExpectedConditions.elementToBeClickable(NEWSLETTER_SIGN_UP_BUTTON));
 		driver.findElement(NEWSLETTER_SIGN_UP_BUTTON).click();
@@ -1080,7 +1081,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 
 //		Validation of Give Feedback Section
 	public void validateFeedbackSection() {
-
+		 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
 		System.out.println("***Validating Feedback Section***");
 
 		softassert = new SoftAssert();
@@ -1090,6 +1091,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		Assert.assertTrue(driver.findElement(GIVE_FEEDBACK_CTA).isDisplayed(), "Give Feedback button is not present");
 		softassert.assertTrue(element.isDisplayed(), "Feedback title is not present");
 		softassert.assertTrue(element.getText().equals("Your feedback matters to us"), "Feedback title does not match");
+		//WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
 		wait.until(ExpectedConditions.elementToBeClickable(GIVE_FEEDBACK_CTA));
 		driver.findElement(GIVE_FEEDBACK_CTA).click();
 
