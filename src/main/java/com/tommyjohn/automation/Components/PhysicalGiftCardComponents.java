@@ -219,6 +219,7 @@ public class PhysicalGiftCardComponents extends PhysicalGiftCardPageLocators
 
 	public void CheckAfterPayMessageonPhysicalGC() throws Exception
 	{
+		int flag=0;
 		new HomePageComponents(driver).navigateToPhysicalGC();
 		Thread.sleep(3000);
 		try{
@@ -247,14 +248,16 @@ public class PhysicalGiftCardComponents extends PhysicalGiftCardPageLocators
 		try{
 			System.out.println("Verifying for AfterPay Message .......");
 			if(driver.findElement(ProductDetailsPageLocators.AFTERPAY_PDP).isDisplayed())
-				throw new Exception("AfterPay Message is displayed on PDP with Physical Gift Card in cart.");
+				flag=1;
 			Reporter.log("AfterPay Message is displayed on PDP with Physical Gift Card");
 		}
 		catch(Exception e) {
 			System.out.println("After Pay Message is not displayed on normal PDP with Physical Gift Card.");
 			Reporter.log("After Pay Message is not displayed on normal PDP with Physical Gift Card");
 		}
-
+		if(flag==1) {
+			throw new Exception("afterpay functionality incorrect with GC");
+		}
 
 
 		//Check gift cart with normal product in fly cart
@@ -264,14 +267,14 @@ public class PhysicalGiftCardComponents extends PhysicalGiftCardPageLocators
 		System.out.println("Total item in cart is: "+allElements.size());
 		for(int i=1; i<=allElements.size();i++)
 		{
-			String title = driver.findElement(By.cssSelector("div.inline-cart__col1 > div:nth-child(6) > article:nth-child("+i+") > div.line-item__summary > a")).getText();
+			String title = driver.findElement(By.cssSelector("article.line-item:nth-child("+i+") > div.line-item__summary>a[data-tj-qa='inline-cart-line-item-title']")).getText();
 			System.out.println("product title in fly cart is: " +title);
 			if(title.equalsIgnoreCase("Tommy John Gift Card"))
 			{
 				try{
 					System.out.println("Verifying for AfterPay Message .......");
 					if(driver.findElement(FlyCartPageLocator.AFTERPAY_FLYCART).isDisplayed())
-						throw new Exception("AfterPay Message is displayed on Fly cart with Physical Gift Card.");
+						flag=1;
 					Reporter.log("AfterPay Message is displayed on Inline cart with Physical Gift Card");
 				}
 				catch(Exception e){
@@ -280,6 +283,10 @@ public class PhysicalGiftCardComponents extends PhysicalGiftCardPageLocators
 				}
 			}
 
+		}
+		
+		if(flag==1) {
+			throw new Exception("afterpay functionality incorrect with GC");
 		}
 		//navigate to shopping cart
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -292,14 +299,14 @@ public class PhysicalGiftCardComponents extends PhysicalGiftCardPageLocators
 		System.out.println("Total item in cart is: "+allElements.size());
 		for(int i=1; i<=allElements.size();i++)
 		{
-			String title = driver.findElement(By.cssSelector(".cart.container > div.cart__outer > .cart__items > div > article.line-item:nth-child("+i+") > .line-item__summary > a")).getText();
+			String title = driver.findElement(By.cssSelector("article.line-item:nth-child("+i+") > div.line-item__summary>a[data-tj-qa='inline-cart-line-item-title']")).getText();
 			System.out.println("product title in fly cart is: " +title);
 			if(title.equalsIgnoreCase("Tommy John Gift Card"))
 			{
 				try{
 					System.out.println("Verifying for AfterPay Message .......");
 					if(driver.findElement(ShoppingCartComponents.AFTERPAY_CART).isDisplayed())
-						throw new Exception("AfterPay Message is displayed on Shopping cart with Physical Gift Card.");
+						flag=1;
 					Reporter.log("AfterPay Message is displayed on Shopping cart with Physical Gift Card");
 				}
 				catch(Exception e){
@@ -308,6 +315,9 @@ public class PhysicalGiftCardComponents extends PhysicalGiftCardPageLocators
 				}
 			}
 
+		}
+		if(flag==1) {
+			throw new Exception("afterpay functionality incorrect with GC");
 		}
 
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -344,7 +354,7 @@ public class PhysicalGiftCardComponents extends PhysicalGiftCardPageLocators
 					System.out.println("Verifying for AfterPay Message on payment page.......");
 					//if(!driver.findElement(CheckoutPageComponents.AFTERPAY_OPTION).getAttribute("style").equalsIgnoreCase("display: none;"))
 					if(driver.findElement(CheckoutPageComponents.AFTERPAY_OPTION).isDisplayed())
-					throw new Exception("AfterPay Message is displayed on payment page with Physical Gift Card.");
+					flag=1;
 					Reporter.log("AfterPay Message is displayed on Checkout page with Physical Gift Card");
 				}
 				catch(Exception e){
@@ -353,6 +363,9 @@ public class PhysicalGiftCardComponents extends PhysicalGiftCardPageLocators
 				}
 			}
 
+		}
+		if(flag==1) {
+			throw new Exception("afterpay functionality incorrect with GC");
 		}
 	}
 

@@ -139,10 +139,10 @@
 		</classes>
 	</test>
 
-	<test name="CantactUsPageTests">
+	<test name="ContactUsPageTests">
 		<parameter name="browser" value="chrome" />
 		<classes>
-			<class name="TestModules.ValidateHelpPage" />
+			<class name="TestModules.ValidateContactUsPage" />
 		</classes>
 	</test>
 
