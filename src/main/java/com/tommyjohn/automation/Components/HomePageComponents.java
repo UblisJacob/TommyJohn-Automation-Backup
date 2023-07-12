@@ -190,8 +190,8 @@ public class HomePageComponents extends HomePageLocators {
 		SoftAssert softAssert = new SoftAssert();
 		action = new Actions(driver);
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(30));
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-		WebElement search = driver.findElement(SEARCH_ICON_INPUT);
+		
+		
 		action.moveToElement(driver.findElement(SEARCH_ICON_INPUT)).build().perform();
 		Thread.sleep(3000);
 		
@@ -324,7 +324,8 @@ public class HomePageComponents extends HomePageLocators {
 		softAssert.assertTrue(driver.findElement(AUTO_SUGGESTED_PRODUCT_TILE_TITLE).isDisplayed(), "Auto suggested product tile title is not displayed");
 		WebElement First_Suggested_link = driver.findElement(By.cssSelector(".autocomplete-suggestions-content>a:nth-child(1)>div>span"));
 		String search_value = First_Suggested_link.getAttribute("data-search-term-value");
-		First_Suggested_link.click();
+		executor.executeScript("arguments[0].click();", First_Suggested_link);
+		//First_Suggested_link.click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SEARCHPAGE_PRODUCT_IMAGE));
 		String[] list1 = driver.findElement(SEARCHPAGE_TITLE).getText().split("for ");
 		text = list1[list1.length-1].replace("\"", "");

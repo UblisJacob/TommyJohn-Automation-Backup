@@ -410,6 +410,7 @@ public class GiftCard_PageComponents extends GiftCard_PageLocators {
 		softAssert.assertAll();
 
 	}
+	
 
 
 	//		public void AddGiftCardTocart() throws Exception
@@ -471,12 +472,13 @@ public class GiftCard_PageComponents extends GiftCard_PageLocators {
 
 	public void CheckAfterPayMessageonGC() throws Exception
 	{
+		int flag = 0;
 		new HomePageComponents(driver).navigateToGiftCard();
 		Thread.sleep(3000);
 		try{
 			System.out.println("Verifying for AfterPay Message .......");
 			if(driver.findElement(ProductDetailsPageLocators.AFTERPAY_DIV).isDisplayed())
-				throw new Exception("AfterPay Message is displayed on Gift Card.");
+				flag=1;
 		}
 		catch(Exception e){
 			System.out.println("After Pay Message is not displayed on Gift Card.");
@@ -484,8 +486,9 @@ public class GiftCard_PageComponents extends GiftCard_PageLocators {
 		//Gift Card Added To Cart
 		new GiftCard_PageComponents(driver).AddGiftCardTocart();
 		Thread.sleep(3000);
-
-
+		if(flag==1) {
+			throw new Exception("afterpay functionality incorrect with GC");
+		}
 		// Navigate to any normal PDP
 		Thread.sleep(3000);
 		element = driver.findElement(FlyCartPageLocator.INLINE_CART_CLOSE_BUTTON);
@@ -499,16 +502,17 @@ public class GiftCard_PageComponents extends GiftCard_PageLocators {
 		try{
 			System.out.println("Verifying for AfterPay Message .......");
 			if(driver.findElement(ProductDetailsPageLocators.AFTERPAY_PDP).isDisplayed())
-				throw new Exception("AfterPay Message is displayed on PDP with Gift Card in cart.");
-			Reporter.log("AfterPay Message is displayed on PDP with Gift Card");
+				flag=1;
+			Reporter.log("AfterPay Message is displayed on PDP with Gift Card in cart");
 		}
 		catch(Exception e) {
 			System.out.println("After Pay Message is not displayed on normal PDP with Gift Card.");
 			Reporter.log("After Pay Message is not displayed on normal PDP with Gift Card");
 		}
 
-
-
+		if(flag==1) {
+			throw new Exception("afterpay functionality incorrect with GC");
+		}
 		//Check gift cart with normal product in fly cart
 		new	AddToCartComponents(driver).addToCart();
 		driver.findElement(HomePageComponents.CART_ICON).click();
@@ -516,14 +520,14 @@ public class GiftCard_PageComponents extends GiftCard_PageLocators {
 		System.out.println("Total item in cart is: "+allElements.size());
 		for(int i=1; i<=allElements.size();i++)
 		{
-			String title = driver.findElement(By.cssSelector("div.inline-cart__col1 > div:nth-child(6) > article:nth-child("+i+") > div.line-item__summary > a")).getText();
+			String title = driver.findElement(By.cssSelector("article.line-item:nth-child("+i+") > div.line-item__summary>a[data-tj-qa='inline-cart-line-item-title']")).getText();
 			System.out.println("product title in fly cart is: " +title);
 			if(title.equalsIgnoreCase("E-Gift Card"))
 			{
 				try{
 					System.out.println("Verifying for AfterPay Message .......");
 					if(driver.findElement(FlyCartPageLocator.AFTERPAY_FLYCART).isDisplayed())
-						throw new Exception("AfterPay Message is displayed on Fly cart with Gift Card.");
+						flag=1;
 					Reporter.log("AfterPay Message is displayed on Inline cart with Gift Card");
 				}
 				catch(Exception e){
@@ -532,6 +536,9 @@ public class GiftCard_PageComponents extends GiftCard_PageLocators {
 				}
 			}
 
+		}
+		if(flag==1) {
+			throw new Exception("afterpay functionality incorrect with GC");
 		}
 		//navigate to shopping cart
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -544,14 +551,14 @@ public class GiftCard_PageComponents extends GiftCard_PageLocators {
 		System.out.println("Total item in cart is: "+allElements.size());
 		for(int i=1; i<=allElements.size();i++)
 		{
-			String title = driver.findElement(By.cssSelector(".cart.container > div.cart__outer > .cart__items > div > article.line-item:nth-child("+i+") > .line-item__summary > a")).getText();
+			String title = driver.findElement(By.cssSelector("article.line-item:nth-child("+i+") > div.line-item__summary>a[data-tj-qa='inline-cart-line-item-title']")).getText();
 			System.out.println("product title in fly cart is: " +title);
 			if(title.equalsIgnoreCase("E-Gift Card"))
 			{
 				try{
 					System.out.println("Verifying for AfterPay Message .......");
 					if(driver.findElement(ShoppingCartComponents.AFTERPAY_CART).isDisplayed())
-						throw new Exception("AfterPay Message is displayed on Shopping cart with Gift Card.");
+					flag=1;	
 					Reporter.log("AfterPay Message is displayed on Shopping cart with Gift Card");
 				}
 				catch(Exception e){
@@ -561,7 +568,9 @@ public class GiftCard_PageComponents extends GiftCard_PageLocators {
 			}
 
 		}
-
+		if(flag==1) {
+			throw new Exception("afterpay functionality incorrect with GC");
+		}
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ShoppingCartLocators.CHECKOUT_BUTTON));
@@ -595,17 +604,24 @@ public class GiftCard_PageComponents extends GiftCard_PageLocators {
 			{
 				try{
 					System.out.println("Verifying for AfterPay Message .......");
-					if(!driver.findElement(CheckoutPageComponents.AFTERPAY_OPTION).getAttribute("style").equalsIgnoreCase("display: none;"))
-						throw new Exception("AfterPay Message is displayed on payment page with Gift Card.");
-					Reporter.log("AfterPay Message is displayed on Checkout page with Gift Card");
+					driver.findElement(CheckoutPageComponents.AFTERPAYLOGO_WITH_INSTALLMENT).isDisplayed();
+					 flag = 1;
+					Reporter.log("BUG : AfterPay Message is displayed on Checkout page with Gift Card");
 				}
 				catch(Exception e){
 					System.out.println("After Pay Message is not displayed on payment page with Gift Card.");
 					Reporter.log("After Pay Message is not displayed on Checkout page with Gift Card");
 				}
 			}
-
+		}
+		if(flag==1) {
+			throw new Exception("afterpay functionality incorrect with GC");
+			
 		}
 	}
-}
+	}
+
+
+		
+		
 

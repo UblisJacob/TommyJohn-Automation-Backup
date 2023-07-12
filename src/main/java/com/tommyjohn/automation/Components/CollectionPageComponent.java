@@ -1452,10 +1452,16 @@ if(count!=59)
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		
+		try {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_PRODUCT_IMAGE_BADGE));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_PRODUCT_SECONDARY_BADGE));
-
+		}
+		catch(Exception e)
+		{
+			driver.navigate().refresh();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_PRODUCT_IMAGE_BADGE));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_PRODUCT_SECONDARY_BADGE));
+		}
 		WebElement onImageBadge = driver.findElement(PLP_PRODUCT_IMAGE_BADGE);
 		WebElement secondaryBadge = driver.findElement(PLP_PRODUCT_SECONDARY_BADGE);
 

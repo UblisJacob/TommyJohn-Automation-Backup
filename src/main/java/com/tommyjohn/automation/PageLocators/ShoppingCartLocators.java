@@ -29,12 +29,12 @@ public class ShoppingCartLocators {
 	//public static By CHECKOUT_BUTTON = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__summary > a");
 	public static By CONTINUE_SHOPPING = By.cssSelector(" section > div.cart__content.content > div.cart__outer > div.cart__summary > div.cart__summary-inner-div > a.cart__continue.text-link");
 	public static By GIFT_WRAP_LINK = By.cssSelector("div.cart__outer > div.cart__summary > div.cart__summary-inner-div > div.cart__gift-wrap > a");
-	public static By ESTIMATE_TOTAL_PRICE = By.cssSelector(".cart__summary>.inline-cart__summary>div>span:nth-child(2)");
+	public static By ESTIMATE_TOTAL_PRICE = By.cssSelector(".inline-cart__subtotal>#total_price_money");
 	//public static By CHECKOUT_BUTTON = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__summary > div.cart__summary-inner-div>a.cart__checkout-btn");
 	public static By CHECKOUT_BUTTON = By.cssSelector("a.cart__checkout-btn");
 	//AfterPay
 	    public static By AFTERPAY_CART = By.cssSelector(".afterpay-cart-container >p> span");
-    public static By AFTERPAY_DIV = By.cssSelector(".inline-cart__summary>.afterpay-cart-container>p>.afterpay-paragraph");
+    public static By AFTERPAY_DIV = By.cssSelector("#afterpay-messaging-widget-cart-original");
 	public static By AFTERPAYTEXT_WITH_AVAILABLE = By.cssSelector(".inline-cart__summary>.afterpay-cart-container>.afterpay-paragraph>span");
 	public static By AFTERPAYTEXT_WITH_INSTALLMENT = By.cssSelector(".inline-cart__summary>.afterpay-cart-container>p");
 	public static By AFTERPAYLOGO_WITH_AVAILABLE_MSG = By.cssSelector(".inline-cart__summary>span>p:nth-child(2)>.afterpay-link");
