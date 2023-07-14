@@ -49,6 +49,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	}
 
 	public void expresscheckout() throws Exception {
+		jse = (JavascriptExecutor)driver;
 		softAssert = new SoftAssert();
 		String text = null;
 
@@ -56,10 +57,12 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		new AddToCartComponents(driver).addToCart();
 		
 		wait.until(ExpectedConditions.elementToBeClickable(HomePageLocators.CART_ICON));
-		driver.findElement(HomePageLocators.CART_ICON).click();
+		jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
+		
 		
 		wait.until(ExpectedConditions.elementToBeClickable(FlyCartPageLocator.CHECKOUT_BUTTON));
-		driver.findElement(FlyCartPageLocator.CHECKOUT_BUTTON).click();
+		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartPageLocator.CHECKOUT_BUTTON));
+		
 
 //		Wait for Checkout page
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EXPRESS_CHECKOUT_TEXT));
@@ -69,8 +72,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 
 		String mainWindow = driver.getWindowHandle();
 
-		driver.findElement(PAYPAL_BUTTON).click();
-		
+		jse.executeScript("arguments[0].click();", driver.findElement(PAYPAL_BUTTON));
 		Reporter.log("PayPal option is present on checkout page");
 		
 		Set<String> set = driver.getWindowHandles();
@@ -90,6 +92,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 			driver.close();
 			driver.switchTo().window(mainWindow);
 		}else {
+			Thread.sleep(1000);
 			driver.close();
 			driver.switchTo().window(mainWindow);
 			softAssert.fail("PayPal popup does not show up when clicked on paypal express checkout button");
@@ -99,14 +102,15 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 //		Verify GPay Button
 		try {
 			wait.until(ExpectedConditions.elementToBeClickable(GPAY_BUTTON));
-			driver.findElement(GPAY_BUTTON).click();
+			jse.executeScript("arguments[0].click();", driver.findElement(GPAY_BUTTON));
+			
 			Reporter.log("GPay option is present on checkout page");
 
 		} catch (ElementClickInterceptedException | NoSuchElementException | TimeoutException e) {
 			driver.navigate().refresh();
 			Thread.sleep(5000);
 			try {
-				driver.findElement(GPAY_BUTTON).click();
+				jse.executeScript("arguments[0].click();", driver.findElement(GPAY_BUTTON));
 				Reporter.log("GPAY option is present on checkout page");
 			} catch (ElementClickInterceptedException |NoSuchElementException | TimeoutException f) {
 				softAssert.assertTrue(false, "Express Checkout Option GPay is not interactable");
@@ -120,8 +124,8 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		
 //		Verify Amazon Pay
 		wait.until(ExpectedConditions.visibilityOfElementLocated(AMZ_PAY));
-		driver.findElement(AMZ_PAY).click();
-
+		jse.executeScript("arguments[0].click();", driver.findElement(AMZ_PAY));
+	
 		wait.until(ExpectedConditions.titleContains("Amazon"));
 		
 //		Thread.sleep(3900);
@@ -134,8 +138,8 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		
 //		Verify Shop pay
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SHOP_PAY));
-		driver.findElement(SHOP_PAY).click();
-
+		jse.executeScript("arguments[0].click();", driver.findElement(SHOP_PAY));
+		
 		wait.until(ExpectedConditions.urlContains("shop"));
 		
 //		Thread.sleep(3900);
@@ -168,15 +172,17 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 
 	public void guestcheckoutflow() throws Exception {
 		softAssert = new SoftAssert();
-		
+		jse = (JavascriptExecutor)driver;
 //		Add Product to Cart
 		new AddToCartComponents(driver).addToCart();
 		
 		wait.until(ExpectedConditions.elementToBeClickable(HomePageLocators.CART_ICON));
-		driver.findElement(HomePageLocators.CART_ICON).click();
+		jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
+		
 		
 		wait.until(ExpectedConditions.elementToBeClickable(FlyCartPageLocator.CHECKOUT_BUTTON));
-		driver.findElement(FlyCartPageLocator.CHECKOUT_BUTTON).click();
+		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartPageLocator.CHECKOUT_BUTTON));
+		
 		
 //		On Information Page
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CHECKOUT_EMAIL));
@@ -194,7 +200,8 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 
 //		Click on Continue to Shipping button
 		wait.until(ExpectedConditions.elementToBeClickable(CONTINUE_TO_SHIPPING_BUTTON));
-		driver.findElement(CONTINUE_TO_SHIPPING_BUTTON).click();
+		jse.executeScript("arguments[0].click();", driver.findElement(CONTINUE_TO_SHIPPING_BUTTON));
+		
 		Reporter.log("User is navigated to select shipping method");
 		
 //		On Shipping Page
@@ -204,7 +211,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		softAssert.assertTrue(text.contains("Shipping method"),"Shipping method text not present");
 		
 		wait.until(ExpectedConditions.elementToBeClickable(CONTINUE_TO_PAYMENT_BUTTON));
-		driver.findElement(CONTINUE_TO_PAYMENT_BUTTON).click();
+		jse.executeScript("arguments[0].click();", driver.findElement(CONTINUE_TO_PAYMENT_BUTTON));
 		Reporter.log("Selected shipping method and user is navigated to payment page");
 		
 //		On Payment Page
@@ -221,7 +228,8 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		String password = CustomUtilities.properties.getProperty("password");
 		new AddToCartComponents(driver).addToCart();
 
-		driver.findElement(HomePageLocators.CART_ICON).click();
+		jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
+		
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
 		driver.findElement(FlyCartComponents.CHECKOUT_BUTTON).click();
@@ -274,7 +282,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 
 	public void informationpage() throws Exception {
 		softAssert = new SoftAssert();
-
+		jse = (JavascriptExecutor)driver;
 		new AddToCartComponents(driver).addToCart();
 		driver.findElement(HomePageLocators.CART_ICON).click();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
@@ -288,7 +296,8 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 //			wait.until(ExpectedConditions.visibilityOfElementLocated(ShoppingCartComponents.CART_TITLE));
 //		}
 
-		driver.findElement(FlyCartComponents.CHECKOUT_BUTTON).click();
+		
+		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
 		Reporter.log("Checkout page displayed");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EXPRESS_CHECKOUT_TEXT));
 		CheckBreadcrumbs();
@@ -366,11 +375,13 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		
 		new AddToCartComponents(driver).addToCart();
 		
-		driver.findElement(HomePageLocators.CART_ICON).click();
+		
+		jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
 //		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 
-		driver.findElement(FlyCartComponents.CHECKOUT_BUTTON).click();
+		
+		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
 		Reporter.log("Checkout page displayed");
 		Thread.sleep(5000);
 		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
