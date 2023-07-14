@@ -54,7 +54,7 @@ public class CustomUtilities {
 			// System.setProperty("webdriver.chrome.driver"
 			// ,"src\\main\\resources\\chromedriver.exe");
 			// System.setProperty("webdriver.chrome.driver" ,"/tmp/chromedriver.exe");
-			System.setProperty("webdriver.chrome.driver", properties.getProperty("chromeDriverPath"));
+			//System.setProperty("webdriver.chrome.driver", properties.getProperty("chromeDriverPath"));
 			ChromeOptions chromeOptions = new ChromeOptions();
 			chromeOptions.addArguments("--headless");
 			chromeOptions.addArguments("--window-size=1280,800");
@@ -98,7 +98,7 @@ public class CustomUtilities {
 		}
 		else if (browser.equalsIgnoreCase("firefox"))
 		{
-			System.setProperty("webdriver.gecko.driver", properties.getProperty("ffDriverPath"));
+			//System.setProperty("webdriver.gecko.driver", properties.getProperty("ffDriverPath"));
 			FirefoxOptions options = new FirefoxOptions();
 			options.addArguments("--headless");
 			options.addArguments("--window-size=1280,800");
