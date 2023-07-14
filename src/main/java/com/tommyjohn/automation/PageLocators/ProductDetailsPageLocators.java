@@ -24,7 +24,7 @@ public class ProductDetailsPageLocators {
 	public static By IMAGE_BADGING = By.cssSelector(".pdpImageSlidesWrapper>div:nth-child(2)");
 	
 	//Secondary Badging
-	public static By SECONDARY_BADGING = By.cssSelector("div.multi-pdp-title-wrap.desktop-view.desktop>div:nth-child(2)>span");
+	public static By SECONDARY_BADGING = By.cssSelector("div.multi-pdp-title-wrap.desktop-view.desktop>span");
 	
 	//image color
 	public static By IMAGE_COLOR = By.cssSelector(".product-gallery.pdp-client-side-container.product-gallery-container>div>div:nth-child(2)>div>div>div>div.slick-active");
