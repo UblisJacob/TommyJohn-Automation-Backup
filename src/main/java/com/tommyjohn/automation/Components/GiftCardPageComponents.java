@@ -325,7 +325,8 @@ public class GiftCardPageComponents extends GiftCardPageLocators {
 
 		softAssert.assertTrue(driver.findElement(GIFT_CARD_MESSAGE_TEXTBOX).isDisplayed(), "Gift card message textbox is not displayed");
 		Reporter.log("Gift Card message textbox is displayed");
-		driver.findElement(GIFT_CARD_MESSAGE_TEXTBOX).click();
+		jse.executeScript("arguments[0].click();", driver.findElement(GIFT_CARD_MESSAGE_TEXTBOX));
+		
 
 		softAssert.assertTrue(driver.findElement(GIFT_CARD_MESSAGE_LIMIT).isDisplayed(), "Gift card message limit is not displayed");
 		Reporter.log("Gift Card limit label text is displayed");
@@ -399,7 +400,7 @@ public class GiftCardPageComponents extends GiftCardPageLocators {
 		
 		
 		// if all fields are empty
-		driver.findElement(ATC_BUTTON).click();
+		jse.executeScript("arguments[0].click();", driver.findElement(ATC_BUTTON));
 		Thread.sleep(3000);
 		softAssert.assertTrue(driver.findElement(EMAIL_ERROR_MESSAGES_GC).isDisplayed(), "Error message for empty Recipient email is not displayed");
 		softAssert.assertEquals(driver.findElement(EMAIL_ERROR_MESSAGES_GC).getText(), properties.getProperty("GCEmptyErrorEmail"),"Error message text change for empty Recipient email");
@@ -418,7 +419,8 @@ public class GiftCardPageComponents extends GiftCardPageLocators {
 		//if invalid email is entered and mismatched email
 		driver.findElement(RECIPIENT_MAIL_TEXTBOX).sendKeys(invalidemail);
 		driver.findElement(CONFIRM_MAIL_TEXTBOX).sendKeys("test@tommyjohn.com");
-		driver.findElement(ATC_BUTTON).click();
+		jse.executeScript("arguments[0].click();", driver.findElement(ATC_BUTTON));
+		
 		Thread.sleep(3000);
 
 		softAssert.assertTrue(driver.findElement(EMAIL_ERROR_MESSAGES_GC).isDisplayed(), "Error message for Invalid Recipient email is not displayed");
