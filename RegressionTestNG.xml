@@ -6,13 +6,13 @@
 		<listener class-name="TestScenario.ListenerClass"></listener>
 	</listeners>
 
- 	<test name="NavigationAndHomepageTests">
+	<test name="NavigationAndHomepageTests">
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="TestModules.ValidateNavigationElements" />
 		</classes>
-	</test> 
-	 <test name="CategoryTests">
+	</test>
+	<test name="CategoryTests">
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="TestModules.ValidateCategoryPages" />
@@ -102,36 +102,35 @@
 			<class name="TestModules.ValidateCartPage" />
 		</classes>
 	</test>
+
 	<test thread-count="1" name="InlineCartTests">
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="TestModules.ValidateInlineCartPage" />
 		</classes>
-	</test> 
+	</test>
 
-
-
-	 <test name="BundlePageTests">
+	<test name="BundlePageTests">
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="TestModules.ValidateBundlePDP" />
 		</classes>
-	</test> 
+	</test>
 
- 	<test name="BlogPageTests">
+	<test name="BlogPageTests">
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="TestModules.ValidateBlogPages" />
 		</classes>
-	</test> 
+	</test>
 
-	 <test name="SanityModulesTests">
+	<test name="SanityModulesTests">
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="TestModules.ValidateSanityModules" />
 		</classes>
-	</test> 
-	
+	</test>
+
 	<test name="ReOrderPageTests">
 		<parameter name="browser" value="chrome" />
 		<classes>
@@ -146,25 +145,25 @@
 		</classes>
 	</test>
 
-<!--	<test name="ReviewsPage">-->
-<!--		<parameter name="browser" value="chrome" />-->
-<!--		<classes>-->
-<!--			<class name="TestModules.ValidateReviewsPage" />-->
-<!--		</classes>-->
-<!--	</test>-->
+	<test name="ReviewsPage">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="TestModules.ValidateReviewsPage" />
+		</classes>
+	</test>
 
-<!--	<test name="OrderPlacementTests">-->
-<!--		<parameter name="browser" value="chrome" />-->
-<!--		<classes>-->
-<!--			<class name="TestModules.ValidateOrderPlacement" />-->
-<!--		</classes>-->
-<!--	</test>-->
+	<!--	<test name="OrderPlacementTests">-->
+	<!--		<parameter name="browser" value="chrome" />-->
+	<!--		<classes>-->
+	<!--			<class name="TestModules.ValidateOrderPlacement" />-->
+	<!--		</classes>-->
+	<!--	</test>-->
 
 
-<!--			<test thread-count="1" name="AfterPayTests">-->
-<!--				<parameter name="browser" value="chrome" />-->
-<!--				<classes>-->
-<!--					<class name="TestModules.ValidateAfterPay" />-->
-<!--				</classes>-->
-<!--			</test>-->
+	<!--			<test thread-count="1" name="AfterPayTests">-->
+	<!--				<parameter name="browser" value="chrome" />-->
+	<!--				<classes>-->
+	<!--					<class name="TestModules.ValidateAfterPay" />-->
+	<!--				</classes>-->
+	<!--			</test>-->
 </suite>
