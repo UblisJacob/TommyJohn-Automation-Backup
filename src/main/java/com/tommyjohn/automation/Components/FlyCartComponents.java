@@ -198,6 +198,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 
 
 	public void validateNonEmptyFlyCart() throws Exception {
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		String text1 = null;
 		String text2 = null;
 		String colorAndSize = null;
@@ -206,24 +207,25 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		String price2 = null;
 
 		// first add any product to cart
-	new AddToCartComponents(driver).addToCart();
+		new AddToCartComponents(driver).addToCart();
 		//new ProductDetailsPageComponents(driver).verifyAddToCart();
-
-		driver.findElement(HomePageLocators.CART_ICON).click();
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
 		Thread.sleep(3000);
 
-		driver.findElement(INLINE_CART_CLOSE_BUTTON).click();
+		
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE_BUTTON));
 		//driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		Thread.sleep(2000);
 
-		driver.findElement(HomePageLocators.CART_ICON).click();
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
 		Thread.sleep(2000);
 
-		driver.findElement(VIEW_CART_LINK).click();
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", driver.findElement(VIEW_CART_LINK));
 		Thread.sleep(3000);
 
 		//softAssert.assertTrue(driver.getCurrentUrl().equals(properties.get("viewCartPage")), "Wrong page opened after cicked on View Cart link");
-		driver.findElement(HomePageLocators.CART_ICON).click();
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
+		
 		Thread.sleep(2000);
 
 		// check product heading for available items in cart
@@ -231,7 +233,8 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		Thread.sleep(2000);
 		System.out.println("Text1 :: "+text.getText());
 		//jse.executeScript("arguments[0].click();", driver.findElement(FIRST_PRODUCT_TITLE_IN_CART));
-		driver.findElement(FIRST_PRODUCT_TITLE_IN_CART).click();
+		WebElement prod=driver.findElement(FIRST_PRODUCT_TITLE_IN_CART);
+		jse.executeScript("arguments[0].click();", prod);
 		Thread.sleep(3000);
 		text2 = driver.findElement(ProductDetailsPageLocators.PRODUCT_TITLE).getText();
 		System.out.println("Text2 :: "+text2);
@@ -241,7 +244,8 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		System.out.println("color and size :: "+colorAndSize);
 		colorAndSize = colorAndSize+" / ";
 
-		driver.findElement(HomePageLocators.CART_ICON).click();
+		WebElement icon = driver.findElement(HomePageLocators.CART_ICON);
+		jse.executeScript("arguments[0].click();", icon);
 		Thread.sleep(2000);
 
 		colorAndSize2 = driver.findElement(COLOR_AND_SIZE_IN_CART).getText();
@@ -288,14 +292,16 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		Reporter.log("Quantity decreased by 1");
 
 		// check for checkout button
-		driver.findElement(CHECKOUT_BUTTON).click();
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
+		
 		Thread.sleep(3000);
 		driver.get(CustomUtilities.baseUrl);
 		Thread.sleep(3000);
 		Reporter.log("Checkout button is Displayed :: Clickable");
 
 		// check for cross close button near text heading link to remove item from cart
-		driver.findElement(HomePageLocators.CART_ICON).click();
+		
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
 		Thread.sleep(2000);
 
 		allElements = driver.findElements(LIST_OF_ITEMS_IN_FLYCART);
@@ -303,7 +309,9 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		int list1 = allElements.size();
 		if(list1>0) {
 			for(int i=1;i<=list1;i++) {
-			driver.findElement(By.cssSelector("article:nth-child("+list1+") > div.line-item__summary > button")).click();
+				JavascriptExecutor executor = (JavascriptExecutor)driver;
+				WebElement size = driver.findElement(By.cssSelector("article:nth-child("+list1+") > div.line-item__summary > button"));
+				executor.executeScript("arguments[0].click();", size);
 			}
 		}
 		Thread.sleep(3000);
@@ -586,12 +594,13 @@ public class FlyCartComponents extends FlyCartPageLocator{
 	}
 	public void validatePromotionalMessage() throws Exception
 	{
+		
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HomePageLocators.CART_ICON));
-		driver.findElement(HomePageLocators.CART_ICON).click();
+		jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(TIERED_METER));
 		Thread.sleep(5000);
 		
