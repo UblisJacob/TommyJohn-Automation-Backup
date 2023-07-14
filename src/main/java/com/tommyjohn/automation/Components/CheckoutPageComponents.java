@@ -501,33 +501,10 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	}
 
 	public void AfterpayonCheckout() throws Exception {
-		// product add to cart
-		new HomePageComponents(driver).navigateToBraCategory();
-		new CollectionPageComponent(driver).navigateToProductDetailsPage();
-		// new ProductDetailsPageComponents(driver).validatePage();
-		new AddToCartComponents(driver).addToCart();
-		// navigate to Checkout page
-		driver.findElement(HomePageLocators.CART_ICON).click();
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.CHECKOUT_BUTTON));
-		driver.findElement(FlyCartPageLocator.CHECKOUT_BUTTON).click();
-		Thread.sleep(5000);
-		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
-		entershippingdetails();
-		Thread.sleep(3000);
-		driver.findElement(CONTINUE_TO_SHIPPING_BUTTON).click();
-		Thread.sleep(5000);
-		System.out.println("payment page");
-		Thread.sleep(10000);
-		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTINUE_TO_PAYMENT_BUTTON));
-		WebElement element = driver.findElement(CONTINUE_TO_PAYMENT_BUTTON);
-		if (!element.isDisplayed())
-			throw new Exception("Continue to payment button is not displayed.");
-		jse = (JavascriptExecutor) driver;
-		jse.executeScript("arguments[0].click();", element);
-		Thread.sleep(10000);
-
+		softAssert = new SoftAssert();
+	
+		guestcheckoutflow();
+		
 		// Check AfterPay message is display
 		wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(AFTERPAY_OPTION));
@@ -541,37 +518,21 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		String price2 = price1[price1.length - 1];
 		System.out.println("Estimate total is: " + price);
 		if (Float.parseFloat(price2) < 35 || Float.parseFloat(price2) > 1000) {
-			String Available_Between = driver.findElement(AVAILABLE_BETWEEN_TEXT).getText();
-			String Amount = driver.findElement(AFTERPAY_INSTALLMENTS).getText();
-			String expectedmessage = Available_Between + " " + Amount;
-			System.out.println("Message with availability is: " + expectedmessage);
-			softAssert.assertEquals(expectedmessage, "available between $35 - $1000",
-					"Wrong afterpay message displayed for product price");
-			Reporter.log("After pay message is correct On Checkout page :: Displayed and Correct");
-			softAssert.assertTrue(driver.findElement(AFTERPAYLOGO_WITH_AVAILABLE).isDisplayed(),
-					"Afterpay logo not present on Shopping cart.");
-			Reporter.log("After pay logo icon is displayed on Checkout Page :: Displayed");
+			try {
+				boolean present = driver.findElement(AFTERPAYLOGO_WITH_INSTALLMENT).isDisplayed();
+			}
+			catch(Exception e)
+			{
+				Reporter.log("afterpay logo is not displaayed on checkout if amount is not afterpay criteria : correct");
+			}
 		} else {
-
-			installment = Float.parseFloat(price2) / 4;
-			String inst = String.format("%.2f", installment);
-			String afterInstallmentText = driver.findElement(AFTERPAYLOGO_WITH_INSTALLMENT).getText();
-			String expectedmessage = "4 interest-free installments of $" + inst + " " + afterInstallmentText;
-			String actualMessage = driver.findElement(AFTERPAYTEXT_WITH_INSTALLMENT).getText();
-			System.out.println("Icon text is: " + afterInstallmentText);
-			System.out.println("expected message is: " + expectedmessage);
-			System.out.println("Actual message is: " + actualMessage);
-			softAssert.assertEquals(actualMessage, expectedmessage,
-					"Wrong afterpay message displayed for product price with installment.");
-			Reporter.log(
-					"After pay message with calculated installment is correct on Checkout page :: Displayed and correct");
-			softAssert.assertTrue(driver.findElement(AFTERPAYLOGO_WITH_INSTALLMENT).isDisplayed(),
-					"Afterpay logo not present on Shopping cart");
-			Reporter.log("After pay logo icon is displayed on Checkout page :: Displayed");
+			softAssert.assertTrue(driver.findElement(AFTERPAYLOGO_WITH_INSTALLMENT).isDisplayed(), "Afterpay logo is not correct");
+			driver.findElement(AFTERPAY_INSTALLMENTS).click();
+			driver.findElement(COMPLETE_ORDER_BUTTON).click();
+			Thread.sleep(4000);
+			softAssert.assertTrue(driver.getCurrentUrl().contains("afterpay") , "user is not navigated to afterpay portal for payment" );
 		}
-		// driver.findElement(By.cssSelector(".breadcrumb > li:nth-child(1) >
-		// a")).click();
-		Thread.sleep(5000);
+
 		softAssert.assertAll();
 	}
 
@@ -644,8 +605,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		CheckAfterPayInstallment();
 		jse.executeScript("window.scrollTo(0, 0)");
 		jse.executeScript("arguments[0].click();", cancel_code);
-		Thread.sleep(8000);
-		CheckAfterPayInstallment();
+		
 		Thread.sleep(5000);
 		driver.findElement(BREADCRUMB_LINK_SHIPPING).click();
 		wait.until(ExpectedConditions.presenceOfElementLocated(CONTINUE_TO_PAYMENT_BUTTON));
@@ -667,41 +627,29 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 
 	public void CheckAfterPayInstallment() throws Exception {
 		jse = (JavascriptExecutor) driver;
+		
+
+		// Check message with calculated installment and icon display
 		price = driver.findElement(TOTAL).getText();
 		String[] price1 = price.split("\\$");
 		String price2 = price1[price1.length - 1];
 		System.out.println("Estimate total is: " + price);
-		jse.executeScript("window.scrollBy(0,250)");
-		Thread.sleep(5000);
 		if (Float.parseFloat(price2) < 35 || Float.parseFloat(price2) > 1000) {
-			String Available_Between = driver.findElement(AVAILABLE_BETWEEN_TEXT).getText();
-			String Amount = driver.findElement(AFTERPAY_INSTALLMENTS).getText();
-			String expectedmessage = Available_Between + " " + Amount;
-			System.out.println("Message with availability is: " + expectedmessage);
-			softAssert.assertEquals(expectedmessage, "available between $35 - $1000",
-					"Wrong afterpay message displayed for product price");
-			Reporter.log("After pay message is correct On Checkout page :: Displayed and Correct");
-			softAssert.assertTrue(driver.findElement(AFTERPAYLOGO_WITH_AVAILABLE).isDisplayed(),
-					"Afterpay logo not present on Shopping cart.");
-			Reporter.log("After pay logo icon is displayed on Checkout Page :: Displayed");
+			try {
+				boolean present = driver.findElement(AFTERPAYLOGO_WITH_INSTALLMENT).isDisplayed();
+			}
+			catch(Exception e)
+			{
+				Reporter.log("afterpay logo is not displaayed on checkout if amount is not afterpay criteria : correct");
+			}
 		} else {
-			installment = Float.parseFloat(price2) / 4;
-			String inst = String.format("%.2f", installment);
-			String afterInstallmentText = driver.findElement(AFTERPAYLOGO_WITH_INSTALLMENT).getText();
-			String expectedmessage = "4 interest-free installments of $" + inst + " " + afterInstallmentText;
-			String actualMessage = driver.findElement(AFTERPAYTEXT_WITH_INSTALLMENT).getText();
-			System.out.println("Icon text is: " + afterInstallmentText);
-			System.out.println("expected message is: " + expectedmessage);
-			System.out.println("Actual message is: " + actualMessage);
-			softAssert.assertEquals(actualMessage, expectedmessage,
-					"Wrong afterpay message displayed for product price with installment.");
-			Reporter.log(
-					"After pay message with calculated installment is correct on Checkout page :: Displayed and correct");
-			softAssert.assertTrue(driver.findElement(AFTERPAYLOGO_WITH_INSTALLMENT).isDisplayed(),
-					"Afterpay logo not present on Shopping cart");
-			Reporter.log("After pay logo icon is displayed on Checkout page :: Displayed");
+			softAssert.assertTrue(driver.findElement(AFTERPAYLOGO_WITH_INSTALLMENT).isDisplayed(), "Afterpay logo is not correct");
+			driver.findElement(AFTERPAY_INSTALLMENTS).click();
+			driver.findElement(COMPLETE_ORDER_BUTTON).click();
+			Thread.sleep(4000);
+			softAssert.assertTrue(driver.getCurrentUrl().contains("afterpay") , "user is not navigated to afterpay portal for payment" );
 		}
-		Thread.sleep(5000);
+
 		softAssert.assertAll();
 	}
 

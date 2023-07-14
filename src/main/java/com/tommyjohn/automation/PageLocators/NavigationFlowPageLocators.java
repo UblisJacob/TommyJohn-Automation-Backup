@@ -17,7 +17,7 @@ public class NavigationFlowPageLocators extends HomePageLocators
 	public static By ALL_SALE = SHOPALL_LINK;
 	
 		
-	public static By MENS_ALL_NEWARRIVALS = By.xpath("(//li[@arial-label='open Men menu']//a[@aria-label='New Arrivals link']//span)[1]");
+	public static By MENS_ALL_NEWARRIVALS = By.xpath("div[data-tj-qa='nav-New Arrivals']>a>span,(//li[@arial-label='open Men menu']//a[@aria-label='New Arrivals link']//span)[1]");
 	public static By WOMENS_ALL_NEWARRIVALS = By.xpath("(//li[@arial-label='open Women menu']//a[@aria-label='New Arrivals link']//span)[1]");
 	//public static By WOMENS_ALL_NEWARRIVALS = By.xpath("(//li[@arial-label='open Women menu']//a[@aria-label='New Arrivals link']//span)[1]");
 	
