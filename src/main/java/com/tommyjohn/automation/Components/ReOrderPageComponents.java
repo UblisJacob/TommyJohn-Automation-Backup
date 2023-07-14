@@ -167,7 +167,7 @@ public class ReOrderPageComponents extends ReOrderPageLocators {
 		list = driver.findElements(REORDER_ITEM_ATC);
 		
 		if (list.size() > 0) {
-			int i = random.nextInt(0, list.size());
+			int i = random.nextInt(list.size());
 			System.out.println("random number = " + i);
 			
 			WebElement productToAdd = driver.findElement(By.cssSelector(".account-reorder-grid>.reorder-item:nth-child("+ i +")>a:nth-child(2)>span"));
@@ -205,7 +205,7 @@ public class ReOrderPageComponents extends ReOrderPageLocators {
 		list = driver.findElements(REORDER_ITEMS_LIST);
 		
 		if (list.size() > 0) {
-			number = random.nextInt(0, list.size());
+			number = random.nextInt(list.size());
 //			System.out.println("random number = " + i);
 		}else {
 			Assert.fail("No Products on Reorder Page");
