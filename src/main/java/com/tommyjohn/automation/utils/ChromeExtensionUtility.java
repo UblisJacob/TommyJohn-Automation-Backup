@@ -20,7 +20,7 @@ public class ChromeExtensionUtility {
 
 	public static WebDriver driver;
 	public EdgeDriver edgedriver;
-	public static String baseUrl = "https://tommyjohn.com";
+	public static String baseUrl = "https://www.tommyjohn.com/?preview_theme_id=34570141741";
 	public static BufferedReader reader;
 	public static Properties properties;
 	public static final String propertiesFilePath = "src/main/resources/configuration.properties";

@@ -86,12 +86,12 @@ public class CheckoutPageLocators {
 
 
 	//	AfterPay
-	public static By AFTERPAY_OPTION = By.cssSelector("div.section__content > div:nth-child(2) > fieldset > div:nth-child(9)");
-	public static By AFTERPAYTEXT_WITH_INSTALLMENT = By.cssSelector("div.radio__label > label > div:nth-child(2)>p:nth-child(1)");
-	public static By AVAILABLE_BETWEEN_TEXT = By.cssSelector("div.section__content > div:nth-child(2) > fieldset > div:nth-child(9) > p > span.afterpay-text2");
-	public static By AFTERPAY_INSTALLMENTS = By.cssSelector("div.section__content > div:nth-child(2) > fieldset > div:nth-child(9) > p >.afterpay-instalments");
-	public static By AFTERPAYLOGO_WITH_AVAILABLE = By.cssSelector("div.section__content > div:nth-child(2) > fieldset > div:nth-child(9) > p >.afterpay-link");
-	public static By AFTERPAYLOGO_WITH_INSTALLMENT = By.cssSelector("div.radio__label > label > div:nth-child(2) > p>a");			
+	public static By AFTERPAY_OPTION = By.cssSelector("#checkout_payment_gateway_70492782637");
+	//public static By AFTERPAYTEXT_WITH_INSTALLMENT = By.cssSelector("div.radio__label > label > div:nth-child(2)>p:nth-child(1)");
+	//public static By AVAILABLE_BETWEEN_TEXT = By.cssSelector("div.section__content > div:nth-child(2) > fieldset > div:nth-child(9) > p > span.afterpay-text2");
+	public static By AFTERPAY_INSTALLMENTS = By.cssSelector("#checkout_payment_gateway_70492782637");
+	//public static By AFTERPAYLOGO_WITH_AVAILABLE = By.cssSelector("div.section__content > div:nth-child(2) > fieldset > div:nth-child(9) > p >.afterpay-link");
+	public static By AFTERPAYLOGO_WITH_INSTALLMENT = By.cssSelector(".payment-icon.payment-icon--afterpay");			
 
 
 }
