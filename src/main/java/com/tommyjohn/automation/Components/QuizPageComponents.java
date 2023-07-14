@@ -188,7 +188,8 @@ public class QuizPageComponents extends QuizPageLocators
 		softassert.assertEquals(QuestionText, ExpectedText, "wrong navigation after click on back arrow on second question page");
 		CheckPreselect();
 
-		driver.findElement(NEXT_CTA).click();
+		element = driver.findElement(NEXT_CTA);
+		js.executeScript("arguments[0].click();", element);
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(QUESTION_HEADING));
 		WebList= driver.findElements(QUESTION_BLOCK_OPTIONS);
@@ -230,7 +231,8 @@ public class QuizPageComponents extends QuizPageLocators
 		softassert.assertEquals(Second_question, ExpectedText, "wrong navigation after click on back arrow on Third question page");
 		CheckPreselect();
 
-		driver.findElement(NEXT_CTA).click();
+		element = driver.findElement(NEXT_CTA);
+		js.executeScript("arguments[0].click();", element);
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(QUESTION_HEADING));
 		WebList= driver.findElements(QUESTION_BLOCK_OPTIONS);
@@ -264,7 +266,8 @@ public class QuizPageComponents extends QuizPageLocators
 		softassert.assertEquals(Third_question, ExpectedText, "wrong navigation after click on back arrow on Education card");
 		
 
-		driver.findElement(NEXT_CTA).click();
+		element = driver.findElement(NEXT_CTA);
+		js.executeScript("arguments[0].click();", element);
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(EDUCATION_CARD_TITLE));
 
@@ -296,7 +299,8 @@ public class QuizPageComponents extends QuizPageLocators
 		wait.until(ExpectedConditions.presenceOfElementLocated(EDUCATION_CARD_TITLE));
 		ExpectedText = driver.findElement(EDUCATION_CARD_TITLE).getText();
 		softassert.assertEquals(Education_card_title, ExpectedText, "wrong navigation after click on back arrow on Forth question page");
-		driver.findElement(NEXT_CTA).click();
+		element = driver.findElement(NEXT_CTA);
+		js.executeScript("arguments[0].click();", element);
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(QUESTION_HEADING));
 		WebList= driver.findElements(QUESTION_BLOCK_OPTIONS);
@@ -329,7 +333,8 @@ public class QuizPageComponents extends QuizPageLocators
 		softassert.assertEquals(Forth_question, ExpectedText, "wrong navigation after click on back arrow on Summary card");
 		CheckPreselect();
 
-		driver.findElement(NEXT_CTA).click();
+		element = driver.findElement(NEXT_CTA);
+		js.executeScript("arguments[0].click();", element);
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(SUMMARY_CARD_HEADING));
 		List <WebElement> summary_answer= driver.findElements(SUMMARY_ANSWER);
@@ -418,6 +423,8 @@ public class QuizPageComponents extends QuizPageLocators
 	public void ResultPage() throws Exception
 	{	// Verify selected options on result page
 		Thread.sleep(3000);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(40));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(QUIZ_RESULT_PRODUCT_IMAGE));
 		softassert.assertTrue(driver.findElement(QUIZ_RESULT_PRODUCT_IMAGE).isDisplayed(), "products are displayed on quiz result page");
 		try 
 		{		
@@ -631,7 +638,8 @@ public class QuizPageComponents extends QuizPageLocators
 					ExpectedText = driver.findElement(EDUCATION_CARD_TITLE).getText();
 					softassert.assertEquals(ExpectedText, Education_card_title, "wrong navigation after click on back arrow on Summary card");
 
-					driver.findElement(NEXT_CTA).click();
+					element = driver.findElement(NEXT_CTA);
+					js.executeScript("arguments[0].click();", element);
 					wait.until(ExpectedConditions.presenceOfElementLocated(SUMMARY_CARD_HEADING));
 					List <WebElement> summary_answer= driver.findElements(SUMMARY_ANSWER);
 
