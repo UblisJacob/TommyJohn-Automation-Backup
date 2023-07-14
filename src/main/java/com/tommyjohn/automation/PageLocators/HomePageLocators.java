@@ -6,15 +6,55 @@ import org.openqa.selenium.By;
 public class HomePageLocators{
 
 	public static By HOMEPAGE_LOGO = By.cssSelector("a[data-tj-qa='header-logo'],a.header-logo");
-	//
+	public static By MAIN_HEADER = By.cssSelector(".header-main");
 	public static By SEARCH_ICON_IMAGE= By.cssSelector("label[data-tj-qa='header-search-icon']>svg,form>.header-search-input-icon>svg");
 	//public static By NEWARRIVALS_CATEGORY = By.cssSelector(".header-desktop-left > ul > li:nth-child(1) > a");
 	//public static By MEN_IN_NEWARRIVALS_CATEGORY = By.cssSelector(".header-desktop-left > ul > li:nth-child(1) > div > ul > li:nth-child(1) > div");
+	
+	public static By LEVEL_TWO_ALL_OPTIONS = By.cssSelector(".nav-item__list.level-zero-list>li:nth-child(1) ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']:nth-child(2) li.level-two-container");
+	public static By LEVEL_TWO_FIRST_OPTION = By.cssSelector(".nav-item__list.level-zero-list>li:nth-child(1) ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']:nth-child(2) li.level-two-container:nth-child(3)");
+	public static By MENS_UNDERSHIRT_CREW_NECK = By.cssSelector(".nav-item__list.level-zero-list>li:nth-child(1) ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']:nth-child(4) li[class='level-two-container']:nth-child(4)");
+	public static By LEVEL_ZERO_LINKS_LIST = By.cssSelector(".nav-item__list.level-zero-list>li");
+	public static By LEVEL_ZERO_SPECIFIC_OPTION = By.cssSelector(".nav-item__list.level-zero-list>:nth-child(1)>div>a");
+	public static By LEVEL_ZERO_LINKS_TEXT = By.cssSelector(".nav-item__list.level-zero-list>:nth-child(1)>div>a .nav-item-title");
+	public static By MEN_UNDERWEAR_LINK = By.cssSelector(".nav-item__list.level-zero-list>li:nth-child(1) ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']:nth-child(2)>div a");
+	public static By MEN_UNDERWEAR_QUIZ = By.cssSelector("ul[class='nav-item__list level-one-list'] div:nth-child(7) a:nth-child(1)");
+
+	public static By GENERIC_SHOP_ALL_LINK = By.cssSelector(".nav-item__list.level-zero-list>li:nth-child(1) ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']:nth-child(2) li[data-tj-qa^='nav-all']");
+
+	public static By MENS_LEVEL_1_LIST = By.cssSelector(".nav-item__list.level-zero-list>li:nth-child(1) ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']>div a");
+
+	public static By MENS_UW_NAV_LINK_RELAXED_FIT = By.cssSelector("a[data-tj-qa^='nav-link-Relaxed Fit Boxer 6']");
+	public static By MENS_UW_NAV_LINK_SQUARE_CUT = By.cssSelector("a[data-tj-qa^='nav-link-Square Cut 2']");
+	public static By MENS_UW_NAV_LINK_BRIEF = By.cssSelector("a[data-tj-qa^='nav-link-Brief']");
+	public static By MENS_UW_NAV_LINK_JOHNS = By.cssSelector("a[data-tj-qa^='nav-link-Long Johns']");
+	public static By MENS_UW_NAV_LINK_360SPORT = By.cssSelector("a[data-tj-qa^='nav-link-360 Sport']");
+	public static By MENS_UW_NAV_LINK_UWQUIZ = By.cssSelector("a[data-tj-qa^='nav-link-Underwear Quiz']");	
+	public static By WOMENS_LEVEL_1_LIST = By.cssSelector(".nav-item__list.level-zero-list>li:nth-child(2) ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']>div a");
+	public static By WOMEN_UNDERWEAR_LINK = By.cssSelector(".nav-item__list.level-zero-list>li:nth-child(2) ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']:nth-child(2)>div a");
+	public static By WOMEN_UNDERWEAR_QUIZ = By.cssSelector("ul[class='nav-item__list level-one-list'] img[alt=\"Women's Underwear Quiz\"]");
+
+	public static By WOMEN_BRA_LINK = By.cssSelector(".nav-item__list.level-zero-list>li:nth-child(2) ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']:nth-child(3)>div a");
+	public static By WOMEN_BRA_QUIZ = By.cssSelector("ul[class='nav-item__list level-one-list'] img[alt=\"Tommy John Women's Bra Quiz\"]");
+
+	public static By ALL_LEVEL_1_LINKS_LIST = By.cssSelector(".nav-item__list.level-zero-list>li ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']");
+//	public static By LEVEL_0_SPECIFIC_LINKS_LIST = By.cssSelector(".nav-item__list.level-zero-list>li:nth-child(1) ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']>div a");
+	public static By SPECIFIC_LEVEL_0_LEVEL_1_LINKS = By.cssSelector(".nav-item__list.level-zero-list>li:nth-child(1) ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']>div a");
+	public static By LEVEL_1_OPTIONS_LIST_FROM_LEVEL_0 = By.cssSelector(".nav-item__list.level-zero-list>li:nth-child(1) ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']>div a");
+	public static By MENS_UW = By.cssSelector(".nav-item__list.level-zero-list>li:nth-child(1) ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']:nth-child(2)>div a");
+
+	public static By ALL_MENS_LINKS_LIST = By.cssSelector(".nav-item__list.level-zero-list>li:nth-child(1) ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']>div a");
+	public static By ALL_MENS_LINKS_LIST_TEXT = By.cssSelector(".nav-item__list.level-zero-list>li:nth-child(1) ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']>div a>span");
+
+
+	public static By EXPLORE_LEVEL_ONE_LINKS = By.cssSelector("li[arial-label='open Explore menu'] ul[class='nav-item__list level-one-list alternate']>li[class='level-one-container alternate image-column']");
 
 	public static By MEN_CATEGORY = By.xpath("//a[@aria-label='Men link']");
 	public static By WOMEN_CATEGORY = By.cssSelector(".level-zero-list>.level-zero-container:nth-child(2)> .level-zero-item >a");
 	public static By FINAL_SALE = By.cssSelector(".level-zero-list>.level-zero-container:nth-child(3)> .level-zero-item >a");
 	
+	public static By HEADER_RIGHT_SIDE_ELEMENTS_LIST = By.cssSelector(".header-desktop-right>li");
+	public static By HEADER_RIGHT_SIDE_SPECIFIC_ELEMENT = By.cssSelector(".header-desktop-right>li:nth-child(1)");
 	
 	public static By FIRST_lEVEL1_CATEGORY = By.cssSelector("li.active> div:nth-child(2)> ul.level-one-list >li.level-one-container:nth-child(2) > div > .level-one-item >a");
 	public static By SECOND_lEVEL1_CATEGORY = By.cssSelector("li.active> div:nth-child(2)> ul.level-one-list >li.level-one-container:nth-child(3) > div > .level-one-item >a");
@@ -27,8 +67,8 @@ public class HomePageLocators{
 	public static By SHOPALL_LINK = By.cssSelector("li[data-tj-qa='nav-all-Underwear'],li.active> div:nth-child(2)> ul.level-one-list> li.active > ul.level-two-list >li.shop-all-item > a");
 	
 	public static By FIRST_lEVEL2_CATEGORY = By.cssSelector("div[data-tj-qa='nav-Underwear Packs']>a,li.active> div:nth-child(2)> ul.level-one-list> li.active > ul.level-two-list >li:nth-child(3) > div >a");
-	public static By SECOND_lEVEL2_CATEGORY = By.cssSelector("div[data-tj-qa='nav-Trunk 4\"']>a,li.active> div:nth-child(2)> ul.level-one-list> li.active > ul.level-two-list >li:nth-child(4) > div >a");
-	public static By THIRD_lEVEL2_CATEGORY = By.cssSelector("div[data-tj-qa='nav-Mid-Length Boxer Brief 6\"']>a,li.active> div:nth-child(2)> ul.level-one-list> li.active > ul.level-two-list >li:nth-child(5) > div >a");
+	public static By SECOND_lEVEL2_CATEGORY = By.cssSelector("div[data-tj-qa='nav-Trunk 4']>a,li.active> div:nth-child(2)> ul.level-one-list> li.active > ul.level-two-list >li:nth-child(4) > div >a");
+	public static By THIRD_lEVEL2_CATEGORY = By.cssSelector("div[data-tj-qa='nav-Mid-Length Boxer Brief 6']>a,li.active> div:nth-child(2)> ul.level-one-list> li.active > ul.level-two-list >li:nth-child(5) > div >a");
 	public static By FOURTH_lEVEL2_CATEGORY = By.cssSelector("li.active> div:nth-child(2)> ul.level-one-list> li.active > ul.level-two-list >li:nth-child(6) > div >a");
 	public static By FIFTH_lEVEL2_CATEGORY = By.cssSelector("li.active> div:nth-child(2)> ul.level-one-list> li.active > ul.level-two-list >li:nth-child(7) > div >a");
 	public static By SIXTH_lEVEL2_CATEGORY = By.cssSelector("li.active> div:nth-child(2)> ul.level-one-list> li.active > ul.level-two-list >li:nth-child(8) > div >a");
@@ -41,7 +81,9 @@ public class HomePageLocators{
 	public static By FIFTH_LEVEL2_LINK = By.cssSelector("li.active> div:nth-child(2)> ul.level-one-list> li.active > ul.level-two-list > li.links-only > div:nth-child(6) >a");
 	public static By SIXTH_LEVEL2_LINK = By.cssSelector("li.active> div:nth-child(2)> ul.level-one-list> li.active > ul.level-two-list > li.links-only > div:nth-child(7) >a");
 
-	
+	public static By SEARCH_ICON = By.cssSelector("label[data-tj-qa='header-search-icon']>svg");
+	public static By SEARCH_TEXTBOX = By.cssSelector("input[data-tj-qa='header-search-input']");
+	public static By SEARCH_SUGGESTION_CONTAINER = By.cssSelector(".desktop-autosuggestion-container");
 	
 //	public static By ALL_NEW_ARRIVALS_LINK_IN_MEN_CATEGORY = By.cssSelector(".level-one-container:nth-child(2) > .level-two-list > li.shop-all-item >a");
 //	public static By ALL_UNDERWEAR_LINK_IN_MEN_CATEGORY = By.cssSelector(".level-one-container:nth-child(3) > .level-two-list > li.shop-all-item >a");
@@ -162,7 +204,7 @@ public class HomePageLocators{
 //
 	public static By SEARCH_ICON_INPUT = By.cssSelector("input[data-tj-qa=header-search-input]");
 	public static By SEARCH_ICON_FORM_TAG = By.cssSelector(".header-search-form");
-	public static By SEARCH_TEXTBOX = By.cssSelector(".nextopia-search");
+
 	public static By POPULAR_SEARCHES = By.cssSelector(".autocomplete-suggestions-content");
 	public static By PRODUCT_MATCHES_TITLE = By.cssSelector(".desktop-search-product-tile-title");
 	public static By PRODUCT_SUGGESTION = By.cssSelector("div.autocomplete-suggestions-content>a>div>span");
@@ -192,8 +234,9 @@ public class HomePageLocators{
 	public static By AUTO_SUGGESTED_PRODUCT_IMG = By.cssSelector(".search-product-image>a>img");
 	public static By AUTO_SUGGESTED_PRODUCT_TILE_TITLE = By.cssSelector(".search-product-tile>a");
 	
-	
-
+	public static By HELP_CENTER = By.cssSelector(".header-nav-dropdown > ul >li:nth-child(2) > a");
+	public static By ACCOUNT_NAV_DROPDOWN_OPTIONS = By.cssSelector(".header-nav-dropdown li:nth-child(1)>a");
+	public static By REORDER = By.cssSelector(".header-nav-dropdown > ul >li:nth-child(2) > a");
 	public static By HELP_ICON = By.cssSelector("i.icon-help");
 	public static By HELP_ICON_HELP_OPTION = By.cssSelector(".header-nav-dropdown > ul >li:nth-child(2) > a");
 	public static By MYACCOUNT_OPTION = By.cssSelector(".header-nav-dropdown > ul >li:nth-child(1) > a");
@@ -209,7 +252,7 @@ public class HomePageLocators{
 	
 	public static By ACCOUNT_NAV_DROPDOWN = By.cssSelector(".header-account-item-container > a");
 	public static By HEADER_LOGIN_TITLE = By.cssSelector("span[data-tj-qa='header-login']");
-	public static By REORDER = By.cssSelector("header-desktop-right > li:nth-child(3) >div > ul > li:nth-child(2) > a ");
+	//public static By REORDER = By.cssSelector("header-desktop-right > li:nth-child(3) >div > ul > li:nth-child(2) > a ");
 	//	public static By CART_ICON = By.cssSelector("i.icon-shopping-cart");
 	public static By CART_ICON = By.cssSelector("button.header-cart-btn > i");
 	public static By CART_HEADING_TEXT = By.cssSelector(".inline-cart__col1 > h3");
