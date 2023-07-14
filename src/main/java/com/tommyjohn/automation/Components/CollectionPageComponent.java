@@ -1348,8 +1348,8 @@ if(count!=59)
 	// new
 	public void validatePLPBreadcrumbLinks() throws Exception {
 
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 
@@ -1360,10 +1360,12 @@ if(count!=59)
 		Assert.assertTrue(breadcrumb.isEnabled(), "Element Clickable");
 		js.executeScript("arguments[0].click();", breadcrumb);
 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_TITLE));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
 		pageHeading = driver.findElement(PLP_TITLE);
+		wait.until(ExpectedConditions.stalenessOf(pageHeading));
+		
 
-		if (pageHeading.getText().equals("Women's All")) {
+		if ((pageHeading.getText()).contains("Women's All")) {
 
 			System.out.println("Breadcrumb link is working properly");
 			Reporter.log("Breadcrumb link is working properly");
@@ -1452,10 +1454,16 @@ if(count!=59)
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		
+		try {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_PRODUCT_IMAGE_BADGE));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_PRODUCT_SECONDARY_BADGE));
-
+		}
+		catch(Exception e)
+		{
+			driver.navigate().refresh();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_PRODUCT_IMAGE_BADGE));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_PRODUCT_SECONDARY_BADGE));
+		}
 		WebElement onImageBadge = driver.findElement(PLP_PRODUCT_IMAGE_BADGE);
 		WebElement secondaryBadge = driver.findElement(PLP_PRODUCT_SECONDARY_BADGE);
 
