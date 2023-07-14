@@ -13,6 +13,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
@@ -2360,7 +2361,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			for(int i=1;i<=elementsCount;i++) 
 			{
 				thumbnail = driver.findElement(By.cssSelector(".pdpVerticalSlides>.slick-list.draggable>div>div:nth-child("+i+")")).getAttribute("data-slide-id");
-				driver.findElement(By.cssSelector(".pdpVerticalSlides>.slick-list.draggable>div>div:nth-child("+i+")>img")).click();
+				WebElement img=driver.findElement(By.cssSelector(".pdpVerticalSlides>.slick-list.draggable>div>div:nth-child("+i+")>img"));
+				executor.executeScript("arguments[0].click();", img);
 				Thread.sleep(3000);
 				System.out.println(thumbnail);
 			}
@@ -2594,7 +2596,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 					element =driver.findElement(By.cssSelector(".product-bar__atc"));
 					softassert.assertTrue(element.isDisplayed(), "scrolling CTA Add to Cart is not displayed");
 					//softassert.assertEquals(element.getText(), "Add To Cart", "Text is not matched");
-					if(element.getText().equals("Add To Cart") || element.getText().equals("Join the Waitlist"))		
+					if(element.getText().equals("Add To Cart") || element.getText().equals("Join The Waitlist"))		
 					{jse.executeScript("arguments[0].click();", element);}
 					else {
 						if(element.getText().equals("Out of Stock"))
@@ -3381,7 +3383,9 @@ public void verifyBundlePDPs() throws Exception {
 						
 						System.out.println(elemen.getText() + elements.getText() + "Product is added to Cart");
 						jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_CART_BUTTON));
-						Thread.sleep(2000);
+						WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+						wait.until(ExpectedConditions.visibilityOfElementLocated(INLINE_CART_CLOSE));
+						
 						jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
 													
 				}

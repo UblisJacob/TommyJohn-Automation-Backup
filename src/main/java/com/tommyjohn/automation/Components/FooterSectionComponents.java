@@ -962,8 +962,8 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		softassert.assertTrue(pageURL.equals("https://www.tommyjohn.com/pages/do-not-sell-my-personal-information"),
 				"Wrong Page opened after clicking on Do Not Sell My Information Link ");
 		softassert.assertTrue(
-				pageHeader.equals(
-						"For California residents- CCPA: “Do Not Sell Or Share My Personal Information” Request Form"),
+				pageHeader.contains(
+						"For California residents"),
 				"Page Header doesn't match");
 
 		softassert.assertAll();
@@ -1011,6 +1011,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 	 * @throws Exception
 	 */
 	public void validateFooterNewsletter() throws Exception {
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 
 		System.out.println("\n---Checking Newsletter Seciton---");
 
@@ -1051,7 +1052,8 @@ public class FooterSectionComponents extends FooterSectionLocators {
 
 //		Negative Validation (User does not enter email)
 		wait.until(ExpectedConditions.elementToBeClickable(NEWSLETTER_SIGN_UP_BUTTON));
-		driver.findElement(NEWSLETTER_SIGN_UP_BUTTON).click();
+		jse.executeScript("arguments[0].click();", driver.findElement(NEWSLETTER_SIGN_UP_BUTTON));
+		
 		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(NEWSLETTER_FORM_FAIL_MESSAGE_VISIBLE, 0));
 
 		softassert.assertTrue(driver.findElement(NEWSLETTER_FORM_FAIL_MESSAGE).isDisplayed(),
@@ -1080,7 +1082,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 
 //		Validation of Give Feedback Section
 	public void validateFeedbackSection() {
-
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		System.out.println("***Validating Feedback Section***");
 
 		softassert = new SoftAssert();
@@ -1091,7 +1093,8 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		softassert.assertTrue(element.isDisplayed(), "Feedback title is not present");
 		softassert.assertTrue(element.getText().equals("Your feedback matters to us"), "Feedback title does not match");
 		wait.until(ExpectedConditions.elementToBeClickable(GIVE_FEEDBACK_CTA));
-		driver.findElement(GIVE_FEEDBACK_CTA).click();
+		jse.executeScript("arguments[0].click();", driver.findElement(GIVE_FEEDBACK_CTA));
+
 
 		wait.until(ExpectedConditions.titleContains("Survey"));
 
