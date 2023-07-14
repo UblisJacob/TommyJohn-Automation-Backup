@@ -29,47 +29,47 @@ public class ValidateAfterPay {
 		new AfterPay(driver).AfterPayOnPDP();
 	}
 	
-//	@Test
-//	public void TC_ValidateAfterPayOnInlineCart() throws Exception
-//	{
-//		new AfterPay(driver).AfterPayOnInlineCart();
-//	}
-//	
-//	@Test
-//	public void TC_ValidateAfterPayOnShoppingCart() throws Exception
-//	{
-//		new AfterPay(driver).AfterPayOnShoppingCart();
-//	}
-//	
-//	@Test
-//	public void TC_ValidateAfterPayOnCheckoutPage() throws Exception
-//	{
-//		new AfterPay(driver).AfterPayOnCheckoutPage();
-//	}
-//	
-//	@Test
-//	public void TC_ValidateAfterPayWithGiftCard() throws Exception
-//	{
-//		new AfterPay(driver).AfterPayOnGiftCardPage();
-//	}
-//	@Test
-//	public void TC_ValidateAfterPayWithPhysicalGiftCard() throws Exception
-//	{
-//		new AfterPay(driver).AfterPayOnPhysicalGiftCardPage();
-//	}
-//	
-//	@Test
-//	public void ValidateAfterpayForAddressOtherThanUS() throws Exception
-//	{
-//		new AfterPay(driver).ValidateAfterPayforAddressotherThanUS();
-//	
-//	}
-//	@Test
-//	public void ValidateAfterpayWithPromoCodeChnageOnPaymentPage() throws Exception
-//	{
-//		new AfterPay(driver).AfterpaywithPromoCodeChnageOnPaymentPage();
-//	
-//	}
+	@Test
+	public void TC_ValidateAfterPayOnInlineCart() throws Exception
+	{
+		new AfterPay(driver).AfterPayOnInlineCart();
+	}
+	
+	@Test
+	public void TC_ValidateAfterPayOnShoppingCart() throws Exception
+	{
+		new AfterPay(driver).AfterPayOnShoppingCart();
+	}
+	
+	@Test
+	public void TC_ValidateAfterPayOnCheckoutPage() throws Exception
+	{
+		new AfterPay(driver).AfterPayOnCheckoutPage();
+	}
+	
+	@Test
+	public void TC_ValidateAfterPayWithGiftCard() throws Exception
+	{
+		new AfterPay(driver).AfterPayOnGiftCardPage();
+	}
+	@Test
+	public void TC_ValidateAfterPayWithPhysicalGiftCard() throws Exception
+	{
+		new AfterPay(driver).AfterPayOnPhysicalGiftCardPage();
+	}
+	
+	@Test
+	public void ValidateAfterpayForAddressOtherThanUS() throws Exception
+	{
+		new AfterPay(driver).ValidateAfterPayforAddressotherThanUS();
+	
+	}
+	@Test
+	public void ValidateAfterpayWithPromoCodeChnageOnPaymentPage() throws Exception
+	{
+		new AfterPay(driver).AfterpaywithPromoCodeChnageOnPaymentPage();
+	
+	}
 
 	@AfterMethod(alwaysRun = true)
 	void teardown () {
