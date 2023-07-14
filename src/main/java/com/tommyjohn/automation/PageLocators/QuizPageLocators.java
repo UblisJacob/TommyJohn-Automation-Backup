@@ -22,7 +22,7 @@ public class QuizPageLocators
 	public static By QUIZ_HERO_WELCOME_SUBTITLE = By.cssSelector("p[class='hero-welcome-subtitle']");
 	public static By QUIZ_ANSWER_HERO_TITLE = By.cssSelector(".quiz-answers-hero__title>p");
 	public static By RETAKE_QUIZ_CTA = By.cssSelector(".quiz-answers-hero__content>a>button.quiz-answers-hero__text-link");
-	public static By QUIZ_RESULT_PRODUCT_IMAGE= By.cssSelector(".product-image-container");
+	public static By QUIZ_RESULT_PRODUCT_IMAGE= By.cssSelector(".product-image-container>a");
 	public static By PREFERENCES_SUMMARY_ANSWER = By.cssSelector("div.summary-card-block > p:nth-child(5)");
 	public static By RESULT_PAGE_SELECTED_VALUES = By.cssSelector("p.inline-section-banner__quiz-you-selected-value>span:nth-child(2)");
 	

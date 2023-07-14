@@ -300,10 +300,11 @@ public class HomePageComponents extends HomePageLocators {
 
 	public void validateSearchFunctionality() throws Exception {
 
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
 		SoftAssert softAssert = new SoftAssert();
 		action = new Actions(driver);
 
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(40));
 
 		String Search_keyword = "tees";
 		if(!driver.findElement(SEARCH_ICON_INPUT).isDisplayed())
@@ -314,6 +315,7 @@ public class HomePageComponents extends HomePageLocators {
 
 		//Check auto-suggestions
 		driver.findElement(SEARCH_ICON_INPUT).sendKeys("b");
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
 		//Thread.sleep(5000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(AUTO_SUGGESTED_PRODUCT_IMG));
 		softAssert.assertTrue(driver.findElement(AUTO_SUGGESTED_LINKS).isDisplayed(),"Popular searches section not displayed ");
