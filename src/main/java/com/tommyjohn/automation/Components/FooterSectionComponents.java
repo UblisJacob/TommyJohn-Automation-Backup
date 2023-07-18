@@ -184,7 +184,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		softassert.assertTrue(linkText.equals("Sitewide Promotion"), "Sitewide Promotion link text is changed");
 
 		objGeneralMethods.clickButtonByJS(driver, SITEWIDE_PROMOTION_LINK);
-
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
 		wait.until(ExpectedConditions.titleContains("Sitewide Promotion"));
 
 		softassert.assertTrue(

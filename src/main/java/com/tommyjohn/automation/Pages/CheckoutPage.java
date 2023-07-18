@@ -45,5 +45,11 @@ public class CheckoutPage extends CheckoutPageComponents {
 		new CheckoutPageComponents(driver).paymentpage();
 		
 	}
+
+	public void ValidateOrderPlacement() throws Exception {
+		
+		new CheckoutPageComponents(driver).completeorder();
+		
+	}
 	
 }
