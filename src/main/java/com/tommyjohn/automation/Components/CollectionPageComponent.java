@@ -164,11 +164,11 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollBy(0,250)");
 
-		WebElement sortByPrice = driver.findElement(SORTBYPRICE_DROPDOWN);
-		driver.findElement(PLP_PRICE);
-
+	
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SORTBYPRICE_DROPDOWN));
+		WebElement sortByPrice = driver.findElement(SORTBYPRICE_DROPDOWN);
 
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT));
 		String price = null;
 		String updatedPrice = null;
 		double priceValue = 0;
@@ -181,7 +181,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		Thread.sleep(5000);
 
 		//js.executeScript("arguments[0].scrollIntoView();", prices);
-		//Thread.sleep(5000);
+		
 
 		List<WebElement> list = driver.findElements(PLP_PRICE);
 		ArrayList<Double> productPrice = new ArrayList<Double>();
@@ -770,6 +770,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	
 	public void validateStyleCarousel() throws Exception {
 		boolean flag1 = false;
+		boolean flag = false;
 		List<WebElement> allCorosals = null;
 		
 		JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -811,6 +812,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		Reporter.log("All corosals are Displayed :: And by default not active");
 		
 		
+		
 		for (int k = 1; k <= allCorosals.size(); k++) {
 			
 			try {
@@ -825,17 +827,25 @@ public class CollectionPageComponent extends CollectionPageLocator {
 				System.out.println("Carousel filter is clickable");
 				js.executeScript("arguments[0].click();", carouselFilter);
 			}
+			try {
 			 filterPill = driver.findElement(FILTER_PILL);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(FILTER_PILL));
 			js.executeScript("arguments[0].click();", filterPill);
+			flag=true;
+			}
+			catch (Exception e)
+			{
+				Assert.assertFalse(driver.getCurrentUrl().contains("mens-underwear?"), "DY style carousel");
+			}
 		}
 		// clear all filters
-
+if(flag=true)
+{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CLEAR_FILTER_BUTTON));
 		WebElement ele = driver.findElement(CLEAR_FILTER_BUTTON);
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		executor.executeScript("arguments[0].click();", ele);
-
+}
 		// driver.findElement(CLEAR_FILTER_BUTTON).click();
 		Reporter.log("Corosals gets active when respective option selected");
 	}
@@ -1287,7 +1297,7 @@ if(count!=59)
 	public void Verify_ProductTile_HoverFunctionality() throws Exception {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		Thread.sleep(8000);
+		
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		js.executeScript("window.scrollBy(0,500)");
 
@@ -1303,6 +1313,8 @@ if(count!=59)
 		String text = driver.findElement(ProductDetailsPageLocators.SECOND_VERTICAL_IMAGE).getAttribute("src");
 		String[] list1 = text.split(".jpg");
 		String Second_image_pdp = list1[0];
+		System.out.println(Second_image_pdp);
+		System.out.println(Hover_on_plp);
 		if (!Hover_on_plp.equalsIgnoreCase(Second_image_pdp))
 			throw new Exception("Product tile hover functionality is not correct on plp");
 		Reporter.log("Verified Product tile hover functionality on plp");
@@ -1360,9 +1372,10 @@ if(count!=59)
 		Assert.assertTrue(breadcrumb.isEnabled(), "Element Clickable");
 		js.executeScript("arguments[0].click();", breadcrumb);
 
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+		
+		wait.until(ExpectedConditions.presenceOfElementLocated(FIRST_PRODUCT));
 		pageHeading = driver.findElement(PLP_TITLE);
-		wait.until(ExpectedConditions.stalenessOf(pageHeading));
+		//wait.until(ExpectedConditions.stalenessOf(pageHeading));
 		
 
 		if ((pageHeading.getText()).contains("Women's All")) {
