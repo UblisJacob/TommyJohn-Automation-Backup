@@ -612,7 +612,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		
-		
+		jse=(JavascriptExecutor)driver;
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HomePageLocators.CART_ICON));
 		jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(TIERED_METER));

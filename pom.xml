@@ -18,12 +18,11 @@
 		<maven-shade-plugin.version>3.1.0</maven-shade-plugin.version>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-	</properties>
-
+		<usedefaultlisteners>false</usedefaultlisteners>
+		<listener>org.testng.reporters.EmailableReporter2, org.testng.reporters.XMLReporter, org.testng.reporters.FailedReporter, Utils.reRunTest.RetryListener</listener>
+		</properties>
 
 	<dependencies>
-
-
 		<!-- https://mvnrepository.com/artifact/net.lightbody.bmp/browsermob-proxy -->
 		<dependency>
 			<groupId>net.lightbody.bmp</groupId>
