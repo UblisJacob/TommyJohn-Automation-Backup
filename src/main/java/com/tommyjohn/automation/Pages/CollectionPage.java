@@ -422,8 +422,8 @@ public class CollectionPage extends CollectionPageComponent{
 		// TODO Auto-generated method stub
 		new HomePageComponents(driver).NavigateToAllSleepwearInMenCategory();
 		validateProductHeadingTextOnCollectionPage();
-		validateProductImageOnPLP();
 		Verify_ProductTile_HoverFunctionality();
+		validateProductImageOnPLP();
 		MethodToCheckColorSwatchChanging();
 		validateProductReviewStarsOnCollectionPage();
 		
