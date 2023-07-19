@@ -6,10 +6,11 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import com.base.ExtentReport;
 import com.tommyjohn.automation.Pages.BlogPage;
 import com.tommyjohn.automation.commonMethods.GeneralMethods;
 import com.tommyjohn.automation.utils.CustomUtilities;
-public class ValidateBlogPages {
+public class ValidateBlogPages{
 	
 	WebDriver driver;
 	GeneralMethods objGeneralMethods = new GeneralMethods();
