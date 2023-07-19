@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,6 +18,7 @@ import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
 
+import com.base.ExtentReport;
 import com.tommyjohn.automation.PageLocators.AccountLoginLocators;
 import com.tommyjohn.automation.PageLocators.AccountPageLocators;
 import com.tommyjohn.automation.PageLocators.HomePageLocators;
@@ -130,6 +132,9 @@ public class AccountPageComponents extends AccountPageLocators {
 			softassert.fail("After clicking on My account option as a Guest User, User seems to be have been redirected to Account Page as a logged in user");
 		}
 		
+		ExtentReport.extentTest.info("Guest user was correctly redirected to login page after clicking on My Account option");
+
+		
 //		Go back to homepage
 		driver.navigate().to("https://www.tommyjohn.com");
 		
@@ -189,9 +194,13 @@ public class AccountPageComponents extends AccountPageLocators {
 		softassert.assertTrue(driver.findElement(FIRST_ORDER_NUMBER).isDisplayed(),
 				"Order number is not displayed on Order History table");
 		Reporter.log("Account page contents for logged-in user are Displayed :: Correct");
+		ExtentReport.extentTest.info("Account page contents for logged-in user are Displayed :: Correct");
+		
 
 		text = driver.findElement(FIRST_ORDER_NUMBER).getText();
-		driver.findElement(FIRST_ORDER_NUMBER).click();
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].click();" , driver.findElement(FIRST_ORDER_NUMBER));
+		//driver.findElement(FIRST_ORDER_NUMBER).click();
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ORDER_NUMBER_HEADING));
 
