@@ -56,7 +56,7 @@ public class CustomUtilities {
 			// System.setProperty("webdriver.chrome.driver" ,"/tmp/chromedriver.exe");
 			//System.setProperty("webdriver.chrome.driver", properties.getProperty("chromeDriverPath"));
 			ChromeOptions chromeOptions = new ChromeOptions();
-			//chromeOptions.addArguments("--headless");
+			chromeOptions.addArguments("--headless");
 			chromeOptions.addArguments("--window-size=1280,800");
 			chromeOptions.addArguments("--disable-gpu");
 			chromeOptions.addArguments("--no-sandbox");
@@ -233,9 +233,10 @@ public class CustomUtilities {
 	public static void takessiffailed(String mname) throws Exception
 	{
 
+		String testname =  mname;
 		File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		try {
-			FileUtils.copyFile(file, new File(CustomUtilities.properties.getProperty("executionvideospath")+"/Screenshot_"+mname +".png"));
+			FileUtils.copyFile(file, new File("/test-output/Screenshot_"+testname+".jpg"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
