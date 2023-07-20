@@ -5,10 +5,12 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+
+import com.base.ExtentReport;
 import com.tommyjohn.automation.Pages.AfterPay;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
-public class ValidateAfterPay {
+public class ValidateAfterPay extends ExtentReport {
 
 	WebDriver driver;
 	@BeforeMethod(alwaysRun = true)

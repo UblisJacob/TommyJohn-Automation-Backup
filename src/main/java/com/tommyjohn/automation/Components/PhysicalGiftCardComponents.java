@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
 
+import com.base.ExtentReport;
 import com.tommyjohn.automation.PageLocators.FlyCartPageLocator;
 import com.tommyjohn.automation.PageLocators.PhysicalGiftCardPageLocators;
 import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
@@ -250,10 +251,12 @@ public class PhysicalGiftCardComponents extends PhysicalGiftCardPageLocators
 			if(driver.findElement(ProductDetailsPageLocators.AFTERPAY_PDP).isDisplayed())
 				flag=1;
 			Reporter.log("AfterPay Message is displayed on PDP with Physical Gift Card");
+			ExtentReport.extentTest.info("AfterPay Message is displayed on PDP with Physical Gift Card");
 		}
 		catch(Exception e) {
 			System.out.println("After Pay Message is not displayed on normal PDP with Physical Gift Card.");
 			Reporter.log("After Pay Message is not displayed on normal PDP with Physical Gift Card");
+			ExtentReport.extentTest.info("After Pay Message is not displayed on normal PDP with Physical Gift Card");
 		}
 		if(flag==1) {
 			throw new Exception("afterpay functionality incorrect with GC");
@@ -276,10 +279,12 @@ public class PhysicalGiftCardComponents extends PhysicalGiftCardPageLocators
 					if(driver.findElement(FlyCartPageLocator.AFTERPAY_FLYCART).isDisplayed())
 						flag=1;
 					Reporter.log("AfterPay Message is displayed on Inline cart with Physical Gift Card");
+					ExtentReport.extentTest.info("AfterPay Message is displayed on Inline cart with Physical Gift Card");
 				}
 				catch(Exception e){
 					System.out.println("After Pay Message is not displayed on Fly cart with Physical Gift Card.");
 					Reporter.log("After Pay Message is not displayed on Inline cart with Physical Gift Card");
+					ExtentReport.extentTest.info("After Pay Message is not displayed on Inline cart with Physical Gift Card");
 				}
 			}
 
@@ -308,10 +313,12 @@ public class PhysicalGiftCardComponents extends PhysicalGiftCardPageLocators
 					if(driver.findElement(ShoppingCartComponents.AFTERPAY_CART).isDisplayed())
 						flag=1;
 					Reporter.log("AfterPay Message is displayed on Shopping cart with Physical Gift Card");
+					ExtentReport.extentTest.info("AfterPay Message is displayed on Shopping cart with Physical Gift Card");
 				}
 				catch(Exception e){
 					System.out.println("After Pay Message is not displayed on Shopping cart with Physical Gift Card.");
 					Reporter.log("After Pay Message is not displayed on Shopping cart with Physical Gift Card");
+					ExtentReport.extentTest.info("After Pay Message is not displayed on Shopping cart with Physical Gift Card");
 				}
 			}
 
@@ -356,10 +363,12 @@ public class PhysicalGiftCardComponents extends PhysicalGiftCardPageLocators
 					if(driver.findElement(CheckoutPageComponents.AFTERPAY_OPTION).isDisplayed())
 					flag=1;
 					Reporter.log("AfterPay Message is displayed on Checkout page with Physical Gift Card");
+					ExtentReport.extentTest.info("AfterPay Message is displayed on Checkout page with Physical Gift Card");
 				}
 				catch(Exception e){
 					System.out.println("After Pay Message is not displayed on payment page with Physical Gift Card.");
 					Reporter.log("After Pay Message is not displayed on Checkout page with Physical Gift Card");
+					ExtentReport.extentTest.info("After Pay Message is not displayed on Checkout page with Physical Gift Card");
 				}
 			}
 
