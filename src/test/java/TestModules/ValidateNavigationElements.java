@@ -26,6 +26,8 @@ public class ValidateNavigationElements {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
+		
+		
 	}
 
 	@Test(description = "validates if user is able to see four links on left side of TJ logo")

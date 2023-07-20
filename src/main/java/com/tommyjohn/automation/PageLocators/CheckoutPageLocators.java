@@ -82,6 +82,7 @@ public class CheckoutPageLocators {
 	public static By HOWHEARD_TITLE = By.cssSelector(".how_new_title");
 	public static By HOWHEARD_SUBTITLE = By.cssSelector(".how_new_subtitle");
 	public static By HOWHEARD_DROPDOWN = By.cssSelector(".make_selection_select");
+	public static By ORDER_NUMBER = By.cssSelector(".os-order-number");
 
 
 
