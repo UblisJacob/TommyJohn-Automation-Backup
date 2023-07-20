@@ -16,6 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
 
+import com.base.ExtentReport;
 import com.tommyjohn.automation.PageLocators.BundlePDPLocators;
 import com.tommyjohn.automation.Pages.ProductDetailsPage;
 import com.tommyjohn.automation.utils.CustomUtilities;
@@ -81,13 +82,13 @@ public class BundlePDPComponent extends BundlePDPLocators{
 				executor.executeScript("arguments[0].click();", img);
 				
 				mainimage = driver.findElement(By.cssSelector(".pdpImageSlidesWrapper>div>div>div>div:nth-child("+i+").slick-active")).getAttribute("data-color");
-//				System.out.println(imagegallery);
-//				System.out.println(mainimage);
+
 				softAssert.assertTrue(imagegallery.contentEquals(mainimage), "Image caraousel does not change");
 	
 			}
 		}
 		Reporter.log("Image gallery changes with main image");
+		ExtentReport.extentTest.info("Image gallery changes with main image");
 		
 		softAssert.assertAll();
 	}
@@ -150,10 +151,14 @@ public class BundlePDPComponent extends BundlePDPLocators{
 			else {
 				System.out.println("Badging is displayed on PDP.");
 				Reporter.log("Badge is displayed on PDP.");
+				ExtentReport.extentTest.info("Badge is displayed on PDP.");
 			}
 		}
 		catch(Exception e){
 			System.out.println("Badging is not applicable for this product.");
+			Reporter.log("Badge is not displayed on PDP.");
+			ExtentReport.extentTest.info("Badge is not displayed on PDP.");
+			
 		}
 		
 		softAssert.assertAll();
@@ -182,10 +187,13 @@ public class BundlePDPComponent extends BundlePDPLocators{
 			else {
 				System.out.println("Badging is displayed on PDP.");
 				Reporter.log("Badge is displayed on PDP.");
+				ExtentReport.extentTest.info("Badge is displayed on PDP.");
 			}
 		}
 		catch(Exception e){
 			System.out.println("Badging is not applicable for this product.");
+			Reporter.log("Badge is not displayed on PDP.");
+			ExtentReport.extentTest.info("Badge is not displayed on PDP.");
 		}
 		
 		softAssert.assertAll();
@@ -261,6 +269,7 @@ public class BundlePDPComponent extends BundlePDPLocators{
 							
 							
 							Reporter.log("Colors are present and changing correctly");
+							ExtentReport.extentTest.info("Colors are present and changing correctly");
 											
 				}
 			}
@@ -284,6 +293,7 @@ public class BundlePDPComponent extends BundlePDPLocators{
 		elementsCount = allElements.size();
 		System.out.println("Color Element count :: "+elementsCount);
 		Reporter.log("Sizes are present");
+		ExtentReport.extentTest.info("Sizes are present");
 		
 		if(elementsCount > 1)
 		{
@@ -316,6 +326,7 @@ public class BundlePDPComponent extends BundlePDPLocators{
 								
 			}
 			Reporter.log("Sizes are changing correctly");
+			ExtentReport.extentTest.info("Sizes are changing correctly");
 		}
 
 	}
@@ -362,6 +373,7 @@ public class BundlePDPComponent extends BundlePDPLocators{
 			}	
 			
 		Reporter.log("Scrolling CTA Add to Cart is displayed :: Clickable");	
+		ExtentReport.extentTest.info("Scrolling CTA Add to Cart is displayed :: Clickable");	
 			
 		}
 		
@@ -382,6 +394,7 @@ public class BundlePDPComponent extends BundlePDPLocators{
 				executor.executeScript("window.scrollBy(0, 600)");
 				//wait.until(ExpectedConditions.presenceOfElementLocated(WRITE_REVIEW_BUTTON));
 				Reporter.log("Review Stars Are Displayed :: Clickable :: Clicked");
+				ExtentReport.extentTest.info("Review Stars Are Displayed :: Clickable :: Clicked");
 				// check for Rating and Reviews are present or not
 				System.out.println("rating: " + driver.findElement(RATING_NUMBER).getText());
 
@@ -407,9 +420,11 @@ public class BundlePDPComponent extends BundlePDPLocators{
 						throw new Exception("'WRITE A REVIEW' button is not displayed");
 					driver.findElement(NO_REVIEW_WRITE_REVIEW).click();
 					Reporter.log("'WRITE A REVIEW' button is Displayed :: Clickable");
+					ExtentReport.extentTest.info("'WRITE A REVIEW' button is Displayed :: Clickable");
 					driver.findElement(NO_REVIEW_WRITE_REVIEW).click();
 				}
 				Reporter.log("Rating and Reviews Displayed");
+				ExtentReport.extentTest.info("Rating and Reviews Displayed");
 			}
 			else
 				throw new Exception("Rating Stars are not clickable");
@@ -431,6 +446,7 @@ public class BundlePDPComponent extends BundlePDPLocators{
 			softassert.assertEquals(productname, PRODUCT_TITLE, "Text is not matched");
 	
 			Reporter.log("Product name and Price are displayed");
+			ExtentReport.extentTest.info("Product name and Price are displayed");
 	}
 		
 	public void verifyAccordions() throws Exception {
@@ -478,6 +494,7 @@ public class BundlePDPComponent extends BundlePDPLocators{
 		catch(Exception e )
 		{
 			Reporter.log("Best_Pair guarantee link is not present for this particular product");
+			ExtentReport.extentTest.info("Best_Pair guarantee link is not present for this particular product");
 			except = e;
 		}
 		if(except!=null)
@@ -500,6 +517,7 @@ public class BundlePDPComponent extends BundlePDPLocators{
 			else throw new Exception("FREE_RETURNS accordion not present or not clikable");	
 		}
 		Reporter.log("PRODUCT ACCORDIONS ARE DISPLAYED");		
+		ExtentReport.extentTest.info("PRODUCT ACCORDIONS ARE DISPLAYED");		
 	}
 	
 	
@@ -536,12 +554,15 @@ public class BundlePDPComponent extends BundlePDPLocators{
 								System.out.println("For Color: " +elemen.getAttribute("value"));
 								System.out.println("For Size: " +elements.getAttribute("value"));
 								System.out.println("===================");
+								Reporter.log("Low Stock Inventory message :: Displayed");	
+								ExtentReport.extentTest.info("Low Stock Inventory message :: Displayed");	
 								
 							}
 							
 						}
 				}
 				Reporter.log("no msg");	
+				ExtentReport.extentTest.info("no msg");	
 			
 		}
 		
@@ -558,12 +579,18 @@ public class BundlePDPComponent extends BundlePDPLocators{
 			jse.executeScript("window.scrollBy(0, 650)");
 			String avgrating = driver.findElement(AVG_RATING_IN_FIRST_BOX).getText();
 			System.out.println("Average Rating: " +avgrating);
+			
 			String totalreviews = driver.findElement(TOTAL_REVIEWS_IN_FIRST_BOX).getText();
-			System.out.println("Average Rating: " +totalreviews);
+			System.out.println("Total Reviews: " +totalreviews);
+			
+			Reporter.log("Average rating and Total reviews are :: Displayed");	
+			ExtentReport.extentTest.info("Average rating and Total reviews are :: Displayed");	
 			//fit range
 			WebElement fitrange = driver.findElement(THIRD_BOX_IN_RATING_AND_REVIEWS);
 			jse.executeScript("arguments[0].click();", fitrange);
 			Thread.sleep(2000);
+			Reporter.log("Fit range is :: Clickable");	
+			ExtentReport.extentTest.info("Fit range is :: Clickable");	
 			//filters click
 			WebElement ratingsfilter = driver.findElement(FILTER_RATINGS);
 			jse.executeScript("arguments[0].click();", ratingsfilter);
@@ -574,6 +601,8 @@ public class BundlePDPComponent extends BundlePDPLocators{
 			WebElement ratingssortby = driver.findElement(FILTER_SORTBY);
 			ratingssortby.click();
 			Thread.sleep(1000);
+			Reporter.log("Filters are :: Clickable");	
+			ExtentReport.extentTest.info("Filters are :: Clickable");	
 			
 			//sort by dropdown
 			List<WebElement> elem = driver.findElements(FILTER_SORTBY_SECTION);
@@ -592,9 +621,10 @@ public class BundlePDPComponent extends BundlePDPLocators{
 					WebElement ratingssortbynew = driver.findElement(FILTER_SORTBY);
 					ratingssortbynew.click();
 				}
+				Reporter.log("Sort by is :: Clickable");	
+				ExtentReport.extentTest.info("Sort by is :: Clickable");
 				
-				softAssert.assertAll();
-				
+					
 			}
 			//Display Questions
 			
@@ -603,6 +633,9 @@ public class BundlePDPComponent extends BundlePDPLocators{
 			jse.executeScript("arguments[0].click();", qsntab);
 			element = driver.findElement(QUESTION_FIRST);
 			softAssert.assertTrue(element.isDisplayed(), "Questions are not displayed");
+			Reporter.log("Questions are :: Displayed");	
+			ExtentReport.extentTest.info("Questions are :: Displayed");	
+			softAssert.assertAll();
 		}
 		
 		
@@ -695,6 +728,8 @@ public class BundlePDPComponent extends BundlePDPLocators{
 							
 					}
 			
+			Reporter.log("ATC is working fine");	
+			ExtentReport.extentTest.info("ATC is working fine");	
 			
 		}
 		
