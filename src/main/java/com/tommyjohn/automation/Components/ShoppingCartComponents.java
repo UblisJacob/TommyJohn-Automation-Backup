@@ -22,6 +22,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
 
+import com.base.ExtentReport;
 import com.tommyjohn.automation.PageLocators.CheckoutPageLocators;
 import com.tommyjohn.automation.PageLocators.FlyCartPageLocator;
 import com.tommyjohn.automation.PageLocators.HomePageLocators;
@@ -70,15 +71,19 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		if(driver.getCurrentUrl().equals(url)) {
 			System.out.println("Start shopping button on empty cart redirects user to homepage");
 			Reporter.log("Start shopping button on empty cart redirects user to homepage");
+			ExtentReport.extentTest.info("Start shopping button on empty cart redirects user to homepage");
 		}
 		else {
 			Reporter.log("Start shopping button on empty cart doesn't redirect user to homepage");
+			ExtentReport.extentTest.info("Start shopping button on empty cart doesn't redirect user to homepage");
 			throw new Exception("Start shopping button on empty cart doesn't redirect user to homepage");
 		}
 		softAssert.assertAll();
 		driver.get(CustomUtilities.baseUrl);
 		Reporter.log("Cart Title Present - Your Shopping Carts ");
+		ExtentReport.extentTest.info("Cart Title Present - Your Shopping Carts ");
 		Reporter.log("Message displayed correctly - Your cart is Empty");
+		ExtentReport.extentTest.info("Message displayed correctly - Your cart is Empty");
 		
 	}
 	
@@ -92,6 +97,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		Reporter.log("Clicked on View cart link in inline cart");
+		ExtentReport.extentTest.info("Clicked on View cart link in inline cart");
 		softAssert.assertAll();
 		
 	}
@@ -114,16 +120,19 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 			
 			System.out.println("PROMOTIONAL MESSAGE is displayed on cart page");
 			Reporter.log("PROMOTIONAL MESSAGE is displayed on cart page");
+			ExtentReport.extentTest.info("PROMOTIONAL MESSAGE is displayed on cart page");
 		}
 		else {
 			System.out.println("PROMOTIONAL MESSAGE is not displayed on cart page");
 			Reporter.log("PROMOTIONAL MESSAGE is not displayed on cart page");
+			ExtentReport.extentTest.info("PROMOTIONAL MESSAGE is not displayed on cart page");
 		}
 		}
 		
 		catch(Exception e)
 		{
 			Reporter.log("PROMOTIONAL MESSAGE is not displayed on cart page");
+			ExtentReport.extentTest.info("PROMOTIONAL MESSAGE is not displayed on cart page");
 		}
 		
 		//softAssert.assertAll();	
@@ -143,15 +152,18 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 			if(driver.findElement(TIERED_METER_TITLE).isDisplayed()){
 				System.out.println("Tiered Meter Title is displayed on cart page");
 				Reporter.log("Tiered Meter Title is displayed on cart page");
+				ExtentReport.extentTest.info("Tiered Meter Title is displayed on cart page");
 			}
 			else {
 				System.out.println("Tiered Meter Title is not displayed on cart page");
 				Reporter.log("Tiered Meter Title is not displayed on cart page");
+				ExtentReport.extentTest.info("Tiered Meter Title is displayed on cart page");
 			}
 		}
 		catch(Exception e)
 		{
 			Reporter.log("Tiered Meter Title is not displayed on cart page");
+			ExtentReport.extentTest.info("Tiered Meter Title is not displayed on cart page");
 		}
 		
 		
@@ -177,19 +189,23 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 			
 			System.out.println("OOS message is displayed on cart page");
 			Reporter.log("OOS message is displayed on cart page");
+			ExtentReport.extentTest.info("OOS message is displayed on cart page");
 			
 			if(driver.findElement(OOS_TAG).isDisplayed()){
 				System.out.println("OOS Tag is displayed on cart page");
 				Reporter.log("OOS Tag is displayed on cart page");
+				ExtentReport.extentTest.info("OOS Tag is displayed on cart page");
 			}
 			else {
 				System.out.println("OOS Tag is not displayed on cart page");
 				Reporter.log("OOS Tag is not displayed on cart page");
+				ExtentReport.extentTest.info("OOS Tag is not displayed on cart page");
 			}
 		}
 		else {
 			System.out.println("OOS message is not displayed on cart page");
 			Reporter.log("OOS message is not displayed on cart page");
+			ExtentReport.extentTest.info("OOS message is not displayed on cart page");
 		}
 		
 		//softAssert.assertAll();	
@@ -436,6 +452,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		wait.until(ExpectedConditions.visibilityOf(element));
 		softAssert.assertEquals(element.getText(), "Enter a valid discount code", "Text changed for promo code error message on cart page");
 		Reporter.log("Promo code error message is displayed :: Correct");
+		ExtentReport.extentTest.info("Promo code error message is displayed :: Correct");
 
 		//Verify with valid promo code
 		driver.findElement(DISCOUNTCODE_TEXTBOX).sendKeys(Promo_Code);
@@ -444,6 +461,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		Thread.sleep(2000);
 		softAssert.assertTrue(driver.findElement(PROMO_SUCCESSFUL_MESSAGE).isDisplayed(), "Succesful message is not displayed for applied promo code");
 		Reporter.log("Promo code successful message is displayed :: Correct");
+		ExtentReport.extentTest.info("Promo code successful message is displayed :: Correct");
 
 		softAssert.assertTrue(driver.findElement(SALE_PRICE).isDisplayed(), "Sale peice is not displayed after applied promo code");
 		softAssert.assertTrue(driver.findElement(APPLIED_PROMO_CODE).isDisplayed(), "Applied promo code is not displayed for product on cart page");
@@ -488,6 +506,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		if(!flag)
 			throw new Exception("Discount coupon is not applied cart");
 		Reporter.log("Promo code is auto-applied on newly added products");  	
+		ExtentReport.extentTest.info("Promo code is auto-applied on newly added products");
 
 		Thread.sleep(3000);
 		Check_Promocode_onCheckout_throughCart();	
@@ -501,6 +520,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		softAssert.assertTrue(driver.findElement(APPLIED_PROMO_CODE).getText().isEmpty(), "Discount code is still displayed on cart page after removing code from checkout");
 
 		Reporter.log("Apply promo code through textbox on cart page is correct");
+		ExtentReport.extentTest.info("Apply promo code through textbox on cart page is correct");
 		AddPromoCode_OnCart_ThroughURL();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SUBTOTAL_PRICE));
 		Check_Promocode_onCheckout_throughCart();	
@@ -569,12 +589,15 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 				flag = true;
 			}
 		}
-		if(flag)
+		if(flag) {
 			Reporter.log("Gift Box $5.00 is already checked");
+		ExtentReport.extentTest.info("Gift Box $5.00 is already checked");
+	}
 		else {
 			driver.findElement(FlyCartPageLocator.GIFT_BOX_$5).click();
 			Thread.sleep(5000);
 			Reporter.log("Gift Box $5.00 is checked");
+			ExtentReport.extentTest.info("Gift Box $5.00 is checked");
 		}
 			
 		js.executeScript("arguments[0].click();", driver.findElement(FlyCartPageLocator.GIFT_WRAP_APPLY));
@@ -617,6 +640,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 			driver.switchTo().window(mainWindow);
 			softAssert.fail("PayPal popup does not show up when clicked on paypal express checkout button");
 			Reporter.log("PayPal popup does not show up when clicked on paypal express checkout button");
+			ExtentReport.extentTest.info("PayPal popup does not show up when clicked on paypal express checkout button");
 		}
 //		Verify GPay Button	
 		try {
@@ -628,6 +652,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		Actions action = new Actions(driver);
 		 action.moveToElement(element).click().build().perform();
 		 Reporter.log("GPay option is present on checkout page");
+		 ExtentReport.extentTest.info("GPay option is present on checkout page");
 
 		} catch (ElementClickInterceptedException | NoSuchElementException | TimeoutException e) {
 			driver.navigate().refresh();
@@ -635,6 +660,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 			try {
 				driver.findElement(GPAY_BUTTON).click();
 				Reporter.log("GPAY option is present on checkout page");
+				ExtentReport.extentTest.info("GPAY option is present on checkout page");
 			} catch (ElementClickInterceptedException |NoSuchElementException | TimeoutException f) {
 				softAssert.assertTrue(false, "Express Checkout Option GPay is not interactable");
 			}
@@ -654,6 +680,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		softAssert.assertTrue(text.contains("Amazon"), "Amazon pay did not open up after clicking on Amazon Pay button ");
 
 		Reporter.log("Amazon Pay option is present on checkout page");
+		ExtentReport.extentTest.info("Amazon Pay option is present on checkout page");
 
 		driver.navigate().back();
 
@@ -672,12 +699,17 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		softAssert.assertTrue(text.contains("shop"), "Shop pay did not open up after clicking on Shop Pay button ");
 
 		Reporter.log("Shop Pay option is present on checkout page");
+		ExtentReport.extentTest.info("Shop Pay option is present on checkout page");
 		
 		softAssert.assertAll();
 		Reporter.log("Redirected to SHOP PAY login page when clicked on shop pay button");
+		ExtentReport.extentTest.info("Redirected to SHOP PAY login page when clicked on shop pay button");
 		Reporter.log("Redirected to Amazon login page when clicked on amz pay button");
+		ExtentReport.extentTest.info("Redirected to Amazon login page when clicked on amz pay button");
 		Reporter.log("PayPal popup shows up when clicked on paypal express checkout button");
+		ExtentReport.extentTest.info("PayPal popup shows up when clicked on paypal express checkout button");
 		Reporter.log("GPay popup shows up when clicked on Gpay express checkout button");
+		ExtentReport.extentTest.info("GPay popup shows up when clicked on Gpay express checkout button");
 
 	}
 
@@ -704,6 +736,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 			
 		}
 		Reporter.log("Tiered Meter is filling in");
+		ExtentReport.extentTest.info("Tiered Meter is filling in");
 		String[] widthper = text.split(";");
 		System.out.println(widthper[0]);
 		if(widthper[0].contains("100%"))
@@ -711,10 +744,12 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 			throw new Exception("Tiered meter not filling in correctly.");
 		}
 		Reporter.log("Tiered Meter is filling in");
+		ExtentReport.extentTest.info("Tiered Meter is filling in");
 		}
 		else {
 			System.out.println("Tiered Meter is not displayed on cart page");
 			Reporter.log("Tiered Meter is not displayed on cart page");
+			ExtentReport.extentTest.info("Tiered Meter is not displayed on cart page");
 		}
 		
 		

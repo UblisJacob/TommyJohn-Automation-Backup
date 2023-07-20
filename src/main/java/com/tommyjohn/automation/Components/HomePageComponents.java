@@ -22,6 +22,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
 
+import com.base.ExtentReport;
 import com.tommyjohn.automation.PageLocators.CA_SupplyChainsActPageLocators;
 import com.tommyjohn.automation.PageLocators.DoNotSellMyInfoPageLocators;
 import com.tommyjohn.automation.PageLocators.HomePageLocators;
@@ -204,20 +205,24 @@ public class HomePageComponents extends HomePageLocators {
 		{
 			System.out.println("Search Page Title is displayed");
 			Reporter.log("Search Page Title is displayed");
+			ExtentReport.extentTest.info("Search Page Title is displayed");
 			if(driver.findElement(SEARCHPAGE_TITLE).getText().equals("Results for \""+ searchText +"\""))
 			{
 				System.out.println("Search Page Title is correct");
 				Reporter.log("Search Page Title is correct");
+				ExtentReport.extentTest.info("Search Page Title is correct");
 			}
 			else
 			{
 				Reporter.log("Search Page Title is not correct");
+				ExtentReport.extentTest.info("Search Page Title is not correct");
 				throw new Exception("Search Page Title is not correct");
 			}
 		}
 		else
 		{
 			Reporter.log("Search Page Title is not displayed");
+			ExtentReport.extentTest.info("Search Page Title is not displayed");
 			throw new Exception("Search Page Title is not displayed");
 		}
 			
@@ -267,21 +272,25 @@ public class HomePageComponents extends HomePageLocators {
 		{
 			System.out.println("Search Page Title is displayed");
 			Reporter.log("Search Page Title is displayed");
+			ExtentReport.extentTest.info("Search Page Title is displayed");
 			System.out.println(driver.findElement(SEARCHPAGE_TITLE).getText());
 			if(driver.findElement(SEARCHPAGE_TITLE).getText().equals("Results for \""+ productName +"\""))
 			{
 				System.out.println("Search Page Title is correct");
 				Reporter.log("Search Page Title is correct");
+				ExtentReport.extentTest.info("Search Page Title is correct");
 			}
 			else
 			{
 				Reporter.log("Search Page Title is not correct");
+				ExtentReport.extentTest.info("Search Page Title is not correct");
 				throw new Exception("Search Page Title is not correct");
 			}
 		}
 		else
 		{
 			Reporter.log("Search Page Title is not displayed");
+			ExtentReport.extentTest.info("Search Page Title is not displayed");
 			throw new Exception("Search Page Title is not displayed");
 		}
 			
@@ -341,7 +350,8 @@ public class HomePageComponents extends HomePageLocators {
 		String actual = driver.findElement(ProductDetailsPageLocators.PRODUCT_TITLE).getText().replace(",", "").toLowerCase();
 		System.out.println("actual is: "+actual+" expected is: "+suggested_title);
 		softAssert.assertTrue(actual.equals(suggested_title) , "Wrong PDP displayed after clicking on name of auto suggested product tile title" );
-		Reporter.log("Verified Search auto suggestion functionality");		
+		Reporter.log("Verified Search auto suggestion functionality");
+		ExtentReport.extentTest.info("Verified Search auto suggestion functionality");
 
 		//validate search page
 		driver.findElement(SEARCH_ICON_INPUT).sendKeys(Search_keyword + Keys.ENTER);
@@ -367,10 +377,12 @@ public class HomePageComponents extends HomePageLocators {
 			else {
 				System.out.println("Badging is displayed");
 				Reporter.log("Badge is displayed for product tile on search page.");
+				ExtentReport.extentTest.info("Badge is displayed for product tile on search page.");
 			}
 		}
 		catch(Exception e){
 			System.out.println("Badging is not applicable for this product.");
+			ExtentReport.extentTest.info("Badging is not applicable for this product.");
 		}
 
 		WebElement pname  = driver.findElement(SEARCHPAGE_PRODUCT_NAME);
@@ -392,6 +404,7 @@ public class HomePageComponents extends HomePageLocators {
 
 		//MethodToCheckAllFiltersOnSearchPage();
 		Reporter.log("Search page is displayed :: Correct");
+		ExtentReport.extentTest.info("Search page is displayed :: Correct");
 
 		element = driver.findElement(SEARCH_ICON_INPUT);
 		executor = (JavascriptExecutor)driver;
@@ -405,6 +418,7 @@ public class HomePageComponents extends HomePageLocators {
 		text = attribute[attribute.length-1].replace(";", "");
 		softAssert.assertEquals(text,"none", "Clear recent search link is not functional");
 		Reporter.log("Clear recent search link is Displayed :: Clickable");
+		ExtentReport.extentTest.info("Clear recent search link is Displayed :: Clickable");
 		softAssert.assertAll();
 
 	}
@@ -2189,10 +2203,12 @@ public class HomePageComponents extends HomePageLocators {
 					{
 						System.out.println("Help Us page opened correctly");
 						Reporter.log("Help Us page opened correctly");
+						ExtentReport.extentTest.info("Help Us page opened correctly");
 					}
 					
 					else {
 						System.out.println("Help Us page didn't open correctly");			
+						ExtentReport.extentTest.info("Help Us page didn't open correctly");
 						throw new Exception("Help Us page didn't open correctly");
 				}							
 	}
@@ -2215,10 +2231,15 @@ public class HomePageComponents extends HomePageLocators {
 			driver.findElement(By.cssSelector("#contact-info>p:nth-child(5)>a")).click();
 			Thread.sleep(5000);
 			Reporter.log("Contact Us/Email link is Displayed :: Clickable");
-			if(driver.getCurrentUrl().contains("/pages/contact-us")) 
+			ExtentReport.extentTest.info("Contact Us/Email link is Displayed :: Clickable");
+			if(driver.getCurrentUrl().contains("/pages/contact-us")) {
 				System.out.println("Email link on help page is Displayed :: Clickable");
-			else
+				ExtentReport.extentTest.info("Email link on help page is Displayed :: Clickable");
+			}
+			else {
+				ExtentReport.extentTest.info("Wrong page opened after Email link on help page link clicked");
 				throw new Exception("Wrong page opened after Email link on help page link clicked");
+			}
 		}
 		
 		else {
@@ -2228,6 +2249,7 @@ public class HomePageComponents extends HomePageLocators {
 		else						
 			throw new Exception("Wrong page opened after Contact Us footer link clicked");
 		 Reporter.log("Contact Us footer link is Displayed :: Clickable");
+		 ExtentReport.extentTest.info("Contact Us footer link is Displayed :: Clickable");
 	}
 							
 	}

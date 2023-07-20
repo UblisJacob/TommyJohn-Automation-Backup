@@ -23,6 +23,7 @@ import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
 import org.openqa.selenium.interactions.Actions;
 
+import com.base.ExtentReport;
 import com.tommyjohn.automation.PageLocators.AccountLoginLocators;
 import com.tommyjohn.automation.PageLocators.CheckoutPageLocators;
 import com.tommyjohn.automation.PageLocators.FlyCartPageLocator;
@@ -672,24 +673,28 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 
 		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
 		Reporter.log("Checkout page displayed");
+		ExtentReport.extentTest.info("Checkout page displayed");
 		Thread.sleep(5000);
 		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("orderplacementemail"));
 
 		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
 		entershippingdetails();
 		Reporter.log("Shipping Address Details entered");
+		ExtentReport.extentTest.info("Shipping Address Details entered");
 
 		// driver.findElement(CONTINUE_TO_SHIPPING_BUTTON).click();
 		WebElement Continue_shipping = driver.findElement(CONTINUE_TO_SHIPPING_BUTTON);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", Continue_shipping);
 
 		Reporter.log("User is navigated to select shipping method");
+		ExtentReport.extentTest.info("User is navigated to select shipping method");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SHIPPING_RADIO_BUTTON));
 		jse.executeScript("window.scrollBy(0,100)");
 		Thread.sleep(3000);
 		WebElement element = driver.findElement(CONTINUE_TO_PAYMENT_BUTTON);
 		jse.executeScript("arguments[0].click();", element);
 		Reporter.log("User is navigated to payment page");
+		ExtentReport.extentTest.info("User is navigated to payment page");
 		Thread.sleep(10000);
 		CheckPromoCodeApplication("TEST_ORDER_TECH");
 		wait.until(ExpectedConditions.elementToBeClickable(COMPLETE_ORDER_BUTTON));
@@ -697,6 +702,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		Select dphowheard = new Select(driver.findElement(HOWHEARD_DROPDOWN));
 		dphowheard.selectByValue("Online Search");
 		Reporter.log("How heard values are displayed:: Clickable");
+		ExtentReport.extentTest.info("How heard values are displayed:: Clickable");
 		
 		jse.executeScript("arguments[0].click();",  driver.findElement(COMPLETE_ORDER_BUTTON));
 		System.out.println(driver.getCurrentUrl());
@@ -705,6 +711,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ORDER_NUMBER));
 		System.out.println(driver.getCurrentUrl());
 		Reporter.log("Order Number - " + driver.findElement(ORDER_NUMBER).getText());
+		ExtentReport.extentTest.info("Order Number - " + driver.findElement(ORDER_NUMBER).getText());
 		
 		softAssert.assertAll();
 		

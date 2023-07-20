@@ -13,6 +13,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
+
+import com.base.ExtentReport;
 import com.tommyjohn.automation.PageLocators.QuizPageLocators;
 
 public class QuizPageComponents extends QuizPageLocators
@@ -50,6 +52,7 @@ public class QuizPageComponents extends QuizPageLocators
 		Thread.sleep(3000);
 		QuizFlow();
 		Reporter.log("Mens Quiz Pages are Displayed :: Correct");
+		ExtentReport.extentTest.info("Mens Quiz Pages are Displayed :: Correct");
 	}
 
 	public void MensRetakeQuizFlow() throws Exception
@@ -58,6 +61,7 @@ public class QuizPageComponents extends QuizPageLocators
 		Thread.sleep(5000);
 		RetakeQuizFlow();
 		Reporter.log("Mens Retake Quiz Flow is Displayed :: Correct");
+		ExtentReport.extentTest.info("Mens Retake Quiz Flow is Displayed :: Correct");
 	}
 	public void MensResultPage() throws Exception
 	{
@@ -73,6 +77,7 @@ public class QuizPageComponents extends QuizPageLocators
 		Thread.sleep(3000);
 		QuizFlow();
 		Reporter.log("Womens Quiz Pages are Displayed :: Correct");
+		ExtentReport.extentTest.info("Womens Quiz Pages are Displayed :: Correct");
 	}
 
 	public void WomensRetakeQuizFlow() throws Exception
@@ -81,6 +86,7 @@ public class QuizPageComponents extends QuizPageLocators
 		Thread.sleep(3000);
 		RetakeQuizFlow();
 		Reporter.log("Womens Retake Quiz Flow is Displayed :: Correct");
+		ExtentReport.extentTest.info("Womens Retake Quiz Flow is Displayed :: Correct");
 	}
 
 	public void WomensResultPage() throws Exception
@@ -97,6 +103,7 @@ public class QuizPageComponents extends QuizPageLocators
 		Thread.sleep(3000);
 		Bra_Quiz_Flow();
 		Reporter.log("Bra Quiz Pages are Displayed :: Correct");
+		ExtentReport.extentTest.info("Bra Quiz Pages are Displayed :: Correct");
 	}
 
 	public void BraRetakeQuizFlow() throws Exception
@@ -105,6 +112,7 @@ public class QuizPageComponents extends QuizPageLocators
 		Thread.sleep(3000);
 		Bra_Retake_QuizFlow();
 		Reporter.log("Bra Retake Quiz Flow is Displayed :: Correct");
+		ExtentReport.extentTest.info("Bra Retake Quiz Flow is Displayed :: Correct");
 	}
 	public void BraResultPage() throws Exception
 	{
@@ -137,6 +145,7 @@ public class QuizPageComponents extends QuizPageLocators
 		element = driver.findElement(GET_STARTED_CTA);
 		js.executeScript("arguments[0].click();", element);
 		Reporter.log("'Get Started' cta Displayed :: Clickable");
+		ExtentReport.extentTest.info("'Get Started' cta Displayed :: Clickable");
 
 		//First question page
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -163,6 +172,7 @@ public class QuizPageComponents extends QuizPageLocators
 		element = driver.findElement(NEXT_CTA);
 		js.executeScript("arguments[0].click();", element);
 		Reporter.log("Quiz First question page is displayed :: Correct");
+		ExtentReport.extentTest.info("Quiz First question page is displayed :: Correct");
 
 		//Second question page
 				wait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -206,6 +216,7 @@ public class QuizPageComponents extends QuizPageLocators
 		element = driver.findElement(NEXT_CTA);
 		js.executeScript("arguments[0].click();", element);
 		Reporter.log("Quiz Second question page is displayed :: Correct");
+		ExtentReport.extentTest.info("Quiz Second question page is displayed :: Correct");
 
 
 		//Third question page
@@ -248,6 +259,7 @@ public class QuizPageComponents extends QuizPageLocators
 		element = driver.findElement(NEXT_CTA);
 		js.executeScript("arguments[0].click();", element);
 		Reporter.log("Quiz Third question page is displayed :: Correct");
+		ExtentReport.extentTest.info("Quiz Third question page is displayed :: Correct");
 
 		//Education Card
 		//		wait = new WebDriverWait(driver, 30);
@@ -277,6 +289,7 @@ public class QuizPageComponents extends QuizPageLocators
 		element = driver.findElement(NEXT_CTA);
 		js.executeScript("arguments[0].click();", element);
 		Reporter.log("Quiz Education Card is displayed :: Correct");
+		ExtentReport.extentTest.info("Quiz Education Card is displayed :: Correct");
 
 		//Forth question page
 		//		wait = new WebDriverWait(driver, 30);
@@ -316,6 +329,7 @@ public class QuizPageComponents extends QuizPageLocators
 		element = driver.findElement(NEXT_CTA);
 		js.executeScript("arguments[0].click();", element);
 		Reporter.log("Quiz Forth question page is displayed :: Correct");
+		ExtentReport.extentTest.info("Quiz Forth question page is displayed :: Correct");
 
 		//Summary card
 		//		wait = new WebDriverWait(driver, 30);
@@ -353,6 +367,7 @@ public class QuizPageComponents extends QuizPageLocators
 		element = driver.findElement(SEE_RESULT_CTA);
 		js.executeScript("arguments[0].click();", element);
 		Reporter.log("Quiz Summary Card is displayed :: Correct");
+		ExtentReport.extentTest.info("Quiz Summary Card is displayed :: Correct");
 		//Result Page
 		Thread.sleep(5000);
 
@@ -393,7 +408,9 @@ public class QuizPageComponents extends QuizPageLocators
 
 		softassert.assertAll();
 		Reporter.log("Quiz templates with retake flow are Displayed: Correct");
+		ExtentReport.extentTest.info("Quiz templates with retake flow are Displayed: Correct");
 		Reporter.log("Preselected options functionality with retake quiz is correct");
+		ExtentReport.extentTest.info("Preselected options functionality with retake quiz is correct");
 	}
 
 	public void CheckPreselect() throws Exception
@@ -418,6 +435,7 @@ public class QuizPageComponents extends QuizPageLocators
 		SelectedOptions.clear();
 		OnSelectClasses.clear();
 		Reporter.log("Preselected options functionality is correct for template: "+text);	
+		ExtentReport.extentTest.info("Preselected options functionality is correct for template: "+text);	
 	}
 
 	public void ResultPage() throws Exception
@@ -461,10 +479,12 @@ public class QuizPageComponents extends QuizPageLocators
 		{
 			System.out.println("Correct Results are displayed");
 		Reporter.log("Correct Results are displayed");
+		ExtentReport.extentTest.info("Correct Results are displayed");
 		}
-		else
+		else {
+			ExtentReport.extentTest.info("Results not based on quiz answers");
 			throw new Exception("Results not based on quiz answers");
-		
+		}
 		
 		
 		
@@ -529,6 +549,7 @@ public class QuizPageComponents extends QuizPageLocators
 		element = driver.findElement(GET_STARTED_CTA);
 		js.executeScript("arguments[0].click();", element);
 		Reporter.log("'Get Started' cta Displayed :: Clickable");
+		ExtentReport.extentTest.info("'Get Started' cta Displayed :: Clickable");
 
 		wait.until(ExpectedConditions.presenceOfElementLocated(QUESTION_HEADING));
 		BraFirstQsnTemplate = driver.findElement(QUESTION_HEADING).getText();
@@ -650,6 +671,7 @@ public class QuizPageComponents extends QuizPageLocators
 					element = driver.findElement(SEE_RESULT_CTA);
 					js.executeScript("arguments[0].click();", element);
 					Reporter.log("Quiz Summary Card is displayed :: Correct");
+					ExtentReport.extentTest.info("Quiz Summary Card is displayed :: Correct");
 					Thread.sleep(5000);
 					softassert.assertTrue(driver.findElement(RETAKE_QUIZ_CTA).isDisplayed(), "Retake quiz CTA is not displayed on result page or Incorrect page opened after click on see result CTA");			
 
@@ -694,8 +716,9 @@ public class QuizPageComponents extends QuizPageLocators
 
 		softassert.assertAll();
 		Reporter.log("Bra Quiz templates with retake flow are Displayed: Correct");
+		ExtentReport.extentTest.info("Bra Quiz templates with retake flow are Displayed: Correct");
 		Reporter.log("Preselected options functionality with retake quiz is correct");
-
+		ExtentReport.extentTest.info("Preselected options functionality with retake quiz is correct");
 	}
 
 	public void CustomInput_forQSNTemplates() throws Exception
@@ -769,6 +792,7 @@ public class QuizPageComponents extends QuizPageLocators
 		}
 		softassert.assertAll();
 		Reporter.log("Result unavailable message is displayed on result page with custom input");
+		ExtentReport.extentTest.info("Result unavailable message is displayed on result page with custom input");
 
 	}
 	
@@ -852,6 +876,7 @@ public class QuizPageComponents extends QuizPageLocators
 		}
 		softassert.assertAll();
 		Reporter.log("Options are deselected with no preference option");
+		ExtentReport.extentTest.info("Options are deselected with no preference option");
 
 	
 	}
