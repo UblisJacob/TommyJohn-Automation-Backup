@@ -6,12 +6,13 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import com.base.ExtentReport;
 import com.tommyjohn.automation.Pages.AddToCartPage;
 import com.tommyjohn.automation.Pages.BundlePDPPage;
 import com.tommyjohn.automation.Pages.ProductDetailsPage;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
-public class ValidateBundlePDP {
+public class ValidateBundlePDP extends ExtentReport {
 	
 	WebDriver driver;
  	

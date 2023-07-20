@@ -6,11 +6,12 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import com.base.ExtentReport;
 import com.tommyjohn.automation.Pages.GiftCardPage;
 import com.tommyjohn.automation.Pages.GiftCard_Page;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
-public class ValidateGiftCardFunctionality{
+public class ValidateGiftCardFunctionality extends ExtentReport{
 
 	WebDriver driver;
 
