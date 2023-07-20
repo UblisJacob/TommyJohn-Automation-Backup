@@ -6,13 +6,13 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import com.base.ExtentReport;
 import com.tommyjohn.automation.Pages.AccountPage;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
 public class ValidateAccountPage {
 	WebDriver driver;
 
-	
 
 	@BeforeMethod(alwaysRun = true)
 	@Parameters("browser")

@@ -40,7 +40,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	String price;
 	String text;
 	SoftAssert softAssert;
-	String Promo_Code = "TJHUSTLE";
+	//String Promo_Code = "TJHUSTLE";
 
 	public CheckoutPageComponents(WebDriver driver) {
 		this.driver = driver;
@@ -94,7 +94,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		}else {
 			Thread.sleep(1000);
 			driver.close();
-			driver.switchTo().window(mainWindow);
+			//driver.switchTo().window(mainWindow);
 			softAssert.fail("PayPal popup does not show up when clicked on paypal express checkout button");
 			Reporter.log("PayPal popup does not show up when clicked on paypal express checkout button");
 		}
@@ -317,7 +317,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		softAssert.assertTrue(driver.findElement(CONTINUE_TO_SHIPPING_BUTTON).isDisplayed(),
 				"Continue to shipping method button is not displayed");
 		sidebar();
-		CheckPromoCodeApplication();
+		CheckPromoCodeApplication("FIRST20");
 		softAssert.assertAll();
 
 	}
@@ -364,7 +364,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		
 		sidebar();
 		
-		CheckPromoCodeApplication();
+		CheckPromoCodeApplication("FIRST20");
 		
 		softAssert.assertAll();
 	}
@@ -435,7 +435,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		softAssert.assertTrue(driver.findElement(HOWHEARD_DROPDOWN).isDisplayed(), "How heard dropdown is not present");
 		softAssert.assertTrue(driver.findElement(COMPLETE_ORDER_BUTTON).isEnabled(), "Complete order button is not enabled");
 		
-		CheckPromoCodeApplication();
+		CheckPromoCodeApplication("FIRST20");
 		Select dphowheard = new Select(driver.findElement(HOWHEARD_DROPDOWN));
 		dphowheard.selectByValue("Online Search");
 		Reporter.log("How heard values are displayed:: Clickable");
@@ -452,7 +452,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		driver.findElement(LASTNAME_TEXTBOX).clear();
 		driver.findElement(LASTNAME_TEXTBOX).sendKeys("Juneja");
 		driver.findElement(ADDRESS1_TEXTBOX).clear();
-		driver.findElement(ADDRESS1_TEXTBOX).sendKeys("123Test Address B");
+		driver.findElement(ADDRESS1_TEXTBOX).sendKeys("100 Broadway Test");
 		Thread.sleep(2000);
 		driver.findElement(ADDRESS2_TEXTBOX).clear();
 		driver.findElement(ADDRESS2_TEXTBOX).sendKeys("8th floor");
@@ -467,7 +467,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		state.selectByValue("NY");
 
 		driver.findElement(PINCODE_TEXTBOX).clear();
-		driver.findElement(PINCODE_TEXTBOX).sendKeys("10001");
+		driver.findElement(PINCODE_TEXTBOX).sendKeys("10005");
 		Thread.sleep(2000);
 		driver.findElement(PHONE_TEXTBOX).clear();
 		driver.findElement(PHONE_TEXTBOX).sendKeys("8889996667");
@@ -485,13 +485,13 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 
 	}
 
-	public void CheckPromoCodeApplication() throws Exception {
-		Promo_Code = "FIRST20";
-		driver.findElement(DISCOUNT_CODE_TEXTBOX).sendKeys(Promo_Code);
+	public void CheckPromoCodeApplication(String promocode) throws Exception {
+		//Promo_Code = "FIRST20";
+		driver.findElement(DISCOUNT_CODE_TEXTBOX).sendKeys(promocode);
 		driver.findElement(APPLY_DISCOUNT_BUTTON).click();
 		// Thread.sleep(3000);
 		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(APPLIED_PROMO_CODE, 0));
-		softAssert.assertEquals(driver.findElement(APPLIED_PROMO_CODE).getText(), Promo_Code, "Wrong/Invalid Promo Code applied");
+		softAssert.assertEquals(driver.findElement(APPLIED_PROMO_CODE).getText(), promocode, "Wrong/Invalid Promo Code applied");
 		driver.findElement(CANCEL_PROMO_CODE).click();
 //		driver.findElement(CANCEL_PROMO_CODE).click();
 		Thread.sleep(4000);
@@ -594,7 +594,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	public void AfterPayMessageByModifyingPromoCode() throws Exception {
 		AfterpayonCheckout();
 		jse = (JavascriptExecutor) driver;
-		Promo_Code = "TJHUSTLE";
+		String Promo_Code = "TJHUSTLE";
 		driver.findElement(DISCOUNT_CODE_TEXTBOX).sendKeys(Promo_Code);
 		driver.findElement(APPLY_DISCOUNT_BUTTON).click();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -657,6 +657,57 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		new CollectionPageComponent(driver).AddproductToCartByQuickShop();
 		driver.findElement(HomePageLocators.CART_ICON).click();
 		driver.findElement(FlyCartComponents.CHECKOUT_BUTTON).click();
+	}
+
+	public void completeorder() throws Exception {
+		
+		jse = (JavascriptExecutor) driver;
+		softAssert = new SoftAssert();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(100));
+		new AddToCartComponents(driver).addToCart();	
+		
+		jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
+//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+
+		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
+		Reporter.log("Checkout page displayed");
+		Thread.sleep(5000);
+		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("orderplacementemail"));
+
+		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
+		entershippingdetails();
+		Reporter.log("Shipping Address Details entered");
+
+		// driver.findElement(CONTINUE_TO_SHIPPING_BUTTON).click();
+		WebElement Continue_shipping = driver.findElement(CONTINUE_TO_SHIPPING_BUTTON);
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", Continue_shipping);
+
+		Reporter.log("User is navigated to select shipping method");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SHIPPING_RADIO_BUTTON));
+		jse.executeScript("window.scrollBy(0,100)");
+		Thread.sleep(3000);
+		WebElement element = driver.findElement(CONTINUE_TO_PAYMENT_BUTTON);
+		jse.executeScript("arguments[0].click();", element);
+		Reporter.log("User is navigated to payment page");
+		Thread.sleep(10000);
+		CheckPromoCodeApplication("TEST_ORDER_TECH");
+		wait.until(ExpectedConditions.elementToBeClickable(COMPLETE_ORDER_BUTTON));
+		jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		Select dphowheard = new Select(driver.findElement(HOWHEARD_DROPDOWN));
+		dphowheard.selectByValue("Online Search");
+		Reporter.log("How heard values are displayed:: Clickable");
+		
+		jse.executeScript("arguments[0].click();",  driver.findElement(COMPLETE_ORDER_BUTTON));
+		System.out.println(driver.getCurrentUrl());
+		Thread.sleep(10000);
+		System.out.println(driver.getCurrentUrl());
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ORDER_NUMBER));
+		System.out.println(driver.getCurrentUrl());
+		Reporter.log("Order Number - " + driver.findElement(ORDER_NUMBER).getText());
+		
+		softAssert.assertAll();
+		
 	}
 
 }
