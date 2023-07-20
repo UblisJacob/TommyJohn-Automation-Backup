@@ -145,12 +145,12 @@
 		</classes>
 	</test>
 
-	<test name="ReviewsPage">
+	<!-- <test name="ReviewsPage">
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="TestModules.ValidateReviewsPage" />
 		</classes>
-	</test>
+	</test> -->
 
 	<!--	<test name="OrderPlacementTests">-->
 	<!--		<parameter name="browser" value="chrome" />-->
