@@ -6,6 +6,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import com.base.ExtentReport;
 import com.tommyjohn.automation.Components.AddToCartComponents;
 import com.tommyjohn.automation.Components.ProductDetailsPageComponents;
 import com.tommyjohn.automation.Pages.AccountLoginPage;
@@ -15,7 +16,7 @@ import com.tommyjohn.automation.Pages.ShoppingCartPage;
 import com.tommyjohn.automation.commonMethods.GeneralMethods;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
-public class ValidateCartPage {
+public class ValidateCartPage extends ExtentReport{
 
 	WebDriver driver;
 	GeneralMethods objGeneralMethods = new GeneralMethods();
