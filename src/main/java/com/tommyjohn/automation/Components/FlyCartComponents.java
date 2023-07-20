@@ -14,6 +14,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
+
+import com.base.ExtentReport;
 import com.tommyjohn.automation.PageLocators.AddToCartLocators;
 import com.tommyjohn.automation.PageLocators.CollectionPageLocator;
 import com.tommyjohn.automation.PageLocators.FlyCartPageLocator;
@@ -60,6 +62,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		System.out.println("Text :: "+text);
 		softAssert.assertTrue(text.equals(properties.get("continueShoppingButton")), "Text for inline cart close button is changed");	
 		Reporter.log("Continue Shopping button is Displayed :: Enabled :: Text is correct ");
+		ExtentReport.extentTest.info("Continue Shopping button is Displayed :: Enabled :: Text is correct ");
 
 		Thread.sleep(3000);
 		// check for view cart link
@@ -70,6 +73,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		softAssert.assertTrue(text.equals(properties.get("viewCart")), "Text for view cart link is changed");	
 
 		Reporter.log("View Cart link is Displayed :: Enabled :: Text is correct ");
+		ExtentReport.extentTest.info("View Cart link is Displayed :: Enabled :: Text is correct ");
 
 		Thread.sleep(3000);
 
@@ -79,23 +83,27 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		System.out.println("Text :: "+text);
 		softAssert.assertTrue(text.equals(properties.get("inlineCartTitle")), "Text for inline cart title is changed");
 		Reporter.log("Inline Cart Title is Displayed :: Text is correct ");
+		ExtentReport.extentTest.info("Inline Cart Title is Displayed :: Text is correct ");
 
 		Thread.sleep(3000);
 		try {
 				// check for shipping message text
 				softAssert.assertTrue(driver.findElement(SHIPING_MESSAGE_TEXT).isDisplayed(), "Shipping message text is not displayed");
 				Reporter.log("Shipping message text is Displayed ");
+				ExtentReport.extentTest.info("Shipping message text is Displayed ");
 	
 				Thread.sleep(3000);
 	
 				// check for shipping message meter
 				softAssert.assertTrue(driver.findElement(SHIPING_MESSAGE_METER).isDisplayed(), "Shipping message meter is not displayed");
 				Reporter.log("Shipping message meter is Displayed");
+				ExtentReport.extentTest.info("Shipping message meter is Displayed");
 				Thread.sleep(3000);
 			}
 		catch(Exception e)
 			{
 				Reporter.log("Shipping message and meter absent");
+				ExtentReport.extentTest.info("Shipping message and meter absent");
 			}
 
 
@@ -105,6 +113,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 			System.out.println("Text :: "+text);
 			softAssert.assertTrue(text.equals(properties.get("inlineCartEmptyText")), "Expected text is "+properties.get("inlineCartEmptyText")+" but actual is "+text);
 			Reporter.log("'Inline cart is empty' text is Displayed");
+			ExtentReport.extentTest.info("'Inline cart is empty' text is Displayed");
 	
 			driver.get(CustomUtilities.baseUrl);
 			softAssert.assertAll();
@@ -127,6 +136,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		System.out.println("Text :: "+text);
 		softAssert.assertTrue(text.equals(properties.get("continueShoppingButton")), "Text for inline cart close button is changed");	
 		Reporter.log("Continue Shopping button is Displayed :: Enabled :: Text is correct ");
+		ExtentReport.extentTest.info("Continue Shopping button is Displayed :: Enabled :: Text is correct ");
 		Thread.sleep(3000);
 
 		// check for inline cart link
@@ -136,6 +146,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		System.out.println("Text :: "+text);
 		softAssert.assertTrue(text.equals(properties.get("viewCart")), "Text for view cart link is changed");	
 		Reporter.log("View Cart link is Displayed :: Enabled :: Text is correct ");
+		ExtentReport.extentTest.info("View Cart link is Displayed :: Enabled :: Text is correct ");
 		Thread.sleep(3000);
 
 		// check inline cart title
@@ -144,6 +155,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		System.out.println("Text :: "+text);
 		softAssert.assertTrue(text.equals(properties.get("inlineCartTitle")), "Text for inline cart title is changed");
 		Reporter.log("Inline Cart Title is Displayed :: Text is correct ");
+		ExtentReport.extentTest.info("Inline Cart Title is Displayed :: Text is correct ");
 		Thread.sleep(3000);
 		
 		allElements = driver.findElements(LIST_OF_ITEMS_IN_FLYCART);
@@ -173,6 +185,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 
 		}
 		Reporter.log("Image, link text, price, plus-minus button is displayed for all items in cart");
+		ExtentReport.extentTest.info("Image, link text, price, plus-minus button is displayed for all items in cart");
 		// check for Add Gift Wrap button
 		softAssert.assertTrue(driver.findElement(ADD_GIFT_WRAP_BUTTON).isDisplayed(), "Add Gift Wrap button is not displayed");
 		Thread.sleep(3000);
@@ -274,6 +287,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 			throw new Exception("Quantity not increased by 1");
 
 		Reporter.log("Quantity increased by 1");
+		ExtentReport.extentTest.info("Quantity increased by 1");
 
 		price2 = driver.findElement(PRICE_IN_QUANTITY_LINE).getText();
 		for (String a : price2.split("\\$")) 
@@ -291,6 +305,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		if(Integer.parseInt(quantity2)!=Integer.parseInt(quantity1)-1)
 			throw new Exception("Quantity not decreased by 1");
 		Reporter.log("Quantity decreased by 1");
+		ExtentReport.extentTest.info("Quantity decreased by 1");
 
 		// check for checkout button
 		((JavascriptExecutor)driver).executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
@@ -299,6 +314,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		driver.get(CustomUtilities.baseUrl);
 		Thread.sleep(3000);
 		Reporter.log("Checkout button is Displayed :: Clickable");
+		ExtentReport.extentTest.info("Checkout button is Displayed :: Clickable");
 
 		// check for cross close button near text heading link to remove item from cart
 		
@@ -324,6 +340,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		softAssert.assertFalse(list1 == list2, "Item is not removed from cart");
 
 		Reporter.log("Item is able to remove from cart");
+		ExtentReport.extentTest.info("Item is able to remove from cart");
 
 		softAssert.assertAll();
 	}
@@ -419,6 +436,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		if(!driver.findElement(AFTERPAYTEXT).isDisplayed())
 			throw new Exception("AfterPay Message not present on Fly cart.");
 		Reporter.log("After pay Message is displayed on Inline Cart :: Displayed");
+		ExtentReport.extentTest.info("After pay Message is displayed on Inline Cart :: Displayed");
 
 		price = driver.findElement(ESTIMATE_TOTAL_PRICE).getText();
 		String[] price1 = price.split("\\$");
@@ -440,8 +458,10 @@ public class FlyCartComponents extends FlyCartPageLocator{
 
 			softAssert.assertTrue(afterpaymessaging.getText().contains("available for orders between $35 - $1000") , "Wrong afterpay message displayed for product price");
 			Reporter.log("After pay message is correct On Inline cart :: Displayed and Correct");
+			ExtentReport.extentTest.info("After pay message is correct On Inline cart :: Displayed and Correct");
 			softAssert.assertTrue(afterpaylogo.isDisplayed(), "Afterpay logo not present on Fly-out cart.");
 			Reporter.log("After pay logo icon is displayed on Inline cart :: Displayed");
+			ExtentReport.extentTest.info("After pay logo icon is displayed on Inline cart :: Displayed");
 		}
 		else
 		{
@@ -457,8 +477,10 @@ public class FlyCartComponents extends FlyCartPageLocator{
 			System.out.println("Actual int_amount is: " +ins_amount);
 			softAssert.assertEquals(ins_amount, expectedmessage , "Wrong afterpay message displayed for product price");
 			Reporter.log("After pay message with calculated installment is correct on Inline cart :: Displayed and correct");
+			ExtentReport.extentTest.info("After pay message with calculated installment is correct on Inline cart :: Displayed and correct");
 			softAssert.assertTrue(afterpaylogo.isDisplayed(), "Afterpay logo not present on PDP");
 			Reporter.log("After pay logo icon is displayed on Inline cart :: Displayed");
+			ExtentReport.extentTest.info("After pay logo icon is displayed on Inline cart :: Displayed");
 		}
 		Thread.sleep(3000);
 		// Close Fly cart
@@ -510,6 +532,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 			}
 			softAssert.assertTrue(driver.findElement(INLINE_CART_TITLE).isDisplayed(), "Flyout cart is not opened with QuickShop");
 			Reporter.log("Validated Flyout cart opens with Quickshop");
+			ExtentReport.extentTest.info("Validated Flyout cart opens with Quickshop");
 
 		}
 		else
@@ -528,6 +551,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 //		Thread.sleep(5000);
 //		softAssert.assertTrue(driver.findElement(INLINE_CART_TITLE).isDisplayed(), "Flyout cart is not opened with ATC from pdp");
 		Reporter.log("Validated Flyout cart opens with ATC from pdp");
+		ExtentReport.extentTest.info("Validated Flyout cart opens with ATC from pdp");
 		softAssert.assertAll();
 	}
 	public void validateOOSonInlinecart() throws Exception {
@@ -577,7 +601,10 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		softassert.assertEquals(driver.findElement(OOS_LINE_ITEMS).getText(), "Out of Stock");
 		softassert.assertEquals(driver.findElement(CHECKOUT_BUTTON).getAttribute("disabled"), "disabled");
 		
-		//softassert.assertAll();
+		Reporter.log("Out of Stock is displayed");
+		ExtentReport.extentTest.info("Out of Stock is displayed");
+		
+		softassert.assertAll();
 			
 		
 	}
@@ -595,12 +622,14 @@ public class FlyCartComponents extends FlyCartPageLocator{
 			if(driver.findElement(TIERED_METER).isDisplayed()){
 				System.out.println("Tiered Meter Title is displayed on cart page");
 				Reporter.log("Tiered Meter Title is displayed on cart page");
+				ExtentReport.extentTest.info("Tiered Meter Title is displayed on cart page");
 			
 		}
 	}
 			catch(Exception e)
 			{
 				Reporter.log("Tiered Meter not displayed on cart page");
+				ExtentReport.extentTest.info("Tiered Meter not displayed on cart page");
 			}
 
 		
@@ -625,16 +654,20 @@ public class FlyCartComponents extends FlyCartPageLocator{
 
 			System.out.println("PROMOTIONAL MESSAGE is displayed on cart page");
 			Reporter.log("PROMOTIONAL MESSAGE is displayed on cart page");
+			ExtentReport.extentTest.info("PROMOTIONAL MESSAGE is displayed on cart page");
 		}
 		else {
 			Reporter.log("PROMOTIONAL MESSAGE is not displayed on cart page for logged in user");
+			ExtentReport.extentTest.info("PROMOTIONAL MESSAGE is not displayed on cart page for logged in user");
 			Reporter.log("PLEASE CHECK FOR PROMOTIONS  IF PUBLISHED");
+			ExtentReport.extentTest.info("PLEASE CHECK FOR PROMOTIONS  IF PUBLISHED");
 		}
 		}
 		catch(Exception e)
 		{	
 			
 			Reporter.log("PLEASE CHECK FOR PROMOTIONS  IF PUBLISHED");
+			ExtentReport.extentTest.info("PLEASE CHECK FOR PROMOTIONS  IF PUBLISHED");
 		}
 
 		//softAssert.assertAll();	
