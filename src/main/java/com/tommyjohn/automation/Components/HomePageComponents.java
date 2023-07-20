@@ -22,6 +22,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
 
+import com.base.ExtentReport;
 import com.tommyjohn.automation.PageLocators.CA_SupplyChainsActPageLocators;
 import com.tommyjohn.automation.PageLocators.DoNotSellMyInfoPageLocators;
 import com.tommyjohn.automation.PageLocators.HomePageLocators;
@@ -81,6 +82,7 @@ public class HomePageComponents extends HomePageLocators {
 			if(!currentUrl1.contains(currentUrl2))
 				throw new Exception("HomePage logo not working correctly");
 			Reporter.log("TommyJohnLogo is displayed and clickable :: home page opens on clicking logo");
+			ExtentReport.extentTest.info("TommyJohnLogo is displayed and clickable :: home page opens on clicking logo");
 		}
 		else
 			throw new Exception("HomePage logo is not present");
@@ -88,6 +90,7 @@ public class HomePageComponents extends HomePageLocators {
 		//Verify header search icon image
 		softassert.assertTrue(driver.findElement(SEARCH_ICON_IMAGE).isDisplayed(), "Global header search icon image is not displayed");
 		Reporter.log("Global header serach icon image is displayed");
+		ExtentReport.extentTest.info("Global header serach icon image is displayed");
 
 		//Verify new arrivals
 		//		if(driver.findElement(NEWARRIVALS_CATEGORY).isDisplayed()) {
@@ -115,6 +118,7 @@ public class HomePageComponents extends HomePageLocators {
 			throw new Exception("Men Category is not hoverable");
 		Thread.sleep(3000);
 		Reporter.log("Men category is displayed :: Hoverable");
+		ExtentReport.extentTest.info("Men category is displayed :: Hoverable");
 		Thread.sleep(3000);
 
 
@@ -129,6 +133,7 @@ public class HomePageComponents extends HomePageLocators {
 		if(!driver.findElement(FIRST_lEVEL1_CATEGORY).isDisplayed())
 			throw new Exception("Men Category is not hoverable");
 		Reporter.log("Women category is Displayed :: Hoverable :: Clickable");
+		ExtentReport.extentTest.info("Women category is Displayed :: Hoverable :: Clickable");
 		Thread.sleep(3000);
 
 		// Verify Sale category
@@ -141,6 +146,7 @@ public class HomePageComponents extends HomePageLocators {
 		//	if(!driver.findElement(FIRST_lEVEL1_CATEGORY).isDisplayed())
 		//	throw new Exception("Final Sale category is not hoverable");
 		Reporter.log("Sale category is Displayed :: Hoverable :: clickable");
+		ExtentReport.extentTest.info("Sale category is Displayed :: Hoverable :: clickable");
 		softassert.assertAll();
 	}
 
@@ -612,6 +618,7 @@ public class HomePageComponents extends HomePageLocators {
 		if(!currentUrl2.startsWith("https://tommyjohn.com/account/login"))
 			throw new Exception("Wrong page opened after clicked on sin in option");
 		Reporter.log("sign in is Displayed :: Clickable");
+		ExtentReport.extentTest.info("sign in is Displayed :: Clickable");
 
 		//check help
 		driver.get(baseUrl);
@@ -621,6 +628,7 @@ public class HomePageComponents extends HomePageLocators {
 		if(!driver.findElement(HELP_ICON_HELP_OPTION).isDisplayed())
 			throw new Exception("Help Center option not displayed");
 		Reporter.log("Help center option is Displayed ");
+		ExtentReport.extentTest.info("Help center option is Displayed ");
 		driver.findElement(HELP_ICON_HELP_OPTION).click();
 		Thread.sleep(3000);
 		//	driver.findElement(By.cssSelector(".LeaveSiteButtons > a")).click();
@@ -629,6 +637,7 @@ public class HomePageComponents extends HomePageLocators {
 		if(!currentUrl2.equalsIgnoreCase("https://help.tommyjohn.com/hc/en-us"))
 			throw new Exception("Wrong page opened after clicked on help option");
 		Reporter.log("Help option is Displayed :: Clickable");
+		ExtentReport.extentTest.info("Help option is Displayed :: Clickable");
 
 		// check my account option
 		driver.get(baseUrl);
@@ -639,12 +648,14 @@ public class HomePageComponents extends HomePageLocators {
 		if(!driver.findElement(MYACCOUNT_OPTION).isDisplayed())
 			throw new Exception("My account option not displayed");
 		Reporter.log("My account option is Displayed ");
+		ExtentReport.extentTest.info("My account option is Displayed ");
 		driver.findElement(MYACCOUNT_OPTION).click();
 		Thread.sleep(3000);
 		currentUrl2 = driver.getCurrentUrl();
 		if(!currentUrl2.startsWith("https://tommyjohn.com/account"))
 			throw new Exception("Wrong page opened after clicked on my account option");
 		Reporter.log("My account is Displayed :: Clickable");
+		ExtentReport.extentTest.info("My account is Displayed :: Clickable");
 
 
 
@@ -722,6 +733,7 @@ public class HomePageComponents extends HomePageLocators {
 		if(!driver.getCurrentUrl().startsWith("https://tommyjohn.com/account/login"))
 			throw new Exception("Wrong page opened after clicked on Account Icon");
 		Reporter.log("Account Icon is Displayed :: Clickable");
+		ExtentReport.extentTest.info("Account Icon is Displayed :: Clickable");
 
 	}
 	public void validateCartIcon() throws Exception {
@@ -736,6 +748,7 @@ public class HomePageComponents extends HomePageLocators {
 			throw new Exception("Mini Cart is not opened");
 		driver.get(baseUrl);
 		Reporter.log("Cart Icon is Displayed :: Clickable :: Mini Cart is Opened");	
+		ExtentReport.extentTest.info("Cart Icon is Displayed :: Clickable :: Mini Cart is Opened");	
 	}
 
 	
@@ -1792,6 +1805,7 @@ public class HomePageComponents extends HomePageLocators {
 		driver.findElement(SUBMIT_REQUEST_CTA).click();
 		softassert.assertTrue(driver.findElement(ERROR_MESSAGE).isDisplayed(), "Error message is not displayed for wrong/empty submission with california user");
 		Reporter.log("Field validation is correct on Do Not Sell My Personal Information Page");
+		ExtentReport.extentTest.info("Field validation is correct on Do Not Sell My Personal Information Page");
 
 		//select all other states
 		stateoptions.selectByValue("All other states");
@@ -1801,6 +1815,7 @@ public class HomePageComponents extends HomePageLocators {
 		Thread.sleep(3000);
 		softassert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/"), "Wrong page opened after click on 'Back to Home' CTA from CCPA page");
 		Reporter.log("Page is correct for non-california user");
+		ExtentReport.extentTest.info("Page is correct for non-california user");
 
 
 		//Select California state
@@ -1839,6 +1854,7 @@ public class HomePageComponents extends HomePageLocators {
 		//		System.out.println(element.getText()+" CTA is cliackable");
 		//		softassert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase("https://tommyjohn.com/"), "Wrong page opened after click on 'Back to Home' CTA after successful submission by california user");
 		Reporter.log("Page is correct for california user");
+		ExtentReport.extentTest.info("Page is correct for california user");
 		softassert.assertAll();
 
 	}
@@ -1857,7 +1873,7 @@ public class HomePageComponents extends HomePageLocators {
 		Thread.sleep(3000);
 		new CollectionPageComponent(driver).AddproductToCartByQuickShop();
 		Reporter.log("Verified DY recs quick shop functionality on HomePgae");
-
+		ExtentReport.extentTest.info("Verified DY recs quick shop functionality on HomePgae");
 	}
 
 	public void MethodToCheckColorSwatchOnDYRecs() throws Exception
@@ -1902,6 +1918,7 @@ public class HomePageComponents extends HomePageLocators {
 						jse.executeScript("arguments[0].click();", elemen);
 						//	softassert.assertTrue(Img_colortext.equalsIgnoreCase(colornew1), "Color not changing");
 						Reporter.log("Color swatches are changing correctly");
+						ExtentReport.extentTest.info("Color swatches are changing correctly");
 					}
 					else {
 						throw new Exception("Color not changing");
@@ -1936,6 +1953,7 @@ public class HomePageComponents extends HomePageLocators {
 		if(!Hover_on_plp.equalsIgnoreCase(Second_image_pdp))
 			throw new Exception("Product tile hover functionality is not correct");
 		Reporter.log("Verified Product tile hover functionality");	
+		ExtentReport.extentTest.info("Verified Product tile hover functionality");
 
 	}
 
