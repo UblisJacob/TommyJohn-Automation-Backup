@@ -153,12 +153,12 @@
 		</classes>
 	</test>
 
-<!--		<test name="OrderPlacementTests">-->
-<!--			<parameter name="browser" value="chrome" />-->
-<!--			<classes>-->
-<!--				<class name="TestModules.ValidateOrderPlacement" />-->
-<!--			</classes>-->
-<!--		</test>-->
+		<test name="OrderPlacementTests">-->
+		<parameter name="browser" value="chrome" />
+			<classes>
+				<class name="TestModules.ValidateOrderPlacement" />
+			</classes>
+		</test>
 
 
 <!--			<test thread-count="1" name="AfterPayTests">-->

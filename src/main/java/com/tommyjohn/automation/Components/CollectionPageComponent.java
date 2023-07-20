@@ -21,6 +21,7 @@ import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
 
+import com.base.ExtentReport;
 import com.opencsv.CSVReader;
 import com.tommyjohn.automation.PageLocators.CollectionPageLocator;
 import com.tommyjohn.automation.PageLocators.FlyCartPageLocator;
@@ -123,11 +124,13 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		// driver.findElement(THIRD_PRODUCT_IMAGE).click();
 		Thread.sleep(7000);
 		Reporter.log(driver.getCurrentUrl());
+		ExtentReport.extentTest.info(driver.getCurrentUrl());
 
 		// check correct Product details page opened or not
 		new ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);
 
 		Reporter.log("Product image on collection page is Displayed :: Clickable and validated successfully");
+		ExtentReport.extentTest.info("Product image on collection page is Displayed :: Clickable and validated successfully");
 
 		
 		Thread.sleep(5000);
@@ -201,7 +204,8 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		if (!sortedList.equals(productPrice)) {
 			throw new Exception("The products are not sorted in ascending order");
 		} else {
-			Reporter.log("The products are sorted in ascending order");
+			Reporter.log("The products are sorted in ascending order of price");
+			ExtentReport.extentTest.info("The products are sorted in ascending order of price");
 		}
 
 
@@ -262,6 +266,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 //			new ProductDetailsPageComponents(driver).validatePage();
 
 		Reporter.log("Product head line text on collection page is Displayed :: Clickable and validated successfully");
+		ExtentReport.extentTest.info("Product head line text on collection page is Displayed :: Clickable and validated successfully");
 
 	}
 
@@ -276,6 +281,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		// driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT).click();
 		Thread.sleep(3000);
 		Reporter.log(driver.getCurrentUrl());
+		ExtentReport.extentTest.info(driver.getCurrentUrl());
 
 		// check correct Product details page opened or not
 		new ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);
@@ -288,6 +294,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		 */
 
 		Reporter.log("Product head line text on collection page is Displayed :: Clickable and validated successfully");
+		ExtentReport.extentTest.info("Product head line text on collection page is Displayed :: Clickable and validated successfully");
 
 	}
 
@@ -307,6 +314,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		driver.findElement(FIRST_PRODUCT_REVIEW_STARS).click();
 		Thread.sleep(3000);
 		Reporter.log(driver.getCurrentUrl());
+		ExtentReport.extentTest.info(driver.getCurrentUrl());
     
 		/*text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
 		driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT).click();
@@ -329,6 +337,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			new ProductDetailsPageComponents(driver).validatePage();
 
 		Reporter.log("Product review stars on collection page is Displayed :: Clickable and validated successfully");
+		ExtentReport.extentTest.info("Product review stars on collection page is Displayed :: Clickable and validated successfully");
 	}
 
 	@SuppressWarnings("static-access")
@@ -566,8 +575,11 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			count = 0;
 		}
 		Reporter.log("All filters are working correctly");
+		ExtentReport.extentTest.info("All filters are working correctly");
 		Reporter.log("All selected items are displayed in list and removing from list");
+		ExtentReport.extentTest.info("All selected items are displayed in list and removing from list");
 		Reporter.log("Clear filters button works correctly");
+		ExtentReport.extentTest.info("Clear filters button works correctly");
 
 		// scroll to last filter view
 		// element = driver.findElement(LAST_FILTER);
@@ -644,9 +656,11 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		if(priceFilterPill.contains(priceFilter)) {
 			System.out.println("Price Filter is working");
 			Reporter.log("Price Filter is working");
+			ExtentReport.extentTest.info("Price Filter is working");
 		}
 		else {
 			System.out.println("Price Filter is not working");
+			ExtentReport.extentTest.info("Price Filter is not working");
 			throw new Exception("Price Filter is not working");
 		}
 		
@@ -810,7 +824,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			flag1 = false;
 		}
 		Reporter.log("All corosals are Displayed :: And by default not active");
-		
+		ExtentReport.extentTest.info("All corosals are Displayed :: And by default not active");
 		
 		
 		for (int k = 1; k <= allCorosals.size(); k++) {
@@ -848,6 +862,7 @@ if(flag=true)
 }
 		// driver.findElement(CLEAR_FILTER_BUTTON).click();
 		Reporter.log("Corosals gets active when respective option selected");
+		ExtentReport.extentTest.info("Corosals gets active when respective option selected");
 	}
 
 	public void validateallurls() throws Exception
@@ -897,6 +912,7 @@ if(flag=true)
 				if (driver.findElement(FIRST_PRODUCT).isDisplayed()) {
 					count++;
 					Reporter.log(url +"loads fine and products are displayed");
+					ExtentReport.extentTest.info(url +"loads fine and products are displayed");
 				}
 				}
 			}
@@ -949,11 +965,13 @@ if(count!=59)
 			wait.until(ExpectedConditions.presenceOfElementLocated(FIRST_PRODUCT));
 			List<WebElement> items = driver.findElements(By.cssSelector(".product-item"));
 			Reporter.log("No. of items present in " + url + " is " + items.size());
+			ExtentReport.extentTest.info("No. of items present in " + url + " is " + items.size());
 
 		}
 
 		catch (Exception e) {
 			Reporter.log(url + "not loading");
+			ExtentReport.extentTest.info(url + "not loading");
 		}
 	}
 
@@ -985,28 +1003,34 @@ if(count!=59)
 			// If Quick shop ATC is displayed
 			if (driver.findElement(QUICK_SHOP_ATC).isDisplayed()) {
 				Reporter.log("Quick shop ATC button is displayed on hover.");
+				ExtentReport.extentTest.info("Quick shop ATC button is displayed on hover.");
 				System.out.println("Quick shop ATC text is: " + driver.findElement(QUICK_SHOP_ATC).getText());
 				softAssert.assertEquals(driver.findElement(QUICK_SHOP_ATC).getText(), "Quick Shop +",
 						"Text changed for Quick shop ATC button.");
 				driver.findElement(QUICK_SHOP_ATC).click();
 				Thread.sleep(3000);
 				Reporter.log("Quick shop ATC button text is validated :: Clickable.");
+				ExtentReport.extentTest.info("Quick shop ATC button text is validated :: Clickable.");
 
 				// size overlay Field validation
 				softAssert.assertTrue(driver.findElement(QUICK_SHOP_SIZE_OVERLAY).isDisplayed(),
 						"On collection page Quick shop select size overlay is not displayed after click on ATC button.");
 				Reporter.log("Quick shop size overlay is displayed.");
+				ExtentReport.extentTest.info("Quick shop size overlay is displayed.");
 				softAssert.assertTrue(driver.findElement(QUICK_SHOP_SIZE_OVERLAY_CLOSE).isDisplayed(),
 						"Quick shop select size overlay close btn is not displayed after click on ATC button.");
 				Reporter.log("Quick shop size overlay is close button is displayed.");
+				ExtentReport.extentTest.info("Quick shop size overlay is close button is displayed.");
 				softAssert.assertTrue(driver.findElement(QUICK_SHOP_SIZE_OVERLAY_HEADING).isDisplayed(),
 						"Quick shop select size overlay's heading is not displayed.");
 			//	softAssert.assertEquals(driver.findElement(QUICK_SHOP_SIZE_OVERLAY_HEADING).getText(), "Choose Your Size",
 			//			"Text changed for Quick shop Size overlay heading.");
 				Reporter.log("Quick shop size overlay heading is displayed ::Correct.");
+				ExtentReport.extentTest.info("Quick shop size overlay heading is displayed ::Correct.");
 				softAssert.assertTrue(driver.findElement(QUICK_SHOP_SIZE_LABEL).isDisplayed(),
 						"Quick shop size labels are not displayed.");
 				Reporter.log("Quick shop size labels are displayed.");
+				ExtentReport.extentTest.info("Quick shop size labels are displayed.");
 				/*
 				 * softAssert.assertTrue(!driver.findElement(QUICK_SHOP_SIZE_OVERLAY_ATC).
 				 * isEnabled(),
@@ -1076,6 +1100,7 @@ if(count!=59)
 					System.out.println("The product doesn't have multivariant sizes in quickshop");
 				}
 				Reporter.log("Quick shop size labels are Clickable.");
+				ExtentReport.extentTest.info("Quick shop size labels are Clickable.");
 
 				/*
 				 * for(int i=0;i<allElements.size();i++) { element = driver.findElement(By.
@@ -1130,6 +1155,7 @@ if(count!=59)
 				System.out.println("product details are correct on Fly cart.");
 				Thread.sleep(3000);
 				Reporter.log("Product details are validated on Inline cart.");
+				ExtentReport.extentTest.info("Product details are validated on Inline cart.");
 				WebElement btn = driver.findElement(FlyCartPageLocator.INLINE_CART_CLOSE_BUTTON);
 				js.executeScript("arguments[0].click();", btn);
 				// }
@@ -1197,6 +1223,7 @@ if(count!=59)
 						
 						i--;
 					} else {
+						ExtentReport.extentTest.info("Color not changing");
 						throw new Exception("Color not changing");
 					}
 				}
@@ -1220,11 +1247,12 @@ if(count!=59)
 				js.executeScript("arguments[0].click();", element);
 			}
 			Reporter.log("Color swatch slick arrows are displayed :: Clickable");
+			ExtentReport.extentTest.info("Color swatch slick arrows are displayed :: Clickable");
 		}
 		
 		softAssert.assertAll();
 		Reporter.log("Color swatches are changing correctly");
-
+		ExtentReport.extentTest.info("Color swatches are changing correctly");
 	}
 
 	public void MethodToCheckColorSwatchChangingOnPLP() throws Exception {
@@ -1318,6 +1346,7 @@ if(count!=59)
 		if (!Hover_on_plp.equalsIgnoreCase(Second_image_pdp))
 			throw new Exception("Product tile hover functionality is not correct on plp");
 		Reporter.log("Verified Product tile hover functionality on plp");
+		ExtentReport.extentTest.info("Verified Product tile hover functionality on plp");
 	}
 
 	public void UpdatedSizeFilter() {
@@ -1341,9 +1370,10 @@ if(count!=59)
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PLP_PRODUCTS)));
 		
 	org.openqa.selenium.Dimension d= 	driver.findElement(By.cssSelector(".product-image-container>a")).getSize();
-	if(d.width>278)
+	if(d.width>278) {
+		ExtentReport.extentTest.info("Product grid conatins incorrect number of items"); 
 		throw new Exception("Product grid conatins incorrect number of items"); 
-		
+	}
 
 //		for (int i = 1; i < 5; i++) {
 //			if (objGeneralMethods.verifyElementExists(driver, By.xpath(PLP_PRODUCTS + "[" + i + "]"))) {
@@ -1382,9 +1412,11 @@ if(count!=59)
 
 			System.out.println("Breadcrumb link is working properly");
 			Reporter.log("Breadcrumb link is working properly");
+			ExtentReport.extentTest.info("Breadcrumb link is working properly");
 
 		} else {
 			System.out.println("Breadcrumb link is not working");
+			ExtentReport.extentTest.info("Breadcrumb link is not working");
 			throw new Exception("Breadcrumb link is not working");
 		}
 
@@ -1403,9 +1435,11 @@ if(count!=59)
 
 		if ((pageHeader.isDisplayed())) {
 			Reporter.log("The Category page header is displayed");
+			ExtentReport.extentTest.info("The Category page header is displayed");
 			System.out.println("Page Header is - " + pageHeader.getText());
 
 		} else {
+			ExtentReport.extentTest.info("Page Header is not displayed");
 			throw new Exception("Page Header is not displayed");
 		}
 
@@ -1431,10 +1465,13 @@ if(count!=59)
 
 				Reporter.log("The Category page header "
 						+ driver.findElement(By.xpath(PLP_SECTION_HEADER + "[" + i + "]")).getText() + " is displayed");
+				ExtentReport.extentTest.info("The Category page header "
+						+ driver.findElement(By.xpath(PLP_SECTION_HEADER + "[" + i + "]")).getText() + " is displayed");
 				System.out.println("Section Header - "
 						+ driver.findElement(By.xpath(PLP_SECTION_HEADER + "[" + i + "]")).getText());
 
 			} else {
+				ExtentReport.extentTest.info("Section Header is not displayed");
 				throw new Exception("Section Header is not displayed");
 			}
 		}
@@ -1453,6 +1490,7 @@ if(count!=59)
 		
 
 		Assert.assertTrue(inlineBanner.isEnabled(), "Inline banner is clickable");
+		ExtentReport.extentTest.info("Inline banner is clickable");
 		js.executeScript("arguments[0].scrollIntoView(true);", inlineBanner);
 		//Actions action = new Actions(driver);
 		//action.moveToElement(inlineBanner).click().perform();
@@ -1487,22 +1525,26 @@ if(count!=59)
 		if (onImageBadge.isDisplayed()) {
 
 			Reporter.log("The On Image Badge is displayed");
+			ExtentReport.extentTest.info("The On Image Badge is displayed");
 			System.out.println("The On Image Badge is displayed");
 
 		} else {
 			System.out.println("The On Image Badge is not displayed");
+			ExtentReport.extentTest.info("The On Image Badge is not displayed");
 			throw new Exception("The On Image Badge is not displayed");
 		}
 		
 		if (secondaryBadge.isDisplayed()) {
 
 			Reporter.log("The Secondary Badge is displayed");
+			ExtentReport.extentTest.info("The Secondary Badge is displayed");
 			System.out.println("The Secondary Badge is displayed");
 
 		} else {
 			
 			System.out.println("The Secondary Badge is not displayed");
 			Reporter.log("The Secondary Badge is not displayed");
+			ExtentReport.extentTest.info("The Secondary Badge is not displayed");
 			//throw new Exception("The Secondary Badge is not displayed");
 		}
 	}
@@ -1562,17 +1604,21 @@ if(count!=59)
 		if (seoTitle.isDisplayed()) {
 
 			Reporter.log("SEO title is displayed");
+			ExtentReport.extentTest.info("SEO title is displayed");
 			System.out.println("SEO title is displayed");
 			if(seoBody.isDisplayed()) {
 				Reporter.log("SEO Body displayed");
+				ExtentReport.extentTest.info("SEO Body displayed");
 				System.out.println("SEO Body is displayed");
 			}
 			else {
 				System.out.println("SEO Body is not displayed");
+				ExtentReport.extentTest.info("SEO Body is not displayed");
 				throw new Exception("SEO Body is not displayed");
 			}
 		} else {
 			System.out.println("SEO title is not displayed");
+			ExtentReport.extentTest.info("SEO title is not displayed");
 			throw new Exception("SEO title is not displayed");
 		}
 		
@@ -1588,9 +1634,11 @@ if(count!=59)
 		if(url.contains(textLink)) {
 			System.out.println("User has navigated to correct page");
 			Reporter.log("User has navigated to correct page");
+			ExtentReport.extentTest.info("User has navigated to correct page");
 		}
 		else {
 			System.out.println("User has not navigated to desired page");
+			ExtentReport.extentTest.info("User has not navigated to desired page");
 			throw new Exception("User has not navigated to desired page");
 		}
 	}
@@ -1619,12 +1667,14 @@ if(count!=59)
 		if (priceFilter.isDisplayed()) {
 
 			Reporter.log("Price Filter is displayed");
+			ExtentReport.extentTest.info("Price Filter is displayed");
 			System.out.println("Price Filter is displayed");
 			js.executeScript("arguments[0].click();", priceFilter);
 			
 			if(singleProductFilter.isEnabled())
 			{
 				Reporter.log("Single Product Filter is clickable");
+				ExtentReport.extentTest.info("Single Product Filter is clickable");
 				System.out.println("Single Product Filter is clickable");
 				js.executeScript("arguments[0].click();", singleProductFilter);
 				js.executeScript("arguments[0].click();", priceFilter);
@@ -1632,10 +1682,12 @@ if(count!=59)
 			}
 			else {
 				System.out.println("Single Product Filter is not clickable");
+				ExtentReport.extentTest.info("Single Product Filter is not clickable");
 				throw new Exception("Single Product Filter is not clickable");
 			}
 		} else {
 			System.out.println("Price Filter is not displayed");
+			ExtentReport.extentTest.info("Price Filter is not displayed");
 			throw new Exception("Price Filter is not displayed");
 		}
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_IMAGE));
@@ -1649,10 +1701,12 @@ if(count!=59)
 		
 		if(width>280)  {
 			Reporter.log("Single Product Tile annotations are correct");
+			ExtentReport.extentTest.info("Single Product Tile annotations are correct");
 			System.out.println("Single Product Tile annotations are correct");
 		}
 		else {
 			System.out.println("Single Product Tile annotations are not correct");
+			ExtentReport.extentTest.info("Single Product Tile annotations are not correct");
 			throw new Exception("Single Product Tile annotations are not correct");
 		}
 	}
@@ -1677,10 +1731,12 @@ if(count!=59)
 		
 		if(width>280)  {
 			Reporter.log("Single Product Tile annotations are correct");
+			ExtentReport.extentTest.info("Single Product Tile annotations are correct");
 			System.out.println("Single Product Tile annotations are correct");
 		}
 		else {
 			System.out.println("Single Product Tile annotations are not correct");
+			ExtentReport.extentTest.info("Single Product Tile annotations are not correct");
 			throw new Exception("Single Product Tile annotations are not correct");
 		}
 	}

@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.Wait;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
 
+import com.base.ExtentReport;
 import com.tommyjohn.automation.PageLocators.ReviewsPageLocators;
 import com.tommyjohn.automation.commonMethods.GeneralMethods;
 import com.tommyjohn.automation.utils.CustomUtilities;
@@ -86,6 +87,7 @@ public class ReviewsPageComponents extends ReviewsPageLocators {
 				}
 			}else System.out.println("Pagination is not displayed");
 			Reporter.log("Pagination is Displayed :: Clickable");
+			ExtentReport.extentTest.info("Pagination is Displayed :: Clickable");
 			softassert.assertAll();
 			
 			
