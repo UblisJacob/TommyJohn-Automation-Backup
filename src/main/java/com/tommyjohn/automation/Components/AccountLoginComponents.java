@@ -16,6 +16,7 @@ import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
 
+import com.base.ExtentReport;
 import com.tommyjohn.automation.PageLocators.AccountLoginLocators;
 import com.tommyjohn.automation.PageLocators.AccountPageLocators;
 import com.tommyjohn.automation.PageLocators.HomePageLocators;
@@ -93,6 +94,7 @@ public class AccountLoginComponents extends AccountLoginLocators {
 		Thread.sleep(3000);
 
 		Reporter.log("Account Created Successfully :: User is brought to account page");
+		ExtentReport.extentTest.info("Account Created Successfully :: User is brought to account page");
 		
 		return email;
 	}
@@ -201,6 +203,7 @@ public class AccountLoginComponents extends AccountLoginLocators {
 		// throw new Exception("Terms page is not displayed");
 
 		Reporter.log("All the fields and texts displayed on Create Account account page are correct");
+		ExtentReport.extentTest.info("All the fields and texts displayed on Create Account account page are correct");
 	}
 
 	public void verifyErrosForCreateAccount() throws Exception {
@@ -227,6 +230,7 @@ public class AccountLoginComponents extends AccountLoginLocators {
 			throw new Exception("Error messages are not displayed for invalid account creation");
 
 		Reporter.log("All error messages are verified on create account page");
+		ExtentReport.extentTest.info("All error messages are verified on create account page");
 	}
 
 	public void verifyFieldsOnRecoverPasswordPage() throws Exception {
@@ -289,6 +293,7 @@ public class AccountLoginComponents extends AccountLoginLocators {
 			throw new Exception("Wrong page opened after back to login link clicked");
 
 		Reporter.log("All the fields and texts displayed on Recover password page are correct");
+		ExtentReport.extentTest.info("All the fields and texts displayed on Recover password page are correct");
 
 	}
 
@@ -332,6 +337,7 @@ public class AccountLoginComponents extends AccountLoginLocators {
 					+ CustomUtilities.properties.getProperty("emailRecievedSuccessMessage") + "but actual is " + text);
 
 		Reporter.log("Recover password functionality completed Successfully :: User is brought to login page");
+		ExtentReport.extentTest.info("Recover password functionality completed Successfully :: User is brought to login page");
 	}
 
 	public void verifyAllErrorsOnRecoverPasswordPage() throws Exception {
@@ -381,6 +387,7 @@ public class AccountLoginComponents extends AccountLoginLocators {
 			throw new Exception("Wrong page opened after clicked on link");
 
 		Reporter.log("All error messages are verified on Recover password page");
+		ExtentReport.extentTest.info("All error messages are verified on Recover password page");
 	}
 
 	public void verifyAllFieldsOnLoginPage() throws Exception {
@@ -434,6 +441,7 @@ public class AccountLoginComponents extends AccountLoginLocators {
 			throw new Exception("Forgot password link is not present");
 
 		Reporter.log("All displayed fields and texts are verified on account login page");
+		ExtentReport.extentTest.info("All displayed fields and texts are verified on account login page");
 	}
 
 	public void verifyAccountLoginFuctionality(String createdAccountEmail, String password) throws Exception {
@@ -476,6 +484,7 @@ public class AccountLoginComponents extends AccountLoginLocators {
 			throw new Exception("Wrong page opened");
 
 		Reporter.log("Account Login functionality verified successfully");
+		ExtentReport.extentTest.info("Account Login functionality verified successfully");
 	}
 	
 	public void verifyAccountLogin(String createdAccountEmail, String password) throws Exception {
@@ -512,6 +521,7 @@ public class AccountLoginComponents extends AccountLoginLocators {
 			throw new Exception("Wrong page opened");
 
 		Reporter.log("Account Login functionality verified successfully");
+		ExtentReport.extentTest.info("Account Login functionality verified successfully");
 	}
 
 	public void verifyErrorMessagesOnLoginPage() throws Exception {
@@ -554,6 +564,7 @@ public class AccountLoginComponents extends AccountLoginLocators {
 			throw new Exception("Wrong page opened");
 
 		Reporter.log("All error messages are verified on login page");
+		ExtentReport.extentTest.info("All error messages are verified on login page");
 	}
 	
 	

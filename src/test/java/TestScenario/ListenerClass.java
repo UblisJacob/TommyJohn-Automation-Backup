@@ -67,12 +67,12 @@ public class ListenerClass extends ExtentReport implements ITestListener,IExecut
 			e.printStackTrace();
 		}
 		System.out.println("screenshot is taken");
-		String screenShotPath = "/test-output/Screenshot_"+testName+".jpg";
+		String screenShotPath = "test-output/Screenshot_"+testName+".jpg";
 		
 	
 		extentTest.addScreenCaptureFromPath(screenShotPath);
 		//".png"
-		 extentTest.log(Status.FAIL, "Screenshot", MediaEntityBuilder.createScreenCaptureFromPath("/test-output/Screenshot_"+testName+".jpg").build());
+		 extentTest.log(Status.FAIL, "Screenshot", MediaEntityBuilder.createScreenCaptureFromPath("test-output/Screenshot_"+testName+".jpg").build());
 		extentTest.log(Status.INFO,result.getThrowable());
 		extentTest.log(Status.FAIL,testName + " got failed");
 		
