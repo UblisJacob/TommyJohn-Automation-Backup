@@ -18,6 +18,8 @@ import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
 
+import com.aventstack.extentreports.ExtentTest;
+import com.base.ExtentReport;
 import com.tommyjohn.automation.PageLocators.AccountLoginLocators;
 import com.tommyjohn.automation.PageLocators.AccountPageLocators;
 import com.tommyjohn.automation.PageLocators.FlyCartPageLocator;
@@ -83,7 +85,9 @@ public class NavigationElementComponents extends HomePageLocators {
 		softassert.assertAll();
 
 		Reporter.log("No. of Links on Left Side of TJ logo is: " + linksList.size());
+		ExtentReport.extentTest.info("No. of Links on Left Side of TJ logo is: " + linksList.size());
 		Reporter.log("Link Text is '" + linkText + "' and it is Displayed");
+		ExtentReport.extentTest.info("Link Text is '" + linkText + "' and it is Displayed");
 	}
 
 	/**
@@ -121,7 +125,9 @@ public class NavigationElementComponents extends HomePageLocators {
 		softassert.assertAll();
 
 		Reporter.log("TJ Logo is displayed and is centrally aligned");
+		ExtentReport.extentTest.info("TJ Logo is displayed and is centrally aligned");
 		Reporter.log("No. of elements on Right Side of TJ logo is: " + elementsList.size());
+		ExtentReport.extentTest.info("No. of elements on Right Side of TJ logo is: " + elementsList.size());
 	}
 
 	/**
@@ -177,7 +183,9 @@ public class NavigationElementComponents extends HomePageLocators {
 		softassert.assertAll();
 
 		Reporter.log("Search text box is displayed");
+		ExtentReport.extentTest.info("Search text box is displayed");
 		Reporter.log("User is able to type in search box and suggestions were displayed");
+		ExtentReport.extentTest.info("User is able to type in search box and suggestions were displayed");
 	}
 
 	/**
@@ -316,11 +324,17 @@ public class NavigationElementComponents extends HomePageLocators {
 
 		softassert.assertAll();
 
+		
 		Reporter.log("When user is not signed in correct text is displayed in Login Header");
+		ExtentReport.extentTest.info("When user is not signed in correct text is displayed in Login Header");
 		Reporter.log("After hovering on Sign in, Dropdown appeared and contained correct options");
+		ExtentReport.extentTest.info("After hovering on Sign in, Dropdown appeared and contained correct options");
 		Reporter.log("My Account option is Displayed and Navigated to correct page");
+		ExtentReport.extentTest.info("My Account option is Displayed and Navigated to correct page");
 		Reporter.log("Help Center option is Displayed and Navigated to correct page");
+		ExtentReport.extentTest.info("Help Center option is Displayed and Navigated to correct page");
 		Reporter.log("Sign in option is Displayed and Navigated to correct page");
+		ExtentReport.extentTest.info("Sign in option is Displayed and Navigated to correct page");
 
 	}
 
@@ -478,10 +492,15 @@ public class NavigationElementComponents extends HomePageLocators {
 		softassert.assertAll();
 
 		Reporter.log("When user is signed in correct text is displayed in Login Header");
+		ExtentReport.extentTest.info("When user is signed in correct text is displayed in Login Header");
 		Reporter.log("After hovering on Sign in as a logged in user, Dropdown appeared and contained correct options");
+		ExtentReport.extentTest.info("After hovering on Sign in as a logged in user, Dropdown appeared and contained correct options");
 		Reporter.log("My Account option is Displayed and Navigated to correct page");
+		ExtentReport.extentTest.info("My Account option is Displayed and Navigated to correct page");
 		Reporter.log("Reorder option is Displayed and Navigated to correct page");
+		ExtentReport.extentTest.info("Reorder option is Displayed and Navigated to correct page");
 		Reporter.log("Sign out option is Displayed and User was signed out successfully to correct page");
+		ExtentReport.extentTest.info("Sign out option is Displayed and User was signed out successfully to correct page");
 
 	}
 	
@@ -603,7 +622,9 @@ public class NavigationElementComponents extends HomePageLocators {
 		softassert.assertAll();
 		
 		Reporter.log("Color of Empty Cart Icon changed from Grey to light grey after hovering on it");
+		ExtentReport.extentTest.info("Color of Empty Cart Icon changed from Grey to light grey after hovering on it");
 		Reporter.log("Inline Cart opened after Clicking on Cart Icon");
+		ExtentReport.extentTest.info("Inline Cart opened after Clicking on Cart Icon");
 		
 	}
 	
@@ -658,6 +679,7 @@ public class NavigationElementComponents extends HomePageLocators {
 		
 		System.out.println("Mens Quiz Landing Page successfully opened");
 		Reporter.log("Mens Quiz Landing Page successfully opened");
+		ExtentReport.extentTest.info("Mens Quiz Landing Page successfully opened");
 		
 	}
 	
@@ -712,6 +734,7 @@ public class NavigationElementComponents extends HomePageLocators {
 		
 		System.out.println("Womens Quiz Landing Page successfully opened");
 		Reporter.log("Womens Quiz Landing Page successfully opened");
+		ExtentReport.extentTest.info("Womens Quiz Landing Page successfully opened");
 		
 	}
 
@@ -766,7 +789,8 @@ public class NavigationElementComponents extends HomePageLocators {
 		
 		System.out.println("Bra Quiz Landing Page successfully opened");
 		Reporter.log("Bra Quiz Landing Page successfully opened");
-		
+		ExtentReport.extentTest.info("Bra Quiz Landing Page successfully opened");
+
 	}
 	
 	/**
@@ -848,6 +872,8 @@ public class NavigationElementComponents extends HomePageLocators {
 		softassert.assertAll();
 		System.out.println("Correct Page opened after clicking on the given Level 0 option: " + elementText);
 		Reporter.log("Correct Page opened after clicking on the given Level 0 option: " + elementText);
+		ExtentReport.extentTest.info("Correct Page opened after clicking on the given Level 0 option: " + elementText);
+
 	}
 	
 	/**
@@ -970,6 +996,8 @@ public class NavigationElementComponents extends HomePageLocators {
         	if(level_one_elements_list.size() != 0) {
 			System.out.println("Correct Page opened after clicking on the given Level 1 option: " + elementText);
 			Reporter.log("Correct Page opened after clicking on the given Level 1 option: " + elementText);
+			ExtentReport.extentTest.info("Correct Page opened after clicking on the given Level 1 option: " + elementText);
+
 			}
         }
 	
@@ -1104,7 +1132,8 @@ public class NavigationElementComponents extends HomePageLocators {
 		softassert.assertAll();
 		System.out.println("Correct Page opened after clicking on the given Level 2 option: " + elementText);
 		Reporter.log("Correct Page opened after clicking on the given Level 2 option: " + elementText);
-		
+		ExtentReport.extentTest.info("Correct Page opened after clicking on the given Level 2 option: " + elementText);
+
 	}
 	
 /**
@@ -1238,6 +1267,7 @@ element = genMethods.autoIndex(driver, LEVEL_ZERO_SPECIFIC_OPTION, L0, 1);
 				}else {
 					softassert.fail("Enter a link no. between 1 - 6, check javadoc for more info" + currentUrl);
 					Reporter.log("Enter a link no. between 1 - 6, check javadoc for more info");
+					ExtentReport.extentTest.info("Enter a link no. between 1 - 6, check javadoc for more info");
 					softassert.assertAll();
 				}
 			}catch (TimeoutException e) {
@@ -1257,7 +1287,8 @@ element = genMethods.autoIndex(driver, LEVEL_ZERO_SPECIFIC_OPTION, L0, 1);
 		softassert.assertAll();
 		System.out.println("Correct Page opened after clicking on the given Level 2 nav link: " + elementText);
 		Reporter.log("Correct Page opened after clicking on the given Level 2 nav link: " + elementText);
-		
+		ExtentReport.extentTest.info("Correct Page opened after clicking on the given Level 2 nav link: " + elementText);
+
 	}
 	
 	/**
@@ -1393,6 +1424,7 @@ element = genMethods.autoIndex(driver, LEVEL_ZERO_SPECIFIC_OPTION, L0, 1);
 		if(level_one_elements_list.size() != 0) {
 			System.out.println("Correct Page opened after clicking on the Shop ALl Link of Level 1 option: " + elementText);
 			Reporter.log("Correct Page opened after clicking on the Shop ALl Link of Level 1 option: " + elementText);
+			ExtentReport.extentTest.info("Correct Page opened after clicking on the Shop ALl Link of Level 1 option: " + elementText);
 		}
 		
 	}

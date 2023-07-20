@@ -1,5 +1,6 @@
 package com.tommyjohn.automation.Components;
 
+import com.base.ExtentReport;
 import com.tommyjohn.automation.PageLocators.BlogPageLocators;
 import com.tommyjohn.automation.PageLocators.FlyCartPageLocator;
 import com.tommyjohn.automation.PageLocators.HomePageLocators;
@@ -56,28 +57,34 @@ public class BlogPageComponents extends BlogPageLocators{
 		if(driver.findElement(BLOG_TITLE).isDisplayed()) {
 			System.out.println("BLOG TITLE is displayed on Blog Page");
 			Reporter.log("BLOG TITLE is displayed on Blog Page");
+			ExtentReport.extentTest.info("BLOG TITLE is displayed on Blog Page");
 		}
 		else {
 			Reporter.log("BLOG TITLE is not displayed on Blog Page");
+			ExtentReport.extentTest.info("BLOG TITLE is not displayed on Blog Page");
 			throw new Exception("BLOG TITLE is not displayed on Blog Page");
 		}
 		
 		if(driver.findElement(ARTICLE_IMG).isDisplayed()) {
 			System.out.println("ARTICLE IMG is displayed ");
 			Reporter.log("ARTICLE IMG is displayed on Blog Page");
+			ExtentReport.extentTest.info("ARTICLE IMG is displayed on Blog Page");
 			
 			if(driver.findElement(ARTICLE_HEADING).isDisplayed()) {
 				System.out.println("ARTICLE Summary is displayed ");
 				Reporter.log("ARTICLE Summary is displayed on Blog Page");
+				ExtentReport.extentTest.info("ARTICLE Summary is displayed on Blog Page");
 			}
 			
 			else {
 				Reporter.log("ARTICLE Summary is not displayed on Blog Page");
+				ExtentReport.extentTest.info("ARTICLE Summary is not displayed on Blog Page");
 				throw new Exception("ARTICLE Summary is not displayed ");
 			}
 		}
 		else {
 			Reporter.log("ARTICLE IMG is not displayed on Blog Page");
+			ExtentReport.extentTest.info("ARTICLE IMG is not displayed on Blog Page");
 			throw new Exception("ARTICLE IMG is not displayed ");
 		}
 		
@@ -85,6 +92,7 @@ public class BlogPageComponents extends BlogPageLocators{
 		if(driver.findElement(READ_MORE_ARTICLE).isDisplayed()) {
 			System.out.println("READ MORE link is displayed on Blog Page");
 			Reporter.log("READ MORE link is displayed on Blog Page");
+			ExtentReport.extentTest.info("READ MORE link is displayed on Blog Page");
 			readMore = driver.findElement(READ_MORE_ARTICLE).getAttribute("href");
 			jse.executeScript("arguments[0].click();", driver.findElement(READ_MORE_ARTICLE));
 			Thread.sleep(3000);
@@ -92,9 +100,11 @@ public class BlogPageComponents extends BlogPageLocators{
 			{
 				System.out.println("Read more link redirects to correct page");
 				Reporter.log("Read more link redirects to correct page");
+				ExtentReport.extentTest.info("Read more link redirects to correct page");
 			}
 			else {
 				Reporter.log("Read more link doesn't redirect to correct page");
+				ExtentReport.extentTest.info("Read more link doesn't redirect to correct page");
 				throw new Exception("Read more link doesn't redirect to correct page");
 			}
 			driver.navigate().to(blogUrl);
@@ -102,25 +112,30 @@ public class BlogPageComponents extends BlogPageLocators{
 		}
 		else {
 			Reporter.log("READ MORE link is not displayed on Blog Page");
+			ExtentReport.extentTest.info("READ MORE link is not displayed on Blog Page");
 			throw new Exception("READ MORE link is not displayed on Blog Page");
 		}
 		
 		if(driver.findElement(BLOG_CARD_IMG).isDisplayed()) {
 			System.out.println("BLOG_CARD_IMG is displayed ");
 			Reporter.log("BLOG_CARD_IMG is displayed on Blog Page");
+			ExtentReport.extentTest.info("BLOG_CARD_IMG is displayed on Blog Page");
 			
 			if(driver.findElement(BLOG_CARD_TITLE).isDisplayed()) {
 				System.out.println("BLOG_CARD_TITLE is displayed ");
 				Reporter.log("BLOG_CARD_TITLE is displayed on Blog Page");
+				ExtentReport.extentTest.info("BLOG_CARD_TITLE is displayed on Blog Page");
 			}
 			
 			else {
 				Reporter.log("BLOG_CARD_TITLE is not displayed on Blog Page");
+				ExtentReport.extentTest.info("BLOG_CARD_TITLE is not displayed on Blog Page");
 				throw new Exception("BLOG_CARD_TITLE is not displayed ");
 			}
 		}
 		else {
 			Reporter.log("BLOG_CARD_IMG is not displayed on Blog Page");
+			ExtentReport.extentTest.info("BLOG_CARD_IMG is not displayed on Blog Page");
 			throw new Exception("BLOG_CARD_IMG is not displayed ");
 		}
 		
@@ -129,6 +144,7 @@ public class BlogPageComponents extends BlogPageLocators{
 		if(driver.findElement(READ_MORE_BLOG_CARD).isDisplayed()) {
 			System.out.println("READ MORE blog card link is displayed");
 			Reporter.log("READ MORE blog card link is displayed");
+			ExtentReport.extentTest.info("READ MORE blog card link is displayed");
 			readMore = driver.findElement(READ_MORE_BLOG_CARD).getAttribute("href");
 			jse.executeScript("arguments[0].click();", driver.findElement(READ_MORE_BLOG_CARD));
 			Thread.sleep(3000);
@@ -136,9 +152,11 @@ public class BlogPageComponents extends BlogPageLocators{
 			{
 				System.out.println("Read more blog card link redirects to correct page");
 				Reporter.log("Read more blog card link redirects to correct page");
+				ExtentReport.extentTest.info("Read more blog card link redirects to correct page");
 			}
 			else {
 				Reporter.log("Read more blog card link doesn't redirect to correct page");
+				ExtentReport.extentTest.info("Read more blog card link doesn't redirect to correct page");
 				throw new Exception("Read more blog card link doesn't redirect to correct page");
 			}
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(40));
@@ -161,9 +179,11 @@ public class BlogPageComponents extends BlogPageLocators{
 			{
 				System.out.println("Previous Blog link redirects to correct page");
 				Reporter.log("Previous Blog link redirects to correct page");
+				ExtentReport.extentTest.info("Previous Blog link redirects to correct page");
 			}
 			else {
 				Reporter.log("Previous Blog link doesn't redirect to correct page");
+				ExtentReport.extentTest.info("Previous Blog link doesn't redirect to correct page");
 				throw new Exception("Previous Blog link doesn't redirect to correct page");
 			}
 			
@@ -179,9 +199,11 @@ public class BlogPageComponents extends BlogPageLocators{
 			{
 				System.out.println("Next Blog link redirects to correct page");
 				Reporter.log("Next Blog link redirects to correct page");
+				ExtentReport.extentTest.info("Next Blog link redirects to correct page");
 			}
 			else {
 				Reporter.log("Next Blog link doesn't redirect to correct page");
+				ExtentReport.extentTest.info("Next Blog link doesn't redirect to correct page");
 				throw new Exception("Next Blog link doesn't redirect to correct page");
 			}
 			
@@ -195,10 +217,12 @@ public class BlogPageComponents extends BlogPageLocators{
 		if(driver.findElement(LOAD_MORE).isDisplayed()) {
 			System.out.println("LOAD_MORE link is displayed on Blog Page");
 			Reporter.log("LOAD_MORE is displayed on Blog Page");
+			ExtentReport.extentTest.info("LOAD_MORE is displayed on Blog Page");
 			jse.executeScript("arguments[0].click();", driver.findElement(LOAD_MORE));
 		}
 		else {
 			Reporter.log("LOAD_MORE link is not displayed on Blog Page");
+			ExtentReport.extentTest.info("LOAD_MORE link is not displayed on Blog Page");
 			throw new Exception("LOAD_MORE link is not displayed on Blog Page");
 		}
 		
