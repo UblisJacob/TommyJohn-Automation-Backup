@@ -22,6 +22,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
 
+import com.base.ExtentReport;
 import com.tommyjohn.automation.PageLocators.CheckoutPageLocators;
 import com.tommyjohn.automation.PageLocators.FlyCartPageLocator;
 import com.tommyjohn.automation.PageLocators.HomePageLocators;
@@ -365,6 +366,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		if(!driver.findElement(AFTERPAY_DIV).isDisplayed())
 			throw new Exception("AfterPay Message not present on Shopping cart.");
 		Reporter.log("After pay Message is displayed on Shopping Cart :: Displayed");
+		ExtentReport.extentTest.info("After pay Message is displayed on Shopping Cart :: Displayed");
 
 		//Check message with calculated installment and icon display
 		price = driver.findElement(ESTIMATE_TOTAL_PRICE).getText();
@@ -380,8 +382,10 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 
 			softAssert.assertTrue(afterpaymessaging.getText().contains("available for orders between $35 - $1000") , "Wrong afterpay message displayed for product price");
 			Reporter.log("After pay message is correct On Shopping cart :: Displayed and Correct");
+			ExtentReport.extentTest.info("After pay message is correct On Shopping cart :: Displayed and Correct");
 			softAssert.assertTrue(afterpaylogo.isDisplayed(), "Afterpay logo not present on Shopping cart.");	
 			Reporter.log("After pay logo icon is displayed on Shopping cart :: Displayed");
+			ExtentReport.extentTest.info("After pay logo icon is displayed on Shopping cart :: Displayed");
 		}
 		else
 		{
@@ -397,8 +401,10 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 			System.out.println("Actual ins_amount is: " +ins_amount);
 			softAssert.assertEquals(ins_amount, expectedmessage , "Wrong afterpay message displayed for product price");
 			Reporter.log("After pay message with calculated installment is correct on Inline cart :: Displayed and correct");
+			ExtentReport.extentTest.info("After pay message with calculated installment is correct on Inline cart :: Displayed and correct");
 			softAssert.assertTrue(afterpaylogo.isDisplayed(), "Afterpay logo not present on Shopping cart");
 			Reporter.log("After pay logo icon is displayed on Inline cart :: Displayed");
+			ExtentReport.extentTest.info("After pay logo icon is displayed on Inline cart :: Displayed");
 		}
 		Thread.sleep(3000);   		
 
@@ -704,6 +710,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 			
 		}
 		Reporter.log("Tiered Meter is filling in");
+		ExtentReport.extentTest.info("Tiered Meter is filling in");
 		String[] widthper = text.split(";");
 		System.out.println(widthper[0]);
 		if(widthper[0].contains("100%"))
@@ -711,10 +718,12 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 			throw new Exception("Tiered meter not filling in correctly.");
 		}
 		Reporter.log("Tiered Meter is filling in");
+		ExtentReport.extentTest.info("Tiered Meter is filling in");
 		}
 		else {
 			System.out.println("Tiered Meter is not displayed on cart page");
 			Reporter.log("Tiered Meter is not displayed on cart page");
+			ExtentReport.extentTest.info("Tiered Meter is not displayed on cart page");
 		}
 		
 		

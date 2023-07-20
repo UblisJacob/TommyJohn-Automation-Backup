@@ -6,10 +6,11 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import com.base.ExtentReport;
 import com.tommyjohn.automation.Pages.FlyCartPage;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
-public class ValidateInlineCartPage {
+public class ValidateInlineCartPage extends ExtentReport {
 
 	WebDriver driver;
 

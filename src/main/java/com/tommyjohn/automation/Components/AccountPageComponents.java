@@ -216,6 +216,7 @@ public class AccountPageComponents extends AccountPageLocators {
 
 		softassert.assertEquals(text, OrderNumber, "Tracking order number is incorrect");
 		Reporter.log("Order number is clickable and navigates correctly for track the order");
+		ExtentReport.extentTest.info("Order number is clickable and navigates correctly for track the order");
 
 		softassert.assertAll();
 
