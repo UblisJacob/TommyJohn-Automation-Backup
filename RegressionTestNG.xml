@@ -4,6 +4,7 @@
 
 	<listeners>
 		<listener class-name="TestScenario.ListenerClass"></listener>
+		<listener class-name="TestScenario.RetryListener"></listener>
 	</listeners>
 
 	<test name="NavigationAndHomepageTests">
@@ -152,18 +153,18 @@
 		</classes>
 	</test> -->
 
-	<!--	<test name="OrderPlacementTests">-->
-	<!--		<parameter name="browser" value="chrome" />-->
-	<!--		<classes>-->
-	<!--			<class name="TestModules.ValidateOrderPlacement" />-->
-	<!--		</classes>-->
-	<!--	</test>-->
+<!--		<test name="OrderPlacementTests">-->
+<!--			<parameter name="browser" value="chrome" />-->
+<!--			<classes>-->
+<!--				<class name="TestModules.ValidateOrderPlacement" />-->
+<!--			</classes>-->
+<!--		</test>-->
 
 
-	<!--			<test thread-count="1" name="AfterPayTests">-->
-	<!--				<parameter name="browser" value="chrome" />-->
-	<!--				<classes>-->
-	<!--					<class name="TestModules.ValidateAfterPay" />-->
-	<!--				</classes>-->
-	<!--			</test>-->
+<!--			<test thread-count="1" name="AfterPayTests">-->
+<!--					<parameter name="browser" value="chrome" />-->
+<!--					<classes>-->
+<!--						<class name="TestModules.ValidateAfterPay" />-->
+<!--					</classes>-->
+<!--				</test>-->
 </suite>

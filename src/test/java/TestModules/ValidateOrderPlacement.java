@@ -1,4 +1,4 @@
-package TestScenario;
+package TestModules;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
@@ -6,11 +6,13 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import com.tommyjohn.automation.Pages.StoreLocatorPage;
+import com.tommyjohn.automation.Pages.CheckoutPage;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
-public class ValidateStoreLocator {
-	WebDriver driver ;
+public class ValidateOrderPlacement {
+
+	WebDriver driver;
+
 
 	@BeforeMethod(alwaysRun = true)
 	@Parameters("browser")
@@ -24,14 +26,17 @@ public class ValidateStoreLocator {
 	}
 	
 	@Test
-	public void TC_verifyStoreLocatorLayout() throws Exception {
-
-		new StoreLocatorPage(driver).verifyStoreLocatorLayout();
+	public void TC_ValidateOrderPlacementFlow() throws Exception
+	{
+		new CheckoutPage(driver).ValidateOrderPlacement();
 	}
+	
 	@AfterMethod(alwaysRun = true)
-	void teardown () {
-		
-	//	driver.close();
-		driver.quit();
+	void tearDown() {
+
+		//this.driver.close();
+		this.driver.quit();
+
 	}
+
 }
