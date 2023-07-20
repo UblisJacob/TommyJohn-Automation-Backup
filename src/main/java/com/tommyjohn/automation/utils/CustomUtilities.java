@@ -236,7 +236,7 @@ public class CustomUtilities {
 		String testname =  mname;
 		File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		try {
-			FileUtils.copyFile(file, new File("/test-output/Screenshot_"+testname+".jpg"));
+			FileUtils.copyFile(file, new File("test-output/Screenshot_"+testname+".jpg"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

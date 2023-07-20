@@ -17,6 +17,7 @@ import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
 
+import com.base.ExtentReport;
 import com.tommyjohn.automation.PageLocators.CA_SupplyChainsActPageLocators;
 import com.tommyjohn.automation.PageLocators.DoNotSellMyInfoPageLocators;
 import com.tommyjohn.automation.PageLocators.FooterSectionLocators;
@@ -84,11 +85,18 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		softassert.assertTrue(driver.getCurrentUrl().contains("https://www.tommyjohn.com/collections/womens-all"),
 				"Wrong page opened after Shop Women footer link clicked");
 
-		softassert.assertAll();
+		try{
+			softassert.assertAll();
+		}catch (AssertionError e) {
+			ExtentReport.extentTest.fail(e);
+			softassert.assertAll();
+		}
+		
 		System.out
 				.println("Shop Women Footer Link Text is Correct and Correct Webpage opened after clicking on link\n");
 
 		Reporter.log("Shop Women footer link is Displayed :: Clickable");
+		ExtentReport.extentTest.info("Shop Women footer link is Displayed :: Clickable");
 
 //		Check Shop Men
 		System.out.println("***Validating Shop Men Footer***");
@@ -106,10 +114,16 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		softassert.assertTrue(driver.getCurrentUrl().contains("https://www.tommyjohn.com/collections/mens-all"),
 				"Wrong page opened after Shop Men Footer link was clicked");
 
-		softassert.assertAll();
+		try{
+			softassert.assertAll();
+		}catch (AssertionError e) {
+			ExtentReport.extentTest.fail(e);
+			softassert.assertAll();
+		}
 
 		System.out.println("Shop Men Link text is Correct and Correct webpage opened after clicking on link\n");
 		Reporter.log("Shop Men footer link is Displayed :: Clickable");
+		ExtentReport.extentTest.info("Shop Men footer link is Displayed :: Clickable");
 
 //		Check Fabric Guide Footer
 		System.out.println("***Validating Fabric Guide Footer***");
@@ -127,10 +141,16 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		softassert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase("https://www.tommyjohn.com/pages/fabric-guide"),
 				"Wrong page opened after Fabric Guide Footer link was clicked");
 
-		softassert.assertAll();
+		try{
+			softassert.assertAll();
+		}catch (AssertionError e) {
+			ExtentReport.extentTest.fail(e);
+			softassert.assertAll();
+		}
 
 		System.out.println("Fabric Guide Link text is Correct and Correct webpage opened after clicking on link\n");
 		Reporter.log("Fabric Guide footer link is Displayed :: Clickable");
+		ExtentReport.extentTest.info("Fabric Guide footer link is Displayed :: Clickable");
 
 //		Check Gift Cards Footer
 		System.out.println("***Validating Gift Cards Footer***");
@@ -148,11 +168,17 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		softassert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase("https://www.tommyjohn.com/pages/giftcards"),
 				"Wrong page opened after Gift Cards Footer link was clicked");
 
-		softassert.assertAll();
+		try{
+			softassert.assertAll();
+		}catch (AssertionError e) {
+			ExtentReport.extentTest.fail(e);
+			softassert.assertAll();
+		}
 
 		System.out.println("Gift Cards Link text is Correct and Correct webpage opened after clicking on link\n");
 		Reporter.log("Gift Cards footer link is Displayed :: Clickable");
-
+		ExtentReport.extentTest.info("Gift Cards footer link is Displayed :: Clickable");
+		
 	}
 
 	/**
@@ -191,11 +217,18 @@ public class FooterSectionComponents extends FooterSectionLocators {
 				driver.getCurrentUrl().contains("https://www.tommyjohn.com/pages/sitewide-promotion-disclaimer"),
 				"Wrong page opened after Sitewide Promotion footer link was clicked");
 
-		softassert.assertAll();
+		try{
+			softassert.assertAll();
+		}catch (AssertionError e) {
+			ExtentReport.extentTest.fail(e);
+			softassert.assertAll();
+		}
+		
 		System.out.println(
 				"Sitewide Promotion Footer Link text is Correct and Correct webpage opened after clicking on link\n");
 
 		Reporter.log("Sitewide Promotion footer link is Displayed :: Clickable");
+		ExtentReport.extentTest.info("Sitewide Promotion footer link is Displayed :: Clickable");
 
 //		Check Military Discount
 		System.out.println("***Validating Military Discount Footer***");
@@ -216,11 +249,17 @@ public class FooterSectionComponents extends FooterSectionLocators {
 
 		objGeneralMethods.clickButtonByJS(driver, LEAVE_SITE_POPUP_CANCEL_BTN);
 
-		softassert.assertAll();
+		try{
+			softassert.assertAll();
+		}catch (AssertionError e) {
+			ExtentReport.extentTest.fail(e);
+			softassert.assertAll();
+		}
 
 		System.out.println("Military Discount Link text is Correct and Popup opened after clicking on link\n");
 		Reporter.log("Military Discount footer link is Displayed :: Clickable");
-
+		ExtentReport.extentTest.info("Military Discount footer link is Displayed :: Clickable");
+		
 //		Check First Responder link
 		System.out.println("***Validating First Responder Footer***");
 
@@ -238,12 +277,18 @@ public class FooterSectionComponents extends FooterSectionLocators {
 
 		objGeneralMethods.clickButtonByJS(driver, LEAVE_SITE_POPUP_CANCEL_BTN);
 
-		softassert.assertAll();
+		try{
+			softassert.assertAll();
+		}catch (AssertionError e) {
+			ExtentReport.extentTest.fail(e);
+			softassert.assertAll();
+		}
 
 		System.out.println("First Responder Link text is Correct and Popup opened after clicking on link\n");
 
 		Reporter.log("First Responder footer link is Displayed :: Clickable");
-
+		ExtentReport.extentTest.info("First Responder footer link is Displayed :: Clickable");
+		
 //		Check Government Employee Discount link
 		System.out.println("***Validating Government Employee Discount Footer***");
 
@@ -262,13 +307,19 @@ public class FooterSectionComponents extends FooterSectionLocators {
 
 		objGeneralMethods.clickButtonByJS(driver, LEAVE_SITE_POPUP_CANCEL_BTN);
 
-		softassert.assertAll();
+		try{
+			softassert.assertAll();
+		}catch (AssertionError e) {
+			ExtentReport.extentTest.fail(e);
+			softassert.assertAll();
+		}
 
 		System.out
 				.println("Government Employee Discount Link text is Correct and Popup opened after clicking on link\n");
 
 		Reporter.log("Government Employee Discount footer link is Displayed :: Clickable");
-
+		ExtentReport.extentTest.info("Government Employee Discount footer link is Displayed :: Clickable");
+		
 //		Check Teacher Discount link
 		System.out.println("***Validating Teacher Discount Footer***");
 
@@ -286,12 +337,18 @@ public class FooterSectionComponents extends FooterSectionLocators {
 
 		objGeneralMethods.clickButtonByJS(driver, LEAVE_SITE_POPUP_CANCEL_BTN);
 
-		softassert.assertAll();
+		try{
+			softassert.assertAll();
+		}catch (AssertionError e) {
+			ExtentReport.extentTest.fail(e);
+			softassert.assertAll();
+		}
 
 		System.out.println("Teacher Discount Link text is Correct and Popup opened after clicking on link\n");
 
 		Reporter.log("Teacher Discount footer link is Displayed :: Clickable");
-
+		ExtentReport.extentTest.info("Teacher Discount footer link is Displayed :: Clickable");
+		
 //		Check Referral Link
 
 		System.out.println("***Validating Referral Footer***");
@@ -307,13 +364,18 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		softassert.assertTrue(driver.getCurrentUrl().contains("https://www.tommyjohn.com/pages/refer"),
 				"Wrong page opened after Give $25, Get $25 footer link was clicked");
 
-		softassert.assertAll();
+		try{
+			softassert.assertAll();
+		}catch (AssertionError e) {
+			ExtentReport.extentTest.fail(e);
+			softassert.assertAll();
+		}
 
 		System.out.println(
 				"Give $25, Get $25 Footer Link text is Correct and Correct webpage opened after clicking on link\n");
 
 		Reporter.log("Give $25, Get $25 footer link is Displayed :: Clickable");
-
+		ExtentReport.extentTest.info("Give $25, Get $25 footer link is Displayed :: Clickable");
 	}
 
 	/**
@@ -352,11 +414,18 @@ public class FooterSectionComponents extends FooterSectionLocators {
 						.equalsIgnoreCase("https://www.tommyjohn.com/account/login?return_url=%2Faccount"),
 				"Wrong page opened after Sign In footer link clicked");
 
-		softassert.assertAll();
+		try{
+			softassert.assertAll();
+		}catch (AssertionError e) {
+			ExtentReport.extentTest.fail(e);
+			softassert.assertAll();
+		}
+		
 		System.out.println("Sign In Footer Link text is Correct and Correct webpage opened after clicking on link\n");
 
 		Reporter.log("Sign In footer link is Displayed :: Clickable");
-
+		ExtentReport.extentTest.info("Sign In footer link is Displayed :: Clickable");
+		
 //		Check Order History link
 		System.out.println("***Validating Order History Footer***");
 
@@ -377,12 +446,18 @@ public class FooterSectionComponents extends FooterSectionLocators {
 						.equalsIgnoreCase("https://www.tommyjohn.com/account/login?return_url=%2Faccount"),
 				"Wrong page opened after Order History footer link clicked");
 
-		softassert.assertAll();
+		try{
+			softassert.assertAll();
+		}catch (AssertionError e) {
+			ExtentReport.extentTest.fail(e);
+			softassert.assertAll();
+		}
+		
 		System.out.println(
 				"Order History Footer Link text is Correct and Correct webpage opened after clicking on link\n");
 
 		Reporter.log("Sign In footer link is Displayed :: Clickable");
-
+		ExtentReport.extentTest.info("Sign In footer link is Displayed :: Clickable");
 	}
 
 	/**
@@ -419,12 +494,18 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		softassert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase("https://help.tommyjohn.com/hc/en-us"),
 				"Wrong page opened after Contact Us footer link clicked");
 
-		softassert.assertAll();
+		try{
+			softassert.assertAll();
+		}catch (AssertionError e) {
+			ExtentReport.extentTest.fail(e);
+			softassert.assertAll();
+		}
+		
 		System.out
 				.println("Contact Us Footer Link text is correct and Correct webpage opened after clicking on link\n");
 
 		Reporter.log("Contact Us footer link is Displayed :: Clickable");
-
+		ExtentReport.extentTest.info("Contact Us footer link is Displayed :: Clickable");
 		/**
 		 * // Check Returns & Exchanges Link System.out.println("***Validating Returns &
 		 * Exchanges Footer***"); driver.navigate().back();
@@ -489,12 +570,18 @@ public class FooterSectionComponents extends FooterSectionLocators {
 				driver.getCurrentUrl().equalsIgnoreCase("https://www.tommyjohn.com/pages/my-card-balance"),
 				"Wrong page opened after Check Gift Card Balance Footer link was clicked");
 
-		softassert.assertAll();
+		try{
+			softassert.assertAll();
+		}catch (AssertionError e) {
+			ExtentReport.extentTest.fail(e);
+			softassert.assertAll();
+		}
 
 		System.out.println(
 				"Check Gift Card Balance Link text is correct and Correct webpage opened after clicking on link\n");
 		Reporter.log("Check Gift Card Balance footer link is Displayed :: Clickable");
-
+		ExtentReport.extentTest.info("Check Gift Card Balance footer link is Displayed :: Clickable");
+		
 //		Check Tommy John Stores
 		System.out.println("***Validating Tommy John Stores Footer***");
 		driver.navigate().back();
@@ -511,12 +598,18 @@ public class FooterSectionComponents extends FooterSectionLocators {
 				driver.getCurrentUrl().equalsIgnoreCase("https://www.tommyjohn.com/pages/store-directory"),
 				"Wrong page opened after Tommy John Stores Footer link was clicked");
 
-		softassert.assertAll();
+		try{
+			softassert.assertAll();
+		}catch (AssertionError e) {
+			ExtentReport.extentTest.fail(e);
+			softassert.assertAll();
+		}
 
 		System.out
 				.println("Tommy John Stores Link text is correct and Correct webpage opened after clicking on link\n");
 		Reporter.log("Tommy John Stores footer link is Displayed :: Clickable");
-
+		ExtentReport.extentTest.info("Tommy John Stores footer link is Displayed :: Clickable");
+		
 //		Check Store Locator
 		System.out.println("***Validating Store Locator Footer***");
 		driver.navigate().back();
@@ -532,12 +625,18 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		softassert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase("https://www.tommyjohn.com/pages/store-locator"),
 				"Wrong page opened after Store Locator Footer link was clicked");
 
-		softassert.assertAll();
+		try{
+			softassert.assertAll();
+		}catch (AssertionError e) {
+			ExtentReport.extentTest.fail(e);
+			softassert.assertAll();
+		}
 
 		System.out.println(
 				"Store Locator Footer Link text is Correct and Correct webpage opened after clicking on link\n");
 		Reporter.log("Store Locator footer link is Displayed :: Clickable");
-
+		ExtentReport.extentTest.info("Store Locator footer link is Displayed :: Clickable");
+		
 //		Check Retailers Footer
 		System.out.println("***Validating Retailers Footer***");
 		driver.navigate().back();
@@ -553,11 +652,17 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		softassert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase("https://www.tommyjohn.com/pages/retailers"),
 				"Wrong page opened after Retailers Footer link was clicked");
 
-		softassert.assertAll();
+		try{
+			softassert.assertAll();
+		}catch (AssertionError e) {
+			ExtentReport.extentTest.fail(e);
+			softassert.assertAll();
+		}
 
 		System.out.println("Retailers Footer Link text is Correct and Correct webpage opened after clicking on link\n");
 		Reporter.log("Retailers footer link is Displayed :: Clickable");
-
+		ExtentReport.extentTest.info("Retailers footer link is Displayed :: Clickable");
+		
 //		Check Affiliates Footer
 		System.out.println("***Validating Affiliates Footer***");
 		driver.navigate().back();
@@ -574,12 +679,18 @@ public class FooterSectionComponents extends FooterSectionLocators {
 				driver.getCurrentUrl().equalsIgnoreCase("https://www.tommyjohn.com/pages/affiliate-landing"),
 				"Wrong page opened after Affiliates Footer link was clicked");
 
-		softassert.assertAll();
+		try{
+			softassert.assertAll();
+		}catch (AssertionError e) {
+			ExtentReport.extentTest.fail(e);
+			softassert.assertAll();
+		}
 
 		System.out
 				.println("Affiliates Footer Link text is Correct and Correct webpage opened after clicking on link\n");
 		Reporter.log("Affiliates footer link is Displayed :: Clickable");
-
+		ExtentReport.extentTest.info("Affiliates footer link is Displayed :: Clickable");
+		
 	}
 
 	/**
@@ -619,11 +730,18 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		softassert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase("https://www.tommyjohn.com/pages/about-us"),
 				"Wrong page opened after About footer link was clicked");
 
-		softassert.assertAll();
+		try{
+			softassert.assertAll();
+		}catch (AssertionError e) {
+			ExtentReport.extentTest.fail(e);
+			softassert.assertAll();
+		}
+		
 		System.out.println("About Footer Link text is Correct and Correct webpage opened after clicking on link\n");
 
 		Reporter.log("About footer link is Displayed :: Clickable");
-
+		ExtentReport.extentTest.info("About footer link is Displayed :: Clickable");
+		
 //		Check Careers
 		System.out.println("***Validating Careers Footer***");
 
@@ -641,11 +759,18 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		softassert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase("https://www.tommyjohn.com/pages/careers"),
 				"Wrong page opened after Careers footer link was clicked");
 
-		softassert.assertAll();
+		try{
+			softassert.assertAll();
+		}catch (AssertionError e) {
+			ExtentReport.extentTest.fail(e);
+			softassert.assertAll();
+		}
+		
 		System.out.println("Careers Footer Link text is Correct and Correct webpage opened after clicking on link\n");
 
 		Reporter.log("Careers footer link is Displayed :: Clickable");
-
+		ExtentReport.extentTest.info("Careers footer link is Displayed :: Clickable");
+		
 //		Check Press
 		System.out.println("***Validating Press Footer***");
 
@@ -663,11 +788,18 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		softassert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase("https://www.tommyjohn.com/pages/press"),
 				"Wrong page opened after Press footer link was clicked");
 
-		softassert.assertAll();
+		try{
+			softassert.assertAll();
+		}catch (AssertionError e) {
+			ExtentReport.extentTest.fail(e);
+			softassert.assertAll();
+		}
+		
 		System.out.println("Press Footer Link text is Correct and Correct webpage opened after clicking on link\n");
 
 		Reporter.log("Press footer link is Displayed :: Clickable");
-
+		ExtentReport.extentTest.info("Press footer link is Displayed :: Clickable");
+		
 //		Check Press
 		System.out.println("***Validating Blog Footer***");
 
@@ -685,11 +817,18 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		softassert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase("https://www.tommyjohn.com/blogs/news"),
 				"Wrong page opened after Blog footer link was clicked");
 
-		softassert.assertAll();
+		try{
+			softassert.assertAll();
+		}catch (AssertionError e) {
+			ExtentReport.extentTest.fail(e);
+			softassert.assertAll();
+		}
+		
 		System.out.println("Blog Footer Link text is Correct and Correct webpage opened after clicking on link\n");
 
 		Reporter.log("Blog footer link is Displayed :: Clickable");
-
+		ExtentReport.extentTest.info("Blog footer link is Displayed :: Clickable");
+		
 //		Check Reviews
 		System.out.println("***Validating Reviews Footer***");
 
@@ -707,10 +846,17 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		softassert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase("https://www.tommyjohn.com/pages/reviews"),
 				"Wrong page opened after Reviews footer link was clicked");
 
-		softassert.assertAll();
+		try{
+			softassert.assertAll();
+		}catch (AssertionError e) {
+			ExtentReport.extentTest.fail(e);
+			softassert.assertAll();
+		}
+		
 		System.out.println("Reviews Link text is Correct and Correct webpage opened after clicking on link\n");
 
 		Reporter.log("Reviews footer link is Displayed :: Clickable");
+		ExtentReport.extentTest.info("Reviews footer link is Displayed :: Clickable");
 
 	}
 
@@ -752,10 +898,16 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		softassert.assertTrue(hrefLink.equals("https://www.facebook.com/TommyJohnWear"),
 				"Facebook Link is not Correct");
 
-		softassert.assertAll();
+		try{
+			softassert.assertAll();
+		}catch (AssertionError e) {
+			ExtentReport.extentTest.fail(e);
+			softassert.assertAll();
+		}
 
 		System.out.println("Facebook Icon is Present and Link is correct\n");
 		Reporter.log("Facebook Footer Icon is Displayed :: Clickable");
+		ExtentReport.extentTest.info("Reviews footer link is Displayed :: Clickable");
 
 //		Check Twitter Link
 		System.out.println("***Validating Twitter Link***");
@@ -777,10 +929,16 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		softassert.assertTrue(element.isDisplayed(), "Twitter Icon is not Displayed");
 		softassert.assertTrue(hrefLink.equals("https://twitter.com/TommyJohn"), "Twitter Link is not Correct");
 
-		softassert.assertAll();
+		try{
+			softassert.assertAll();
+		}catch (AssertionError e) {
+			ExtentReport.extentTest.fail(e);
+			softassert.assertAll();
+		}
 
 		System.out.println("Twitter Icon is Present and Link is correct\n");
 		Reporter.log("Twitter Footer Icon is Displayed :: Clickable");
+		ExtentReport.extentTest.info("Twitter Footer Icon is Displayed :: Clickable");
 
 //		Check Pinterest Link
 		System.out.println("***Validating Pinterest Link***");
@@ -803,10 +961,16 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		softassert.assertTrue(hrefLink.equals("https://www.pinterest.com/tommyjohnwear/"),
 				"Pinterest Link is not Correct");
 
-		softassert.assertAll();
+		try{
+			softassert.assertAll();
+		}catch (AssertionError e) {
+			ExtentReport.extentTest.fail(e);
+			softassert.assertAll();
+		}
 
 		System.out.println("Pinterest Icon is Present and Link is correct\n");
 		Reporter.log("Pinterest Footer Icon is Displayed :: Clickable");
+		ExtentReport.extentTest.info("Pinterest Footer Icon is Displayed :: Clickable");
 
 //		Check Instagram Link
 		System.out.println("***Validating Instagram Link***");
@@ -829,10 +993,16 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		softassert.assertTrue(hrefLink.equals("https://www.instagram.com/tommyjohnwear/"),
 				"Pinterest Link is not Correct");
 
-		softassert.assertAll();
+		try{
+			softassert.assertAll();
+		}catch (AssertionError e) {
+			ExtentReport.extentTest.fail(e);
+			softassert.assertAll();
+		}
 
 		System.out.println("Instagram Icon is Present and Link is correct\n");
 		Reporter.log("Instagram Footer Icon is Displayed :: Clickable");
+		ExtentReport.extentTest.info("Instagram Footer Icon is Displayed :: Clickable");
 
 //		Check Youtube Link
 		System.out.println("***Validating Youtube Link***");
@@ -855,10 +1025,16 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		softassert.assertTrue(hrefLink.equals("https://www.youtube.com/user/tommyjohnwear"),
 				"Pinterest Link is not Correct");
 
-		softassert.assertAll();
+		try{
+			softassert.assertAll();
+		}catch (AssertionError e) {
+			ExtentReport.extentTest.fail(e);
+			softassert.assertAll();
+		}
 
 		System.out.println("Youtube Icon is Present and Link is correct\n");
 		Reporter.log("Youtube Footer Icon is Displayed :: Clickable");
+		ExtentReport.extentTest.info("Youtube Footer Icon is Displayed :: Clickable");
 
 	}
 
@@ -905,10 +1081,16 @@ public class FooterSectionComponents extends FooterSectionLocators {
 				"Wrong Page opened after clicking on Privacy Policy Link ");
 		softassert.assertTrue(pageHeader.equals("Tommy John Website Privacy Policy"), "Page Header doesn't match");
 
-		softassert.assertAll();
+		try{
+			softassert.assertAll();
+		}catch (AssertionError e) {
+			ExtentReport.extentTest.fail(e);
+			softassert.assertAll();
+		}
 
 		System.out.println("Privacy Policy Link is Displayed and Corresponding Page opened after clicking on Link\n");
 		Reporter.log("Privacy Policy Link is Displayed and Corresponding Page opened after clicking on Link");
+		ExtentReport.extentTest.info("Privacy Policy Link is Displayed and Corresponding Page opened after clicking on Link");
 
 //		Checking Terms and Conditions
 		driver.navigate().back();
@@ -933,12 +1115,16 @@ public class FooterSectionComponents extends FooterSectionLocators {
 				"Wrong Page opened after clicking on Terms & Conditions Link ");
 		softassert.assertTrue(pageHeader.equals("Tommy John Terms & Conditions"), "Page Header doesn't match");
 
-		softassert.assertAll();
+		try{
+			softassert.assertAll();
+		}catch (AssertionError e) {
+			ExtentReport.extentTest.fail(e);
+			softassert.assertAll();
+		}
 
-		System.out.println(
-				"Tommy John Terms & Conditions Link is Displayed and Corresponding Page opened after clicking on Link\n");
-		Reporter.log(
-				"Tommy John Terms & Conditions Link is Displayed and Corresponding Page opened after clicking on Link");
+		System.out.println("Tommy John Terms & Conditions Link is Displayed and Corresponding Page opened after clicking on Link\n");
+		Reporter.log("Tommy John Terms & Conditions Link is Displayed and Corresponding Page opened after clicking on Link");
+		ExtentReport.extentTest.info("Tommy John Terms & Conditions Link is Displayed and Corresponding Page opened after clicking on Link");
 
 //		Checking Do Not Sell My Information
 		driver.navigate().back();
@@ -967,12 +1153,16 @@ public class FooterSectionComponents extends FooterSectionLocators {
 						"For California residents"),
 				"Page Header doesn't match");
 
-		softassert.assertAll();
+		try{
+			softassert.assertAll();
+		}catch (AssertionError e) {
+			ExtentReport.extentTest.fail(e);
+			softassert.assertAll();
+		}
 
-		System.out.println(
-				"Do Not Sell My Information Link is Displayed and Corresponding Page opened after clicking on Link\n");
-		Reporter.log(
-				"Do Not Sell My Information Link is Displayed and Corresponding Page opened after clicking on Link");
+		System.out.println("Do Not Sell My Information Link is Displayed and Corresponding Page opened after clicking on Link\n");
+		Reporter.log("Do Not Sell My Information Link is Displayed and Corresponding Page opened after clicking on Link");
+		ExtentReport.extentTest.info("Do Not Sell My Information Link is Displayed and Corresponding Page opened after clicking on Link");
 
 //		Checking CA Transparency in Supply Chains Act
 		driver.navigate().back();
@@ -998,12 +1188,17 @@ public class FooterSectionComponents extends FooterSectionLocators {
 				"Wrong Page opened after clicking on CA Transparency in Supply Chains Act");
 		softassert.assertTrue(pageHeader.equals("California Supply Chains Act"), "Page Header doesn't match");
 
-		softassert.assertAll();
+		try{
+			softassert.assertAll();
+		}catch (AssertionError e) {
+			ExtentReport.extentTest.fail(e);
+			softassert.assertAll();
+		}
 
-		System.out.println(
-				"CA Transparency in Supply Chains Act Link is Displayed and Corresponding Page opened after clicking on Link\n");
-		Reporter.log(
-				"CA Transparency in Supply Chains Act Link is Displayed and Corresponding Page opened after clicking on Link");
+		System.out.println("CA Transparency in Supply Chains Act Link is Displayed and Corresponding Page opened after clicking on Link\n");
+		Reporter.log("CA Transparency in Supply Chains Act Link is Displayed and Corresponding Page opened after clicking on Link");
+		ExtentReport.extentTest.info("CA Transparency in Supply Chains Act Link is Displayed and Corresponding Page opened after clicking on Link");
+		
 	}
 
 	/**
@@ -1073,11 +1268,16 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		softassert.assertTrue(driver.findElement(NEWSLETTER_FORM_SUCCESS_MESSAGE).isDisplayed(),
 				"Success message is not displayed after newsletter form submission");
 
-		softassert.assertAll();
+		try{
+			softassert.assertAll();
+		}catch (AssertionError e) {
+			ExtentReport.extentTest.fail(e);
+			softassert.assertAll();
+		}
 
-		System.out.println(
-				"Newsletter Email Sign Up functionality is working and Success Message is Displayed to user\n");
+		System.out.println("Newsletter Email Sign Up functionality is working and Success Message is Displayed to user\n");
 		Reporter.log("Newsletter Email Sign Up functionality is working and Success Message is Displayed to user");
+		ExtentReport.extentTest.info("Newsletter Email Sign Up functionality is working and Success Message is Displayed to user");
 
 	}
 
@@ -1113,12 +1313,16 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		softassert.assertTrue(driver.getCurrentUrl().contains(Feedback_page_url),
 				"Wrong page opened after click on Give Feedback CTA on footer");
 
-		softassert.assertAll();
+		try{
+			softassert.assertAll();
+		}catch (AssertionError e) {
+			ExtentReport.extentTest.fail(e);
+			softassert.assertAll();
+		}
 
-		System.out.println(
-				"Give Feedback Section is present and corresponding page opened after clicking on 'Give Feedback' button");
-		Reporter.log(
-				"Give Feedback Section is present and corresponding page opened after clicking on 'Give Feedback' button");
+		System.out.println("Give Feedback Section is present and corresponding page opened after clicking on 'Give Feedback' button");
+		Reporter.log("Give Feedback Section is present and corresponding page opened after clicking on 'Give Feedback' button");
+		ExtentReport.extentTest.info("Give Feedback Section is present and corresponding page opened after clicking on 'Give Feedback' button");
 	}
 
 }
