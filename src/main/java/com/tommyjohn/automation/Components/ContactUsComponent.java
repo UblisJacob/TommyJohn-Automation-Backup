@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
 
+import com.base.ExtentReport;
 import com.tommyjohn.automation.PageLocators.ContactUsPageLocators;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
@@ -53,6 +54,7 @@ public class ContactUsComponent extends ContactUsPageLocators
 		Thread.sleep(3000);
 		softassert.assertTrue(driver.findElement(SEND_MESSAGE_BUTTON).isEnabled(), "Send message button not enabled");
 		Reporter.log("User is able to send message through contact us form.");
+		ExtentReport.extentTest.info("User is able to send message through contact us form.");
 		
 		softassert.assertAll();
 	}
@@ -218,6 +220,7 @@ public class ContactUsComponent extends ContactUsPageLocators
 		softassert.assertTrue(driver.findElement(HELP_PAGETITLE).isDisplayed(), "Help Center page title is not displayed.");
 		softassert.assertEquals(driver.findElement(HELP_PAGETITLE).getText(), properties.getProperty("PageTitle"),"Text changed for Help Center page title.");
 		Reporter.log("Contact us Page Title is displayed :: Correct.");
+		ExtentReport.extentTest.info("Contact us Page Title is displayed :: Correct.");
 		
 		softassert.assertTrue(driver.findElement(HELP_QUERY).isDisplayed(), "Query Search textbox is not displayed.");
 		softassert.assertTrue(driver.findElement(HELP_QUICK_SEARCH_TOPICS).isDisplayed(), "Query topics are not displayed.");
@@ -225,6 +228,7 @@ public class ContactUsComponent extends ContactUsPageLocators
 		softassert.assertTrue(driver.findElement(CONTACT_INFO_TITLE).isDisplayed(), "Contact Information title is not displayed.");
 		softassert.assertEquals(driver.findElement(CONTACT_INFO_TITLE).getAttribute("innerText"), properties.getProperty("ContactInformationTitle"),"Text changed for Contact information title.");
 		Reporter.log("Contact information Title is displayed :: Correct.");
+		ExtentReport.extentTest.info("Contact information Title is displayed :: Correct.");
 		
 		softassert.assertTrue(driver.findElement(TIMING_TEXT1).isDisplayed(), "'Day and timing' text is not displayed.");
 		softassert.assertTrue(driver.findElement(TIMING_TEXT2).isDisplayed(), "'Day and timing' text is not displayed.");
