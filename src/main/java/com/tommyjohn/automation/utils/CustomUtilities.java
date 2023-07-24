@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
@@ -236,10 +238,44 @@ public class CustomUtilities {
 		String testname =  mname;
 		File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		try {
-			FileUtils.copyFile(file, new File("test-output/Screenshot_"+testname+".jpg"));
+			FileUtils.copyFile(file, new File("/test-output/Screenshot_"+testname+".jpg"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
+	}
+	
+	/**
+	 * Provide only file name without file extension, Date and time are appended to file name
+	 * @param name
+	 * @return
+	 */
+	public static String takeScreenShot(String name) {
+
+		String rootDir = System.getProperty("user.dir");
+		String screenShotsFolder = rootDir+"/test-output/Screenshots/";
+
+//		System.out.println(rootDir);
+
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MMM_YYYY_HH_mm_ss");  
+		LocalDateTime now = LocalDateTime.now();
+		String dateAndTime = dtf.format(now);
+//		System.out.println(dtf.format(now));  
+		
+		String filePath = screenShotsFolder + name + dateAndTime + ".jpg";
+		
+		System.out.println(filePath);
+
+		File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+
+		try {
+			FileUtils.copyFile(file, new File(filePath));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("ScreenShot is taken");
+
+		return filePath;
 	}
 }
