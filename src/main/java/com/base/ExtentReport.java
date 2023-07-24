@@ -21,7 +21,7 @@ public class ExtentReport {
 	public static ExtentReports extentReport;
 	public static ExtentSparkReporter sparkReporter_AllTests;
 	
-	@BeforeSuite
+	//@BeforeSuite
 	public static void initializeExtentReports() {
 		extentReport = new ExtentReports();
 		File erfile = new File(System.getProperty("user.dir")+"/test-output/extentreport.html");
@@ -36,7 +36,7 @@ public class ExtentReport {
 	}
 	
 	
-	@AfterSuite
+	//@AfterSuite
 	public static void generateExtentReports() {
 		extentReport.flush();
 		
