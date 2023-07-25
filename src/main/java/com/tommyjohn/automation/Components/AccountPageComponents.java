@@ -96,7 +96,7 @@ public class AccountPageComponents extends AccountPageLocators {
 	 * @throws Exception
 	 */
 	public void Validate_LoggedContentsOn_AccountPage() throws Exception {
-
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 //		Negative Validation
 //		User must be signed in to view the Account page
 		String email =  CustomUtilities.properties.getProperty("loginemail");
@@ -150,8 +150,8 @@ public class AccountPageComponents extends AccountPageLocators {
 				"Address Book title is not displayed on account page");
 
 		 wait.until(ExpectedConditions.elementToBeClickable(MANAGE_ADDRESSES));
-
-		driver.findElement(MANAGE_ADDRESSES).click();
+		 jse.executeScript("arguments[0].click();" , driver.findElement(MANAGE_ADDRESSES));
+		//driver.findElement(MANAGE_ADDRESSES).click();
 
 //		After clicking on Manage Addresses link verify if correctly redirected to addresses page, if facing login issue then handle via re-login
 		try{
@@ -198,9 +198,11 @@ public class AccountPageComponents extends AccountPageLocators {
 		
 
 		text = driver.findElement(FIRST_ORDER_NUMBER).getText();
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		jse.executeScript("arguments[0].click();" , driver.findElement(FIRST_ORDER_NUMBER));
-		//driver.findElement(FIRST_ORDER_NUMBER).click();
+		
+		
+		jse.executeScript("window.scrollBy(0,350)");
+		//jse.executeScript("arguments[0].click();" , driver.findElement(FIRST_ORDER_NUMBER));
+		driver.findElement(FIRST_ORDER_NUMBER).click();
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ORDER_NUMBER_HEADING));
 
