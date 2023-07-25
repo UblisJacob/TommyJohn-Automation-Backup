@@ -36,12 +36,11 @@ public class ListenerClass extends ExtentReport implements ITestListener, IExecu
 	public void onTestStart(ITestResult result) {
 		String testName = result.getName();
 
-		if (shouldPrint) {
+		if(shouldPrint)
+		{
 //			then create test
 			extentTest = extentReport.createTest(testName);
-		}
-
-		if(count == 1){
+		
 			System.out.println("Executing " + testName + " Attempt Number: " + count);
 			extentTest.info("Executing " + testName + " Attempt Number: " + count);
 		}else {
@@ -54,6 +53,8 @@ public class ListenerClass extends ExtentReport implements ITestListener, IExecu
 	@Override
 	public void onTestSuccess(ITestResult result) {
 
+		count=1;
+		shouldPrint=true;
 		String testName = result.getName();
 		extentTest.pass(testName + " got executed successfully");
 		System.out.println(testName + " got executed successfully");
