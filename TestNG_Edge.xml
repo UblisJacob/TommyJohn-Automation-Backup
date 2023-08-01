@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Edge Regression Test Suite" thread-count="3">
+
+	<listeners>
+		<listener class-name="TestScenario.ListenerClass"></listener>
+		<listener class-name="TestScenario.RetryListener"></listener>
+	</listeners>
+
+	<test name="NavigationAndHomepageTests">
+		<parameter name="browser" value="edge" />
+		<classes>
+			<class name="TestModules.ValidateNavigationElements" />
+		</classes>
+	</test>
+	<test name="CategoryTests">
+		<parameter name="browser" value="edge" />
+		<classes>
+			<class name="TestModules.ValidateCategoryPages" />
+		</classes>
+	</test>
+
+	<test name="SearchPageTests">
+		<parameter name="browser" value="edge" />
+		<classes>
+			<class name="TestModules.ValidateSearchPages" />
+		</classes>
+	</test>
+
+	<test name="FooterPageTests">
+		<parameter name="browser" value="edge" />
+		<classes>
+			<class name="TestModules.ValidateFooterSection" />
+		</classes>
+	</test>
+
+	<test thread-count="1" name="ProductPageTests">
+		<parameter name="browser" value="edge" />
+		<classes>
+			<class name="TestModules.ValidatePDP" />
+		</classes>
+	</test>
+
+	<test thread-count="1" name="StoreLocatorTests">
+		<parameter name="browser" value="edge" />
+		<classes>
+			<class name="TestModules.ValidateStoreLocator" />
+		</classes>
+	</test>
+
+	<test name="AllQuizTests">
+		<parameter name="browser" value="edge" />
+		<classes>
+			<class name="TestModules.ValidateQuiz" />
+		</classes>
+	</test>
+
+	<test name="CreateAccountAndLoginTests">
+		<parameter name="browser" value="edge" />
+		<classes>
+			<class name="TestModules.ValidateCreateAccount_Login" />
+		</classes>
+	</test>
+
+	<test name="CheckoutPageTests">
+		<parameter name="browser" value="edge" />
+		<classes>
+			<class name="TestModules.ValidateCheckoutPage" />
+		</classes>
+	</test>
+
+	<test name="GiftCardBalancePageTests">
+		<parameter name="browser" value="edge" />
+		<classes>
+			<class name="TestModules.ValidateGiftCardBalance" />
+		</classes>
+	</test>
+
+	<test name="GiftCardPDPsTests">
+		<parameter name="browser" value="edge" />
+		<classes>
+			<class name="TestModules.ValidateGiftCardFunctionality" />
+		</classes>
+	</test>
+
+	<test name="AccountPageTests">
+		<parameter name="browser" value="edge" />
+		<classes>
+			<class name="TestModules.ValidateAccountPage" />
+		</classes>
+	</test>
+
+	<test name="StoreDirectoryTests">
+		<parameter name="browser" value="edge" />
+		<classes>
+			<class name="TestModules.ValidateTJStoresPage" />
+		</classes>
+	</test>
+
+	<test name="CartPageTests">
+		<parameter name="browser" value="edge" />
+		<classes>
+			<class name="TestModules.ValidateCartPage" />
+		</classes>
+	</test>
+
+	<test thread-count="1" name="InlineCartTests">
+		<parameter name="browser" value="edge" />
+		<classes>
+			<class name="TestModules.ValidateInlineCartPage" />
+		</classes>
+	</test>
+
+	<test name="BundlePageTests">
+		<parameter name="browser" value="edge" />
+		<classes>
+			<class name="TestModules.ValidateBundlePDP" />
+		</classes>
+	</test>
+
+	<test name="BlogPageTests">
+		<parameter name="browser" value="edge" />
+		<classes>
+			<class name="TestModules.ValidateBlogPages" />
+		</classes>
+	</test>
+
+	<test name="SanityModulesTests">
+		<parameter name="browser" value="edge" />
+		<classes>
+			<class name="TestModules.ValidateSanityModules" />
+		</classes>
+	</test>
+
+	<test name="ReOrderPageTests">
+		<parameter name="browser" value="edge" />
+		<classes>
+			<class name="TestModules.ValidateReorderPage" />
+		</classes>
+	</test>
+
+	<test name="ContactUsPageTests">
+		<parameter name="browser" value="edge" />
+		<classes>
+			<class name="TestModules.ValidateContactUsPage" />
+		</classes>
+	</test>
+
+	<test name="ReviewsPage">
+		<parameter name="browser" value="edge" />
+		<classes>
+			<class name="TestModules.ValidateReviewsPage" />
+		</classes>
+	</test>
+
+</suite>
