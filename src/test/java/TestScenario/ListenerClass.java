@@ -4,10 +4,13 @@ import java.util.Set;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.IExecutionListener;
+import org.testng.ISuite;
+import org.testng.ISuiteListener;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestNGMethod;
 import org.testng.ITestResult;
+import org.testng.annotations.BeforeSuite;
 
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
@@ -19,17 +22,26 @@ public class ListenerClass extends ExtentReport implements ITestListener, IExecu
 	WebDriver driver;
 	static int count = 1;
 	static boolean shouldPrint = true;
-
+	static int testCount = 0;
+	static String browserName = null;
+	
+	
 	@Override
 	public void onExecutionStart() {
-		initializeExtentReports();
-		System.out.println("Tests execution started");
-
+		
 	}
-
+	
 	@Override
 	public void onStart(ITestContext context) {
 		System.out.println("Class 1 Tests started executing");
+		browserName = context.getCurrentXmlTest().getParameter("browser");
+		System.out.println("Tests execution started using Browser: " + browserName);
+		initializeExtentReports(browserName);
+	}
+	
+	@Override
+	public void onExecutionFinish() {
+		generateExtentReports(browserName);
 	}
 
 	@Override
@@ -40,7 +52,10 @@ public class ListenerClass extends ExtentReport implements ITestListener, IExecu
 		{
 //			then create test
 			extentTest = extentReport.createTest(testName);
-		
+//			Added to get a get estimation of suite execution progress
+			testCount++;
+			System.out.println("---- Test Count: " + testCount + " ----\n");
+			
 			System.out.println("Executing " + testName + " Attempt Number: " + count);
 			extentTest.info("Executing " + testName + " Attempt Number: " + count);
 		}else {
@@ -131,11 +146,6 @@ public class ListenerClass extends ExtentReport implements ITestListener, IExecu
 			}
 		}
 
-	}
-
-	@Override
-	public void onExecutionFinish() {
-		generateExtentReports();
 	}
 
 }
