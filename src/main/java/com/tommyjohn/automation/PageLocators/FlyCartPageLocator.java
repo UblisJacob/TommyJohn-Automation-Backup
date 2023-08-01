@@ -14,7 +14,7 @@ public class FlyCartPageLocator {
 	public static By RECOMMENDED_PRODUCTS = By.cssSelector(".recommended-products");
 	public static By RECOMMENDED_PRODUCTS_LIST = By.cssSelector(".recommended-products > a");
 	public static By LIST_OF_ITEMS_IN_FLYCART = By.cssSelector(".line-item");
-	public static By LINE_ITEM_IMAGE = By.cssSelector("div[data-tj-qa='inline-cart-line-item-image']");
+	public static By LINE_ITEM_IMAGE = By.cssSelector("div[data-tj-qa='cart-line-item-image']");
 	public static By LINE_ITEM_OPTION = By.cssSelector(
 			"div.inline-cart__col1 > div:nth-child(4) > article:nth-child(1) > div.line-item__summary > div.line-item__option");
 	
@@ -26,15 +26,15 @@ public class FlyCartPageLocator {
 	public static By ESTIMATE_TOTAL_SMALL = By.cssSelector("div[data-tj-qa='inline-cart-subtotal-text']>small,div.inline-cart__summary > div > div > small");
 	public static By CHECKOUT_BUTTON = By
 			.cssSelector("a[data-tj-qa='inline-cart-checkout'],.inline-cart__action-btns>a");
-	public static By FIRST_PRODUCT_TITLE_IN_CART = By.cssSelector("a[data-tj-qa='inline-cart-line-item-title'],div>.line-item__title"); // ("div.inline-cart__col1 >
+	public static By FIRST_PRODUCT_TITLE_IN_CART = By.cssSelector("a[data-tj-qa='cart-line-item-title'],div>.line-item__title"); // ("div.inline-cart__col1 >
 																						// div:nth-child(7) > article >
 																						// div.line-item__summary > a");
-	public static By PLUS_BUTTON = By.cssSelector("button[data-tj-qa='inline-cart-line-item-plus'],.qty-selector.line-item__qty > button:nth-child(3)");
-	public static By MINUS_BUTTON = By.cssSelector("button[data-tj-qa='inline-cart-line-item-minus'],.qty-selector.line-item__qty > button:nth-child(1)");
-	public static By QUANTITY = By.cssSelector("input[data-tj-qa='inline-cart-line-item-qty'],.qty-selector.line-item__qty > input");
-	public static By CROSS_CLOSE_BUTTON = By.cssSelector("button[data-tj-qa='inline-cart-line-item-remove'],article > div.line-item__summary > button");
+	public static By PLUS_BUTTON = By.cssSelector("button[data-tj-qa='cart-line-item-plus'],.qty-selector.line-item__qty > button:nth-child(3)");
+	public static By MINUS_BUTTON = By.cssSelector("button[data-tj-qa='cart-line-item-minus'],.qty-selector.line-item__qty > button:nth-child(1)");
+	public static By QUANTITY = By.cssSelector("input[data-tj-qa=cart-line-item-qty'],.qty-selector.line-item__qty > input");
+	public static By CROSS_CLOSE_BUTTON = By.cssSelector("button[data-tj-qa='cart-line-item-remove'],article > div.line-item__summary > button");
 
-	public static By COLOR_AND_SIZE_IN_CART = By.cssSelector("div[data-tj-qa='inline-cart-line-item-option']");
+	public static By COLOR_AND_SIZE_IN_CART = By.cssSelector("div[data-tj-qa='cart-line-item-option']");
 	public static By PRICE_IN_QUANTITY_LINE = By.cssSelector(
 			"div[data-tj-qa='inline-cart-line-item-subtotal']>span");
 

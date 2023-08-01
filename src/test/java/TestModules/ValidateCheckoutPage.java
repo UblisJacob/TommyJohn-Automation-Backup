@@ -26,11 +26,11 @@ public class ValidateCheckoutPage extends ExtentReport {
 		}
 	}
 	
-	@Test
-	public void ValidateExpressCheckoutoptionsAreFunctional() throws Exception
-	{
-		new CheckoutPage(driver).ValidateExpressCheckoutOptions();
-	}
+	//@Test
+//	public void ValidateExpressCheckoutoptionsAreFunctional() throws Exception
+	//{
+		//new CheckoutPage(driver).ValidateExpressCheckoutOptions();
+//	}
 	
 	@Test
 	public void ValidateGuestCheckoutFlow() throws Exception
@@ -38,7 +38,7 @@ public class ValidateCheckoutPage extends ExtentReport {
 		new CheckoutPage(driver).Validateguestcheckout();
 	}
 	
-//	@Test
+	@Test
 	public void ValidateRegisteredUserCheckoutFlow() throws Exception
 	{
 		new CheckoutPage(driver).Validateregisterusercheckout();

@@ -18,7 +18,7 @@ public class HomePageLocators{
 	public static By LEVEL_ZERO_SPECIFIC_OPTION = By.cssSelector(".nav-item__list.level-zero-list>:nth-child(1)>div>a");
 	public static By LEVEL_ZERO_LINKS_TEXT = By.cssSelector(".nav-item__list.level-zero-list>:nth-child(1)>div>a .nav-item-title");
 	public static By MEN_UNDERWEAR_LINK = By.cssSelector(".nav-item__list.level-zero-list>li:nth-child(1) ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']:nth-child(2)>div a");
-	public static By MEN_UNDERWEAR_QUIZ = By.cssSelector("ul[class='nav-item__list level-one-list'] div:nth-child(7) a:nth-child(1)");
+	public static By MEN_UNDERWEAR_QUIZ = By.cssSelector("[data-tj-qa='nav-Underwear Quiz']>a");
 
 	public static By GENERIC_SHOP_ALL_LINK = By.cssSelector(".nav-item__list.level-zero-list>li:nth-child(1) ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']:nth-child(2) li[data-tj-qa^='nav-all']");
 

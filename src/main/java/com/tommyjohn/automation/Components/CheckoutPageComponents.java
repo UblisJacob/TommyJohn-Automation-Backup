@@ -45,15 +45,14 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 
 	public CheckoutPageComponents(WebDriver driver) {
 		this.driver = driver;
-		wait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds(30))
-				.pollingEvery(Duration.ofMillis(500)).ignoring(NoSuchElementException.class);
+		
 	}
 
 	public void expresscheckout() throws Exception {
 		jse = (JavascriptExecutor)driver;
 		softAssert = new SoftAssert();
 		String text = null;
-
+		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
 //		Adds a product to cart
 		new AddToCartComponents(driver).addToCart();
 		
@@ -169,6 +168,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	}
 
 	public void CheckBreadcrumbs() {
+		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
 		softAssert.assertTrue(driver.findElement(BREADCRUMB_LINK_CART).isDisplayed(),
 				"Cart link is not displayed on breadcrumb");
 		softAssert.assertTrue(driver.findElement(BREADCRUMB_LINK_INFORMATION).isDisplayed(),
@@ -185,6 +185,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		softAssert = new SoftAssert();
 		jse = (JavascriptExecutor)driver;
 //		Add Product to Cart
+		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
 		new AddToCartComponents(driver).addToCart();
 		
 		wait.until(ExpectedConditions.elementToBeClickable(HomePageLocators.CART_ICON));
@@ -241,6 +242,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 
 	public void registeredusercheckoutflow() throws Exception {
 		softAssert = new SoftAssert();
+		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
 		String password = CustomUtilities.properties.getProperty("password");
 		new AddToCartComponents(driver).addToCart();
 
@@ -306,6 +308,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	public void informationpage() throws Exception {
 		softAssert = new SoftAssert();
 		jse = (JavascriptExecutor)driver;
+		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
 		new AddToCartComponents(driver).addToCart();
 		driver.findElement(HomePageLocators.CART_ICON).click();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
@@ -348,6 +351,8 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 
 	public void shippingpage() throws Exception {
 		softAssert = new SoftAssert();
+		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
+		
 		new AddToCartComponents(driver).addToCart();
 		
 		driver.findElement(HomePageLocators.CART_ICON).click();
@@ -399,7 +404,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	public void paymentpage() throws Exception {
 		jse = (JavascriptExecutor) driver;
 		softAssert = new SoftAssert();
-		
+		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
 		new AddToCartComponents(driver).addToCart();
 		
 		
@@ -476,7 +481,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	}
 
 	public void entershippingdetails() throws Exception {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(FIRSTNAME_TEXTBOX));
 		
 		driver.findElement(FIRSTNAME_TEXTBOX).clear();
@@ -518,6 +523,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	}
 
 	public void CheckPromoCodeApplication(String promocode) throws Exception {
+		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
 		//Promo_Code = "FIRST20";
 		driver.findElement(DISCOUNT_CODE_TEXTBOX).sendKeys(promocode);
 		driver.findElement(APPLY_DISCOUNT_BUTTON).click();
@@ -535,7 +541,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 
 	public void AfterpayonCheckout() throws Exception {
 		softAssert = new SoftAssert();
-	
+		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
 		guestcheckoutflow();
 		
 		// Check AfterPay message is display
@@ -572,6 +578,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	}
 
 	public void CheckAfterPayForAddressOtherThanUS() throws Exception {
+		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
 		// add product to cart
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		new AddToCartComponents(driver).addToCart();
@@ -615,6 +622,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	}
 
 	public void entershippingAddressOtherThanUS() {
+		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
 		driver.findElement(ADDRESS1_TEXTBOX).sendKeys("123 Test Adress");
 		driver.findElement(ADDRESS2_TEXTBOX).sendKeys("Suite1");
 		driver.findElement(CITY_TEXTBOX).sendKeys("Perth");
@@ -629,6 +637,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	}
 
 	public void AfterPayMessageByModifyingPromoCode() throws Exception {
+		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
 		AfterpayonCheckout();
 		jse = (JavascriptExecutor) driver;
 		String Promo_Code = "TJHUSTLE";
@@ -666,7 +675,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	public void CheckAfterPayInstallment() throws Exception {
 		jse = (JavascriptExecutor) driver;
 		
-
+		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
 		// Check message with calculated installment and icon display
 		price = driver.findElement(TOTAL).getText();
 		String[] price1 = price.split("\\$");
@@ -693,6 +702,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	}
 
 	public void navigatetocheckoutpage() throws Exception {
+		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
 		new CollectionPageComponent(driver).AddproductToCartByQuickShop();
 		driver.findElement(HomePageLocators.CART_ICON).click();
 		driver.findElement(FlyCartComponents.CHECKOUT_BUTTON).click();
@@ -701,6 +711,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	public void completeorder() throws Exception {
 		
 		jse = (JavascriptExecutor) driver;
+		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
 		softAssert = new SoftAssert();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(100));
 		new AddToCartComponents(driver).addToCart();	
