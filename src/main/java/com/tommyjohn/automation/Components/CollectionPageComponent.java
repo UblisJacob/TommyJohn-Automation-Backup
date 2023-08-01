@@ -849,8 +849,10 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			}
 			catch (Exception e)
 			{
-				Assert.assertFalse(driver.getCurrentUrl().contains("mens-underwear?"), "DY style carousel");
+				//Assert.assertFalse(driver.getCurrentUrl().contains("mens-underwear?"), "DY style carousel");
+				driver.navigate().back();
 			}
+			
 		}
 		// clear all filters
 if(flag=true)

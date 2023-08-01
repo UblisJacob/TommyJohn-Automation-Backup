@@ -21,7 +21,7 @@ public class ProductDetailsPageLocators {
 	public static By FIRST_PRODUCT_HEAD_LINE_TEXT = By.cssSelector(".product-meta__title");
 		
 	//image badging
-	public static By IMAGE_BADGING = By.cssSelector(".pdpImageSlidesWrapper>div:nth-child(2)");
+	public static By IMAGE_BADGING = By.cssSelector(".productImage-item__badge");
 	
 	//Secondary Badging
 	public static By SECONDARY_BADGING = By.cssSelector("div.multi-pdp-title-wrap.desktop-view.desktop>span");
@@ -73,7 +73,7 @@ public class ProductDetailsPageLocators {
 	public static By SIZEGUIDE = By.cssSelector("button.product-info__header-btn.size-guide");
 	public static By SIZEGUIDE_FITRANGE = By.cssSelector(".size-guide-yatpo-fit-graph>ul>li");
 	public static By SIZEGUIDE_FITRANGE_DROPDOWN= By.cssSelector(".expand-instructions");
-	public static By SIZEGUIDE_FITRANGE_TEXT= By.cssSelector(".size-guide-instructions.expanded");
+	public static By SIZEGUIDE_FITRANGE_TEXT= By.cssSelector(".instructions-text");
 	public static By SIZEGUIDE_CHART_TABLE= By.cssSelector(".product-fit-guide>.size-chart-table");
 	
 
