@@ -390,7 +390,7 @@ public class CollectionPage extends CollectionPageComponent{
 
 	public void validateInlineBanner() throws Exception {
 		// TODO Auto-generated method stub
-		new HomePageComponents(driver).navigateToBraCategory();
+		new HomePageComponents(driver).navigateToAllMensCollectionsInMenCategory();
 		validatePLPInlineBanner();
 	}
 	
@@ -414,13 +414,13 @@ public class CollectionPage extends CollectionPageComponent{
 	
 	public void validateSEOCopy() throws Exception {
 		// TODO Auto-generated method stub
-		new HomePageComponents(driver).NavigateToAllLoungewearInWomenCategory();
+		new HomePageComponents(driver).navigateToBoxerBriefInMenCategory();
 		validateSEO();
 	}
 	
 	public void validateProductTile() throws Exception {
 		// TODO Auto-generated method stub
-		new HomePageComponents(driver).NavigateToAllSleepwearInMenCategory();
+		new HomePageComponents(driver).navigateToAllWomensCollectionInWomensCategory();
 		validateProductHeadingTextOnCollectionPage();
 		Verify_ProductTile_HoverFunctionality();
 		validateProductImageOnPLP();

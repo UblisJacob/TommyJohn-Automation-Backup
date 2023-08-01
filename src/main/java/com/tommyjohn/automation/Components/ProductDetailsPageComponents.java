@@ -2701,6 +2701,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 	public void verifyProductNamePrice() throws Exception {
 			
 			new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
+			String prodcttitle= driver.findElement(CollectionPageComponent.FIRST_PRODUCT_HEAD_LINE_TEXT).getText();
 			new CollectionPageComponent(driver).navigateToProductDetailsPage();
 			//new AddToCartComponents(driver).selectSize();
 			productname = driver.findElement(PRODUCT_TITLE).getText();
@@ -2709,7 +2710,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			System.out.println("Product Price: " +productprice);
 			SoftAssert softassert= new SoftAssert(); 
 			try {
-				softassert.assertEquals(productname, PRODUCT_TITLE, "Text is not matched");
+				softassert.assertEquals(productname, prodcttitle, "Text is not matched");
 				Reporter.log("Product name and Price are displayed");
 				ExtentReport.extentTest.info("Product name and Price are displayed");
 			} catch (Exception e) {
@@ -2844,7 +2845,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		
 		public void verifyReviewRecommendationsSection() throws Exception {
 			SoftAssert softAssert =  new SoftAssert();
-			new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
+			new HomePageComponents(driver).navigateToBraCategory();
 			new CollectionPageComponent(driver).navigateToProductDetailsPage();
 			Thread.sleep(6000);
 			WebElement ratingstars = driver.findElement(RATING_STARS);
