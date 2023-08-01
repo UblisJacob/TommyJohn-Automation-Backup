@@ -130,27 +130,27 @@ public class CustomUtilities {
 
 		else if (browser.equalsIgnoreCase("edge"))
 		{
-			System.setProperty("webdriver.edge.driver", properties.getProperty("edgeDriverPath"));
+//			System.setProperty("webdriver.edge.driver", properties.getProperty("edgeDriverPath"));
 			EdgeOptions options = new EdgeOptions();
-			options.setCapability("--headless",true);
-			options.setCapability("--window-size=1280,800",true);
-			options.setCapability("--disable-gpu",true);
-			options.setCapability("--no-sandbox",true);
-			options.setCapability("--disable-dev-shm-usage",true);
-			options.setCapability("--aggressive-cache-discard",true);
-			options.setCapability("--disable-cache",true);
-			options.setCapability("--disable-application-cache",true);
-			options.setCapability("--ignore-certificate-errors",true);
-			options.setCapability("--no-default-browser-check",true);
-			options.setCapability("--disable-popup-blocking",true);
-
-			options.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
-			//options.setCapability(CapabilityType.PROXY, selproxy);
-
-			options.setCapability("--host-resolver-rules=MAP events.bouncex.net 127.0.0.1",true);
-			options.setCapability("--host-resolver-rules=MAP assets.bounceexchange.com 127.0.0.1",true);
-			options.setCapability("--host-resolver-rules=MAP api.bounceexchange.com 127.0.0.1",true);
-			options.setCapability("--host-resolver-rules=MAP tag.bounceexchange.com 127.0.0.1",true);
+			options.addArguments("inprivate","headless");
+//			options.setCapability("--window-size=1280,800",true);
+//			options.setCapability("--disable-gpu",true);
+//			options.setCapability("--no-sandbox",true);
+//			options.setCapability("--disable-dev-shm-usage",true);
+//			options.setCapability("--aggressive-cache-discard",true);
+//			options.setCapability("--disable-cache",true);
+//			options.setCapability("--disable-application-cache",true);
+//			options.setCapability("--ignore-certificate-errors",true);
+//			options.setCapability("--no-default-browser-check",true);
+//			options.setCapability("--disable-popup-blocking",true);
+//
+//			options.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
+//			options.setCapability(CapabilityType.PROXY, selproxy);
+//
+//			options.setCapability("--host-resolver-rules=MAP events.bouncex.net 127.0.0.1",true);
+//			options.setCapability("--host-resolver-rules=MAP assets.bounceexchange.com 127.0.0.1",true);
+//			options.setCapability("--host-resolver-rules=MAP api.bounceexchange.com 127.0.0.1",true);
+//			options.setCapability("--host-resolver-rules=MAP tag.bounceexchange.com 127.0.0.1",true);
 
 			edgedriver = new EdgeDriver(options);
 			edgedriver.get(baseUrl);
