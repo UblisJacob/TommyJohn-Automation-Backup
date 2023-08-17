@@ -245,7 +245,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
 		String password = CustomUtilities.properties.getProperty("password");
 		new AddToCartComponents(driver).addToCart();
-
+		jse = (JavascriptExecutor)driver;
 		jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
 		
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));

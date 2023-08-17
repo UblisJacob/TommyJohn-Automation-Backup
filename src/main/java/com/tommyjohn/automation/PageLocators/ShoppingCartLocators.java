@@ -69,7 +69,7 @@ public class ShoppingCartLocators {
 	
 	//Promo code section
 	public static By PROMO_HEADER = By.cssSelector("span[data-tj-qa='cart-discount-code-header'], .inline-cart__promo-header");
-	public static By DISCOUNTCODE_TEXTBOX = By.id("input[data-tj-qa='cart-promo-input'], cart-coupon");
+	public static By DISCOUNTCODE_TEXTBOX = By.cssSelector("input[data-tj-qa='cart-promo-input'], cart-coupon");
 	public static By PROMOCODE_APPLYCTA = By.cssSelector("button[data-tj-qa='cart-discount-apply-cta'], .inline-cart__promo-input-container>button");
 	public static By PROMO_ERROR_MESSAGE = By.cssSelector("span[data-tj-qa='cart-promo-error-message'], .inline-cart__promo-error-message");
 	public static By PROMO_SUCCESSFUL_MESSAGE = By.cssSelector(".inline-cart__promo-successful-message");

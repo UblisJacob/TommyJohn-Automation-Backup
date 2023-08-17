@@ -40,7 +40,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 	String price;
 	Wait<WebDriver> wait;
 	SoftAssert softAssert=new SoftAssert();
-	public String Promo_Code = "JULIE25";
+	public String Promo_Code = "FIRST20";
 	JavascriptExecutor jse;
 	public ShoppingCartComponents(WebDriver driver) {
 		this.driver = driver;

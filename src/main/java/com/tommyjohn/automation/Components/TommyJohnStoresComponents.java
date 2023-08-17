@@ -62,7 +62,7 @@ public class TommyJohnStoresComponents extends TommyJohnStoresPageLocators {
 			element = genMethods.autoIndex(driver, STORE_ADDRESS, i, 1);
 //			element = driver.findElement(By.cssSelector(".stores-section__container>div:nth-child("+i+")>div>div:nth-child(3)>p"));
 			String storeAddress = element.getText();
-			System.out.println(storeName + "Store Address is: " + storeAddress);
+			System.out.println(storeName + " Store Address is: " + storeAddress);
 			Reporter.log(storeName + "Store Address is: " + storeAddress);
 			softassert.assertTrue(element.isDisplayed(), "Store address is not present for store ");
 
@@ -99,6 +99,7 @@ public class TommyJohnStoresComponents extends TommyJohnStoresPageLocators {
 					try {
 						wait.until(ExpectedConditions.titleContains("Google Maps"));
 						currentUrl = driver.getCurrentUrl();
+						
 						softassert.assertTrue(currentUrl.contains("https://www.google.com/maps"),
 								"Google maps page did not open after clicking on Get Directions link of Store: "
 										+ storeName);
@@ -110,7 +111,9 @@ public class TommyJohnStoresComponents extends TommyJohnStoresPageLocators {
 						String addressFirstLine = arr[0];
 						String lastLine = arr[arr.length - 1];
 						String pincode = lastLine.substring(lastLine.length() - 5, lastLine.length());
-
+						System.out.println(addressFirstLine);
+						addressFirstLine.replace(",", "");
+						System.out.println(destinationField);
 						softassert.assertTrue(destinationField.contains(addressFirstLine),
 								"Store address did not match the text in the auto populated destination field of Google Maps");
 						softassert.assertTrue(destinationField.contains(pincode),

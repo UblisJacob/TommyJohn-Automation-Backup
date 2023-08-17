@@ -162,7 +162,7 @@ public class NavigationElementComponents extends HomePageLocators {
 			softassert.assertTrue(display.contains("block"),
 					"Desktop Search Suggestion did not come up after clicking on Search box");
 
-			String searchText = "skin";
+			String searchText = "women";
 
 			searchTXTBX.sendKeys(searchText);
 

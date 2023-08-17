@@ -595,11 +595,11 @@ public class FlyCartComponents extends FlyCartPageLocator{
 			}
 		driver.findElement(QUANTITY).sendKeys("10000");
 		jse.executeScript("arguments[0].click();", driver.findElement(PLUS_BUTTON));
-		Thread.sleep(4000);
+		Thread.sleep(10000);
 		
-		softassert.assertEquals(driver.findElement(OOS_MESSAGE_ON_TOP).getText(), "Some items are out of stock. Please remove or edit them to continue.");
-		softassert.assertEquals(driver.findElement(OOS_LINE_ITEMS).getText(), "Out of Stock");
-		softassert.assertEquals(driver.findElement(CHECKOUT_BUTTON).getAttribute("disabled"), "disabled");
+		softassert.assertEquals(driver.findElement(OOS_MESSAGE_ON_TOP).getText(), "Some items are out of stock. Please remove or edit them to continue.", "MAIN OOS MESSAGE");
+		softassert.assertEquals(driver.findElement(OOS_LINE_ITEMS).getText(), "Out of Stock", "oos");
+		softassert.assertEquals(driver.findElement(CHECKOUT_BUTTON).getDomAttribute("disabled"), "disabled" , "not disabled");
 		
 		Reporter.log("Out of Stock is displayed");
 		ExtentReport.extentTest.info("Out of Stock is displayed");
