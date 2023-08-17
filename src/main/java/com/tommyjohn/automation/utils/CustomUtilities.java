@@ -28,7 +28,7 @@ public class CustomUtilities {
 
 	public static WebDriver driver;
 	public EdgeDriver edgedriver;
-	public static String baseUrl = "https://www.tommyjohn.com/?preview_theme_id=34570141741";
+	public static String baseUrl = "https://tommyjohn.myshopify.com/?preview_theme_id=34570141741";
 	public static BufferedReader reader;
 	public static Properties properties;
 	public static final String propertiesFilePath = "src/main/resources/configuration.properties";
@@ -161,6 +161,7 @@ public class CustomUtilities {
 
 		else if (browser.equalsIgnoreCase("safari"))
 		{
+			System.setProperty("webdriver.edge.driver", properties.getProperty("safariPath"));
 			SafariOptions options = new SafariOptions();
 			options.setCapability("--headless",true);
 			options.setCapability("--window-size=1280,800",true);
@@ -176,10 +177,7 @@ public class CustomUtilities {
 
 			options.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 			
-			options.setCapability("--host-resolver-rules=MAP events.bouncex.net 127.0.0.1",true);
-			options.setCapability("--host-resolver-rules=MAP assets.bounceexchange.com 127.0.0.1",true);
-			options.setCapability("--host-resolver-rules=MAP api.bounceexchange.com 127.0.0.1",true);
-			options.setCapability("--host-resolver-rules=MAP tag.bounceexchange.com 127.0.0.1",true);
+	
 
 			driver = new SafariDriver(options);
 			driver.get(baseUrl);
