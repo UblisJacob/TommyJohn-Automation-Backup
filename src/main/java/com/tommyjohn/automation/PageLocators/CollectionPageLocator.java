@@ -19,7 +19,9 @@ public class CollectionPageLocator {
 	
 	public static By FIRST_PRODUCT = By.cssSelector("div.product-image-container");
 	public static By COMPARE_PRODUCT = By.cssSelector(".product-image-container > div.has-compare");
-	public static By FIRST_PRODUCT_IMAGE = By.cssSelector(".product-image");
+	public static By FIRST_PRODUCT_IMAGE = By.cssSelector("img[data-tj-qa='plp-product-img-main']");
+	public static By HOVER_PRODUCT_IMAGE = By.cssSelector("img[data-tj-qa='plp-product-img-hover']");
+
 	//changed
 	public static String PRODUCT_IMAGES = "//div[contains(@class,'product-image')]//a";
 	public static By PRODUCT_COUNT_TEXT = By.xpath("//div[contains(@class,'controls__count')]//span");

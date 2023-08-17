@@ -31,7 +31,7 @@ public class FlyCartPageLocator {
 																						// div.line-item__summary > a");
 	public static By PLUS_BUTTON = By.cssSelector("button[data-tj-qa='cart-line-item-plus'],.qty-selector.line-item__qty > button:nth-child(3)");
 	public static By MINUS_BUTTON = By.cssSelector("button[data-tj-qa='cart-line-item-minus'],.qty-selector.line-item__qty > button:nth-child(1)");
-	public static By QUANTITY = By.cssSelector("input[data-tj-qa=cart-line-item-qty'],.qty-selector.line-item__qty > input");
+	public static By QUANTITY = By.cssSelector("input[data-tj-qa='cart-line-item-qty'], .qty-selector.line-item__qty > input");
 	public static By CROSS_CLOSE_BUTTON = By.cssSelector("button[data-tj-qa='cart-line-item-remove'],article > div.line-item__summary > button");
 
 	public static By COLOR_AND_SIZE_IN_CART = By.cssSelector("div[data-tj-qa='cart-line-item-option']");
@@ -46,7 +46,7 @@ public class FlyCartPageLocator {
 	public static By ESTIMATE_TOTAL_PRICE = By.cssSelector("span[data-tj-qa='inline-cart-subtotal-price'],div.inline-cart__summary > div > span");
 
 	public static By COLOR_AND_SIZE_IN_CART_MULTI = By
-			.xpath("(//div[@class='line-item__summary'])[1]//div[@class='line-item__option']");
+			.xpath("//div[@data-tj-qa='cart-line-item-option'] | (//div[@class='line-item__summary'])[1]//div[@class='line-item__option']");
 
 	// public static By COLOR_AND_SIZE_IN_CART_MULTI =
 	// By.cssSelector("div.line-item__summary > div:nth-child(2)");

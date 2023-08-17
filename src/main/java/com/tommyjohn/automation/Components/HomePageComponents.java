@@ -192,6 +192,8 @@ public class HomePageComponents extends HomePageLocators {
 	//	}
 	
 	public void validateSearchFunctionEnter(String searchText) throws Exception {
+		
+		
 
 		SoftAssert softAssert = new SoftAssert();
 		action = new Actions(driver);
@@ -247,7 +249,7 @@ public class HomePageComponents extends HomePageLocators {
 
 		SoftAssert softAssert = new SoftAssert();
 		action = new Actions(driver);
-
+		searchText ="women";
 		WebElement element = driver.findElement(SEARCH_ICON_INPUT);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", element);
@@ -318,7 +320,7 @@ public class HomePageComponents extends HomePageLocators {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(40));
 
-		String Search_keyword = "tees";
+		String Search_keyword = "women";
 		if(!driver.findElement(SEARCH_ICON_INPUT).isDisplayed())
 			throw new Exception("Search option is not present");
 		WebElement element = driver.findElement(SEARCH_ICON_INPUT);
@@ -326,7 +328,8 @@ public class HomePageComponents extends HomePageLocators {
 		executor.executeScript("arguments[0].click();", element);
 
 		//Check auto-suggestions
-		driver.findElement(SEARCH_ICON_INPUT).sendKeys("b");
+		driver.findElement(SEARCH_ICON_INPUT).sendKeys("women");
+		action.moveToElement(driver.findElement(SEARCH_ICON_INPUT)).build().perform();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
 		//Thread.sleep(5000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(AUTO_SUGGESTED_PRODUCT_IMG));
@@ -345,7 +348,7 @@ public class HomePageComponents extends HomePageLocators {
 		text = list1[list1.length-1].replace("\"", "");
 		softAssert.assertEquals(text, search_value, "Search page title is not matched with clicked suggested link");
 
-		driver.findElement(SEARCH_ICON_INPUT).sendKeys("m");
+		driver.findElement(SEARCH_ICON_INPUT).sendKeys("c");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(AUTO_SUGGESTED_PRODUCT_TILE_TITLE));
 		WebElement FIRST_SUGGESTED_PRODUCT_TILE_TITLE = driver.findElement(By.cssSelector(".search-product-tile:nth-child(1)>a"));
 		String suggested_title = FIRST_SUGGESTED_PRODUCT_TILE_TITLE.getText().replace(",", "").toLowerCase();
