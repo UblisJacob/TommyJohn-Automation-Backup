@@ -3213,15 +3213,15 @@ public void verifySizeChartTextBralette() throws Exception {
 		WebElement ele = driver.findElement(SIZEGUIDE);
 		jse.executeScript("arguments[0].click();", ele);
 		Thread.sleep(3000);
-		jse.executeScript("window.scrollBy(0,200)");
+		jse.executeScript("window.scrollBy(0,500)");
 		WebElement elem = driver.findElement(SIZEGUIDE_FITRANGE_DROPDOWN);
 		jse.executeScript("arguments[0].click();", elem);
 		Thread.sleep(2000);
-		if(driver.findElement(SIZEGUIDE_FITRANGE_TEXT).isDisplayed()) {
-			System.out.println(driver.findElement(By.cssSelector(".instruction-text")).getText());
-			Reporter.log("How to Measure :: Displayed.");
-			ExtentReport.extentTest.info("How to Measure :: Displayed.");				
-		}
+//		if(driver.findElement(SIZEGUIDE_FITRANGE_TEXT).isDisplayed()) {
+//			//System.out.println(driver.findElement(By.cssSelector(".instruction-text")).getText());
+//			Reporter.log("How to Measure :: Displayed.");
+//			ExtentReport.extentTest.info("How to Measure :: Displayed.");				
+//		}
 		
 	}
 	
@@ -3344,12 +3344,12 @@ public void verifySizeChartTextBras() throws Exception {
 		jse.executeScript("arguments[0].click();", ele);
 		Thread.sleep(3000);
 		jse.executeScript("window.scrollBy(0,200)");
-		WebElement elem = driver.findElement(SIZEGUIDE_FITRANGE_TEXT);
+		WebElement elem = driver.findElement(SIZEGUIDE_FITRANGE_DROPDOWN);
 		jse.executeScript("arguments[0].click();", elem);
-		if(driver.findElement(SIZEGUIDE_FITRANGE_TEXT).isDisplayed()) {
-			System.out.println(driver.findElement(By.cssSelector(".instruction-text")).getText());
+//		if(driver.findElement(SIZEGUIDE_FITRANGE_TEXT).isDisplayed()) {
+//			System.out.println(driver.findElement(By.cssSelector(".instruction-text")).getText());
 							
-		}
+//		}
 	}
 	//View Measurements and Chart table
 

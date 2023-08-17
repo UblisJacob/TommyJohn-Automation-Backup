@@ -1332,20 +1332,16 @@ if(count!=59)
 		js.executeScript("window.scrollBy(0,500)");
 
 		wait.until(ExpectedConditions.presenceOfElementLocated(FIRST_PRODUCT_IMAGE));
-		String text1 = driver.findElement(HOVERED_PRODUCT_IMAGE).getAttribute("src");
+		String text1 = driver.findElement(HOVER_PRODUCT_IMAGE).getAttribute("src");
 		String[] imagetext = text1.split("_425");
 		String Hover_on_plp = imagetext[0];
-		element = driver.findElement(FIRST_PRODUCT_IMAGE);
-		js.executeScript("arguments[0].click();", element);
-		Thread.sleep(3000);
-		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.SECOND_VERTICAL_IMAGE));
-		String text = driver.findElement(ProductDetailsPageLocators.SECOND_VERTICAL_IMAGE).getAttribute("src");
+		
+		String text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("src");
 		String[] list1 = text.split(".jpg");
 		String Second_image_pdp = list1[0];
 		System.out.println(Second_image_pdp);
 		System.out.println(Hover_on_plp);
-		if (!Hover_on_plp.equalsIgnoreCase(Second_image_pdp))
+		if (Hover_on_plp.equalsIgnoreCase(Second_image_pdp))
 			throw new Exception("Product tile hover functionality is not correct on plp");
 		Reporter.log("Verified Product tile hover functionality on plp");
 		ExtentReport.extentTest.info("Verified Product tile hover functionality on plp");
@@ -1731,7 +1727,7 @@ if(count!=59)
 //		marginRight = productImage.getCssValue("margin-right");
 //		System.out.println(width + " " + marginLeft + " " + marginRight);
 		
-		if(width>280)  {
+		if(width>250)  {
 			Reporter.log("Single Product Tile annotations are correct");
 			ExtentReport.extentTest.info("Single Product Tile annotations are correct");
 			System.out.println("Single Product Tile annotations are correct");

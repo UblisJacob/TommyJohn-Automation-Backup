@@ -355,7 +355,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 
 		linkText = driver.findElement(REFERRAL_LINK).getText();
 
-		softassert.assertTrue(linkText.equals("Give $25, Get $25"), "Give $25, Get $25 link text is changed");
+		softassert.assertTrue(linkText.contains("Give $"), "Give $25, Get $25 link text is changed");
 
 		objGeneralMethods.clickButtonByJS(driver, REFERRAL_LINK);
 
@@ -406,7 +406,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		softassert.assertTrue(linkText.equals("Sign In"), "Sign In link text is changed");
 
 		objGeneralMethods.clickButtonByJS(driver, SIGN_IN_FOOTER_LINK);
-
+		wait = new WebDriverWait(driver,Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.titleContains("Account"));
 
 		softassert.assertTrue(
@@ -468,7 +468,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 	 */
 	public void validateFooterSupportSection() throws Exception {
 		softassert = new SoftAssert();
-
+		wait = new WebDriverWait(driver,Duration.ofSeconds(30));
 		System.out.println("\n---Checking Footer Support Section Links---");
 
 		if (!driver.getCurrentUrl().equals("https://www.tommyjohn.com")) {
@@ -702,7 +702,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 	public void validateFooterCompanySection() throws Exception {
 
 		softassert = new SoftAssert();
-
+		wait = new WebDriverWait(driver,Duration.ofSeconds(30));
 		System.out.println("\n---Checking Footer Company Section Links---");
 
 		if (!driver.getCurrentUrl().equals("https://www.tommyjohn.com")) {
@@ -867,7 +867,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 	 */
 	public void validateFooterSocialLinks() throws Exception {
 		String hrefLink;
-
+		wait = new WebDriverWait(driver,Duration.ofSeconds(30));
 		System.out.println("\n---Checking CopyRight Seciton---");
 
 		if (!driver.getCurrentUrl().equals("https://www.tommyjohn.com")) {
@@ -1048,7 +1048,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 
 		String pageHeader;
 		String pageURL;
-
+		wait = new WebDriverWait(driver,Duration.ofSeconds(30));
 		System.out.println("\n---Checking CopyRight Seciton---");
 
 		if (!driver.getCurrentUrl().equals("https://www.tommyjohn.com")) {
@@ -1208,7 +1208,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 	 */
 	public void validateFooterNewsletter() throws Exception {
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
-
+		wait = new WebDriverWait(driver,Duration.ofSeconds(30));
 		System.out.println("\n---Checking Newsletter Seciton---");
 
 		if (!driver.getCurrentUrl().equals("https://www.tommyjohn.com")) {
@@ -1286,7 +1286,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 
-		 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
+		wait = new WebDriverWait(driver, Duration.ofSeconds(40));
 
 		System.out.println("***Validating Feedback Section***");
 

@@ -22,7 +22,7 @@ public class SanityModuleLocators {
 	public static By IMG_CAROUSEL_2 = By.cssSelector("div[data-slick-index='1']");
 	public static By IMG_CAROUSEL_3 = By.cssSelector("div[data-slick-index='2']");
 	public static By IMG_CAROUSEL_4 = By.cssSelector("div[data-slick-index='3']");
-	public static By SLIDE_CTRL = By.cssSelector("#slick-slide-control11");
+	public static By SLIDE_CTRL = By.cssSelector("button#slick-slide-control11");
 	
 	public static By GPTW_FIXED_BANNER = By.cssSelector("div[data-position='p5']");
 	public static By GPTW_FIXED_BANNER_IMG = By.cssSelector("div[data-position='p5']>div>picture");
