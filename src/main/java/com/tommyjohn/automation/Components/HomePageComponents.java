@@ -403,7 +403,7 @@ public class HomePageComponents extends HomePageLocators {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SEARCHPAGE_PRODUCT_NAME));
 
 		new CollectionPageComponent(driver).Verify_ProductTile_HoverFunctionality();
-		driver.navigate().back();
+
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SEARCHPAGE_PRODUCT_NAME));
 
 		//new CollectionPageComponent(driver).MethodToCheckColorSwatchChanging();
