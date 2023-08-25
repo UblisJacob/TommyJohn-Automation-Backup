@@ -79,9 +79,9 @@ public class CheckoutPageLocators {
 
 	public static By BILLING_TEXT = By.cssSelector(".section--billing-address > div.section__header > h2");
 	public static By COMPLETE_ORDER_BUTTON = By.cssSelector("button.step__footer__continue-btn");
-	public static By HOWHEARD_TITLE = By.cssSelector(".how_new_title");
-	public static By HOWHEARD_SUBTITLE = By.cssSelector(".how_new_subtitle");
-	public static By HOWHEARD_DROPDOWN = By.cssSelector(".make_selection_select");
+	public static By HOWHEARD_TITLE = By.cssSelector("[data-tj-qa='how-heard-title'],.section__title.how_new_title");
+	public static By HOWHEARD_SUBTITLE = By.cssSelector("[data-tj-qa='how-heard-subtitle'],.section__title.how_new_subtitle");
+	public static By HOWHEARD_DROPDOWN = By.cssSelector("[data-tj-qa='how-heard-dropdown'],.make_selection_select");
 	public static By ORDER_NUMBER = By.cssSelector(".os-order-number");
 
 
