@@ -205,14 +205,14 @@ public class HomePageLocators{
 	public static By SEARCH_ICON_INPUT = By.cssSelector("input[data-tj-qa=header-search-input]");
 	public static By SEARCH_ICON_FORM_TAG = By.cssSelector(".header-search-form");
 
-	public static By POPULAR_SEARCHES = By.cssSelector(".autocomplete-suggestions-content");
-	public static By PRODUCT_MATCHES_TITLE = By.cssSelector(".desktop-search-product-tile-title");
-	public static By PRODUCT_SUGGESTION = By.cssSelector("div.autocomplete-suggestions-content>a>div>span");
+	public static By POPULAR_SEARCHES = By.cssSelector("[data-tj-qa='search-suggestion'],.autocomplete-suggestions-content");
+	public static By PRODUCT_MATCHES_TITLE = By.cssSelector("[data-tj-qa='search-product-matches-title'],.desktop-search-product-tile-title");
+	public static By PRODUCT_SUGGESTION = By.cssSelector("[data-tj-qa=search-recent-keyword'],div.autocomplete-suggestions-content>a>div>span");
 //	public static By SEARCHRESULT_KEYWORD = By.cssSelector(".nxt-ac-section-container > .nxt-ac-item");
 //	public static By SEARCHRESULT_PRODUCT = By.cssSelector(".nxt-ac-products-container > .nxt-ac-item");
 	
-	public static By SEARCHPAGE_TITLE = By.cssSelector(".collection-search-title-bar__title");
-	public static By SEARCHPAGE_DESC= By.cssSelector(".collection-title-bar__description");
+	public static By SEARCHPAGE_TITLE = By.cssSelector("[data-tj-qa='result-title'],.collection-search-title-bar__title");
+	public static By SEARCHPAGE_DESC= By.cssSelector("[data-tj-qa='result-tip'],.collection-search-title-bar__description");
 	public static By SEARCHPAGE_ITEMCOUNT= By.cssSelector(".mega-collection-filters--controls__count");
 	public static By SEARCHPAGE_FILTER= By.cssSelector(".collection-filter");
 	
@@ -223,15 +223,15 @@ public class HomePageLocators{
 	public static By SEARCHPAGE_PRODUCT_REVIEWS = By.cssSelector(".yotpo.bottomLine");
 	public static By SEARCHPAGE_PRODUCT_PRICE = By.cssSelector(".product-meta__price");
 	public static By SEARCHPAGE_PRODUCT_BADGE = By.cssSelector(".product-item__badge");	
-	public static By RECENT_SEARCHES_TITLE = By.cssSelector(".recent-searches-title>span");
-	public static By CLEAR_RECENT_SEARCHES = By.cssSelector(".search-value__clear>span");
+	public static By RECENT_SEARCHES_TITLE = By.cssSelector("[data-tj-qa='search-recent-title'],.recent-searches-title>span");
+	public static By CLEAR_RECENT_SEARCHES = By.cssSelector("[data-tj-qa='search-clear-recent'],.search-value__clear>span");
 	public static By RECENT_SEARCH_CONTAINER = By.cssSelector(".desktop-recent-search-container");
 	public static By SEARCHPAGE_ALL_FILTERS = By.cssSelector("div.mega-collection-filters > div > a");
 	public static By SEARCHPAGE_ALL_SELECTED_FILTER_OPTIONS = By.cssSelector("div.js-mega-collection-desktop-filter-tags >div> button");
 	public static By SEARCHPAGE_CLEAR_FILTER = By.cssSelector("div.mega-collection-filters--controls > a");
 	public static By SEARCHPAGE_LAST_FILTER = By.cssSelector(".mega-collection-filters > select");
-	public static By AUTO_SUGGESTED_LINKS = By.cssSelector(".autocomplete-suggestions-content>a");
-	public static By AUTO_SUGGESTED_PRODUCT_IMG = By.cssSelector(".search-product-image>a>img");
+	public static By AUTO_SUGGESTED_LINKS = By.cssSelector("[data-tj-qa='search-suggestion'],.autocomplete-suggestions-content>a");
+	public static By AUTO_SUGGESTED_PRODUCT_IMG = By.cssSelector("[data-tj-qa='search-product-match-image'],.search-product-image>a>img");
 	public static By AUTO_SUGGESTED_PRODUCT_TILE_TITLE = By.cssSelector(".search-product-tile>a");
 	
 	public static By HELP_CENTER = By.cssSelector(".header-nav-dropdown > ul >li:nth-child(2) > a");
