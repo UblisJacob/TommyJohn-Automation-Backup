@@ -39,8 +39,8 @@ public class ProductDetailsPageLocators {
 	public static By STRIKED_COLOR_SWATCHES = By.cssSelector("[data-tj-qa='color-swatch'],.product-option__color-swatches-wrapper>ul>li>.product-option__variant-btn.product-option__variant-btn--color.js-variant--color.unavailable.email-when-in-stock");
 	
 	
-//	public static By AFTERPAY_DIV = By.cssSelector(".multi-pdp-title-wrap.desktop-view>span>.afterpay-paragraph");
-//    public static By SECOND_VERTICAL_IMAGE = By.cssSelector(".slick-vertical > div > div > div:nth-child(2)>img");
+	public static By AFTERPAY_DIV = By.cssSelector(".multi-pdp-title-wrap.desktop-view>span>.afterpay-paragraph");
+    public static By SECOND_VERTICAL_IMAGE = By.cssSelector(".slick-vertical > div > div > div:nth-child(2)>img");
 
 	public static By COLOR_LISTS = By.cssSelector("[data-tj-qa='color-swatch'],.product-option__color-swatches-wrapper > ul >li");
 	public static By FIRST_COLOR = By.cssSelector(".product-option__color-swatches-wrapper > ul > li:nth-child(1) > label");
@@ -54,11 +54,11 @@ public class ProductDetailsPageLocators {
 	
 	//public static By SIZE_TEXT = By.cssSelector(".product-info__header > span:nth-child(2)");
 
-//	public static By SIZE_DROPDOWN = By.cssSelector(".option-dropdown__option >div>a");
+	public static By SIZE_DROPDOWN = By.cssSelector(".option-dropdown__option >div>a");
 	public static By ALL_SIZE_LIST = By.cssSelector("[data-tj-qa='product-size'],.option-swatch__option >li");
-//	public static By SIZE_DROPDOWN_MENS = By.cssSelector(".option-dropdown__option >div[data-option-name = 'Mens Size'] >a");
-//	public static By SIZE_DROPDOWN_WOMENS = By.cssSelector(".option-dropdown__option >div[data-option-name = 'Womens Size'] >a");
-//	public static By SIZE_TEXT = By.xpath("//input[@class='sizeOption' and @checked='checked']");
+	public static By SIZE_DROPDOWN_MENS = By.cssSelector(".option-dropdown__option >div[data-option-name = 'Mens Size'] >a");
+	public static By SIZE_DROPDOWN_WOMENS = By.cssSelector(".option-dropdown__option >div[data-option-name = 'Womens Size'] >a");
+	public static By SIZE_TEXT = By.xpath("//input[@class='sizeOption' and @checked='checked']");
 	public static By BRA_BAND_SIZE_DROPDOWN = By.cssSelector("[data-tj-qa='find-your-size-band-size'],.size-guide-size-finder-dropdowns>span:nth-child(1)>select");
 	public static By BRA_BAND_SIZE_SELECT = By.cssSelector("[data-tj-qa='find-your-size-band-size'],.size-guide-size-finder-dropdowns>span:nth-child(1)");
 	
