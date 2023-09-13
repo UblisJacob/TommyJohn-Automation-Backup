@@ -5,35 +5,35 @@ import org.openqa.selenium.By;
 public class GiftCardPageLocators {
 
 	public static By NEW_ARRIVALS_OPTION = By.cssSelector(".header-desktop-left > ul > li:nth-child(1) > a");
-	public static By GIFT_CARD_TITLE = By.cssSelector(".product-info__inner-top >div >div:nth-child(1) >h1");
-	public static By GIFT_CARD_PRICE = By.cssSelector(".product-info__inner-top >div >div:nth-child(2) >span >span:nth-child(2)");
-	public static By COLOR_NAME = By.cssSelector(".product-info__option >div >span");
+	public static By GIFT_CARD_TITLE = By.cssSelector("[data-tj-qa='product-name'],.product-info__inner-top >div >div:nth-child(1) >h1");
+	public static By GIFT_CARD_PRICE = By.cssSelector("[data-tj-qa='product-price'],.product-info__inner-top >div >div:nth-child(2) >span >span:nth-child(2)");
+	public static By COLOR_NAME = By.cssSelector("[data-tj-qa='gproduct-color'],.product-info__option >div >span");
 	public static By GIFT_CARD_AMOUNT_TEXT = By.cssSelector(".option-dropdown__section >div:nth-child(1)");
 
 	//Price selector
 	public static By PRICE_DROPDOWN = By.cssSelector(".select.select--options.js-option-select.option-dropdown__option.desktop-view >a");
-	public static By PRICE_OPTIONS = By.cssSelector(".option-swatch__option>li");
+	public static By PRICE_OPTIONS = By.cssSelector("[data-tj-qa='gc-amount'],.option-swatch__option>li");
 	public static By PRICE_100 = By.cssSelector(".select--options__list >li:nth-child(3)");
  
 	//Form
-	public static By RECIPIENT_MAIL_LABEL = By.cssSelector("#gift-card-section >div:nth-child(1)"); 
-	public static By RECIPIENT_MAIL_TEXTBOX = By.cssSelector("#recipient_email");
-	public static By CONFIRM_MAIL_LABEL = By.cssSelector("#gift-card-section >div:nth-child(4)");
-	public static By CONFIRM_MAIL_TEXTBOX = By.cssSelector("#confirm_recipient_email");
-	public static By DELIVERY_DATE_LABEL = By.cssSelector("#gift-card-section > div:nth-child(8)");
-	public static By DELIVERY_DATE_GIFT_BOX = By.cssSelector("#gift-card-section >div:nth-child(8)");
-	public static By DELIVERY_MESSAGE_LABEL = By.cssSelector(".time-label");
-	public static By GIFT_CARD_MESSAGE_LABEL = By.cssSelector("#gift-card-section >div:nth-child(14)");
+	public static By RECIPIENT_MAIL_LABEL = By.cssSelector("[data-tj-qa='gc-product-email-text'],#gift-card-section >div:nth-child(1)"); 
+	public static By RECIPIENT_MAIL_TEXTBOX = By.cssSelector("[data-tj-qa='gc-product-email-input'],#recipient_email");
+	public static By CONFIRM_MAIL_LABEL = By.cssSelector("[data-tj-qa='gc-product-confirm-email-text'],#gift-card-section >div:nth-child(4)");
+	public static By CONFIRM_MAIL_TEXTBOX = By.cssSelector("[data-tj-qa='gc-product-confirm-email-input'],#confirm_recipient_email");
+	public static By DELIVERY_DATE_LABEL = By.cssSelector("[data-tj-qa='gc-product-delivery-date'],#gift-card-section > div:nth-child(8)");
+	public static By DELIVERY_DATE_GIFT_BOX = By.cssSelector("[data-tj-qa='gc-product-delivery-date'],#gift-card-section >div:nth-child(8)");
+	public static By DELIVERY_MESSAGE_LABEL = By.cssSelector("[data-tj-qa='gc-product-delivery-date-notification'],.time-label");
+	public static By GIFT_CARD_MESSAGE_LABEL = By.cssSelector("[data-tj-qa='gc-product-message-text'],#gift-card-section >div:nth-child(14)");
 
 	public static By GIFT_CARD_DISPLAY_IMAGE = By.cssSelector(".product-gallery >div>div:nth-child(2) >div >div >div:nth-child(1) >img");
 	public static By GIFT_CARD_DISPLAY_IMAGE_SMALL_1 = By.cssSelector("div[tabindex='0'] >img");
 	public static By GIFT_CARD_DISPLAY_IMAGE_SMALL_2 = By.cssSelector(".product-gallery >div:nth-child(1) >div >div >div:nth-child(2) >img");
-	public static By GIFT_CARD_MESSAGE_TEXTBOX = By.cssSelector("#gift-card-section >textarea");
-	public static By GIFT_CARD_MESSAGE_LIMIT = By.cssSelector(".limit-label");
-	public static By ATC_BUTTON = By.cssSelector(".product-info__atc.button.button--red.button--full.js-loop-atc");
+	public static By GIFT_CARD_MESSAGE_TEXTBOX = By.cssSelector("[data-tj-qa='gc-product-message-input'],#gift-card-section >textarea");
+	public static By GIFT_CARD_MESSAGE_LIMIT = By.cssSelector("[data-tj-qa='gc-product-message-notification'],.limit-label");
+	public static By ATC_BUTTON = By.cssSelector("[data-tj-qa='add-to-cart-cta']>button,.product-info__atc.button.button--red.button--full.js-loop-atc");
 
-	public static By PRODUCT_DETAILS = By.cssSelector("div.product-accordion.container> ul > li:nth-child(1) > div:nth-child(1) > a");
-	public static By SHIPING_AND_RETURNS = By.cssSelector("div.product-accordion.container> ul > li:nth-child(2) > div:nth-child(1) > a");
+	public static By PRODUCT_DETAILS = By.cssSelector("[data-tj-qa='mobile-footer-accordion-product-details'],div.product-accordion.container> ul > li:nth-child(1) > div:nth-child(1) > a");
+	public static By SHIPING_AND_RETURNS = By.cssSelector("[data-tj-qa='mobile-footer-accordion-free-returns'],div.product-accordion.container> ul > li:nth-child(2) > div:nth-child(1) > a");
 
 	public static By GIFT_CARD_DETAILS_TITLE = By.cssSelector("div.product-accordion.container> ul > li:nth-child(1) > div:nth-child(2) >section>h2");
 	public static By GIFT_CARD_DESCRIPTION_HEADING = By.cssSelector(".product-details-main.gift-card >div:nth-child(2) >div:nth-child(1) >h2");
@@ -46,25 +46,25 @@ public class GiftCardPageLocators {
 	public static By TODAY = By.cssSelector(".flatpickr-day.today");
 	//ADD TO CART
 	public static By CONTINUE_SHOPPING_BUTTON = By.cssSelector("button.inline-cart__close-btn");
-	public static By INLINE_VIEW_CART_BUTTON = By.cssSelector("a.inline-cart__cart-link");
-	public static By SHOPPING_CART_TITLE = By.cssSelector(".inline-cart__title");
-	public static By GIFT_CARD_IMAGE_INLINE_CART = By.cssSelector(".line-item >div:nth-child(1) >img");
-	public static By GIFT_CARD_TITLE_INLINE_CART = By.cssSelector("a.line-item__title");
-	public static By REMOVE_ITEM_BUTTON = By.cssSelector("button.line-item__remove");
-	public static By GIFT_CARD_COLOR_INLINE_CART = By.cssSelector(".line-item__option");
-	public static By GIFT_CARD_PRICE_INLINE_CART = By.cssSelector(".line-item__price >span");
+	public static By INLINE_VIEW_CART_BUTTON = By.cssSelector("[data-tj-qa='inline-cart-view-cartPage'],a.inline-cart__cart-link");
+	public static By SHOPPING_CART_TITLE = By.cssSelector("[data-tj-qa='inline-cart-title'],.inline-cart__title");
+	public static By GIFT_CARD_IMAGE_INLINE_CART = By.cssSelector("[data-tj-qa='cart-line-item-image']>img,.line-item >div:nth-child(1) >img");
+	public static By GIFT_CARD_TITLE_INLINE_CART = By.cssSelector("[data-tj-qa='cart-line-item-title'],a.line-item__title");
+	public static By REMOVE_ITEM_BUTTON = By.cssSelector("[data-tj-qa='cart-line-item-remove'],button.line-item__remove");
+	public static By GIFT_CARD_COLOR_INLINE_CART = By.cssSelector("[data-tj-qa='cart-line-item-option'],.line-item__option");
+	public static By GIFT_CARD_PRICE_INLINE_CART = By.cssSelector("[data-tj-qa='cart-line-item-sale-price'],.line-item__price >span");
 	public static By RECIPIENT_MAIL_INLINE_CART = By.xpath("//span[text()[contains(.,'Recipient')]]");
 	public static By DELIVERY_DATE_INLINE_CART = By.xpath("//span[text()[contains(.,'Delivery Date')]]");
-	public static By AMOUNT_IN_INLINE_CART = By.cssSelector("article:nth-child(1) > div.line-item__summary > div.line-item__total > div.line-item__subtotal > span");
-	public static By QUANTITY_SELECTOR_INLINE_CART = By.cssSelector(".qty-selector.line-item__qty > input");
+	public static By AMOUNT_IN_INLINE_CART = By.cssSelector("[data-tj-qa='inline-cart-line-item-subtotal']> span,article:nth-child(1) > div.line-item__summary > div.line-item__total > div.line-item__subtotal > span");
+	public static By QUANTITY_SELECTOR_INLINE_CART = By.cssSelector("[data-tj-qa='cart-line-item-qty'],.qty-selector.line-item__qty > input");
 	public static By AFTER_PAY_MESSAGE = By.cssSelector(".inline-cart__col1 >div:nth-child(3) >span >p:nth-child(2) >span:nth-child(1)");
 
 
 	//VALIDATIONS
-	public static By EMAIL_ERROR_MESSAGES_GC = By.cssSelector("#recipient_email_error");
-	public static By CONFIRM_EMAIL_ERROR_MSG_GC = By.cssSelector("#recipient_confirm_email_error");
-	public static By DATE_ERROR_MSG_GC = By.cssSelector("#delivery_date_error");
-	public static By SELECT_AN_AMOUNT_BUTTON = By.cssSelector(".product-info-quant-atc-container>div>button");
+	public static By EMAIL_ERROR_MESSAGES_GC = By.cssSelector("[data-tj-qa='gc-product-email-error-message'],#recipient_email_error");
+	public static By CONFIRM_EMAIL_ERROR_MSG_GC = By.cssSelector("[data-tj-qa='gc-product-confirm-email-error-message'],#recipient_confirm_email_error");
+	public static By DATE_ERROR_MSG_GC = By.cssSelector("[data-tj-qa='gc-product-delivery-date-notification-error-message'],#delivery_date_error");
+	public static By SELECT_AN_AMOUNT_BUTTON = By.cssSelector("[data-tj-qa='gc-product-delivery-date-notification-error-message'],.product-info-quant-atc-container>div>button");
 }
 
 
