@@ -63,7 +63,7 @@ public class CollectionPageLocator {
 	    public static By PRODUCT_AMOUNT_ON_FLYCART = By.cssSelector("[data-tj-qa='cart-line-item-sale-price'],.line-item__price>span");
 	    
 	    //changed
-	    public static By SORTBYPRICE_DROPDOWN = By.xpath("[data-tj-qa='plp-filter-sort'],//select[@title='Sort By']");
+	    public static By SORTBYPRICE_DROPDOWN = By.xpath("//*[data-tj-qa='plp-filter-sort'] | //select[@title='Sort By']");
 	    public static By PLP_PRICE = By.cssSelector("[data-tj-qa='product-price'],span.product-meta__price");
 	    public static By PLP_PRICE_FILTER = By.xpath("//a[@title='Price']//span");
 	    
@@ -84,11 +84,11 @@ public class CollectionPageLocator {
 	    public static By PRODUCT_IMAGE = By.cssSelector("[data-tj-qa='plp-product-img-main'],img.product-image:nth-child(1)");
 	    public static By PLP_FILTER_SINGLE_PROODUCT = By.cssSelector("div.mega-collection-filters>div:nth-child(7)>ul>li>label>span[data-result-count='1']");
 	    
-	    public static By PLP_SEO_TITLE = By.xpath("[data-tj-qa='plp-seo-title'],//h2[@class='collection-seo-title']");
-	    public static By PLP_SEO_BODY = By.xpath("[data-tj-qa='plp-seo-body'],//div[@class='collection-seo-body']");
+	    public static By PLP_SEO_TITLE = By.xpath("//*[data-tj-qa='plp-seo-title'] | //h2[@class='collection-seo-title']");
+	    public static By PLP_SEO_BODY = By.xpath("//*[data-tj-qa='plp-seo-body'] | //div[@class='collection-seo-body']");
 	    public static By PLP_SEO_LINK = By.xpath("//div[@class='collection-seo-body']//a");
 	    
-	    public static By PLP_PRODUCT_IMAGE_BADGE = By.xpath("[data-tj-qa='plp-product-badge']>span,//div[@class='productImage-item__badge']//span");
+	    public static By PLP_PRODUCT_IMAGE_BADGE = By.xpath("//*[data-tj-qa='plp-product-badge']>span | //div[@class='productImage-item__badge']//span");
 	    public static By PLP_PRODUCT_SECONDARY_BADGE = By.xpath("//div[contains(@class,'product-item__badge')]//span");
 	    
 	     public static By SEARCH_PRICE_FILTER = By.xpath("//a[@data-filter-group='facet_price_range']//span[contains(text(),'Price')]");

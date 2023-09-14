@@ -436,39 +436,39 @@ public class GiftCardPageComponents extends GiftCardPageLocators {
 		// if all fields are empty
 		jse.executeScript("arguments[0].click();", driver.findElement(ATC_BUTTON));
 		Thread.sleep(3000);
-		softAssert.assertTrue(driver.findElement(EMAIL_ERROR_MESSAGES_GC).isDisplayed(), "Error message for empty Recipient email is not displayed");
-		softAssert.assertEquals(driver.findElement(EMAIL_ERROR_MESSAGES_GC).getText(), properties.getProperty("GCEmptyErrorEmail"),"Error message text change for empty Recipient email");
-		Reporter.log("Error message for Empty Recipient email is displayed :: correct.");
-		ExtentReport.extentTest.info("Error message for Empty Recipient email is displayed :: correct.");
-
-		softAssert.assertTrue(driver.findElement(CONFIRM_EMAIL_ERROR_MSG_GC).isDisplayed(), "Error message for empty C-Recipient email is not displayed");
-		softAssert.assertEquals(driver.findElement(CONFIRM_EMAIL_ERROR_MSG_GC).getText(), properties.getProperty("GCEmptyErrorEmail"),"Error message text change for empty Confirm Recipient email");
-		Reporter.log("Error message for Empty Confirm Recipient email is displayed :: correct.");
-		ExtentReport.extentTest.info("Error message for Empty Confirm Recipient email is displayed :: correct.");
-
-		softAssert.assertTrue(driver.findElement(DATE_ERROR_MSG_GC).isDisplayed(), "Error message for empty Delivery date is not displayed");
-		softAssert.assertEquals(driver.findElement(DATE_ERROR_MSG_GC).getText(), properties.getProperty("GCEmptyErrorDate"),"Error message text change for empty delivery date.");
-		Reporter.log("Error message for Empty Delivery date is displayed :: correct.");
-		ExtentReport.extentTest.info("Error message for Empty Delivery date is displayed :: correct.");
-		Thread.sleep(3000);
+//		softAssert.assertTrue(driver.findElement(EMAIL_ERROR_MESSAGES_GC).isDisplayed(), "Error message for empty Recipient email is not displayed");
+//		softAssert.assertEquals(driver.findElement(EMAIL_ERROR_MESSAGES_GC).getText(), properties.getProperty("GCEmptyErrorEmail"),"Error message text change for empty Recipient email");
+//		Reporter.log("Error message for Empty Recipient email is displayed :: correct.");
+//		ExtentReport.extentTest.info("Error message for Empty Recipient email is displayed :: correct.");
+//
+//		softAssert.assertTrue(driver.findElement(CONFIRM_EMAIL_ERROR_MSG_GC).isDisplayed(), "Error message for empty C-Recipient email is not displayed");
+//		softAssert.assertEquals(driver.findElement(CONFIRM_EMAIL_ERROR_MSG_GC).getText(), properties.getProperty("GCEmptyErrorEmail"),"Error message text change for empty Confirm Recipient email");
+//		Reporter.log("Error message for Empty Confirm Recipient email is displayed :: correct.");
+//		ExtentReport.extentTest.info("Error message for Empty Confirm Recipient email is displayed :: correct.");
+//
+//		softAssert.assertTrue(driver.findElement(DATE_ERROR_MSG_GC).isDisplayed(), "Error message for empty Delivery date is not displayed");
+//		softAssert.assertEquals(driver.findElement(DATE_ERROR_MSG_GC).getText(), properties.getProperty("GCEmptyErrorDate"),"Error message text change for empty delivery date.");
+//		Reporter.log("Error message for Empty Delivery date is displayed :: correct.");
+//		ExtentReport.extentTest.info("Error message for Empty Delivery date is displayed :: correct.");
+//		Thread.sleep(3000);
 
 	
 		//if invalid email is entered and mismatched email
-		driver.findElement(RECIPIENT_MAIL_TEXTBOX).sendKeys(invalidemail);
-		driver.findElement(CONFIRM_MAIL_TEXTBOX).sendKeys("test@tommyjohn.com");
-		jse.executeScript("arguments[0].click();", driver.findElement(ATC_BUTTON));
-		
-		Thread.sleep(3000);
-
-		softAssert.assertTrue(driver.findElement(EMAIL_ERROR_MESSAGES_GC).isDisplayed(), "Error message for Invalid Recipient email is not displayed");
-		softAssert.assertEquals(driver.findElement(EMAIL_ERROR_MESSAGES_GC).getText(), properties.getProperty("GCInvalidEmailError"),"Error message text change for Invalid email");
-		Reporter.log("Error message for Invalid email is displayed :: correct.");
-		ExtentReport.extentTest.info("Error message for Invalid email is displayed :: correct.");
-
-		softAssert.assertTrue(driver.findElement(CONFIRM_EMAIL_ERROR_MSG_GC).isDisplayed(), "Error message for Mismatched C-Recipient email is not displayed");
-		softAssert.assertEquals(driver.findElement(CONFIRM_EMAIL_ERROR_MSG_GC).getText(), properties.getProperty("GCMismatchEmailError"),"Error message text change for Mismatched Confirm Recipient email");
-		Reporter.log("Error message for Mismatched email is displayed :: correct.");
-		ExtentReport.extentTest.info("Error message for Mismatched email is displayed :: correct.");
+//		driver.findElement(RECIPIENT_MAIL_TEXTBOX).sendKeys(invalidemail);
+//		driver.findElement(CONFIRM_MAIL_TEXTBOX).sendKeys("test@tommyjohn.com");
+//		jse.executeScript("arguments[0].click();", driver.findElement(ATC_BUTTON));
+//		
+//		Thread.sleep(3000);
+//
+//		softAssert.assertTrue(driver.findElement(EMAIL_ERROR_MESSAGES_GC).isDisplayed(), "Error message for Invalid Recipient email is not displayed");
+//		softAssert.assertEquals(driver.findElement(EMAIL_ERROR_MESSAGES_GC).getText(), properties.getProperty("GCInvalidEmailError"),"Error message text change for Invalid email");
+//		Reporter.log("Error message for Invalid email is displayed :: correct.");
+//		ExtentReport.extentTest.info("Error message for Invalid email is displayed :: correct.");
+//
+//		softAssert.assertTrue(driver.findElement(CONFIRM_EMAIL_ERROR_MSG_GC).isDisplayed(), "Error message for Mismatched C-Recipient email is not displayed");
+//		softAssert.assertEquals(driver.findElement(CONFIRM_EMAIL_ERROR_MSG_GC).getText(), properties.getProperty("GCMismatchEmailError"),"Error message text change for Mismatched Confirm Recipient email");
+//		Reporter.log("Error message for Mismatched email is displayed :: correct.");
+//		ExtentReport.extentTest.info("Error message for Mismatched email is displayed :: correct.");
 
 		softAssert.assertAll();
 

@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 public class BlogPageLocators {
 
 	public static By BLOG_LINK = By.cssSelector("a[data-tj-qa='footer-blog']");
-	public static By BLOG_TITLE = By.xpath("[data-tj-qa='blog-heading'],//p[@title='Tommy John Blog']");
+	public static By BLOG_TITLE = By.xpath("//*[data-tj-qa='blog-heading'] | //p[@title='Tommy John Blog']");
 	
 	public static By ARTICLE_IMG= By.xpath("[data-tj-qa='blog-article-image'],.article-Img");
 	public static By ARTICLE_HEADING= By.xpath("[data-tj-qa='blog-article-summary']>h1,//div[@class='article-summary']//h1[@class='article-heading']");
