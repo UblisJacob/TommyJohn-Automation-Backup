@@ -24,7 +24,7 @@ public class CollectionPageLocator {
 
 	//changed
 	public static String PRODUCT_IMAGES = "//div[contains(@class,'product-image')]//a";
-	public static By PRODUCT_COUNT_TEXT = By.xpath("[data-tj-qa='plp-total-items']>span,//div[contains(@class,'controls__count')]//span");
+	public static By PRODUCT_COUNT_TEXT = By.xpath("//*[data-tj-qa='plp-total-items']>span | //div[contains(@class,'controls__count')]//span");
 	public static By HOVERED_PRODUCT_IMAGE = By.cssSelector("[data-tj-qa='plp-product-img-hover'],.product-image--hover");
 	public static By FIRST_PRODUCT_HEAD_LINE_TEXT = By.cssSelector("[data-tj-qa='product-title'],.product-meta__title");
 	public static By FIRST_PRODUCT_REVIEW_STARS = By.cssSelector("[data-tj-qa='product-reviews'],.yotpo-bottomline");
@@ -70,7 +70,7 @@ public class CollectionPageLocator {
 	    public static By PRICE_LESS_THAN_25= By.xpath("(//input[contains(@data-filter-btn,'Less than $25')])[1]");
 	    public static By LESS_THAN_25_PILL= By.xpath("(//button[@title='Less than $25'])[1]");
 	    public static By NEW_ARRIVALS_CTC= By.xpath("//a[contains(text(),'New Arrivals')]");
-	    public static By NEW_ARRIVALS_TITLE= By.xpath("[data-tj-qa='plp-title'],//h1[@class='collection-title-bar__title']");
+	    public static By NEW_ARRIVALS_TITLE= By.xpath("//*[data-tj-qa='plp-title'] | //h1[@class='collection-title-bar__title']");
 	    public static By NEW_ARRIVALS_BREADCRUMB= By.xpath("//div[@itemprop='itemListElement']//a//span[contains(text(),'New Arrivals')]");
 	    
 	    

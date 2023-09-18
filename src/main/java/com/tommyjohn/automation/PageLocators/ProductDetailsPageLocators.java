@@ -195,7 +195,7 @@ public class ProductDetailsPageLocators {
 	public static By NAME = By.xpath("//*[data-tj-qa='reviews-write-review-name-label'] | //label[@for = 'yotpo_input_review_name']");
 	public static By EMAIL = By.xpath("//*[data-tj-qa='reviews-write-review-email-label'] | //label[@for = 'yotpo_input_review_email']");
 	public static By LOCATION = By.xpath("//*[data-tj-qa='reviews-write-review-location-label'] | //label[@for = 'yotpo_input_review_location']");
-	public static By FIT = By.cssSelector("[data-tj-qa='reviews-fit-header'],.yotpo-custom-tag-field > span");
+	public static By FIT = By.cssSelector("//*[data-tj-qa='reviews-fit-header'] | .yotpo-custom-tag-field > span");
 	public static By HEADLINE = By.xpath("//*[data-tj-qa='reviews-add-headline-label'] | //label[@for = 'yotpo_input_review_headline']");
 	public static By REVIEW = By.xpath("//*[data-tj-qa='reviews-review-label'] | //label[@for = 'yotpo_input_review_content']");
 	public static By OVERALLRATING = By.cssSelector("[data-tj-qa='reviews-overall-fitting-label'],.overall-rating-text");
@@ -219,7 +219,7 @@ public class ProductDetailsPageLocators {
 	public static By RFY_PRODUCT_IMAGE = By.cssSelector("[data-tj-qa='product-image'],.product-image");
 	public static By RFY_HOVER_PRODUCT_IMG= By.cssSelector(".product-image--hover");
 	public static By RFY_PRODUCT_TITLE = By.cssSelector("[data-tj-qa='product-title'],.product-meta__title");
-	public static By RFY_PRODUCT_REVIEWS = By.xpath("[data-tj-qa='product-reviews'],//a[@class='product-meta']/div/div");
+	public static By RFY_PRODUCT_REVIEWS = By.xpath("//*[data-tj-qa='product-reviews'] | //a[@class='product-meta']/div/div");
 	public static By RFY_PRODUCT_PRICE = By.cssSelector(".product-meta__prices");
 	public static By RFY_SWATCH_LIST = By.cssSelector(".dy-recs-placeholder__above-desktop-reviews>div>.dy-rec>div>div:nth-child(2)>.dy-rec--products>div:nth-child(1) > div > div.product-item__swatches:nth-child(2)> div > div");
 	public static By RFY_PRODUCT_IMG_COLORNAME = By.cssSelector(".dy-recs-placeholder__above-desktop-reviews>div>.dy-rec>div>div:nth-child(2)>.dy-rec--products>div:nth-child(1) > div > div>a");
