@@ -195,7 +195,7 @@ public class ProductDetailsPageLocators {
 	public static By NAME = By.xpath("//*[data-tj-qa='reviews-write-review-name-label'] | //label[@for = 'yotpo_input_review_name']");
 	public static By EMAIL = By.xpath("//*[data-tj-qa='reviews-write-review-email-label'] | //label[@for = 'yotpo_input_review_email']");
 	public static By LOCATION = By.xpath("//*[data-tj-qa='reviews-write-review-location-label'] | //label[@for = 'yotpo_input_review_location']");
-	public static By FIT = By.cssSelector("//*[data-tj-qa='reviews-fit-header'] | .yotpo-custom-tag-field > span");
+	public static By FIT = By.cssSelector("[data-tj-qa='reviews-fit-header'] | .yotpo-custom-tag-field > span");
 	public static By HEADLINE = By.xpath("//*[data-tj-qa='reviews-add-headline-label'] | //label[@for = 'yotpo_input_review_headline']");
 	public static By REVIEW = By.xpath("//*[data-tj-qa='reviews-review-label'] | //label[@for = 'yotpo_input_review_content']");
 	public static By OVERALLRATING = By.cssSelector("[data-tj-qa='reviews-overall-fitting-label'],.overall-rating-text");
