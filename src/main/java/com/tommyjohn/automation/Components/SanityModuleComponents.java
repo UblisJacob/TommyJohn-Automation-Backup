@@ -270,7 +270,7 @@ public class SanityModuleComponents extends SanityModuleLocators{
 				 new HomePageComponents(driver).navigateToAboutUsPage();
 				 JavascriptExecutor jse = (JavascriptExecutor)driver;
 				 Thread.sleep(3000);
-				 jse.executeScript("window.scrollBy(0,1000)");
+				 jse.executeScript("window.scrollBy(0,600)");
 				 
 				 WebElement img1 = driver.findElement(SIDE_BY_SIDE_IMG1);
 				 WebElement img2 = driver.findElement(SIDE_BY_SIDE_IMG2);
