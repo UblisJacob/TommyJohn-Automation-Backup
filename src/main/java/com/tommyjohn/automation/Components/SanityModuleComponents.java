@@ -220,7 +220,7 @@ public class SanityModuleComponents extends SanityModuleLocators{
 			jse.executeScript("window.scrollBy(0,2100)");
 //			WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(30));
 //			wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(FIXED_BANNER_IMG, 0));
-			if(driver.findElement(GPTW_FIXED_BANNER).isDisplayed()) 
+			if(driver.findElement(GPTW_FIXED_BANNER).getSize()!=null) 
 				{
 					Thread.sleep(3000);
 					WebElement fxdimg = driver.findElement(GPTW_FIXED_BANNER_IMG); 

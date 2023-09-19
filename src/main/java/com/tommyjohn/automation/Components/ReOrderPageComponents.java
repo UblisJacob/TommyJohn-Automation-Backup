@@ -215,7 +215,7 @@ public class ReOrderPageComponents extends ReOrderPageLocators {
 	 */
 	private int chooseRandomProduct() {
 		random = new Random();
-		int number = 0;
+		int number = 1;
 		List<WebElement> list = new ArrayList<WebElement>();
 		list = driver.findElements(REORDER_ITEMS_LIST);
 		
