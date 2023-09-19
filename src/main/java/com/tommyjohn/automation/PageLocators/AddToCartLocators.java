@@ -16,7 +16,7 @@ public class AddToCartLocators {
 	public static By CHECKOUT_BUTTON = By.cssSelector(".inline-cart__action-btns > a:nth-child(3)");
 
 	public static By EMAIL_WHEN_IN_STOCK_BUTTON_CLOSE = By.cssSelector(".close_jtwl");
-	public static By INLINE_CART_CLOSE = By.cssSelector(".inline-cart__close-btn.active");
+	public static By INLINE_CART_CLOSE = By.cssSelector("[data-tj-qa='inline-cart-close']");
 	
 	public static By JOIN_THE_WAITLIST = By.cssSelector(".multiPdp__atc-container>button");
 	public static By INLINE_CART_TITLE = By.cssSelector(".inline-cart__title");
