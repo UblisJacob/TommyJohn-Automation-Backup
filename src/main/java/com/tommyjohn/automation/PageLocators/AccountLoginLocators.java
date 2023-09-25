@@ -10,7 +10,7 @@ public class AccountLoginLocators {
 	public static By CREATEACCOUNT_TITLE = By.cssSelector("h1[data-tj-qa='no-account-title'], #shopify-section-account-benefits .account-row-title");
 	public static By CREATEACCOUNT_TEXT2 = By.cssSelector(".account-registration > p");
 	public static By CREATEACCOUNT_BTN = By.cssSelector("button[data-tj-qa='account-create-account-btn']");
-	public static By LOGIN_HEADING_TEXT = By.cssSelector("h2[data-tj-qa='account-login-title'], #customer-login-form > h2");
+	public static By LOGIN_HEADING_LOGO = By.cssSelector("#Account-fill");
 	public static By EMAIL_LABEL1 = By.cssSelector("label[data-tj-qa='account-email-title'], #customer_login > div:nth-child(4) > label");
 	public static By CUSTOMER_EMAIL_INPUT = By.cssSelector("input[data-tj-qa='account-email-input'], #customer-email");
 	public static By PASSWORD_LABEL1 = By.cssSelector("#customer_login > div:nth-child(5) > label, label[data-tj-qa='account-password-title']");
