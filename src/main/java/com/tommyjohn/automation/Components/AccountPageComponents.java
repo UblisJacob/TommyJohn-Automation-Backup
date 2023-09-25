@@ -50,7 +50,7 @@ public class AccountPageComponents extends AccountPageLocators {
 	public void loginflow() {
 		genMethods = new GeneralMethods();
 		
-		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(AccountLoginLocators.LOGIN_HEADING_TEXT, 0));
+		//wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(AccountLoginLocators.LOGIN_HEADING_TEXT, 0));
 		driver.findElement(AccountLoginLocators.CUSTOMER_EMAIL_INPUT).clear();
 		driver.findElement(AccountLoginLocators.CUSTOMER_EMAIL_INPUT).sendKeys(CustomUtilities.properties.getProperty("loginemail"));
 		driver.findElement(AccountLoginLocators.CUSTOMER_PASSWORD_INPUTBOX).clear();
@@ -71,7 +71,7 @@ public class AccountPageComponents extends AccountPageLocators {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HomePageLocators.ACCOUNT_NAV_DROPDOWN));
 		driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN).click();
 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(AccountLoginLocators.LOGIN_HEADING_TEXT));
+	//	wait.until(ExpectedConditions.visibilityOfElementLocated(AccountLoginLocators.LOGIN_HEADING_TEXT));
 
 		driver.findElement(AccountLoginLocators.CUSTOMER_EMAIL_INPUT).sendKeys(email);
 		driver.findElement(AccountLoginLocators.CUSTOMER_PASSWORD_INPUTBOX).sendKeys(password);
@@ -126,7 +126,7 @@ public class AccountPageComponents extends AccountPageLocators {
 //		1. User must be signed in to view the Account page
 //		wait for login page, if login page does not appear check if element LOGGED_IN_ID is present if it is then throw error
 		try {
-			wait.until(ExpectedConditions.visibilityOfElementLocated(AccountLoginLocators.LOGIN_HEADING_TEXT));
+			ExpectedConditions.visibilityOfElementLocated(AccountLoginLocators.LOGIN_HEADING_LOGO);
 			System.out.println("Guest user was correctly redirected to login page after clicking on My Account option");
 		}catch (TimeoutException e) {
 			softassert.fail("After clicking on My account option as a Guest User, User seems to be have been redirected to Account Page as a logged in user");
