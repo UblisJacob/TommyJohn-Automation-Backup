@@ -17,7 +17,7 @@ public class HomePageLocators{
 	public static By LEVEL_ZERO_LINKS_LIST = By.cssSelector(".nav-item__list.level-zero-list>li");
 	public static By LEVEL_ZERO_SPECIFIC_OPTION = By.cssSelector(".nav-item__list.level-zero-list>:nth-child(1)>div>a");
 	public static By LEVEL_ZERO_LINKS_TEXT = By.cssSelector(".nav-item__list.level-zero-list>:nth-child(1)>div>a .nav-item-title");
-	public static By MEN_UNDERWEAR_LINK = By.cssSelector(".nav-item__list.level-zero-list>li:nth-child(1) ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']:nth-child(2)>div a");
+	public static By MEN_UNDERWEAR_LINK = By.cssSelector("body > header:nth-child(22) > div:nth-child(1) > nav:nth-child(1) > div:nth-child(1) > div:nth-child(3) > ul:nth-child(1) > li:nth-child(1) > div:nth-child(2) > ul:nth-child(1) > span:nth-child(1) > li:nth-child(1) > ul:nth-child(2) > li:nth-child(1) > a:nth-child(1)");
 	public static By MEN_UNDERWEAR_QUIZ = By.cssSelector("[data-tj-qa='nav-Underwear Quiz']>a>img");
 
 	public static By GENERIC_SHOP_ALL_LINK = By.cssSelector(".nav-item__list.level-zero-list>li:nth-child(1) ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']:nth-child(2) li[data-tj-qa^='nav-all']");
@@ -207,7 +207,7 @@ public class HomePageLocators{
 
 	public static By POPULAR_SEARCHES = By.cssSelector("[data-tj-qa='search-suggestion'],.autocomplete-suggestions-content");
 	public static By PRODUCT_MATCHES_TITLE = By.cssSelector("[data-tj-qa='search-product-matches-title'],.desktop-search-product-tile-title");
-	public static By PRODUCT_SUGGESTION = By.cssSelector("[data-tj-qa='search-recent-keyword'],div.autocomplete-suggestions-content>a>div>span");
+	public static By PRODUCT_SUGGESTION = By.cssSelector("[data-tj-qa='search-recent-keyword'], div.autocomplete-suggestions-content>a>div>span");
 //	public static By SEARCHRESULT_KEYWORD = By.cssSelector(".nxt-ac-section-container > .nxt-ac-item");
 //	public static By SEARCHRESULT_PRODUCT = By.cssSelector(".nxt-ac-products-container > .nxt-ac-item");
 	
@@ -234,13 +234,13 @@ public class HomePageLocators{
 	public static By AUTO_SUGGESTED_PRODUCT_IMG = By.cssSelector("[data-tj-qa='search-product-match-image'],.search-product-image>a>img");
 	public static By AUTO_SUGGESTED_PRODUCT_TILE_TITLE = By.cssSelector(".search-product-tile>a");
 	
-	public static By HELP_CENTER = By.cssSelector(".header-nav-dropdown > ul >li:nth-child(2) > a");
+	public static By HELP_CENTER = By.cssSelector(".header-nav-dropdown > ul >li:nth-child(3) > a");
 	public static By ACCOUNT_NAV_DROPDOWN_OPTIONS = By.cssSelector(".header-nav-dropdown li:nth-child(1)>a");
 	public static By REORDER = By.cssSelector(".header-nav-dropdown > ul >li:nth-child(2) > a");
 	public static By HELP_ICON = By.cssSelector("i.icon-help");
 	public static By HELP_ICON_HELP_OPTION = By.cssSelector(".header-nav-dropdown > ul >li:nth-child(2) > a");
 	public static By MYACCOUNT_OPTION = By.cssSelector(".header-nav-dropdown > ul >li:nth-child(1) > a");
-	public static By SIGNIN_OPTION = By.cssSelector(".header-nav-dropdown > ul >li:nth-child(3) > a");
+	public static By SIGNIN_OPTION = By.cssSelector(".header-nav-dropdown > ul >li:nth-child(1) > a");
 	//public static By CHAT_WITH_US_POPUP = By.cssSelector(".desktop.sf_large.scroll_top.scroll_bottom > div.scrollable_inner.jx_ui_Widget > div:nth-child(2) > a");
 	public static By CHAT_WITH_US_POPUP = By.cssSelector(".jx_ui_Widget");
 	public static By CHAT_WITH_US_POPUP_MINIMIZE = By.cssSelector(".meshim_widget_widgets_titleBar_MinimizeButton > div.overlay.jx_ui_Widget");
@@ -254,7 +254,7 @@ public class HomePageLocators{
 	public static By HEADER_LOGIN_TITLE = By.cssSelector("span[data-tj-qa='header-login']");
 	//public static By REORDER = By.cssSelector("header-desktop-right > li:nth-child(3) >div > ul > li:nth-child(2) > a ");
 	//	public static By CART_ICON = By.cssSelector("i.icon-shopping-cart");
-	public static By CART_ICON = By.cssSelector("button.header-cart-btn > i");
+	public static By CART_ICON = By.cssSelector("button.header-cart-btn");
 	public static By CART_HEADING_TEXT = By.cssSelector(".inline-cart__col1 > h3");
 
 	public static By ABOUT_LINK = By.cssSelector("a[data-tj-qa='footer-about']");
