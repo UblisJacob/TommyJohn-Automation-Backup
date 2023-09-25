@@ -56,7 +56,7 @@ public class ReOrderPageComponents extends ReOrderPageLocators {
 	public void loginflow() {
 		genMethods = new GeneralMethods();
 		
-		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(AccountLoginLocators.LOGIN_HEADING_TEXT, 0));
+//		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(AccountLoginLocators.LOGIN_HEADING_TEXT, 0));
 		driver.findElement(AccountLoginLocators.CUSTOMER_EMAIL_INPUT).clear();
 		driver.findElement(AccountLoginLocators.CUSTOMER_EMAIL_INPUT).sendKeys(CustomUtilities.properties.getProperty("loginemail"));
 		driver.findElement(AccountLoginLocators.CUSTOMER_PASSWORD_INPUTBOX).clear();
