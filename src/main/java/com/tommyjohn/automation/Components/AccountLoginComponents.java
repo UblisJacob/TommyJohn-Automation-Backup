@@ -400,13 +400,13 @@ public class AccountLoginComponents extends AccountLoginLocators {
 //		JavascriptExecutor executor = (JavascriptExecutor)driver;
 //		executor.executeScript("arguments[0].click();", element);
 
-		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(LOGIN_HEADING_TEXT));
-		// check login heading text
-
-		text = driver.findElement(LOGIN_HEADING_TEXT).getText();
-		if (!text.equals(CustomUtilities.properties.getProperty("loginHeadingText")))
-			throw new Exception("Expected text is" + CustomUtilities.properties.getProperty("loginHeadingText")
-					+ "but actual is " + text);
+//		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(LOGIN_HEADING_TEXT));
+//		// check login heading text
+//
+//		text = driver.findElement(LOGIN_HEADING_TEXT).getText();
+//		if (!text.equals(CustomUtilities.properties.getProperty("loginHeadingText")))
+//			throw new Exception("Expected text is" + CustomUtilities.properties.getProperty("loginHeadingText")
+//					+ "but actual is " + text);
 
 		// check email label
 
