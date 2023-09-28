@@ -15,7 +15,7 @@ public class GiftCardBalancePageLocators {
 	public static By PHYSICAL_GIFT_CARD_PIN_FIELD = By.cssSelector("[data-tj-qa='desktop-card-pin']>input,#pin-desktop");
 	public static By PHYSICAL_GIFT_CARD_EMAIL_LABEL = By.cssSelector("[data-tj-qa='desktop-cardholder-email']>div,div[for='email-desktop']");
 	public static By PHYSICAL_GIFT_CARD_EMAIL_FIELD = By.cssSelector("[data-tj-qa='desktop-cardholder-email']>input,#email-desktop");
-	public static By PHYSICAL_GIFT_CARD_CHECK_BALANCE_BTN = By.cssSelector("[data-tj-qa='pgc-check-balance-button'],div[class='side-by-side']>.form:nth-child(1) .button");
+	public static By PHYSICAL_GIFT_CARD_CHECK_BALANCE_BTN = By.cssSelector("form#form-aria-labelledby-physicalGiftCard-desktop>[data-tj-qa='pgc-check-balance-button'] , div[class='side-by-side']>.form:nth-child(1) .button");
 	public static By PHYSICAL_GIFT_CART_FORM_ERROR = By.cssSelector("[data-tj-qa='card-number-error'],div[class='form'] .response-error");
 
 //	DIGITAL/E-GIFT CARD
@@ -25,7 +25,7 @@ public class GiftCardBalancePageLocators {
 	public static By DIGITAL_GIFT_CARD_ID_FIELD = By.cssSelector("[data-tj-qa='balance-card-number']>input,#giftcard_code");
 	public static By DIGITAL_GIFT_CARD_EMAIL_LABEL = By.cssSelector("[data-tj-qa='balance-email']>div,div[for='email']");
 	public static By DIGITAL_GIFT_CARD_EMAIL_FIELD = By.cssSelector("[data-tj-qa='balance-email']>input,#email");
-	public static By DIGITAL_GIFT_CARD_CHECK_BALANCE_BTN = By.cssSelector("[data-tj-qa='egc-check-balance-button'],div[class='side-by-side']>.form:nth-child(2) .button");
+	public static By DIGITAL_GIFT_CARD_CHECK_BALANCE_BTN = By.cssSelector("div[data-tj-qa='egc-check-balance-button'] , div[class='side-by-side']>.form:nth-child(2) .button");
 	public static By DIGITAL_GIFT_CART_FORM_ERROR = By.cssSelector("[data-tj-qa='card-number-error'],div[class='form'] .response-error");
 	public static By DIGITAL_GIFT_CART_CODE_ERROR = By.cssSelector("[data-tj-qa='balance-card-number']>span,#giftcard_code_error");
 	public static By DIGITAL_GIFT_CART_EMAIL_ERROR = By.cssSelector("[data-tj-qa='balance-email']>span,#email_error");

@@ -8,7 +8,7 @@ public class QuizPageLocators
 	//Mens Quiz page
 	public static By GET_STARTED_CTA = By.cssSelector(".hero-cta-container>button.hero-get-started-cta");
 	public static By INSTRUCTION_HEADING = By.cssSelector(".question-container>p.instruction");
-	public static By QUESTION_HEADING = By.cssSelector("[data-tj-qa='quiz-question'],.question-container>p.heading");
+	public static By QUESTION_HEADING = By.cssSelector("[data-tj-qa='quiz-question'], .question-container>p.heading");
 	public static By QUESTION_BLOCK_OPTIONS = By.cssSelector("[data-tj-qa='quiz-answer-option'],.questions-tile-parent>.questions-tile>.question-block");
 	public static By NEXT_CTA = By.cssSelector("[data-tj-qa='quiz-next'],div.go-next>button");
 	public static By PREVIOUS_ARROW = By.cssSelector("[data-tj-qa='quiz-back'],.go-back>img");
