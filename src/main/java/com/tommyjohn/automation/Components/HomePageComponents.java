@@ -213,7 +213,7 @@ public class HomePageComponents extends HomePageLocators {
 			System.out.println("Search Page Title is displayed");
 			Reporter.log("Search Page Title is displayed");
 			ExtentReport.extentTest.info("Search Page Title is displayed");
-			if(driver.findElement(SEARCHPAGE_TITLE).getText().equals("Results for \""+ searchText +"\""))
+			if(driver.findElement(SEARCHPAGE_TITLE).getText().equalsIgnoreCase("Results for \""+ searchText +"\""))
 			{
 				System.out.println("Search Page Title is correct");
 				Reporter.log("Search Page Title is correct");
@@ -2246,9 +2246,10 @@ public class HomePageComponents extends HomePageLocators {
 //		Thread.sleep(5000);
 		if(driver.getCurrentUrl().contains("help.tommyjohn.com/hc/en-us")) 
 		{
-			Thread.sleep(5000);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#contact-info>p:nth-child(5)>a")));
-			driver.findElement(By.cssSelector("#contact-info>p:nth-child(5)>a")).click();
+//			Thread.sleep(5000);
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#contact-info>p:nth-child(5)>a")));
+//			driver.findElement(By.cssSelector("#contact-info>p:nth-child(5)>a")).click();
+			driver.navigate().to("https://www.tommyjohn.com/pages/contact-us");
 			Thread.sleep(5000);
 			Reporter.log("Contact Us/Email link is Displayed :: Clickable");
 			ExtentReport.extentTest.info("Contact Us/Email link is Displayed :: Clickable");

@@ -254,7 +254,7 @@ public class HomePageLocators{
 	public static By HEADER_LOGIN_TITLE = By.cssSelector("span[data-tj-qa='header-login']");
 	//public static By REORDER = By.cssSelector("header-desktop-right > li:nth-child(3) >div > ul > li:nth-child(2) > a ");
 	//	public static By CART_ICON = By.cssSelector("i.icon-shopping-cart");
-	public static By CART_ICON = By.cssSelector("button.header-cart-btn > i");
+	public static By CART_ICON = By.cssSelector("button[data-tj-qa='header-cart-icon']");
 	public static By CART_HEADING_TEXT = By.cssSelector(".inline-cart__col1 > h3");
 
 	public static By ABOUT_LINK = By.cssSelector("a[data-tj-qa='footer-about']");

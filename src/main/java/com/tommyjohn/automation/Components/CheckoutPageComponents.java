@@ -249,8 +249,8 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
 		
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-
-		driver.findElement(FlyCartComponents.CHECKOUT_BUTTON).click();
+		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
+		//driver.findElement(FlyCartComponents.CHECKOUT_BUTTON).click();
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
 
@@ -485,9 +485,9 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		wait.until(ExpectedConditions.presenceOfElementLocated(FIRSTNAME_TEXTBOX));
 		
 		driver.findElement(FIRSTNAME_TEXTBOX).clear();
-		driver.findElement(FIRSTNAME_TEXTBOX).sendKeys("Vijeta");
+		driver.findElement(FIRSTNAME_TEXTBOX).sendKeys("Test");
 		driver.findElement(LASTNAME_TEXTBOX).clear();
-		driver.findElement(LASTNAME_TEXTBOX).sendKeys("Juneja");
+		driver.findElement(LASTNAME_TEXTBOX).sendKeys("User");
 		driver.findElement(ADDRESS1_TEXTBOX).clear();
 		driver.findElement(ADDRESS1_TEXTBOX).sendKeys("100 Broadway Test");
 		Thread.sleep(2000);

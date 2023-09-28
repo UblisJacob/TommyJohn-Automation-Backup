@@ -25,7 +25,7 @@ public class ValidateContactUsPage {
 	}
 
 	
-	// @Test
+	 @Test
 	 public void TC_ValidateContactUsPage() throws Exception { 
 		 
 		 

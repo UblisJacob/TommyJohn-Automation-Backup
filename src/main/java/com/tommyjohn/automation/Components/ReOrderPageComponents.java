@@ -82,12 +82,13 @@ public class ReOrderPageComponents extends ReOrderPageLocators {
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HomePageLocators.ACCOUNT_NAV_DROPDOWN));
 		driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN).click();
+		Thread.sleep(4000);
 
 //		Login as a User
 		loginflow();
 		
 //		Wait for account page to load
-		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(AccountPageLocators.ACCOUNT_PAGE_HEADING, 0));
+		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(AccountPageLocators.ACCOUNT_LOGGED_IN_ICON, 0));
 
 		element = driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN);
 		action.moveToElement(element).perform();
@@ -361,13 +362,13 @@ public class ReOrderPageComponents extends ReOrderPageLocators {
 				"Write a Review", "Language mismatch for Write a Review title");
 		softAssert.assertEquals(driver.findElement(ProductDetailsPageLocators.NAME).getText(), "* Name",
 				"Laguage mismatch for Name ");
-		driver.findElement(ProductDetailsPageLocators.NAME_TEXTBOX).sendKeys("Vijeta");
+		driver.findElement(ProductDetailsPageLocators.NAME_TEXTBOX).sendKeys("Test user");
 		softAssert.assertEquals(driver.findElement(ProductDetailsPageLocators.EMAIL).getText(), "* Email",
 				"Laguage mismatch for Email ");
-		driver.findElement(ProductDetailsPageLocators.EMAIL_TEXTBOX).sendKeys("vijeta@tommyjohnwear.com");
+		driver.findElement(ProductDetailsPageLocators.EMAIL_TEXTBOX).sendKeys("testuserQA1@tommyjohnwear.com");
 		softAssert.assertEquals(driver.findElement(ProductDetailsPageLocators.LOCATION).getText(),
 				"Location (Optional)", "Laguage mismatch for Location ");
-		driver.findElement(ProductDetailsPageLocators.LOCATION_TEXTBOX).sendKeys("India");
+		driver.findElement(ProductDetailsPageLocators.LOCATION_TEXTBOX).sendKeys("NY");
 		softAssert.assertEquals(driver.findElement(ProductDetailsPageLocators.FIT).getText(), "Fit",
 				"Laguage mismatch for Fit	 ");
 		WebElement fit = driver.findElement(ProductDetailsPageLocators.FIT_SELECTION);
