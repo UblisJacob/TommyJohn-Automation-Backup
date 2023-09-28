@@ -25,12 +25,12 @@ public class SanityModuleLocators {
 	public static By SLIDE_CTRL = By.cssSelector("ul.slick-dots>li[role='presentation']>button");
 	
 	public static By GPTW_FIXED_BANNER = By.cssSelector("div[data-tj-qa='fixed-banner-module']");
-	public static By GPTW_FIXED_BANNER_IMG = By.cssSelector("div[data-tj-qa='fixed-banner-image']");
-	public static By GPTW_FIXED_BANNER_LINK = By.cssSelector("div[data-tj-qa='fixed-banner-cta']");
+	public static By GPTW_FIXED_BANNER_IMG = By.cssSelector("img[data-tj-qa='fixed-banner-image']");
+	public static By GPTW_FIXED_BANNER_LINK = By.cssSelector("a[data-tj-qa='fixed-banner-cta']");
 	
-	public static By SIDE_BY_SIDE = By.cssSelector("div[data-position='p4']");
-	public static By SIDE_BY_SIDE_IMG1 = By.cssSelector("div[data-tj-qa='side-module-1']>div>picture>img");
-	public static By SIDE_BY_SIDE_IMG2 = By.cssSelector("div[data-tj-qa='side-module-2']>div>picture>img");
+	public static By SIDE_BY_SIDE = By.cssSelector("div.side-by-side-module");
+	public static By SIDE_BY_SIDE_IMG1 = By.cssSelector("div[data-tj-qa='side-module-1']");
+	public static By SIDE_BY_SIDE_IMG2 = By.cssSelector("div[data-tj-qa='side-module-2']");
 	public static By SIDE_BY_SIDE_CTA = By.cssSelector("div[data-tj-qa='side-module-1']>div.side-module_text-container>div.vue-cta-parent-container>div>a");
 	public static By SIDE_BY_SIDE_TEXT = By.cssSelector("div[data-tj-qa='side-module-1']>div.side-module_text-container>div.vue-title-container>div");
 	

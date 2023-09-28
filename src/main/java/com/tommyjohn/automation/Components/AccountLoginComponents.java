@@ -73,11 +73,11 @@ public class AccountLoginComponents extends AccountLoginLocators {
 		driver.findElement(CREATEACCOUNT_PASSWORD).sendKeys(password);
 		
 		Thread.sleep(2000);
-		
-		driver.findElement(CREATEACCOUNT_BUTTON).click();
+		executor.executeScript("arguments[0].click();", driver.findElement(CREATEACCOUNT_BUTTON));
+	//	driver.findElement(CREATEACCOUNT_BUTTON).click();
 		
 //		On Account Page after Log in
-		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(AccountPageLocators.ACCOUNT_PAGE_HEADING,0));
+		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(AccountPageLocators.ACCOUNT_LOGGED_IN_ICON,0));
 		currentUrl = driver.getCurrentUrl();
 		String loggedInUsername = driver.findElement(AccountPageLocators.LOGGED_IN_ID).getText();
 		

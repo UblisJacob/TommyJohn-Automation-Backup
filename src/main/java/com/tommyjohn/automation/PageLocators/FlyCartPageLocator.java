@@ -25,7 +25,7 @@ public class FlyCartPageLocator {
 	public static By ESTIMATE_TOTAL = By.cssSelector("div[data-tj-qa='inline-cart-subtotal-text']>span,div.inline-cart__summary > div > div > span");
 	public static By ESTIMATE_TOTAL_SMALL = By.cssSelector("div[data-tj-qa='inline-cart-subtotal-text']>small,div.inline-cart__summary > div > div > small");
 	public static By CHECKOUT_BUTTON = By
-			.cssSelector("a[data-tj-qa='inline-cart-checkout'],.inline-cart__action-btns>a");
+			.cssSelector("a[data-tj-qa='inline-cart-checkout'] , .inline-cart__action-btns>a");
 	public static By FIRST_PRODUCT_TITLE_IN_CART = By.cssSelector("a[data-tj-qa='cart-line-item-title'],div>.line-item__title"); // ("div.inline-cart__col1 >
 																						// div:nth-child(7) > article >
 																						// div.line-item__summary > a");
