@@ -39,7 +39,7 @@ public class ValidateNavigationElements {
 	public void TC_validateLogoAndRightSideLinks() {
 		new NavigationElementsPage(driver).validateLogoAndRightSideLinks();
 	}
-	
+
 	@Test
 	public void TC_validateSearchBar() {
 		new NavigationElementsPage(driver).validateSearchBar();
@@ -72,9 +72,6 @@ public class ValidateNavigationElements {
 	public void TC_validateAllQuizLandingPages() {
 		new NavigationElementsPage(driver).validateAllQuizLandingPages();
 	}
-	
-	
-	
 	
 	
 	@AfterMethod(alwaysRun = true)
