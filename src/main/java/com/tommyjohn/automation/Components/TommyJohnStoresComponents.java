@@ -25,7 +25,7 @@ public class TommyJohnStoresComponents extends TommyJohnStoresPageLocators {
 	public static String baseUrl = CustomUtilities.baseUrl;
 	public String currentUrl;
 	public static WebElement element;
-	JavascriptExecutor executor = (JavascriptExecutor) driver;
+	
 	SoftAssert softassert = new SoftAssert();
 	GeneralMethods genMethods = new GeneralMethods();
 
@@ -48,7 +48,7 @@ public class TommyJohnStoresComponents extends TommyJohnStoresPageLocators {
 	 */
 
 	public void validateTJStoresPageComponentsAndInteractions() throws InterruptedException {
-
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
 //		Navigate to Store Directory Page
 		new HomePageComponents(driver).navigateToStoreDirectoryPage();
 
@@ -86,16 +86,19 @@ public class TommyJohnStoresComponents extends TommyJohnStoresPageLocators {
 				Reporter.log("Store Hours are: " + storeHours);
 				softassert.assertTrue(element.isDisplayed(), "Store hours are not present for store " + storeName);
 			}
+			
 
 //			"Get Directions" should open Google maps with the location search.
 			if (!storeName.contains("Opening Soon")) {
 				element = genMethods.autoIndex(driver, STORE_GET_DIRECTIONS, i, 1);
+				executor.executeScript("window.scrollBy(0,500)");
 //				element = driver.findElement(By.cssSelector(".stores-section__container>div:nth-child("+i+")>div>div+a"));
 				softassert.assertTrue(element.isDisplayed(),
 						"Get Directions button is not present for store " + storeName);
 
 				if (element.isDisplayed()) {
-					element.click();
+					executor.executeScript("arguments[0].click();", element);
+					//element.click();
 					try {
 						wait.until(ExpectedConditions.titleContains("Google Maps"));
 						currentUrl = driver.getCurrentUrl();
@@ -111,10 +114,13 @@ public class TommyJohnStoresComponents extends TommyJohnStoresPageLocators {
 						String addressFirstLine = arr[0];
 						String lastLine = arr[arr.length - 1];
 						String pincode = lastLine.substring(lastLine.length() - 5, lastLine.length());
-						System.out.println(addressFirstLine);
-						addressFirstLine.replace(",", "");
+						
+						
+						String addressFirst = addressFirstLine.replace("," , "");
 						System.out.println(destinationField);
-						softassert.assertTrue(destinationField.contains(addressFirstLine),
+						System.out.println(addressFirstLine);
+						System.out.println(pincode);
+						softassert.assertTrue(destinationField.contains(addressFirst),
 								"Store address did not match the text in the auto populated destination field of Google Maps");
 						softassert.assertTrue(destinationField.contains(pincode),
 								"Store Pincode did not match the text in the auto populated destination field of Google Maps");

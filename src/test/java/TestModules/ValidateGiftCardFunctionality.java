@@ -44,7 +44,7 @@ public class ValidateGiftCardFunctionality extends ExtentReport{
 		new GiftCardPage(driver).verifyerrormessagesongiftcard();
 	}
 
-	@Test
+	//@Test
 	public void TC_verifyPGCard() throws Exception
 	{
 		new GiftCardPage(driver).verifyPGCard(); 

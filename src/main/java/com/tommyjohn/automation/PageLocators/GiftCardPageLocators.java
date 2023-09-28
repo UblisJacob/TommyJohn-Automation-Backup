@@ -5,8 +5,8 @@ import org.openqa.selenium.By;
 public class GiftCardPageLocators {
 
 	public static By NEW_ARRIVALS_OPTION = By.cssSelector(".header-desktop-left > ul > li:nth-child(1) > a");
-	public static By GIFT_CARD_TITLE = By.cssSelector("[data-tj-qa='product-name'],.product-info__inner-top >div >div:nth-child(1) >h1");
-	public static By GIFT_CARD_PRICE = By.cssSelector("[data-tj-qa='product-price'],.product-info__inner-top >div >div:nth-child(2) >span >span:nth-child(2)");
+	public static By GIFT_CARD_TITLE = By.cssSelector("div.desktop-view>div>h1[data-tj-qa='product-name'] , .product-info__inner-top >div >div:nth-child(1) >h1");
+	public static By GIFT_CARD_PRICE = By.cssSelector("div.desktop-view>div:nth-child(2)>span>span[data-tj-qa='product-price'] ,.product-info__inner-top >div >div:nth-child(2) >span >span:nth-child(2)");
 	public static By COLOR_NAME = By.cssSelector("[data-tj-qa='gproduct-color'],.product-info__option >div >span");
 	public static By GIFT_CARD_AMOUNT_TEXT = By.cssSelector(".option-dropdown__section >div:nth-child(1)");
 
@@ -52,7 +52,7 @@ public class GiftCardPageLocators {
 	public static By GIFT_CARD_TITLE_INLINE_CART = By.cssSelector("[data-tj-qa='cart-line-item-title'],a.line-item__title");
 	public static By REMOVE_ITEM_BUTTON = By.cssSelector("[data-tj-qa='cart-line-item-remove'],button.line-item__remove");
 	public static By GIFT_CARD_COLOR_INLINE_CART = By.cssSelector("[data-tj-qa='cart-line-item-option'],.line-item__option");
-	public static By GIFT_CARD_PRICE_INLINE_CART = By.cssSelector("[data-tj-qa='cart-line-item-sale-price'],.line-item__price >span");
+	public static By GIFT_CARD_PRICE_INLINE_CART = By.cssSelector("[data-tj-qa='cart-line-item-sale-price'], .line-item__price >span");
 	public static By RECIPIENT_MAIL_INLINE_CART = By.xpath("//span[text()[contains(.,'Recipient')]]");
 	public static By DELIVERY_DATE_INLINE_CART = By.xpath("//span[text()[contains(.,'Delivery Date')]]");
 	public static By AMOUNT_IN_INLINE_CART = By.cssSelector("[data-tj-qa='inline-cart-line-item-subtotal']> span,article:nth-child(1) > div.line-item__summary > div.line-item__total > div.line-item__subtotal > span");

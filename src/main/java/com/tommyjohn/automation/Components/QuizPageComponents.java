@@ -219,6 +219,38 @@ public class QuizPageComponents extends QuizPageLocators
 		ExtentReport.extentTest.info("Quiz Second question page is displayed :: Correct");
 
 
+
+
+		//Education Card
+		//		wait = new WebDriverWait(driver, 30);
+		//		wait.until(ExpectedConditions.presenceOfElementLocated(PREVIOUS_ARROW));
+		Thread.sleep(5000);
+		softassert.assertTrue(driver.findElement(EDUCATION_CARD_TITLE).isDisplayed(), "Men's Education card title is not displayed");
+		softassert.assertEquals(driver.findElement(NEXT_CTA).getText(), "Next","Text changed for 'Next' cta on Education card");
+		softassert.assertTrue(driver.findElement(PREVIOUS_ARROW).isDisplayed(), "Back arrow is not displayed on Education card");
+		Education_card_title = driver.findElement(EDUCATION_CARD_TITLE).getText();
+
+		element= driver.findElement(PREVIOUS_ARROW);
+		js.executeScript("arguments[0].click();", element);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.presenceOfElementLocated(QUESTION_HEADING));
+		ExpectedText = driver.findElement(QUESTION_HEADING).getText();
+		softassert.assertEquals(Second_question, ExpectedText, "wrong navigation after click on back arrow on Education card");
+		
+
+		element = driver.findElement(PREVIOUS_ARROW);
+		js.executeScript("arguments[0].click();", element);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.presenceOfElementLocated(EDUCATION_CARD_TITLE));
+
+		Allclasses = driver.findElement(NEXT_CTA).getAttribute("class");
+		if(Allclasses.contains("is-disabled"))
+			throw new Exception("Next cta is not enabled on Education card");
+		element = driver.findElement(NEXT_CTA);
+		js.executeScript("arguments[0].click();", element);
+		Reporter.log("Quiz Education Card is displayed :: Correct");
+		ExtentReport.extentTest.info("Quiz Education Card is displayed :: Correct");
+		
 		//Third question page
 		//		wait = new WebDriverWait(driver, 30);
 		//		wait.until(ExpectedConditions.presenceOfElementLocated(PREVIOUS_ARROW));
@@ -260,36 +292,6 @@ public class QuizPageComponents extends QuizPageLocators
 		js.executeScript("arguments[0].click();", element);
 		Reporter.log("Quiz Third question page is displayed :: Correct");
 		ExtentReport.extentTest.info("Quiz Third question page is displayed :: Correct");
-
-		//Education Card
-		//		wait = new WebDriverWait(driver, 30);
-		//		wait.until(ExpectedConditions.presenceOfElementLocated(PREVIOUS_ARROW));
-		Thread.sleep(5000);
-		softassert.assertTrue(driver.findElement(EDUCATION_CARD_TITLE).isDisplayed(), "Men's Education card title is not displayed");
-		softassert.assertEquals(driver.findElement(NEXT_CTA).getText(), "Next","Text changed for 'Next' cta on Education card");
-		softassert.assertTrue(driver.findElement(PREVIOUS_ARROW).isDisplayed(), "Back arrow is not displayed on Education card");
-		Education_card_title = driver.findElement(EDUCATION_CARD_TITLE).getText();
-
-		element= driver.findElement(PREVIOUS_ARROW);
-		js.executeScript("arguments[0].click();", element);
-		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.presenceOfElementLocated(QUESTION_HEADING));
-		ExpectedText = driver.findElement(QUESTION_HEADING).getText();
-		softassert.assertEquals(Third_question, ExpectedText, "wrong navigation after click on back arrow on Education card");
-		
-
-		element = driver.findElement(NEXT_CTA);
-		js.executeScript("arguments[0].click();", element);
-		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.presenceOfElementLocated(EDUCATION_CARD_TITLE));
-
-		Allclasses = driver.findElement(NEXT_CTA).getAttribute("class");
-		if(Allclasses.contains("is-disabled"))
-			throw new Exception("Next cta is not enabled on Education card");
-		element = driver.findElement(NEXT_CTA);
-		js.executeScript("arguments[0].click();", element);
-		Reporter.log("Quiz Education Card is displayed :: Correct");
-		ExtentReport.extentTest.info("Quiz Education Card is displayed :: Correct");
 
 		//Forth question page
 		//		wait = new WebDriverWait(driver, 30);

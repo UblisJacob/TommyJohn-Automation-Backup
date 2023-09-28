@@ -445,7 +445,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		catch(Exception e) {
 			System.out.println("Inline cart is not getting expanded after click on cart icon on home page, while clicking on cart icon it just navigating to cart page.");
 		}
-
+Thread.sleep(4000);
 		softAssert.assertEquals(driver.findElement(PROMO_HEADER).getText(), "Discount Code", "Text changed for Discount code header on cart page");
 		softAssert.assertTrue(driver.findElement(DISCOUNTCODE_TEXTBOX).isDisplayed(), "Promo code text box is not displayed on cart page");
 		softAssert.assertTrue(driver.findElement(PROMOCODE_APPLYCTA).isDisplayed(), "Promo code 'apply' cta is not displayed");
@@ -616,9 +616,13 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		jse = (JavascriptExecutor)driver;
 		SoftAssert softAssert = new SoftAssert();
 		String text = null;
+		driver.navigate().refresh();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		Thread.sleep(4000);
+	
+		
 		jse.executeScript("window.scrollBy(0,450)");
+		Thread.sleep(10000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("paypalLight")));
 		driver.switchTo().frame(driver.findElement(By.className("paypalLight")));
 		driver.switchTo().frame(driver.findElement(By.className("zoid-component-frame")));
 		jse.executeScript("arguments[0].click();",driver.findElement(PAYPAL_BUTTON));

@@ -30,8 +30,8 @@ public class CheckoutPageLocators {
 
 	//shipping address
 	public static By SHIPPINGADD_TEXT = By.cssSelector(".section--shipping-address > div > .section__title");
-	public static By FIRSTNAME_TEXTBOX = By.cssSelector("#checkout_shipping_address_first_name");
-	public static By LASTNAME_TEXTBOX = By.cssSelector("#checkout_shipping_address_last_name");
+	public static By FIRSTNAME_TEXTBOX = By.cssSelector(".field--half>div>input#checkout_shipping_address_first_name");
+	public static By LASTNAME_TEXTBOX = By.cssSelector(".field--half>div>input#checkout_shipping_address_last_name");
 	public static By ADDRESS1_TEXTBOX = By.cssSelector("#checkout_shipping_address_address1");
 	public static By ADDRESS2_TEXTBOX = By.cssSelector("#checkout_shipping_address_address2");
 	public static By CITY_TEXTBOX = By.cssSelector("#checkout_shipping_address_city");

@@ -37,7 +37,7 @@ public class GiftCardBalancePageComponents extends GiftCardBalancePageLocators {
 	public static WebElement element;
 	public static WebElement ele1;
 	public Actions action;
-	JavascriptExecutor executor = (JavascriptExecutor) driver;
+	
 	SoftAssert softassert = new SoftAssert();
 	WebElement footer_link;
 	String text;
@@ -120,8 +120,8 @@ public class GiftCardBalancePageComponents extends GiftCardBalancePageLocators {
 		softassert.assertTrue(element.isEnabled(), "Digital Gift Card 'Cardholder's Email' Field is Not Enabled");
 
 		element = driver.findElement(DIGITAL_GIFT_CARD_CHECK_BALANCE_BTN);
-		softassert.assertTrue(element.isDisplayed() && element.isEnabled(),
-				"Physical Gift Card 'Check Balance' Button is either not Visible or not Enabled");
+		softassert.assertTrue(element.isDisplayed()&& element.isEnabled(),
+				"Digital Gift Card 'Check Balance' Button is either not Visible or not Enabled");
 
 		softassert.assertAll();
 		
@@ -243,7 +243,7 @@ public class GiftCardBalancePageComponents extends GiftCardBalancePageLocators {
 	 * @throws InterruptedException 
 	 */
 	private void invalidPhysicalGiftCardValidation(String validGCID, String validGCPin, String validCardHolderEmail) throws InterruptedException {
-
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
 //		If user omits or fills out information incorrectly, an error message will appear for that specific field.
 //		Unable to validate the above requirement as functionality is not present for Physical GC form
 
@@ -253,7 +253,9 @@ public class GiftCardBalancePageComponents extends GiftCardBalancePageLocators {
 		driver.findElement(PHYSICAL_GIFT_CARD_ID_FIELD).sendKeys(invalidGCID);
 		driver.findElement(PHYSICAL_GIFT_CARD_PIN_FIELD).sendKeys(validGCPin);
 		driver.findElement(PHYSICAL_GIFT_CARD_EMAIL_FIELD).sendKeys(validCardHolderEmail);
-		driver.findElement(PHYSICAL_GIFT_CARD_CHECK_BALANCE_BTN).click();
+		
+		executor.executeScript("arguments[0].click();" , driver.findElement(PHYSICAL_GIFT_CARD_CHECK_BALANCE_BTN));
+		//driver.findElement(PHYSICAL_GIFT_CARD_CHECK_BALANCE_BTN).click();
 
 		String expectedErrorText = "We don't recognize this information, "
 				+ "please make sure you have entered the correct card number, "

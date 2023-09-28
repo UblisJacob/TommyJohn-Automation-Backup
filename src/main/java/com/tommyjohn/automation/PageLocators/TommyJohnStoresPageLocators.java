@@ -4,8 +4,8 @@ import org.openqa.selenium.By;
 
 public class TommyJohnStoresPageLocators {
 	
-	public static By STORE_PAGE_HEADER = By.cssSelector(".intro__heading");
-	public static By STORE_PAGE_HEADER_CONTENT = By.cssSelector(".intro__content p");
+	public static By STORE_PAGE_HEADER = By.cssSelector("[data-tj-qa='store-directory-intro-title'] , .intro__heading");
+	public static By STORE_PAGE_HEADER_CONTENT = By.cssSelector("[data-tj-qa='store-directory-intro-subtext']>div>p , .intro__content p");
 	public static By STORE_LIST = By.cssSelector(".stores-section__container>div");
 	
 //	Below locators are dynamic, need to change index

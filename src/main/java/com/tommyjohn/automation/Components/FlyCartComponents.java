@@ -575,7 +575,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 				jse.executeScript("arguments[0].click();", elemen);
 				Thread.sleep(3000);
 				
-					for(int k=1;k<=1;k++)				
+					for(int k=1;k<=3;k++)				
 					{	
 						WebElement elements = driver.findElement(By.cssSelector(".option-swatch__option>li:nth-child("+ k +")>input"));
 						jse.executeScript("arguments[0].click();", elements);
@@ -590,6 +590,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 							Thread.sleep(4000);
 					}
 						
+						
 					}
 					
 			}
@@ -599,10 +600,17 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		
 		softassert.assertEquals(driver.findElement(OOS_MESSAGE_ON_TOP).getText(), "Some items are out of stock. Please remove or edit them to continue.", "MAIN OOS MESSAGE");
 		softassert.assertEquals(driver.findElement(OOS_LINE_ITEMS).getText(), "Out of Stock", "oos");
-		softassert.assertEquals(driver.findElement(CHECKOUT_BUTTON).getDomAttribute("disabled"), "disabled" , "not disabled");
-		
-		Reporter.log("Out of Stock is displayed");
+		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
+		String attr = driver.findElement(CHECKOUT_BUTTON).getAttribute("disabled");
+		System.out.println(attr);
+		if(attr != null)
+		{Reporter.log("Out of Stock is displayed");
 		ExtentReport.extentTest.info("Out of Stock is displayed");
+		}
+		else
+		{
+			throw new Exception("Checkout not disabled");
+		}
 		
 		softassert.assertAll();
 			

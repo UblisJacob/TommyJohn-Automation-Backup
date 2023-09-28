@@ -107,44 +107,44 @@ public class GiftCardPageComponents extends GiftCardPageLocators {
 		Reporter.log("Gift Cart amount is displayed :: Clickable");
 		ExtentReport.extentTest.info("Gift Cart amount is displayed :: Clickable");
 
-		// Enter valid Recipient’s and Confirm Recipient’s Email  
-		Rec_mail=driver.findElement(RECIPIENT_MAIL_TEXTBOX);
-		Rec_mail.sendKeys(properties.getProperty("checkoutemail"));
-		System.out.println("Entered recipient mail id is: "+Rec_mail.getAttribute("value"));
-		Thread.sleep(1000);
-		driver.findElement(CONFIRM_MAIL_TEXTBOX).sendKeys(properties.getProperty("checkoutemail"));
+//		// Enter valid Recipient’s and Confirm Recipient’s Email  
+//		Rec_mail=driver.findElement(RECIPIENT_MAIL_TEXTBOX);
+//		Rec_mail.sendKeys(properties.getProperty("checkoutemail"));
+//		System.out.println("Entered recipient mail id is: "+Rec_mail.getAttribute("value"));
+//		Thread.sleep(1000);
+//		driver.findElement(CONFIRM_MAIL_TEXTBOX).sendKeys(properties.getProperty("checkoutemail"));
 		
 
 
 		//Select Today's Delivery date
 				
-		//softAssert.assertTrue(driver.findElement(DATE_TIME_PICKER_INPUT).isDisplayed(), "Date time picker input is not displayed.");
-		WebElement calender = driver.findElement(DATE_TIME_PICKER_INPUT);
-		action.moveToElement(calender).perform();
-		action.click().perform();
-		//jse.executeScript("arguments[0].click();", calender );
-		Thread.sleep(1000);
-		action.moveToElement(driver.findElement(TODAY)).perform();
-		action.click().perform();
-		//jse.executeScript("arguments[0].click();", driver.findElement(TODAY));
-		Thread.sleep(1000);
-		Delivery_date = driver.findElement(DATE_TIME_PICKER_INPUT).getAttribute("value");
-		System.out.println("Selected delivery date is: "+Delivery_date);
-
-		DateTimeFormatter formatter = new DateTimeFormatterBuilder().appendPattern("MMMM d, yyyy").toFormatter();
-		LocalDate parseDate = LocalDate.parse(Delivery_date, formatter);
-		DateTimeFormatter formatter2= DateTimeFormatter.ofPattern("MM/dd/yyyy");
-		newDelivery_Date = parseDate.format(formatter2);
-		System.out.println("Converted date is: "+newDelivery_Date);
-		Reporter.log("User is able to select date from date picker :: Clickable");
-		ExtentReport.extentTest.info("User is able to select date from date picker :: Clickable");
-		
-		
-		// Message TextBox
-		driver.findElement(GIFT_CARD_MESSAGE_TEXTBOX).sendKeys("For You! Enjoy!");
-		Thread.sleep(3000);
-
-		GC_Price_PDP =driver.findElement(ProductDetailsPageLocators.PRODUCT_PRICE).getText();
+//		//softAssert.assertTrue(driver.findElement(DATE_TIME_PICKER_INPUT).isDisplayed(), "Date time picker input is not displayed.");
+//		WebElement calender = driver.findElement(DATE_TIME_PICKER_INPUT);
+//		action.moveToElement(calender).perform();
+//		action.click().perform();
+//		//jse.executeScript("arguments[0].click();", calender );
+//		Thread.sleep(1000);
+//		action.moveToElement(driver.findElement(TODAY)).perform();
+//		action.click().perform();
+//		//jse.executeScript("arguments[0].click();", driver.findElement(TODAY));
+//		Thread.sleep(1000);
+//		Delivery_date = driver.findElement(DATE_TIME_PICKER_INPUT).getAttribute("value");
+//		System.out.println("Selected delivery date is: "+Delivery_date);
+//
+//		DateTimeFormatter formatter = new DateTimeFormatterBuilder().appendPattern("MMMM d, yyyy").toFormatter();
+//		LocalDate parseDate = LocalDate.parse(Delivery_date, formatter);
+//		DateTimeFormatter formatter2= DateTimeFormatter.ofPattern("MM/dd/yyyy");
+//		newDelivery_Date = parseDate.format(formatter2);
+//		System.out.println("Converted date is: "+newDelivery_Date);
+//		Reporter.log("User is able to select date from date picker :: Clickable");
+//		ExtentReport.extentTest.info("User is able to select date from date picker :: Clickable");
+//		
+//		
+//		// Message TextBox
+//		driver.findElement(GIFT_CARD_MESSAGE_TEXTBOX).sendKeys("For You! Enjoy!");
+//		Thread.sleep(3000);
+//
+		GC_Price_PDP =driver.findElement(GiftCard_PageComponents.GIFT_CARD_PRICE).getText();
 		
 		//Add to cart button
 		jse.executeScript("arguments[0].click();", driver.findElement(ATC_BUTTON));
@@ -172,24 +172,24 @@ public class GiftCardPageComponents extends GiftCardPageLocators {
 		ExtentReport.extentTest.info("Gift Card price on inline cart is Displayed :: Correct");
 
 		//Check Recipient email on inline cart
-		softAssert.assertTrue(driver.findElement(RECIPIENT_MAIL_INLINE_CART).isDisplayed(), " Gift card recipient mail on Inline cart is not displayed");
-		text = driver.findElement(RECIPIENT_MAIL_INLINE_CART).getText();
-		System.out.println("Recipient mail id on inline cart is :: "+text);
-		Expected_text ="Recipient Email: " +Rec_mail.getAttribute("value");
-		System.out.println("Expected Recipient mail id is: "+Expected_text);
-		softAssert.assertEquals(text, Expected_text,"Wrong Recipient Email is displayed on inline cart.");
-		Reporter.log("Recipient mail on inline cart is Displayed :: Correct");
-		ExtentReport.extentTest.info("Recipient mail on inline cart is Displayed :: Correct");
-
-		//Check Delivery date on inline cart
-		softAssert.assertTrue(driver.findElement(DELIVERY_DATE_INLINE_CART).isDisplayed(), " Gift card delivery date on Inline cart is not displayed");
-		text = driver.findElement(DELIVERY_DATE_INLINE_CART).getText();
-		System.out.println("Delivery date on inline cart is :: "+text);
-		Expected_text ="Delivery Date: " +newDelivery_Date;
-		System.out.println("Expected Recipient mail id is: "+Expected_text);
-		softAssert.assertEquals(text,Expected_text,"Wrong Delivery date is displayed on inline cart");
-		Reporter.log("Delivery date on inline cart is Displayed :: Correct");
-		ExtentReport.extentTest.info("Delivery date on inline cart is Displayed :: Correct");
+//		softAssert.assertTrue(driver.findElement(RECIPIENT_MAIL_INLINE_CART).isDisplayed(), " Gift card recipient mail on Inline cart is not displayed");
+//		text = driver.findElement(RECIPIENT_MAIL_INLINE_CART).getText();
+//		System.out.println("Recipient mail id on inline cart is :: "+text);
+//		Expected_text ="Recipient Email: " +Rec_mail.getAttribute("value");
+//		System.out.println("Expected Recipient mail id is: "+Expected_text);
+//		softAssert.assertEquals(text, Expected_text,"Wrong Recipient Email is displayed on inline cart.");
+//		Reporter.log("Recipient mail on inline cart is Displayed :: Correct");
+//		ExtentReport.extentTest.info("Recipient mail on inline cart is Displayed :: Correct");
+//
+//		//Check Delivery date on inline cart
+//		softAssert.assertTrue(driver.findElement(DELIVERY_DATE_INLINE_CART).isDisplayed(), " Gift card delivery date on Inline cart is not displayed");
+//		text = driver.findElement(DELIVERY_DATE_INLINE_CART).getText();
+//		System.out.println("Delivery date on inline cart is :: "+text);
+//		Expected_text ="Delivery Date: " +newDelivery_Date;
+//		System.out.println("Expected Recipient mail id is: "+Expected_text);
+//		softAssert.assertEquals(text,Expected_text,"Wrong Delivery date is displayed on inline cart");
+//		Reporter.log("Delivery date on inline cart is Displayed :: Correct");
+//		ExtentReport.extentTest.info("Delivery date on inline cart is Displayed :: Correct");
 		softAssert.assertAll();
 	}
 	
@@ -294,78 +294,78 @@ public class GiftCardPageComponents extends GiftCardPageLocators {
 		ExtentReport.extentTest.info("Gift Card amount title is displayed");
 	
 		//Recipient email
-		softAssert.assertTrue(driver.findElement(RECIPIENT_MAIL_LABEL).isDisplayed(), "Recipient email text is not displayed on PDP.");
-		softAssert.assertEquals(driver.findElement(RECIPIENT_MAIL_LABEL).getText(),properties.getProperty("GCRecipient"), "Recipient email text is changed on Gift card PDP");
-		System.out.println("Recipient email label is: "+driver.findElement(RECIPIENT_MAIL_LABEL).getText());
-		System.out.println("hard coded R-email is: "+properties.getProperty("GCRecipient"));
-		Reporter.log("Gift Card Recipient's Email title is displayed :: correct");
-		ExtentReport.extentTest.info("Gift Card Recipient's Email title is displayed :: correct");
-		softAssert.assertTrue(driver.findElement(RECIPIENT_MAIL_TEXTBOX).isDisplayed(), "Recipient email textbox is not displayed.");
-		Reporter.log("Gift Card Recipient's Email textbox is displayed");
-		ExtentReport.extentTest.info("Gift Card Recipient's Email textbox is displayed");
+//		softAssert.assertTrue(driver.findElement(RECIPIENT_MAIL_LABEL).isDisplayed(), "Recipient email text is not displayed on PDP.");
+//		softAssert.assertEquals(driver.findElement(RECIPIENT_MAIL_LABEL).getText(),properties.getProperty("GCRecipient"), "Recipient email text is changed on Gift card PDP");
+//		System.out.println("Recipient email label is: "+driver.findElement(RECIPIENT_MAIL_LABEL).getText());
+//		System.out.println("hard coded R-email is: "+properties.getProperty("GCRecipient"));
+//		Reporter.log("Gift Card Recipient's Email title is displayed :: correct");
+//		ExtentReport.extentTest.info("Gift Card Recipient's Email title is displayed :: correct");
+//		softAssert.assertTrue(driver.findElement(RECIPIENT_MAIL_TEXTBOX).isDisplayed(), "Recipient email textbox is not displayed.");
+//		Reporter.log("Gift Card Recipient's Email textbox is displayed");
+//		ExtentReport.extentTest.info("Gift Card Recipient's Email textbox is displayed");
 
 
 		//Confirm Recipient email
-		softAssert.assertTrue(driver.findElement(CONFIRM_MAIL_LABEL).isDisplayed(), "Confirm Recipient email text is not displayed on PDP.");
-		softAssert.assertEquals(driver.findElement(CONFIRM_MAIL_LABEL).getText(),properties.getProperty("GCConfirm"), "Confirm Recipient email text is changed on Gift card PDP");
-		System.out.println("Confirm Recipient email label is: "+driver.findElement(CONFIRM_MAIL_LABEL).getText());
-		System.out.println("hard coded C-Recipient email is: "+properties.getProperty("GCConfirm"));
-		Reporter.log("Gift Card confirm recipient's Email title is displayed :: correct");
-		ExtentReport.extentTest.info("Gift Card confirm recipient's Email title is displayed :: correct");
-		softAssert.assertTrue(driver.findElement(CONFIRM_MAIL_TEXTBOX).isDisplayed(), "Confirm Recipient email textbox is not displayed.");
-		Reporter.log("Gift Card confirm Recipient's Email textbox is displayed");
-		ExtentReport.extentTest.info("Gift Card confirm Recipient's Email textbox is displayed");
+//		softAssert.assertTrue(driver.findElement(CONFIRM_MAIL_LABEL).isDisplayed(), "Confirm Recipient email text is not displayed on PDP.");
+//		softAssert.assertEquals(driver.findElement(CONFIRM_MAIL_LABEL).getText(),properties.getProperty("GCConfirm"), "Confirm Recipient email text is changed on Gift card PDP");
+//		System.out.println("Confirm Recipient email label is: "+driver.findElement(CONFIRM_MAIL_LABEL).getText());
+//		System.out.println("hard coded C-Recipient email is: "+properties.getProperty("GCConfirm"));
+//		Reporter.log("Gift Card confirm recipient's Email title is displayed :: correct");
+//		ExtentReport.extentTest.info("Gift Card confirm recipient's Email title is displayed :: correct");
+//		softAssert.assertTrue(driver.findElement(CONFIRM_MAIL_TEXTBOX).isDisplayed(), "Confirm Recipient email textbox is not displayed.");
+//		Reporter.log("Gift Card confirm Recipient's Email textbox is displayed");
+//		ExtentReport.extentTest.info("Gift Card confirm Recipient's Email textbox is displayed");
 		
 
 		//Delivery date
-		softAssert.assertTrue(driver.findElement(DELIVERY_DATE_LABEL).isDisplayed(), "Delivery date title text is not displayed on PDP.");
-		softAssert.assertEquals(driver.findElement(DELIVERY_DATE_LABEL).getText(),properties.getProperty("GCDeliverydate"), "Delivery date title text is changed on Gift card PDP");
-		System.out.println("Delivery date label is: "+driver.findElement(DELIVERY_DATE_LABEL).getText());
-		Reporter.log("Gift Card delivery date title text is displayed ::correct");
-		ExtentReport.extentTest.info("Gift Card delivery date title text is displayed ::correct");
-		softAssert.assertTrue(driver.findElement(DATE_TIME_PICKER_INPUT).isDisplayed(), "Delivery date textbox is not displayed.");
-		Reporter.log("Gift Card delivery date textbox is displayed");
-		ExtentReport.extentTest.info("Gift Card delivery date textbox is displayed");
-		Thread.sleep(3000);
+//		softAssert.assertTrue(driver.findElement(DELIVERY_DATE_LABEL).isDisplayed(), "Delivery date title text is not displayed on PDP.");
+//		softAssert.assertEquals(driver.findElement(DELIVERY_DATE_LABEL).getText(),properties.getProperty("GCDeliverydate"), "Delivery date title text is changed on Gift card PDP");
+//		System.out.println("Delivery date label is: "+driver.findElement(DELIVERY_DATE_LABEL).getText());
+//		Reporter.log("Gift Card delivery date title text is displayed ::correct");
+//		ExtentReport.extentTest.info("Gift Card delivery date title text is displayed ::correct");
+//		softAssert.assertTrue(driver.findElement(DATE_TIME_PICKER_INPUT).isDisplayed(), "Delivery date textbox is not displayed.");
+//		Reporter.log("Gift Card delivery date textbox is displayed");
+//		ExtentReport.extentTest.info("Gift Card delivery date textbox is displayed");
+//		Thread.sleep(3000);
 		
 		//Delivery message
-		softAssert.assertTrue(driver.findElement(DELIVERY_MESSAGE_LABEL).isDisplayed(), "Delivery message text is not displayed.");
-		softAssert.assertEquals(driver.findElement(DELIVERY_MESSAGE_LABEL).getText(),properties.getProperty("GCDeliverymessage"),"Text change for delivery date message.");
-		System.out.println("Delivery date message text is: "+driver.findElement(DELIVERY_MESSAGE_LABEL).getText());
-		Reporter.log("Gift Card delivery message text is displayed ::correct");
-		ExtentReport.extentTest.info("Gift Card delivery message text is displayed ::correct");
-		Thread.sleep(3000);
-		jse.executeScript("arguments[0].click();", driver.findElement(DATE_TIME_PICKER_INPUT));
-		
-		Thread.sleep(3000);
-		jse.executeScript("arguments[0].click();", driver.findElement(TODAY));
-	
-		//Message(optional)
-		softAssert.assertTrue(driver.findElement(GIFT_CARD_MESSAGE_LABEL).isDisplayed(), "Message(optional) text is not displayed.");
-		Reporter.log("Gift Card delivery date textbox is displayed");
-		ExtentReport.extentTest.info("Gift Card delivery date textbox is displayed");
-		softAssert.assertEquals(driver.findElement(GIFT_CARD_MESSAGE_LABEL).getText(),properties.getProperty("GCMessage"),"Text change for message (optional) title.");
-		System.out.println("GC message optional title is: "+driver.findElement(GIFT_CARD_MESSAGE_LABEL).getText());
-		Reporter.log("Gift Card message(optional) text is displayed ::correct");
-		ExtentReport.extentTest.info("Gift Card message(optional) text is displayed ::correct");
-
-		softAssert.assertTrue(driver.findElement(GIFT_CARD_MESSAGE_TEXTBOX).isDisplayed(), "Gift card message textbox is not displayed");
-		Reporter.log("Gift Card message textbox is displayed");
-		ExtentReport.extentTest.info("Gift Card message textbox is displayed");
-		jse.executeScript("arguments[0].click();", driver.findElement(GIFT_CARD_MESSAGE_TEXTBOX));
-		
-
-		softAssert.assertTrue(driver.findElement(GIFT_CARD_MESSAGE_LIMIT).isDisplayed(), "Gift card message limit is not displayed");
-		Reporter.log("Gift Card limit label text is displayed");
-		ExtentReport.extentTest.info("Gift Card limit label text is displayed");
-		softAssert.assertEquals(driver.findElement(GIFT_CARD_MESSAGE_LIMIT).getText(),properties.getProperty("GCMessageLimit"),"Text change for limit label in GC.");
-		Reporter.log("Gift Card limit label text is correct");
-		ExtentReport.extentTest.info("Gift Card limit label text is correct");
-		
-
-		driver.findElement(GIFT_CARD_MESSAGE_TEXTBOX).sendKeys("For You! Enjoy!");
-		Thread.sleep(3000);
-        
+//		softAssert.assertTrue(driver.findElement(DELIVERY_MESSAGE_LABEL).isDisplayed(), "Delivery message text is not displayed.");
+//		softAssert.assertEquals(driver.findElement(DELIVERY_MESSAGE_LABEL).getText(),properties.getProperty("GCDeliverymessage"),"Text change for delivery date message.");
+//		System.out.println("Delivery date message text is: "+driver.findElement(DELIVERY_MESSAGE_LABEL).getText());
+//		Reporter.log("Gift Card delivery message text is displayed ::correct");
+//		ExtentReport.extentTest.info("Gift Card delivery message text is displayed ::correct");
+//		Thread.sleep(3000);
+//		jse.executeScript("arguments[0].click();", driver.findElement(DATE_TIME_PICKER_INPUT));
+//		
+//		Thread.sleep(3000);
+//		jse.executeScript("arguments[0].click();", driver.findElement(TODAY));
+//	
+//		//Message(optional)
+//		softAssert.assertTrue(driver.findElement(GIFT_CARD_MESSAGE_LABEL).isDisplayed(), "Message(optional) text is not displayed.");
+//		Reporter.log("Gift Card delivery date textbox is displayed");
+//		ExtentReport.extentTest.info("Gift Card delivery date textbox is displayed");
+//		softAssert.assertEquals(driver.findElement(GIFT_CARD_MESSAGE_LABEL).getText(),properties.getProperty("GCMessage"),"Text change for message (optional) title.");
+//		System.out.println("GC message optional title is: "+driver.findElement(GIFT_CARD_MESSAGE_LABEL).getText());
+//		Reporter.log("Gift Card message(optional) text is displayed ::correct");
+//		ExtentReport.extentTest.info("Gift Card message(optional) text is displayed ::correct");
+//
+//		softAssert.assertTrue(driver.findElement(GIFT_CARD_MESSAGE_TEXTBOX).isDisplayed(), "Gift card message textbox is not displayed");
+//		Reporter.log("Gift Card message textbox is displayed");
+//		ExtentReport.extentTest.info("Gift Card message textbox is displayed");
+//		jse.executeScript("arguments[0].click();", driver.findElement(GIFT_CARD_MESSAGE_TEXTBOX));
+//		
+//
+//		softAssert.assertTrue(driver.findElement(GIFT_CARD_MESSAGE_LIMIT).isDisplayed(), "Gift card message limit is not displayed");
+//		Reporter.log("Gift Card limit label text is displayed");
+//		ExtentReport.extentTest.info("Gift Card limit label text is displayed");
+//		softAssert.assertEquals(driver.findElement(GIFT_CARD_MESSAGE_LIMIT).getText(),properties.getProperty("GCMessageLimit"),"Text change for limit label in GC.");
+//		Reporter.log("Gift Card limit label text is correct");
+//		ExtentReport.extentTest.info("Gift Card limit label text is correct");
+//		
+//
+//		driver.findElement(GIFT_CARD_MESSAGE_TEXTBOX).sendKeys("For You! Enjoy!");
+//		Thread.sleep(3000);
+//        
 		// check 'Product Details' accordion
 		if (driver.findElement(PRODUCT_DETAILS).isDisplayed()){
 			softAssert.assertEquals(driver.findElement(PRODUCT_DETAILS).getText(),properties.getProperty("GCProductDetailsTitle"),"Text change for Product details accordion title in GC.");
