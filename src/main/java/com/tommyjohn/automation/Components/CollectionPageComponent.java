@@ -456,11 +456,12 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			// driver.findElement(By.cssSelector("div.mega-collection-filters >
 			// div:nth-child("+i+") > ul > li:nth-child(1) > label >
 			// input")).getAttribute("data-filter-btn");
-			if (i == 5 || i == 8 || i == 9) {
+			if (allElements.size()>5) {
 				selectedOption = driver.findElement(By.cssSelector(
 						"div.mega-collection-filters > div:nth-child(" + i + ") > ul > li:nth-child(1) > label > span"))
 						.getText();
 			} else {
+				i=i-2;
 				selectedOption = driver.findElement(By.cssSelector(
 						"div.mega-collection-filters > div:nth-child(" + i + ") > ul > li:nth-child(1) > label > span"))
 						.getText();
@@ -1480,8 +1481,9 @@ if(count!=59)
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollBy(0,250)");
-		
+		js.executeScript("window.scrollBy(0,150)");
+		objGeneralMethods.waitTillPageLoad(driver);
+		Thread.sleep(5000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_INLINE_BANNER));
 		WebElement inlineBanner = driver.findElement(PLP_INLINE_BANNER);
 		System.out.println(driver.getCurrentUrl());

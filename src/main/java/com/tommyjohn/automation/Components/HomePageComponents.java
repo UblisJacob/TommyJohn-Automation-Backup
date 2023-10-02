@@ -2085,7 +2085,7 @@ public class HomePageComponents extends HomePageLocators {
 
 	// navigate to all mens collections in men category
 	public void navigateToAllMensCollectionsInMenCategory() throws Exception {
-		driver.get("https://tommyjohn.com/collections/mens");
+		driver.get("https://tommyjohn.com/collections/mens-all");
 		Thread.sleep(10000);
 		//		element = driver.findElement(By.cssSelector("div.mega-collection-filters--controls > a"));
 		//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
