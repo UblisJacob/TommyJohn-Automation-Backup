@@ -41,7 +41,7 @@ public class ValidateNavigationElements {
 	}
 
 	@Test
-	public void TC_validateSearchBar() {
+	public void TC_validateSearchBar() throws InterruptedException {
 		new NavigationElementsPage(driver).validateSearchBar();
 	}
 	

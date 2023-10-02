@@ -11,7 +11,7 @@ public class ProductDetailsPageLocators {
 	//changed
 	public static By PRODUCT_TITLE_1 = By.xpath("//div[@class='multi-pdp-title-wrap desktop-view desktop']//h1");//changed
 	//	public static By PRODUCT_PRICE = By.cssSelector("div.product-info__inner-top > span > span:nth-child(2)");
-	public static By PRODUCT_PRICE = By.cssSelector("[data-tj-qa='product-price'],div.multi-pdp-title-wrap.desktop-view > div.product-info__price-wrap >span > span:nth-child(2)");
+	public static By PRODUCT_PRICE = By.cssSelector(" .product-info__price>span#multi-price");
 	
 	// image carousels
 	public static By IMG_CAROUSEL = By.cssSelector("div.pdpVerticalSlides>div>div>div");

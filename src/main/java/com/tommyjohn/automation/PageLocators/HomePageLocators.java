@@ -18,8 +18,9 @@ public class HomePageLocators{
 	public static By LEVEL_ZERO_SPECIFIC_OPTION = By.cssSelector(".nav-item__list.level-zero-list>:nth-child(1)>div>a");
 	public static By LEVEL_ZERO_LINKS_TEXT = By.cssSelector(".nav-item__list.level-zero-list>:nth-child(1)>div>a .nav-item-title");
 
-	public static By MEN_UNDERWEAR_LINK = By.cssSelector("body > header:nth-child(22) > div:nth-child(1) > nav:nth-child(1) > div:nth-child(1) > div:nth-child(3) > ul:nth-child(1) > li:nth-child(1) > div:nth-child(2) > ul:nth-child(1) > span:nth-child(1) > li:nth-child(1) > ul:nth-child(2) > li:nth-child(1) > a:nth-child(1)");
-	public static By MEN_UNDERWEAR_QUIZ = By.cssSelector("a[href='/pages/quiz?quizID=MN-UW-QZ'] > img");
+	//public static By MEN_UNDERWEAR_LINK = By.cssSelector("body > header:nth-child(22) > div:nth-child(1) > nav:nth-child(1) > div:nth-child(1) > div:nth-child(3) > ul:nth-child(1) > li:nth-child(1) > div:nth-child(2) > ul:nth-child(1) > span:nth-child(1) > li:nth-child(1) > ul:nth-child(2) > li:nth-child(1) > a:nth-child(1)");
+	
+	public static By MEN_UNDERWEAR_QUIZ = By.cssSelector("a[href='/pages/quiz?quizID=MN-UW-QZ']");
 
 
 	public static By GENERIC_SHOP_ALL_LINK = By.cssSelector(".nav-item_'_list.level-zero-list>li:nth-child(1) ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']:nth-child(2) li[data-tj-qa^='nav-all']");
@@ -34,10 +35,10 @@ public class HomePageLocators{
 	public static By MENS_UW_NAV_LINK_UWQUIZ = By.cssSelector("a[data-tj-qa^='nav-link-Underwear Quiz']");	
 	public static By WOMENS_LEVEL_1_LIST = By.cssSelector(".nav-item__list.level-zero-list>li:nth-child(2) ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']>div a");
 	public static By WOMEN_UNDERWEAR_LINK = By.cssSelector(".nav-item__list.level-zero-list>li:nth-child(2) ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']:nth-child(2)>div a");
-	public static By WOMEN_UNDERWEAR_QUIZ = By.cssSelector("a[href='/pages/quiz?quizID=WN-UW-QZ'] > img");
+	public static By WOMEN_UNDERWEAR_QUIZ = By.cssSelector("a[href='/pages/quiz?quizID=WN-UW-QZ']");
 
 	public static By WOMEN_BRA_LINK = By.cssSelector(".nav-item__list.level-zero-list>li:nth-child(2) ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']:nth-child(3)>div a");
-	public static By WOMEN_BRA_QUIZ = By.cssSelector("a[href='/pages/quiz?quizID=BR-10005-QZ'] > img");
+	public static By WOMEN_BRA_QUIZ = By.cssSelector("a[href='/pages/quiz?quizID=BR-10005-QZ'] ");
 
 	public static By ALL_LEVEL_1_LINKS_LIST = By.cssSelector(".nav-item__list.level-zero-list>li ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']");
 //	public static By LEVEL_0_SPECIFIC_LINKS_LIST = By.cssSelector(".nav-item__list.level-zero-list>li:nth-child(1) ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']>div a");
@@ -209,7 +210,7 @@ public class HomePageLocators{
 
 	public static By POPULAR_SEARCHES = By.cssSelector("[data-tj-qa='search-suggestion'],.autocomplete-suggestions-content");
 	public static By PRODUCT_MATCHES_TITLE = By.cssSelector("[data-tj-qa='search-product-matches-title'],.desktop-search-product-tile-title");
-	public static By PRODUCT_SUGGESTION = By.cssSelector("[data-tj-qa='search-recent-keyword'], div.autocomplete-suggestions-content>a>div>span");
+	public static By PRODUCT_SUGGESTION = By.cssSelector("a[data-tj-qa='search-suggestion']>div[data-tj-qa='search-recent-keyword']>span");
 //	public static By SEARCHRESULT_KEYWORD = By.cssSelector(".nxt-ac-section-container > .nxt-ac-item");
 //	public static By SEARCHRESULT_PRODUCT = By.cssSelector(".nxt-ac-products-container > .nxt-ac-item");
 	

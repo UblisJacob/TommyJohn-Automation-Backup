@@ -28,8 +28,9 @@ public class NavigationElementsPage extends NavigationElementComponents{
 	
 	/**
 	 * User should be able to click and type in the search bar.
+	 * @throws InterruptedException 
 	 */
-	public void validateSearchBar() {
+	public void validateSearchBar() throws InterruptedException {
 		validateSearchBarDesktop();
 	}
 	

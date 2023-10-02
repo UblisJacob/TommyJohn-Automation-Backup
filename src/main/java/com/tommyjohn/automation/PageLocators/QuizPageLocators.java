@@ -12,7 +12,7 @@ public class QuizPageLocators
 	public static By QUESTION_BLOCK_OPTIONS = By.cssSelector("[data-tj-qa='quiz-answer-option'],.questions-tile-parent>.questions-tile>.question-block");
 	public static By NEXT_CTA = By.cssSelector("[data-tj-qa='quiz-next'],div.go-next>button");
 	public static By PREVIOUS_ARROW = By.cssSelector("[data-tj-qa='quiz-back'],.go-back>img");
-	public static By EDUCATION_CARD_TITLE = By.cssSelector("[data-tj-qa='quiz-education-title'],.card-title-wrapper>p.education-card-title");
+	public static By EDUCATION_CARD_TITLE = By.cssSelector("[data-tj-qa='quiz-education-title'] , .card-title-wrapper>p.education-card-title");
 	public static By SUMMARY_CARD_HEADING = By.cssSelector("[data-tj-qa='quiz-summary-title'],.summary-card-block>p.summary-card-heading");
 	public static By SUMMARY_CARD_SUBHEADING = By.cssSelector("[data-tj-qa='quiz-summary-subtitle'],.summary-card-sub-heading");
 	public static By SUMMARY_ANSWER = By.cssSelector("[data-tj-qa='quiz-summary-answer'],.summary-answer");
