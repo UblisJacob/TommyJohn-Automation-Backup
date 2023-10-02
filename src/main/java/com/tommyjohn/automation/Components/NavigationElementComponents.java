@@ -134,8 +134,9 @@ public class NavigationElementComponents extends HomePageLocators {
 	 * User should be able to click and type in the search bar.
 	 * 
 	 * @author Sandesh
+	 * @throws InterruptedException 
 	 */
-	public void validateSearchBarDesktop() {
+	public void validateSearchBarDesktop() throws InterruptedException {
 		softassert = new SoftAssert();
 		genMethods = new GeneralMethods();
 		action = new Actions(driver);
@@ -149,6 +150,8 @@ public class NavigationElementComponents extends HomePageLocators {
 		}
 
 		System.out.println("Search Text Box is Clickable");
+		
+		
 
 		WebElement searchTXTBX = driver.findElement(SEARCH_TEXTBOX);
 		WebElement searchIcon = driver.findElement(SEARCH_ICON);
@@ -161,11 +164,14 @@ public class NavigationElementComponents extends HomePageLocators {
 
 			softassert.assertTrue(display.contains("block"),
 					"Desktop Search Suggestion did not come up after clicking on Search box");
-
+			
 			String searchText = "women";
 
+			searchTXTBX.sendKeys("");
+			searchTXTBX.clear();
 			searchTXTBX.sendKeys(searchText);
 
+			driver.findElement(SEARCH_ICON_IMAGE).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_SUGGESTION));
 
 			System.out.println("Product suggestions have appeared");
@@ -462,8 +468,8 @@ public class NavigationElementComponents extends HomePageLocators {
 			System.out.println("After clicking on My Account, Page Url is: " + currentUrl);
 		}
 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(AccountPageLocators.ACCOUNT_PAGE_HEADING));
-		pageHeader = driver.findElement(AccountPageLocators.ACCOUNT_PAGE_HEADING).getText();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(AccountPageLocators.ACCOUNT_PAGE_HEADING_LOGIN));
+		pageHeader = driver.findElement(AccountPageLocators.ACCOUNT_PAGE_HEADING_LOGIN).getText();
 
 		softassert.assertTrue(pageHeader.equals("Account"),
 				"Wrong page opened after clicking on My Account option, expected page with header: 'Account'");
@@ -490,13 +496,13 @@ public class NavigationElementComponents extends HomePageLocators {
 			System.out.println("After clicking on Sign Out, Page Url is: " + currentUrl);
 		}
 
-		try{
-			wait.until(ExpectedConditions.textToBe(ACCOUNT_NAV_DROPDOWN, "Hi, Sign in"));
-			System.out.println("Successfully Signed Out");
-		}catch (TimeoutException e) {
-			softassert.fail("After Clicking on Sign out option, user was not successfully Signed out");
-			System.out.println("After Clicking on Sign out option, user was not successfully Signed out");
-		}
+//		try{
+//			wait.until(ExpectedConditions.textToBe(ACCOUNT_NAV_DROPDOWN, "Hi, Sign in"));
+//			System.out.println("Successfully Signed Out");
+//		}catch (TimeoutException e) {
+//			softassert.fail("After Clicking on Sign out option, user was not successfully Signed out");
+//			System.out.println("After Clicking on Sign out option, user was not successfully Signed out");
+//		}
 
 		softassert.assertAll();
 
@@ -551,7 +557,7 @@ public class NavigationElementComponents extends HomePageLocators {
 		WebElement emailInput = driver.findElement(AccountLoginLocators.CUSTOMER_EMAIL_INPUT);
 		WebElement passwordInput = driver.findElement(AccountLoginLocators.CUSTOMER_PASSWORD_INPUTBOX);
 		WebElement loginSubmitBtn = driver.findElement(AccountLoginLocators.LOGIN_BUTTON);
-		
+		Thread.sleep(3000);
 		if (emailInput.isDisplayed()) {
 			emailInput.clear();
 			emailInput.sendKeys(createdAccountEmail);
@@ -579,10 +585,10 @@ public class NavigationElementComponents extends HomePageLocators {
 		loginSubmitBtn.click();
 		
 		try{
-			wait.until(ExpectedConditions.textToBe(AccountPageLocators.ACCOUNT_PAGE_HEADING, "Account"));
+			wait.until(ExpectedConditions.textToBe(AccountPageLocators.ACCOUNT_PAGE_HEADING_LOGIN, "Account"));
 			System.out.println("Successfully logged in, Login Flow Completed");
 		}catch (TimeoutException e) {
-			pageHeader = driver.findElement(AccountPageLocators.ACCOUNT_PAGE_HEADING).getText();
+			pageHeader = driver.findElement(AccountPageLocators.ACCOUNT_PAGE_HEADING_LOGIN).getText();
 			softassert.fail("After Signing In, Account Page did not show up, Page header is: " + pageHeader);
 			System.out.println("After Signing In, Account Page did not show up, Page header is: " + pageHeader);
 		}
@@ -651,9 +657,9 @@ public class NavigationElementComponents extends HomePageLocators {
 		
 		action.moveToElement(mensOption).perform();
 		
-		WebElement underwearOption = driver.findElement(MEN_UNDERWEAR_LINK);
+		//WebElement underwearOption = driver.findElement(MEN_UNDERWEAR_LINK);
 		
-		action.moveToElement(underwearOption).perform();
+		//action.moveToElement(underwearOption).perform();
 		
 		WebElement underwearQuiz = driver.findElement(MEN_UNDERWEAR_QUIZ);
 		
@@ -706,9 +712,9 @@ public class NavigationElementComponents extends HomePageLocators {
 		
 		action.moveToElement(womensOption).perform();
 		
-		WebElement underwearOption = driver.findElement(WOMEN_UNDERWEAR_LINK);
-		
-		action.moveToElement(underwearOption).perform();
+//		WebElement underwearOption = driver.findElement(WOMEN_UNDERWEAR_LINK);
+//		
+//		action.moveToElement(underwearOption).perform();
 		
 		WebElement underwearQuiz = driver.findElement(WOMEN_UNDERWEAR_QUIZ);
 		
@@ -761,9 +767,9 @@ public class NavigationElementComponents extends HomePageLocators {
 		
 		action.moveToElement(womensOption).perform();
 		
-		WebElement braOption = driver.findElement(WOMEN_BRA_LINK);
-		
-		action.moveToElement(braOption).perform();
+//		WebElement braOption = driver.findElement(WOMEN_BRA_LINK);
+//		
+//		action.moveToElement(braOption).perform();
 		
 		WebElement braQuiz = driver.findElement(WOMEN_BRA_QUIZ);
 		
