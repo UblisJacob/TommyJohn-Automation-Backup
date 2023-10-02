@@ -2553,7 +2553,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		
 		if(elementsCount > 1)
 		{
-			for(int i=1;i<=elementsCount;i++)
+			for(int i=1;i<elementsCount;i++)
 			{
 				
 				WebElement elemen = driver.findElement(By.cssSelector(".option-swatch__option>li:nth-child("+ i +")>input"));
