@@ -1010,8 +1010,8 @@ jse.executeScript("arguments[0].click();", title);
 		Thread.sleep(4000);
 
 		jse=(JavascriptExecutor)driver;
-		jse.executeScript("window.scrollBy(0,250)");
-		Thread.sleep(4000);
+	//	jse.executeScript("window.scrollBy(0,150)");
+		//Thread.sleep(4000);
 
 		List<WebElement> producttitle = driver.findElements(By.cssSelector(".product-meta__title"));
 

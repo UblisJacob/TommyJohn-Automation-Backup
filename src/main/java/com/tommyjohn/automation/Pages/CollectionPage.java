@@ -396,7 +396,7 @@ public class CollectionPage extends CollectionPageComponent{
 	
 	public void validateFilters() throws Exception {
 		// TODO Auto-generated method stub
-		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
+		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
 		methodToCheckAllFilters();
 	}
 	
