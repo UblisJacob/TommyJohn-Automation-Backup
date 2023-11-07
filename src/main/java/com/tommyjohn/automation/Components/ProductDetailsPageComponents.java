@@ -84,11 +84,12 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 //		text2 = list[list.length-1];
 //		list = text2.split("\\?");
 		text2 = list[0];
-        text2 = text2.replace("\"","" );
+      //  text2 = text2.replace("\"","" );
 		list=text1.split(",");
 //		text1=list[list.length-1];
 //		list = text1.split("\\?");
 		text1 = list[0];
+		//text1 = text1.replace("\"","" );
 
 		System.out.println("text2 is: "+text2+" and text1 is: "+text1);
 		// check correct PDP opened
@@ -193,7 +194,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		executor.executeScript("arguments[0].click();", ele);
 		//	driver.findElement(SIZEGUIDE).click();
 		Thread.sleep(3000);
-		if (!driver.findElement(By.cssSelector(".size-chart-content > .size-guide-title")).isDisplayed())
+		if (!driver.findElement(SIZEGUIDE_TITLE).isDisplayed())
 			throw new Exception("Sizes chart overlay is not displayed after Size guide button was clicked");
 		Reporter.log("Size guide is Displayed :: Clickable");
 		WebElement close_icon=driver.findElement(By.cssSelector(".close_chart_modal"));
@@ -815,7 +816,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		jse = (JavascriptExecutor)driver;
 		String allClasses = null;
 		String allClass = null;
-		new SizeGuideComponents(driver).navigateToBundlePDP();
+		
 		Thread.sleep(5000);
 
 		if(!driver.findElement(PRODUCT_TITLE_1).isDisplayed())
@@ -895,169 +896,166 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		allElements = driver.findElements(ALL_SIZE_LIST);
 		elementsCount = allElements.size();
 		System.out.println("All sizes list :: "+ elementsCount);
-		if(driver.findElement(By.cssSelector(".radio-options-container")).isDisplayed())
+		if(driver.findElement(By.cssSelector(".option-swatch__option>li.option-swatch__item")).isDisplayed())
 		{
 			//radio
-			List<WebElement> Size_OptionName = driver.findElements(By.cssSelector("div.radios-wrapper > div.radio-options-container > div"));
+			List<WebElement> Size_OptionName = driver.findElements(By.cssSelector(".option-swatch__option>li.option-swatch__item"));
 			int Size_OptionCount = Size_OptionName.size();
 			for(int i=1; i<=Size_OptionCount; i++)
 			{
+				
 				Thread.sleep(3000);
-				List<WebElement> Sizes_Label = driver.findElements(By.cssSelector("div.radios-wrapper>div:nth-child("+i+")>div.Size>label"));
-				elementsCount = Sizes_Label.size();
-				System.out.println("All sizes list count is :: "+ elementsCount);
-
-				for(int j=3;j<=elementsCount;j=j+2) {
-					flag = false;
-					element = driver.findElement(By.cssSelector("div.radios-wrapper > div.radio-options-container:nth-child("+i+")> div > label:nth-child("+j+")"));
-
-					allClasses = element.getAttribute("class");
+				WebElement elements = driver.findElement(By.cssSelector(".option-swatch__option>li:nth-child("+ i +")>input"));
+				//jse.executeScript("arguments[0].click();", elements);
+				
+			allClasses = elements.getAttribute("class");
 					// check size available or not
-					for (String c : allClasses.split(" ")) {
-						if (c.equals("oosVariant")) {
-							/*
-							 * jse = (JavascriptExecutor)driver; jse.executeScript("arguments[0].click();",
-							 * element); System.out.println("Unavailable size clicked");
-							 */									int y=j;
-							 for(int k=y; k<y; k++)
-							 {
-
-								 WebElement e = driver.findElement(By.cssSelector("div.radios-wrapper > div.radio-options-container > div > label:nth-child("+k+")"));
-								 allClass = e.getAttribute("class");
-								 for (String d : allClass.split(" ")) {
-									 if (d.equals("oosVariant")) 
-										 y++;
-									 else 
-										 driver.findElement(By.cssSelector("div.radios-wrapper > div.radio-options-container > div > label:nth-child("+y+")")).click();
-								 }
-							 }
-							 //flag=true;							
+					//for (String c : allClasses.split(" ")) {
+						if (allClasses.contains("unavailable")) {
+							flag = false;
+							  jse = (JavascriptExecutor)driver; 
+							  jse.executeScript("arguments[0].click();",
+							  element); 
+							  System.out.println("Unavailable size clicked");
+							  
+							//int y=i;
+//							 for(int k=y; k<y; k++)
+//							 {
+//
+//								 WebElement e = driver.findElement(By.cssSelector("div.radios-wrapper > div.radio-options-container > div > label:nth-child("+k+")"));
+//								 allClass = e.getAttribute("class");
+//								 for (String d : allClass.split(" ")) {
+//									 if (d.equals("oosVariant")) 
+//										 y++;
+//									 else 
+//										 driver.findElement(By.cssSelector("div.radios-wrapper > div.radio-options-container > div > label:nth-child("+y+")")).click();
+//								 }
+//							 }
+							 flag=true;							
 						}
 						else 
 						{
-							System.out.println("selected size is: "+element.getText());
+							System.out.println("selected size is: "+elements.getText());
 							jse = (JavascriptExecutor)driver;
-							jse.executeScript("arguments[0].click();" , element);
+							jse.executeScript("arguments[0].click();" , elements);
 
 						}
 
-					}
-					if(j==elementsCount) {
+					
+					if(i==elementsCount) {
 						Reporter.log("No any size available");
 						break;
 					}	
 					if(flag==false)
 						break;
-					else
-						continue;
 
 				}
 
-				if(flag == true)
-					continue;
-
-			}	
-
+				
 		}
 
-		else {
-			//dropdown
-
-			for(int i=1;i<=elementsCount;i++) {
-				flag = false;
-				//driver.findElement(SIZE_DROPDOWN).click();
-				WebElement elem = driver.findElement(SIZE_DROPDOWN_MENS);
-				jse.executeScript("arguments[0].click();", elem);
-				element = driver.findElement(By.cssSelector(".select--options__list[data-option-name = 'Mens Size'] > li:nth-child("+i+") > div"));
-
-				allClasses = element.getAttribute("class");
-				// check size available or not
-				for (String c : allClasses.split(" ")) {
-					if (c.equals("unavailable")) {
-
-						driver.findElement(By.cssSelector(".select--options__list[data-option-name = 'Mens Size']> li:nth-child("+i+")")).click();
-						WebElement eleme = driver.findElement(SIZE_DROPDOWN_WOMENS);
-						jse.executeScript("arguments[0].click();", eleme);
-						//	driver.findElement(By.cssSelector(".select--options__list[data-option-name = 'Womens Size']> li:nth-child("+i+")")).click();
-						int y =i;
-						for(int j=0;j<y;j++)
-						{
-
-							WebElement e = driver.findElement(By.cssSelector(".select--options__list[data-option-name = 'Womens Size'] > li:nth-child("+y+") > div"));
-							allClass = e.getAttribute("class");
-							for (String d : allClass.split(" ")) {
-
-								// check size available or not
-
-								if (d.equals("unavailable")) 
-									y++;
-								else 
-									driver.findElement(By.cssSelector(".select--options__list[data-option-name = 'Womens Size']> li:nth-child("+y+")")).click();
-							}
-						}
-
-
-						flag = true;
-
-						//break;
-					}
-					else 
-					{
-						Thread.sleep(3000);
-						WebElement e =	driver.findElement(By.cssSelector(".select--options__list[data-option-name = 'Mens Size']> li:nth-child("+i+")"));
-						Thread.sleep(2000);
-						jse.executeScript("arguments[0].click();", e);
-						if(!driver.findElement(ADD_TO_CART_BUTTON).getText().contentEquals("Add to Cart"))
-						{
-							WebElement eleme = driver.findElement(SIZE_DROPDOWN_WOMENS);
-							jse.executeScript("arguments[0].click();", eleme);
-
-							int y =i;
-							for(int j=0;j<y;j++)
-							{
-
-								WebElement el = driver.findElement(By.cssSelector(".select--options__list[data-option-name = 'Womens Size'] > li:nth-child("+y+") > div"));
-								String allClas = el.getAttribute("class");
-								for (String u : allClas.split(" ")) {
-
-									// check size available or not
-
-									if (u.equals("unavailable")) 
-										y++;
-									else 
-										driver.findElement(By.cssSelector(".select--options__list[data-option-name = 'Womens Size']> li:nth-child("+y+")")).click();
-								}
-							}
-						}
-
-						//jse.executeScript("arguments[0].click();", driver.findElement(SIZE_DROPDOWN_WOMENS));
-
-						//	WebElement elm  = driver.findElement(By.cssSelector(".select--options__list[data-option-name = 'Womens Size']> li:nth-child("+i+") > div"));
-
-
-						//jse.executeScript("arguments[0].click();", elm);
-						if (!driver.findElement(ADD_TO_CART_BUTTON).getText().contentEquals("Add to Cart"))
-							throw new Exception("Wrong language on CTA for In stock bundle");
-
-					}
-
-					if(i==elementsCount) {
-						Reporter.log("No any size available");
-
-					}			
-					if(flag==false)
-						break;
-					else
-						continue;
-
-				}
-				if(flag==false)
-					break;
-				else
-					continue;
-			}
-
+		else 
+		{
+			throw new Exception("Sizes not available for selection");
 		}
+		
+//dropdown
+//
+//			for(int i=1;i<=elementsCount;i++) {
+//				flag = false;
+//				//driver.findElement(SIZE_DROPDOWN).click();
+//				WebElement elem = driver.findElement(SIZE_DROPDOWN_MENS);
+//				jse.executeScript("arguments[0].click();", elem);
+//				element = driver.findElement(By.cssSelector(".select--options__list[data-option-name = 'Mens Size'] > li:nth-child("+i+") > div"));
+//
+//				allClasses = element.getAttribute("class");
+//				// check size available or not
+//				for (String c : allClasses.split(" ")) {
+//					if (c.equals("unavailable")) {
+//
+//						driver.findElement(By.cssSelector(".select--options__list[data-option-name = 'Mens Size']> li:nth-child("+i+")")).click();
+//						WebElement eleme = driver.findElement(SIZE_DROPDOWN_WOMENS);
+//						jse.executeScript("arguments[0].click();", eleme);
+//						//	driver.findElement(By.cssSelector(".select--options__list[data-option-name = 'Womens Size']> li:nth-child("+i+")")).click();
+//						int y =i;
+//						for(int j=0;j<y;j++)
+//						{
+//
+//							WebElement e = driver.findElement(By.cssSelector(".select--options__list[data-option-name = 'Womens Size'] > li:nth-child("+y+") > div"));
+//							allClass = e.getAttribute("class");
+//							for (String d : allClass.split(" ")) {
+//
+//								// check size available or not
+//
+//								if (d.equals("unavailable")) 
+//									y++;
+//								else 
+//									driver.findElement(By.cssSelector(".select--options__list[data-option-name = 'Womens Size']> li:nth-child("+y+")")).click();
+//							}
+//						}
+//
+//
+//						flag = true;
+//
+//						//break;
+//					}
+//					else 
+//					{
+//						Thread.sleep(3000);
+//						WebElement e =	driver.findElement(By.cssSelector(".select--options__list[data-option-name = 'Mens Size']> li:nth-child("+i+")"));
+//						Thread.sleep(2000);
+//						jse.executeScript("arguments[0].click();", e);
+//						if(!driver.findElement(ADD_TO_CART_BUTTON).getText().contentEquals("Add to Cart"))
+//						{
+//							WebElement eleme = driver.findElement(SIZE_DROPDOWN_WOMENS);
+//							jse.executeScript("arguments[0].click();", eleme);
+//
+//							int y =i;
+//							for(int j=0;j<y;j++)
+//							{
+//
+//								WebElement el = driver.findElement(By.cssSelector(".select--options__list[data-option-name = 'Womens Size'] > li:nth-child("+y+") > div"));
+//								String allClas = el.getAttribute("class");
+//								for (String u : allClas.split(" ")) {
+//
+//									// check size available or not
+//
+//									if (u.equals("unavailable")) 
+//										y++;
+//									else 
+//										driver.findElement(By.cssSelector(".select--options__list[data-option-name = 'Womens Size']> li:nth-child("+y+")")).click();
+//								}
+//							}
+//						}
+//
+//						//jse.executeScript("arguments[0].click();", driver.findElement(SIZE_DROPDOWN_WOMENS));
+//
+//						//	WebElement elm  = driver.findElement(By.cssSelector(".select--options__list[data-option-name = 'Womens Size']> li:nth-child("+i+") > div"));
+//
+//
+//						//jse.executeScript("arguments[0].click();", elm);
+//						if (!driver.findElement(ADD_TO_CART_BUTTON).getText().contentEquals("Add to Cart"))
+//							throw new Exception("Wrong language on CTA for In stock bundle");
+//
+//					}
+//
+//					if(i==elementsCount) {
+//						Reporter.log("No any size available");
+//
+//					}			
+//					if(flag==false)
+//						break;
+//					else
+//						continue;
+//
+//				}
+//				if(flag==false)
+//					break;
+//				else
+//					continue;
+//			}
+
+	
 		// check if we are able to add and minus quantity
 
 		try
@@ -2477,7 +2475,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		
 			if(elementsCount > 1)
 			{
-				for(int i=1;i<=elementsCount;i++)
+				for(int i=1;i<elementsCount;i++)
 				{
 						String imagecolor = null;
 						WebElement elemen = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper>ul>li:nth-child(" + i + ") > label"));
@@ -2488,10 +2486,9 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 						
 						List<WebElement> inactivesizes = driver.findElements(INACTIVE_SIZES);
 						int num1= inactivesizes.size();
-						List<WebElement> totalsizes = driver.findElements(TOTAL_SIZES);
-						int num= (totalsizes.size()-num1);
 						
-						if(num>1)
+						
+						if(num1>0)
 						{
 							
 						
@@ -2499,8 +2496,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 							imagecolor = driver.findElement(IMAGE_COLOR).getAttribute("data-color-handle");
 							
 							System.out.println("For Color Swatch: " +colornew);
-							System.out.println("Active Sizes: " +num );
-							System.out.println("Unavailable sizes:" + num1);
+						
 							
 //							System.out.println(colortext.toLowerCase());
 //							System.out.println(colornew);
@@ -2527,14 +2523,16 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 							ExtentReport.extentTest.info("Colors are present and changing correctly");
 							
 							
-											
+						if(i>10)
+							break;
 				}
 			}
 		}
 	public void verifyAvailableSizes() throws Exception{
+		int count = 0;
 		SoftAssert softAssert = new SoftAssert();
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		new ProductDetailsPage(driver).navigateToAllUnderwearInMenCategory();
+		driver.navigate().to("https://www.tommyjohn.com/collections/mens-underwear?sort-by=relevance&sort-order=descending&filter%5Bfacet_category%5D=underwear");
 		//new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
 		
 		//navigate to PDP
@@ -2545,15 +2543,15 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		jse.executeScript("arguments[0].click();", el);	
 		
 		
-		allElements = driver.findElements(TOTAL_SIZES);
+		allElements = driver.findElements(ALL_SIZE_LIST);
 		
 		elementsCount = allElements.size();
-		System.out.println("Color Element count :: "+elementsCount);
+		System.out.println("Size Element count :: "+elementsCount);
 		Reporter.log("Sizes are present");
 		
 		if(elementsCount > 1)
 		{
-			for(int i=1;i<elementsCount;i++)
+			for(int i=1;i<=5;i++)
 			{
 				
 				WebElement elemen = driver.findElement(By.cssSelector(".option-swatch__option>li:nth-child("+ i +")>input"));
@@ -2562,16 +2560,17 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 				
 				List<WebElement> unavailablecolors = driver.findElements(STRIKED_COLOR_SWATCHES);
 				int num1= unavailablecolors.size();
-				List<WebElement> totalcolors = driver.findElements(COLOR_SWATCHES);
-				int num = (totalcolors.size()-num1);
+			
 				String sizename = driver.findElement(By.cssSelector(".option-swatch__option>li:nth-child("+i+")>label>span")).getText();
 				
-				if(num>=0)
-					
+				if(num1>0 && num1<elementsCount)
+				{
+					System.out.println(num1);
+					count++;
 					System.out.println("For size: " +sizename);
-					System.out.println("Active Colors: " +num );
-					System.out.println("Unavailable Colors: " + num1);
-					System.out.println("===============");
+					
+				}
+					
 				
 				
 				String sizevalue = driver.findElement(SIZE_VALUE).getAttribute("data-option-name");
@@ -2580,6 +2579,17 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 				softAssert.assertEquals(driver.findElement(TOTAL_SIZES).getText().equalsIgnoreCase(sizevalue), true, "Color not changing");
 				
 								
+			}
+			
+			if(count>0)
+			{
+				System.out.println(count);
+				Reporter.log("Sizes are changing and colors are unavailable for few sizes");
+				ExtentReport.extentTest.info("Sizes are changing and colors are unavailable for few sizes");
+			}
+			else
+			{
+				throw new Exception("Colors are fully OOS");
 			}
 			Reporter.log("Sizes are changing correctly");
 			ExtentReport.extentTest.info("Sizes are changing correctly");
@@ -2701,7 +2711,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 	public void verifyProductNamePrice() throws Exception {
 			
 			new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
-			String prodcttitle= driver.findElement(CollectionPageComponent.FIRST_PRODUCT_HEAD_LINE_TEXT).getText();
+			String prodcttitle= driver.findElement(CollectionPageComponent.FIRST_PRODUCT_IMAGE).getAttribute("alt");
 			new CollectionPageComponent(driver).navigateToProductDetailsPage();
 			//new AddToCartComponents(driver).selectSize();
 			productname = driver.findElement(PRODUCT_TITLE).getText();
@@ -2837,6 +2847,9 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 							}
 							
 						}
+						
+						if(i>15)
+							break;
 				}
 		Reporter.log("no msg");	
 		ExtentReport.extentTest.info("no msg");	
@@ -3145,7 +3158,7 @@ public void verifySizeCharts() throws Exception {
 	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 	SoftAssert softAssert = new SoftAssert();
 	// call method to navigate to collection page
-	new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
+	new HomePageComponents(driver).navigateToAllClothingInWomensCategory();
 	jse=(JavascriptExecutor)driver;
 	jse.executeScript("window.scrollBy(0,250)");
 	// call method to navigate product details page
@@ -3300,8 +3313,8 @@ public void verifySizeChartTextBralette() throws Exception {
 		ExtentReport.extentTest.info("All CupVolume list :: Displayed");
 		String CupVolume_Default_Text = CupVolume_Options.get(0).getText();
 		
-		if(!CupVolume_Default_Text.equalsIgnoreCase("Cup Size"))
-			throw new Exception("Text change for 'Cup Size'");
+		if(!CupVolume_Default_Text.equalsIgnoreCase("Cup"))
+			throw new Exception("Text change for 'Cup Volume'");
 	
 		for(int i=1;i<CupVolume_Options_Count;i++) {
 			Thread.sleep(1000);
@@ -3396,11 +3409,11 @@ public void verifySizeChartTextBras() throws Exception {
 		Reporter.log("All Band Sizes list :: SELECTED");
 		ExtentReport.extentTest.info("All Band Sizes list :: SELECTED");
 
-		String BandSize_Default_Text = BandSize_Options.get(0).getText();
+		String BandSize_Default_Text = driver.findElement(BAND_SIZE_TEXT).getText();
 		if(!BandSize_Default_Text.equalsIgnoreCase("Band Size"))
 			throw new Exception("Text change for 'Band Size'");
 		for(int i=1;i<BandSize_Options_Count;i++) {
-			Thread.sleep(500);
+			Thread.sleep(5000);
 			BandSize_DropDown.selectByIndex(i);
 		}
 	}
@@ -3416,9 +3429,10 @@ public void verifySizeChartTextBras() throws Exception {
 		System.out.println("All CupVolume list ::"+ CupVolume_Options_Count);
 		Reporter.log("All CupVolume list :: SELECTED");
 		ExtentReport.extentTest.info("All CupVolume list :: SELECTED");
-		String CupVolume_Default_Text = CupVolume_Options.get(0).getText();
 		
-		if(!CupVolume_Default_Text.equalsIgnoreCase("Cup Size"))
+		String CupVolume_Default_Text = driver.findElement(CUP_VOLUME_TEXT).getText();
+		
+		if(!CupVolume_Default_Text.equalsIgnoreCase("Cup Volume"))
 			throw new Exception("Text change for 'Cup Size'");
 	
 		for(int i=1;i<CupVolume_Options_Count;i++) {

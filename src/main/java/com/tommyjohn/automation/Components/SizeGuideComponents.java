@@ -1006,7 +1006,7 @@ jse.executeScript("arguments[0].click();", title);
 	public void navigateToBundlePDP() throws Exception 
 	{
 
-		new HomePageComponents(driver).navigateToLoungeWearPacksInWomenPacksCategory();
+		new HomePageComponents(driver).navigateToAllMensPacksInPacksCategory();
 		Thread.sleep(4000);
 
 		jse=(JavascriptExecutor)driver;
@@ -1018,11 +1018,12 @@ jse.executeScript("arguments[0].click();", title);
 		for (WebElement title : producttitle)
 		{
 			System.out.println("product title is: "+title.getText());
-			if(title.getText().contains("Set"))
+			if(title.getText().contains("Pack"))
 			{
 				Thread.sleep(3000);
 				System.out.println(title.getText());
-				title.click();
+				//title.click();
+				jse.executeScript("arguments[0].click();", title);
 				break;
 			}
 		}
