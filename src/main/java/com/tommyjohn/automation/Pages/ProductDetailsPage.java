@@ -9,6 +9,7 @@ import com.tommyjohn.automation.Components.CollectionPageComponent;
 import com.tommyjohn.automation.Components.HomePageComponents;
 import com.tommyjohn.automation.Components.ProductDetailsPageComponents;
 //import com.tommyjohn.automation.Components.SizeGuideComponents;
+import com.tommyjohn.automation.Components.SizeGuideComponents;
 
 public class ProductDetailsPage extends ProductDetailsPageComponents{
 	WebDriver driver;
@@ -40,7 +41,7 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 	
 	}
 	public void verifyBundlePDP() throws Exception {
-
+		new SizeGuideComponents(driver).navigateToBundlePDP();
 		new ProductDetailsPageComponents(driver).verifybundlepages();
 	
 	}

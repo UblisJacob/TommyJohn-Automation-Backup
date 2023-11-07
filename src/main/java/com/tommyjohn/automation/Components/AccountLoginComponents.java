@@ -395,12 +395,12 @@ public class AccountLoginComponents extends AccountLoginLocators {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
 //		click on account icon from home page
-		driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN).click();
-//		WebElement element = driver.findElement((HomePageLocators.ACCOUNT_NAV_DROPDOWN));
-//		JavascriptExecutor executor = (JavascriptExecutor)driver;
-//		executor.executeScript("arguments[0].click();", element);
+//		driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN).click();
+		WebElement element = driver.findElement((HomePageLocators.ACCOUNT_NAV_DROPDOWN));
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();", element);
 
-//		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(LOGIN_HEADING_TEXT));
+	wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(LOGIN_HEADING));
 //		// check login heading text
 //
 //		text = driver.findElement(LOGIN_HEADING_TEXT).getText();
@@ -409,7 +409,7 @@ public class AccountLoginComponents extends AccountLoginLocators {
 //					+ "but actual is " + text);
 
 		// check email label
-
+Thread.sleep(3000);
 		text = driver.findElement(EMAIL_LABEL1).getText();
 		if (!text.equals(CustomUtilities.properties.getProperty("emailLabel")))
 			throw new Exception("Expected text is " + CustomUtilities.properties.getProperty("emailLabel")
