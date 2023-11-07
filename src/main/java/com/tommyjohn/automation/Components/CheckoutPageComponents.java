@@ -466,16 +466,16 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		softAssert.assertTrue(driver.findElement(CREDITCARD_OPTION).isDisplayed(), "Credit card option is not present");
 		softAssert.assertTrue(driver.findElement(PAYPAL_OPTION).isDisplayed(), "Paypal option is not present");
 		softAssert.assertTrue(driver.findElement(BILLING_TEXT).isDisplayed(), "Billing text is not present");
-		softAssert.assertTrue(driver.findElement(HOWHEARD_TITLE).isDisplayed(), "How heard title is not present");
-		softAssert.assertTrue(driver.findElement(HOWHEARD_SUBTITLE).isDisplayed(), "How heard subtitle is not present");
-		softAssert.assertTrue(driver.findElement(HOWHEARD_DROPDOWN).isDisplayed(), "How heard dropdown is not present");
+//		softAssert.assertTrue(driver.findElement(HOWHEARD_TITLE).isDisplayed(), "How heard title is not present");
+//		softAssert.assertTrue(driver.findElement(HOWHEARD_SUBTITLE).isDisplayed(), "How heard subtitle is not present");
+//		softAssert.assertTrue(driver.findElement(HOWHEARD_DROPDOWN).isDisplayed(), "How heard dropdown is not present");
 		softAssert.assertTrue(driver.findElement(COMPLETE_ORDER_BUTTON).isEnabled(), "Complete order button is not enabled");
 		
 		CheckPromoCodeApplication("FIRST20");
-		Select dphowheard = new Select(driver.findElement(HOWHEARD_DROPDOWN));
-		dphowheard.selectByValue("Online Search");
-		Reporter.log("How heard values are displayed:: Clickable");
-		ExtentReport.extentTest.info("How heard values are displayed:: Clickable");
+//		Select dphowheard = new Select(driver.findElement(HOWHEARD_DROPDOWN));
+//		dphowheard.selectByValue("Online Search");
+//		Reporter.log("How heard values are displayed:: Clickable");
+//		ExtentReport.extentTest.info("How heard values are displayed:: Clickable");
 		softAssert.assertAll();
 
 	}

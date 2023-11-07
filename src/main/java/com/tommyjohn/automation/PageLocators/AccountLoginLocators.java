@@ -15,7 +15,7 @@ public class AccountLoginLocators {
 	public static By CUSTOMER_EMAIL_INPUT = By.cssSelector("input[data-tj-qa='account-email-input'], #customer-email");
 	public static By PASSWORD_LABEL1 = By.cssSelector("#customer_login > div:nth-child(5) > label, label[data-tj-qa='account-password-title']");
 	public static By CUSTOMER_PASSWORD_INPUTBOX = By.cssSelector("#customer-password, input[data-tj-qa='account-password-input']");
-//	public static By LOGIN_BUTTON = By.cssSelector("#customer_login > button");
+	public static By LOGIN_HEADING = By.cssSelector("h1[data-tj-qa='account-login-title'] , h2[data-tj-qa='account-login-title']");
 	public static By LOGIN_BUTTON = By.cssSelector("button[data-tj-qa='account-signup-login']");
 	public static By ERROR_MSG_USERNAME = By.cssSelector(".form-note.is-error, div[data-tj-qa='invalid-account-username']");
 	public static By ERROR_MSG_PASSWORD = By.cssSelector(".form-note.is-error, div[data-tj-qa='invalid-account-password']");

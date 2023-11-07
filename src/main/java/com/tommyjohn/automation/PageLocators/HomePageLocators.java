@@ -85,6 +85,7 @@ public class HomePageLocators{
 	public static By SIXTH_LEVEL2_LINK = By.cssSelector("li.active> div:nth-child(2)> ul.level-one-list> li.active > ul.level-two-list > li.links-only > div:nth-child(7) >a");
 
 	public static By SEARCH_ICON = By.cssSelector("label[data-tj-qa='header-search-icon']>svg");
+	public static By SEARCH_ICON_CLOSE = By.cssSelector("button[data-tj-qa='header-search-close'");
 	public static By SEARCH_TEXTBOX = By.cssSelector("input[data-tj-qa='header-search-input']");
 	public static By SEARCH_SUGGESTION_CONTAINER = By.cssSelector(".desktop-autosuggestion-container");
 	
@@ -209,7 +210,7 @@ public class HomePageLocators{
 	public static By SEARCH_ICON_FORM_TAG = By.cssSelector(".header-search-form");
 
 	public static By POPULAR_SEARCHES = By.cssSelector("[data-tj-qa='search-suggestion'],.autocomplete-suggestions-content");
-	public static By PRODUCT_MATCHES_TITLE = By.cssSelector("[data-tj-qa='search-product-matches-title'],.desktop-search-product-tile-title");
+	public static By PRODUCT_MATCHES_TITLE = By.cssSelector(".desktop-search-product-tile-title");
 	public static By PRODUCT_SUGGESTION = By.cssSelector("a[data-tj-qa='search-suggestion']>div[data-tj-qa='search-recent-keyword']>span");
 //	public static By SEARCHRESULT_KEYWORD = By.cssSelector(".nxt-ac-section-container > .nxt-ac-item");
 //	public static By SEARCHRESULT_PRODUCT = By.cssSelector(".nxt-ac-products-container > .nxt-ac-item");
@@ -233,9 +234,9 @@ public class HomePageLocators{
 	public static By SEARCHPAGE_ALL_SELECTED_FILTER_OPTIONS = By.cssSelector("div.js-mega-collection-desktop-filter-tags >div> button");
 	public static By SEARCHPAGE_CLEAR_FILTER = By.cssSelector("div.mega-collection-filters--controls > a");
 	public static By SEARCHPAGE_LAST_FILTER = By.cssSelector(".mega-collection-filters > select");
-	public static By AUTO_SUGGESTED_LINKS = By.cssSelector("[data-tj-qa='search-suggestion'],.autocomplete-suggestions-content>a");
-	public static By AUTO_SUGGESTED_PRODUCT_IMG = By.cssSelector("[data-tj-qa='search-product-match-image'],.search-product-image>a>img");
-	public static By AUTO_SUGGESTED_PRODUCT_TILE_TITLE = By.cssSelector(".search-product-tile>a");
+	public static By SUGGESTED_LINKS = By.cssSelector("div[data-tj-qa='search-recent-keyword']>span");
+	public static By SUGGESTED_PRODUCT_IMG = By.cssSelector("[data-tj-qa='search-product-match-image']>a>img,.search-product-image>a>img");
+	public static By AUTO_SUGGESTED_PRODUCT_TILE_TITLE = By.cssSelector(".autocomplete-suggestions-content>a:nth-child(1)>div>span");
 	
 	public static By HELP_CENTER = By.cssSelector(".header-nav-dropdown > ul >li:nth-child(3) > a");
 	public static By ACCOUNT_NAV_DROPDOWN_OPTIONS = By.cssSelector(".header-nav-dropdown li:nth-child(1)>a");

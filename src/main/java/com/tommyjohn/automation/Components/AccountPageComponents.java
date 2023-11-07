@@ -68,10 +68,12 @@ public class AccountPageComponents extends AccountPageLocators {
 	}
 
 	public void navigateTo_AccountPage(String email, String password) throws Exception {
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HomePageLocators.ACCOUNT_NAV_DROPDOWN));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(NavigationElementComponents.ACCOUNT_NAV_DROPDOWN));
 		driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN).click();
+		driver.navigate().to("https://www.tommyjohn.com/account/login");
 
-	//	wait.until(ExpectedConditions.visibilityOfElementLocated(AccountLoginLocators.LOGIN_HEADING_TEXT));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(AccountLoginLocators.LOGIN_HEADING));
+		
 
 		driver.findElement(AccountLoginLocators.CUSTOMER_EMAIL_INPUT).sendKeys(email);
 		driver.findElement(AccountLoginLocators.CUSTOMER_PASSWORD_INPUTBOX).sendKeys(password);
@@ -137,6 +139,7 @@ public class AccountPageComponents extends AccountPageLocators {
 		
 //		Go back to homepage
 		driver.navigate().to("https://www.tommyjohn.com");
+		Thread.sleep(4000);
 		
 //		Positive Validation
 		navigateTo_AccountPage(email, password);

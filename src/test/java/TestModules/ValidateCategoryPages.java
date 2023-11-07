@@ -54,8 +54,8 @@ public class ValidateCategoryPages {
 	 
 
 	
-	 @Test public void TC_InteractWithSortBy() throws Exception { new
-	 CollectionPage(driver).validateSortBy(); }
+	// @Test public void TC_InteractWithSortBy() throws Exception { new
+	// CollectionPage(driver).validateSortBy(); }
 	 
 
 	

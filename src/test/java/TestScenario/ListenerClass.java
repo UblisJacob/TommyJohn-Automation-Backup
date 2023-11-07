@@ -11,6 +11,7 @@ import org.testng.ITestListener;
 import org.testng.ITestNGMethod;
 import org.testng.ITestResult;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Parameters;
 
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
@@ -22,27 +23,26 @@ public class ListenerClass extends ExtentReport implements ITestListener, IExecu
 	WebDriver driver;
 	static int count = 1;
 	static boolean shouldPrint = true;
-	static int testCount = 0;
 	static String browserName = null;
 	
 	
 	@Override
+
 	public void onExecutionStart() {
+		initializeExtentReports();
+		System.out.println("Tests started executing");
 		
 	}
+		
 	
 	@Override
 	public void onStart(ITestContext context) {
-		System.out.println("Class 1 Tests started executing");
+		
 		browserName = context.getCurrentXmlTest().getParameter("browser");
-		System.out.println("Tests execution started using Browser: " + browserName);
-		initializeExtentReports(browserName);
+		System.out.println("Test execution started using Browser: " + browserName);
+	
 	}
 	
-	@Override
-	public void onExecutionFinish() {
-		generateExtentReports(browserName);
-	}
 
 	@Override
 	public void onTestStart(ITestResult result) {
@@ -52,13 +52,11 @@ public class ListenerClass extends ExtentReport implements ITestListener, IExecu
 		{
 //			then create test
 			extentTest = extentReport.createTest(testName);
-//			Added to get a get estimation of suite execution progress
-			testCount++;
-			System.out.println("---- Test Count: " + testCount + " ----\n");
-			
 			System.out.println("Executing " + testName + " Attempt Number: " + count);
 			extentTest.info("Executing " + testName + " Attempt Number: " + count);
-		}else {
+		}
+			else
+			{
 			System.out.println("Re-Executing " + testName + " Attempt Number: " + count);
 			extentTest.info("Re-Executing " + testName + " Attempt Number: " + count);
 		}
@@ -72,16 +70,18 @@ public class ListenerClass extends ExtentReport implements ITestListener, IExecu
 		shouldPrint=true;
 		String testName = result.getName();
 		extentTest.pass(testName + " got executed successfully");
+		extentTest.log(Status.PASS, "Test Passed");
 		System.out.println(testName + " got executed successfully");
 
 	}
 
 	@Override
 	public void onTestFailure(ITestResult result) {
-		count++;
-
+		
+count++;
 		if (count <= Retry.maxRetryCount) {
 			shouldPrint = false;
+			
 			 
 		} else {
 			shouldPrint = true;
@@ -103,6 +103,11 @@ public class ListenerClass extends ExtentReport implements ITestListener, IExecu
 		if (count == Retry.maxRetryCount) {
 //			
 			extentTest.addScreenCaptureFromPath(screenShotPath);
+			
+		}
+		else
+		{
+			count++;
 		}
 
 	}
@@ -119,6 +124,12 @@ public class ListenerClass extends ExtentReport implements ITestListener, IExecu
 	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
 
 	}
+	
+	@Override
+	public void onExecutionFinish() {
+		generateExtentReports();
+	}
+
 
 	@Override
 	public void onFinish(ITestContext context) {
