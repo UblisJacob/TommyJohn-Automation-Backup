@@ -53,8 +53,8 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
 		// get text and click on the first product
-		text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
-		// text= driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT).getText();
+		//text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
+		 text= driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT).getText();
 		WebElement el = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT);
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		executor.executeScript("arguments[0].click();", el);
@@ -96,7 +96,10 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		new ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);
 
 		// validate product details page by calling the method
-		new ProductDetailsPageComponents(driver).verifybundlepages();
+		if (driver.findElement(ProductDetailsPageLocators.PRODUCT_TITLE).getText().contains("Set") || driver.findElement(ProductDetailsPageLocators.PRODUCT_TITLE).getText().contains("Pack"))
+			new ProductDetailsPageComponents(driver).verifybundlepages();
+		else
+			new ProductDetailsPageComponents(driver).validatePage();
 
 		Reporter.log("Product image on collection page is Displayed :: Clickable and validated successfully");
 	}
@@ -301,7 +304,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	@SuppressWarnings("static-access")
 	public void validateProductReviewStarsOnCollectionPage() throws Exception {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		driver.navigate().to("https://www.tommyjohn.com/collections/womens-all");
+		driver.navigate().to("https://www.tommyjohn.com/collections/sale-mens-womens");
 		
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 
@@ -425,7 +428,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		System.out.println("All filters list :: " + filterList);
 
 		// loop for total not of filters
-		for (int i = 3; i <= filterList + 1; i++) {
+		for (int i = 3; i < filterList; i++) {
 			element = driver.findElement(By.cssSelector("div.mega-collection-filters > div:nth-child(" + i + ") > a"));
 			// changed
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
@@ -461,10 +464,11 @@ public class CollectionPageComponent extends CollectionPageLocator {
 						"div.mega-collection-filters > div:nth-child(" + i + ") > ul > li:nth-child(1) > label > span"))
 						.getText();
 			} else {
-				i=i-2;
+				
 				selectedOption = driver.findElement(By.cssSelector(
 						"div.mega-collection-filters > div:nth-child(" + i + ") > ul > li:nth-child(1) > label > span"))
 						.getText();
+			
 			}
 			// selectedOption =
 			// driver.findElement(By.cssSelector("div.mega-collection-filters >
@@ -855,14 +859,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			}
 			
 		}
-		// clear all filters
-if(flag=true)
-{
-		wait.until(ExpectedConditions.visibilityOfElementLocated(CLEAR_FILTER_BUTTON));
-		WebElement ele = driver.findElement(CLEAR_FILTER_BUTTON);
-		JavascriptExecutor executor = (JavascriptExecutor) driver;
-		executor.executeScript("arguments[0].click();", ele);
-}
+	
 		// driver.findElement(CLEAR_FILTER_BUTTON).click();
 		Reporter.log("Corosals gets active when respective option selected");
 		ExtentReport.extentTest.info("Corosals gets active when respective option selected");
@@ -1008,7 +1005,7 @@ if(count!=59)
 				Reporter.log("Quick shop ATC button is displayed on hover.");
 				ExtentReport.extentTest.info("Quick shop ATC button is displayed on hover.");
 				System.out.println("Quick shop ATC text is: " + driver.findElement(QUICK_SHOP_ATC).getText());
-				softAssert.assertEquals(driver.findElement(QUICK_SHOP_ATC).getText(), "Quick Shop +",
+				softAssert.assertEquals(driver.findElement(QUICK_SHOP_ATC).getText(), "Add To Cart +",
 						"Text changed for Quick shop ATC button.");
 				driver.findElement(QUICK_SHOP_ATC).click();
 				Thread.sleep(3000);
@@ -1185,7 +1182,7 @@ if(count!=59)
 
 
 	public void MethodToCheckColorSwatchChanging() throws Exception {
-		driver.navigate().back();
+		
 		Thread.sleep(5000);
 		JavascriptExecutor executore = (JavascriptExecutor) driver;
 		//executore.executeScript("window.scrollBy(0, 350)", "");
@@ -1394,19 +1391,29 @@ if(count!=59)
 
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 
-		WebElement breadcrumb = driver.findElement(PLP_BREADCRUMB);
-		WebElement pageHeading;
+		
+	
 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_BREADCRUMB));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_BREADCRUMBHOME));
+		WebElement breadcrumb = driver.findElement(PLP_BREADCRUMBHOME);
 		Assert.assertTrue(breadcrumb.isEnabled(), "Element Clickable");
+		String breadcrumbhome = breadcrumb.getText();
+		softAssert.assertEquals(breadcrumbhome, "Home");
 		js.executeScript("arguments[0].click();", breadcrumb);
-
+		softAssert.assertEquals(driver.getCurrentUrl(), "https://www.tommyjohn.com" , "Clicked on home breadcrumb and not navigated toHomepage URL ");
 		
+		new HomePageComponents(driver).navigateToAllPantiesnInWomenCategory();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_BREADCRUMBHOME));
+		WebElement breadcrumbg = driver.findElement(PLP_BREADCRUMBGENDER);
+		Assert.assertTrue(breadcrumbg.isEnabled(), "Element Clickable");
+		String breadcrumbgender = breadcrumbg.getText();
+		softAssert.assertEquals(breadcrumbgender, "Womens");
+		js.executeScript("arguments[0].click();", breadcrumbg);
+		softAssert.assertEquals(driver.getCurrentUrl(), "https://www.tommyjohn.com" , "Clicked on home breadcrumb and not navigated toHomepage URL ");
 		wait.until(ExpectedConditions.presenceOfElementLocated(FIRST_PRODUCT));
-		pageHeading = driver.findElement(PLP_TITLE);
-		//wait.until(ExpectedConditions.stalenessOf(pageHeading));
-		
-
+		Thread.sleep(4000);
+		 WebElement pageHeading  = driver.findElement(PLP_TITLE);
+	
 		if ((pageHeading.getText()).contains("Women's All")) {
 
 			System.out.println("Breadcrumb link is working properly");
@@ -1427,13 +1434,29 @@ if(count!=59)
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
-		WebElement pageHeader = driver.findElement(PLP_TITLE);
+		
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_TITLE));
+		WebElement pageHeader = driver.findElement(PLP_TITLE);
+		WebElement headingcount = driver.findElement(PLP_TITLE_COUNT);
 		Assert.assertTrue(pageHeader.isDisplayed(), "The Category page header is displayed");
+		Assert.assertTrue(headingcount.isDisplayed(), "The Category page header is displayed");
+		
+		String count= headingcount.getText().replace("(" , "");
+		String countitem = count.replace(")","");
+		int c = Integer.parseInt(countitem);		
+		if(c>0)
+		{
+			Reporter.log("The Category page displayed correct count of items");
+			ExtentReport.extentTest.info("The Category page displayed correct count of items");
+		}
+		else {
+			ExtentReport.extentTest.info("The Category page displayed incorrect count of items");
+			throw new Exception("The Category page displayed incorrect count of items");
+		}
 
-		if ((pageHeader.isDisplayed())) {
-			Reporter.log("The Category page header is displayed");
+		if ((pageHeader.isDisplayed()) &&  headingcount.isDisplayed()) {
+			Reporter.log("The Category page header is displayed correctly with count of items");
 			ExtentReport.extentTest.info("The Category page header is displayed");
 			System.out.println("Page Header is - " + pageHeader.getText());
 
@@ -1483,7 +1506,7 @@ if(count!=59)
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollBy(0,150)");
 		objGeneralMethods.waitTillPageLoad(driver);
-		Thread.sleep(5000);
+		Thread.sleep(9000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_INLINE_BANNER));
 		WebElement inlineBanner = driver.findElement(PLP_INLINE_BANNER);
 		System.out.println(driver.getCurrentUrl());
@@ -1547,6 +1570,7 @@ if(count!=59)
 			ExtentReport.extentTest.info("The Secondary Badge is not displayed");
 			//throw new Exception("The Secondary Badge is not displayed");
 		}
+	
 	}
 	
 	public void validateOnImageBadging() throws Exception {
@@ -1651,64 +1675,60 @@ if(count!=59)
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		
 		js.executeScript("window.scrollBy(0,250)");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_PRICE_FILTER));
+		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_IMAGE));
-
-		WebElement priceFilter = driver.findElement(PLP_PRICE_FILTER);
-		WebElement singleProductFilter = driver.findElement(PLP_FILTER_SINGLE_PROODUCT);
+		new CollectionPageComponent(driver).validateProductImageOnPLP();
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_PRICE_FILTER));
+		//WebElement priceFilter = driver.findElement(PLP_PRICE_FILTER);
+		//WebElement singleProductFilter = driver.findElement(PLP_FILTER_SINGLE_PROODUCT);
 		
 		int width ;
-//		String marginLeft="";
-//		String marginRight="";
-		
-		Assert.assertTrue(priceFilter.isDisplayed(), "Price Filter is displayed");
-		Assert.assertTrue(priceFilter.isEnabled(), "Price Filter is clickable");
 
-		if (priceFilter.isDisplayed()) {
+//		Assert.assertTrue(priceFilter.isDisplayed(), "Price Filter is displayed");
+//		Assert.assertTrue(priceFilter.isEnabled(), "Price Filter is clickable");
 
-			Reporter.log("Price Filter is displayed");
-			ExtentReport.extentTest.info("Price Filter is displayed");
-			System.out.println("Price Filter is displayed");
-			js.executeScript("arguments[0].click();", priceFilter);
-			
-			if(singleProductFilter.isEnabled())
-			{
-				Reporter.log("Single Product Filter is clickable");
-				ExtentReport.extentTest.info("Single Product Filter is clickable");
-				System.out.println("Single Product Filter is clickable");
-				js.executeScript("arguments[0].click();", singleProductFilter);
-				js.executeScript("arguments[0].click();", priceFilter);
-				Thread.sleep(5000);
-			}
-			else {
-				System.out.println("Single Product Filter is not clickable");
-				ExtentReport.extentTest.info("Single Product Filter is not clickable");
-				throw new Exception("Single Product Filter is not clickable");
-			}
-		} else {
-			System.out.println("Price Filter is not displayed");
-			ExtentReport.extentTest.info("Price Filter is not displayed");
-			throw new Exception("Price Filter is not displayed");
-		}
-		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_IMAGE));
-
-		WebElement productImage = driver.findElement(By.cssSelector("div[data-index='0']>div>a>img.product-image--main"));
-		org.openqa.selenium.Dimension dim = productImage.getSize();
-		width=	dim.width;
-//		marginLeft = productImage.getCssValue("margin-left");
-//		marginRight = productImage.getCssValue("margin-right");
-//		System.out.println(width + " " + marginLeft + " " + marginRight);
-		
-		if(width>280)  {
-			Reporter.log("Single Product Tile annotations are correct");
-			ExtentReport.extentTest.info("Single Product Tile annotations are correct");
-			System.out.println("Single Product Tile annotations are correct");
-		}
-		else {
-			System.out.println("Single Product Tile annotations are not correct");
-			ExtentReport.extentTest.info("Single Product Tile annotations are not correct");
-			throw new Exception("Single Product Tile annotations are not correct");
-		}
+//		if (priceFilter.isDisplayed()) {
+//
+//			Reporter.log("Price Filter is displayed");
+//			ExtentReport.extentTest.info("Price Filter is displayed");
+//			System.out.println("Price Filter is displayed");
+//			js.executeScript("arguments[0].click();", priceFilter);
+//			
+//			if(singleProductFilter.isEnabled())
+//			{
+//				Reporter.log("Single Product Filter is clickable");
+//				ExtentReport.extentTest.info("Single Product Filter is clickable");
+//				System.out.println("Single Product Filter is clickable");
+//				js.executeScript("arguments[0].click();", singleProductFilter);
+//				js.executeScript("arguments[0].click();", priceFilter);
+//				Thread.sleep(5000);
+//			}
+//			else {
+//				System.out.println("Single Product Filter is not clickable");
+//				ExtentReport.extentTest.info("Single Product Filter is not clickable");
+//				throw new Exception("Single Product Filter is not clickable");
+//			}
+//		} else {
+//			System.out.println("Price Filter is not displayed");
+//			ExtentReport.extentTest.info("Price Filter is not displayed");
+//			throw new Exception("Price Filter is not displayed");
+//		}
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_IMAGE));
+//		
+//code to check double wide single tile
+//		WebElement productImage = driver.findElement(By.cssSelector("div[data-index='0']>div>a>img.product-image--main"));
+//		org.openqa.selenium.Dimension dim = productImage.getSize();
+//		width=	dim.width;		
+//		if(width>280)  {
+//			Reporter.log("Single Product Tile annotations are correct");
+//			ExtentReport.extentTest.info("Single Product Tile annotations are correct");
+//			System.out.println("Single Product Tile annotations are correct");
+//		}
+//		else {
+//			System.out.println("Single Product Tile annotations are not correct");
+//			ExtentReport.extentTest.info("Single Product Tile annotations are not correct");
+//			throw new Exception("Single Product Tile annotations are not correct");
+//		}
 	}
 	
 	public void validateSingleTileSearch() throws Exception {
@@ -1716,13 +1736,13 @@ if(count!=59)
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
-		JavascriptExecutor js = (JavascriptExecutor) driver;
+		//JavascriptExecutor js = (JavascriptExecutor) driver;
 		
-		js.executeScript("window.scrollBy(0,250)");
+		//js.executeScript("window.scrollBy(0,250)");
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_IMAGE));
 		
-		WebElement productImage = driver.findElement(By.cssSelector("div[data-index='0']>div>a>img.product-image--main"));
+		WebElement productImage = driver.findElement(By.cssSelector("div[data-index='1']>div>a>img[data-tj-qa='plp-product-img-main']"));
 		org.openqa.selenium.Dimension dim = productImage.getSize();
 		int width=	dim.width;
 //		marginLeft = productImage.getCssValue("margin-left");

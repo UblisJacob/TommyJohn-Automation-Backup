@@ -30,7 +30,7 @@ public class CollectionPageLocator {
 	public static By FIRST_PRODUCT_REVIEW_STARS = By.cssSelector("[data-tj-qa='product-reviews'],.yotpo-bottomline");
 	public static By FIRST_PRODUCT_URL = By.cssSelector(".product-meta");
 	
-	public static By ALL_COLOR_LIST = By.cssSelector("div[data-index='0']>div:nth-child(2)>div>div>div.product-item__swatch--circle");
+	public static By ALL_COLOR_LIST = By.cssSelector("ul>li>input[data-tj-qa='color-swatch'] , div[data-index='0']>div:nth-child(2)>div>div>div.product-item__swatch--circle");
 	public static By PRODUCT_IMAGE_COLOR_NAME= By.cssSelector("div[data-index='0']>div>a");
 	public static By COLOR_SWATCH_PREV_SLICK_ARROWS = By.cssSelector("div.mega-collection-grid.js-mega-collection-grid > div:nth-child(3) > div:nth-child(1)>div:nth-child(2)>.product-item__swatch-list>.slick-next");
 	public static By COLOR_SWATCH_NEXT_SLICK_ARROWS = By.cssSelector("div.mega-collection-grid.js-mega-collection-grid > div:nth-child(3) > div:nth-child(1)>div:nth-child(2)>.product-item__swatch-list>.slick-prev");
@@ -76,9 +76,11 @@ public class CollectionPageLocator {
 	    
 	    //new
 	    public static String PLP_PRODUCTS= "(//span[@class='product-meta__title'])";
-	    public static By PLP_BREADCRUMB= By.cssSelector("nav.breadcrumbs>div:nth-child(2)>a");
-	    public static By PLP_TITLE= By.cssSelector("[data-tj-qa='plp-title'],div.collection-title-bar__content>h1");
-	    public static By PLP_INLINE_BANNER= By.cssSelector("img[data-tj-qa='plp-inline-banner'");
+	    public static By PLP_BREADCRUMBGENDER= By.cssSelector("nav.breadcrumbs>div:nth-child(2)>a>span");
+	    public static By PLP_BREADCRUMBHOME= By.cssSelector("nav.breadcrumbs>div:nth-child(1)>a>span");
+	    public static By PLP_TITLE= By.cssSelector("h1[data-tj-qa='plp-title'] , div.collection-title-bar__content>h1");
+	    public static By PLP_TITLE_COUNT= By.cssSelector("h1[data-tj-qa='plp-title']>span , div.collection-title-bar__content>h1>span");
+	    public static By PLP_INLINE_BANNER= By.cssSelector("img[data-tj-qa='plp-inline-banner']");
 	    public static String PLP_SECTION_HEADER = "(//h2[@class='mega-collection-grid__title'])";
 	    
 	    public static By PRODUCT_IMAGE = By.cssSelector("[data-tj-qa='plp-product-img-main'],img.product-image:nth-child(1)");
@@ -89,10 +91,10 @@ public class CollectionPageLocator {
 	    public static By PLP_SEO_LINK = By.xpath("//div[@class='collection-seo-body']//a");
 	    
 	    public static By PLP_PRODUCT_IMAGE_BADGE = By.xpath("//*[data-tj-qa='plp-product-badge']/span | //div[@class='productImage-item__badge']/span");
-	    public static By PLP_PRODUCT_SECONDARY_BADGE = By.xpath("//div[contains(@class,'product-item__badge')]//span");
+	    public static By PLP_PRODUCT_SECONDARY_BADGE = By.xpath("//div[contains(@class,'product-item__badge')]/span");
 	    
 	     public static By SEARCH_PRICE_FILTER = By.xpath("//a[@data-filter-group='facet_price_range']//span[contains(text(),'Price')]");
-	    public static By SEARCH_PRICE_FILTER_1=By.xpath("//label[contains(@for,'25to50')]//span");
+	    public static By SEARCH_PRICE_FILTER_1=By.xpath("//button[contains(@for,'25to50')]");
 	    public static By SEARCH_PRICE_FILTER_PILL_1=By.xpath("//button[contains(text(),'$25 to $50')]");
 	  
 	    

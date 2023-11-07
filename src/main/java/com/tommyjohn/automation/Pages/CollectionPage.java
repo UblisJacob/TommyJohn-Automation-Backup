@@ -372,13 +372,13 @@ public class CollectionPage extends CollectionPageComponent{
 	
 	public void validateBreadcrumbLinks() throws Exception {
 		// TODO Auto-generated method stub
-		new HomePageComponents(driver).navigateToNewArrivalsInWomenCategory();
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 		validatePLPBreadcrumbLinks();
 	}
 	
 	public void validateCategoryPageHeader() throws Exception {
 		// TODO Auto-generated method stub
-		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 		validatePLPHeader();
 	}
 	
@@ -390,13 +390,13 @@ public class CollectionPage extends CollectionPageComponent{
 
 	public void validateInlineBanner() throws Exception {
 		// TODO Auto-generated method stub
-		new HomePageComponents(driver).navigateToAllMensCollectionsInMenCategory();
+		new HomePageComponents(driver).navigateToBraInWomenCategory();
 		validatePLPInlineBanner();
 	}
 	
 	public void validateFilters() throws Exception {
 		// TODO Auto-generated method stub
-		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
+		new HomePageComponents(driver).navigateToMenssleepLoungeCategory();
 		methodToCheckAllFilters();
 	}
 	
@@ -420,7 +420,7 @@ public class CollectionPage extends CollectionPageComponent{
 	
 	public void validateProductTile() throws Exception {
 		// TODO Auto-generated method stub
-		new HomePageComponents(driver).navigateToAllWomensCollectionInWomensCategory();
+		new HomePageComponents(driver).navigateToMensUWCAT();
 		validateProductHeadingTextOnCollectionPage();
 		Verify_ProductTile_HoverFunctionality();
 		validateProductImageOnPLP();
@@ -439,7 +439,7 @@ public class CollectionPage extends CollectionPageComponent{
 	
 	public void validateSingleTileProduct() throws Exception {
 		// TODO Auto-generated method stub
-		new HomePageComponents(driver).NavigateToAllSleepwearInWomenCategory();
+		new HomePageComponents(driver).NavigateToplpwithsingleproduct();
 		validateSingleTile();
 	}
 	

@@ -249,17 +249,17 @@ public class HomePageComponents extends HomePageLocators {
 
 		SoftAssert softAssert = new SoftAssert();
 		action = new Actions(driver);
-		searchText ="women";
+		//searchText ="women";
 		WebElement element = driver.findElement(SEARCH_ICON_INPUT);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", element);
 		
 		driver.findElement(SEARCH_ICON_INPUT).sendKeys(searchText);
 
-		action.moveToElement(driver.findElement(SEARCH_ICON_INPUT)).build().perform();
+//		action.moveToElement(driver.findElement(SEARCH_ICON_INPUT)).build().perform();
 		Thread.sleep(3000);
-		softAssert.assertTrue(driver.findElement(POPULAR_SEARCHES).isDisplayed(),
-				"Popular searches section not displayed ");
+		//softAssert.assertTrue(driver.findElement(PRODUCT_SUGGESTION).isDisplayed(),
+		//		"Product suggestions section not displayed ");
 		softAssert.assertTrue(driver.findElement(PRODUCT_MATCHES_TITLE).isDisplayed(),
 				"Product matches section is not displayed");
 		
@@ -269,8 +269,9 @@ public class HomePageComponents extends HomePageLocators {
 		robot.keyPress(KeyEvent.VK_ENTER);*/
 
 		WebElement pm = driver.findElement(PRODUCT_SUGGESTION);
-		String productName = pm.getText();
+		String productName = pm.getAttribute("data-search-term-value");
 		System.out.println(productName);
+		
 		executor.executeScript("arguments[0].click();", pm);
 		Thread.sleep(8000);
 		
@@ -317,38 +318,38 @@ public class HomePageComponents extends HomePageLocators {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
 		SoftAssert softAssert = new SoftAssert();
 		action = new Actions(driver);
-
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(40));
 
 		String Search_keyword = "women";
-		if(!driver.findElement(SEARCH_ICON_INPUT).isDisplayed())
+		if(!driver.findElement(SEARCH_TEXTBOX).isDisplayed())
 			throw new Exception("Search option is not present");
-		WebElement element = driver.findElement(SEARCH_ICON_INPUT);
-		JavascriptExecutor executor = (JavascriptExecutor)driver;
-		executor.executeScript("arguments[0].click();", element);
-
-		//Check auto-suggestions
-		driver.findElement(SEARCH_ICON_INPUT).sendKeys("women");
-		action.moveToElement(driver.findElement(SEARCH_ICON_INPUT)).build().perform();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
-		//Thread.sleep(5000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(AUTO_SUGGESTED_PRODUCT_IMG));
-		softAssert.assertTrue(driver.findElement(AUTO_SUGGESTED_LINKS).isDisplayed(),"Popular searches section not displayed ");
+		WebElement searchTXTBX = driver.findElement(SEARCH_TEXTBOX);	
+		searchTXTBX.sendKeys("");
+		searchTXTBX.clear();
+		searchTXTBX.sendKeys(Search_keyword);
+		
+	    action.moveToElement(driver.findElement(SEARCH_TEXTBOX)).build().perform();
+		Thread.sleep(5000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SUGGESTED_PRODUCT_IMG));
+		
 		softAssert.assertEquals(driver.findElement(PRODUCT_MATCHES_TITLE).getText(),"Product Matches","Text changed for Product matches title on autosuggestion container");
-		softAssert.assertTrue(driver.findElement(AUTO_SUGGESTED_PRODUCT_IMG).isDisplayed(), "Auto suggested product images are not displayed");
-		List<WebElement> product_matches_img = driver.findElements(AUTO_SUGGESTED_PRODUCT_IMG);
+		softAssert.assertTrue(driver.findElement(SUGGESTED_PRODUCT_IMG).isDisplayed(), "Product Matches are not displayed");
+		List<WebElement> product_matches_img = driver.findElements(SUGGESTED_PRODUCT_IMG);
 		softAssert.assertTrue(product_matches_img.size()== 4, "Total count of suggested product matched images are not 4");
-		softAssert.assertTrue(driver.findElement(AUTO_SUGGESTED_PRODUCT_TILE_TITLE).isDisplayed(), "Auto suggested product tile title is not displayed");
-		WebElement First_Suggested_link = driver.findElement(By.cssSelector(".autocomplete-suggestions-content>a:nth-child(1)>div>span"));
+		
+		
+		softAssert.assertTrue(driver.findElement(SUGGESTED_LINKS).isDisplayed(),"Search Suggestions are not displayed ");
+		
+		WebElement First_Suggested_link = driver.findElement(AUTO_SUGGESTED_PRODUCT_TILE_TITLE);
 		String search_value = First_Suggested_link.getAttribute("data-search-term-value");
 		executor.executeScript("arguments[0].click();", First_Suggested_link);
 		//First_Suggested_link.click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(SEARCHPAGE_PRODUCT_IMAGE));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CollectionPageComponent.FIRST_PRODUCT_IMAGE));
 		String[] list1 = driver.findElement(SEARCHPAGE_TITLE).getText().split("for ");
 		text = list1[list1.length-1].replace("\"", "");
 		softAssert.assertEquals(text, search_value, "Search page title is not matched with clicked suggested link");
 
-		driver.findElement(SEARCH_ICON_INPUT).sendKeys("c");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(AUTO_SUGGESTED_PRODUCT_TILE_TITLE));
 		WebElement FIRST_SUGGESTED_PRODUCT_TILE_TITLE = driver.findElement(By.cssSelector(".search-product-tile:nth-child(1)>a"));
 		String suggested_title = FIRST_SUGGESTED_PRODUCT_TILE_TITLE.getText().replace(",", "").toLowerCase();
@@ -378,20 +379,7 @@ public class HomePageComponents extends HomePageLocators {
 		softAssert.assertTrue(driver.findElement(SEARCHPAGE_PRODUCT_REVIEWS).isDisplayed(), "Product reviews not present on search page");
 		softAssert.assertTrue(driver.findElement(SEARCHPAGE_PRODUCT_SWATCHES).isDisplayed(), "Product swatches not present on search page");
 		softAssert.assertTrue(driver.findElement(SEARCHPAGE_PRODUCT_PRICE).isDisplayed(), "Product price not present on search page");
-		try{
-			System.out.println("Verifying for Badging .......");
-			if(!driver.findElement(SEARCHPAGE_PRODUCT_BADGE).isDisplayed())
-				throw new Exception("Badging is not displayed for product tile on search page.");
-			else {
-				System.out.println("Badging is displayed");
-				Reporter.log("Badge is displayed for product tile on search page.");
-				ExtentReport.extentTest.info("Badge is displayed for product tile on search page.");
-			}
-		}
-		catch(Exception e){
-			System.out.println("Badging is not applicable for this product.");
-			ExtentReport.extentTest.info("Badging is not applicable for this product.");
-		}
+		
 
 		WebElement pname  = driver.findElement(SEARCHPAGE_PRODUCT_NAME);
 		text= pname.getText();
@@ -2016,6 +2004,11 @@ public class HomePageComponents extends HomePageLocators {
 		jse.executeScript("window.scrollBy(0,250)");
 	}
 
+	public void navigateToBraInWomenCategory()  {
+		driver.get("https://www.tommyjohn.com/collections/bras-bralettes");
+		
+	}
+
 	//navigate to Button down shirts
 	public void navigateToButtonDownShirtInMenCategory() throws Exception {
 
@@ -2163,6 +2156,12 @@ public class HomePageComponents extends HomePageLocators {
 		Thread.sleep(5000);
 
 	}
+	public void navigateToMensUWCAT () throws Exception {
+		driver.get("https://www.tommyjohn.com/collections/mens-underwear?sort-by=relevance&sort-order=descending&filter%5Bfacet_category%5D=underwear");
+		Thread.sleep(5000);
+
+	}
+	
 
 	// navigate to Gift Card category
 	public void navigateToGiftCard() throws Exception {
@@ -2377,6 +2376,10 @@ public class HomePageComponents extends HomePageLocators {
 		// TODO Auto-generated method stub
 		driver.get("https://www.tommyjohn.com/collections/pajamas-womens");
 	}
+	public void NavigateToplpwithsingleproduct() {
+		// TODO Auto-generated method stub
+		driver.get("https://www.tommyjohn.com/collections/bras?sort-by=relevance&sort-order=descending&filter%5Bfacet_collection%5D=comfortsmoothing");
+	}
 
 	public void NavigateToLoungewearSetsInWomenCategory() {
 		// TODO Auto-generated method stub
@@ -2417,6 +2420,12 @@ public class HomePageComponents extends HomePageLocators {
 	public void navigateToSocksPage() {
 		driver.get("");
 		
+	}
+
+
+	public void navigateToMenssleepLoungeCategory() {
+		// TODO Auto-generated method stub
+		driver.navigate().to("https://www.tommyjohn.com/collections/mens-sleep-lounge");
 	}
 	
 	

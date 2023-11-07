@@ -11,7 +11,7 @@ public class ProductDetailsPageLocators {
 	//changed
 	public static By PRODUCT_TITLE_1 = By.xpath("//div[@class='multi-pdp-title-wrap desktop-view desktop']//h1");//changed
 	//	public static By PRODUCT_PRICE = By.cssSelector("div.product-info__inner-top > span > span:nth-child(2)");
-	public static By PRODUCT_PRICE = By.cssSelector(" .product-info__price>span#multi-price");
+	public static By PRODUCT_PRICE = By.cssSelector(" .product-info__price>span#multi-price , span[data-tj-qa='product-price']>span#product-price");
 	
 	// image carousels
 	public static By IMG_CAROUSEL = By.cssSelector("div.pdpVerticalSlides>div>div>div");
@@ -30,13 +30,13 @@ public class ProductDetailsPageLocators {
 	public static By IMAGE_COLOR = By.cssSelector(".product-gallery.pdp-client-side-container.product-gallery-container>div>div:nth-child(2)>div>div>div>div.slick-active");
 	
 	public static By TOTAL_SIZES = By.cssSelector("[data-tj-qa='product-size'],.option-swatch__option>li>label>span");
-	public static By INACTIVE_SIZES = By.cssSelector("[data-tj-qa='product-size'],.option-swatch__option>li>.option-swatch__input.unavailable.email-when-in-stock");
+	public static By INACTIVE_SIZES = By.cssSelector(".unavailable[data-tj-qa='product-size'],.option-swatch__option>li>.option-swatch__input.unavailable.email-when-in-stock");
 	public static By SIZE_VALUE = By.cssSelector("[data-tj-qa='product-size'],.option-swatch__option>li>input");
 	
 	
 	//color swatches
 	public static By COLOR_SWATCHES = By.cssSelector("[data-tj-qa='color-swatch'],.product-option__color-swatches-wrapper>ul>li");	
-	public static By STRIKED_COLOR_SWATCHES = By.cssSelector("[data-tj-qa='color-swatch'],.product-option__color-swatches-wrapper>ul>li>.product-option__variant-btn.product-option__variant-btn--color.js-variant--color.unavailable.email-when-in-stock");
+	public static By STRIKED_COLOR_SWATCHES = By.cssSelector(".unavailable[data-tj-qa='color-swatch'],.product-option__color-swatches-wrapper>ul>li>.product-option__variant-btn.product-option__variant-btn--color.js-variant--color.unavailable.email-when-in-stock");
 	
 	
 	public static By AFTERPAY_DIV = By.cssSelector(".multi-pdp-title-wrap.desktop-view>span>.afterpay-paragraph");
@@ -61,7 +61,8 @@ public class ProductDetailsPageLocators {
 	public static By SIZE_TEXT = By.xpath("//input[@class='sizeOption' and @checked='checked']");
 	public static By BRA_BAND_SIZE_DROPDOWN = By.cssSelector("[data-tj-qa='find-your-size-band-size'],.size-guide-size-finder-dropdowns>span:nth-child(1)>select");
 	public static By BRA_BAND_SIZE_SELECT = By.cssSelector("[data-tj-qa='find-your-size-band-size'],.size-guide-size-finder-dropdowns>span:nth-child(1)");
-	
+	public static By BAND_SIZE_TEXT = By.cssSelector(".size-guide-size-finder-x-axis-title");
+	public static By CUP_VOLUME_TEXT = By.cssSelector(".size-guide-size-finder-y-axis-title");
 	public static By BRA_CUP_VOLUME_DROPDOWN = By.cssSelector("[data-tj-qa='find-your-size-cup-size'],.size-guide-size-finder-dropdowns>span:nth-child(2)>select");
 	public static By FIND_SIZE_BUTTON = By.cssSelector("[data-tj-qa='find-your-size-calculator']>button,.calculate-size-button>button.find-size-button");
 	public static By CALCULATED_SIZE_RESULT = By.cssSelector("[data-tj-qa='size-result'],.calculate-size-results");
@@ -76,7 +77,7 @@ public class ProductDetailsPageLocators {
 	public static By SIZEGUIDE_FITRANGE_TEXT= By.cssSelector(".instructions-text");
 	public static By SIZEGUIDE_CHART_TABLE= By.cssSelector("[data-tj-qa='size-chart-table'],.product-fit-guide>.size-chart-table");
 	
-
+	public static By SIZEGUIDE_TITLE= By.cssSelector("[data-tj-qa='size-guide-title']");
 	public static By SIZE_GUIDE_BUTTON = By.cssSelector("[data-tj-qa='size-guide-link'],button.product-info__header-btn.size-guide");
 	public static By ADD_TO_CART_BUTTON = By.cssSelector("[data-tj-qa='add-to-cart-cta'],button.product-info__atc.button.js-loop-atc");
 	public static By JOIN_THE_WAITLIST = By.cssSelector("[data-tj-qa='add-to-cart-cta'],button.product-info__atc.button.button--red.button--full.js-loop-atc.email-when-in-stock");
@@ -117,7 +118,7 @@ public class ProductDetailsPageLocators {
 	//Reviews section
 
 
-	public static By RATING_STARS = By.cssSelector("[data-tj-qa='product-star-rating'],div.multi-pdp-title-wrap.desktop-view > div.product-info__price-wrap > div.yotpo-star-wrapper > div > div > span.yotpo-stars");
+	public static By RATING_STARS = By.cssSelector("div.multi-pdp-title-wrap.desktop-view > div.product-info__price-wrap > div.yotpo-star-wrapper > div > div > span[data-tj-qa='product-star-rating'],div.multi-pdp-title-wrap.desktop-view > div.product-info__price-wrap > div.yotpo-star-wrapper > div > div > span.yotpo-stars");
 	public static By RATING_NUMBER = By.cssSelector("[data-tj-qa='product-review-count'],div.multi-pdp-title-wrap.desktop-view > div.product-info__price-wrap > div.yotpo-star-wrapper > div > div > a");
 	public static By RATING_AND_REVIEWS_BOX = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container");
 	public static By RATING_AND_REVIEWS_FILTER = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div:nth-child(2)>ul>li");
