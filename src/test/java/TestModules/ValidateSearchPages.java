@@ -71,7 +71,7 @@ public class ValidateSearchPages {
 	
 	@Test
 	public void TC_Search_ValidateSingleProductTile() throws Exception {
-		searchText = objGeneralMethods.readPropertiesFile("searchunderwear");
+		searchText = objGeneralMethods.readPropertiesFile("searchUnderwear");
 		new HomePage(driver).validateSearchFunctionEnter(searchText);
 		new CollectionPage(driver).validateSingleTileProductSearch();
 	}

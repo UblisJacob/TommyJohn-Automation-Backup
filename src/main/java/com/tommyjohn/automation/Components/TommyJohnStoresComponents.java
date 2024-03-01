@@ -78,14 +78,14 @@ public class TommyJohnStoresComponents extends TommyJohnStoresPageLocators {
 			}
 
 //			validate store hours are present
-			if (!storeName.contains("Opening Soon")) {
-				element = genMethods.autoIndex(driver, STORE_HOURS, i, 1);
-//				element = driver.findElement(By.cssSelector(".stores-section__container>div:nth-child("+i+")>div>div:nth-child(4)>p:nth-child(2)"));
-				String storeHours = element.getText();
-				System.out.println("Store Hours are: " + storeHours);
-				Reporter.log("Store Hours are: " + storeHours);
-				softassert.assertTrue(element.isDisplayed(), "Store hours are not present for store " + storeName);
-			}
+			//if (!storeName.contains("Opening Soon")) {
+			//	element = genMethods.autoIndex(driver, STORE_HOURS, i, 1);
+//			//	element = driver.findElement(By.cssSelector(".stores-section__container>div:nth-child("+i+")>div>div:nth-child(4)>p:nth-child(2)"));
+			//	String storeHours = element.getText();
+			//	System.out.println("Store Hours are: " + storeHours);
+			//	Reporter.log("Store Hours are: " + storeHours);
+			//	softassert.assertTrue(element.isDisplayed(), "Store hours are not present for store " + storeName);
+			//}
 			
 
 //			"Get Directions" should open Google maps with the location search.

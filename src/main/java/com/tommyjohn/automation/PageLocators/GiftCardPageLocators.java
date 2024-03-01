@@ -6,7 +6,7 @@ public class GiftCardPageLocators {
 
 	public static By NEW_ARRIVALS_OPTION = By.cssSelector(".header-desktop-left > ul > li:nth-child(1) > a");
 	public static By GIFT_CARD_TITLE = By.cssSelector("div.desktop-view>div>h1[data-tj-qa='product-name'] , .product-info__inner-top >div >div:nth-child(1) >h1");
-	public static By GIFT_CARD_PRICE = By.cssSelector("div.desktop-view>div:nth-child(2)>span>span[data-tj-qa='product-price'] ,.product-info__inner-top >div >div:nth-child(2) >span >span:nth-child(2)");
+	public static By GIFT_CARD_PRICE = By.xpath("(//span[@data-tj-qa='product-price'])[2]");
 	public static By COLOR_NAME = By.cssSelector("[data-tj-qa='gproduct-color'],.product-info__option >div >span");
 	public static By GIFT_CARD_AMOUNT_TEXT = By.cssSelector(".option-dropdown__section >div:nth-child(1)");
 
@@ -25,7 +25,7 @@ public class GiftCardPageLocators {
 	public static By DELIVERY_MESSAGE_LABEL = By.cssSelector("[data-tj-qa='gc-product-delivery-date-notification'],.time-label");
 	public static By GIFT_CARD_MESSAGE_LABEL = By.cssSelector("[data-tj-qa='gc-product-message-text'],#gift-card-section >div:nth-child(14)");
 
-	public static By GIFT_CARD_DISPLAY_IMAGE = By.cssSelector(".product-gallery >div>div:nth-child(2) >div >div >div:nth-child(1) >img");
+	public static By GIFT_CARD_DISPLAY_IMAGE = By.xpath("//div[@class='product-gallery']");
 	public static By GIFT_CARD_DISPLAY_IMAGE_SMALL_1 = By.cssSelector("div[tabindex='0'] >img");
 	public static By GIFT_CARD_DISPLAY_IMAGE_SMALL_2 = By.cssSelector(".product-gallery >div:nth-child(1) >div >div >div:nth-child(2) >img");
 	public static By GIFT_CARD_MESSAGE_TEXTBOX = By.cssSelector("[data-tj-qa='gc-product-message-input'],#gift-card-section >textarea");
