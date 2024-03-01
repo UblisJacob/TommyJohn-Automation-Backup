@@ -433,7 +433,7 @@ public class GiftCardBalancePageComponents extends GiftCardBalancePageLocators {
 		wait.until(ExpectedConditions.elementToBeClickable(DIGITAL_GIFT_CARD_CHECK_BALANCE_BTN));
 		
 //		2. If user fills valid GCID but omits out Email Field, error message should come up on that specific field
-		driver.findElement(DIGITAL_GIFT_CARD_ID_FIELD).sendKeys(validGCID);
+		driver.findElement(DIGITAL_GIFT_CARD_EMAIL_FIELD).sendKeys(validGCID);
 		driver.findElement(DIGITAL_GIFT_CARD_CHECK_BALANCE_BTN).click();
 		
 		String expectedEmailErrorText = "Please enter a valid email address.";
@@ -476,7 +476,7 @@ public class GiftCardBalancePageComponents extends GiftCardBalancePageLocators {
 		
 		String invalidGCID = "9876543234567877";
 		String invalidCardHolderEmail = "kritika.bhat@tomjohn.com";
-		
+
 		driver.findElement(DIGITAL_GIFT_CARD_ID_FIELD).sendKeys(invalidGCID);
 		driver.findElement(DIGITAL_GIFT_CARD_EMAIL_FIELD).sendKeys(validCardHolderEmail);
 		driver.findElement(DIGITAL_GIFT_CARD_CHECK_BALANCE_BTN).click();

@@ -52,7 +52,7 @@ public class AccountLoginLocators {
 	public static By INPUT_BOX_FOR_EMAIL = By.cssSelector("input[data-tj-qa='forgot-password-email-input']");
 	public static By SUBMIT_BUTTON = By.cssSelector("input[data-tj-qa='forgot-password-email-submit']");
 //	public static By SUBMIT_BUTTON = By.cssSelector("#recover-password-form-new > div:nth-child(4) > input");
-	public static By ERROR_MESSAGE = By.cssSelector("li.reset-fail, li[data-tj-qa='forgot-password-email-invalid']");
+	public static By ERROR_MESSAGE = By.cssSelector("li[data-tj-qa='forgot-password-email-invalid']");
 	public static By EMAIL_RECIEVED_SUCCESS_MESSAGE = By.cssSelector("div.account-reset-password-sent.reset-success > p");
 	public static By LINK_IN_ERROR_MESSAGE_FROM_RECOVER_PASSWORD = By.cssSelector("div.input-group > ul > li > a");
 	

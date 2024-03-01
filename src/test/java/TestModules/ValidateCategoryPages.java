@@ -41,14 +41,14 @@ public class ValidateCategoryPages {
 	
 	 @Test public void TC_ViewSectionHeaders() throws Exception { new
 	 CollectionPage(driver).validateCategorySectionHeaders(); }
-	 
 
-	
+
+
 	 @Test public void TC_InteractWithInlineBanner() throws Exception { new
 	 CollectionPage(driver).validateInlineBanner(); }
 	 
 
-	
+
 	 @Test public void TC_InteractWithFilters() throws Exception { new
 	 CollectionPage(driver).validateFilters(); }
 	 

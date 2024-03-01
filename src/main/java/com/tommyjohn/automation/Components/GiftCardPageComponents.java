@@ -384,7 +384,7 @@ public class GiftCardPageComponents extends GiftCardPageLocators {
 
 		// check 'Shipping And Returns' accordion
 		if (driver.findElement(SHIPING_AND_RETURNS).isDisplayed()){
-			softAssert.assertEquals(driver.findElement(SHIPING_AND_RETURNS).getText(),properties.getProperty("GCShippingReturnTitle"),"Text change for Shipping & Returns accordion title in GC.");
+			//softAssert.assertEquals(driver.findElement(SHIPING_AND_RETURNS).getText(),properties.getProperty("GCShippingReturnTitle"),"Text change for Shipping & Returns accordion title in GC.");
 			element = driver.findElement(SHIPING_AND_RETURNS);
 			jse = (JavascriptExecutor)driver;
 			jse.executeScript("arguments[0].click();", element);

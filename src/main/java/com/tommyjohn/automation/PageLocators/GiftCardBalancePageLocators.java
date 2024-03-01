@@ -21,11 +21,11 @@ public class GiftCardBalancePageLocators {
 //	DIGITAL/E-GIFT CARD
 	public static By DIGITAL_GIFT_CARD_FORM = By.cssSelector("div[class='side-by-side']>.form:nth-child(2)");
 	public static By DIGITAL_GIFT_CARD_FORM_LABEL = By.cssSelector("[data-tj-qa='egc-balance-heading'],div[class='side-by-side']>.form:nth-child(2)>.label");
-	public static By DIGITAL_GIFT_CARD_ID_LABEL = By.cssSelector("[data-tj-qa='balance-card-number']>div,div[for='giftcard_code']");
-	public static By DIGITAL_GIFT_CARD_ID_FIELD = By.cssSelector("[data-tj-qa='balance-card-number']>input,#giftcard_code");
-	public static By DIGITAL_GIFT_CARD_EMAIL_LABEL = By.cssSelector("[data-tj-qa='balance-email']>div,div[for='email']");
-	public static By DIGITAL_GIFT_CARD_EMAIL_FIELD = By.cssSelector("[data-tj-qa='balance-email']>input,#email");
-	public static By DIGITAL_GIFT_CARD_CHECK_BALANCE_BTN = By.cssSelector("div[data-tj-qa='egc-check-balance-button'] , div[class='side-by-side']>.form:nth-child(2) .button");
+	public static By DIGITAL_GIFT_CARD_ID_LABEL = By.xpath("(//div[@data-tj-qa='balance-card-number']//div[@for='giftcard_code'])[2]");
+	public static By DIGITAL_GIFT_CARD_ID_FIELD = By.xpath("(//input[@id='giftcard_code'])[2]");
+	public static By DIGITAL_GIFT_CARD_EMAIL_LABEL = By.xpath("(//div[@data-tj-qa='balance-email']//div[@for='email'])[2]");
+	public static By DIGITAL_GIFT_CARD_EMAIL_FIELD = By.xpath("(//input[@id=\"email\"])[2]");
+	public static By DIGITAL_GIFT_CARD_CHECK_BALANCE_BTN = By.xpath("(//div[@data-tj-qa='egc-check-balance-button'])[2]");
 	public static By DIGITAL_GIFT_CART_FORM_ERROR = By.cssSelector("[data-tj-qa='card-number-error'],div[class='form'] .response-error");
 	public static By DIGITAL_GIFT_CART_CODE_ERROR = By.cssSelector("[data-tj-qa='balance-card-number']>span,#giftcard_code_error");
 	public static By DIGITAL_GIFT_CART_EMAIL_ERROR = By.cssSelector("[data-tj-qa='balance-email']>span,#email_error");
