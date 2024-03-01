@@ -3251,9 +3251,10 @@ public void verifySizeChartTextBralette() throws Exception {
 	
 	List<WebElement> fitrange = driver.findElements(SIZEGUIDE_FITRANGE);
 	int num = fitrange.size();
+	System.out.println(num);
 	if(num>0) {
 		
-		for(int i=1;i<=num;i++) {
+		for(int i=1;i<=3;i++) {
 			Thread.sleep(2000);
 			String range = driver.findElement(By.cssSelector(".size-guide-yatpo-fit-graph>ul>li:nth-child("+i+")")).getAttribute("class");
 			if(range.contentEquals("selected")) {

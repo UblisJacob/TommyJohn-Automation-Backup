@@ -1742,7 +1742,8 @@ if(count!=59)
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_IMAGE));
 		
-		WebElement productImage = driver.findElement(By.cssSelector("div[data-index='1']>div>a>img[data-tj-qa='plp-product-img-main']"));
+		//WebElement productImage = driver.findElement(By.cssSelector("div[data-index='1']>div>a>img[data-tj-qa='plp-product-img-main']"));
+		WebElement productImage = driver.findElement(By.cssSelector("img[data-tj-qa='plp-product-img-main']"));
 		org.openqa.selenium.Dimension dim = productImage.getSize();
 		int width=	dim.width;
 //		marginLeft = productImage.getCssValue("margin-left");
