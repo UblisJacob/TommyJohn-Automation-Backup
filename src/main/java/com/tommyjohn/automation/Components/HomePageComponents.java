@@ -2395,7 +2395,7 @@ public class HomePageComponents extends HomePageLocators {
 	/**
 	 * Helps click on a element with JSExecutor
 	 * 
-	 * @param WebElement
+	 //* @param WebElement
 	 */
 	private void clickWithJS(WebElement ele) {
 
@@ -2406,7 +2406,7 @@ public class HomePageComponents extends HomePageLocators {
 	/**
 	 * Helps click on a element with JSExecutor
 	 * 
-	 * @param By instance of Web element
+	 //* @param By instance of Web element
 	 */
 	private void clickWithJS(By by) {
 

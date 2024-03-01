@@ -362,6 +362,7 @@ public class AccountLoginComponents extends AccountLoginLocators {
 			driver.findElement(INPUT_BOX_FOR_EMAIL).clear();
 			Thread.sleep(2000);
 			driver.findElement(INPUT_BOX_FOR_EMAIL).sendKeys(invalidemail);
+			System.out.println(invalidemail);
 		} else
 			throw new Exception("Email text box is not present");
 
