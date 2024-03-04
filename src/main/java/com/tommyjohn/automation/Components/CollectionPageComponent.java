@@ -60,6 +60,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		executor.executeScript("arguments[0].click();", el);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_TITLE));
 		Reporter.log(driver.getCurrentUrl());
+		ExtentReport.extentTest.info(driver.getCurrentUrl());
 		// text =
 		// driver.findElement(ProductDetailsPageLocators.PRODUCT_TITLE).getText();
 		return text;
@@ -869,28 +870,6 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 	{
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-	  
-	        // Create an object of filereader
-	        // class with CSV file as a parameter.
-	       // FileReader filereader = new FileReader("src/main/resources/Category_PLPs.csv");
-	  
-	        // create csvReader object passing
-	        // file reader as a parameter
-	      //  CSVReader csvReader = new CSVReader(filereader);
-	     //   String[] nextRecord;
-	  
-	        // we are going to read data line by line
-	       // while ((nextRecord = csvReader.readNext()) != null) {
-	       //     for (String cell : nextRecord) {
-	       //         System.out.print(cell + "\t");
-	        //        checkurl(cell);
-	        //    }
-	        //    System.out.println();
-	        //}
-	   // }
-	   // catch (Exception e) {
-	   //     e.printStackTrace();
-	  //  }
 		
 		try {
 			//File src = new File("src/main/resources/AllCollectionPages.xlsx");
@@ -901,54 +880,31 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			Thread.sleep(3000);
 			Iterator<String[]>ite= list.iterator();
 			Thread.sleep(2000);
-			while(ite.hasNext()){
+			while(ite.hasNext()) {
 				String[] data = ite.next();
-				for(int i=0; i<data.length; i++){
+				for (int i = 0; i < data.length; i++) {
 					System.out.println(data[i]);
 					String url = "https://www.tommyjohn.com" + data[i];
-				//	checkurl(url);
-				driver.get(url);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT));
-				if (driver.findElement(FIRST_PRODUCT).isDisplayed()) {
-					count++;
-					Reporter.log(url +"loads fine and products are displayed");
-					ExtentReport.extentTest.info(url +"loads fine and products are displayed");
-				}
+					//	checkurl(url);
+					driver.get(url);
+					wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT));
+					if (driver.findElement(FIRST_PRODUCT).isDisplayed()) {
+						count++;
+						Reporter.log(url + "loads fine and products are displayed");
+						ExtentReport.extentTest.info(url + "loads fine and products are displayed");
+					}
 				}
 			}
-			
 
-if(count!=59)
-	//System.out.println(count);
-	throw new Exception("Some urls not loading.");
-
-
-			
-			
-		//	File src = new File("src/main/resources/PLPs.csv");
-		
-			// load file
-		//	FileInputStream fis = new FileInputStream(src);
-
-			// Load workbook
-		//	XSSFWorkbook wb = new XSSFWorkbook(fis);
-
-			// Load sheet- Here we are loading first sheet only
-		//	XSSFSheet sh1 = wb.getSheetAt(0);
-
-//			System.out.println(sh1.getRow(0).getCell(0).getStringCellValue());
-//			Reporter.log(sh1.getRow(0).getCell(0).getStringCellValue());
-//
-//			int rowCount = sh1.getLastRowNum() - sh1.getFirstRowNum();
-//
-//			for (int i = 1; i < rowCount + 1; i++) {
-//				String url = sh1.getRow(i).getCell(0).getStringCellValue();
-//				checkurl(url);
+//			if(count!=59) {
+//				//System.out.println(count);
+//				throw new Exception("Some urls not loading.");
 //			}
 
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			Reporter.log("File not found");
-			throw new Exception("Not worked");
+			throw new Exception("Not worked"+e);
 
 		}
 		
