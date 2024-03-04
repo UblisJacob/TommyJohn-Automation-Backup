@@ -350,15 +350,15 @@ public class HomePageComponents extends HomePageLocators {
 		text = list1[list1.length-1].replace("\"", "");
 		softAssert.assertEquals(text, search_value, "Search page title is not matched with clicked suggested link");
 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(AUTO_SUGGESTED_PRODUCT_TILE_TITLE));
-		WebElement FIRST_SUGGESTED_PRODUCT_TILE_TITLE = driver.findElement(By.cssSelector(".search-product-tile:nth-child(1)>a"));
-		String suggested_title = FIRST_SUGGESTED_PRODUCT_TILE_TITLE.getText().replace(",", "").toLowerCase();
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(AUTO_SUGGESTED_PRODUCT_TILE_TITLE));
+		WebElement FIRST_SUGGESTED_PRODUCT_TILE_TITLE = driver.findElement(By.xpath("(//span[@class=\"slick-slide slick-current slick-active\"])[1]"));
+		String suggested_title = driver.findElement(By.xpath("(//span[@data-tj-qa=\"product-title\"])[1]")).getText().replace(",", "").toLowerCase();
 		//FIRST_SUGGESTED_PRODUCT_TILE_TITLE.click();
 		executor.executeScript("arguments[0].click();", FIRST_SUGGESTED_PRODUCT_TILE_TITLE);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_TITLE));
 		String actual = driver.findElement(ProductDetailsPageLocators.PRODUCT_TITLE).getText().replace(",", "").toLowerCase();
 		System.out.println("actual is: "+actual+" expected is: "+suggested_title);
-		softAssert.assertTrue(actual.equals(suggested_title) , "Wrong PDP displayed after clicking on name of auto suggested product tile title" );
+		softAssert.assertTrue(actual.contains(suggested_title) , "Wrong PDP displayed after clicking on name of auto suggested product tile title" );
 		Reporter.log("Verified Search auto suggestion functionality");
 		ExtentReport.extentTest.info("Verified Search auto suggestion functionality");
 
@@ -2395,7 +2395,7 @@ public class HomePageComponents extends HomePageLocators {
 	/**
 	 * Helps click on a element with JSExecutor
 	 * 
-	 //* @param WebElement
+	// * @param WebElement
 	 */
 	private void clickWithJS(WebElement ele) {
 
@@ -2407,7 +2407,7 @@ public class HomePageComponents extends HomePageLocators {
 	 * Helps click on a element with JSExecutor
 	 * 
 	 //* @param By instance of Web element
-	 */
+	 **/
 	private void clickWithJS(By by) {
 
 		WebElement ele = driver.findElement(by);

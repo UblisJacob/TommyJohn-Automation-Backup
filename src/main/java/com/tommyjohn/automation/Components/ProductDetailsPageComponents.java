@@ -2551,17 +2551,17 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		
 		if(elementsCount > 1)
 		{
-			for(int i=1;i<=5;i++)
+			for(int i=1;i<=elementsCount;i++)
 			{
 				
-				WebElement elemen = driver.findElement(By.cssSelector(".option-swatch__option>li:nth-child("+ i +")>input"));
+				WebElement elemen = driver.findElement(By.cssSelector(".option-swatch__item>li:nth-child("+ i +")>input"));
 				
 				jse.executeScript("arguments[0].click();", elemen);
 				
 				List<WebElement> unavailablecolors = driver.findElements(STRIKED_COLOR_SWATCHES);
 				int num1= unavailablecolors.size();
 			
-				String sizename = driver.findElement(By.cssSelector(".option-swatch__option>li:nth-child("+i+")>label>span")).getText();
+				String sizename = driver.findElement(By.cssSelector(".option-swatch__item>li:nth-child("+i+")>label>span")).getText();
 				
 				if(num1>0 && num1<elementsCount)
 				{
@@ -2570,12 +2570,9 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 					System.out.println("For size: " +sizename);
 					
 				}
-					
-				
 				
 				String sizevalue = driver.findElement(SIZE_VALUE).getAttribute("data-option-name");
-				
-				
+
 				softAssert.assertEquals(driver.findElement(TOTAL_SIZES).getText().equalsIgnoreCase(sizevalue), true, "Color not changing");
 				
 								
