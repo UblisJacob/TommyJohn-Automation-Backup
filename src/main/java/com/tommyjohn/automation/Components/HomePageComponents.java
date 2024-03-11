@@ -332,8 +332,9 @@ public class HomePageComponents extends HomePageLocators {
 	    action.moveToElement(driver.findElement(SEARCH_TEXTBOX)).build().perform();
 		Thread.sleep(5000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SUGGESTED_PRODUCT_IMG));
-		
-		softAssert.assertEquals(driver.findElement(PRODUCT_MATCHES_TITLE).getText(),"Product Matches","Text changed for Product matches title on autosuggestion container");
+
+
+		softAssert.assertEquals(driver.findElement(PRODUCT_MATCHES_TITLE).getText(),"PRODUCT MATCHES","Text changed for Product matches title on autosuggestion container");
 		softAssert.assertTrue(driver.findElement(SUGGESTED_PRODUCT_IMG).isDisplayed(), "Product Matches are not displayed");
 		List<WebElement> product_matches_img = driver.findElements(SUGGESTED_PRODUCT_IMG);
 		softAssert.assertTrue(product_matches_img.size()== 4, "Total count of suggested product matched images are not 4");
