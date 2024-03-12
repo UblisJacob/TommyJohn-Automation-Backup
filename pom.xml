@@ -23,13 +23,6 @@
 		</properties>
 
 	<dependencies>
-
-		<dependency>
-			<groupId>com.deque.axe-selenium</groupId>
-			<artifactId>axe-selenium-java</artifactId>
-			<version>4.0.0</version>
-		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/net.lightbody.bmp/browsermob-proxy -->
 		<dependency>
 			<groupId>net.lightbody.bmp</groupId>
