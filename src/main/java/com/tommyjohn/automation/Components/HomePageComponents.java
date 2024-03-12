@@ -329,7 +329,8 @@ public class HomePageComponents extends HomePageLocators {
 		searchTXTBX.clear();
 		searchTXTBX.sendKeys(Search_keyword);
 		
-	    action.moveToElement(driver.findElement(SEARCH_TEXTBOX)).build().perform();
+//	    action.moveToElement(driver.findElement(SEARCH_TEXTBOX)).build().perform();
+		searchTXTBX.click();
 		Thread.sleep(5000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SUGGESTED_PRODUCT_IMG));
 		
