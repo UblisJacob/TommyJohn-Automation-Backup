@@ -2370,7 +2370,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			{
 				thumbnail = driver.findElement(By.cssSelector(".pdpVerticalSlides>.slick-list.draggable>div>div:nth-child("+i+")")).getAttribute("data-slide-id");
 
-				WebElement img=driver.findElement(By.cssSelector(".pdpVerticalSlides>.slick-list.draggable>div>div:nth-child("+i+")>img"));
+				WebElement img=driver.findElement(By.cssSelector(".pdpVerticalSlides>.slick-list.draggable>div>div:nth-child("+i+")"));
 				executor.executeScript("arguments[0].click();", img);
 
 				Thread.sleep(3000);

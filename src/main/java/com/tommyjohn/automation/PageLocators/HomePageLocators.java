@@ -221,7 +221,7 @@ public class HomePageLocators{
 	public static By SEARCHPAGE_FILTER= By.cssSelector(".collection-filter");
 	
 	public static By SEARCHPAGE_PRODUCTS = By.cssSelector(".product-item");
-	public static By SEARCHPAGE_PRODUCT_IMAGE = By.cssSelector(".product-image-container > a > img");
+	public static By SEARCHPAGE_PRODUCT_IMAGE = By.cssSelector(".product-image-container > a");
 	public static By SEARCHPAGE_PRODUCT_SWATCHES = By.cssSelector(".product-item__swatches");
 	public static By SEARCHPAGE_PRODUCT_NAME = By.cssSelector(".product-meta__title");
 	public static By SEARCHPAGE_PRODUCT_REVIEWS = By.cssSelector(".yotpo.bottomLine");

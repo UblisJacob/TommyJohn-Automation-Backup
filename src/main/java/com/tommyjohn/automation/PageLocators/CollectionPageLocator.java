@@ -19,7 +19,7 @@ public class CollectionPageLocator {
 	
 	public static By FIRST_PRODUCT = By.cssSelector("[data-tj-qa='product-image'],div.product-image-container");
 	public static By COMPARE_PRODUCT = By.cssSelector(".product-image-container > div.has-compare");
-	public static By FIRST_PRODUCT_IMAGE = By.cssSelector("img[data-tj-qa='plp-product-img-main']");
+	public static By FIRST_PRODUCT_IMAGE = By.xpath("(//img[@class='product-image product-image--main product-image-container__image ls-is-cached lazyloaded'])[1]");
 	public static By HOVER_PRODUCT_IMAGE = By.cssSelector("[data-tj-qa='plp-product-img-main'],img[data-tj-qa='plp-product-img-hover']");
 
 	//changed
@@ -64,7 +64,8 @@ public class CollectionPageLocator {
 	    
 	    //changed
 	    public static By SORTBYPRICE_DROPDOWN = By.xpath("//*[data-tj-qa='plp-filter-sort'] | //select[@title='Sort By']");
-	    public static By PLP_PRICE = By.cssSelector("[data-tj-qa='product-price'],span.product-meta__price");
+
+		public static By PLP_PRICE = By.cssSelector("[data-tj-qa='product-price'],span.product-meta__price");
 	    public static By PLP_PRICE_FILTER = By.xpath("//a[@title='Price']//span");
 	    
 	    public static By PRICE_LESS_THAN_25= By.xpath("(//input[contains(@data-filter-btn,'Less than $25')])[1]");
@@ -95,7 +96,7 @@ public class CollectionPageLocator {
 	    
 	     public static By SEARCH_PRICE_FILTER = By.xpath("//a[@data-filter-group='facet_price_range']//span[contains(text(),'Price')]");
 	    public static By SEARCH_PRICE_FILTER_1=By.xpath("//button[contains(@for,'25to50')]");
-	    public static By SEARCH_PRICE_FILTER_PILL_1=By.xpath("//button[contains(text(),'$25 to $50')]");
+	    public static By SEARCH_PRICE_FILTER_PILL_1=By.xpath("(//button[contains(text(),'$25 to $50')])[1]");
 	  
 	    
 	    
