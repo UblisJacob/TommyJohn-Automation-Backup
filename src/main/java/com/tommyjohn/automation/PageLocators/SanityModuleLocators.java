@@ -8,7 +8,7 @@ public class SanityModuleLocators {
 	public static By HERO_IMAGE_1 = By.cssSelector(".hero-module_image-container img[alt='Tommy John Image']");
 	
 	
-	public static By HERO_IMAGE_TEXT = By.cssSelector("div[class='vue-title_text']>div>p:nth-child(1)");
+	public static By HERO_IMAGE_TEXT = By.xpath("//div[@class='vue-title_text'][1]");
 	
 	public static By FIXED_BANNER_IMG = By.cssSelector("[data-tj-qa='fixed-banner-image'],div[data-tj-page-section-position='3']>div img");
 	
@@ -17,7 +17,7 @@ public class SanityModuleLocators {
 	public static By THREE_TILE_IMG_2 = By.cssSelector(".three-tile-module.vue-module-container>div>div:nth-child(2)");
 	public static By THREE_TILE_IMG_3 = By.cssSelector(".three-tile-module.vue-module-container>div>div:nth-child(3)");
 	
-	public static By IMG_CAROUSEL = By.cssSelector("[data-tj-qa='side-module-1'],div[data-tj-page-section-position='5']>div");
+	public static By IMG_CAROUSEL = By.cssSelector("div[data-tj-page-section='quotes-carousel']");
 	public static By IMG_CAROUSEL_1 = By.cssSelector("div[data-tj-qa='quotes-tile'][data-slick-index='0']");
 	public static By IMG_CAROUSEL_2 = By.cssSelector("div[data-tj-qa='quotes-tile'][data-slick-index='1']");
 	public static By IMG_CAROUSEL_3 = By.cssSelector("div[data-tj-qa='quotes-tile'][data-slick-index='2']");
