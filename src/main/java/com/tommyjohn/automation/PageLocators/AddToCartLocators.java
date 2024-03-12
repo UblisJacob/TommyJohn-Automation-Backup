@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 public class AddToCartLocators {
 	
 	public static By ALL_SIZE_LIST = By.cssSelector(".product-option__color-swatches-wrapper>ul>li"); //(".product-option__variants.product-option__variants-size > ul > li")
-	public static By ADD_TO_CART_BUTTON = By.cssSelector("button[data-tj-qa='add-to-cart-cta']");
+	public static By ADD_TO_CART_BUTTON = By.cssSelector("div[data-tj-qa='add-to-cart-cta']");
 	public static By EMAIL_WHEN_IN_STOCK_BUTTON = By.cssSelector(".jtwl_header>span");
 	public static By QUANTITY = By.cssSelector("#updatedQty.pdp.prodQty");
 	public static By PLUS_BUTTON = By.cssSelector(".qty-selector.desktop> button#plusBtn");

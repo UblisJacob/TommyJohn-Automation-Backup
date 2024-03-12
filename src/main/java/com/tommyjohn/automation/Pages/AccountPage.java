@@ -11,7 +11,7 @@ public class AccountPage
 	{
 		this.driver=driver;
 	}
-  
+
 	public void Verify_AccountPage() throws Exception
 	{
 		new AccountPageComponents(driver).Validate_LoggedContentsOn_AccountPage();
