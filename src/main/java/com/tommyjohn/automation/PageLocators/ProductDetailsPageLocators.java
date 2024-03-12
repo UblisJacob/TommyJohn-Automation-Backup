@@ -17,7 +17,8 @@ public class ProductDetailsPageLocators {
 	public static By IMG_CAROUSEL = By.cssSelector("div.pdpVerticalSlides>div>div>div");
 	
 	//first product on PDP
-	public static By FIRST_PRODUCT = By.cssSelector(".product-item");
+//	public static By FIRST_PRODUCT = By.cssSelector(".product-item");
+	public static By FIRST_PRODUCT = By.xpath("(//div[@data-tj-qa='product-image'])[1]");
 	public static By FIRST_PRODUCT_HEAD_LINE_TEXT = By.cssSelector(".product-meta__title");
 		
 	//image badging
@@ -69,7 +70,7 @@ public class ProductDetailsPageLocators {
 	//public static By ALL_SIZE_LIST = By.cssSelector(".product-option__variants.product-option__variants-size > ul > li");
 
 
-	public static By ALL_COLOR_LIST = By.cssSelector("[data-tj-qa='color-swatch'],.product-option__color-swatches-wrapper > ul >li");
+	public static By ALL_COLOR_LIST = By.xpath("//div[@class='product-option__color-swatches-wrapper']//li");
 	public static By PRODUCT_DETAILS = By.cssSelector("[data-tj-qa='mobile-footer-accordion-product-details'],.product-details-container>div> ul > li:nth-child(1) > div:nth-child(1) > a");
 	public static By SIZEGUIDE = By.cssSelector("[data-tj-qa='size-guide-link'],button.product-info__header-btn.size-guide");
 	public static By SIZEGUIDE_FITRANGE = By.cssSelector("[data-tj-qa='size-chart-fit-small'],.size-guide-yatpo-fit-graph>ul>li");

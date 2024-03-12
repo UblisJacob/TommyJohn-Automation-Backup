@@ -24,7 +24,7 @@ public class ValidateCategoryPages {
 		}
 	}
 
-	
+//Not worked exception
 	 @Test public void TC_LoadCategoryPage() throws Exception { new
 	 CollectionPage(driver).validateallplpsareloading(); }
 	 
