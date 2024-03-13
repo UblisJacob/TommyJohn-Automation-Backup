@@ -22,7 +22,9 @@ public class ProductDetailsPageLocators {
 	public static By FIRST_PRODUCT_HEAD_LINE_TEXT = By.cssSelector(".product-meta__title");
 		
 	//image badging
-	public static By IMAGE_BADGING = By.cssSelector(".productImage-item__badge");
+//	public static By IMAGE_BADGING = By.cssSelector(".productImage-item__badge");
+
+	public static By IMAGE_BADGING = By.xpath("//div[@data-tj-qa='plp-product-badge']");
 	
 	//Secondary Badging
 	public static By SECONDARY_BADGING = By.cssSelector("div.multi-pdp-title-wrap.desktop-view.desktop>span");

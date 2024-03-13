@@ -465,9 +465,9 @@ public class QuizPageComponents extends QuizPageLocators
 		System.out.println("text is: "+text);
 		if(text.contains("|"))
 		{
-			list2=text.split(" +");
+			list2 = text.split(" +");
 			System.out.println("list2 is: "+Arrays.asList(list2));
-			result_page_selected_value=list2[3];
+			result_page_selected_value=list2[2];
 			
 			//	result_page_selected_value.add(list2[k].toString().toLowerCase().trim());				
 				System.out.println("Result page: "+result_page_selected_value);

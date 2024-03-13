@@ -2397,7 +2397,13 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		WebElement el = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", el);
-		
+
+
+		jse = (JavascriptExecutor) driver;
+		jse.executeScript("window.scrollBy(0,800)");
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(IMAGE_BADGING));
+
 		WebElement allElements = (WebElement) driver.findElement(IMAGE_BADGING);
 		try{
 			if(!(allElements).isDisplayed())

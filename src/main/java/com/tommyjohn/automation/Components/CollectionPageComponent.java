@@ -9,10 +9,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -171,16 +169,21 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollBy(0,250)");
 
-	
-		wait.until(ExpectedConditions.visibilityOfElementLocated(SORTBYPRICE_DROPDOWN));
-		WebElement sortByPrice = driver.findElement(SORTBYPRICE_DROPDOWN);
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(SORTBYPRICE_DROPDOWN));
+//		WebElement sortByPrice = driver.findElement(SORTBYPRICE_DROPDOWN);
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT));
 		String price = null;
 		String updatedPrice = null;
 		double priceValue = 0;
-		Select drpCountry = new Select(sortByPrice);
-		drpCountry.selectByValue("price:ascending");
+		driver.findElement(PRICE_DROPDOWN).click();
+		driver.findElement(By.xpath("//div[@class='collection-filter__select']")).click();
+		driver.findElement(PRICEASC_DROPDOWN).click();
+		js.executeScript("window.scrollBy(600,0)");
+		driver.findElement(By.xpath("//div[@class='filter-accordion-overlay active']")).click();
+
+		//Select drpCountry = new Select(sortByPrice);
+		//drpCountry.selectByValue("price:ascending");
 		Thread.sleep(5000);
 
 
@@ -216,7 +219,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		
 		js.executeScript("window.scrollBy(0,250)");
 		Thread.sleep(5000);
-		drpCountry.selectByValue("price:descending");
+		//drpCountry.selectByValue("price:descending");
 
 		//js.executeScript("window.scrollTo(0, -document.body.scrollHeight)");
 	//	drpCountry.selectByIndex(2);
