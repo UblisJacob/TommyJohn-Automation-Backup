@@ -224,7 +224,7 @@ public class BundlePDPComponent extends BundlePDPLocators{
 			{
 				for(int i=1;i<=elementsCount;i++)
 				{
-						String imagecolor = null;
+						String imagecolor;
 						WebElement elemen = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper>ul>li:nth-child(" + i + ") > label"));
 						jse = (JavascriptExecutor)driver;
 						jse.executeScript("arguments[0].click();", elemen);
@@ -241,15 +241,15 @@ public class BundlePDPComponent extends BundlePDPLocators{
 							
 						
 							colornew = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper > ul  > li:nth-child("+i+") > input")).getAttribute("data-variant");
-							imagecolor = driver.findElement(IMAGE_COLOR).getAttribute("data-color");
+							imagecolor = driver.findElement(IMAGE_COLOR).getAttribute("data-color-handle");
 							
 							System.out.println("For Color Swatch: " +colornew);
 							System.out.println("Active Sizes: " +num );
 							System.out.println("Unavailable sizes:" + num1);
 							
 //							System.out.println(colortext.toLowerCase());
-//							System.out.println(colornew);
-//							System.out.println(imagecolor);						
+							System.out.println(colornew);
+							System.out.println(imagecolor);
 							
 							Thread.sleep(1000);
 						

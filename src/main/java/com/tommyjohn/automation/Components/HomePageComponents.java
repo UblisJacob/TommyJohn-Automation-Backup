@@ -351,7 +351,7 @@ public class HomePageComponents extends HomePageLocators {
 		System.out.println(text);
 		softAssert.assertEquals(text, search_value, "Search page title is not matched with clicked suggested link");
 
-	wait.until(ExpectedConditions.visibilityOfElementLocated(AUTO_SUGGESTED_PRODUCT_TILE_TITLE));
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(AUTO_SUGGESTED_PRODUCT_TILE_TITLE));
 		WebElement FIRST_SUGGESTED_PRODUCT_TILE_TITLE = driver.findElement(By.cssSelector(".search-product-tile:nth-child(1)>a"));
 		String suggested_title = FIRST_SUGGESTED_PRODUCT_TILE_TITLE.getText().replace(",", "").toLowerCase();
 		//FIRST_SUGGESTED_PRODUCT_TILE_TITLE.click();
