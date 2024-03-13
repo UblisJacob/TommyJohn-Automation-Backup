@@ -11,9 +11,9 @@
     <test name="CategoryTests">
         <parameter name="browser" value="chrome" />
         <classes>
-            <class name="TestModules.ValidatePDP" >
+            <class name="TestModules.ValidateSearchPages" >
             <methods>
-                <include name = "verifyLowStockInventory" />
+                <include name = "TC_Search_SearchFieldInNavigation" />
             </methods>
             </class>
         </classes>
