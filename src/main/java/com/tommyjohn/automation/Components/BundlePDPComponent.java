@@ -76,12 +76,15 @@ public class BundlePDPComponent extends BundlePDPLocators{
 				String imagegallery = null;
 				String mainimage = null;
 				Thread.sleep(3000);
-				imagegallery = driver.findElement(By.cssSelector(".pdpVerticalSlides>.slick-list.draggable>div>div:nth-child("+i+")")).getAttribute("data-color");
+				imagegallery = driver.findElement(By.cssSelector(".pdpVerticalSlides>.slick-list.draggable>div>div:nth-child("+i+")")).getAttribute("data-color-handle");
 				Thread.sleep(2000);
-				WebElement img = driver.findElement(By.cssSelector(".pdpVerticalSlides>.slick-list.draggable>div>div:nth-child("+i+")>img"));
+				WebElement img = driver.findElement(By.cssSelector(".pdpVerticalSlides>.slick-list.draggable>div>div:nth-child("+i+")"));
 				executor.executeScript("arguments[0].click();", img);
+
 				
-				mainimage = driver.findElement(By.cssSelector(".pdpImageSlidesWrapper>div>div>div>div:nth-child("+i+").slick-active")).getAttribute("data-color");
+				mainimage = driver.findElement(By.cssSelector(".pdpImageSlidesWrapper>div>div>div>div:nth-child("+i+").slick-active")).getAttribute("data-color-handle");
+
+//				mainimage = driver.findElement(By.cssSelector(".pdpImageSlidesWrapper>div>div>div>div.slick-active")).getAttribute("data-color-handle");
 
 				softAssert.assertTrue(imagegallery.contentEquals(mainimage), "Image caraousel does not change");
 	
@@ -453,7 +456,7 @@ public class BundlePDPComponent extends BundlePDPLocators{
 		new HomePageComponents(driver).navigateToAllMensPacksInPacksCategory();
 		new CollectionPageComponent(driver).navigateToProductDetailsPage();
 		jse = (JavascriptExecutor) driver;		
-		jse.executeScript("window.scrollBy(0,800)");
+		jse.executeScript("window.scrollBy(0,400)");
 		flag = false;
 		Exception except = null;
 

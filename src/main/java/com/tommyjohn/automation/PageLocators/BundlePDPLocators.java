@@ -17,7 +17,7 @@ public class BundlePDPLocators {
 	
 	//first product on PDP
 	public static By FIRST_PRODUCT = By.cssSelector(".product-item");
-	public static By FIRST_PRODUCT_HEAD_LINE_TEXT = By.cssSelector(".product-meta__title");
+	public static By FIRST_PRODUCT_HEAD_LINE_TEXT = By.xpath("(//span[@class='product-meta__title'])[1]");
 		
 	//image badging
 	public static By IMAGE_BADGING = By.cssSelector(".pdpImageSlidesWrapper>div:nth-child(2)");
@@ -68,7 +68,9 @@ public class BundlePDPLocators {
 
 
 	public static By ALL_COLOR_LIST = By.cssSelector(".product-option__color-swatches-wrapper > ul >li");
-	public static By PRODUCT_DETAILS = By.cssSelector(".product-info__inner > div:nth-child(2) > ul > li:nth-child(1) > div:nth-child(1) > a");
+//	public static By PRODUCT_DETAILS = By.cssSelector(".product-info__inner > div:nth-child(2) > ul > li:nth-child(1) > div:nth-child(1) > a");
+
+	public static By PRODUCT_DETAILS = By.xpath("//a[@data-tj-qa='mobile-footer-accordion-product-details']");
 	public static By SIZEGUIDE = By.cssSelector("button.product-info__header-btn.size-guide");
 	public static By SIZEGUIDE_FITRANGE = By.cssSelector(".size-guide-yatpo-fit-graph>ul>li");
 	public static By SIZEGUIDE_FITRANGE_DROPDOWN= By.cssSelector(".expand-instructions");
@@ -84,8 +86,12 @@ public class BundlePDPLocators {
 	public static By PLUS_BUTTON = By.cssSelector(".pdp.plusBtn");
 	public static By UPDATED_QUANTITY = By.cssSelector(".pdp.updatedQty");
 	public static By MINUS_BUTTON = By.cssSelector(".pdp.minusBtn");
-	public static By BEST_PAIR_GUARANTEE = By.cssSelector(".product-info__inner > div:nth-child(2) > ul > li:nth-child(2) > div:nth-child(1) > a");
-	public static By FREE_RETURNS = By.cssSelector(".product-info__inner > div:nth-child(2) > ul > li:nth-child(3) > div:nth-child(1) > a");
+//	public static By BEST_PAIR_GUARANTEE = By.cssSelector(".product-info__inner > div:nth-child(2) > ul > li:nth-child(2) > div:nth-child(1) > a");
+
+	public static By BEST_PAIR_GUARANTEE = By.xpath("//a[@data-tj-qa='mobile-footer-accordion-best-pair-guarantee']");
+//	public static By FREE_RETURNS = By.cssSelector(".product-info__inner > div:nth-child(2) > ul > li:nth-child(3) > div:nth-child(1) > a");
+
+	public static By FREE_RETURNS = By.xpath("//a[@data-tj-qa='mobile-footer-accordion-free-shipping-&-returns']");
 	public static By CHECKOUT_BUTTON = By.cssSelector(".inline-cart__action-btns > a");
 	//public static By COLOR_AND_SIZE = By.cssSelector("div.product-info__variant-select > div:nth-child(1) > div.product-info__header.hide > span");
     public static By LOW_INVENTORY_MSG = By.cssSelector("div.product-info_low-inventory-message");
