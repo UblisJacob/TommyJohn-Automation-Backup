@@ -32,7 +32,7 @@ public class AccountLoginComponents extends AccountLoginLocators {
 	String email;
 	String password;
 	String currentUrl;
-	String invalidemail = "drewstrr@tre.vik";
+	String invalidemail = "drewstrr@tre.cde";
 	String invalidpassword = "123";
 	WebElement element;
 	public Actions actions;
@@ -370,10 +370,11 @@ public class AccountLoginComponents extends AccountLoginLocators {
 		if (!driver.findElement(SUBMIT_BUTTON).isEnabled())
 			throw new Exception("Submit button is not present");
 		driver.findElement(SUBMIT_BUTTON).click();
-
+Thread.sleep(3000);
 		wait.until(ExpectedConditions.presenceOfElementLocated(ERROR_MESSAGE));
 
 		text = driver.findElement(ERROR_MESSAGE).getText();
+		System.out.println(text);
 		if (!text.equals(CustomUtilities.properties.getProperty("errorMessageRecoverEmail")))
 			throw new Exception("Expected text is" + CustomUtilities.properties.getProperty("errorMessageRecoverEmail")
 					+ "but actual is " + text);
