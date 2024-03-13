@@ -4,17 +4,17 @@
 <suite name="temp" thread-count="1">
 
     <listeners>
-        <listener class-name="TestScenario.ListenerClass"></listener>
-        <listener class-name="TestScenario.RetryListener"></listener>
+        <listener class-name="TestScenario.ListenerClass"/>
+<!--        <listener class-name="TestScenario.RetryListener"/>-->
     </listeners>
 
     <test name="CategoryTests">
         <parameter name="browser" value="chrome" />
         <classes>
             <class name="TestModules.ValidateSearchPages" >
-            <methods>
-                <include name = "TC_Search_SearchFieldInNavigation" />
-            </methods>
+                <methods>
+                    <include name="TC_Search_InteractWithSortBy" />
+                </methods>
             </class>
         </classes>
     </test>
