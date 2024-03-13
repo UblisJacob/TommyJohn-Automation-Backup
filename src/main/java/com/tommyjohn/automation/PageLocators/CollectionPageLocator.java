@@ -63,9 +63,13 @@ public class CollectionPageLocator {
 	    public static By PRODUCT_AMOUNT_ON_FLYCART = By.cssSelector("[data-tj-qa='cart-line-item-sale-price'],.line-item__price>span");
 	    
 	    //changed
-	    public static By SORTBYPRICE_DROPDOWN = By.xpath("//*[data-tj-qa='plp-filter-sort'] | //select[@title='Sort By']");
+	   public static By SORTBYPRICE_DROPDOWN = By.xpath("//*[data-tj-qa='plp-filter-sort'] | //select[@title='Sort By']");
+	    public static By PRICE_DROPDOWN = By.xpath("//span[@class='all-filter-pill-span']");
+	    public static By PRICEASC_DROPDOWN = By.xpath("//div[@class='collection-filter__select']//li[@data-tj-qa='plp-sortby-price-low-to-high']");
 
-		public static By PLP_PRICE = By.cssSelector("[data-tj-qa='product-price'],span.product-meta__price");
+
+
+	public static By PLP_PRICE = By.cssSelector("[data-tj-qa='product-price'],span.product-meta__price");
 	    public static By PLP_PRICE_FILTER = By.xpath("//a[@title='Price']//span");
 	    
 	    public static By PRICE_LESS_THAN_25= By.xpath("(//input[contains(@data-filter-btn,'Less than $25')])[1]");
