@@ -1,14 +1,18 @@
 package com.tommyjohn.automation.Components;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.Properties;
 
+import com.tommyjohn.automation.PageLocators.HomePageLocators;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 
 
@@ -357,9 +361,7 @@ public class AddToCartComponents extends AddToCartLocators{
 						WebElement elements = driver.findElement(By.cssSelector(".option-swatch__option>li:nth-child(2)>input"));
 						jse.executeScript("arguments[0].click();", elements);
 						Thread.sleep(1000);
-						
-							
-						
+
 						if(driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON).getText().contains("Add to Cart")) {
 							
 							System.out.println(elemen.getText() + elements.getText() + "Product is added to Cart");

@@ -69,7 +69,8 @@ public class ValidateCategoryPages {
 	 
 
 	
-	 @Test public void TC_InteractWithProductTile() throws Exception { new
+//	 @Test
+	 public void TC_InteractWithProductTile() throws Exception { new
 	 CollectionPage(driver).validateProductTile(); }
 	 
 

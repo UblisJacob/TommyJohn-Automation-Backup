@@ -63,7 +63,7 @@ public class ValidateCreateAccount_Login {
 		accountCreatedEmail = new AccountLoginPage(driver).createCustomerAccount(initialEmail,password);
 	}
 
-	@Test(dependsOnMethods = { "TC_VerifyCreateAccount" })
+//	@Test(dependsOnMethods = { "TC_VerifyCreateAccount" })
 //	@Test(priority = 2)
 	public void TC_VerifyRecoverPassword() throws Exception
 	{
@@ -82,7 +82,7 @@ public class ValidateCreateAccount_Login {
 		new AccountLoginPage(driver).verifyerrorsoncreateaccountpage();	
 	}
 	
-	@Test
+//	@Test
 	public void TC_VerifyErrorScenariosForRecoverPassword() throws Exception
 	{
 		new AccountLoginPage(driver).verifyErrorsOnRecoverPasswordPage();

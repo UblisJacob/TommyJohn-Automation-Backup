@@ -62,6 +62,7 @@ public class TommyJohnStoresComponents extends TommyJohnStoresPageLocators {
 			element = genMethods.autoIndex(driver, STORE_ADDRESS, i, 1);
 //			element = driver.findElement(By.cssSelector(".stores-section__container>div:nth-child("+i+")>div>div:nth-child(3)>p"));
 			String storeAddress = element.getText();
+			storeAddress = storeAddress.replace(",","");
 			System.out.println(storeName + " Store Address is: " + storeAddress);
 			Reporter.log(storeName + "Store Address is: " + storeAddress);
 			softassert.assertTrue(element.isDisplayed(), "Store address is not present for store ");

@@ -31,7 +31,8 @@ public class CollectionPageLocator {
 	public static By FIRST_PRODUCT_URL = By.cssSelector(".product-meta");
 	
 	public static By ALL_COLOR_LIST = By.cssSelector("ul>li>input[data-tj-qa='color-swatch'] , div[data-index='0']>div:nth-child(2)>div>div>div.product-item__swatch--circle");
-	public static By PRODUCT_IMAGE_COLOR_NAME= By.cssSelector("div[data-index='0']>div>a");
+//	public static By PRODUCT_IMAGE_COLOR_NAME= By.cssSelector("div[data-index='0']>div>a");
+	public static By PRODUCT_IMAGE_COLOR_NAME= By.xpath("(//div[@class='product_image slick-slide slick-current slick-active'])[2]");
 	public static By COLOR_SWATCH_PREV_SLICK_ARROWS = By.cssSelector("div.mega-collection-grid.js-mega-collection-grid > div:nth-child(3) > div:nth-child(1)>div:nth-child(2)>.product-item__swatch-list>.slick-next");
 	public static By COLOR_SWATCH_NEXT_SLICK_ARROWS = By.cssSelector("div.mega-collection-grid.js-mega-collection-grid > div:nth-child(3) > div:nth-child(1)>div:nth-child(2)>.product-item__swatch-list>.slick-prev");
 
