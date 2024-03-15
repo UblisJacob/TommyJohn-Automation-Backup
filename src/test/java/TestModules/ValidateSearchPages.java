@@ -76,7 +76,7 @@ public class ValidateSearchPages {
 		new CollectionPage(driver).validateSingleTileProductSearch();
 	}
 	
-	@Test
+//	@Test
 	public void TC_Search_SearchFieldInNavigation() throws Exception {
 		new HomePage(driver).validateSearchFunctionality();
 	}

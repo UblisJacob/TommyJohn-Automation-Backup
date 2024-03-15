@@ -58,7 +58,8 @@ public class ProductDetailsPageLocators {
 	//public static By SIZE_TEXT = By.cssSelector(".product-info__header > span:nth-child(2)");
 
 	public static By SIZE_DROPDOWN = By.cssSelector(".option-dropdown__option >div>a");
-	public static By ALL_SIZE_LIST = By.cssSelector("[data-tj-qa='product-size'],.option-swatch__option >li");
+	//public static By ALL_SIZE_LIST = By.cssSelector("[data-tj-qa='product-size'],.option-swatch__option >li");
+	public static By ALL_SIZE_LIST = By.xpath("//li[@class='option-swatch__item ']");
 	public static By SIZE_DROPDOWN_MENS = By.cssSelector(".option-dropdown__option >div[data-option-name = 'Mens Size'] >a");
 	public static By SIZE_DROPDOWN_WOMENS = By.cssSelector(".option-dropdown__option >div[data-option-name = 'Womens Size'] >a");
 	public static By SIZE_TEXT = By.xpath("//input[@class='sizeOption' and @checked='checked']");

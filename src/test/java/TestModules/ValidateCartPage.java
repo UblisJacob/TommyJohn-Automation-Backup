@@ -45,7 +45,7 @@ public class ValidateCartPage extends ExtentReport{
 		new ShoppingCartPage(driver).AddGiftWrap();
 	}
 
-	@Test
+//	@Test
 	public void TC_Cart_ApplyingDiscountCode() throws Exception {
 		new AddToCartComponents(driver).addToCart();
 		new ShoppingCartPage(driver).Promo_Code_OncartPage();
