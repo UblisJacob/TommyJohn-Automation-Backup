@@ -119,9 +119,9 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			// # if(!driver.findElement(THIRD_PRODUCT_IMAGE).isDisplayed())
 			throw new Exception("Product image is not present");
 
-		WebElement ele = driver.findElement(FIRST_PRODUCT_IMAGE);
-
-		executor.executeScript("arguments[0].click();", ele);
+//		WebElement ele = driver.findElement(FIRST_PRODUCT_IMAGE);
+//
+//		executor.executeScript("arguments[0].click();", ele);
 
 		// driver.findElement(THIRD_PRODUCT_IMAGE).click();
 		Thread.sleep(7000);
@@ -1155,32 +1155,32 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		int elementsCount = allElements.size();
 		System.out.println("Color Element count :: " + elementsCount);
 
-		if (elementsCount > 1) {
-			element = driver.findElement(By.cssSelector(
-				"div[data-index='0']>div:nth-child(2)>div>div>div.product-item__swatch--circle"));
-		//	element.click();
+		if (elementsCount > 1){
+//			element = driver.findElement(By.cssSelector(
+//				"div[data-index='0']>div:nth-child(2)>div>div>div.product-item__swatch--circle"));
+//		//	element.click();
 
 			for (int i = 1; i < elementsCount; i++) {
 				if (i < 4) {
 					String Img_colortext = null;
 					String colornew1 = null;
-					text = driver.findElement(PRODUCT_IMAGE_COLOR_NAME).getAttribute("href");
+					text = driver.findElement(PRODUCT_IMAGE_COLOR_NAME).getAttribute("data-color-handle");
 					String[] strarray = text.split("[=]");
 					String text1 = strarray[strarray.length - 1];
 					Img_colortext = text1.replace("-", " ");
 
 					System.out.println("Product image color name is: " + Img_colortext);
 
-					element = driver.findElement(By.cssSelector(
-							"div[data-index='0']>div:nth-child(2)>div>div:nth-child(" + i + ")>div.product-item__swatch--circle"));
+					element = driver.findElement(By.xpath(
+							"(//input[@class='product-option__variant-btn product-option__variant-btn--color js-variant--color'])["+i+"]"));
 
-					colornew1 = element.getAttribute("title");
-					String colornew = colornew1.replace("/", " ");
+					colornew1 = element.getAttribute("data-color-variant");
+					String colornew = colornew1.replace("-", " ");
 					System.out.println(colornew);
 					if (colornew.equalsIgnoreCase(Img_colortext)) {
 						i++;
-						WebElement elemen = driver.findElement(By.cssSelector(
-								"div[data-index='0']>div:nth-child(2)>div>div:nth-child(" + i + ")>div.product-item__swatch--circle"));
+						WebElement elemen = driver.findElement(By.xpath(
+								"(//input[@class='product-option__variant-btn product-option__variant-btn--color js-variant--color'])["+i+"]"));
 						executore.executeScript("arguments[0].click();", elemen);
 						//softAssert.assertEquals(Img_colortext, colornew, "Color not changing");
 						
