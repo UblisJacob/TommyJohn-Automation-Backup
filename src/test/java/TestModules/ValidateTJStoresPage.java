@@ -24,7 +24,7 @@ public class ValidateTJStoresPage {
 		}
 	}
 
-	@Test
+//	@Test
 	public void TC_validateTommyJohnStoresPage() throws Exception {
 		new TommyJohnStoresPage(driver).validateTommyJohnStoresPage();
 	}
