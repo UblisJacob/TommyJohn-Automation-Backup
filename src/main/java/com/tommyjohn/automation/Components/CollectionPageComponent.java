@@ -85,7 +85,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 		WebElement ele = driver.findElement(FIRST_PRODUCT_IMAGE);
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
-		executor.executeScript("arguments[0].click();", ele);
+//		executor.executeScript("arguments[0].click();", ele);
 
 		// driver.findElement(THIRD_PRODUCT_IMAGE).click();
 		Thread.sleep(7000);

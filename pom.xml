@@ -141,12 +141,20 @@
 			<version>6.8</version>
 			<scope>compile</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+<!--		&lt;!&ndash; https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>org.seleniumhq.selenium</groupId>-->
+<!--			<artifactId>selenium-java</artifactId>-->
+<!--			<version>4.12.1</version>-->
+<!--		</dependency>-->
+		<!-- https://mvnrepository.com/artifact/com.deque.html.axe-core/selenium -->
 		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-java</artifactId>
-			<version>4.12.1</version>
+			<groupId>com.deque.html.axe-core</groupId>
+			<artifactId>selenium</artifactId>
+			<version>4.8.2</version>
 		</dependency>
+
+
 
 
 		<dependency>

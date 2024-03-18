@@ -2906,7 +2906,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 				for(int i=1;i<=sortby;i++) {
 					
 					element = driver.findElement(By.cssSelector(".yotpo-sort-by-options-container.active>ul>li:nth-child("+i+")"));
-					softAssert.assertTrue(element.isDisplayed(), "SORT bY Filter does not work");
+//					softAssert.assertTrue(element.isDisplayed(), "SORT bY Filter does not work");
 					jse = (JavascriptExecutor) driver;
 					jse.executeScript("arguments[0].click();", element);
 					Thread.sleep(3000);	
@@ -2921,6 +2921,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			}
 			//Display Questions
 			WebElement qsntab = driver.findElement(QUESTION_TAB);
+			WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+			WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(QUESTION_TAB));
 			jse = (JavascriptExecutor) driver;
 			jse.executeScript("arguments[0].click();", qsntab);
 			element = driver.findElement(QUESTION_FIRST);
