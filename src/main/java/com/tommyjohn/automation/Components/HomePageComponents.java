@@ -324,16 +324,20 @@ public class HomePageComponents extends HomePageLocators {
 		String Search_keyword = "women";
 		if(!driver.findElement(SEARCH_TEXTBOX).isDisplayed())
 			throw new Exception("Search option is not present");
-		WebElement searchTXTBX = driver.findElement(SEARCH_TEXTBOX);	
-		searchTXTBX.sendKeys("");
-		searchTXTBX.clear();
-		searchTXTBX.sendKeys(Search_keyword);
+//		WebElement searchTXTBX = driver.findElement(SEARCH_TEXTBOX);
+//		searchTXTBX.sendKeys("");
+//		searchTXTBX.clear();
+//		searchTXTBX.sendKeys(Search_keyword);
+
+		driver.findElement(SEARCH_TEXTBOX).click();
+		driver.findElement(SEARCH_TEXTBOX).clear();
+		driver.findElement(SEARCH_TEXTBOX).sendKeys("women");
 		
 	    action.moveToElement(driver.findElement(SEARCH_TEXTBOX)).build().perform();
 		Thread.sleep(5000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SUGGESTED_PRODUCT_IMG));
 		
-		softAssert.assertEquals(driver.findElement(PRODUCT_MATCHES_TITLE).getText(),"Product Matches","Text changed for Product matches title on autosuggestion container");
+		softAssert.assertEquals(driver.findElement(PRODUCT_MATCHES_TITLE).getText(),"PRODUCT MATCHES","Text changed for Product matches title on autosuggestion container");
 		softAssert.assertTrue(driver.findElement(SUGGESTED_PRODUCT_IMG).isDisplayed(), "Product Matches are not displayed");
 		List<WebElement> product_matches_img = driver.findElements(SUGGESTED_PRODUCT_IMG);
 		softAssert.assertTrue(product_matches_img.size()== 4, "Total count of suggested product matched images are not 4");
@@ -351,7 +355,10 @@ public class HomePageComponents extends HomePageLocators {
 		System.out.println(text);
 		softAssert.assertEquals(text, search_value, "Search page title is not matched with clicked suggested link");
 
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(AUTO_SUGGESTED_PRODUCT_TILE_TITLE));
+		driver.findElement(SEARCH_TEXTBOX).click();
+		driver.findElement(SEARCH_TEXTBOX).sendKeys("women");
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(AUTO_SUGGESTED_PRODUCT_TILE_TITLE));
 		WebElement FIRST_SUGGESTED_PRODUCT_TILE_TITLE = driver.findElement(By.cssSelector(".search-product-tile:nth-child(1)>a"));
 		String suggested_title = FIRST_SUGGESTED_PRODUCT_TILE_TITLE.getText().replace(",", "").toLowerCase();
 		//FIRST_SUGGESTED_PRODUCT_TILE_TITLE.click();
@@ -410,7 +417,7 @@ public class HomePageComponents extends HomePageLocators {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(RECENT_SEARCHES_TITLE));
 		softAssert.assertTrue(driver.findElement(CLEAR_RECENT_SEARCHES).isDisplayed(), "Clear recent search link is not displayed");
 		driver.findElement(CLEAR_RECENT_SEARCHES).click();
-		executor.executeScript("arguments[0].click();", element);
+//		executor.executeScript("arguments[0].click();", element);
 		String[] attribute = driver.findElement(RECENT_SEARCH_CONTAINER).getAttribute("style").split("display: ");
 		text = attribute[attribute.length-1].replace(";", "");
 		softAssert.assertEquals(text,"none", "Clear recent search link is not functional");
