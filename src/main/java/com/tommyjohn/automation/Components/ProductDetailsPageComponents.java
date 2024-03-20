@@ -2563,9 +2563,10 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 				WebElement elemen = driver.findElement(By.xpath("(//span[@class='option-swatch__label-text'])["+i+"]"));
 				
 				jse.executeScript("arguments[0].click();", elemen);
-				
+
 				List<WebElement> unavailablecolors = driver.findElements(STRIKED_COLOR_SWATCHES);
 				int num1= unavailablecolors.size();
+				System.out.println(num1);
 			
 				String sizename = driver.findElement(By.xpath("(//span[@class='option-swatch__label-text'])["+i+"]")).getText();
 				

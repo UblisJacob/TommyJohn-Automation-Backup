@@ -31,22 +31,20 @@ public class ProductDetailsPageLocators {
 	
 	//image color
 	public static By IMAGE_COLOR = By.cssSelector(".product-gallery.pdp-client-side-container.product-gallery-container>div>div:nth-child(2)>div>div>div>div.slick-active");
-	
-	public static By TOTAL_SIZES = By.cssSelector("[data-tj-qa='product-size'],.option-swatch__option>li>label>span");
-	public static By INACTIVE_SIZES = By.cssSelector(".unavailable[data-tj-qa='product-size'],.option-swatch__option>li>.option-swatch__input.unavailable.email-when-in-stock");
-	public static By SIZE_VALUE = By.cssSelector("[data-tj-qa='product-size'],.option-swatch__option>li>input");
-	
-	
-	//color swatches
-	public static By COLOR_SWATCHES = By.cssSelector("[data-tj-qa='color-swatch'],.product-option__color-swatches-wrapper>ul>li");	
 	public static By STRIKED_COLOR_SWATCHES = By.cssSelector(".unavailable[data-tj-qa='color-swatch'],.product-option__color-swatches-wrapper>ul>li>.product-option__variant-btn.product-option__variant-btn--color.js-variant--color.unavailable.email-when-in-stock");
-	
-	
 	public static By AFTERPAY_DIV = By.cssSelector(".multi-pdp-title-wrap.desktop-view>span>.afterpay-paragraph");
-    public static By SECOND_VERTICAL_IMAGE = By.cssSelector(".slick-vertical > div > div > div:nth-child(2)>img");
+	public static By SECOND_VERTICAL_IMAGE = By.cssSelector(".slick-vertical > div > div > div:nth-child(2)>img");
 
 	public static By COLOR_LISTS = By.cssSelector("[data-tj-qa='color-swatch'],.product-option__color-swatches-wrapper > ul >li");
 	public static By FIRST_COLOR = By.cssSelector(".product-option__color-swatches-wrapper > ul > li:nth-child(1) > label");
+
+	public static By TOTAL_SIZES = By.cssSelector("[data-tj-qa='product-size'],.option-swatch__option>li>label>span");
+	public static By INACTIVE_SIZES = By.cssSelector(".unavailable[data-tj-qa='product-size'],.option-swatch__option>li>.option-swatch__input.unavailable.email-when-in-stock");
+	public static By SIZE_VALUE = By.cssSelector("[data-tj-qa='product-size'],.option-swatch__option>li>input");
+
+
+	//color swatches
+	public static By COLOR_SWATCHES = By.cssSelector("[data-tj-qa='color-swatch'],.product-option__color-swatches-wrapper>ul>li");
 	public static By SECOND_COLOR = By.cssSelector(".product-option__color-swatches-wrapper > ul > li:nth-child(2) > label");
 	public static By THIRD_COLOR = By.cssSelector(".product-option__color-swatches-wrapper > ul > li:nth-child(3) > label");
 	public static By COLOR_TEXT = By.xpath("//*[data-tj-qa='product-color'] | //div[@title = 'Color'] /span");       //("//div[@class= 'multi-pdp-info__header'] /span]");
