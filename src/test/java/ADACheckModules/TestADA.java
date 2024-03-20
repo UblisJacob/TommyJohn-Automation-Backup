@@ -1,4 +1,4 @@
-package ADACheck;
+package ADACheckModules;
 
 import com.deque.html.axecore.results.Results;
 import com.deque.html.axecore.results.Rule;
@@ -25,7 +25,7 @@ static WebDriver driver;
 
         driver = new CustomUtilities().launchtj("chrome");
 
-        driver.get("https://www.tommyjohn.com/collections/mens-all?sort-by=relevance&sort-order=descending");
+     //   driver.get("https://www.tommyjohn.com/collections/mens-all?sort-by=relevance&sort-order=descending");
 
         List<String> tags = Arrays.asList("wcag2aa");
 

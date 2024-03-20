@@ -11,9 +11,9 @@
     <test name="CategoryTests">
         <parameter name="browser" value="chrome" />
         <classes>
-            <class name="TestModules.ValidateCartPage" >
+            <class name="ADACheckModules.CheckoutPageADACheck" >
                 <methods>
-                    <include name="TC_Cart_ViewOOSItem" />
+                    <include name= "" />
                 </methods>
             </class>
         </classes>
