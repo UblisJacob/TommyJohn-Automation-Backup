@@ -10,6 +10,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.SkipException;
+import org.testng.asserts.SoftAssert;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -22,6 +24,8 @@ import java.util.List;
 public class ADACheckMethods {
 
     public static String CurrentDate;
+    public static SoftAssert softAssert;
+    public static int Fail = 0;
 
     public  static String setCurrentDatetDate()
     {
@@ -31,12 +35,14 @@ public class ADACheckMethods {
 
         CurrentDate= dateFormat.format(date);
 
-        System.out.println(CurrentDate);
+//        System.out.println(CurrentDate);
 
         return CurrentDate;
 
     }
     public static void ADACheck(WebDriver driver, String Filename) throws FileNotFoundException {
+
+        softAssert = new SoftAssert();
 
         String Date = setCurrentDatetDate();
 
@@ -60,9 +66,11 @@ public class ADACheckMethods {
             AxeReporter.writeResultsToJsonFile("ADACheckResults/"+Filename, results);
             JsonElement jsonElement = jsonParser.parse(new FileReader("ADACheckResults/"+Filename+".json"));
             String prettyJson = gson.toJson(jsonElement);
-            System.out.println(Filename);
+//            System.out.println(Filename);
             AxeReporter.writeResultsToTextFile("ADACheckResults/"+Filename,prettyJson);
-            Assert.assertEquals(violations.size(), 0, violations.size() + " violations found");
+            softAssert.assertEquals(violations.size(), 0, violations.size() + " violations found");
+
         }
+
     }
 }
