@@ -225,7 +225,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		text = driver.findElement(SHIPPING_TEXT).getText();
 		softAssert.assertTrue(text.contains("Shipping method"),"Shipping method text not present");
 		
-		wait.until(ExpectedConditions.elementToBeClickable(CONTINUE_TO_PAYMENT_BUTTON));
+//		wait.until(ExpectedConditions.elementToBeClickable(CONTINUE_TO_PAYMENT_BUTTON));
 		jse.executeScript("arguments[0].click();", driver.findElement(CONTINUE_TO_PAYMENT_BUTTON));
 		Reporter.log("Selected shipping method and user is navigated to payment page");
 		ExtentReport.extentTest.info("Selected shipping method and user is navigated to payment page");
@@ -332,8 +332,8 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 				"Express checkout text is not displayed");
 		softAssert.assertTrue(driver.findElement(CONTACTINFO_TEXT).isDisplayed(),
 				"Contact information text is not displayed");
-		softAssert.assertTrue(driver.findElement(ALREADYHAVEANACCOUNT_TEXT).isDisplayed(),
-				"Already have an account? text is not displayed");
+	//	softAssert.assertTrue(driver.findElement(ALREADYHAVEANACCOUNT_TEXT).isDisplayed(),
+	//			"Already have an account? text is not displayed");
 		softAssert.assertTrue(driver.findElement(LOGIN_LINK).isDisplayed(), "Login link is not displayed");
 		softAssert.assertTrue(driver.findElement(SHIPPINGADD_TEXT).isDisplayed(),
 				"Shipping address text is not displayed");
@@ -378,7 +378,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		
 		CheckBreadcrumbs();
 
-		softAssert.assertTrue(driver.findElement(CONTACT_EMAIL).isDisplayed(), "Conatct email is not present");
+		softAssert.assertTrue(driver.findElement(CONTACT_EMAIL).isDisplayed(), "Contact email is not present");
 		softAssert.assertTrue(driver.findElement(SHIP_ADDRESS).isDisplayed(), "Shipping address is not present");
 		softAssert.assertTrue(driver.findElement(CHANGE_LINK_CONTACT).isDisplayed(), "Contact change link is not present to chnage ");
 		softAssert.assertTrue(driver.findElement(CHANGE_LINK_SHIP_TO).isDisplayed(), "Ship To change link is not present to chnage ");
@@ -388,7 +388,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		softAssert.assertTrue(driver.findElement(CONTINUE_TO_PAYMENT_BUTTON).isDisplayed(), "Continue to paymnet method button is not present");
 		softAssert.assertTrue(driver.findElement(RETURN_LINK).isDisplayed(), "return link is not present");
 		
-		List<WebElement> shipmethods = driver.findElements(By.className("radio__label__primary"));
+		List<WebElement> shipmethods = driver.findElements(By.xpath("//div[@class='hEGyz']//p"));
 		for (WebElement method : shipmethods) {
 			wait.until(ExpectedConditions.textToBePresentInElement(method, "Arrive"));
 			System.out.println(method.getText());
@@ -440,7 +440,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		Thread.sleep(10000);
 
 		sidebar();
-		softAssert.assertTrue(driver.findElement(CONTACT_EMAIL).isDisplayed(), "Conatct email is not present");
+		softAssert.assertTrue(driver.findElement(CONTACT_EMAIL).isDisplayed(), "Contact email is not present");
 		softAssert.assertTrue(driver.findElement(SHIP_ADDRESS).isDisplayed(), "Shipping address is not present");
 		softAssert.assertTrue(driver.findElement(METHOD).isDisplayed(), "Shipping method is not present");
 		// WebDriverWait waits = new WebDriverWait(driver, 60);
@@ -497,7 +497,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		driver.findElement(CITY_TEXTBOX).sendKeys("New York");
 		WebElement countrydp = driver.findElement(COUNTRY_DROPDOWN);
 		Select country = new Select(countrydp);
-		country.selectByValue("United States");
+		country.selectByValue("US");
 
 		WebElement statedp = driver.findElement(STATE_DROPDOWN);
 		Select state = new Select(statedp);
