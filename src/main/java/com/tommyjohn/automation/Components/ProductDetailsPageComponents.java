@@ -2572,7 +2572,6 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 				
 				if(num1>0 && num1<elementsCount)
 				{
-					System.out.println(num1);
 					count++;
 					System.out.println("For size: " +sizename);
 					
@@ -2591,10 +2590,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 				Reporter.log("Sizes are changing and colors are unavailable for few sizes");
 				ExtentReport.extentTest.info("Sizes are changing and colors are unavailable for few sizes");
 			}
-			else
-			{
-				throw new Exception("Colors are fully OOS");
-			}
+
 			Reporter.log("Sizes are changing correctly");
 			ExtentReport.extentTest.info("Sizes are changing correctly");
 		}

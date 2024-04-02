@@ -24,7 +24,7 @@ public class CollectionPageADACheck {
     }
 
     @Test
-    public void ADACheck_Homepage() throws Exception {
+    public void ADACheck_CollectionPage() throws Exception {
 
         driver.get("https://www.tommyjohn.com/collections/mens-underwear?sort-by=relevance&sort-order=descending");
         ADACheckMethods.ADACheck(driver, "CollectionPageADACheck");

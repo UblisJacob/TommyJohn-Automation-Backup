@@ -11,9 +11,9 @@
     <test name="CategoryTests">
         <parameter name="browser" value="chrome" />
         <classes>
-            <class name="ADACheckModules.CheckoutPageADACheck" >
+            <class name="TestModules.ValidatePDP" >
                 <methods>
-                    <include name=""/>
+                    <include name="TC_verifyAvailableSizes"/>
                 </methods>
             </class>
         </classes>

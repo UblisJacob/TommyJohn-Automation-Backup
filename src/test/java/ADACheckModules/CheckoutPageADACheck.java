@@ -50,7 +50,7 @@ public class CheckoutPageADACheck {
         jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
         Reporter.log("Information page displayed");
         ExtentReport.extentTest.info("Information page displayed");
-  //      ADACheckMethods.ADACheck(driver, "InformationPageADACheck");
+    //    ADACheckMethods.ADACheck(driver, "InformationPageADACheck");
 
         //Navigating to Shipping page
         wait.until(ExpectedConditions.visibilityOfElementLocated(CheckoutPageLocators.CHECKOUT_EMAIL));
@@ -83,17 +83,21 @@ public class CheckoutPageADACheck {
         ExtentReport.extentTest.info("Shipping Address Details entered");
         WebElement Continue_shipping = driver.findElement(CheckoutPageLocators.CONTINUE_TO_SHIPPING_BUTTON);
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", Continue_shipping);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//input[@type='radio'])[2]")));
+  //      driver.findElement(By.xpath("(//input[@type='radio'])[2]")).click();
         Reporter.log("Shipping page is displayed");
         ExtentReport.extentTest.info("Shipping page is displayed");
         ADACheckMethods.ADACheck(driver, "ShippingPageADACheck");
 
-//        //Navigating to Payment Page
-//        WebElement element = driver.findElement(CheckoutPageLocators.CONTINUE_TO_PAYMENT_BUTTON);
-//        jse.executeScript("arguments[0].click();", element);
-//        Reporter.log("Payment page is displayed");
-//        ExtentReport.extentTest.info("Payment page is displayed");
-//        ADACheckMethods.ADACheck(driver, "PaymentPageADACheck");
-//        ADACheckMethods.softAssert.assertAll();
+        //Navigating to Payment Page
+        WebElement element = driver.findElement(CheckoutPageLocators.CONTINUE_TO_PAYMENT_BUTTON);
+        jse.executeScript("arguments[0].click();", element);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='checkbox']")));
+  //      driver.findElement(By.xpath("//input[@type='checkbox']")).click();
+        Reporter.log("Payment page is displayed");
+        ExtentReport.extentTest.info("Payment page is displayed");
+        ADACheckMethods.ADACheck(driver, "PaymentPageADACheck");
+        ADACheckMethods.softAssert.assertAll();
     }
 
     @AfterMethod(alwaysRun = true)
