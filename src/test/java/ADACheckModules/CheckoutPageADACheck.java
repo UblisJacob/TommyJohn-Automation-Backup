@@ -50,7 +50,7 @@ public class CheckoutPageADACheck {
         jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
         Reporter.log("Information page displayed");
         ExtentReport.extentTest.info("Information page displayed");
-    //    ADACheckMethods.ADACheck(driver, "InformationPageADACheck");
+        ADACheckMethods.ADACheck(driver, "InformationPageADACheck");
 
         //Navigating to Shipping page
         wait.until(ExpectedConditions.visibilityOfElementLocated(CheckoutPageLocators.CHECKOUT_EMAIL));

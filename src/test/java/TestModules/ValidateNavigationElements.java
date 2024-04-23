@@ -72,10 +72,10 @@ public class ValidateNavigationElements {
 	public void TC_validateAllQuizLandingPages() {
 		new NavigationElementsPage(driver).validateAllQuizLandingPages();
 	}
-	
-	
+
 	@AfterMethod(alwaysRun = true)
-	void teardown() {
+	void teardown()
+	{
 		driver.quit();
 	}
 

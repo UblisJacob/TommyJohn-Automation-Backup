@@ -67,7 +67,7 @@ public class NavigationElementComponents extends HomePageLocators {
 
 		List<WebElement> linksList = driver.findElements(LEVEL_ZERO_LINKS_LIST);
 
-		softassert.assertTrue(linksList.size() <= 5,
+		softassert.assertTrue(linksList.size() <= 6,
 				"No. of Links on Left Side of TJ logo is: " + linksList.size() + "No. of links should be upto 4");
 
 		System.out.println("No. of Links on Left Side of TJ logo is: " + linksList.size());

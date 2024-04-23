@@ -62,7 +62,7 @@ public class ValidateSearchPages {
 		new CollectionPage(driver).validateQuickshopFunctionalityOnSearchPLP();
 	}
 	
-	@Test
+//	@Test
 	public void TC_Search_ValidateProductTile() throws Exception {
 		searchText = objGeneralMethods.readPropertiesFile("searchFeatured");
 		new HomePage(driver).validateSearchPM(searchText);

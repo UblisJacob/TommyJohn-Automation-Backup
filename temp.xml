@@ -11,9 +11,9 @@
     <test name="CategoryTests">
         <parameter name="browser" value="chrome" />
         <classes>
-            <class name="TestModules.ValidatePDP" >
+            <class name="TestModules.ValidateCategoryPages" >
                 <methods>
-                    <include name="TC_verifyAvailableSizes"/>
+                    <include name=""/>
                 </methods>
             </class>
         </classes>
