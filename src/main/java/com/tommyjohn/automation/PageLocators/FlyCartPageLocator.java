@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 public class FlyCartPageLocator {
 	public static By INLINE_CART_SECTION = By.cssSelector(".section.inline-cart");
 	public static By INLINE_CART_CLOSE_BUTTON = By.cssSelector("button[data-tj-qa='inline-cart-close'],button.inline-cart__close-btn");
-	public static By VIEW_CART_LINK = By.cssSelector("a[data-tj-qa='inline-cart-view-cartPage'],a.inline-cart__cart-link");
+	public static By VIEW_CART_LINK = By.xpath("//a[@class='inline-cart__cart-link']");
 	public static By INLINE_CART_TITLE = By.cssSelector("[data-tj-qa='inline-cart-title'],.inline-cart__title");
 	public static By SHIPING_MESSAGE_TEXT = By.cssSelector(".shipping-message__text");
 	public static By SHIPING_MESSAGE_METER = By.cssSelector(".shipping-message__meter > span");

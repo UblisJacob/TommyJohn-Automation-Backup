@@ -13,10 +13,10 @@ public class CheckoutPageLocators {
 	public static By GPAY_BUTTON = By.xpath("//div[@data-testid = 'GooglePay-button']");
 	public static By AMZ_PAY = By.xpath("//form[@action = 'https://payments.amazon.com/checkout/signin'] /button" );
 	public static By SHOP_PAY = By.xpath("//div[@data-testid='ShopifyPay-button']" );
-	public static By BREADCRUMB_LINK_CART = By.xpath("//span[@class='_19gi7yt0 _19gi7ytj _1fragemku']//a");
-	public static By BREADCRUMB_LINK_INFORMATION = By.xpath("//span[@class='_19gi7yt0 _19gi7ytj _1fragemku _19gi7yt1']");
-	public static By BREADCRUMB_LINK_SHIPPING = By.xpath("(//span[@class='_19gi7yt0 _19gi7ytj _1fragemku _19gi7ytb'])[1]");
-	public static By BREADCRUMB_LINK_PAYMENT = By.xpath("(//span[@class='_19gi7yt0 _19gi7ytj _1fragemku _19gi7ytb'])[2]");
+	public static By BREADCRUMB_LINK_CART = By.xpath("(//li[@class='_1fragemkj _1fragemir _1fragemmn'])[1]");
+	public static By BREADCRUMB_LINK_INFORMATION = By.xpath("(//li[@class='_1fragemkj _1fragemir _1fragemmn'])[2]");
+	public static By BREADCRUMB_LINK_SHIPPING = By.xpath("(//li[@class='_1fragemkj _1fragemir _1fragemmn'])[3]");
+	public static By BREADCRUMB_LINK_PAYMENT = By.xpath("(//li[@class='_1fragemkj _1fragemir _1fragemmn'])[4]");
 	
 	
 	//Contact info (before logging in)

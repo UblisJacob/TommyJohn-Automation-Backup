@@ -19,12 +19,12 @@ public class ProductDetailsPageLocators {
 	//first product on PDP
 //	public static By FIRST_PRODUCT = By.cssSelector(".product-item");
 	public static By FIRST_PRODUCT = By.xpath("(//div[@data-tj-qa='product-image'])[1]");
-	public static By FIRST_PRODUCT_HEAD_LINE_TEXT = By.cssSelector(".product-meta__title");
+	public static By FIRST_PRODUCT_HEAD_LINE_TEXT = By.xpath("(//span[@class='product-meta__title'])[1]");
 		
 	//image badging
 //	public static By IMAGE_BADGING = By.cssSelector(".productImage-item__badge");
 
-	public static By IMAGE_BADGING = By.xpath("//div[@data-tj-qa='plp-product-badge']");
+	public static By IMAGE_BADGING = By.xpath("(//div[@class='productImage__badge'])[1]");
 	
 	//Secondary Badging
 	public static By SECONDARY_BADGING = By.cssSelector("div.multi-pdp-title-wrap.desktop-view.desktop>span");
