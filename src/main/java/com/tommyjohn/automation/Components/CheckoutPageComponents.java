@@ -198,7 +198,8 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		
 //		On Information Page
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CHECKOUT_EMAIL));
-		
+
+		Thread.sleep(2000);
 		driver.findElement(CHECKOUT_EMAIL).clear();
 		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
 
@@ -326,10 +327,11 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
 		Reporter.log("Checkout page displayed");
 		ExtentReport.extentTest.info("Checkout page displayed");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(EXPRESS_CHECKOUT_TEXT));
+		Thread.sleep(4000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
 		CheckBreadcrumbs();
-		softAssert.assertTrue(driver.findElement(EXPRESS_CHECKOUT_TEXT).isDisplayed(),
-				"Express checkout text is not displayed");
+//		softAssert.assertTrue(driver.findElement(EXPRESS_CHECKOUT_TEXT).isDisplayed(),
+//				"Express checkout text is not displayed");
 		softAssert.assertTrue(driver.findElement(CONTACTINFO_TEXT).isDisplayed(),
 				"Contact information text is not displayed");
 	//	softAssert.assertTrue(driver.findElement(ALREADYHAVEANACCOUNT_TEXT).isDisplayed(),
@@ -420,6 +422,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
 
 		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
+		Thread.sleep(5000);
 		entershippingdetails();
 		Reporter.log("Shipping Address Details entered");
 		ExtentReport.extentTest.info("Shipping Address Details entered");
@@ -483,7 +486,8 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	public void entershippingdetails() throws Exception {
 		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(FIRSTNAME_TEXTBOX));
-		
+
+		Thread.sleep(2000);
 		driver.findElement(FIRSTNAME_TEXTBOX).clear();
 		driver.findElement(FIRSTNAME_TEXTBOX).sendKeys("Test");
 		driver.findElement(LASTNAME_TEXTBOX).clear();

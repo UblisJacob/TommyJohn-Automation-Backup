@@ -26,7 +26,7 @@ public class CollectionPageLocator {
 	public static String PRODUCT_IMAGES = "//div[contains(@class,'product-image')]//a";
 	public static By PRODUCT_COUNT_TEXT = By.xpath("//*[data-tj-qa='plp-total-items']>span | //div[contains(@class,'controls__count')]//span");
 	public static By HOVERED_PRODUCT_IMAGE = By.cssSelector("[data-tj-qa='plp-product-img-hover'],.product-image--hover");
-	public static By FIRST_PRODUCT_HEAD_LINE_TEXT = By.cssSelector("[data-tj-qa='product-title'],.product-meta__title");
+	public static By FIRST_PRODUCT_HEAD_LINE_TEXT = By.xpath("(//span[@class='product-meta__title'])[1]");
 	public static By FIRST_PRODUCT_REVIEW_STARS = By.cssSelector("[data-tj-qa='product-reviews'],.yotpo-bottomline");
 	public static By FIRST_PRODUCT_URL = By.cssSelector(".product-meta");
 	
@@ -85,7 +85,7 @@ public class CollectionPageLocator {
 	    public static By PLP_BREADCRUMBGENDER= By.cssSelector("nav.breadcrumbs>div:nth-child(2)>a>span");
 	    public static By PLP_BREADCRUMBHOME= By.cssSelector("nav.breadcrumbs>div:nth-child(1)>a>span");
 	    public static By PLP_TITLE= By.cssSelector("h1[data-tj-qa='plp-title'] , div.collection-title-bar__content>h1");
-	    public static By PLP_TITLE_COUNT= By.cssSelector("h1[data-tj-qa='plp-title']>span , div.collection-title-bar__content>h1>span");
+	    public static By PLP_TITLE_COUNT= By.xpath("//span[@class='collection-title-bar__title']");
 	    public static By PLP_INLINE_BANNER= By.cssSelector("img[data-tj-qa='plp-inline-banner']");
 	    public static String PLP_SECTION_HEADER = "(//h2[@class='mega-collection-grid__title'])";
 	    

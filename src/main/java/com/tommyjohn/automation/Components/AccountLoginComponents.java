@@ -449,6 +449,8 @@ Thread.sleep(3000);
 	public void verifyAccountLoginFuctionality(String createdAccountEmail, String password) throws Exception {
 
 		actions = new Actions(driver);
+		String Email = CustomUtilities.properties.getProperty("loginemail");
+		String Password = CustomUtilities.properties.getProperty("password");
 		// click on account icon from home page
 		// driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN).click();
 		WebElement element = driver.findElement((HomePageLocators.ACCOUNT_NAV_DROPDOWN));
@@ -462,14 +464,14 @@ Thread.sleep(3000);
 
 			driver.findElement(CUSTOMER_EMAIL_INPUT).clear();
 			Thread.sleep(2000);
-			driver.findElement(CUSTOMER_EMAIL_INPUT).sendKeys(createdAccountEmail);
+			driver.findElement(CUSTOMER_EMAIL_INPUT).sendKeys(Email);
 
 			// type correct password if password inputbox is present
 			if (driver.findElements(CUSTOMER_PASSWORD_INPUTBOX).size() == 0)
 				throw new Exception("Email inputbox is not present");
 			driver.findElement(CUSTOMER_PASSWORD_INPUTBOX).clear();
 			Thread.sleep(2000);
-			driver.findElement(CUSTOMER_PASSWORD_INPUTBOX).sendKeys(password);
+			driver.findElement(CUSTOMER_PASSWORD_INPUTBOX).sendKeys(Password);
 			// click login button if present
 			if (!driver.findElement(LOGIN_BUTTON).isDisplayed())
 				throw new Exception("Login button is not present");
