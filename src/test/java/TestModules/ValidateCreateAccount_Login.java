@@ -50,14 +50,14 @@ public class ValidateCreateAccount_Login {
 	}
 
 
-	@Test(dependsOnMethods = { "TC_VerifyCreateAccount" })
-//	@Test(priority = 3)
+//	@Test(dependsOnMethods = { "TC_VerifyCreateAccount" })
+	@Test(priority = 3)
 	public void TC_VerifyAccountLogin() throws Exception
 	{
 		new AccountLoginPage(driver).loginCustomerAccount(accountCreatedEmail, password);
 	}
 
-	@Test
+//	@Test
 	public void TC_VerifyCreateAccount() throws Exception
 	{
 		accountCreatedEmail = new AccountLoginPage(driver).createCustomerAccount(initialEmail,password);
@@ -76,7 +76,7 @@ public class ValidateCreateAccount_Login {
 		new AccountLoginPage(driver).verifyErrorsOnLoginPage();
 	}
 
-	@Test
+//	@Test
 	public void TC_VerifyErrorScenariosForCreateAccount() throws Exception
 	{
 		new AccountLoginPage(driver).verifyerrorsoncreateaccountpage();	

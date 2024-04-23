@@ -56,7 +56,7 @@ public class AddToCartComponents extends AddToCartLocators{
 		
 		if(elementsCount > 1)
 		{
-			for(int i=1;i<=3;i++)
+			for(int i=1;i<=2;i++)
 			{
 				
 				WebElement elemen = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper>ul>li:nth-child(" + i + ")>input"));
@@ -64,7 +64,7 @@ public class AddToCartComponents extends AddToCartLocators{
 				jse.executeScript("arguments[0].click();", elemen);
 				Thread.sleep(3000);
 				
-					for(int k=1;k<=3;k++)				
+					for(int k=1;k<=2;k++)
 					{	
 						WebElement elements = driver.findElement(By.cssSelector(".option-swatch__option>li:nth-child("+ k +")>input"));
 						jse.executeScript("arguments[0].click();", elements);
