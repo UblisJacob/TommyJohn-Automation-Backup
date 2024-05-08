@@ -1,7 +1,6 @@
 /collections/mens-all
 /collections/new-arrivals-mens
 /collections/mens-packs
-#/collections/mens-trending-now
 /collections/mens-best-sellers
 /collections/mens-underwear
 /collections/mens-underwear-packs
@@ -19,9 +18,7 @@
 /collections/360-sport
 /collections/mens-undershirts
 /collections/mens-undershirt-packs
-#/collections/mens-crew-neck-undershirts
 /collections/mens-high-v-neck-undershirts
-#/collections/mens-deep-v-neck-undershirts
 /collections/mens-tanks
 /collections/loungewear
 /collections/mens-lounge-sleep-tops
@@ -37,7 +34,6 @@
 /collections/new-arrivals-womens
 /collections/womens-packs
 /collections/womens-bras-and-underwear
-#/collections/womens-trending-now
 /collections/womens-underwear
 /collections/underwear-womens-styles-brief
 /collections/womens-high-rise-brief
