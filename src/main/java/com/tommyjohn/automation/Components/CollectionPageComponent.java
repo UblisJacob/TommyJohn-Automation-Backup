@@ -819,7 +819,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		// first check all corosals are not active by default
 		for (int k = 1; k <= allCorosals.size(); k++) {
 			try {
-				element = driver.findElement(By.cssSelector(".dyHero-interactive__slider>button:nth-child(" + k + ")"));
+					element = driver.findElement(By.cssSelector(".dyHero-interactive__slider>button:nth-child(" + k + ")"));
 			}
 			catch(Exception e)
 			{
