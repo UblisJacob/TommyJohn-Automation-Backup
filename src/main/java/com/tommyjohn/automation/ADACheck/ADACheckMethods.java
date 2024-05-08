@@ -57,6 +57,7 @@ public class ADACheckMethods {
         if (violations.size() == 0)
         {
             Assert.assertTrue(true, "No violations found");
+            System.out.println("No Violations");
         }
         else
         {
@@ -69,6 +70,7 @@ public class ADACheckMethods {
 //            System.out.println(Filename);
             AxeReporter.writeResultsToTextFile("ADACheckResults/"+Filename,prettyJson);
             softAssert.assertEquals(violations.size(), 0, violations.size() + " violations found");
+            System.out.println("Violations Found");
 
         }
 

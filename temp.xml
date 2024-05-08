@@ -13,7 +13,7 @@
         <classes>
             <class name="TestModules.ValidateCategoryPages" >
                 <methods>
-                    <include name=""/>
+                    <include name="TC_InteractWithBreadcrumbs"/>
                 </methods>
             </class>
         </classes>
