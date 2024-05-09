@@ -13,10 +13,12 @@ public class CheckoutPageLocators {
 	public static By GPAY_BUTTON = By.xpath("//div[@data-testid = 'GooglePay-button']");
 	public static By AMZ_PAY = By.xpath("//form[@action = 'https://payments.amazon.com/checkout/signin'] /button" );
 	public static By SHOP_PAY = By.xpath("//div[@data-testid='ShopifyPay-button']" );
-	public static By BREADCRUMB_LINK_CART = By.xpath("(//li[@class='_1fragemkj _1fragemir _1fragemmn'])[1]");
-	public static By BREADCRUMB_LINK_INFORMATION = By.xpath("(//li[@class='_1fragemkj _1fragemir _1fragemmn'])[2]");
-	public static By BREADCRUMB_LINK_SHIPPING = By.xpath("(//li[@class='_1fragemkj _1fragemir _1fragemmn'])[3]");
-	public static By BREADCRUMB_LINK_PAYMENT = By.xpath("(//li[@class='_1fragemkj _1fragemir _1fragemmn'])[4]");
+	public static By BREADCRUMB_LINK_CART = By.xpath("//a[contains(text(),'Cart')]");
+	public static By ShipAndPaymentPage_BREADCRUMB_LINK_INFORMATION = By.xpath("//a[contains(text(),'Information')]");
+	public static By BREADCRUMB_LINK_INFORMATION = By.xpath("//span[contains(text(),'Information')]");
+	public static By BREADCRUMB_LINK_SHIPPING = By.xpath("(//span[contains(text(),'Shipping')])[1]");
+	public static By PaymentPage_BREADCRUMB_LINK_SHIPPING = By.xpath("(//a[contains(text(),'Shipping')])[1]");
+	public static By BREADCRUMB_LINK_PAYMENT = By.xpath("//span[contains(text(),'Payment')]");
 	
 	
 	//Contact info (before logging in)
@@ -45,7 +47,7 @@ public class CheckoutPageLocators {
 
 
 	//SideBar
-	public static By ORDER_SUMMARY_SECTION = By.xpath("(//section[@class='_1fragemkh _1fragemir'])[4]");
+	public static By ORDER_SUMMARY_SECTION = By.xpath("(//section[@class='_1fragemoo _1fragemms'])[4]");
 	//public static By DISCOUNT_CODE_TEXTBOX = By.cssSelector("#checkout_reduction_code");
 	public static By DISCOUNT_CODE_TEXTBOX = By.xpath("//input[@id='TextField6']");
 	//public static By APPLY_DISCOUNT_BUTTON = By.cssSelector(".field__input-btn");
@@ -53,9 +55,9 @@ public class CheckoutPageLocators {
 	public static By SUBTOTAL = By.xpath("(//div[@class='_1qy6ue68']//span)[1]");
 	public static By SHIPPING = By.xpath("(//div[@class='_1qy6ue68']//span)[2]");
 	public static By APPLIED_PROMO_CODE = By.xpath("//span[@class='i8os0m3']//span");
-	public static By CANCEL_PROMO_CODE = By.xpath("//span[@class='_1fragemmj _1fragem2i _1fragemhs _1fragemhn a8x1wua _1fragemkh a8x1wuh a8x1wum']");
+	public static By CANCEL_PROMO_CODE = By.xpath("//span[@class='_1fragempp _1fragem2d _1fragemlt _1fragemlo a8x1wua _1fragemoo a8x1wuh a8x1wuf a8x1wus']");
 //	public static By CANCEL_PROMO_CODE = By.cssSelector("button.tag__button use");
-	public static By TOTAL = By.xpath("(//div[@class='_1fragemkj _1fragemir _1fragemmn']//strong)[1]");
+	public static By TOTAL = By.xpath("(//div[@class='_1fragemoq _1fragemms _1fragempt']//strong)[1]");
 
 	//                                          Shipping
 
