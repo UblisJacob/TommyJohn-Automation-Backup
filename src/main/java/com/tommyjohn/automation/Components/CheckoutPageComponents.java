@@ -171,10 +171,24 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
 		softAssert.assertTrue(driver.findElement(BREADCRUMB_LINK_CART).isDisplayed(),
 				"Cart link is not displayed on breadcrumb");
-		softAssert.assertTrue(driver.findElement(BREADCRUMB_LINK_INFORMATION).isDisplayed(),
-				"Information link is not displayed on breadcrumb");
-		softAssert.assertTrue(driver.findElement(BREADCRUMB_LINK_SHIPPING).isDisplayed(),
-				"Shipping link is not displayed on breadcrumb");
+		try {
+			softAssert.assertTrue(driver.findElement(BREADCRUMB_LINK_INFORMATION).isDisplayed(),
+					"Information link is not displayed on breadcrumb");
+		}
+		catch(Exception e)
+		{
+			softAssert.assertTrue(driver.findElement(ShipAndPaymentPage_BREADCRUMB_LINK_INFORMATION).isDisplayed(),
+					"Information link is not displayed on breadcrumb");
+		}
+			try {
+				softAssert.assertTrue(driver.findElement(BREADCRUMB_LINK_SHIPPING).isDisplayed(),
+						"Shipping link is not displayed on breadcrumb");
+			}
+			catch(Exception e)
+			{
+				softAssert.assertTrue(driver.findElement(PaymentPage_BREADCRUMB_LINK_SHIPPING).isDisplayed(),
+						"Shipping link is not displayed on breadcrumb");
+			}
 		softAssert.assertTrue(driver.findElement(BREADCRUMB_LINK_PAYMENT).isDisplayed(),
 				"Payment link is not displayed on breadcrumb");
 		softAssert.assertAll();
@@ -346,7 +360,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		softAssert.assertTrue(driver.findElement(CONTINUE_TO_SHIPPING_BUTTON).isDisplayed(),
 				"Continue to shipping method button is not displayed");
 		sidebar();
-		CheckPromoCodeApplication("FIRST20");
+		CheckPromoCodeApplication("TECHTESTORDER");
 		softAssert.assertAll();
 
 	}
@@ -398,7 +412,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		
 		sidebar();
 		
-		CheckPromoCodeApplication("FIRST20");
+		CheckPromoCodeApplication("TECHTESTORDER");
 		
 		softAssert.assertAll();
 	}
@@ -474,7 +488,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 //		softAssert.assertTrue(driver.findElement(HOWHEARD_DROPDOWN).isDisplayed(), "How heard dropdown is not present");
 		softAssert.assertTrue(driver.findElement(COMPLETE_ORDER_BUTTON).isEnabled(), "Complete order button is not enabled");
 		
-		CheckPromoCodeApplication("FIRST20");
+		CheckPromoCodeApplication("TECHTESTORDER");
 //		Select dphowheard = new Select(driver.findElement(HOWHEARD_DROPDOWN));
 //		dphowheard.selectByValue("Online Search");
 //		Reporter.log("How heard values are displayed:: Clickable");
