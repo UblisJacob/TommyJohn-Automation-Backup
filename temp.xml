@@ -11,9 +11,9 @@
     <test name="CategoryTests">
         <parameter name="browser" value="chrome" />
         <classes>
-            <class name="TestModules.ValidateCategoryPages" >
+            <class name="TestModules.ValidateCheckoutPage" >
                 <methods>
-                    <include name="TC_InteractWithBreadcrumbs"/>
+                    <include name="ValidatePaymentPageOfCheckout"/>
                 </methods>
             </class>
         </classes>
