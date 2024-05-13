@@ -47,7 +47,7 @@ public class CheckoutPageLocators {
 
 
 	//SideBar
-	public static By ORDER_SUMMARY_SECTION = By.xpath("(//section[@class='_1fragemoo _1fragemms'])[4]");
+	public static By ORDER_SUMMARY_SECTION = By.xpath("(//section[@class='_1fragemop _1fragemms'])[3]");
 	//public static By DISCOUNT_CODE_TEXTBOX = By.cssSelector("#checkout_reduction_code");
 	public static By DISCOUNT_CODE_TEXTBOX = By.xpath("//input[@id='TextField6']");
 	//public static By APPLY_DISCOUNT_BUTTON = By.cssSelector(".field__input-btn");
@@ -55,9 +55,9 @@ public class CheckoutPageLocators {
 	public static By SUBTOTAL = By.xpath("(//div[@class='_1qy6ue68']//span)[1]");
 	public static By SHIPPING = By.xpath("(//div[@class='_1qy6ue68']//span)[2]");
 	public static By APPLIED_PROMO_CODE = By.xpath("//span[@class='i8os0m3']//span");
-	public static By CANCEL_PROMO_CODE = By.xpath("//span[@class='_1fragempp _1fragem2d _1fragemlt _1fragemlo a8x1wua _1fragemoo a8x1wuh a8x1wuf a8x1wus']");
+	public static By CANCEL_PROMO_CODE = By.xpath("(//span[@class='i8os0m3']//following::button)[1]");
 //	public static By CANCEL_PROMO_CODE = By.cssSelector("button.tag__button use");
-	public static By TOTAL = By.xpath("(//div[@class='_1fragemoq _1fragemms _1fragempt']//strong)[1]");
+	public static By TOTAL = By.xpath("//div[@class='_1x41w3p8']");
 
 	//                                          Shipping
 
@@ -68,7 +68,7 @@ public class CheckoutPageLocators {
 	public static By CHANGE_LINK_METHOD = By.xpath("(//span[contains(text(),'Change')])[3]");
 	public static By SHIPPING_TEXT = By.cssSelector("h2#checkout-main-header");
 	public static By SHIPPING_RADIO_BUTTON = By.xpath("//input[@type='radio']");
-	public static By RETURN_LINK = By.xpath("//span[@class='AjwsM']//div[@class='_1fragemkj _1fragemir _1fragemmn']");
+	public static By RETURN_LINK = By.xpath("(//span[@class='AjwsM'])[2]");
 	public static By CONTINUE_TO_PAYMENT_BUTTON = By.xpath("//div[@class='oQEAZ']//button");
 
 

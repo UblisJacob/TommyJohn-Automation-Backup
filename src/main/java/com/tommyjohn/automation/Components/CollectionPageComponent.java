@@ -823,7 +823,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			}
 			catch(Exception e)
 			{
-				element = driver.findElement(By.cssSelector(".dyHero-interactive__slider>a:nth-child(" + k + ")"));
+				element = driver.findElement(By.xpath("(//div[@class='interactive-hero-slider']//a)[" + k + "]"));
 			}
 		
 			String classes = element.getAttribute("class");
@@ -847,23 +847,25 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			}
 			catch(Exception e)
 			{
-				carouselFilter = driver.findElement(By.cssSelector("div.dyHero-interactive__slider>a:nth-child(" + k + ")"));
+				carouselFilter = driver.findElement(By.xpath("(//div[@class='interactive-hero-slider']//a)[" + k + "]"));
 			}
 			//carouselFilter = driver.findElement(By.cssSelector("div.dyHero-interactive__slider>button:nth-child(" + k + ")"));
 			if(carouselFilter.isEnabled()) {
-				System.out.println("Carousel filter is clickable");
+				Thread.sleep(5000);
 				js.executeScript("arguments[0].click();", carouselFilter);
+				System.out.println("Carousel filter is clickable");
 			}
 			try {
 			 filterPill = driver.findElement(FILTER_PILL);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(FILTER_PILL));
 			js.executeScript("arguments[0].click();", filterPill);
 			flag=true;
+			driver.get("https://www.tommyjohn.com/collections/mens-underwear");
 			}
 			catch (Exception e)
 			{
 				//Assert.assertFalse(driver.getCurrentUrl().contains("mens-underwear?"), "DY style carousel");
-				driver.navigate().back();
+				driver.get("https://www.tommyjohn.com/collections/mens-underwear");
 			}
 			
 		}
