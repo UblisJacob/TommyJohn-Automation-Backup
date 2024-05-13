@@ -15,7 +15,7 @@ public class AccountPageLocators
 	public static By SIGN_OUT_LINK = By.cssSelector(".header-nav-dropdown > ul >li:nth-child(5) > a");
 	public static By LOGIN_INFORMATION_TITLE = By.cssSelector("div[data-tj-qa='account-login-info'] h2");
 //	public static By LOGGED_IN_ID = By.cssSelector(".account-logged-content>div:nth-child(1)>div>div>.account-row-column>p");
-	public static By LOGGED_IN_ID = By.cssSelector("div[data-tj-qa='account-login-info'] p");
+	public static By LOGGED_IN_ID = By.xpath("//div[@data-tj-qa='account-login-info']//p");
 	public static By ADDRESS_BOOK_TITLE= By.cssSelector(".account-logged-content>div:nth-child(2)>h2, div[data-tj-qa='address-book-title']>h2");
 	public static By DEFAULT_SHIPPING_ADDRESS_TITLE= By.cssSelector("h2[data-tj-qa='default-address']");
 //	.account-logged-content>div:nth-child(2)>div>div>.account-default-shipping-address
