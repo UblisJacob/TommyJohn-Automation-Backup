@@ -6,7 +6,7 @@ public class CollectionPageLocator {
 	
 	public static By STYLE_COROSALS = By.cssSelector("div.dyCollection-hero__interactive-inner");
 	public static By TOTAL_NO_OF_COROSALS = By.xpath("//div[@class='interactive-hero-slide asset-type-icons']");
-	public static By FILTER_PILL = By.xpath("//div[@class='collection-filters__active-controls']//button");
+	public static By FILTER_PILL = By.xpath("//button[@title='Filters']");
 //	public static By MENS_ALL_UNDERWEAR_FIRST_PRODUCT_IMAGE = By.cssSelector(".product-image-container > a");
 //	public static By THIRD_PRODUCT_IMAGE = By.cssSelector("div.mega-collection-grid__row:nth-child(3) > div:nth-child(3) > div:nth-child(1) > a > img");
 //	public static By THIRD_PRODUCT_HEAD_LINE_TEXT = By.cssSelector("div.mega-collection-grid__row:nth-child(3) > div:nth-child(3) > a > h2");
