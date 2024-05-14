@@ -18,7 +18,7 @@ public class ProductDetailsPageLocators {
 	
 	//first product on PDP
 //	public static By FIRST_PRODUCT = By.cssSelector(".product-item");
-	public static By FIRST_PRODUCT = By.xpath("(//div[@data-tj-qa='product-image'])[1]");
+	public static By FIRST_PRODUCT = By.xpath("//div[@data-index='1']");
 	public static By FIRST_PRODUCT_HEAD_LINE_TEXT = By.xpath("(//span[@class='product-meta__title'])[1]");
 		
 	//image badging

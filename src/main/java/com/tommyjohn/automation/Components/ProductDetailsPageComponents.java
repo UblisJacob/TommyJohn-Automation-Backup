@@ -3178,9 +3178,9 @@ public void verifySizeCharts() throws Exception {
 		if(num>0) {
 			
 			for(int i=1;i<=num;i++) {
-				String range = driver.findElement(By.cssSelector(".size-guide-yatpo-fit-graph>ul>li:nth-child("+i+")")).getAttribute("class");
+				String range = driver.findElement(By.xpath("(//ul[@data-tj-qa='size-guide-fit-range-graph']//li)["+i+"]")).getAttribute("class");
 				if(range.contentEquals("selected")) {
-					String rangevalue = driver.findElement(By.cssSelector(".size-guide-yatpo-fit-graph>ul>li:nth-child("+i+")")).getText();
+					String rangevalue = driver.findElement(By.xpath("(//ul[@data-tj-qa='size-guide-fit-range-graph']//li)["+i+"]")).getText();
 					System.out.println(rangevalue + " is selected");
 				}
 				}
