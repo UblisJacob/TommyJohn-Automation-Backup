@@ -860,7 +860,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(FILTER_PILL));
 			js.executeScript("arguments[0].click();", filterPill);
 			flag=true;
-			driver.get("https://www.tommyjohn.com/collections/mens-underwear");
+			driver.get("https://www. tommyjohn.com/collections/mens-underwear");
 			}
 			catch (Exception e)
 			{
