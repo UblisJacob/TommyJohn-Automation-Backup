@@ -49,7 +49,7 @@ public class CheckoutPageLocators {
 	//SideBar
 	public static By ORDER_SUMMARY_SECTION = By.xpath("(//section[@class='_1fragemop _1fragemms'])[3]");
 	//public static By DISCOUNT_CODE_TEXTBOX = By.cssSelector("#checkout_reduction_code");
-	public static By DISCOUNT_CODE_TEXTBOX = By.xpath("//input[@id='TextField6']");
+	public static By DISCOUNT_CODE_TEXTBOX = By.xpath("//input[@id='ReductionsInput0']");
 	//public static By APPLY_DISCOUNT_BUTTON = By.cssSelector(".field__input-btn");
 	public static By APPLY_DISCOUNT_BUTTON = By.xpath("(//button[@type='submit'])[3]");
 	public static By SUBTOTAL = By.xpath("(//div[@class='_1qy6ue68']//span)[1]");
