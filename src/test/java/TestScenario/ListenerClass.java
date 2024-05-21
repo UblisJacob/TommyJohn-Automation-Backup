@@ -127,30 +127,39 @@ count++;
 	
 	@Override
 	public void onExecutionFinish() {
+
 		generateExtentReports();
+
 	}
 
 
 	@Override
-	public void onFinish(ITestContext context) {
-
+	public void onFinish(ITestContext context)
+	{
 		Set<ITestResult> failedTests = context.getFailedTests().getAllResults();
 		Set<ITestResult> skippedTests = context.getSkippedTests().getAllResults();
 		for (ITestResult temp : failedTests) {
 			ITestNGMethod method = temp.getMethod();
 			if (context.getFailedTests().getResults(method).size() > 1) {
 				failedTests.remove(temp);
-			} else {
-				if (context.getPassedTests().getResults(method).size() > 0) {
+			}
+			else
+			{
+				if (context.getPassedTests().getResults(method).size() > 0)
+				{
 					failedTests.remove(temp);
 				}
 			}
 		}
-		for (ITestResult temp : skippedTests) {
+
+		for(ITestResult temp : skippedTests)
+		{
 			ITestNGMethod method = temp.getMethod();
 			if (context.getSkippedTests().getResults(method).size() > 1) {
 				skippedTests.remove(temp);
-			} else {
+			}
+			else
+			{
 				if (context.getPassedTests().getResults(method).size() > 0) {
 					skippedTests.remove(temp);
 				}
