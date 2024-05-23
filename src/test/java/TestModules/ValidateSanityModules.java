@@ -23,33 +23,33 @@ public class ValidateSanityModules {
 		}
 	}
 	@Test
-	public void TC_verifyHeroModule() throws Exception {
+	public void VerifyHeroModule() throws Exception {
 		 new SanityModulePage(driver).verifyHeroModule();
 		 
 	 }
 	@Test
-	public void TC_verifyFixedBannerModule() throws Exception {
+	public void VerifyFixedBannerModule() throws Exception {
 		 new SanityModulePage(driver).verifyFixedBannerModule();
 		 
 	 }
 	
 	@Test
-	public void TC_verifyThreeTileModule() throws Exception {
+	public void VerifyThreeTileModule() throws Exception {
 		 new SanityModulePage(driver).verifyThreeTileModule();
 		 
 	 }
 	@Test
-	public void TC_verifyImagecarousel() throws Exception {
+	public void VerifyImagecarousel() throws Exception {
 		 new SanityModulePage(driver).verifyImagecarousel();
 		 
 	 }
 	@Test
-	public void TC_verifyFixedBannerModuleLinks() throws Exception {
+	public void VerifyFixedBannerModuleLinks() throws Exception {
 		 new SanityModulePage(driver).verifyFixedBannerModuleLinks();
 		 
 	 }
 	@Test
-	public void TC_verifySideBySideModule() throws Exception {
+	public void VerifySideBySideModule() throws Exception {
 		 new SanityModulePage(driver).verifySideBySideModule();
 		 
 	 }

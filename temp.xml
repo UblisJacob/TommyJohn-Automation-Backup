@@ -11,9 +11,9 @@
     <test name="CategoryTests">
         <parameter name="browser" value="chrome" />
         <classes>
-            <class name="TestModules.ValidateCheckoutPage">
+            <class name="ADACheckModules.HomePageADACheck">
                 <methods>
-                    <include name=""/>
+                    <include name="VerifyFooterFeedback"/>
                 </methods>
             </class>
         </classes>

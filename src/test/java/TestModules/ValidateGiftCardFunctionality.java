@@ -33,7 +33,7 @@ public class ValidateGiftCardFunctionality extends ExtentReport{
 	}
 
 	@Test
-	public void FieldValidationsForGiftCard() throws Exception
+	public void ValidateFieldForGiftCard() throws Exception
 	{
 		new GiftCardPage(driver).verifyfieldsforGCPage();
 	}
@@ -45,7 +45,7 @@ public class ValidateGiftCardFunctionality extends ExtentReport{
 	}
 
 	//@Test
-	public void TC_verifyPGCard() throws Exception
+	public void VerifyPGCard() throws Exception
 	{
 		new GiftCardPage(driver).verifyPGCard(); 
 	}
