@@ -31,45 +31,45 @@ public class ValidateNavigationElements {
 	}
 
 	@Test(description = "validates if user is able to see four links on left side of TJ logo")
-	public void TC_validateNavLinks() {
+	public void ValidateNavLinks() {
 		new NavigationElementsPage(driver).validateNavLinks();
 	}
 
 	@Test
-	public void TC_validateLogoAndRightSideLinks() {
+	public void ValidateLogoAndRightSideLinks() {
 		new NavigationElementsPage(driver).validateLogoAndRightSideLinks();
 	}
 
 	@Test
-	public void TC_validateSearchBar() throws InterruptedException {
+	public void ValidateSearchBar() throws InterruptedException {
 		new NavigationElementsPage(driver).validateSearchBar();
 	}
 	
 	@Test
-	public void TC_validateElementsWhenNotSignedIn() {
+	public void ValidateElementsWhenNotSignedIn() {
 		new NavigationElementsPage(driver).validateElementsWhenNotSignedIn();
 	}
 
 	@Test
-	public void TC_validateElementsWhenSignedIn() throws Exception {
+	public void ValidateElementsWhenSignedIn() throws Exception {
 		new NavigationElementsPage(driver).validateElementsWhenSignedIn();
 	}
 	
 	@Test
-	public void TC_validateCartIcon() {
+	public void ValidateCartIcon() {
 		new NavigationElementsPage(driver).validateCartIcon();
 	}
 	
 	@Test(description = "Validates Level 0, Level 1 and Level 2 Navigation")
 	@Severity(SeverityLevel.BLOCKER)
-	public void TC_validateNavigation() {
+	public void ValidateNavigation() {
 		new NavigationElementsPage(driver).validateNavigation();
 	}
 	
 	@Test(description = "validates if user is able to see four links on left side of TJ logo")
 	@Severity(SeverityLevel.CRITICAL)
 	@Description("Validates if user is able to see upto four links on left side of TJ logo")
-	public void TC_validateAllQuizLandingPages() {
+	public void ValidateAllQuizLandingPages() {
 		new NavigationElementsPage(driver).validateAllQuizLandingPages();
 	}
 

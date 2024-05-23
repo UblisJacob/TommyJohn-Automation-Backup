@@ -27,7 +27,7 @@ public class ValidateBlogPages{
 	}
 	
 	@Test
-	public void TC_ViewBlogAndArticle() throws Exception {
+	public void ViewBlogAndArticle() throws Exception {
 		new BlogPage(driver).validateBlogPage();
 	}
 

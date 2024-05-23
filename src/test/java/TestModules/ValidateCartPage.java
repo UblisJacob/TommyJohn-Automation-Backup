@@ -34,12 +34,12 @@ public class ValidateCartPage extends ExtentReport{
 	}
 
 	@Test
-	public void TC_Cart_InteractWithEmptyCart() throws Exception {	
+	public void Validate_Cart_InteractWithEmptyCart() throws Exception {
 		new ShoppingCartPage(driver).ValidateEmptyCart();	
 	} 
 
 	@Test
-	public void TC_Cart_InteractWithGiftWrap() throws Exception {
+	public void Validate_Cart_InteractWithGiftWrap() throws Exception {
 		new AddToCartComponents(driver).addToCart();
 		new ShoppingCartPage(driver).ValidateViewCartLink();
 		new ShoppingCartPage(driver).AddGiftWrap();
@@ -53,7 +53,7 @@ public class ValidateCartPage extends ExtentReport{
 	}
 
 	@Test
-	public void TC_Cart_InteractWithActiveCart() throws Exception {
+	public void Validate_Cart_InteractWithActiveCart() throws Exception {
 
 		new AddToCartComponents(driver).addToCart();
 		new ShoppingCartPage(driver).ValidateViewCartLink();
@@ -63,7 +63,7 @@ public class ValidateCartPage extends ExtentReport{
 	}
 
 	@Test
-	public void TC_Cart_ViewOOSItem() throws Exception {
+	public void Validate_Cart_ViewOOSItem() throws Exception {
 		new ProductDetailsPageComponents(driver).verifyBundlePDPs();
 		new ShoppingCartPage(driver).ValidateViewCartLink();
 		new ShoppingCartPage(driver).OOSValidation();
@@ -71,7 +71,7 @@ public class ValidateCartPage extends ExtentReport{
 	}
 
 	@Test
-	public void TC_Cart_ViewPromotions() throws Exception {
+	public void Validate_Cart_ViewPromotions() throws Exception {
 		String accountEmail = objGeneralMethods.readPropertiesFile("loginemail");
 		String password = objGeneralMethods.readPropertiesFile("password");
 		new AccountLoginPage(driver).loginAccount(accountEmail, password);
@@ -84,7 +84,7 @@ public class ValidateCartPage extends ExtentReport{
 	}
 
 	@Test
-	public void TC_Cart_InteractWithPayments() throws Exception {
+	public void Validate_Cart_InteractWithPayments() throws Exception {
 
 		new AddToCartComponents(driver).addToCart();
 		new ShoppingCartPage(driver).ValidateViewCartLink();
@@ -93,7 +93,7 @@ public class ValidateCartPage extends ExtentReport{
 	}
 
 	@Test
-	public void TC_Cart_InteractWithTieredMeter() throws Exception {
+	public void Validate_Cart_InteractWithTieredMeter() throws Exception {
 
 		new AddToCartComponents(driver).addsingleproductToCart();
 		new ShoppingCartPage(driver).ValidateViewCartLink();

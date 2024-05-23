@@ -29,42 +29,42 @@ public class ValidateInlineCartPage extends ExtentReport {
 
 
 	@Test
-	public void TC_ValidateEmptyFlyCart() throws Exception 
+	public void ValidateEmptyFlyCart() throws Exception
 	{
 		new FlyCartPage(driver).verifyAllFields(); 
 	}
 
 	@Test 
-	public void TC_ValidateTextAndLinksonFlyCart() throws Exception
+	public void ValidateTextAndLinksonFlyCart() throws Exception
 	{
 		new FlyCartPage(driver).verifyAllFieldsOnNonEmptyFlyCart(); 
 	}
 
 	@Test 
-	public void TC_ValidateFlyCartwithProductsInIt() throws Exception
+	public void ValidateFlyCartwithProductsInIt() throws Exception
 	{
 		new FlyCartPage(driver).validateAllFieldsOnNonEmptyFlyCart(); 
 	}
 
 	@Test
-	public void TC_ValidateFlyCartOpenedWithQSandPDP() throws Exception {
+	public void ValidateFlyCartOpenedWithQSandPDP() throws Exception {
 
 		new FlyCartPage(driver).VerifyFlyCartOpenWithQSAndPDP();
 	}
 	
 	@Test
-	public void validateOOSonInlinecart() throws Exception
+	public void ValidateOOSonInlinecart() throws Exception
 	{
 		new FlyCartPage(driver).validateOOSonInlinecart(); 
 	}
 
 	@Test
-	public void TC_verifyPromotionalMessagingPresence() throws Exception
+	public void VerifyPromotionalMessagingPresence() throws Exception
 	{
 		new FlyCartPage(driver).validatePromotionMessaging();
 	}
 	@Test
-	public void TC_verifyTieredMeter() throws Exception
+	public void VerifyTieredMeter() throws Exception
 	{
 		
 		new FlyCartPage(driver).validateTieredMeter();

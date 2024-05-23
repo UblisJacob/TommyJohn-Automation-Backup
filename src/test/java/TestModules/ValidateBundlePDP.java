@@ -29,47 +29,47 @@ public class ValidateBundlePDP extends ExtentReport {
 	}
 		
 	@Test
-	public void TC_verifyImageGallery() throws Exception {
+	public void VerifyImageGallery() throws Exception {
 		new BundlePDPPage(driver).verifyImageGallery();
 	}
 	
 	@Test
-	public void TC_verifyOnImageBadging() throws Exception {
+	public void VerifyOnImageBadging() throws Exception {
 		new BundlePDPPage(driver).verifyOnImageBadging();
 		
 	}
 	
 	@Test
-	public void TC_verifySecondaryBadging() throws Exception {
+	public void VerifySecondaryBadging() throws Exception {
 		new BundlePDPPage(driver).verifySecondaryBadging();
 		
 	}
 	@Test
-	public void TC_verifySelectedColorSwatch() throws Exception {
+	public void VerifySelectedColorSwatch() throws Exception {
 		new BundlePDPPage(driver).verifySelectedColorSwatch();
 		
 	}
 	@Test
-	public void TC_verifyAvailableSizes() throws Exception {
+	public void VerifyAvailableSizes() throws Exception {
 		new BundlePDPPage(driver).verifyAvailableSizes();
 		
 	}
 	
 	@Test
-	public void TC_verifyReviewRecommendations() throws Exception {
+	public void VerifyReviewRecommendations() throws Exception {
 		new BundlePDPPage(driver).verifyReviewRecommendations();
 	}
 	@Test
-	public void TC_verifyProductNamePrice() throws Exception {
+	public void VerifyProductNamePrice() throws Exception {
 		new BundlePDPPage(driver).verifyProductNamePrice();
 	}
 	@Test
-	public void verifyAccordions() throws Exception {
+	public void VerifyAccordions() throws Exception {
 		new BundlePDPPage(driver).verifyAccordions();
 	}
 
 	@Test
-	public void verifyAddToCart() throws Exception {
+	public void VerifyAddToCart() throws Exception {
 		new BundlePDPPage(driver).verifyAddToCart();
 	}
 		

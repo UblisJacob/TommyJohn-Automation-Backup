@@ -32,19 +32,19 @@ public class ValidateCreateAccount_Login {
 	}
 
 	@Test
-	public void TC_FieldValidationsOnLoginPage() throws Exception
+	public void ValidateFieldOnLoginPage() throws Exception
 	{
 		new AccountLoginPage(driver).verifyAllFieldsOnLoginPage();
 	}
 
 	@Test
-	public void TC_FieldValidationsOnCreateAccountPage() throws Exception
+	public void ValidateFieldOnCreateAccountPage() throws Exception
 	{
 		new AccountLoginPage(driver).verifyfieldsandtextsoncreateaccountpage();
 	}
 	
 	@Test
-	public void TC_FieldValidationsOnRecoverPasswordPage() throws Exception
+	public void ValidateFieldOnRecoverPasswordPage() throws Exception
 	{
 		new AccountLoginPage(driver).verifyFieldsAndTextsOnRecoverPasswordPage();
 	}
@@ -52,7 +52,7 @@ public class ValidateCreateAccount_Login {
 
 //	@Test(dependsOnMethods = { "TC_VerifyCreateAccount" })
 	@Test(priority = 3)
-	public void TC_VerifyAccountLogin() throws Exception
+	public void VerifyAccountLogin() throws Exception
 	{
 		new AccountLoginPage(driver).loginCustomerAccount(accountCreatedEmail, password);
 	}
@@ -71,7 +71,7 @@ public class ValidateCreateAccount_Login {
 	}
 		
 	@Test
-	public void TC_VerifyErrorScenariosForLogin() throws Exception
+	public void VerifyErrorScenariosForLogin() throws Exception
 	{
 		new AccountLoginPage(driver).verifyErrorsOnLoginPage();
 	}

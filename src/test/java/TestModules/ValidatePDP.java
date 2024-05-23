@@ -27,90 +27,90 @@ public class ValidatePDP extends ExtentReport{
 	
 	}
 	@Test
-	public void TC_ViewImageGallery() throws Exception {
+	public void ViewImageGallery() throws Exception {
 		new ProductDetailsPage(driver).viewImageGallery();
 		
 	}
 	
 	
 	@Test
-	public void TC_verifyOnImageBadging() throws Exception {
+	public void VerifyOnImageBadging() throws Exception {
 		new ProductDetailsPage(driver).verifyOnImageBadging();
 		
 	}
 	
 	@Test
-	public void TC_verifySecondaryBadging() throws Exception {
+	public void VerifySecondaryBadging() throws Exception {
 		new ProductDetailsPage(driver).verifySecondaryBadging();
 		
 	}
 	@Test
-	public void TC_verifySelectedColorSwatch() throws Exception {
+	public void VerifySelectedColorSwatch() throws Exception {
 		new ProductDetailsPage(driver).verifySelectedColorSwatch();
 		
 	}
 	@Test
-	public void TC_verifyAvailableSizes() throws Exception {
+	public void VerifyAvailableSizes() throws Exception {
 		new ProductDetailsPage(driver).verifyAvailableSizes();
 		
 	}
 	@Test
-	public void TC_verifyStickyATC() throws Exception {
+	public void VerifyStickyATC() throws Exception {
 		new ProductDetailsPage(driver).verifyStickyATC();
 	}
 	
 	@Test
-	public void TC_verifyReviewRecommendations() throws Exception {
+	public void VerifyReviewRecommendations() throws Exception {
 		new ProductDetailsPage(driver).verifyReviewRecommendations();
 	}
 	@Test
-	public void TC_verifyProductNamePrice() throws Exception {
+	public void VerifyProductNamePrice() throws Exception {
 		new ProductDetailsPage(driver).verifyProductNamePrice();
 	}
 	@Test
-	public void verifyAccordions() throws Exception {
+	public void VerifyAccordions() throws Exception {
 		new ProductDetailsPage(driver).verifyAccordions();
 	}
 	@Test
-	public void verifyLowStockInventory() throws Exception {
+	public void VerifyLowStockInventory() throws Exception {
 		new ProductDetailsPage(driver).verifyLowStockInventory();
 	}
 	@Test
-	public void verifyReviewRecommendationsSection() throws Exception {
+	public void VerifyReviewRecommendationsSection() throws Exception {
 		new ProductDetailsPage(driver).verifyReviewRecommendationsSection();
 	}
 	
 	@Test
-	public void verifyQuestionForm() throws Exception {
+	public void VerifyQuestionForm() throws Exception {
 		new ProductDetailsPage(driver).verifyQuestionForm();
 	}
 	@Test
-	public void verifyReviewForm() throws Exception {
+	public void VerifyReviewForm() throws Exception {
 		new ProductDetailsPage(driver).verifyReviewForm();
 	}
 	@Test
-	public void verifyReviewFormErrorMessages() throws Exception {
+	public void VerifyReviewFormErrorMessages() throws Exception {
 		new ProductDetailsPage(driver).verifyReviewFormErrorMessages();
 	}
 	@Test
-	public void verifyAddToCart() throws Exception {
+	public void VerifyAddToCart() throws Exception {
 		new ProductDetailsPage(driver).verifyAddToCart();
 	}
 	
 	@Test
-	public void verifySizeCharts() throws Exception {
+	public void VerifySizeCharts() throws Exception {
 		new ProductDetailsPage(driver).verifySizeCharts();
 	}
 	@Test
-	public void verifySizeChartTextBralette() throws Exception {
+	public void VerifySizeChartTextBralette() throws Exception {
 		new ProductDetailsPage(driver).verifySizeChartTextBralette();
 	}
 	@Test
-	public void verifySizeChartTextBras() throws Exception {
+	public void VerifySizeChartTextBras() throws Exception {
 		new ProductDetailsPage(driver).verifySizeChartTextBras();
 	}
 	@Test
-	public void verifyBundlePDPs() throws Exception {
+	public void VerifyBundlePDPs() throws Exception {
 		new ProductDetailsPage(driver).verifyBundlePDPs();
 	}
 	
