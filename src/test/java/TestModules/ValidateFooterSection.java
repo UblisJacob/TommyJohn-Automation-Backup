@@ -28,12 +28,12 @@ public class ValidateFooterSection {
 	public void VerifyFooterSectionLinks() throws Exception {
 		new FooterSectionPage(driver).verifyFooterSectionLinks();
 	}
-	
+
 	@Test
 	public void VerifyFooterSocialLinks() throws Exception {
 		new FooterSectionPage(driver).verifyFooterSocialLinks();
 	}
-	
+
 	@Test
 	public void VerifyFooterCCPASection() throws Exception {
 		new FooterSectionPage(driver).verifyFooterCCPASection();
@@ -43,7 +43,7 @@ public class ValidateFooterSection {
 	public void VerifyFooterEmailSignUp() throws Exception {
 		new FooterSectionPage(driver).verifyFooterEmailSignUp();
 	}
-	
+
 	@Test
 	public void VerifyFooterFeedback() throws Exception {
 		new FooterSectionPage(driver).verifyFooterFeedback();

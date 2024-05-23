@@ -17,9 +17,13 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 public class ADACheckMethods {
 
@@ -29,13 +33,26 @@ public class ADACheckMethods {
 
     public  static String setCurrentDatetDate()
     {
-        DateFormat dateFormat = new SimpleDateFormat("MMddyyyyHHmmss");
 
-        Date date = new Date();
+        ZoneId easternTimeZone = ZoneId.of("America/New_York");
 
-        CurrentDate= dateFormat.format(date);
+        ZonedDateTime easternTime = ZonedDateTime.now(easternTimeZone);
 
-//        System.out.println(CurrentDate);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMddyyyyHHmmss");
+
+        System.out.println("Current Eastern Time (US & Canada): " + easternTime.format(formatter));
+
+  //      DateFormat dateFormat = new SimpleDateFormat("MMddyyyyHHmmss");
+
+  //      formatter.setTimeZone(TimeZone.getTimeZone("EST"));
+
+//        System.out.println(formatter);
+//
+//        Date date = new Date();
+
+        CurrentDate= easternTime.format(formatter);
+
+        System.out.println(CurrentDate);
 
         return CurrentDate;
 

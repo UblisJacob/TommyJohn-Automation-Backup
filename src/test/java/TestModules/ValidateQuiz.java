@@ -51,13 +51,13 @@ public class ValidateQuiz {
 	{
 		new QuizPage(driver).VerifyWomensRetakeQuizFlow();
 	}
-	
+
 	@Test
 	public void ValidateWomensUnderwearResultPage() throws Exception
 	{
 		new QuizPage(driver).VerifyWomensResultPage();
 	}
-	
+
 	@Test
 	public void ValidateBraQuizFlow() throws Exception
 	{
@@ -68,7 +68,7 @@ public class ValidateQuiz {
 	{
 		new QuizPage(driver).VerifyBraRetakeQuizFlow();
 	}
-	
+
 	@Test
 	public void ValidateBraResultPage() throws Exception
 	{
@@ -83,9 +83,9 @@ public class ValidateQuiz {
 	public void ValidateBraQuizWithNoPreferenceOption() throws Exception
 	{
 		new QuizPage(driver).VerifyBraQuizWithNoPreferenceOption();
-	
+
 	}
-	
+
 	
 	@AfterMethod(alwaysRun = true)
 	void tearDown() {

@@ -113,7 +113,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		// get product title and click on image if present
 		//text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
-
+		Thread.sleep(3000);
 		WebElement Prod_Image = driver.findElement(FIRST_PRODUCT_IMAGE);
 		if (!Prod_Image.isDisplayed())
 			// # if(!driver.findElement(THIRD_PRODUCT_IMAGE).isDisplayed())
