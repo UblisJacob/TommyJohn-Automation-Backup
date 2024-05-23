@@ -26,36 +26,36 @@ public class ValidateAfterPay extends ExtentReport {
 		}
 	}	
 	@Test
-	public void TC_ValidateAfterPayOnPDP() throws Exception
+	public void ValidateAfterPayOnPDP() throws Exception
 	{
 		new AfterPay(driver).AfterPayOnPDP();
 	}
 	
 	@Test
-	public void TC_ValidateAfterPayOnInlineCart() throws Exception
+	public void ValidateAfterPayOnInlineCart() throws Exception
 	{
 		new AfterPay(driver).AfterPayOnInlineCart();
 	}
 	
 	@Test
-	public void TC_ValidateAfterPayOnShoppingCart() throws Exception
+	public void ValidateAfterPayOnShoppingCart() throws Exception
 	{
 		new AfterPay(driver).AfterPayOnShoppingCart();
 	}
 	
 	@Test
-	public void TC_ValidateAfterPayOnCheckoutPage() throws Exception
+	public void ValidateAfterPayOnCheckoutPage() throws Exception
 	{
 		new AfterPay(driver).AfterPayOnCheckoutPage();
 	}
 	
 	@Test
-	public void TC_ValidateAfterPayWithGiftCard() throws Exception
+	public void ValidateAfterPayWithGiftCard() throws Exception
 	{
 		new AfterPay(driver).AfterPayOnGiftCardPage();
 	}
 	@Test
-	public void TC_ValidateAfterPayWithPhysicalGiftCard() throws Exception
+	public void ValidateAfterPayWithPhysicalGiftCard() throws Exception
 	{
 		new AfterPay(driver).AfterPayOnPhysicalGiftCardPage();
 	}

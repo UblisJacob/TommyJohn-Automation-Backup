@@ -25,27 +25,27 @@ public class ValidateFooterSection {
 	}
 
 	@Test
-	public void TC_VerifyFooterSectionLinks() throws Exception {
+	public void VerifyFooterSectionLinks() throws Exception {
 		new FooterSectionPage(driver).verifyFooterSectionLinks();
 	}
 	
 	@Test
-	public void TC_VerifyFooterSocialLinks() throws Exception {
+	public void VerifyFooterSocialLinks() throws Exception {
 		new FooterSectionPage(driver).verifyFooterSocialLinks();
 	}
 	
 	@Test
-	public void TC_VerifyFooterCCPASection() throws Exception {
+	public void VerifyFooterCCPASection() throws Exception {
 		new FooterSectionPage(driver).verifyFooterCCPASection();
 	}
 
 	@Test
-	public void TC_VerifyFooterEmailSignUp() throws Exception {
+	public void VerifyFooterEmailSignUp() throws Exception {
 		new FooterSectionPage(driver).verifyFooterEmailSignUp();
 	}
 	
 	@Test
-	public void TC_verifyFooterFeedback() throws Exception {
+	public void VerifyFooterFeedback() throws Exception {
 		new FooterSectionPage(driver).verifyFooterFeedback();
 	}
 

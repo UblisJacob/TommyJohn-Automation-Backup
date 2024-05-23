@@ -25,31 +25,31 @@ public class ValidateCategoryPages {
 	}
 
 //Not worked exception
-	 @Test public void TC_LoadCategoryPage() throws Exception { new
+	 @Test public void ValidateLoadCategoryPage() throws Exception { new
 	 CollectionPage(driver).validateallplpsareloading(); }
 	 
-	 @Test public void TC_ViewProductGrid() throws Exception { new
+	 @Test public void ValidateViewProductGrid() throws Exception { new
 	 CollectionPage(driver).validateproductgrid(); }
 	 
 	 
-	 @Test public void TC_InteractWithBreadcrumbs() throws Exception { new
+	 @Test public void ValidateInteractWithBreadcrumbs() throws Exception { new
 	 CollectionPage(driver).validateBreadcrumbLinks(); }
 	
-	 @Test public void TC_ViewH1() throws Exception { new
+	 @Test public void ValidateViewH1() throws Exception { new
 	 CollectionPage(driver).validateCategoryPageHeader(); }
 	 
 	
-	 @Test public void TC_ViewSectionHeaders() throws Exception { new
+	 @Test public void ValidateViewSectionHeaders() throws Exception { new
 	 CollectionPage(driver).validateCategorySectionHeaders(); }
 
 
 
-	 @Test public void TC_InteractWithInlineBanner() throws Exception { new
+	 @Test public void ValidateInteractWithInlineBanner() throws Exception { new
 	 CollectionPage(driver).validateInlineBanner(); }
 	 
 
 
-	 @Test public void TC_InteractWithFilters() throws Exception { new
+	 @Test public void ValidateInteractWithFilters() throws Exception { new
 	 CollectionPage(driver).validateFilters(); }
 	 
 
@@ -59,12 +59,12 @@ public class ValidateCategoryPages {
 	 
 
 	
-	 @Test public void TC_ViewOnImageAndSecondaryBadging() throws Exception { new
+	 @Test public void ValidateViewOnImageAndSecondaryBadging() throws Exception { new
 	 CollectionPage(driver).validateOnImageAndSecondaryBadging(); }
 	 
 
 	
-	 @Test public void TC_SEOCopy() throws Exception { new
+	 @Test public void ValidateSEOCopy() throws Exception { new
 	 CollectionPage(driver).validateSEOCopy(); }
 	 
 
@@ -75,23 +75,23 @@ public class ValidateCategoryPages {
 	 
 
 	
-	@Test public void TC_InteractWithQuickShop() throws Exception { new
+	@Test public void ValidateInteractWithQuickShop() throws Exception { new
 	  CollectionPage(driver).validateQuickshopFunctionality(); }
 	 
 
 	@Test
-	public void TC_ViewSingleTile() throws Exception {
+	public void ValidateViewSingleTile() throws Exception {
 		new CollectionPage(driver).validateSingleTileProduct();
 	}
 
 	@Test
-	public void TC_InteractWithStyleCarousel() throws Exception {
+	public void ValidateInteractWithStyleCarousel() throws Exception {
 		new CollectionPage(driver).validateStyleCarousels();
 	
 	}
 	
 	@Test
-	public void TC_MultipleSizeVariants() throws Exception {
+	public void ValidateMultipleSizeVariants() throws Exception {
 		new CollectionPage(driver).validateMultiVariantSizeInQuickshop();
 	}
 	
