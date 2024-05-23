@@ -11,11 +11,12 @@
     <test name="CategoryTests">
         <parameter name="browser" value="chrome" />
         <classes>
-            <class name="ADACheckModules.HomePageADACheck">
+            <class name="TestModules.ValidateBundlePDP" >
                 <methods>
-                    <include name="VerifyFooterFeedback"/>
+                    <include name="VerifyAddToCart"/>
                 </methods>
             </class>
         </classes>
     </test>
+
 </suite>

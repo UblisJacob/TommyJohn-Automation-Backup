@@ -1,0 +1,29 @@
+{
+  "blocks": [
+    {
+      "type": "section",
+      "text": {
+        "text": "A message *Regression Results* and _some italicized text_.",
+        "type": "mrkdwn"
+      },
+      "fields": [
+        {
+          "type": "mrkdwn",
+          "text": "*Priority*"
+        },
+        {
+          "type": "mrkdwn",
+          "text": "*Type*"
+        },
+        {
+          "type": "plain_text",
+          "text": "High"
+        },
+        {
+          "type": "plain_text",
+          "text": "String"
+        }
+      ]
+    }
+  ]
+}
