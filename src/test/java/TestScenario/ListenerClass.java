@@ -1,5 +1,7 @@
 package TestScenario;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.util.Set;
 
 import org.openqa.selenium.WebDriver;
@@ -18,12 +20,21 @@ import com.aventstack.extentreports.Status;
 import com.base.ExtentReport;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
+import static com.base.Slack.sendSlackNotification;
+
 public class ListenerClass extends ExtentReport implements ITestListener, IExecutionListener {
 
 	WebDriver driver;
 	static int count = 1;
 	static boolean shouldPrint = true;
 	static String browserName = null;
+
+	public String reportLink = null;
+
+	public int Fpassed = 0;
+	public int Ffailed = 0;
+	public int Fskipped = 0;
+
 	
 	
 	@Override
@@ -130,42 +141,55 @@ count++;
 
 		generateExtentReports();
 
+		try {
+			reportLink = com.base.GDrivePOST.UploadReport();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		} catch (GeneralSecurityException e) {
+			throw new RuntimeException(e);
+		}
+
+		try {
+ //          sendSlackNotification(String.valueOf(Fpassed),String.valueOf(Ffailed),String.valueOf(Fskipped),reportLink);
+
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+
 	}
 
-
 	@Override
-	public void onFinish(ITestContext context)
-	{
+	public void onFinish(ITestContext context) {
+
 		Set<ITestResult> failedTests = context.getFailedTests().getAllResults();
 		Set<ITestResult> skippedTests = context.getSkippedTests().getAllResults();
 		for (ITestResult temp : failedTests) {
 			ITestNGMethod method = temp.getMethod();
+//			System.out.println(context.getFailedTests().size());
+//			System.out.println(context.getPassedTests().size());
 			if (context.getFailedTests().getResults(method).size() > 1) {
 				failedTests.remove(temp);
-			}
-			else
-			{
-				if (context.getPassedTests().getResults(method).size() > 0)
-				{
+			} else {
+				if (context.getPassedTests().getResults(method).size() > 0) {
 					failedTests.remove(temp);
 				}
 			}
 		}
-
-		for(ITestResult temp : skippedTests)
-		{
+		for (ITestResult temp : skippedTests) {
 			ITestNGMethod method = temp.getMethod();
 			if (context.getSkippedTests().getResults(method).size() > 1) {
 				skippedTests.remove(temp);
-			}
-			else
-			{
+			} else {
 				if (context.getPassedTests().getResults(method).size() > 0) {
 					skippedTests.remove(temp);
 				}
 			}
 		}
 
-	}
+		Fpassed = Fpassed + (context.getPassedTests().size());
+		Ffailed = Ffailed + (context.getFailedTests().size());
+		Fskipped = Fskipped + (context.getSkippedTests().size());
+
+    }
 
 }

@@ -16,7 +16,7 @@ public class BundlePDPLocators {
 	public static By IMG_CAROUSEL = By.cssSelector("div.pdpVerticalSlides>div>div>div");
 	
 	//first product on PDP
-	public static By FIRST_PRODUCT = By.cssSelector(".product-item");
+	public static By FIRST_PRODUCT = By.xpath("(//div[@data-tj-qa='product-container'])[1]");
 	public static By FIRST_PRODUCT_HEAD_LINE_TEXT = By.xpath("(//span[@class='product-meta__title'])[1]");
 		
 	//image badging
