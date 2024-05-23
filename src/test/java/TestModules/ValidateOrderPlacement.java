@@ -26,7 +26,7 @@ public class ValidateOrderPlacement {
 	}
 	
 	@Test
-	public void TC_ValidateOrderPlacementFlow() throws Exception
+	public void ValidateOrderPlacementFlow() throws Exception
 	{
 		new CheckoutPage(driver).ValidateOrderPlacement();
 	}

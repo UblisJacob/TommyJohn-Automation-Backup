@@ -31,17 +31,17 @@ public class ValidateGiftCardBalance {
 	}
 	
 	@Test
-	public void TC_verifyPhysicalAndDigitalFormPresence() throws Exception {
+	public void VerifyPhysicalAndDigitalFormPresence() throws Exception {
 		new GiftCardBalancePage(driver).verifyPhysicalAndDigitalFormPresence();
 	}
 	
 	@Test
-	public void TC_verifyPhysicalGiftCardFormInteraction() throws Exception {
+	public void VerifyPhysicalGiftCardFormInteraction() throws Exception {
 		new GiftCardBalancePage(driver).verifyPhysicalGiftCardFormInteraction(validPhysicalGCID, validPhysicalGCPin, validPhysicalGCHolderEmail);
 	}
 	
 	@Test
-	public void TC_verifyDigitalGiftCardFormInteraction() throws Exception {
+	public void VerifyDigitalGiftCardFormInteraction() throws Exception {
 		new GiftCardBalancePage(driver).verifyDigitalGiftCardFormInteraction(validPhysicalGCID, validPhysicalGCHolderEmail);
 	}
 	

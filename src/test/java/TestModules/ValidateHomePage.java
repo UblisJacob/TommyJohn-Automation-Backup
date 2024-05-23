@@ -27,19 +27,19 @@ public class ValidateHomePage extends ExtentReport {
 	}
 
 	@Test
-	public void TC_verifyLogoAndCategoriesOnHomePage() throws Exception {
+	public void VerifyLogoAndCategoriesOnHomePage() throws Exception {
 
 		new HomePage(driver).ValidateLogoAndCategoriesPresence();
 	}
 	
 	@Test
-	public void TC_verifyAccountdropdownOnHomePage() throws Exception {
+	public void VerifyAccountdropdownOnHomePage() throws Exception {
 
 		new HomePage(driver).verifyaccountdropdown();
 	}
 
 	@Test
-	public void TC_verifyAccountAndCartIconOnHomePage() throws Exception {
+	public void VerifyAccountAndCartIconOnHomePage() throws Exception {
 
 		new HomePage(driver).validateAccountIcon();
 		new HomePage(driver).validateCartIcon();
@@ -48,35 +48,35 @@ public class ValidateHomePage extends ExtentReport {
 
 	
 	@Test
-	public void TC_ValidateDoNotSellMyPersonalInformationPage() throws
+	public void ValidateDoNotSellMyPersonalInformationPage() throws
 	Exception {
 
 		new HomePage(driver).validateDoNotSellMyPersonalInformation();
 	}
 	
 //	@Test
-	public void TC_ValidateRecommendedForYou() throws
+	public void ValidateRecommendedForYou() throws
 	Exception {
 
 		new HomePage(driver).verifyrecommendedforyou();
 	}
 	
 //	@Test
-	public void TC_ValidateQuickShoponDYRecsHomePgae() throws
+	public void ValidateQuickShoponDYRecsHomePgae() throws
 	Exception {
 
 		new HomePage(driver).verifyQuickShopforDYRecsOnHomePage();
 	}
 
 //	@Test
-	public void TC_ValidateColorSwatchonDYRecsHomePage() throws
+	public void ValidateColorSwatchonDYRecsHomePage() throws
 	Exception {
 
 		new HomePage(driver).verifyColorSwatchforDYRecsOnHomePage();
 	}
 
 //	@Test
-	public void TC_ValidateProductTileHoverFunctionalityonDYRecsHomePage() throws
+	public void ValidateProductTileHoverFunctionalityonDYRecsHomePage() throws
 	Exception {
 
 		new HomePage(driver).verifyRFYProductTileHoverFunctionality();

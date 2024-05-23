@@ -32,57 +32,57 @@ public class ValidateSearchPages {
 	}
 	
 	@Test
-	public void TC_LoadSearch() throws Exception {
+	public void VerifyLoadSearch() throws Exception {
 		searchText = objGeneralMethods.readPropertiesFile("searchFeatured");
 		new HomePage(driver).validateSearchPM(searchText);
 	}	
 	
 	@Test
-	public void TC_Search_InteractWithFilters() throws Exception {
+	public void VerifySearchInteractWithFilters() throws Exception {
 		searchText = objGeneralMethods.readPropertiesFile("searchFeatured");
 		new HomePage(driver).validateSearchFunctionEnter(searchText);
 		new CollectionPage(driver).validateFiltersSearch();
 	}
 	
-	@Test public void TC_Search_InteractWithSortBy() throws Exception { 
+	@Test public void VerifySearchInteractWithSortBy() throws Exception {
 		searchText = objGeneralMethods.readPropertiesFile("searchFeatured");
 		new HomePage(driver).validateSearchFunctionEnter(searchText);
 		new CollectionPage(driver).validateSortBySearch();
 	}
 	
-	@Test public void TC_Search_ViewOnImageAndSecondaryBadging() throws Exception { 
+	@Test public void VerifySearchViewOnImageAndSecondaryBadging() throws Exception {
 		searchText = objGeneralMethods.readPropertiesFile("searchFeatured");
 		new HomePage(driver).validateSearchPM(searchText);
 		new CollectionPage(driver).validateOnImageBadgeSearch();
 	}
 	
-	@Test public void TC_Search_InteractWithQuickShop() throws Exception { 
+	@Test public void VerifySearchInteractWithQuickShop() throws Exception {
 		searchText = objGeneralMethods.readPropertiesFile("searchFeatured");
 		new HomePage(driver).validateSearchPM(searchText);
 		new CollectionPage(driver).validateQuickshopFunctionalityOnSearchPLP();
 	}
 	
 //	@Test
-	public void TC_Search_ValidateProductTile() throws Exception {
+	public void ValidateSearchProductTile() throws Exception {
 		searchText = objGeneralMethods.readPropertiesFile("searchFeatured");
 		new HomePage(driver).validateSearchPM(searchText);
 		new CollectionPage(driver).validateProductTileSearch();
 	}
 	
 	@Test
-	public void TC_Search_ValidateSingleProductTile() throws Exception {
+	public void ValidateSearchSingleProductTile() throws Exception {
 		searchText = objGeneralMethods.readPropertiesFile("searchUnderwear");
 		new HomePage(driver).validateSearchFunctionEnter(searchText);
 		new CollectionPage(driver).validateSingleTileProductSearch();
 	}
 	
 //	@Test
-	public void TC_Search_SearchFieldInNavigation() throws Exception {
+	public void VerifySearchSearchFieldInNavigation() throws Exception {
 		new HomePage(driver).validateSearchFunctionality();
 	}
 	
 	@Test
-	public void TC_Search_MultipleSizeVariants() throws Exception {
+	public void VerifySearchMultipleSizeVariants() throws Exception {
 		searchText = objGeneralMethods.readPropertiesFile("searchSleepwearSets");
 		new HomePage(driver).validateSearchFunctionEnterKeyword(searchText);
 		new CollectionPage(driver).validateQuickshopFunctionalityOnSearchPLP();
