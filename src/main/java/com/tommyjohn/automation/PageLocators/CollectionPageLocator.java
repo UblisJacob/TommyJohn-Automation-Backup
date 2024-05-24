@@ -70,7 +70,7 @@ public class CollectionPageLocator {
 
 
 
-	public static By PLP_PRICE = By.cssSelector("[data-tj-qa='product-price'],span.product-meta__price");
+	public static By PLP_PRICE = By.xpath("//span[@class='product-meta__price']");
 	    public static By PLP_PRICE_FILTER = By.xpath("//a[@title='Price']//span");
 	    
 	    public static By PRICE_LESS_THAN_25= By.xpath("(//input[contains(@data-filter-btn,'Less than $25')])[1]");
