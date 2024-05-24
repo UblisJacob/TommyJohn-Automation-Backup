@@ -11,12 +11,11 @@
     <test name="CategoryTests">
         <parameter name="browser" value="chrome" />
         <classes>
-            <class name="TestModules.ValidateBundlePDP" >
+            <class name="TestModules.ValidateSearchPages">
                 <methods>
-                    <include name="VerifyAddToCart"/>
+                    <include name="VerifySearchInteractWithSortBy"/>
                 </methods>
             </class>
         </classes>
     </test>
-
 </suite>
