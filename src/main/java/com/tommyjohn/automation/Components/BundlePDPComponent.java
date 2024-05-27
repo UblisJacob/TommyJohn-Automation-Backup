@@ -51,7 +51,7 @@ public class BundlePDPComponent extends BundlePDPLocators{
 		this.driver = driver;
 	}
 	public void verifyImageGallery() throws Exception {
-		new ProductDetailsPage(driver).navigateToAllMensPacksInPacksCategory();
+		new ProductDetailsPage(driver).navigateToAllWomensPacksInPacksCategory();
 		
 		SoftAssert softAssert = new SoftAssert();
 		Thread.sleep(3000);
