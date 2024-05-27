@@ -171,6 +171,11 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 		new HomePageComponents(driver).navigateToAllMensPacksInPacksCategory();
 	
 	}
+
+	public void navigateToAllWomensPacksInPacksCategory() throws Exception {
+
+		new HomePageComponents(driver).navigateToAllWomensPacksInPacksCategory();
+	}
 		
 		
 	public void viewImageGallery() throws Exception {
