@@ -47,7 +47,7 @@ public class CheckoutPageLocators {
 
 
 	//SideBar
-	public static By ORDER_SUMMARY_SECTION = By.xpath("(//section[@class='_1fragemop _1fragemms'])[3]");
+	public static By ORDER_SUMMARY_SECTION = By.xpath("(//section[@class='_1fragem2i _1fragemnw'])[4]");
 	//public static By DISCOUNT_CODE_TEXTBOX = By.cssSelector("#checkout_reduction_code");
 	public static By DISCOUNT_CODE_TEXTBOX = By.xpath("//input[@id='ReductionsInput0']");
 	//public static By APPLY_DISCOUNT_BUTTON = By.cssSelector(".field__input-btn");
@@ -69,7 +69,7 @@ public class CheckoutPageLocators {
 	public static By SHIPPING_TEXT = By.cssSelector("h2#checkout-main-header");
 	public static By SHIPPING_RADIO_BUTTON = By.xpath("//input[@type='radio']");
 	public static By RETURN_LINK = By.xpath("(//span[@class='AjwsM'])[2]");
-	public static By CONTINUE_TO_PAYMENT_BUTTON = By.xpath("//div[@class='oQEAZ']//button");
+	public static By CONTINUE_TO_PAYMENT_BUTTON = By.xpath("//div[@class='qjCTh']//button");
 
 
 	//                                           payment
@@ -80,7 +80,7 @@ public class CheckoutPageLocators {
 	public static By PAYPAL_OPTION = By.xpath("//span[contains(text(),'PayPal')]");
 
 	public static By BILLING_TEXT = By.xpath("//h2[contains(text(),'Billing address')]");
-	public static By COMPLETE_ORDER_BUTTON = By.xpath("//div[@class='oQEAZ']//button");
+	public static By COMPLETE_ORDER_BUTTON = By.xpath("//div[@class='qjCTh']//button");
 	public static By HOWHEARD_TITLE = By.cssSelector("[data-tj-qa='how-heard-title'],.section__title.how_new_title");
 	public static By HOWHEARD_SUBTITLE = By.cssSelector("[data-tj-qa='how-heard-subtitle'],.section__title.how_new_subtitle");
 	public static By HOWHEARD_DROPDOWN = By.cssSelector("[data-tj-qa='how-heard-dropdown'],.make_selection_select");
