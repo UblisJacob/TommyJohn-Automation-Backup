@@ -11,9 +11,9 @@
     <test name="CategoryTests">
         <parameter name="browser" value="chrome" />
         <classes>
-            <class name="TestModules.ValidateBundlePDP">
+            <class name="TestModules.ValidateCheckoutPage">
                 <methods>
-                    <include name="ValidateOOSonInlinecart"/>
+                    <include name=""/>
                 </methods>
             </class>
         </classes>

@@ -3461,7 +3461,7 @@ public void verifyBundlePDPs() throws Exception {
                                
 	jse = (JavascriptExecutor)driver;
 	SoftAssert softassert = new SoftAssert();
-	new HomePageComponents(driver).navigateToAllMensPacksInPacksCategory();
+	new HomePageComponents(driver).navigateToAllWomensPacksInPacksCategory();
 	new CollectionPageComponent(driver).navigateToProductDetailsPage();
 
 	Thread.sleep(5000);                          
