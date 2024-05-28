@@ -179,7 +179,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(TIERED_METER));
 		Thread.sleep(7000);
 		
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_QUANTITY));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_QUANTITY));
 		driver.findElement(PRODUCT_QUANTITY).sendKeys("10000" + Keys.ENTER);
 		driver.findElement(PRODUCT_QUANT_ADD).click();
 		
