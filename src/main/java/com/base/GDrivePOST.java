@@ -159,6 +159,47 @@ public class GDrivePOST {
         return file.getWebContentLink();
     }
 
+public static String UploadScreenShot() throws IOException, GeneralSecurityException {
+
+    String rootDir = System.getProperty("user.dir");
+    String screenShotsFolder = "C:\\Users\\UTIS LOAN 286\\IdeaProjects\\TJ_Automation\\test-output\\Screenshots";
+
+    Drive service = new Drive.Builder(GoogleNetHttpTransport.newTrustedTransport(), JSON_FACTORY, getCredentials())
+            .setApplicationName(APPLICATION_NAME)
+            .build();
+
+
+    // Upload file
+    String filepath = screenShotsFolder;
+    File fileMetadata = new File();
+    fileMetadata.setName("Regression Report");
+
+//        fileMetadata.setParents(Collections.singletonList(folderId));  // Set the parent folder
+
+    java.io.File filePath = new java.io.File(filepath);
+    FileContent mediaContent = new FileContent("Report/.jpg", filePath);
+
+
+    File file = service.files().create(fileMetadata, mediaContent)
+            .setFields("id, webContentLink")
+            .execute();
+
+    Permission permission = new Permission();
+    permission.setType("anyone");
+    permission.setRole("reader");
+
+    service.permissions().create(file.getId(), permission).execute();
+
+    moveFile(service, file.getId(), "1I8Z1pYmLuOZ9DvA3N9Mvu-AHz05325z9");
+
+    System.out.println("File ID: " + file.getId());
+    System.out.println("WebContent Link: " + file.getWebContentLink());
+
+    return file.getWebContentLink();
+
+
+}
+
 
 }
 
