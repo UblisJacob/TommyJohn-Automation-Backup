@@ -32,6 +32,7 @@ public class CustomUtilities {
 	public static BufferedReader reader;
 	public static Properties properties;
 	public static final String propertiesFilePath = "src/main/resources/configuration.properties";
+	public static String screenshot = null;
 	
 	//	public static ATUTestRecorder recorder;
 
@@ -271,7 +272,16 @@ public class CustomUtilities {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
+//		try{
+//
+//			screenshot = com.base.GDrivePOST.UploadScreenShot();
+//
+//		}
+//		catch(Exception ex){
+//			throw new RuntimeException(ex);
+//		}
+
 		System.out.println("ScreenShot is taken");
 
 		return filePath;
