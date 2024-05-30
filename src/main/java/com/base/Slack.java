@@ -21,7 +21,7 @@ import java.util.TimeZone;
 
 public class Slack {
 
-    public static String WEBHOOK_URL="https://hooks.slack.com/services/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";
+    public static String WEBHOOK_URL="https://hooks.slack.com/services/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";
 
     public static String CurrentDate;
 

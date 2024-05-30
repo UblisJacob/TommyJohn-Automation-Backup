@@ -150,7 +150,7 @@ count++;
 		}
 
 		try {
- //          sendSlackNotification(String.valueOf(Fpassed),String.valueOf(Ffailed),String.valueOf(Fskipped),reportLink);
+           sendSlackNotification(String.valueOf(Fpassed),String.valueOf(Ffailed),String.valueOf(Fskipped),reportLink);
 
 		} catch (Exception e) {
 			throw new RuntimeException(e);
