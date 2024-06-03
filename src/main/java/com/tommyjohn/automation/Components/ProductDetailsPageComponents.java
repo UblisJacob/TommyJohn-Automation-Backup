@@ -2712,6 +2712,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			
 			new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
 			String prodcttitle= driver.findElement(CollectionPageComponent.FIRST_PRODUCT_IMAGE).getAttribute("alt");
+			System.out.println(prodcttitle);
 			new CollectionPageComponent(driver).navigateToProductDetailsPage();
 			//new AddToCartComponents(driver).selectSize();
 			productname = driver.findElement(PRODUCT_TITLE).getText();

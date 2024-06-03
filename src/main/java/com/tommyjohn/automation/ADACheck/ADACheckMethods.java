@@ -86,7 +86,7 @@ public class ADACheckMethods {
             String prettyJson = gson.toJson(jsonElement);
 //            System.out.println(Filename);
             AxeReporter.writeResultsToTextFile("ADACheckResults/"+Filename,prettyJson);
-            softAssert.assertEquals(violations.size(), 0, violations.size() + " violations found");
+            Assert.assertEquals(violations.size(), 0, violations.size() + " violations found");
             System.out.println("Violations Found");
 
         }

@@ -3,20 +3,20 @@
 
     <listeners>
         <listener class-name="TestScenario.ListenerClass"></listener>
-        <listener class-name="TestScenario.RetryListener"></listener>
+       <listener class-name="TestScenario.RetryListener"></listener>
     </listeners>
-
-    <test name="HomePageADACheck">
-        <parameter name="browser" value="chrome" />
-        <classes>
-            <class name="ADACheckModules.HomePageADACheck" />
-        </classes>
-    </test>
 
     <test name="CollectionPageADACheck">
         <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.CollectionPageADACheck" />
+        </classes>
+    </test>
+
+    <test name="HomePageADACheck">
+        <parameter name="browser" value="chrome" />
+        <classes>
+            <class name="ADACheckModules.HomePageADACheck" />
         </classes>
     </test>
 
@@ -27,4 +27,17 @@
         </classes>
     </test>
 
+    <test name="LoginPageADACheck">
+        <parameter name="browser" value="chrome" />
+        <classes>
+            <class name="ADACheckModules.LoginPageADACheck" />
+        </classes>
+    </test>
+
+    <test name="CreateAccountPageADACheck">
+        <parameter name="browser" value="chrome" />
+        <classes>
+            <class name="ADACheckModules.CreateAccountPageADACheck" />
+        </classes>
+    </test>
     </suite>

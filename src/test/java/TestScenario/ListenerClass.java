@@ -20,7 +20,8 @@ import com.aventstack.extentreports.Status;
 import com.base.ExtentReport;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
-import static com.base.Slack.sendSlackNotification;
+import static com.base.Slack.sendSlackNotificationADA;
+import static com.base.Slack.sendSlackNotificationReg;
 
 public class ListenerClass extends ExtentReport implements ITestListener, IExecutionListener {
 
@@ -30,6 +31,8 @@ public class ListenerClass extends ExtentReport implements ITestListener, IExecu
 	static String browserName = null;
 
 	public String reportLink = null;
+
+	public String SuiteName = null;
 
 	public int Fpassed = 0;
 	public int Ffailed = 0;
@@ -48,9 +51,19 @@ public class ListenerClass extends ExtentReport implements ITestListener, IExecu
 	
 	@Override
 	public void onStart(ITestContext context) {
-		
+		String ADACheckSuiteName = "ADACheck Test Suite";
+		SuiteName = context.getSuite().getName().toString();
+		System.out.println("SuiteName: " + SuiteName);
 		browserName = context.getCurrentXmlTest().getParameter("browser");
 		System.out.println("Test execution started using Browser: " + browserName);
+		if(SuiteName.equals(ADACheckSuiteName))
+		{
+			sparkReporter_AllTests.config().setReportName("ADACheck Test Report");
+		}
+		else {
+
+			sparkReporter_AllTests.config().setReportName("Regression Test Report");
+		}
 	
 	}
 	
@@ -89,7 +102,7 @@ public class ListenerClass extends ExtentReport implements ITestListener, IExecu
 	@Override
 	public void onTestFailure(ITestResult result) {
 		
-count++;
+		count++;
 		if (count <= Retry.maxRetryCount) {
 			shouldPrint = false;
 			
@@ -150,8 +163,8 @@ count++;
 		}
 
 		try {
-           sendSlackNotification(String.valueOf(Fpassed),String.valueOf(Ffailed),String.valueOf(Fskipped),reportLink);
-
+ //         sendSlackNotificationReg(String.valueOf(Fpassed),String.valueOf(Ffailed),String.valueOf(Fskipped),reportLink);
+//		  sendSlackNotificationADA(String.valueOf(Fpassed),String.valueOf(Ffailed),String.valueOf(Fskipped),reportLink);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -177,7 +190,7 @@ count++;
 		}
 		for (ITestResult temp : skippedTests) {
 			ITestNGMethod method = temp.getMethod();
-			if (context.getSkippedTests().getResults(method).size() > 1) {
+			if (context.getSkippedTests().getResults(method).size() > 0) {
 				skippedTests.remove(temp);
 			} else {
 				if (context.getPassedTests().getResults(method).size() > 0) {
