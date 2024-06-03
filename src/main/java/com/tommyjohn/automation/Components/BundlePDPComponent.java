@@ -76,13 +76,13 @@ public class BundlePDPComponent extends BundlePDPLocators{
 				String imagegallery = null;
 				String mainimage = null;
 				Thread.sleep(3000);
-				imagegallery = driver.findElement(By.cssSelector(".pdpVerticalSlides>.slick-list.draggable>div>div:nth-child("+i+")")).getAttribute("data-color-handle");
+				imagegallery = driver.findElement(By.cssSelector(".pdpVerticalSlides>.slick-list.draggable>div>div:nth-child("+i+")")).getAttribute("data-color");
 				Thread.sleep(2000);
 				WebElement img = driver.findElement(By.cssSelector(".pdpVerticalSlides>.slick-list.draggable>div>div:nth-child("+i+")"));
 				executor.executeScript("arguments[0].click();", img);
 
 				
-				mainimage = driver.findElement(By.cssSelector(".pdpImageSlidesWrapper>div>div>div>div:nth-child("+i+").slick-active")).getAttribute("data-color-handle");
+				mainimage = driver.findElement(By.cssSelector(".pdpImageSlidesWrapper>div>div>div>div:nth-child("+i+").slick-active")).getAttribute("data-color");
 
 //				mainimage = driver.findElement(By.cssSelector(".pdpImageSlidesWrapper>div>div>div>div.slick-active")).getAttribute("data-color-handle");
 

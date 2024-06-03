@@ -11,9 +11,9 @@
     <test name="CategoryTests">
         <parameter name="browser" value="chrome" />
         <classes>
-            <class name="TestModules.ValidateCheckoutPage">
+            <class name="TestModules.ValidateBundlePDP">
                 <methods>
-                    <include name=""/>
+                    <include name="ValidateUserIsAbleToReOrderItemFromReOrderPage"/>
                 </methods>
             </class>
         </classes>
