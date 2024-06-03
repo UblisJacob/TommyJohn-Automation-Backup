@@ -27,7 +27,7 @@ public class AccountPageLocators
 //	public static By FIRST_ORDER_NUMBER= By.cssSelector(".account-logged-content>div:nth-child(3)>.account-orders-table>table>tbody>tr:nth-child(1)>td:nth-child(1)>a");
 	public static By FIRST_ORDER_NUMBER= By.cssSelector("div[data-tj-qa='account-orders-table'] tbody>tr:nth-child(1)>td:nth-child(1)");
 	public static By ACCOUNT_CREATE_SUCCESS_MSG = By.cssSelector(".new-customer.account-create-success");
-	public static By MANAGE_ADDRESSES = By.cssSelector("a[data-tj-qa='account-manage-addresses']");
+	public static By MANAGE_ADDRESSES = By.xpath("//a[@class='edit-link']");
 	public static By MANAGE_ADDRESS_BOOK_HEADING = By.cssSelector("h1[data-tj-qa='address-book-heading']");
 	public static By ADDITIONAL_ADDRESSES_TITLE = By.cssSelector("h2[data-tj-qa='additional addresses-title']");
 	public static By RETURN_TO_ACCOUNT_PAGE_LINK = By.cssSelector("a[data-tj-qa='return-link']");

@@ -41,7 +41,7 @@ public class ExtentReport{
 
 		sparkReporter_AllTests.config().setTheme(Theme.DARK);
 
-		sparkReporter_AllTests.config().setReportName("Regression Test Report: ");
+	//	sparkReporter_AllTests.config().setReportName("Regression Test Report: ");
 
 		extentReport.attachReporter(sparkReporter_AllTests);
 
