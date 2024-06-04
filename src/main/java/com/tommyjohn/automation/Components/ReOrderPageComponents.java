@@ -179,6 +179,7 @@ public class ReOrderPageComponents extends ReOrderPageLocators {
 		
 		if (list.size() > 0) {
 			int i = random.nextInt(list.size());
+		//	int i = random.nextInt(number);
 			System.out.println("random number = " + i);
 			
 			WebElement productToAdd = driver.findElement(By.cssSelector(".account-reorder-grid>.reorder-item:nth-child("+ i +")>a:nth-child(2)>span"));
