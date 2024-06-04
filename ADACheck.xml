@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd"><suite name="ADACheck Test Suite">
 
     <listeners>
-        <listener class-name="TestScenario.ListenerClass"></listener>
+        <listener class-name="TestScenario.ADAListenerClass"></listener>
        <listener class-name="TestScenario.RetryListener"></listener>
     </listeners>
 
