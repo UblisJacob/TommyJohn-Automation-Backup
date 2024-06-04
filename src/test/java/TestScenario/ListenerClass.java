@@ -75,12 +75,13 @@ public class ListenerClass extends ExtentReport implements ITestListener, IExecu
 		if(shouldPrint)
 		{
 //			then create test
+
 			extentTest = extentReport.createTest(testName);
 			System.out.println("Executing " + testName + " Attempt Number: " + count);
 			extentTest.info("Executing " + testName + " Attempt Number: " + count);
 		}
-			else
-			{
+		else
+		{
 			System.out.println("Re-Executing " + testName + " Attempt Number: " + count);
 			extentTest.info("Re-Executing " + testName + " Attempt Number: " + count);
 		}
@@ -102,14 +103,14 @@ public class ListenerClass extends ExtentReport implements ITestListener, IExecu
 	@Override
 	public void onTestFailure(ITestResult result) {
 		
-		count++;
-		if (count <= Retry.maxRetryCount) {
+
+		if (count < Retry.maxRetryCount) {
 			shouldPrint = false;
-			
-			 
-		} else {
+
+		}
+		else {
 			shouldPrint = true;
-			count = 1;
+
 		}
 
 		String testName = result.getName();
@@ -127,6 +128,7 @@ public class ListenerClass extends ExtentReport implements ITestListener, IExecu
 		if (count == Retry.maxRetryCount) {
 //			
 			extentTest.addScreenCaptureFromPath(screenShotPath);
+			count = 1;
 			
 		}
 		else
@@ -163,7 +165,7 @@ public class ListenerClass extends ExtentReport implements ITestListener, IExecu
 		}
 
 		try {
- //         sendSlackNotificationReg(String.valueOf(Fpassed),String.valueOf(Ffailed),String.valueOf(Fskipped),reportLink);
+ //        sendSlackNotificationReg(String.valueOf(Fpassed),String.valueOf(Ffailed),String.valueOf(Fskipped),reportLink);
 //		  sendSlackNotificationADA(String.valueOf(Fpassed),String.valueOf(Ffailed),String.valueOf(Fskipped),reportLink);
 		} catch (Exception e) {
 			throw new RuntimeException(e);

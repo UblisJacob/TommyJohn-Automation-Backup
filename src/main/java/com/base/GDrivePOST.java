@@ -159,45 +159,81 @@ public class GDrivePOST {
         return file.getWebContentLink();
     }
 
-//    public static String UploadADACheckJsonFile() throws GeneralSecurityException, IOException {
-//
-//        Drive service = new Drive.Builder(GoogleNetHttpTransport.newTrustedTransport(), JSON_FACTORY, getCredentials())
-//                .setApplicationName(APPLICATION_NAME)
-//                .build();
-//
-//
-//        // Upload file
-//        String filepath = "C:/Users/HP/IdeaProjects/TJ_Automation/ADACheckResults";
-//        File fileMetadata = new File();
-//        fileMetadata.setName("ADACheck Report");
-//
-////        fileMetadata.setParents(Collections.singletonList(folderId));  // Set the parent folder
-//
-//        java.io.File filePath = new java.io.File(filepath);
-//        FileContent mediaContent = new FileContent("report/json", filePath);
-//
-//
-//
-//        File file = service.files().create(fileMetadata, mediaContent)
-//                .setFields("id, webContentLink")
-//                .execute();
-//
-//        Permission permission = new Permission();
-//        permission.setType("anyone");
-//        permission.setRole("reader");
-//
-//        service.permissions().create(file.getId(), permission).execute();
-//
-//        moveFile(service, file.getId(), "11l284hSg0VCzeEnOt9FtgKoNxZsn7Ap5B");
-//
-//        System.out.println("File ID: " + file.getId());
-//        System.out.println("WebContent Link: " + file.getWebContentLink());
-//
-//        return file.getWebContentLink();
-//
-//
-//
-//    }
+    public static String UploadADAReport() throws IOException, GeneralSecurityException {
+//        public static void main(String args[]) throws IOException, GeneralSecurityException {
+        // Build a new authorized API client service.
+        Drive service = new Drive.Builder(GoogleNetHttpTransport.newTrustedTransport(), JSON_FACTORY, getCredentials())
+                .setApplicationName(APPLICATION_NAME)
+                .build();
+
+
+        // Upload file
+        String filepath = "C:/Users/HP/IdeaProjects/TJ_Automation/test-output/extentreport.html";
+        File fileMetadata = new File();
+        fileMetadata.setName("ADACheck Report");
+
+//        fileMetadata.setParents(Collections.singletonList(folderId));  // Set the parent folder
+
+        java.io.File filePath = new java.io.File(filepath);
+        FileContent mediaContent = new FileContent("text/html", filePath);
+
+
+
+        File file = service.files().create(fileMetadata, mediaContent)
+                .setFields("id, webContentLink")
+                .execute();
+
+        Permission permission = new Permission();
+        permission.setType("anyone");
+        permission.setRole("reader");
+
+        service.permissions().create(file.getId(), permission).execute();
+
+        moveFile(service, file.getId(), "1AubNi7muTDJdsmkNa5ZA8qCgEcw_WOrh");
+
+        System.out.println("File ID: " + file.getId());
+        System.out.println("WebContent Link: " + file.getWebContentLink());
+
+        return file.getWebContentLink();
+    }
+
+    public static String UploadADACheckJsonFile() throws GeneralSecurityException, IOException {
+
+        Drive service = new Drive.Builder(GoogleNetHttpTransport.newTrustedTransport(), JSON_FACTORY, getCredentials())
+                .setApplicationName(APPLICATION_NAME)
+                .build();
+
+
+        // Upload file
+        String filepath = "C:/Users/HP/IdeaProjects/TJ_Automation/ADACheckResults";
+        File fileMetadata = new File();
+        fileMetadata.setName("ADACheck Report");
+
+//        fileMetadata.setParents(Collections.singletonList(folderId));  // Set the parent folder
+
+        java.io.File filePath = new java.io.File(filepath);
+        FileContent mediaContent = new FileContent("report/json", filePath);
+
+
+
+        File file = service.files().create(fileMetadata, mediaContent)
+                .setFields("id, webContentLink")
+                .execute();
+
+        Permission permission = new Permission();
+        permission.setType("anyone");
+        permission.setRole("reader");
+
+        service.permissions().create(file.getId(), permission).execute();
+
+        moveFile(service, file.getId(), "11l284hSg0VCzeEnOt9FtgKoNxZsn7Ap5B");
+
+        System.out.println("File ID: " + file.getId());
+        System.out.println("WebContent Link: " + file.getWebContentLink());
+
+        return file.getWebContentLink();
+
+    }
 
 public static String UploadScreenShot() throws IOException, GeneralSecurityException {
 
