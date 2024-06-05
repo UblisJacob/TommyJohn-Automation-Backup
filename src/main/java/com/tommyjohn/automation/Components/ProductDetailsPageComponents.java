@@ -2597,7 +2597,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 	}
 		public void verifyStickyATC() throws Exception {
-			new HomePageComponents(driver).navigateToNewArrivalsInWomenCategory();
+			new HomePageComponents(driver).navigateToAllMensCollectionsInMenCategory();
 			new CollectionPageComponent(driver).navigateToProductDetailsPage();
 			//new AddToCartComponents(driver).selectSize();
 			
@@ -2859,8 +2859,22 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		
 		public void verifyReviewRecommendationsSection() throws Exception {
 			SoftAssert softAssert =  new SoftAssert();
-			new HomePageComponents(driver).navigateToBraCategory();
-			new CollectionPageComponent(driver).navigateToProductDetailsPage();
+			new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
+	//		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+			String text = null;
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("window.scrollBy(0,250)");
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(THIRD_PRODUCT_HEAD_LINE_TEXT));
+			// get text and click on the first product
+			//text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
+			text= driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT).getText();
+			WebElement el = driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT);
+			JavascriptExecutor executor = (JavascriptExecutor) driver;
+			executor.executeScript("arguments[0].click();", el);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_TITLE));
+			Reporter.log(driver.getCurrentUrl());
+			ExtentReport.extentTest.info(driver.getCurrentUrl());
 			Thread.sleep(6000);
 			WebElement ratingstars = driver.findElement(RATING_STARS);
 			jse = (JavascriptExecutor) driver;
@@ -2919,10 +2933,11 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			}
 			//Display Questions
 			WebElement qsntab = driver.findElement(QUESTION_TAB);
-			WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+	//		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
 			WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(QUESTION_TAB));
 			jse = (JavascriptExecutor) driver;
 			jse.executeScript("arguments[0].click();", qsntab);
+			Thread.sleep(3000);
 			element = driver.findElement(QUESTION_FIRST);
 			softAssert.assertTrue(element.isDisplayed(), "Questions are not displayed");
 			Reporter.log("Questions are :: Displayed");	
@@ -3349,11 +3364,23 @@ public void verifySizeChartTextBras() throws Exception {
 	jse=(JavascriptExecutor)driver;
 	jse.executeScript("window.scrollBy(0,250)");
 	// call method to navigate product details page
-	new CollectionPageComponent(driver).navigateToProductDetailsPage();
+//	new CollectionPageComponent(driver).navigateToProductDetailsPage();
+//	String text = null;
+	JavascriptExecutor js = (JavascriptExecutor) driver;
+	js.executeScript("window.scrollBy(0,250)");
 	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+	wait.until(ExpectedConditions.visibilityOfElementLocated(THIRD_PRODUCT_HEAD_LINE_TEXT));
+	// get text and click on the first product
+	//text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
+	text= driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT).getText();
+	WebElement el = driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT);
+	JavascriptExecutor executor = (JavascriptExecutor) driver;
+	executor.executeScript("arguments[0].click();", el);
+	wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_TITLE));
+	Reporter.log(driver.getCurrentUrl());
+	ExtentReport.extentTest.info(driver.getCurrentUrl());
+//	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 	wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(SIZEGUIDE));
-	
-	
 	//HOW TO Measure
 	if(driver.findElement(SIZEGUIDE).isDisplayed())
 	{
