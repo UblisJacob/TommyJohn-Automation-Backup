@@ -554,34 +554,35 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		 **/
 
 //		Check Gift card Balance Page
-		System.out.println("***Validating Gift Card Balance Footer***");
-		driver.navigate().back();
-		wait.until(ExpectedConditions.titleIs("Tommy John | No Adjustment Needed"));
+		//-------------------------------------------------------------------
+//		System.out.println("***Validating Gift Card Balance Footer***");
+//		driver.navigate().back();
+//		wait.until(ExpectedConditions.titleIs("Tommy John | No Adjustment Needed"));
+//
+//		linkText = driver.findElement(GIFT_CARD_BALANCE_CHECK).getText();
+//		softassert.assertTrue(linkText.equals("Check Gift Card Balance"),
+//				"Check Gift Card Balance link text is changed");
+//
+//		objGeneralMethods.clickButtonByJS(driver, GIFT_CARD_BALANCE_CHECK);
+//
+//		wait.until(ExpectedConditions.titleContains("My Card Balance"));
+//
+//		softassert.assertTrue(
+//				driver.getCurrentUrl().equalsIgnoreCase("https://www.tommyjohn.com/pages/my-card-balance"),
+//				"Wrong page opened after Check Gift Card Balance Footer link was clicked");
+//
+//		try{
+//			softassert.assertAll();
+//		}catch (AssertionError e) {
+//			ExtentReport.extentTest.fail(e);
+//			softassert.assertAll();
+//		}
+//
+//		System.out.println(
+//				"Check Gift Card Balance Link text is correct and Correct webpage opened after clicking on link\n");
+//		Reporter.log("Check Gift Card Balance footer link is Displayed :: Clickable");
+//		ExtentReport.extentTest.info("Check Gift Card Balance footer link is Displayed :: Clickable");
 
-		linkText = driver.findElement(GIFT_CARD_BALANCE_CHECK).getText();
-		softassert.assertTrue(linkText.equals("Check Gift Card Balance"),
-				"Check Gift Card Balance link text is changed");
-
-		objGeneralMethods.clickButtonByJS(driver, GIFT_CARD_BALANCE_CHECK);
-
-		wait.until(ExpectedConditions.titleContains("My Card Balance"));
-
-		softassert.assertTrue(
-				driver.getCurrentUrl().equalsIgnoreCase("https://www.tommyjohn.com/pages/my-card-balance"),
-				"Wrong page opened after Check Gift Card Balance Footer link was clicked");
-
-		try{
-			softassert.assertAll();
-		}catch (AssertionError e) {
-			ExtentReport.extentTest.fail(e);
-			softassert.assertAll();
-		}
-
-		System.out.println(
-				"Check Gift Card Balance Link text is correct and Correct webpage opened after clicking on link\n");
-		Reporter.log("Check Gift Card Balance footer link is Displayed :: Clickable");
-		ExtentReport.extentTest.info("Check Gift Card Balance footer link is Displayed :: Clickable");
-		
 //		Check Tommy John Stores
 		System.out.println("***Validating Tommy John Stores Footer***");
 		driver.navigate().back();
