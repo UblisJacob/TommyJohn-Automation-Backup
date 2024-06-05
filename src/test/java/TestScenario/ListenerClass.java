@@ -117,11 +117,11 @@ public class ListenerClass extends ExtentReport implements ITestListener, IExecu
 
 		String fileName = result.getMethod().getMethodName().replaceAll(" ", "_");
 
-		String screenShotPath = CustomUtilities.takeScreenShot(fileName);
+		String screenShotPath = CustomUtilities.screenshot();
 		//extentTest.addScreenCaptureFromPath(screenShotPath);
 		
 		extentTest.info("Screenshot",
-				MediaEntityBuilder.createScreenCaptureFromPath(screenShotPath).build());
+				MediaEntityBuilder.createScreenCaptureFromBase64String(screenShotPath).build());
 		extentTest.info(result.getThrowable());
 		extentTest.fail(testName + " got failed");
 		
@@ -165,8 +165,7 @@ public class ListenerClass extends ExtentReport implements ITestListener, IExecu
 		}
 
 		try {
- //        sendSlackNotificationReg(String.valueOf(Fpassed),String.valueOf(Ffailed),String.valueOf(Fskipped),reportLink);
-//		  sendSlackNotificationADA(String.valueOf(Fpassed),String.valueOf(Ffailed),String.valueOf(Fskipped),reportLink);
+//         sendSlackNotificationReg(String.valueOf(Fpassed),String.valueOf(Ffailed),String.valueOf(Fskipped),reportLink);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
