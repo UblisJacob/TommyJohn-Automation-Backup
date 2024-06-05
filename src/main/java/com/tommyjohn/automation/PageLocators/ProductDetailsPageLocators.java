@@ -20,6 +20,8 @@ public class ProductDetailsPageLocators {
 //	public static By FIRST_PRODUCT = By.cssSelector(".product-item");
 	public static By FIRST_PRODUCT = By.xpath("//div[@data-index='1']");
 	public static By FIRST_PRODUCT_HEAD_LINE_TEXT = By.xpath("(//span[@class='product-meta__title'])[1]");
+
+	public static By THIRD_PRODUCT_HEAD_LINE_TEXT = By.xpath("(//span[@class='product-meta__title'])[3]");
 		
 	//image badging
 //	public static By IMAGE_BADGING = By.cssSelector(".productImage-item__badge");

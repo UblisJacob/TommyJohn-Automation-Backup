@@ -59,7 +59,7 @@ public class CustomUtilities {
 			// System.setProperty("webdriver.chrome.driver" ,"/tmp/chromedriver.exe");
 			//System.setProperty("webdriver.chrome.driver", properties.getProperty("chromeDriverPath"));
 			ChromeOptions chromeOptions = new ChromeOptions();
-//			chromeOptions.addArguments("--headless");
+			chromeOptions.addArguments("--headless");
 			chromeOptions.addArguments("--window-size=1280,800");
 			chromeOptions.addArguments("--disable-gpu");
 			chromeOptions.addArguments("--no-sandbox");
@@ -286,4 +286,14 @@ public class CustomUtilities {
 
 		return filePath;
 	}
+
+	public static String screenshot(){
+
+		String screenshotBase64 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
+
+		return screenshotBase64;
+
+	}
+
+
 }

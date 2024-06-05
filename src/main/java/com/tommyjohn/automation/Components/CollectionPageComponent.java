@@ -949,6 +949,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		js.executeScript("window.scrollBy(0,500)");
 
+		Thread.sleep(2000);
 		wait.until(ExpectedConditions.presenceOfElementLocated(FIRST_PRODUCT_IMAGE));
 		// Hover On product image on collection page
 		element = driver.findElement(FIRST_PRODUCT_IMAGE);
