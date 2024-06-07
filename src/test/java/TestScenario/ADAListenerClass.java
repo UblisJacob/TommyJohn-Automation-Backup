@@ -92,6 +92,7 @@ public class ADAListenerClass extends ExtentReport implements ITestListener, IEx
     @Override
     public void onTestFailure(ITestResult result) {
 
+        String screenShotPath = CustomUtilities.screenshot();
 
         if (count < Retry.maxRetryCount) {
             shouldPrint = false;
@@ -106,7 +107,7 @@ public class ADAListenerClass extends ExtentReport implements ITestListener, IEx
 
         String fileName = result.getMethod().getMethodName().replaceAll(" ", "_");
 
-        String screenShotPath = CustomUtilities.screenshot();
+ //       String screenShotPath = CustomUtilities.screenshot();
         //extentTest.addScreenCaptureFromPath(screenShotPath);
 
         extentTest.info("Screenshot",
@@ -115,8 +116,7 @@ public class ADAListenerClass extends ExtentReport implements ITestListener, IEx
         extentTest.fail(testName + " got failed");
 
         if (count == Retry.maxRetryCount) {
-//
-            extentTest.addScreenCaptureFromPath(screenShotPath);
+ //         extentTest.addScreenCaptureFromPath(screenShotPath);
             count = 1;
         }
         else
@@ -153,7 +153,7 @@ public class ADAListenerClass extends ExtentReport implements ITestListener, IEx
         }
 
         try {
-		  sendSlackNotificationADA(String.valueOf(Fpassed),String.valueOf(Ffailed),String.valueOf(Fskipped),reportLink);
+	//	  sendSlackNotificationADA(String.valueOf(Fpassed),String.valueOf(Ffailed),String.valueOf(Fskipped),reportLink);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -193,7 +193,4 @@ public class ADAListenerClass extends ExtentReport implements ITestListener, IEx
         Fskipped = Fskipped + (context.getSkippedTests().size());
 
     }
-
-
-
 }

@@ -11,9 +11,9 @@
     <test name="CategoryTests">
         <parameter name="browser" value="chrome" />
         <classes>
-            <class name="TestModules.ValidateReorderPage">
+            <class name="TestModules.ValidateCategoryPages">
                 <methods>
-                    <include name="ValidateUserIsAbleToReOrderItemFromReOrderPage"/>
+                    <include name=""/>
                 </methods>
             </class>
         </classes>
