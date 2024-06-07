@@ -10,7 +10,6 @@ public class HomePageLocators{
 	public static By SEARCH_ICON_IMAGE= By.cssSelector("label[data-tj-qa='header-search-icon']>svg,form>.header-search-input-icon>svg");
 	//public static By NEWARRIVALS_CATEGORY = By.cssSelector(".header-desktop-left > ul > li:nth-child(1) > a");
 	//public static By MEN_IN_NEWARRIVALS_CATEGORY = By.cssSelector(".header-desktop-left > ul > li:nth-child(1) > div > ul > li:nth-child(1) > div");
-	
 	public static By LEVEL_TWO_ALL_OPTIONS = By.cssSelector(".nav-item__list.level-zero-list>li:nth-child(1) ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']:nth-child(2) li.level-two-container");
 	public static By LEVEL_TWO_FIRST_OPTION = By.cssSelector(".nav-item__list.level-zero-list>li:nth-child(1) ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']:nth-child(2) li.level-two-container:nth-child(3)");
 	public static By MENS_UNDERSHIRT_CREW_NECK = By.cssSelector(".nav-item__list.level-zero-list>li:nth-child(1) ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']:nth-child(4) li[class='level-two-container']:nth-child(4)");
