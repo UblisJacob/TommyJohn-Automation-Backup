@@ -21,6 +21,7 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
+import org.testng.ITestContext;
 import org.testng.Reporter;
 
 
@@ -32,8 +33,8 @@ public class CustomUtilities {
 	public static BufferedReader reader;
 	public static Properties properties;
 	public static final String propertiesFilePath = "src/main/resources/configuration.properties";
-	public static String screenshot = null;
-	
+	public static String Suitname = null;
+
 	//	public static ATUTestRecorder recorder;
 
 	/**
@@ -249,51 +250,73 @@ public class CustomUtilities {
 	 * @param name
 	 * @return
 	 */
-	public static String takeScreenShot(String name) {
 
-		String rootDir = System.getProperty("user.dir");
+	public static void GetSuiteName(ITestContext context) {
+
+		Suitname = context.getCurrentXmlTest().getSuite().getName();
+		System.out.println("Suite: " + Suitname);
+
+	}
+	public static String takeScreenShot(String name)  {
+
+     	String rootDir = System.getProperty("user.dir");
 		String screenShotsFolder = rootDir+"/test-output/Screenshots/";
+
+ //		String UploadscreenShotsFolder = com.base.GDrivePOST.UploadScreenShot();
 
 //		System.out.println(rootDir);
 
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MMM_YYYY_HH_mm_ss");  
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MMM_YYYY_HH_mm_ss");
 		LocalDateTime now = LocalDateTime.now();
 		String dateAndTime = dtf.format(now);
 //		System.out.println(dtf.format(now));  
-		
+
 		String filePath = screenShotsFolder + name + dateAndTime + ".jpg";
-		
+
 		System.out.println(filePath);
 
 		File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 
+
 		try {
 			FileUtils.copyFile(file, new File(filePath));
+	//		screenshot = com.base.GDrivePOST.UploadScreenShot();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
-//		try{
-//
-//			screenshot = com.base.GDrivePOST.UploadScreenShot();
-//
-//		}
-//		catch(Exception ex){
-//			throw new RuntimeException(ex);
-//		}
 
 		System.out.println("ScreenShot is taken");
 
 		return filePath;
+
+
 	}
 
-	public static String screenshot(){
+	public static String screenshot()
+	{
+
 
 		String screenshotBase64 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
 
-		return screenshotBase64;
+		// Embed screenshot into the report
+//		try {
+//			screenshotBase64 = ("Sample step", MediaEntityBuilder.createScreenCaptureFromBase64String(screenshotBase64).build());
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 
+
+		return screenshotBase64;
 	}
+
+//	public static String screenshot(){
+//
+//		String screenshotBase64 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
+//
+//		return screenshotBase64;
+//
+//	}
 
 
 }
