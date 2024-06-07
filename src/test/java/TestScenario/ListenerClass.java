@@ -118,7 +118,7 @@ public class ListenerClass extends ExtentReport implements ITestListener, IExecu
 		String fileName = result.getMethod().getMethodName().replaceAll(" ", "_");
 
 		String screenShotPath = CustomUtilities.screenshot();
-		//extentTest.addScreenCaptureFromPath(screenShotPath);
+		extentTest.addScreenCaptureFromPath(screenShotPath);
 		
 		extentTest.info("Screenshot",
 				MediaEntityBuilder.createScreenCaptureFromBase64String(screenShotPath).build());
@@ -126,8 +126,8 @@ public class ListenerClass extends ExtentReport implements ITestListener, IExecu
 		extentTest.fail(testName + " got failed");
 		
 		if (count == Retry.maxRetryCount) {
-//			
-			extentTest.addScreenCaptureFromPath(screenShotPath);
+
+//			extentTest.addScreenCaptureFromPath(screenShotPath);
 			count = 1;
 			
 		}
