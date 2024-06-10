@@ -97,7 +97,7 @@ public class Slack {
 
         String payload = "{\"text\":\"*ADA Check result*\n*Time:* " + Date + " \n*Passed:* " + passed + "\n*Failed:* "+ failed + "\n*Skipped:* " + skipped + "\n*Report Link:* <" + reportLink + "|Click> \",\"type\": \"mrkdwn\"}";
 
-        URL url = new URL(Test_WEBHOOK_URL);
+        URL url = new URL(TJ_QA_WEBHOOK_URL);
 
         HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
 

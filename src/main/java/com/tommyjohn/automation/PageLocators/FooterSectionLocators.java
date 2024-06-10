@@ -63,7 +63,7 @@ public class FooterSectionLocators {
 	public static By CA_SUPPLY_CHAINS_ACT_LINK = By.cssSelector("a[data-tj-qa='footer-transparency-sca']");
 	
 //	FOOTER NEWSLETTER/EMAIL SIGN UP SECTION
-	public static By NEWSLETTER_TITLE = By.cssSelector(".desktop-footer-newsletter div[data-tj-qa='footer-newsletter-tit']");
+	public static By NEWSLETTER_TITLE = By.cssSelector(".desktop-footer-newsletter input[data-tj-qa='footer-newsletter-email']");
 	public static By NEWSLETTER_MEN_RADIO_BUTTON = By.cssSelector(".desktop-footer-newsletter input[data-tj-qa='footer-newsletter-mens']");
 	public static By NEWSLETTER_WOMEN_RADIO_BUTTON = By.cssSelector(".desktop-footer-newsletter input[data-tj-qa='footer-newsletter-women']");
 	public static By NEWSLETTER_BOTH_RADIO_BUTTON = By.cssSelector(".desktop-footer-newsletter input[data-tj-qa='footer-newsletter-both']");
