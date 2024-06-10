@@ -175,18 +175,45 @@ public class ReOrderPageComponents extends ReOrderPageLocators {
 		reorderPagevalidation();
 		
 		List<WebElement> list = new ArrayList<WebElement>();
-		list = driver.findElements(REORDER_ITEM_ATC);
-		
+		list = driver.findElements(ReORDER_ADDTOACRT);
+		//-----------------------------------------------------------
+
+//				int AddtoCartCTAs = driver.findElements(By.xpath("//span[@class='text-link reorder-item__title']")).size();
+//		System.out.println(AddtoCartCTAs);
+//
+//		for(int i=3; i<=AddtoCartCTAs; i++)
+//		{
+//			text = AddtoCartCTAs.getText();
+////			System.out.println("Adding: " + text);
+//			WebElement ATC = driver.findElement(By.xpath("(//button[contains(text(),'Add to Cart')])["+i+"]"));
+//				ATC.click();
+//				if (ATC.isDisplayed()){
+//				break;
+//
+//			}
+//			else
+//			{
+//				softAssert.fail("No Products on Reorder Page");
+//			}
+//		}
+
+
+//------------------------------------------------------------------------------------------------
 		if (list.size() > 0) {
+		//	int min = 1;
 			int i = random.nextInt(list.size());
-		//	int i = random.nextInt(number);
 			System.out.println("random number = " + i);
-			
-			WebElement productToAdd = driver.findElement(By.cssSelector(".account-reorder-grid>.reorder-item:nth-child("+ i +")>a:nth-child(2)>span"));
+				WebElement productToAdd = driver.findElement(By.xpath("(//button[text()='Add to Cart'])["+i+"]//..//span[@class='text-link reorder-item__title']"));
 			text = productToAdd.getText();
 			System.out.println("Adding: " + text);
 			genMethods.scrollElementIntoView(driver, productToAdd);
-			list.get(i-1).click();
+			if (i==0) {
+				list.get(i+1).click();
+
+			}
+			else {
+				list.get(i - 1).click();
+			}
 		}else {
 			softAssert.fail("No Products on Reorder Page");
 		}
