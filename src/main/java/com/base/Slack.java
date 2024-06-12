@@ -22,7 +22,7 @@ import java.util.TimeZone;
 public class Slack {
 
     public static String TJ_QA_WEBHOOK_URL="https://hooks.slack.com/services/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";
-    public static String Test_WEBHOOK_URL="https://hooks.slack.com/services/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";
+    public static String Test_WEBHOOK_URL="https://hooks.slack.com/services/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";
     public static String CurrentDate;
 
 
@@ -54,6 +54,7 @@ public class Slack {
 
     public static void sendSlackNotificationReg(String passed, String failed, String skipped, String reportLink /*, String JSonLink*/) throws Exception {
 
+            //    String ReportLINK = "https://drive.google.com/uc?export=download&id=1WANCMd5qitNr8QRyY2t2W39lVlhBFGaS";
             // Create JSON payload
                 String Date = setCurrentDatetDate();
 

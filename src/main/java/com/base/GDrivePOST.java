@@ -120,8 +120,8 @@ public class GDrivePOST {
 //        System.out.println("File moved to folder: " + folderID);
 
     }
-
-    public static String UploadReport() throws IOException, GeneralSecurityException {
+//public static void main(String args[]) throws IOException, GeneralSecurityException{
+   public static String UploadReport() throws IOException, GeneralSecurityException {
 //        public static void main(String args[]) throws IOException, GeneralSecurityException {
         // Build a new authorized API client service.
         Drive service = new Drive.Builder(GoogleNetHttpTransport.newTrustedTransport(), JSON_FACTORY, getCredentials())
