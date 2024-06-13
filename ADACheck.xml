@@ -265,6 +265,118 @@
         </classes>
     </test>
 
+    <test name="FooterShopGiftCards">
+        <parameter name="browser" value="chrome" />
+        <classes>
+            <class name="ADACheckModules.Footer_Shop_GiftCards_ADACheck" />
+        </classes>
+    </test>
+
+    <test name="FooterPromotionsSiteWide">
+        <parameter name="browser" value="chrome" />
+        <classes>
+            <class name="ADACheckModules.Footer_Promotions_SiteWidePromotion_ADACheck" />
+        </classes>
+    </test>
+
+    <test name="FooterPromotionsReferral">
+        <parameter name="browser" value="chrome" />
+        <classes>
+            <class name="ADACheckModules.Footer_Promotions_Referral_ADACheck" />
+        </classes>
+    </test>
+
+    <test name="FooterAccountCatalogRequest">
+        <parameter name="browser" value="chrome" />
+        <classes>
+            <class name="ADACheckModules.Footer_Account_CatalogRequest_ADACheck" />
+        </classes>
+    </test>
+
+    <test name="FooterSupportContactUs">
+        <parameter name="browser" value="chrome" />
+        <classes>
+            <class name="ADACheckModules.Footer_Support_ContactUs_ADACheck" />
+        </classes>
+    </test>
+
+    <test name="FooterSupportReturnsExchange">
+        <parameter name="browser" value="chrome" />
+        <classes>
+            <class name="ADACheckModules.Footer_Support_ReturnExchange_ADACheck" />
+        </classes>
+    </test>
+
+    <test name="FooterSupportShippingReturnPolicy">
+        <parameter name="browser" value="chrome" />
+        <classes>
+            <class name="ADACheckModules.Footer_Support_ShippingReturnPolicy_ADACheck" />
+        </classes>
+    </test>
+
+    <test name="FooterSupportTJStores">
+        <parameter name="browser" value="chrome" />
+        <classes>
+            <class name="ADACheckModules.Footer_Support_TJStores_ADACheck" />
+        </classes>
+    </test>
+
+    <test name="FooterSupportStoreLocator">
+        <parameter name="browser" value="chrome" />
+        <classes>
+            <class name="ADACheckModules.Footer_Support_StoreLocator_ADACheck" />
+        </classes>
+    </test>
+
+    <test name="FooterSupportRetailers">
+        <parameter name="browser" value="chrome" />
+        <classes>
+            <class name="ADACheckModules.Footer_Support_Retailers_ADACheck" />
+        </classes>
+    </test>
+
+    <test name="FooterSupportAffiliates">
+        <parameter name="browser" value="chrome" />
+        <classes>
+            <class name="ADACheckModules.Footer_Support_Affiliates_ADACheck" />
+        </classes>
+    </test>
+
+    <test name="FooterCompanyAbout">
+        <parameter name="browser" value="chrome" />
+        <classes>
+            <class name="ADACheckModules.Footer_Company_About_ADACheck" />
+        </classes>
+    </test>
+
+    <test name="FooterCompanyCareers">
+        <parameter name="browser" value="chrome" />
+        <classes>
+            <class name="ADACheckModules.Footer_Company_Careers_ADACheck" />
+        </classes>
+    </test>
+
+    <test name="FooterCompanyPress">
+        <parameter name="browser" value="chrome" />
+        <classes>
+            <class name="ADACheckModules.Footer_Company_Press_ADACheck" />
+        </classes>
+    </test>
+
+    <test name="FooterCompanyBlog">
+        <parameter name="browser" value="chrome" />
+        <classes>
+            <class name="ADACheckModules.Footer_Company_Blog_ADACheck" />
+        </classes>
+    </test>
+
+    <test name="FooterCompanyReviews">
+        <parameter name="browser" value="chrome" />
+        <classes>
+            <class name="ADACheckModules.Footer_Company_Reviews_ADACheck" />
+        </classes>
+    </test>
+
 
 
 
