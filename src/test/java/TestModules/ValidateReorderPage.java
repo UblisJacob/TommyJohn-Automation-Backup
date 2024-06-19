@@ -51,6 +51,7 @@ public class ValidateReorderPage {
 
 	@AfterMethod(alwaysRun = true)
 	void teardown() {
+		driver.close();
 		driver.quit();
 	}
 

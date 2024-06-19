@@ -96,7 +96,7 @@ public class ValidateSearchPages {
 	@AfterMethod(alwaysRun = true)
 	void teardown() {
 
-		//driver.close();
+		driver.close();
 		driver.quit();
 	}
 }

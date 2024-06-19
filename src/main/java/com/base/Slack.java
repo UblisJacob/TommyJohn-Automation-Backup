@@ -89,7 +89,7 @@ public class Slack {
 
     }
 
-    public static void sendSlackNotificationADA(String passed, String failed, String skipped, String reportLink /*, String JSonLink*/) throws Exception {
+    public static void sendSlackNotificationADA(String passed, String failed, String skipped, String reportLink ) throws Exception {
 
         // Create JSON payload
         String Date = setCurrentDatetDate();
