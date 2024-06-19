@@ -31,6 +31,8 @@ public class ValidateTJStoresPage {
 	
 	@AfterMethod(alwaysRun = true)
 	void teardown() {
+
+		driver.close();
 		driver.quit();
 	}
 

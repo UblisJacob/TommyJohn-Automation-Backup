@@ -41,7 +41,7 @@ public class AddToCartComponents extends AddToCartLocators{
 		
 		
 		// call method to navigate to collection page
-		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
+		new HomePageComponents(driver).navigateToNewArrivalsInMenCategory();
 		jse=(JavascriptExecutor)driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		// call method to navigate product details page
