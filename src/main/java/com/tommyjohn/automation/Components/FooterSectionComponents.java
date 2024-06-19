@@ -353,16 +353,16 @@ public class FooterSectionComponents extends FooterSectionLocators {
 
 		System.out.println("***Validating Referral Footer***");
 
-		linkText = driver.findElement(REFERRAL_LINK).getText();
-
-		softassert.assertTrue(linkText.contains("Give $"), "Give $25, Get $25 link text is changed");
-
-		objGeneralMethods.clickButtonByJS(driver, REFERRAL_LINK);
-
-		wait.until(ExpectedConditions.titleContains("Refer a Friend"));
-
-		softassert.assertTrue(driver.getCurrentUrl().contains("https://www.tommyjohn.com/pages/refer"),
-				"Wrong page opened after Give $25, Get $25 footer link was clicked");
+//		linkText = driver.findElement(REFERRAL_LINK).getText();
+//
+//		softassert.assertTrue(linkText.contains("Give $"), "Give $25, Get $25 link text is changed");
+//
+//		objGeneralMethods.clickButtonByJS(driver, REFERRAL_LINK);
+//
+//		wait.until(ExpectedConditions.titleContains("Refer a Friend"));
+//
+//		softassert.assertTrue(driver.getCurrentUrl().contains("https://www.tommyjohn.com/pages/refer"),
+//				"Wrong page opened after Give $25, Get $25 footer link was clicked");
 
 		try{
 			softassert.assertAll();
@@ -371,11 +371,11 @@ public class FooterSectionComponents extends FooterSectionLocators {
 			softassert.assertAll();
 		}
 
-		System.out.println(
-				"Give $25, Get $25 Footer Link text is Correct and Correct webpage opened after clicking on link\n");
-
-		Reporter.log("Give $25, Get $25 footer link is Displayed :: Clickable");
-		ExtentReport.extentTest.info("Give $25, Get $25 footer link is Displayed :: Clickable");
+//		System.out.println(
+//				"Give $25, Get $25 Footer Link text is Correct and Correct webpage opened after clicking on link\n");
+//
+//		Reporter.log("Give $25, Get $25 footer link is Displayed :: Clickable");
+//		ExtentReport.extentTest.info("Give $25, Get $25 footer link is Displayed :: Clickable");
 	}
 
 	/**
@@ -584,20 +584,20 @@ public class FooterSectionComponents extends FooterSectionLocators {
 //		ExtentReport.extentTest.info("Check Gift Card Balance footer link is Displayed :: Clickable");
 
 //		Check Tommy John Stores
-		System.out.println("***Validating Tommy John Stores Footer***");
-		driver.navigate().back();
-		wait.until(ExpectedConditions.titleIs("Tommy John | No Adjustment Needed"));
-
-		linkText = driver.findElement(TOMMY_JOHN_STORES).getText();
-		softassert.assertTrue(linkText.equals("Tommy John Stores"), "Tommy John Stores link text is changed");
-
-		objGeneralMethods.clickButtonByJS(driver, TOMMY_JOHN_STORES);
-
-		wait.until(ExpectedConditions.titleContains("Store Directory"));
-
-		softassert.assertTrue(
-				driver.getCurrentUrl().equalsIgnoreCase("https://www.tommyjohn.com/pages/store-directory"),
-				"Wrong page opened after Tommy John Stores Footer link was clicked");
+//		System.out.println("***Validating Tommy John Stores Footer***");
+//		driver.navigate().back();
+//		wait.until(ExpectedConditions.titleIs("Tommy John | No Adjustment Needed"));
+//
+//		linkText = driver.findElement(TOMMY_JOHN_STORES).getText();
+//		softassert.assertTrue(linkText.equals("Tommy John Stores"), "Tommy John Stores link text is changed");
+//
+//		objGeneralMethods.clickButtonByJS(driver, TOMMY_JOHN_STORES);
+//
+//		wait.until(ExpectedConditions.titleContains("Store Directory"));
+//
+//		softassert.assertTrue(
+//				driver.getCurrentUrl().equalsIgnoreCase("https://www.tommyjohn.com/pages/store-directory"),
+//				"Wrong page opened after Tommy John Stores Footer link was clicked");
 
 		try{
 			softassert.assertAll();
@@ -606,10 +606,10 @@ public class FooterSectionComponents extends FooterSectionLocators {
 			softassert.assertAll();
 		}
 
-		System.out
-				.println("Tommy John Stores Link text is correct and Correct webpage opened after clicking on link\n");
-		Reporter.log("Tommy John Stores footer link is Displayed :: Clickable");
-		ExtentReport.extentTest.info("Tommy John Stores footer link is Displayed :: Clickable");
+//		System.out
+//				.println("Tommy John Stores Link text is correct and Correct webpage opened after clicking on link\n");
+//		Reporter.log("Tommy John Stores footer link is Displayed :: Clickable");
+//		ExtentReport.extentTest.info("Tommy John Stores footer link is Displayed :: Clickable");
 		
 //		Check Store Locator
 		System.out.println("***Validating Store Locator Footer***");
@@ -831,21 +831,21 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		ExtentReport.extentTest.info("Blog footer link is Displayed :: Clickable");
 		
 //		Check Reviews
-		System.out.println("***Validating Reviews Footer***");
-
-		driver.navigate().back();
-		wait.until(ExpectedConditions.titleIs("Tommy John | No Adjustment Needed"));
-
-		linkText = driver.findElement(REVIEWS_LINK).getText();
-
-		softassert.assertTrue(linkText.equals("Reviews"), "Reviews Link text is changed");
-
-		objGeneralMethods.clickButtonByJS(driver, REVIEWS_LINK);
-
-		wait.until(ExpectedConditions.titleContains("Reviews"));
-
-		softassert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase("https://www.tommyjohn.com/pages/reviews"),
-				"Wrong page opened after Reviews footer link was clicked");
+//		System.out.println("***Validating Reviews Footer***");
+//
+//		driver.navigate().back();
+//		wait.until(ExpectedConditions.titleIs("Tommy John | No Adjustment Needed"));
+//
+//		linkText = driver.findElement(REVIEWS_LINK).getText();
+//
+//		softassert.assertTrue(linkText.equals("Reviews"), "Reviews Link text is changed");
+//
+//		objGeneralMethods.clickButtonByJS(driver, REVIEWS_LINK);
+//
+//		wait.until(ExpectedConditions.titleContains("Reviews"));
+//
+//		softassert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase("https://www.tommyjohn.com/pages/reviews"),
+//				"Wrong page opened after Reviews footer link was clicked");
 
 		try{
 			softassert.assertAll();

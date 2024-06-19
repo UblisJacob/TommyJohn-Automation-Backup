@@ -31,6 +31,8 @@ public class ValidateAccountPage extends ExtentReport {
 
 	@AfterMethod(alwaysRun = true)
 	void tearDown() {
+
+		driver.close();
 		driver.quit();
 	}
 

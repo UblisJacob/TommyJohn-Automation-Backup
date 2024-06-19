@@ -1,24 +1,15 @@
 package TestScenario;
 
-import java.io.IOException;
-import java.security.GeneralSecurityException;
-import java.util.Set;
-
-import org.openqa.selenium.WebDriver;
-import org.testng.IExecutionListener;
-import org.testng.ISuite;
-import org.testng.ISuiteListener;
-import org.testng.ITestContext;
-import org.testng.ITestListener;
-import org.testng.ITestNGMethod;
-import org.testng.ITestResult;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Parameters;
-
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.base.ExtentReport;
 import com.tommyjohn.automation.utils.CustomUtilities;
+import org.openqa.selenium.WebDriver;
+import org.testng.*;
+
+import java.io.IOException;
+import java.security.GeneralSecurityException;
+import java.util.Set;
 
 import static com.base.Slack.sendSlackNotificationADA;
 import static com.base.Slack.sendSlackNotificationReg;
@@ -38,17 +29,17 @@ public class ListenerClass extends ExtentReport implements ITestListener, IExecu
 	public int Ffailed = 0;
 	public int Fskipped = 0;
 
-	
-	
+
+
 	@Override
 
 	public void onExecutionStart() {
 		initializeExtentReports();
 		System.out.println("Tests started executing");
-		
+
 	}
-		
-	
+
+
 	@Override
 	public void onStart(ITestContext context) {
 		String ADACheckSuiteName = "ADACheck Test Suite";
@@ -64,9 +55,9 @@ public class ListenerClass extends ExtentReport implements ITestListener, IExecu
 
 			sparkReporter_AllTests.config().setReportName("Regression Test Report");
 		}
-	
+
 	}
-	
+
 
 	@Override
 	public void onTestStart(ITestResult result) {
@@ -75,7 +66,6 @@ public class ListenerClass extends ExtentReport implements ITestListener, IExecu
 		if(shouldPrint)
 		{
 //			then create test
-
 			extentTest = extentReport.createTest(testName);
 			System.out.println("Executing " + testName + " Attempt Number: " + count);
 			extentTest.info("Executing " + testName + " Attempt Number: " + count);
@@ -85,7 +75,7 @@ public class ListenerClass extends ExtentReport implements ITestListener, IExecu
 			System.out.println("Re-Executing " + testName + " Attempt Number: " + count);
 			extentTest.info("Re-Executing " + testName + " Attempt Number: " + count);
 		}
-		
+
 	}
 
 	@Override
@@ -102,13 +92,14 @@ public class ListenerClass extends ExtentReport implements ITestListener, IExecu
 
 	@Override
 	public void onTestFailure(ITestResult result) {
-		
+
+		String screenShotPath = CustomUtilities.screenshot();
 
 		if (count < Retry.maxRetryCount) {
 			shouldPrint = false;
 
-		}
-		else {
+
+		} else {
 			shouldPrint = true;
 
 		}
@@ -117,19 +108,17 @@ public class ListenerClass extends ExtentReport implements ITestListener, IExecu
 
 		String fileName = result.getMethod().getMethodName().replaceAll(" ", "_");
 
-		String screenShotPath = CustomUtilities.screenshot();
-		extentTest.addScreenCaptureFromPath(screenShotPath);
-		
+		//       String screenShotPath = CustomUtilities.screenshot();
+		//extentTest.addScreenCaptureFromPath(screenShotPath);
+
 		extentTest.info("Screenshot",
 				MediaEntityBuilder.createScreenCaptureFromBase64String(screenShotPath).build());
 		extentTest.info(result.getThrowable());
 		extentTest.fail(testName + " got failed");
-		
-		if (count == Retry.maxRetryCount) {
 
-//			extentTest.addScreenCaptureFromPath(screenShotPath);
+		if (count == Retry.maxRetryCount) {
+			//         extentTest.addScreenCaptureFromPath(screenShotPath);
 			count = 1;
-			
 		}
 		else
 		{
@@ -150,7 +139,7 @@ public class ListenerClass extends ExtentReport implements ITestListener, IExecu
 	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
 
 	}
-	
+
 	@Override
 	public void onExecutionFinish() {
 
@@ -165,7 +154,7 @@ public class ListenerClass extends ExtentReport implements ITestListener, IExecu
 		}
 
 		try {
- //        sendSlackNotificationReg(String.valueOf(Fpassed),String.valueOf(Ffailed),String.valueOf(Fskipped),reportLink);
+//			sendSlackNotificationReg(String.valueOf(Fpassed),String.valueOf(Ffailed),String.valueOf(Fskipped),reportLink);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -204,6 +193,5 @@ public class ListenerClass extends ExtentReport implements ITestListener, IExecu
 		Ffailed = Ffailed + (context.getFailedTests().size());
 		Fskipped = Fskipped + (context.getSkippedTests().size());
 
-    }
-
+	}
 }

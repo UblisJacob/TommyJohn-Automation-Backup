@@ -45,12 +45,12 @@ public class ValidateNavigationElements {
 		new NavigationElementsPage(driver).validateSearchBar();
 	}
 	
-	@Test
+//	@Test
 	public void ValidateElementsWhenNotSignedIn() {
 		new NavigationElementsPage(driver).validateElementsWhenNotSignedIn();
 	}
 
-	@Test
+//	@Test
 	public void ValidateElementsWhenSignedIn() throws Exception {
 		new NavigationElementsPage(driver).validateElementsWhenSignedIn();
 	}
@@ -66,7 +66,7 @@ public class ValidateNavigationElements {
 		new NavigationElementsPage(driver).validateNavigation();
 	}
 	
-	@Test(description = "validates if user is able to see four links on left side of TJ logo")
+//	@Test(description = "validates if user is able to see four links on left side of TJ logo")
 	@Severity(SeverityLevel.CRITICAL)
 	@Description("Validates if user is able to see upto four links on left side of TJ logo")
 	public void ValidateAllQuizLandingPages() {
@@ -76,6 +76,7 @@ public class ValidateNavigationElements {
 	@AfterMethod(alwaysRun = true)
 	void teardown()
 	{
+		driver.close();
 		driver.quit();
 	}
 

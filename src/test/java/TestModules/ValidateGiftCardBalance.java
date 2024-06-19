@@ -47,6 +47,7 @@ public class ValidateGiftCardBalance {
 	
 	@AfterMethod(alwaysRun = true)
 	void teardown() {
+		driver.close();
 		driver.quit();
 	}
 
