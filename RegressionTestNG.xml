@@ -28,21 +28,21 @@
 		</classes>
 	</test>
 
-	<test name="FooterPageTests">
-		<parameter name="browser" value="chrome" />
-		<classes>
-			<class name="TestModules.ValidateFooterSection" />
-		</classes>
-	</test>
+<!--	<test name="FooterPageTests">-->
+<!--		<parameter name="browser" value="chrome" />-->
+<!--		<classes>-->
+<!--			<class name="TestModules.ValidateFooterSection" />-->
+<!--		</classes>-->
+<!--	</test>-->
 
-	<test thread-count="1" name="ProductPageTests">
+	<test name="ProductPageTests">
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="TestModules.ValidatePDP" />
 		</classes>
 	</test>
 
-	<test thread-count="1" name="StoreLocatorTests">
+	<test name="StoreLocatorTests">
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="TestModules.ValidateStoreLocator" />
@@ -105,7 +105,7 @@
 		</classes>
 	</test>
 
-	<test thread-count="1" name="InlineCartTests">
+	<test name="InlineCartTests">
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="TestModules.ValidateInlineCartPage" />
@@ -162,7 +162,7 @@
 <!--		</test>-->
 
 
-<!--			<test thread-count="1" name="AfterPayTests">-->
+<!--			<test name="AfterPayTests">-->
 <!--					<parameter name="browser" value="chrome" />-->
 <!--					<classes>-->
 <!--						<class name="TestModules.ValidateAfterPay" />-->

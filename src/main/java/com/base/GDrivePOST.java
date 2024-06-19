@@ -130,7 +130,7 @@ public class GDrivePOST {
 
 
         // Upload file
-        String filepath = "C:/Users/UTIS LOAN 286/IdeaProjects/TJ_Automation/test-output/extentreport.html";
+        String filepath = "C:/Users/HP/IdeaProjects/TJ_Automation/test-output/extentreport.html";
         File fileMetadata = new File();
         fileMetadata.setName("Regression Report");
 
@@ -168,7 +168,7 @@ public class GDrivePOST {
 
 
         // Upload file
-        String filepath = "C:/Users/UTIS LOAN 286/IdeaProjects/TJ_Automation/test-output/extentreport.html";
+        String filepath = "C:/Users/HP/IdeaProjects/TJ_Automation/test-output/extentreport.html";
         File fileMetadata = new File();
         fileMetadata.setName("ADACheck Report");
 
@@ -249,7 +249,7 @@ public static String UploadScreenShot() throws IOException, GeneralSecurityExcep
 
 
     // Upload file
-    String filepath = "C:/Users/UTIS LOAN 286/IdeaProjects/TJ_Automation/test-output/Screenshots";
+    String filepath = "C:/Users/HP/IdeaProjects/TJ_Automation/test-output/Screenshots";
     File fileMetadata = new File();
     fileMetadata.setName("Regression Screenshot");
 

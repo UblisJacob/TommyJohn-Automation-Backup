@@ -583,6 +583,7 @@ Thread.sleep(4000);
 		String allClasses = null;
 		boolean flag = false;
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(GIFT_WRAP_LINK));
 		driver.findElement(GIFT_WRAP_LINK).click();
 		softAssert.assertTrue(driver.findElement(FlyCartPageLocator.GIFT_WRAP_POPUP).isDisplayed(), "Gift Wrap Popup is not displayed");
