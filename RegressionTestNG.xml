@@ -28,12 +28,12 @@
 		</classes>
 	</test>
 
-<!--	<test name="FooterPageTests">-->
-<!--		<parameter name="browser" value="chrome" />-->
-<!--		<classes>-->
-<!--			<class name="TestModules.ValidateFooterSection" />-->
-<!--		</classes>-->
-<!--	</test>-->
+	<test name="FooterPageTests">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="TestModules.ValidateFooterSection" />
+		</classes>
+	</test>
 
 	<test name="ProductPageTests">
 		<parameter name="browser" value="chrome" />
