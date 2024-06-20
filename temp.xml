@@ -11,9 +11,9 @@
     <test name="CategoryTests">
         <parameter name="browser" value="chrome" />
         <classes>
-            <class name="TestModules.ValidateCartPage">
+            <class name="TestModules.ValidateNavigationElements">
                 <methods>
-                    <include name="Validate_Cart_InteractWithActiveCart"/>
+                    <include name="VerifyFooterSectionLinks"/>
                 </methods>
             </class>
         </classes>
