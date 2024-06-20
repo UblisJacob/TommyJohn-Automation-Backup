@@ -16,7 +16,7 @@ public class FooterSectionLocators {
 	public static By FIRST_RESPONDER = By.cssSelector("a[data-tj-qa='footer-first-responder']");
 	public static By GOVERNMENT_EMPLOYEE_DISCOUNT = By.cssSelector("a[data-tj-qa='footer-government-employee-discount']");
 	public static By TEACHER_DISCOUNT_LINK = By.cssSelector("a[data-tj-qa='footer-teacher-discount']");
-	public static By REFERRAL_LINK = By.cssSelector("a[data-tj-qa='footer-give-$,-get-$']");
+	public static By REFERRAL_LINK = By.cssSelector("a[data-tj-qa='footer-refer-a-friend']");
 	
 	public static By LEAVE_SITE_POPUP = By.cssSelector(".LeaveSiteModalContainer.active .LeaveSiteModalContent");
 	public static By LEAVE_SITE_POPUP_OK_BTN = By.cssSelector(".LeaveSiteModalContainer.active button[data-leave-site='ok']");
@@ -37,7 +37,7 @@ public class FooterSectionLocators {
 	public static By AFFILIATES_LINK = By.cssSelector("a[data-tj-qa='footer-affiliates']");
 	
 //	FOOTER COMPANY SECTION
-	public static By ABOUT_LINK = By.cssSelector("a[data-tj-qa='footer-about']");
+	public static By ABOUT_LINK = By.cssSelector("a[data-tj-qa='footer-our-story']");
 	public static By CAREERS_LINK = By.cssSelector("a[data-tj-qa='footer-careers']");
 	public static By PRESS_LINK = By.cssSelector("a[data-tj-qa='footer-press']");
 	public static By BLOG_LINK = By.cssSelector("a[data-tj-qa='footer-blog']");

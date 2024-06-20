@@ -247,7 +247,7 @@ public class CustomUtilities {
 	
 	/**
 	 * Provide only file name without file extension, Date and time are appended to file name
-	 * @param name
+	 * @paramname
 	 * @return
 	 */
 
