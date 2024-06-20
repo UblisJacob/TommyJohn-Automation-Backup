@@ -45,12 +45,12 @@ public class ValidateNavigationElements {
 		new NavigationElementsPage(driver).validateSearchBar();
 	}
 	
-//	@Test
+	@Test
 	public void ValidateElementsWhenNotSignedIn() {
 		new NavigationElementsPage(driver).validateElementsWhenNotSignedIn();
 	}
 
-//	@Test
+	@Test
 	public void ValidateElementsWhenSignedIn() throws Exception {
 		new NavigationElementsPage(driver).validateElementsWhenSignedIn();
 	}

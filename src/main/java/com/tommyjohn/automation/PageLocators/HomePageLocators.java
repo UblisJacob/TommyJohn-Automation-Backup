@@ -238,6 +238,7 @@ public class HomePageLocators{
 	public static By AUTO_SUGGESTED_PRODUCT_TILE_TITLE = By.cssSelector(".autocomplete-suggestions-content>a:nth-child(1)>div>span");
 	
 	public static By HELP_CENTER = By.cssSelector(".header-nav-dropdown > ul >li:nth-child(3) > a");
+	public static By CUSTOMER_SERVICE = By.cssSelector(".header-nav-dropdown > ul >li:nth-child(3) > a");
 	public static By ACCOUNT_NAV_DROPDOWN_OPTIONS = By.cssSelector(".header-nav-dropdown li:nth-child(1)>a");
 	public static By REORDER = By.cssSelector(".header-nav-dropdown > ul >li:nth-child(2) > a");
 	public static By HELP_ICON = By.cssSelector("i.icon-help");

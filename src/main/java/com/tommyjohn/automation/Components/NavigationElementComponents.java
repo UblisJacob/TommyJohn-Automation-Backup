@@ -236,7 +236,7 @@ public class NavigationElementComponents extends HomePageLocators {
 		}
 
 		List<String> options = new ArrayList<>();
-		for (int i = 1; i <= 3; i++) {
+		for (int i = 1; i <= 4; i++) {
 			WebElement option = genMethods.autoIndex(driver, ACCOUNT_NAV_DROPDOWN_OPTIONS, i, 1);
 			String optionText = option.getText();
 			options.add(optionText);
@@ -244,7 +244,7 @@ public class NavigationElementComponents extends HomePageLocators {
 		}
 
 		//softassert.assertTrue(options.contains("My Account"), "Options List does not contain option 'My Account'");
-		softassert.assertTrue(options.contains("Help Center"), "Options List does not contain option 'Help Center'");
+		//softassert.assertTrue(options.contains("Help Center"), "Options List does not contain option 'Help Center'");
 		//softassert.assertTrue(options.contains("Sign In"), "Options List does not contain option 'Sign In'");
 
 		System.out.println("User can see the following options in dropdown " + options);
@@ -310,19 +310,22 @@ public class NavigationElementComponents extends HomePageLocators {
 
 		action.moveToElement(driver.findElement(ACCOUNT_NAV_DROPDOWN)).perform();
 
-		WebElement helpCenter = driver.findElement(HELP_CENTER);
-		action.click(helpCenter).perform();
+//		WebElement helpCenter = driver.findElement(HELP_CENTER);
+//		action.click(helpCenter).perform();
+
+		WebElement CustmerService = driver.findElement(CUSTOMER_SERVICE);
+		action.click(CustmerService).perform();
 
 		try {
 			wait.until(ExpectedConditions.urlContains("https://help.tommyjohn.com/hc/en-us"));
 			currentUrl = driver.getCurrentUrl();
-			System.out.println("After clicking on Help Center, Page Url is: " + currentUrl);
+			System.out.println("After clicking on CustomerService, Page Url is: " + currentUrl);
 		} catch (TimeoutException e) {
 			currentUrl = driver.getCurrentUrl();
 			softassert.fail(
 					"Navigated to page with incorrect url, Expected url: https://help.tommyjohn.com/hc/en-us Found: "
 							+ currentUrl);
-			System.out.println("After clicking on Help Center, Page Url is: " + currentUrl);
+			System.out.println("After clicking on CustomerService, Page Url is: " + currentUrl);
 		}
 
 		//below will fail due to help page security to detect automated browser
@@ -342,8 +345,8 @@ public class NavigationElementComponents extends HomePageLocators {
 		ExtentReport.extentTest.info("After hovering on Sign in, Dropdown appeared and contained correct options");
 		Reporter.log("My Account option is Displayed and Navigated to correct page");
 		ExtentReport.extentTest.info("My Account option is Displayed and Navigated to correct page");
-		Reporter.log("Help Center option is Displayed and Navigated to correct page");
-		ExtentReport.extentTest.info("Help Center option is Displayed and Navigated to correct page");
+		Reporter.log("CustomerService option is Displayed and Navigated to correct page");
+		ExtentReport.extentTest.info("CustomerService option is Displayed and Navigated to correct page");
 		Reporter.log("Sign in option is Displayed and Navigated to correct page");
 		ExtentReport.extentTest.info("Sign in option is Displayed and Navigated to correct page");
 
@@ -397,7 +400,7 @@ public class NavigationElementComponents extends HomePageLocators {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(MYACCOUNT_OPTION));
 
 		List<String> options = new ArrayList<>();
-		for (int i = 1; i <= 5; i++) {
+		for (int i = 1; i <= 6; i++) {
 			WebElement option = genMethods.autoIndex(driver, ACCOUNT_NAV_DROPDOWN_OPTIONS, i, 1);
 			String optionText = option.getText();
 			options.add(optionText);
@@ -406,9 +409,11 @@ public class NavigationElementComponents extends HomePageLocators {
 
 		softassert.assertTrue(options.contains("My Account"), "Options List does not contain option 'My Account'");
 		softassert.assertTrue(options.contains("Reorder"), "Options List does not contain option 'Reorder'");
+		softassert.assertTrue(options.contains("Customer Service"), "Options List does not contain option 'Custmer Service'");
 		softassert.assertTrue(options.contains("Logout"), "Options List does not contain option 'Sign Out'");
 		softassert.assertTrue(options.contains("Find A Store"), "Options List does not contain option 'Find A Store'");
-		softassert.assertTrue(options.contains("Help Center"), "Options List does not contain option 'Help Center'");
+		softassert.assertTrue(options.contains("Refer A Friend"), "Options List does not contain option 'Refer A Friend'");
+//		softassert.assertTrue(options.contains("Help Center"), "Options List does not contain option 'Help Center'");
 
 
 		System.out.println("User can see the following options in dropdown " + options);
@@ -422,7 +427,7 @@ public class NavigationElementComponents extends HomePageLocators {
 		try {
 			wait.until(ExpectedConditions.urlContains("https://www.tommyjohn.com/account?view=reorder"));
 			currentUrl = driver.getCurrentUrl();
-			System.out.println("After clicking on My Account, Page Url is: " + currentUrl);
+			System.out.println("After clicking on ReOrder, Page Url is: " + currentUrl);
 		} catch (TimeoutException e) {
 			currentUrl = driver.getCurrentUrl();
 			softassert.fail(
@@ -494,12 +499,12 @@ public class NavigationElementComponents extends HomePageLocators {
 		try {
 			wait.until(ExpectedConditions.urlToBe("https://www.tommyjohn.com/"));
 			currentUrl = driver.getCurrentUrl();
-			System.out.println("After clicking on Help Center, Page Url is: " + currentUrl);
+			System.out.println("After clicking on Log Out, Page Url is: " + currentUrl);
 		} catch (TimeoutException e) {
 			currentUrl = driver.getCurrentUrl();
 			softassert.fail("Navigated to page with incorrect url, Expected url: https://www.tommyjohn.com/ Found: "
 							+ currentUrl);
-			System.out.println("After clicking on Sign Out, Page Url is: " + currentUrl);
+			System.out.println("After clicking on Log Out, Page Url is: " + currentUrl);
 		}
 
 //		try{

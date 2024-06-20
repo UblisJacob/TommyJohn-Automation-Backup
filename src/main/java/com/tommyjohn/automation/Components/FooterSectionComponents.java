@@ -353,16 +353,17 @@ public class FooterSectionComponents extends FooterSectionLocators {
 
 		System.out.println("***Validating Referral Footer***");
 
-//		linkText = driver.findElement(REFERRAL_LINK).getText();
-//
-//		softassert.assertTrue(linkText.contains("Give $"), "Give $25, Get $25 link text is changed");
-//
-//		objGeneralMethods.clickButtonByJS(driver, REFERRAL_LINK);
-//
-//		wait.until(ExpectedConditions.titleContains("Refer a Friend"));
-//
-//		softassert.assertTrue(driver.getCurrentUrl().contains("https://www.tommyjohn.com/pages/refer"),
-//				"Wrong page opened after Give $25, Get $25 footer link was clicked");
+		linkText = driver.findElement(REFERRAL_LINK).getText();
+
+		softassert.assertTrue(linkText.contains("Refer A Friend"), "Give $25, Get $25 link text is changed");
+
+		objGeneralMethods.clickButtonByJS(driver, REFERRAL_LINK);
+
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.titleContains("Refer a Friend"));
+
+		softassert.assertTrue(driver.getCurrentUrl().contains("https://www.tommyjohn.com/pages/refer"),
+				"Wrong page opened after Give $25, Get $25 footer link was clicked");
 
 		try{
 			softassert.assertAll();
@@ -722,7 +723,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 
 		linkText = driver.findElement(ABOUT_LINK).getText();
 
-		softassert.assertTrue(linkText.equals("About"), "About link text is changed");
+		softassert.assertTrue(linkText.equals("Our Story"), "About link text is changed");
 
 		objGeneralMethods.clickButtonByJS(driver, ABOUT_LINK);
 
@@ -854,10 +855,10 @@ public class FooterSectionComponents extends FooterSectionLocators {
 			softassert.assertAll();
 		}
 		
-		System.out.println("Reviews Link text is Correct and Correct webpage opened after clicking on link\n");
-
-		Reporter.log("Reviews footer link is Displayed :: Clickable");
-		ExtentReport.extentTest.info("Reviews footer link is Displayed :: Clickable");
+//		System.out.println("Reviews Link text is Correct and Correct webpage opened after clicking on link\n");
+//
+//		Reporter.log("Reviews footer link is Displayed :: Clickable");
+//		ExtentReport.extentTest.info("Reviews footer link is Displayed :: Clickable");
 
 	}
 
