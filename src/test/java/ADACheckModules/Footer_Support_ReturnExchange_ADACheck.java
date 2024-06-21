@@ -32,7 +32,7 @@ public class Footer_Support_ReturnExchange_ADACheck {
     @AfterMethod(alwaysRun = true)
     void teardown() {
 
-        // driver.close();
+        driver.close();
         driver.quit();
     }
 

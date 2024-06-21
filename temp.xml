@@ -11,9 +11,9 @@
     <test name="CategoryTests">
         <parameter name="browser" value="chrome" />
         <classes>
-            <class name="TestModules.ValidateNavigationElements">
+            <class name="TestModules.ValidateSanityModules">
                 <methods>
-                    <include name="VerifyFooterSectionLinks"/>
+                    <include name="VerifyFixedBannerModuleLinks"/>
                 </methods>
             </class>
         </classes>

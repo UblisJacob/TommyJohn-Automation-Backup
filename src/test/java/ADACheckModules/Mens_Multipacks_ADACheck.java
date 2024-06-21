@@ -32,7 +32,7 @@ public class Mens_Multipacks_ADACheck {
     @AfterMethod(alwaysRun = true)
     void teardown() {
 
-        // driver.close();
+         driver.close();
         driver.quit();
     }
 }
