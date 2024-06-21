@@ -33,7 +33,7 @@ public class Mens_Underwear_Quiz_ADACHeck {
     @AfterMethod(alwaysRun = true)
     void teardown() {
 
-        // driver.close();
+        driver.close();
         driver.quit();
     }
 }

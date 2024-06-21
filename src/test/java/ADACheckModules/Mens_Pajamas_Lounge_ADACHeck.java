@@ -32,7 +32,7 @@ public class Mens_Pajamas_Lounge_ADACHeck {
     @AfterMethod(alwaysRun = true)
     void teardown() {
 
-        // driver.close();
+        driver.close();
         driver.quit();
     }
 }

@@ -33,7 +33,7 @@ public class Footer_Promotions_SiteWidePromotion_ADACheck {
     @AfterMethod(alwaysRun = true)
     void teardown() {
 
-        // driver.close();
+        driver.close();
         driver.quit();
     }
 }
