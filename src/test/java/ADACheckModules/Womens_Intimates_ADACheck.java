@@ -33,7 +33,7 @@ public class Womens_Intimates_ADACheck {
     @AfterMethod(alwaysRun = true)
     void teardown() {
 
-        // driver.close();
+         driver.close();
         driver.quit();
     }
 }

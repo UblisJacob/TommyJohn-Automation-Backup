@@ -24,8 +24,8 @@ public class SanityModuleLocators {
 	public static By IMG_CAROUSEL_4 = By.cssSelector("div[data-tj-qa='quotes-tile'][data-slick-index='3']");
 	public static By SLIDE_CTRL = By.cssSelector("ul.slick-dots>li[role='presentation']>button");
 	
-	public static By GPTW_FIXED_BANNER = By.cssSelector("div[data-tj-qa='fixed-banner-module']");
-	public static By GPTW_FIXED_BANNER_IMG = By.cssSelector("img[data-tj-qa='fixed-banner-image']");
+	public static By GPTW_FIXED_BANNER = By.xpath("(//div[@data-tj-qa='fixed-banner-module'])[2]");
+	public static By GPTW_FIXED_BANNER_IMG = By.xpath("(//img[@data-tj-qa='fixed-banner-image'])[2]");
 	public static By GPTW_FIXED_BANNER_LINK = By.cssSelector("a[data-tj-qa='fixed-banner-cta']");
 	
 	public static By SIDE_BY_SIDE = By.cssSelector("div.side-by-side-module");

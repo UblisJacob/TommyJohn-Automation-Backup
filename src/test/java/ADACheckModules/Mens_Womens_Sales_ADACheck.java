@@ -33,7 +33,7 @@ public class Mens_Womens_Sales_ADACheck {
     @AfterMethod(alwaysRun = true)
     void teardown() {
 
-        // driver.close();
+        driver.close();
         driver.quit();
     }
 

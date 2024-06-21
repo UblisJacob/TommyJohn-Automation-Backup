@@ -33,7 +33,7 @@ public class Womens_Bras_Bralettes_ADACheck {
     @AfterMethod(alwaysRun = true)
     void teardown() {
 
-        // driver.close();
+         driver.close();
         driver.quit();
     }
 
