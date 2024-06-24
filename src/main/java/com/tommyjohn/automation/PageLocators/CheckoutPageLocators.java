@@ -45,6 +45,10 @@ public class CheckoutPageLocators {
 	public static By RETURN_TO_CART_LINK = By.xpath("//a[@class='QT4by eVFmT j6D1f janiy adBMs EP07D']");
 	public static By CONTINUE_TO_SHIPPING_BUTTON = By.xpath("//span[contains(text(),'Continue to shipping')]");
 
+	//Error Messages in Informationpage
+	public static By EMAIL_ERROR = By.xpath("//p[@id='error-for-email']");
+	public static By FIRSTNAME_ERROR = By.xpath("//p[@id='error-for-TextField19']");
+
 
 	//SideBar
 	public static By ORDER_SUMMARY_SECTION = By.xpath("//div[@class='blA7b']");

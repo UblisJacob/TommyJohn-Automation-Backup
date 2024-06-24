@@ -130,7 +130,7 @@ public class GDrivePOST {
 
 
         // Upload file
-        String filepath = "C:/Users/HP/IdeaProjects/TJ_Automation/test-output/extentreport.html";
+        String filepath = "Report/index.html";
         File fileMetadata = new File();
         fileMetadata.setName("Regression Report");
 
@@ -168,7 +168,7 @@ public class GDrivePOST {
 
 
         // Upload file
-        String filepath = "C:/Users/HP/IdeaProjects/TJ_Automation/test-output/extentreport.html";
+        String filepath = "Report/index.html";
         File fileMetadata = new File();
         fileMetadata.setName("ADACheck Report");
 
