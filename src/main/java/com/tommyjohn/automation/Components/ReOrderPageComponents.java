@@ -246,7 +246,7 @@ public class ReOrderPageComponents extends ReOrderPageLocators {
 		random = new Random();
 		int number = 1;
 		List<WebElement> list = new ArrayList<WebElement>();
-		list = driver.findElements(REORDER_ITEMS_LIST);
+		list = driver.findElements(ReORDER_ADDTOACRT);
 		
 		if (list.size() > 0) {
 			number = random.nextInt(list.size());
@@ -319,26 +319,35 @@ public class ReOrderPageComponents extends ReOrderPageLocators {
 		
 //		Go to Reorder Page
 		reorderPagevalidation();
+
+		List<WebElement> list = new ArrayList<WebElement>();
+		list = driver.findElements(ReORDER_ADDTOACRT);
+
+		int i = random.nextInt(list.size());
+		System.out.println("random number = " + i);
+		WebElement productToAdd = driver.findElement(By.xpath("(//button[text()='Add to Cart'])["+i+"]//..//span[@class='text-link reorder-item__title']"));
+		text = productToAdd.getText();
+		System.out.println("Adding: " + text);
 		
 //		Get a random product
-		int index = chooseRandomProduct();
+//		int index = chooseRandomProduct();
 		
-		element = genMethods.autoIndex(driver, REORDER_ITEM_TITLE_GENERIC, index, 1);
-		WebElement productImg = genMethods.autoIndex(driver, PRODUCT_IMAGE_GENERIC, index, 1);
+//		element = genMethods.autoIndex(driver, REORDER_ITEM_TITLE_GENERIC, index, 1);
+//		WebElement productImg = genMethods.autoIndex(driver, PRODUCT_IMAGE_GENERIC, index, 1);
+//
+//		productName = element.getText();
 		
-		productName = element.getText();
-		
-		System.out.println("Clicking on: " + productName);
-		genMethods.scrollElementIntoView(driver, element);
-		genMethods.clickButtonByJS(driver, productImg);
-		
+		System.out.println("Clicking on: " + text);
+		genMethods.scrollElementIntoView(driver, productToAdd);
+		genMethods.clickButtonByJS(driver, productToAdd);
+
 //		Wait for PDP to load
 		String productNameOnPDP = null;
 		
 		try {
 			wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(ProductDetailsPageLocators.PRODUCT_TITLE, 0));
 			productNameOnPDP = driver.findElement(ProductDetailsPageLocators.PRODUCT_TITLE).getText();
-			softAssert.assertTrue(productNameOnPDP.equals(productName), "Wrong product page opened from reorder page, Expected: "+ productName + "\nFound:" + productNameOnPDP);
+			softAssert.assertTrue(productNameOnPDP.equals(text), "Wrong product page opened from reorder page, Expected: "+ productName + "\nFound:" + productNameOnPDP);
 		}catch (TimeoutException e) {
 			System.out.println("Product Name was not found on PDP");
 			softAssert.fail("Product Name was not found on PDP");

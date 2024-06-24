@@ -15,7 +15,7 @@ public class ReOrderPageLocators {
 	public static By REORDER_ITEM_DETAILS = By.cssSelector(".reorder-item__details");
 	public static By REORDER_ITEM_DETAILS_GENERIC = By.cssSelector(".account-reorder-grid .reorder-item:nth-child(1)>.reorder-item__details");
 	public static By REORDER_ITEM_TITLE = By.cssSelector(".reorder-item__title");
-	public static By REORDER_ITEM_TITLE_GENERIC = By.cssSelector(".account-reorder-grid .reorder-item:nth-child(1) span[class~='reorder-item__title']");
+	public static By REORDER_ITEM_TITLE_GENERIC = By.cssSelector("(//button[text()='Add to Cart'])//..//span[@class='text-link reorder-item__title']");
 	public static By REORDER_ITEM_VARIANT = By.cssSelector(".reorder-item__variant");
 	public static By REORDER_ITEM_PRICE = By.cssSelector(".reorder-item__price");
 	public static By REORDER_ITEM_ATC = By.cssSelector(".reorder-item > button");
