@@ -365,6 +365,137 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 
 	}
 
+	public void ValidateRequiredFieldsinInformationpage() throws Exception {
+
+		softAssert = new SoftAssert();
+		jse = (JavascriptExecutor)driver;
+		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
+		new AddToCartComponents(driver).addToCart();
+		driver.findElement(HomePageLocators.CART_ICON).click();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
+		Reporter.log("Checkout page displayed");
+		ExtentReport.extentTest.info("Checkout page displayed");
+		Thread.sleep(4000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
+
+
+
+
+	}
+	public void checkmandatoryfields() throws InterruptedException {
+
+		switch (1)
+		{
+			case 1:
+				driver.findElement(CHECKOUT_EMAIL).clear();
+	//			driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
+				driver.findElement(FIRSTNAME_TEXTBOX).clear();
+				driver.findElement(FIRSTNAME_TEXTBOX).sendKeys("Test");
+				driver.findElement(LASTNAME_TEXTBOX).clear();
+				driver.findElement(LASTNAME_TEXTBOX).sendKeys("User");
+				driver.findElement(ADDRESS1_TEXTBOX).clear();
+				driver.findElement(ADDRESS1_TEXTBOX).sendKeys("100 Broadway Test");
+				Thread.sleep(2000);
+				driver.findElement(ADDRESS2_TEXTBOX).clear();
+				driver.findElement(ADDRESS2_TEXTBOX).sendKeys("8th floor");
+				driver.findElement(CITY_TEXTBOX).clear();
+				driver.findElement(CITY_TEXTBOX).sendKeys("New York");
+				WebElement countrydp = driver.findElement(COUNTRY_DROPDOWN);
+				Select country = new Select(countrydp);
+				country.selectByValue("US");
+
+				WebElement statedp = driver.findElement(STATE_DROPDOWN);
+				Select state = new Select(statedp);
+				state.selectByValue("NY");
+
+				driver.findElement(PINCODE_TEXTBOX).clear();
+				driver.findElement(PINCODE_TEXTBOX).sendKeys("10005");
+				Thread.sleep(2000);
+				driver.findElement(PHONE_TEXTBOX).clear();
+				driver.findElement(PHONE_TEXTBOX).sendKeys("8889996667");
+				WebElement Continue_shipping = driver.findElement(CONTINUE_TO_SHIPPING_BUTTON);
+				((JavascriptExecutor) driver).executeScript("arguments[0].click();", Continue_shipping);
+				softAssert.assertTrue(driver.findElement(EMAIL_ERROR).isDisplayed(), "Email Field Error Message is not displayed");
+				Reporter.log("Error Message displayed for Email field");
+				ExtentReport.extentTest.info("Error Message displayed for Email field");
+
+			case 2:
+				driver.findElement(CHECKOUT_EMAIL).clear();
+				driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
+				driver.findElement(FIRSTNAME_TEXTBOX).clear();
+		//		driver.findElement(FIRSTNAME_TEXTBOX).sendKeys("Test");
+				driver.findElement(LASTNAME_TEXTBOX).clear();
+				driver.findElement(LASTNAME_TEXTBOX).sendKeys("User");
+				driver.findElement(ADDRESS1_TEXTBOX).clear();
+				driver.findElement(ADDRESS1_TEXTBOX).sendKeys("100 Broadway Test");
+				Thread.sleep(2000);
+				driver.findElement(ADDRESS2_TEXTBOX).clear();
+				driver.findElement(ADDRESS2_TEXTBOX).sendKeys("8th floor");
+				driver.findElement(CITY_TEXTBOX).clear();
+				driver.findElement(CITY_TEXTBOX).sendKeys("New York");
+                countrydp = driver.findElement(COUNTRY_DROPDOWN);
+                country = new Select(countrydp);
+				country.selectByValue("US");
+
+                statedp = driver.findElement(STATE_DROPDOWN);
+                state = new Select(statedp);
+				state.selectByValue("NY");
+
+				driver.findElement(PINCODE_TEXTBOX).clear();
+				driver.findElement(PINCODE_TEXTBOX).sendKeys("10005");
+				Thread.sleep(2000);
+				driver.findElement(PHONE_TEXTBOX).clear();
+				driver.findElement(PHONE_TEXTBOX).sendKeys("8889996667");
+                Continue_shipping = driver.findElement(CONTINUE_TO_SHIPPING_BUTTON);
+				((JavascriptExecutor) driver).executeScript("arguments[0].click();", Continue_shipping);
+				softAssert.assertTrue(driver.findElement(FIRSTNAME_ERROR).isDisplayed(), "Firstname Field Error Message is not displayed");
+				Reporter.log("Error Message displayed for Firstname field");
+				ExtentReport.extentTest.info("Error Message displayed for Firstname field");
+
+			case 3:
+				driver.findElement(CHECKOUT_EMAIL).clear();
+				driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
+				driver.findElement(FIRSTNAME_TEXTBOX).clear();
+				driver.findElement(FIRSTNAME_TEXTBOX).sendKeys("Test");
+				driver.findElement(LASTNAME_TEXTBOX).clear();
+			//	driver.findElement(LASTNAME_TEXTBOX).sendKeys("User");
+				driver.findElement(ADDRESS1_TEXTBOX).clear();
+				driver.findElement(ADDRESS1_TEXTBOX).sendKeys("100 Broadway Test");
+				Thread.sleep(2000);
+				driver.findElement(ADDRESS2_TEXTBOX).clear();
+				driver.findElement(ADDRESS2_TEXTBOX).sendKeys("8th floor");
+				driver.findElement(CITY_TEXTBOX).clear();
+				driver.findElement(CITY_TEXTBOX).sendKeys("New York");
+				countrydp = driver.findElement(COUNTRY_DROPDOWN);
+				country = new Select(countrydp);
+				country.selectByValue("US");
+
+				statedp = driver.findElement(STATE_DROPDOWN);
+				state = new Select(statedp);
+				state.selectByValue("NY");
+
+				driver.findElement(PINCODE_TEXTBOX).clear();
+				driver.findElement(PINCODE_TEXTBOX).sendKeys("10005");
+				Thread.sleep(2000);
+				driver.findElement(PHONE_TEXTBOX).clear();
+				driver.findElement(PHONE_TEXTBOX).sendKeys("8889996667");
+				Continue_shipping = driver.findElement(CONTINUE_TO_SHIPPING_BUTTON);
+				((JavascriptExecutor) driver).executeScript("arguments[0].click();", Continue_shipping);
+				softAssert.assertTrue(driver.findElement(FIRSTNAME_ERROR).isDisplayed(), "Firstname Field Error Message is not displayed");
+				Reporter.log("Error Message displayed for Firstname field");
+				ExtentReport.extentTest.info("Error Message displayed for Firstname field");
+
+
+
+
+		}
+
+
+
+
+	}
+
 	public void shippingpage() throws Exception {
 		softAssert = new SoftAssert();
 		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -783,5 +914,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		softAssert.assertAll();
 		
 	}
+
+
 
 }
