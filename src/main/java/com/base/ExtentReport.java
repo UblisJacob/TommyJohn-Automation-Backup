@@ -35,7 +35,7 @@ public class ExtentReport{
 
 		extentReport = new ExtentReports();
 
-		File erfile = new File(System.getProperty("user.dir") + "/test-output/extentreport.html");
+		File erfile = new File( "Report");
 
 		sparkReporter_AllTests = new ExtentSparkReporter(erfile);
 
@@ -55,7 +55,7 @@ public class ExtentReport{
 //		To automatically open reports after execution is complete
 		try {
 			Desktop.getDesktop().browse(
-					new File(System.getProperty("user.dir") + "/test-output/extentreport.html")
+					new File("Report/Index.html")
 							.toURI());
 		} catch (IOException e) {
 			System.out.println("Reports file not found");
