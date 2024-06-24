@@ -11,9 +11,9 @@
     <test name="CategoryTests">
         <parameter name="browser" value="chrome" />
         <classes>
-            <class name="TestModules.ValidateSanityModules">
+            <class name="TestModules.ValidateReorderPage">
                 <methods>
-                    <include name="VerifyFixedBannerModuleLinks"/>
+                    <include name="ValidateUserIsRedirectedToCorrectPDPFromReOrderPage"/>
                 </methods>
             </class>
         </classes>
