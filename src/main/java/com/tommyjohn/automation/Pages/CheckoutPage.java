@@ -32,8 +32,15 @@ public class CheckoutPage extends CheckoutPageComponents {
 	public void Validateinformationpage() throws Exception
 	{
 		new CheckoutPageComponents(driver).informationpage();
-		
+
 	}
+
+	public void ValidateFieldsinInformationPage() throws Exception
+	{
+		new CheckoutPageComponents(driver).ValidateRequiredFieldsinInformationpage();
+
+	}
+
 	public void Validateshippingpage() throws Exception
 	{
 		new CheckoutPageComponents(driver).shippingpage();

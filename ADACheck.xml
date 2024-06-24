@@ -376,4 +376,159 @@
             <class name="ADACheckModules.Footer_Company_Reviews_ADACheck" />
         </classes>
     </test>
-    </suite>
+
+    <test name="ExploreMens">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="ADACheckModules.Explore_Mens_ADACheck" />
+        </classes>
+    </test>
+
+    <test name="ExploreWomens">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="ADACheckModules.Explore_Womens_ADACheck" />
+        </classes>
+    </test>
+
+    <test name="FabricGuide">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="ADACheckModules.FabricGuide_ADACheck" />
+        </classes>
+    </test>
+
+    <test name="FooterCaliforniaSupplyChainsAct">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="ADACheckModules.Footer_California_Supply_ChainsAct_ADACheck" />
+        </classes>
+    </test>
+
+    <test name="FooterDNSMI">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="ADACheckModules.Footer_DNSMI_ADACheck" />
+        </classes>
+    </test>
+
+    <test name="PrivacyPolicy">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="ADACheckModules.Footer_PrivacyPolicy_ADACheck" />
+        </classes>
+    </test>
+
+    <test name="FooterTermsAndConditions">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="ADACheckModules.Footer_TermsAndConditions_ADACheck" />
+        </classes>
+    </test>
+
+    <test name="HammockPouch">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="ADACheckModules.HammockPouch_ADACheck" />
+        </classes>
+    </test>
+
+    <test name="Mens360Sport">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="ADACheckModules.Mens360Sport_ADACheck" />
+        </classes>
+    </test>
+
+    <test name="MensAir">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="ADACheckModules.Mens_Air_ADACheck" />
+        </classes>
+    </test>
+
+    <test name="MensApollo">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="ADACheckModules.Mens_Apollo_ADACheck" />
+        </classes>
+    </test>
+
+    <test name="MensCoolCotton">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="ADACheckModules.Mens_CoolCotton_ADACheck" />
+        </classes>
+    </test>
+
+    <test name="MensSecondSkin">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="ADACheckModules.Mens_SecondSkin_ADACheck" />
+        </classes>
+    </test>
+
+    <test name="ResetPassword">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="ADACheckModules.ResetPassword_ADACheck" />
+        </classes>
+    </test>
+
+    <test name="WomensAir">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="ADACheckModules.Womens_Air_ADACheck" />
+        </classes>
+    </test>
+
+    <test name="WomensCoolCotton">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="ADACheckModules.Womens_CoolCotton_ADACheck" />
+        </classes>
+    </test>
+
+    <test name="WomensDownTIme">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="ADACheckModules.Womens_DownTime_ADACheck" />
+        </classes>
+    </test>
+
+    <test name="WomensFrenchTerry">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="ADACheckModules.Womens_FrenchTerry_ADACheck" />
+        </classes>
+    </test>
+
+    <test name="WomensPowerNap">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="ADACheckModules.Womens_PowerNap_ADACheck" />
+        </classes>
+    </test>
+
+    <test name="WomensSecondSkin">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="ADACheckModules.Womens_SecondSkin_ADACheck" />
+        </classes>
+    </test>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</suite>
