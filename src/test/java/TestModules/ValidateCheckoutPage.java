@@ -49,6 +49,14 @@ public class ValidateCheckoutPage extends ExtentReport {
 	{
 		new CheckoutPage(driver).Validateinformationpage();
 	}
+
+//	@Test
+	public void ValidateFieldsInInformationPageOfCheckout() throws Exception
+	{
+		new CheckoutPage(driver).ValidateFieldsinInformationPage();
+	}
+
+
 	
 	@Test
 	public void ValidateShippingPageOfCheckout() throws Exception
