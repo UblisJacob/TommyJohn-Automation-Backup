@@ -11,9 +11,9 @@
     <test name="CategoryTests">
         <parameter name="browser" value="chrome" />
         <classes>
-            <class name="TestModules.ValidateSanityModules">
+            <class name="TestModules.ValidateNavigationElements">
                 <methods>
-                    <include name="VerifyFixedBannerModuleLinks"/>
+                    <include name="ValidateElementsWhenNotSignedIn"/>
                 </methods>
             </class>
         </classes>
