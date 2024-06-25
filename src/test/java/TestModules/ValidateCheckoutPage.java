@@ -50,7 +50,7 @@ public class ValidateCheckoutPage extends ExtentReport {
 		new CheckoutPage(driver).Validateinformationpage();
 	}
 
-//	@Test
+	@Test
 	public void ValidateFieldsInInformationPageOfCheckout() throws Exception
 	{
 		new CheckoutPage(driver).ValidateFieldsinInformationPage();
@@ -68,6 +68,12 @@ public class ValidateCheckoutPage extends ExtentReport {
 	public void ValidatePaymentPageOfCheckout() throws Exception
 	{
 		new CheckoutPage(driver).Validatepaymentpage();
+	}
+
+	@Test
+	public void ValidateFieldsInPaymentPageOfCheckout() throws Exception
+	{
+		new CheckoutPage(driver).ValidateFieldsinIPaymentPage();
 	}
 	
 	@AfterMethod(alwaysRun = true)
