@@ -11,9 +11,9 @@
     <test name="CategoryTests">
         <parameter name="browser" value="chrome" />
         <classes>
-            <class name="TestModules.ValidateReorderPage">
+            <class name="TestModules.ValidateCheckoutPage">
                 <methods>
-                    <include name="ValidateUserIsRedirectedToCorrectPDPFromReOrderPage"/>
+                    <include name="ValidateFieldsInInformationPageOfCheckout"/>
                 </methods>
             </class>
         </classes>

@@ -45,9 +45,13 @@ public class CheckoutPageLocators {
 	public static By RETURN_TO_CART_LINK = By.xpath("//a[@class='QT4by eVFmT j6D1f janiy adBMs EP07D']");
 	public static By CONTINUE_TO_SHIPPING_BUTTON = By.xpath("//span[contains(text(),'Continue to shipping')]");
 
-	//Error Messages in Informationpage
+	//Error Messages in InformationPage
 	public static By EMAIL_ERROR = By.xpath("//p[@id='error-for-email']");
-	public static By FIRSTNAME_ERROR = By.xpath("//p[@id='error-for-TextField19']");
+	public static By FIRSTNAME_ERROR = By.xpath("//p[contains(text(),'Enter a first name')]");
+	public static By LASTNAME_ERROR = By.xpath("//p[contains(text(),'Enter a last name')]");
+	public static By ADDRESS_ERROR = By.xpath("//p[contains(text(),'Enter an address')]");
+	public static By CITY_ERROR  = By.xpath("//p[contains(text(),'Enter a city')]");
+	public static By ZIPCODE_ERROR  = By.xpath("//p[contains(text(),'Enter a ZIP / postal code')]");
 
 
 	//SideBar
@@ -89,6 +93,20 @@ public class CheckoutPageLocators {
 	public static By HOWHEARD_SUBTITLE = By.cssSelector("[data-tj-qa='how-heard-subtitle'],.section__title.how_new_subtitle");
 	public static By HOWHEARD_DROPDOWN = By.cssSelector("[data-tj-qa='how-heard-dropdown'],.make_selection_select");
 	public static By ORDER_NUMBER = By.cssSelector(".os-order-number");
+
+	//CreditCardFields
+	public static By CARDNUMBER = By.xpath("(//label[contains(text(),'Card number')]//following::input)[1]");
+	public static By CARDNAME =  By.xpath("//input[@data-current-field='name']");
+	public static By EXPIRY =  By.xpath("//input[@data-current-field='expiry']");
+	public static By SECURITYCODE =  By.xpath("//input[@data-current-field='verification_value']");
+
+
+
+	//CardFieldErrors
+	public static By CARDNUMBER_ERROR = By.xpath("//p[@id='error-for-number']");
+	public static By CARDNAME_ERROR = By.xpath("//p[@id='error-for-name']");
+	public static By EXPIRY_ERROR = By.xpath("//p[@id='error-for-expiry']");
+	public static By SECURITYCODE_ERROR = By.xpath("//p[@id='error-for-verification_value']");
 
 
 

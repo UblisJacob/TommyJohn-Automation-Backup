@@ -6,13 +6,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.ElementClickInterceptedException;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.WindowType;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
@@ -378,121 +372,116 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		ExtentReport.extentTest.info("Checkout page displayed");
 		Thread.sleep(4000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
-
+		checkmandatoryfields();
 
 
 
 	}
 	public void checkmandatoryfields() throws InterruptedException {
 
-		switch (1)
-		{
-			case 1:
-				driver.findElement(CHECKOUT_EMAIL).clear();
-	//			driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
-				driver.findElement(FIRSTNAME_TEXTBOX).clear();
-				driver.findElement(FIRSTNAME_TEXTBOX).sendKeys("Test");
-				driver.findElement(LASTNAME_TEXTBOX).clear();
-				driver.findElement(LASTNAME_TEXTBOX).sendKeys("User");
-				driver.findElement(ADDRESS1_TEXTBOX).clear();
-				driver.findElement(ADDRESS1_TEXTBOX).sendKeys("100 Broadway Test");
-				Thread.sleep(2000);
-				driver.findElement(ADDRESS2_TEXTBOX).clear();
-				driver.findElement(ADDRESS2_TEXTBOX).sendKeys("8th floor");
-				driver.findElement(CITY_TEXTBOX).clear();
-				driver.findElement(CITY_TEXTBOX).sendKeys("New York");
-				WebElement countrydp = driver.findElement(COUNTRY_DROPDOWN);
-				Select country = new Select(countrydp);
-				country.selectByValue("US");
 
-				WebElement statedp = driver.findElement(STATE_DROPDOWN);
-				Select state = new Select(statedp);
-				state.selectByValue("NY");
-
-				driver.findElement(PINCODE_TEXTBOX).clear();
-				driver.findElement(PINCODE_TEXTBOX).sendKeys("10005");
-				Thread.sleep(2000);
-				driver.findElement(PHONE_TEXTBOX).clear();
-				driver.findElement(PHONE_TEXTBOX).sendKeys("8889996667");
 				WebElement Continue_shipping = driver.findElement(CONTINUE_TO_SHIPPING_BUTTON);
 				((JavascriptExecutor) driver).executeScript("arguments[0].click();", Continue_shipping);
+
 				softAssert.assertTrue(driver.findElement(EMAIL_ERROR).isDisplayed(), "Email Field Error Message is not displayed");
 				Reporter.log("Error Message displayed for Email field");
 				ExtentReport.extentTest.info("Error Message displayed for Email field");
 
-			case 2:
-				driver.findElement(CHECKOUT_EMAIL).clear();
-				driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
-				driver.findElement(FIRSTNAME_TEXTBOX).clear();
-		//		driver.findElement(FIRSTNAME_TEXTBOX).sendKeys("Test");
-				driver.findElement(LASTNAME_TEXTBOX).clear();
-				driver.findElement(LASTNAME_TEXTBOX).sendKeys("User");
-				driver.findElement(ADDRESS1_TEXTBOX).clear();
-				driver.findElement(ADDRESS1_TEXTBOX).sendKeys("100 Broadway Test");
-				Thread.sleep(2000);
-				driver.findElement(ADDRESS2_TEXTBOX).clear();
-				driver.findElement(ADDRESS2_TEXTBOX).sendKeys("8th floor");
-				driver.findElement(CITY_TEXTBOX).clear();
-				driver.findElement(CITY_TEXTBOX).sendKeys("New York");
-                countrydp = driver.findElement(COUNTRY_DROPDOWN);
-                country = new Select(countrydp);
-				country.selectByValue("US");
-
-                statedp = driver.findElement(STATE_DROPDOWN);
-                state = new Select(statedp);
-				state.selectByValue("NY");
-
-				driver.findElement(PINCODE_TEXTBOX).clear();
-				driver.findElement(PINCODE_TEXTBOX).sendKeys("10005");
-				Thread.sleep(2000);
-				driver.findElement(PHONE_TEXTBOX).clear();
-				driver.findElement(PHONE_TEXTBOX).sendKeys("8889996667");
-                Continue_shipping = driver.findElement(CONTINUE_TO_SHIPPING_BUTTON);
-				((JavascriptExecutor) driver).executeScript("arguments[0].click();", Continue_shipping);
 				softAssert.assertTrue(driver.findElement(FIRSTNAME_ERROR).isDisplayed(), "Firstname Field Error Message is not displayed");
 				Reporter.log("Error Message displayed for Firstname field");
 				ExtentReport.extentTest.info("Error Message displayed for Firstname field");
 
-			case 3:
-				driver.findElement(CHECKOUT_EMAIL).clear();
-				driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
-				driver.findElement(FIRSTNAME_TEXTBOX).clear();
-				driver.findElement(FIRSTNAME_TEXTBOX).sendKeys("Test");
-				driver.findElement(LASTNAME_TEXTBOX).clear();
-			//	driver.findElement(LASTNAME_TEXTBOX).sendKeys("User");
-				driver.findElement(ADDRESS1_TEXTBOX).clear();
-				driver.findElement(ADDRESS1_TEXTBOX).sendKeys("100 Broadway Test");
-				Thread.sleep(2000);
-				driver.findElement(ADDRESS2_TEXTBOX).clear();
-				driver.findElement(ADDRESS2_TEXTBOX).sendKeys("8th floor");
-				driver.findElement(CITY_TEXTBOX).clear();
-				driver.findElement(CITY_TEXTBOX).sendKeys("New York");
-				countrydp = driver.findElement(COUNTRY_DROPDOWN);
-				country = new Select(countrydp);
-				country.selectByValue("US");
+				softAssert.assertTrue(driver.findElement(LASTNAME_ERROR).isDisplayed(), "LastName Field Error Message is not displayed");
+				Reporter.log("Error Message displayed for LastName field");
+				ExtentReport.extentTest.info("Error Message displayed for LastName field");
 
-				statedp = driver.findElement(STATE_DROPDOWN);
-				state = new Select(statedp);
-				state.selectByValue("NY");
+				softAssert.assertTrue(driver.findElement(ADDRESS_ERROR).isDisplayed(), "Address Field Error Message is not displayed");
+				Reporter.log("Error Message displayed for Address field");
+				ExtentReport.extentTest.info("Error Message displayed for Address field");
 
-				driver.findElement(PINCODE_TEXTBOX).clear();
-				driver.findElement(PINCODE_TEXTBOX).sendKeys("10005");
-				Thread.sleep(2000);
-				driver.findElement(PHONE_TEXTBOX).clear();
-				driver.findElement(PHONE_TEXTBOX).sendKeys("8889996667");
-				Continue_shipping = driver.findElement(CONTINUE_TO_SHIPPING_BUTTON);
-				((JavascriptExecutor) driver).executeScript("arguments[0].click();", Continue_shipping);
-				softAssert.assertTrue(driver.findElement(FIRSTNAME_ERROR).isDisplayed(), "Firstname Field Error Message is not displayed");
-				Reporter.log("Error Message displayed for Firstname field");
-				ExtentReport.extentTest.info("Error Message displayed for Firstname field");
+				softAssert.assertTrue(driver.findElement(ZIPCODE_ERROR).isDisplayed(), "ZipCode Field Error Message is not displayed");
+				Reporter.log("Error Message displayed for ZipCode field");
+				ExtentReport.extentTest.info("Error Message displayed for ZipCode field");
+
+		softAssert.assertTrue(driver.findElement(CITY_ERROR).isDisplayed(), "City Field Error Message is not displayed");
+		Reporter.log("Error Message displayed for City field");
+		ExtentReport.extentTest.info("Error Message displayed for City field");
+
+//				softAssert.assertTrue(driver.findElement(ZIPCODE_ERROR).isDisplayed(), "ZipCode Field Error Message is not displayed");
+//				Reporter.log("Error Message displayed for ZipCode field");
+//				ExtentReport.extentTest.info("Error Message displayed for ZipCode field");
 
 
 
+				softAssert.assertAll();
+				Reporter.log("Error Message displayed for all the required fields");
+				ExtentReport.extentTest.info("Error Message displayed for all the required fields");
+	}
 
-		}
+	public void ValidateRequiredFieldsinPaymentpage() throws Exception {
+		jse = (JavascriptExecutor) driver;
+		softAssert = new SoftAssert();
+		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
+		new AddToCartComponents(driver).addToCart();
 
 
+		jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
+//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 
+
+		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
+		Reporter.log("Checkout page displayed");
+		ExtentReport.extentTest.info("Checkout page displayed");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
+		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
+
+		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
+		Thread.sleep(5000);
+		entershippingdetails();
+		Reporter.log("Shipping Address Details entered");
+		ExtentReport.extentTest.info("Shipping Address Details entered");
+
+		// driver.findElement(CONTINUE_TO_SHIPPING_BUTTON).click();
+		WebElement Continue_shipping = driver.findElement(CONTINUE_TO_SHIPPING_BUTTON);
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", Continue_shipping);
+
+		Reporter.log("User is navigated to select shipping method");
+		ExtentReport.extentTest.info("User is navigated to select shipping method");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SHIPPING_RADIO_BUTTON));
+		jse.executeScript("window.scrollBy(0,100)");
+		Thread.sleep(3000);
+		WebElement element = driver.findElement(CONTINUE_TO_PAYMENT_BUTTON);
+		jse.executeScript("arguments[0].click();", element);
+		Reporter.log("User is navigated to payment page");
+		ExtentReport.extentTest.info("User is navigated to payment page");
+		Thread.sleep(5000);
+		CheckMandatoryCardFields();
+
+	}
+
+	public void CheckMandatoryCardFields()
+	{
+
+		WebElement element = driver.findElement(COMPLETE_ORDER_BUTTON);
+		jse.executeScript("arguments[0].click();", element);
+		softAssert.assertTrue(driver.findElement(CARDNUMBER_ERROR).isDisplayed(), "CardNumber Field Error Message is not displayed");
+		Reporter.log("Error Message displayed for CardNumber field");
+		ExtentReport.extentTest.info("Error Message displayed for CardNumber field");
+
+		softAssert.assertTrue(driver.findElement(CARDNAME_ERROR).isDisplayed(), "CardName Field Error Message is not displayed");
+		Reporter.log("Error Message displayed for CardName field");
+		ExtentReport.extentTest.info("Error Message displayed for CardName field");
+
+		softAssert.assertTrue(driver.findElement(EXPIRY_ERROR).isDisplayed(), "Expiry Field Error Message is not displayed");
+		Reporter.log("Error Message displayed for Expiry field");
+		ExtentReport.extentTest.info("Error Message displayed for Expiry field");
+		softAssert.assertTrue(driver.findElement(EXPIRY_ERROR).isDisplayed(), "SecurityCode Field Error Message is not displayed");
+		Reporter.log("Error Message displayed for SecurityCode field");
+		ExtentReport.extentTest.info("Error Message displayed for SecurityCode field");
+		softAssert.assertAll();
+		Reporter.log("Error Message displayed for all the required card fields");
+		ExtentReport.extentTest.info("Error Message displayed for all the required card fields");
 
 	}
 
