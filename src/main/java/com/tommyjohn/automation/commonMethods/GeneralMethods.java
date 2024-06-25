@@ -173,7 +173,7 @@ public class GeneralMethods {
 		String firstPart = locator.substring(0, locator.indexOf('(')+1);
 		String secondPart = locator.substring(locator.indexOf(')'));
 		
-		By finalBy = By.xpath(firstPart  + index + secondPart);
+		By finalBy = By.cssSelector(firstPart  + index + secondPart);
 		
 		return driver.findElement(finalBy);
 	
@@ -181,9 +181,9 @@ public class GeneralMethods {
 	
 	/**
 	 * Used to change index of css locators consisting nth-child
-	 * @param elementToIterate
-	 * @param index
-	 * @param occurence of nth-child
+	 * @paramelementToIterate
+	 * @paramindex
+	 * @paramoccurence of nth-child
 	 */
 	public List<WebElement> autoIndexList(WebDriver driver, By by, int index, int OccurenceOfNthChild) {
 

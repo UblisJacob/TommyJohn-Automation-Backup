@@ -53,6 +53,12 @@ public class CheckoutPage extends CheckoutPageComponents {
 		
 	}
 
+	public void ValidateFieldsinIPaymentPage() throws Exception
+	{
+		new CheckoutPageComponents(driver).ValidateRequiredFieldsinPaymentpage();
+
+	}
+
 	public void ValidateOrderPlacement() throws Exception {
 		
 		new CheckoutPageComponents(driver).completeorder();
