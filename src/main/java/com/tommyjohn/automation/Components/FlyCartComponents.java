@@ -4,11 +4,8 @@ import java.time.Duration;
 import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.SearchContext;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -163,16 +160,27 @@ public class FlyCartComponents extends FlyCartPageLocator{
 				ExtentReport.extentTest.info("Appropriate product is added to Cart from InLine Cart Suggestion");
 
 			}
-
-
-
-
-
-
-
 		}
 
+		public void verifyATCInInlineCartSuggestion() throws InterruptedException {
 
+			Actions action = new Actions(driver);
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+			SoftAssert softAssert = new SoftAssert();
+			jse = (JavascriptExecutor) driver;
+			jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_ICON));
+			Thread.sleep(5000);
+			int ProductsSize = driver.findElements(SUGGESTION_PRODUCTS).size();
+			System.out.println(ProductsSize);
+			int ATCCTA = driver.findElements(QUICK_SHOP_ATC).size();
+			System.out.println(ATCCTA);
+			softAssert.assertEquals(ProductsSize,ATCCTA,"Quick Shop ATC is not displayed in all the suggestion products");
+			softAssert.assertAll();
+			Reporter.log("Quick shop ATC button is available in all the Suggestion products");
+			ExtentReport.extentTest.info("Quick shop ATC button is available in all the Suggestion products");
+		}
 
 
 
