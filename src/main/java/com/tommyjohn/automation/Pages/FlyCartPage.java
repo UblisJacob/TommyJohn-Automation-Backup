@@ -59,4 +59,14 @@ public class FlyCartPage extends FlyCartComponents {
 		new FlyCartComponents(driver).tieredMeterPresence();
 		new ShoppingCartComponents(driver).tieredMeterFunctionality();
 	}
+
+	public void ValidateAddingProductToCartFromInlineCartSuggestion() throws Exception {
+		new FlyCartComponents(driver).ValidateAddingProductToCartFromInlineCartSuggestions();
+
+	}
+
+	public void ValidateAppropriateIsProductIsToCartFromInlineCartSuggestion() throws Exception {
+		new FlyCartComponents(driver).ValidateAppropriateProductIsAddedToCartFromInLineCartSuggestion();
+
+	}
 }
