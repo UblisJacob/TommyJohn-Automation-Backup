@@ -42,6 +42,141 @@ public class FlyCartComponents extends FlyCartPageLocator{
 
 	}
 
+	public void ValidateAddingProductToCartFromInlineCartSuggestions() throws Exception {
+
+		Actions action = new Actions(driver);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+		SoftAssert softAssert = new SoftAssert();
+		jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_ICON));
+		Thread.sleep(5000);
+		wait.until(ExpectedConditions.visibilityOf(driver.findElement(SUGGESTION_FIRST_PRODUCT)));
+		element = driver.findElement(SUGGESTION_FIRST_PRODUCT);
+		js.executeScript("arguments[0].scrollIntoView(true);", element);
+		action.moveToElement(element).build().perform();
+
+
+		if (driver.findElement(QUICK_SHOP_ATC).isDisplayed()) {
+			Reporter.log("Quick shop ATC button is displayed on hover.");
+			ExtentReport.extentTest.info("Quick shop ATC button is displayed on hover.");
+			System.out.println("Quick shop ATC text is: " + driver.findElement(QUICK_SHOP_ATC).getText());
+			softAssert.assertEquals(driver.findElement(QUICK_SHOP_ATC).getText(), "Add To Cart +",
+					"Text changed for Quick shop ATC button.");
+			driver.findElement(QUICK_SHOP_ATC).click();
+			Thread.sleep(3000);
+			Reporter.log("Quick shop ATC button text is validated :: Clickable.");
+			ExtentReport.extentTest.info("Quick shop ATC button text is validated :: Clickable.");
+
+			softAssert.assertTrue(driver.findElement(QUICK_SHOP_SIZE_OVERLAY).isDisplayed(),
+					"On InLine Cart Quick shop select size overlay is not displayed after click on ATC button.");
+
+			Reporter.log("Quick shop size overlay is displayed.");
+			ExtentReport.extentTest.info("Quick shop size overlay is displayed.");
+			softAssert.assertTrue(driver.findElement(QUICK_SHOP_SIZE_OVERLAY_CLOSE).isDisplayed(),
+					"Quick shop select size overlay close btn is not displayed after click on ATC button.");
+			Reporter.log("Quick shop size overlay is close button is displayed.");
+			ExtentReport.extentTest.info("Quick shop size overlay is close button is displayed.");
+			softAssert.assertTrue(driver.findElement(QUICK_SHOP_SIZE_OVERLAY_HEADING).isDisplayed(),
+					"Quick shop select size overlay's heading is not displayed.");
+			//	softAssert.assertEquals(driver.findElement(QUICK_SHOP_SIZE_OVERLAY_HEADING).getText(), "Choose Your Size",
+			//			"Text changed for Quick shop Size overlay heading.");
+			Reporter.log("Quick shop size overlay heading is displayed ::Correct.");
+			ExtentReport.extentTest.info("Quick shop size overlay heading is displayed ::Correct.");
+			softAssert.assertTrue(driver.findElement(QUICK_SHOP_SIZE_LABEL).isDisplayed(),
+					"Quick shop size labels are not displayed.");
+			Reporter.log("Quick shop size labels are displayed.");
+			ExtentReport.extentTest.info("Quick shop size labels are displayed.");
+
+			String First_Product_Name = driver.findElement(SUGGESTION_FIRST_PRODUCT_NAME).getText();
+			System.out.println(First_Product_Name);
+			jse.executeScript("arguments[0].click();", driver.findElement(SUGGESTION_FIRST_PRODUCT_SIZE));
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(INLINECART_PRODUCT_NAME));
+			String InLineCart_Product = driver.findElement(INLINECART_PRODUCT_NAME).getText();
+			System.out.println(InLineCart_Product);
+
+			softAssert.assertTrue(driver.findElement(INLINECART_PRODUCT_NAME).isDisplayed(), "Product is not added to Cart from InLine Cart suggestion");
+			Reporter.log("Product is added to Cart from InLine Cart Suggestion");
+			ExtentReport.extentTest.info("Product is added to Cart from InLine Cart Suggestion");
+
+		}
+	}
+		public void ValidateAppropriateProductIsAddedToCartFromInLineCartSuggestion() throws InterruptedException {
+
+			Actions action = new Actions(driver);
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+			SoftAssert softAssert = new SoftAssert();
+			jse = (JavascriptExecutor) driver;
+			jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_ICON));
+			Thread.sleep(5000);
+			wait.until(ExpectedConditions.visibilityOf(driver.findElement(SUGGESTION_FIRST_PRODUCT)));
+			element = driver.findElement(SUGGESTION_FIRST_PRODUCT);
+			js.executeScript("arguments[0].scrollIntoView(true);", element);
+			action.moveToElement(element).build().perform();
+
+
+			if (driver.findElement(QUICK_SHOP_ATC).isDisplayed()) {
+				Reporter.log("Quick shop ATC button is displayed on hover.");
+				ExtentReport.extentTest.info("Quick shop ATC button is displayed on hover.");
+				System.out.println("Quick shop ATC text is: " + driver.findElement(QUICK_SHOP_ATC).getText());
+				softAssert.assertEquals(driver.findElement(QUICK_SHOP_ATC).getText(), "Add To Cart +",
+						"Text changed for Quick shop ATC button.");
+				driver.findElement(QUICK_SHOP_ATC).click();
+				Thread.sleep(3000);
+				Reporter.log("Quick shop ATC button text is validated :: Clickable.");
+				ExtentReport.extentTest.info("Quick shop ATC button text is validated :: Clickable.");
+
+				softAssert.assertTrue(driver.findElement(QUICK_SHOP_SIZE_OVERLAY).isDisplayed(),
+						"On InLine Cart Quick shop select size overlay is not displayed after click on ATC button.");
+
+				Reporter.log("Quick shop size overlay is displayed.");
+				ExtentReport.extentTest.info("Quick shop size overlay is displayed.");
+				softAssert.assertTrue(driver.findElement(QUICK_SHOP_SIZE_OVERLAY_CLOSE).isDisplayed(),
+						"Quick shop select size overlay close btn is not displayed after click on ATC button.");
+				Reporter.log("Quick shop size overlay is close button is displayed.");
+				ExtentReport.extentTest.info("Quick shop size overlay is close button is displayed.");
+				softAssert.assertTrue(driver.findElement(QUICK_SHOP_SIZE_OVERLAY_HEADING).isDisplayed(),
+						"Quick shop select size overlay's heading is not displayed.");
+				//	softAssert.assertEquals(driver.findElement(QUICK_SHOP_SIZE_OVERLAY_HEADING).getText(), "Choose Your Size",
+				//			"Text changed for Quick shop Size overlay heading.");
+				Reporter.log("Quick shop size overlay heading is displayed ::Correct.");
+				ExtentReport.extentTest.info("Quick shop size overlay heading is displayed ::Correct.");
+				softAssert.assertTrue(driver.findElement(QUICK_SHOP_SIZE_LABEL).isDisplayed(),
+						"Quick shop size labels are not displayed.");
+				Reporter.log("Quick shop size labels are displayed.");
+				ExtentReport.extentTest.info("Quick shop size labels are displayed.");
+
+				String First_Product_Name = driver.findElement(SUGGESTION_FIRST_PRODUCT_NAME).getText();
+				System.out.println(First_Product_Name);
+				jse.executeScript("arguments[0].click();", driver.findElement(SUGGESTION_FIRST_PRODUCT_SIZE));
+
+				wait.until(ExpectedConditions.visibilityOfElementLocated(INLINECART_PRODUCT_NAME));
+				String InLineCart_Product = driver.findElement(INLINECART_PRODUCT_NAME).getText();
+				System.out.println(InLineCart_Product);
+
+				softAssert.assertEquals(First_Product_Name, InLineCart_Product, "Wrong product is added to Cart from InLine Cart suggestion");
+				Reporter.log("Appropriate product is added to Cart from InLine Cart Suggestion");
+				ExtentReport.extentTest.info("Appropriate product is added to Cart from InLine Cart Suggestion");
+
+			}
+
+
+
+
+
+
+
+		}
+
+
+
+
+
+
 
 	public void verifyAllTextsAndFieldsOnEmptyFlyCart() throws Exception {
 		SoftAssert softAssert = new SoftAssert();

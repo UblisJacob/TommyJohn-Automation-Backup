@@ -69,6 +69,20 @@ public class ValidateInlineCartPage extends ExtentReport {
 		
 		new FlyCartPage(driver).validateTieredMeter();
 	}
+
+	@Test
+	public void ValidateUserAbletoAddProductFromInlineCartSuggestion() throws Exception
+	{
+
+		new FlyCartPage(driver).ValidateAddingProductToCartFromInlineCartSuggestion();
+	}
+
+	@Test
+	public void ValidateAppropriateProductIsToCartFromInlineCartSuggestion() throws Exception
+	{
+
+		new FlyCartPage(driver).ValidateAppropriateIsProductIsToCartFromInlineCartSuggestion();
+	}
 	
 	
 	@AfterMethod(alwaysRun = true)
