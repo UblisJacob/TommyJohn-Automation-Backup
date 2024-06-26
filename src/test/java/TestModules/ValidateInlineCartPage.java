@@ -83,6 +83,13 @@ public class ValidateInlineCartPage extends ExtentReport {
 
 		new FlyCartPage(driver).ValidateAppropriateIsProductIsToCartFromInlineCartSuggestion();
 	}
+
+	@Test
+	public void ValidateQuickShopATCIsAvailableInSuggestionProducts() throws Exception
+	{
+
+		new FlyCartPage(driver).ValidateQuickShopATCIsAvailableInSuggestionProducts();
+	}
 	
 	
 	@AfterMethod(alwaysRun = true)
