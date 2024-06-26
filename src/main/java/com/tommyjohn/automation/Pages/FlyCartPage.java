@@ -69,4 +69,9 @@ public class FlyCartPage extends FlyCartComponents {
 		new FlyCartComponents(driver).ValidateAppropriateProductIsAddedToCartFromInLineCartSuggestion();
 
 	}
+
+	public void ValidateQuickShopATCIsAvailableInSuggestionProducts() throws Exception {
+		new FlyCartComponents(driver).verifyATCInInlineCartSuggestion();
+
+	}
 }

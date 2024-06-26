@@ -17,7 +17,7 @@ public class AccountPageLocators
 //	public static By LOGGED_IN_ID = By.cssSelector(".account-logged-content>div:nth-child(1)>div>div>.account-row-column>p");
 	public static By LOGGED_IN_ID = By.xpath("//div[@data-tj-qa='account-login-info']//p");
 	public static By ADDRESS_BOOK_TITLE= By.cssSelector(".account-logged-content>div:nth-child(2)>h2, div[data-tj-qa='address-book-title']>h2");
-	public static By DEFAULT_SHIPPING_ADDRESS_TITLE= By.cssSelector("h2[data-tj-qa='default-address']");
+	public static By DEFAULT_SHIPPING_ADDRESS_TITLE= By.xpath("//h2[@data-tj-qa='default-address']");
 //	.account-logged-content>div:nth-child(2)>div>div>.account-default-shipping-address
 	public static By ADDRESS_CONTENT = By.cssSelector(".account-logged-content>div:nth-child(2)>div>div>p, div[data-tj-qa='address-body']>p");
 //	public static By ORDER_HISTORY_TITLE= By.cssSelector(".account-logged-content>div:nth-child(3)>h2");
