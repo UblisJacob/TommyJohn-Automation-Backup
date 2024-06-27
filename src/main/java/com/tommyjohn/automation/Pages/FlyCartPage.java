@@ -74,4 +74,9 @@ public class FlyCartPage extends FlyCartComponents {
 		new FlyCartComponents(driver).verifyATCInInlineCartSuggestion();
 
 	}
+
+	public void ValidateQuickShopSizeOverlayIsDisplayedInSuggestionProducts() throws Exception {
+		new FlyCartComponents(driver).verifyQuickShopSizeOverlayIsDisplayed();
+
+	}
 }
