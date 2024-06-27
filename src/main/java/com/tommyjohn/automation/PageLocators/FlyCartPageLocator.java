@@ -99,8 +99,6 @@ public class FlyCartPageLocator {
 	public static By PRODUCT_LINE_ITEM_OPTION = By.cssSelector("[data-tj-qa='cart-line-item-option'],div.line-item__summary > div.line-item__option");
 	public static By PRODUCT_AMOUNT_ON_FLYCART = By.cssSelector("[data-tj-qa='cart-line-item-sale-price'],.line-item__price>span");
 
-	public static By SUGGESTION_FIRST_OPTION = By.xpath("[data-tj-qa='cart-line-item-sale-price'],.line-item__price>span");
-
 
 
 }
