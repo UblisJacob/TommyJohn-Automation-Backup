@@ -70,6 +70,12 @@ public class FlyCartPage extends FlyCartComponents {
 
 	}
 
+
+	public void ValidateSizeOverlayIsDisplayedInTheInlineCartSuggestionProducts() throws Exception {
+		new FlyCartComponents(driver).VerifySizeOverlayIsDisplayed();
+
+	}
+
 	public void ValidateQuickShopATCIsAvailableInSuggestionProducts() throws Exception {
 		new FlyCartComponents(driver).verifyATCInInlineCartSuggestion();
 
