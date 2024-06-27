@@ -158,6 +158,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 				softAssert.assertEquals(First_Product_Name, InLineCart_Product, "Wrong product is added to Cart from InLine Cart suggestion");
 				Reporter.log("Appropriate product is added to Cart from InLine Cart Suggestion");
 				ExtentReport.extentTest.info("Appropriate product is added to Cart from InLine Cart Suggestion");
+
 			}
 		}
 
@@ -181,29 +182,9 @@ public class FlyCartComponents extends FlyCartPageLocator{
 			ExtentReport.extentTest.info("Quick shop ATC button is available in all the Suggestion products");
 		}
 
-			SoftAssert softAssert = new SoftAssert();
-			jse = (JavascriptExecutor) driver;
-			jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_ICON));
-			Thread.sleep(5000);
-			wait.until(ExpectedConditions.visibilityOf(driver.findElement(SUGGESTION_FIRST_PRODUCT)));
-			element = driver.findElement(SUGGESTION_FIRST_PRODUCT);
-			js.executeScript("arguments[0].scrollIntoView(true);", element);
-			action.moveToElement(element).build().perform();
 
 
-			if (driver.findElement(QUICK_SHOP_ATC).isDisplayed()) {
-				Reporter.log("Quick shop ATC button is displayed on hover.");
-				ExtentReport.extentTest.info("Quick shop ATC button is displayed on hover.");
-				System.out.println("Quick shop ATC text is: " + driver.findElement(QUICK_SHOP_ATC).getText());
-				softAssert.assertEquals(driver.findElement(QUICK_SHOP_ATC).getText(), "Add To Cart +",
-						"Text changed for Quick shop ATC button.");
-				driver.findElement(QUICK_SHOP_ATC).click();
-				Thread.sleep(3000);
-				Reporter.log("Quick shop ATC button text is validated :: Clickable.");
-				ExtentReport.extentTest.info("Quick shop ATC button text is validated :: Clickable.");
 
-				softAssert.assertTrue(driver.findElement(QUICK_SHOP_SIZE_OVERLAY).isDisplayed(),
-						"On InLine Cart Quick shop select size overlay is not displayed after click on ATC button.");
 
 	public void verifyAllTextsAndFieldsOnEmptyFlyCart() throws Exception {
 		SoftAssert softAssert = new SoftAssert();
@@ -213,8 +194,6 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE_BUTTON));
 		String text = null;
 
-				Reporter.log("Quick shop size overlay is displayed.");
-				ExtentReport.extentTest.info("Quick shop size overlay is displayed.");
 
 		new HomePageComponents(driver).validateCartIcon();
 		driver.findElement(HomePageLocators.CART_ICON).click();
@@ -269,11 +248,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 				Reporter.log("Shipping message and meter absent");
 				ExtentReport.extentTest.info("Shipping message and meter absent");
 			}
-		}
-		public void VerifySizeOverlayIsDisplayed() throws InterruptedException {
-			Actions action = new Actions(driver);
-			JavascriptExecutor js = (JavascriptExecutor) driver;
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
 
 			// check for empty cart text
 			softAssert.assertTrue(driver.findElement(INLINE_CART_EMPTY_TEXT).isDisplayed(), "Shipping 'Your cart is empty' is not displayed");
@@ -351,7 +326,6 @@ public class FlyCartComponents extends FlyCartPageLocator{
 			// check for second price displayed
 			softAssert.assertTrue(driver.findElement(By.cssSelector("article:nth-child("+i+") > div.line-item__summary > div.line-item__total > div.line-item__subtotal > span")).isDisplayed(), "plus or minus button is not displayed");
 
-			}
 		}
 		Reporter.log("Image, link text, price, plus-minus button is displayed for all items in cart");
 		ExtentReport.extentTest.info("Image, link text, price, plus-minus button is displayed for all items in cart");
