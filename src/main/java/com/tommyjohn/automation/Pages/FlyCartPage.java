@@ -79,4 +79,9 @@ public class FlyCartPage extends FlyCartComponents {
 		new FlyCartComponents(driver).verifyQuickShopSizeOverlayIsDisplayed();
 
 	}
+
+	public void ValidateSelectedColorSwatchIsDisplayedInTheInlineCart() throws Exception {
+		new FlyCartComponents(driver).verifySelectedColorSwatchIsDisplayedInTheInlineCart();
+
+	}
 }

@@ -13,7 +13,7 @@
         <classes>
             <class name="TestModules.ValidateInlineCartPage">
                 <methods>
-                    <include name="ValidateQuickShopSizeOverlayIsDisplayedInSuggestionProducts"/>
+                    <include name="ValidateSelectedColorSwatchIsDisplayedInTheInlineCart"/>
                 </methods>
             </class>
         </classes>

@@ -98,6 +98,13 @@ public class ValidateInlineCartPage extends ExtentReport {
 		new FlyCartPage(driver).ValidateQuickShopSizeOverlayIsDisplayedInSuggestionProducts();
 	}
 
+	@Test
+	public void ValidateSelectedColorSwatchIsDisplayedInTheInlineCart() throws Exception
+	{
+
+		new FlyCartPage(driver).ValidateSelectedColorSwatchIsDisplayedInTheInlineCart();
+	}
+
 
 	
 	@AfterMethod(alwaysRun = true)
