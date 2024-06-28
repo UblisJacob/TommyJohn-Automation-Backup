@@ -1,6 +1,7 @@
 package com.tommyjohn.automation.Components;
 
 import java.time.Duration;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
@@ -219,6 +220,40 @@ public class FlyCartComponents extends FlyCartPageLocator{
 
 		}
 
+		public void verifySelectedColorSwatchIsDisplayedInTheInlineCart() throws InterruptedException {
+			Actions action = new Actions(driver);
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(80));
+
+			SoftAssert softAssert = new SoftAssert();
+			jse = (JavascriptExecutor) driver;
+			jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_ICON));
+			Thread.sleep(5000);
+			wait.until(ExpectedConditions.visibilityOf(driver.findElement(SUGGESTION_FIRST_PRODUCT)));
+
+			String ColorSwatch = driver.findElement(COLOR_SWATCH).getAttribute("title");
+			System.out.println(ColorSwatch);
+
+			jse.executeScript("arguments[0].click();", driver.findElement(COLOR_SWATCH));
+
+			element = driver.findElement(SUGGESTION_FIRST_PRODUCT);
+			js.executeScript("arguments[0].scrollIntoView(true);", element);
+			action.moveToElement(element).build().perform();
+
+			jse.executeScript("arguments[0].click();", driver.findElement(SUGGESTION_FIRST_PRODUCT_SIZE));
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(INLINECART_PRODUCT_NAME));
+
+			String[] color;
+			color = (driver.findElement(INLINE_COLOR).getAttribute("title")).split(" /");
+			String text = color[0];
+			System.out.println(text);
+			softAssert.assertEquals(ColorSwatch,text,"Color Mismatched In InLine Cart");
+			softAssert.assertAll();
+			Reporter.log("Selected Color Is Added To Cart");
+			ExtentReport.extentTest.info("Selected Color Is Added To Cart");
+
+		}
 
 
 	public void verifyAllTextsAndFieldsOnEmptyFlyCart() throws Exception {

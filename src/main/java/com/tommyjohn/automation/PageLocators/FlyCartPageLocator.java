@@ -85,6 +85,10 @@ public class FlyCartPageLocator {
 	public static By SUGGESTION_PRODUCTS = By.xpath("//div[@class='product-image-container product-image-container--has-quickshop']");
 	public static By SUGGESTION_SECOND_PRODUCT_NAME = By.xpath("(//span[@class='product-meta__title'])[2]");
 	public static By INLINECART_PRODUCT_NAME = By.xpath("//a[@class='line-item__title']");
+	public static By COLOR_SWATCH = By.xpath("(//div[@class='product-item__swatch product-item__swatch--circle js-inline-quickshop-color active'])[1]");
+	public static By INLINE_COLOR = By.xpath("//div[@class='line-item__option']");
+
+
 
 	public static By QUICK_SHOP_SIZE_OVERLAY_CLOSE = By.cssSelector("[data-tj-qa='plp-quickshop-close'],.inline-quick-shop>.icon-close");
 	public static By QUICK_SHOP_SIZE_OVERLAY_HEADING = By.cssSelector(".inline-quick-shop>.inline-quick-shop__option-heading");
