@@ -53,6 +53,20 @@ public class ValidateHomePage extends ExtentReport {
 
 		new HomePage(driver).validateDoNotSellMyPersonalInformation();
 	}
+
+	@Test
+	public void ValidateAddingProductToCartFromInstagramWidget() throws
+			Exception {
+
+		new HomePage(driver).ValidateAddingProductToCartFromInstagramWidget();
+	}
+
+	@Test
+	public void ValidateAppropriateProductIsAddedToCartFromInstagramWidget() throws
+			Exception {
+
+		new HomePage(driver).ValidateAppropriateProductIsAddedToCartFromInstagramWidget();
+	}
 	
 //	@Test
 	public void ValidateRecommendedForYou() throws
