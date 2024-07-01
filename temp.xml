@@ -11,9 +11,9 @@
     <test name="CategoryTests">
         <parameter name="browser" value="chrome" />
         <classes>
-            <class name="TestModules.ValidateInlineCartPage">
+            <class name="TestModules.ValidateCategoryPages">
                 <methods>
-                    <include name="ValidateSelectedColorSwatchIsDisplayedInTheInlineCart"/>
+                    <include name="ValidateMultipleSizeVariants"/>
                 </methods>
             </class>
         </classes>
