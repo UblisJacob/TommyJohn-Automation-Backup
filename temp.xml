@@ -11,9 +11,9 @@
     <test name="CategoryTests">
         <parameter name="browser" value="chrome" />
         <classes>
-            <class name="TestModules.ValidateCategoryPages">
+            <class name="TestModules.ValidateHomePage">
                 <methods>
-                    <include name="ValidateMultipleSizeVariants"/>
+                    <include name="ValidateAppropriateProductIsAddedToCartFromInstagramWidget"/>
                 </methods>
             </class>
         </classes>
