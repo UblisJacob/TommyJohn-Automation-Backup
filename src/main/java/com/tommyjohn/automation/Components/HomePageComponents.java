@@ -6,6 +6,7 @@ import java.time.Duration;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.concurrent.TimeUnit;
 
 import org.testng.Assert;
 import org.openqa.selenium.By;
@@ -31,6 +32,8 @@ import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
 import com.tommyjohn.automation.PageLocators.TermsAndConditionsPageLocators;
 import com.tommyjohn.automation.commonMethods.GeneralMethods;
 import com.tommyjohn.automation.utils.CustomUtilities;
+
+import static com.tommyjohn.automation.PageLocators.FlyCartPageLocator.INLINECART_PRODUCT_NAME;
 
 public class HomePageComponents extends HomePageLocators {
 
@@ -63,6 +66,59 @@ public class HomePageComponents extends HomePageLocators {
 
 	}
 
+	public void ValidateAddingProductToCartFromInstagramWidget() throws InterruptedException {
+
+		action = new Actions(driver);
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+		SoftAssert softAssert = new SoftAssert();
+		Thread.sleep(5000);
+		js.executeScript("window.scrollBy(0,2000)");
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		wait.until(ExpectedConditions.visibilityOf(driver.findElement(INSTA_SHOP_ICON)));
+		js.executeScript("arguments[0].click();", driver.findElement(INSTA_SHOP_ICON));
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		js.executeScript("arguments[0].click();", driver.findElement(INSTA_ATC));
+		wait.until(ExpectedConditions.visibilityOf(driver.findElement(INSTA_FIRST_SIZE)));
+		js.executeScript("arguments[0].click();", driver.findElement(INSTA_FIRST_SIZE));
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(INLINECART_PRODUCT_NAME));
+		String InLineCart_Product = driver.findElement(INLINECART_PRODUCT_NAME).getText();
+		System.out.println(InLineCart_Product);
+
+		softAssert.assertTrue(driver.findElement(INLINECART_PRODUCT_NAME).isDisplayed(), "Product is not added to Cart from Instagram Widget");
+		Reporter.log("Product is added to Cart from Instagram Widget");
+		ExtentReport.extentTest.info("Product is added to Cart from Instagram Widget");
+	}
+
+	public void ValidateAppropriateProductIsAddedToCartFromInstagramWidget() throws InterruptedException {
+		action = new Actions(driver);
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+		SoftAssert softAssert = new SoftAssert();
+		Thread.sleep(5000);
+		js.executeScript("window.scrollBy(0,2000)");
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		wait.until(ExpectedConditions.visibilityOf(driver.findElement(INSTA_SHOP_ICON)));
+		js.executeScript("arguments[0].click();", driver.findElement(INSTA_SHOP_ICON));
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		String First_Product_Name = driver.findElement(INSTA_FIRST_PRODUCT_NAME).getText();
+		System.out.println(First_Product_Name);
+		js.executeScript("arguments[0].click();", driver.findElement(INSTA_ATC));
+		wait.until(ExpectedConditions.visibilityOf(driver.findElement(INSTA_FIRST_SIZE)));
+		js.executeScript("arguments[0].click();", driver.findElement(INSTA_FIRST_SIZE));
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(INLINECART_PRODUCT_NAME));
+		String InLineCart_Product = driver.findElement(INLINECART_PRODUCT_NAME).getText();
+		System.out.println(InLineCart_Product);
+
+		softAssert.assertEquals(First_Product_Name, InLineCart_Product, "Wrong product is added to Cart from Instagram Widget");
+		Reporter.log("Appropriate product is added to Cart from Instagram Widget");
+		ExtentReport.extentTest.info("Appropriate product is added to Cart from Instagram Widget");
+
+	}
 
 	//Verify logo and all category
 	public void ValidateLogoAndCategoriesPresence() throws Exception
