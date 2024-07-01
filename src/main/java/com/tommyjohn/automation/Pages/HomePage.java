@@ -102,6 +102,14 @@ public class HomePage extends HomePageComponents {
 	{
 		new HomePageComponents(driver).navigateToMensLoungewearCategory();
 	}
+
+	public void ValidateAddingProductToCartFromInstagramWidget() throws InterruptedException {
+		new HomePageComponents(driver).ValidateAddingProductToCartFromInstagramWidget();
+	}
+
+	public void ValidateAppropriateProductIsAddedToCartFromInstagramWidget() throws InterruptedException {
+		new HomePageComponents(driver).ValidateAppropriateProductIsAddedToCartFromInstagramWidget();
+	}
 	
 //	public void validateBlogPage() throws Exception
 //	{
