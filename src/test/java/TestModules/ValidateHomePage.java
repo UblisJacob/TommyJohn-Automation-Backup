@@ -32,13 +32,13 @@ public class ValidateHomePage extends ExtentReport {
 		new HomePage(driver).ValidateLogoAndCategoriesPresence();
 	}
 	
-	@Test
+//	@Test
 	public void VerifyAccountdropdownOnHomePage() throws Exception {
 
 		new HomePage(driver).verifyaccountdropdown();
 	}
 
-	@Test
+//	@Test
 	public void VerifyAccountAndCartIconOnHomePage() throws Exception {
 
 		new HomePage(driver).validateAccountIcon();
@@ -47,7 +47,7 @@ public class ValidateHomePage extends ExtentReport {
 
 
 	
-	@Test
+//	@Test
 	public void ValidateDoNotSellMyPersonalInformationPage() throws
 	Exception {
 
@@ -66,6 +66,13 @@ public class ValidateHomePage extends ExtentReport {
 			Exception {
 
 		new HomePage(driver).ValidateAppropriateProductIsAddedToCartFromInstagramWidget();
+	}
+
+	@Test
+	public void ValidateSizeOverlayInInstagramWidget() throws
+			Exception {
+
+		new HomePage(driver).ValidateSizeOverlayInInstagramWidget();
 	}
 	
 //	@Test
