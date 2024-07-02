@@ -13,7 +13,7 @@
         <classes>
             <class name="TestModules.ValidateHomePage">
                 <methods>
-                    <include name="ValidateAppropriateProductIsAddedToCartFromInstagramWidget"/>
+                    <include name="VerifyLogoAndCategoriesOnHomePage"/>
                 </methods>
             </class>
         </classes>

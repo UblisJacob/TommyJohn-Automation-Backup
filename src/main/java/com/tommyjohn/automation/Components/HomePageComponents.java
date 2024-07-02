@@ -120,6 +120,28 @@ public class HomePageComponents extends HomePageLocators {
 
 	}
 
+	public void ValidateSizeOverlayInInstagramWidget() throws InterruptedException {
+		action = new Actions(driver);
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+		SoftAssert softAssert = new SoftAssert();
+		Thread.sleep(5000);
+		js.executeScript("window.scrollBy(0,2000)");
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		wait.until(ExpectedConditions.visibilityOf(driver.findElement(INSTA_SHOP_ICON)));
+		js.executeScript("arguments[0].click();", driver.findElement(INSTA_SHOP_ICON));
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		String First_Product_Name = driver.findElement(INSTA_FIRST_PRODUCT_NAME).getText();
+		System.out.println(First_Product_Name);
+		js.executeScript("arguments[0].click();", driver.findElement(INSTA_ATC));
+		wait.until(ExpectedConditions.visibilityOf(driver.findElement(INSTA_FIRST_SIZE)));
+		softAssert.assertTrue(driver.findElement(INSTA_FIRST_SIZE).isDisplayed(),"Size Overlay is not displayed in the Instagram Widget");
+		Reporter.log("Size Overlay is displayed in the Instagram Widget");
+		ExtentReport.extentTest.info("Size Overlay is displayed in the Instagram Widget");
+
+	}
+
 	//Verify logo and all category
 	public void ValidateLogoAndCategoriesPresence() throws Exception
 	{
@@ -186,23 +208,23 @@ public class HomePageComponents extends HomePageLocators {
 		element = driver.findElement(WOMEN_CATEGORY);
 		action.moveToElement(element).perform();
 		Thread.sleep(3000);
-		if(!driver.findElement(FIRST_lEVEL1_CATEGORY).isDisplayed())
+		if(!driver.findElement(WOMENS_FIRST_lEVEL1_CATEGORY).isDisplayed())
 			throw new Exception("Men Category is not hoverable");
 		Reporter.log("Women category is Displayed :: Hoverable :: Clickable");
 		ExtentReport.extentTest.info("Women category is Displayed :: Hoverable :: Clickable");
 		Thread.sleep(3000);
 
-		// Verify Sale category
+		// Verify ImNewHere category
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.presenceOfElementLocated(FINAL_SALE));
-		if(!driver.findElement(FINAL_SALE).isDisplayed())
-			throw new Exception("Final Sale category is not displayed");
-		element = driver.findElement(FINAL_SALE);
+		wait.until(ExpectedConditions.presenceOfElementLocated(IM_NEW_HERE));
+		if(!driver.findElement(IM_NEW_HERE).isDisplayed())
+			throw new Exception("Im New Here category is not displayed");
+		element = driver.findElement(IM_NEW_HERE);
 		action.moveToElement(element).perform();
 		//	if(!driver.findElement(FIRST_lEVEL1_CATEGORY).isDisplayed())
 		//	throw new Exception("Final Sale category is not hoverable");
-		Reporter.log("Sale category is Displayed :: Hoverable :: clickable");
-		ExtentReport.extentTest.info("Sale category is Displayed :: Hoverable :: clickable");
+		Reporter.log("ImNewHere category is Displayed :: Hoverable :: clickable");
+		ExtentReport.extentTest.info("ImNewHere category is Displayed :: Hoverable :: clickable");
 		softassert.assertAll();
 	}
 
