@@ -110,6 +110,10 @@ public class HomePage extends HomePageComponents {
 	public void ValidateAppropriateProductIsAddedToCartFromInstagramWidget() throws InterruptedException {
 		new HomePageComponents(driver).ValidateAppropriateProductIsAddedToCartFromInstagramWidget();
 	}
+
+	public void ValidateSizeOverlayInInstagramWidget() throws InterruptedException {
+		new HomePageComponents(driver).ValidateSizeOverlayInInstagramWidget();
+	}
 	
 //	public void validateBlogPage() throws Exception
 //	{
