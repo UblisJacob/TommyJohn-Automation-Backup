@@ -74,6 +74,13 @@ public class ValidateHomePage extends ExtentReport {
 
 		new HomePage(driver).ValidateSizeOverlayInInstagramWidget();
 	}
+
+	@Test
+	public void verifySelectedColorSwatchIsDisplayedInTheInlineCart() throws
+			Exception {
+
+		new HomePage(driver).verifySelectedColorSwatchIsDisplayedInTheInlineCart();
+	}
 	
 //	@Test
 	public void ValidateRecommendedForYou() throws
