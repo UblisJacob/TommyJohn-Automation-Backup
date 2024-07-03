@@ -114,7 +114,12 @@ public class HomePage extends HomePageComponents {
 	public void ValidateSizeOverlayInInstagramWidget() throws InterruptedException {
 		new HomePageComponents(driver).ValidateSizeOverlayInInstagramWidget();
 	}
-	
+
+
+	public void verifySelectedColorSwatchIsDisplayedInTheInlineCart() throws InterruptedException {
+		new HomePageComponents(driver).verifySelectedColorSwatchIsDisplayedInTheInlineCart();
+	}
+
 //	public void validateBlogPage() throws Exception
 //	{
 //		new BlogPageComponents(driver).validateBlog();
