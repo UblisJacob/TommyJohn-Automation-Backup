@@ -34,6 +34,7 @@ import com.tommyjohn.automation.commonMethods.GeneralMethods;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
 import static com.tommyjohn.automation.PageLocators.FlyCartPageLocator.INLINECART_PRODUCT_NAME;
+import static com.tommyjohn.automation.PageLocators.FlyCartPageLocator.INLINE_COLOR;
 
 public class HomePageComponents extends HomePageLocators {
 
@@ -139,6 +140,42 @@ public class HomePageComponents extends HomePageLocators {
 		softAssert.assertTrue(driver.findElement(INSTA_FIRST_SIZE).isDisplayed(),"Size Overlay is not displayed in the Instagram Widget");
 		Reporter.log("Size Overlay is displayed in the Instagram Widget");
 		ExtentReport.extentTest.info("Size Overlay is displayed in the Instagram Widget");
+
+	}
+
+	public void verifySelectedColorSwatchIsDisplayedInTheInlineCart() throws InterruptedException {
+		action = new Actions(driver);
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+		SoftAssert softAssert = new SoftAssert();
+		Thread.sleep(5000);
+		js.executeScript("window.scrollBy(0,2000)");
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		wait.until(ExpectedConditions.visibilityOf(driver.findElement(INSTA_SHOP_ICON)));
+		js.executeScript("arguments[0].click();", driver.findElement(INSTA_SHOP_ICON));
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		String ColorSwatch = driver.findElement(INSTA_COLOR_SWATCH).getAttribute("title");
+		System.out.println(ColorSwatch);
+
+		Thread.sleep(2000);
+		js.executeScript("arguments[0].click();", driver.findElement(INSTA_COLOR_SWATCH));
+
+		js.executeScript("arguments[0].click();", driver.findElement(INSTA_ATC));
+		wait.until(ExpectedConditions.visibilityOf(driver.findElement(INSTA_FIRST_SIZE)));
+		js.executeScript("arguments[0].click();", driver.findElement(INSTA_FIRST_SIZE));
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(INLINECART_PRODUCT_NAME));
+
+		String[] color;
+		color = (driver.findElement(INLINE_COLOR).getAttribute("title")).split(" /");
+		String text = color[0];
+		System.out.println(text);
+		softAssert.assertEquals(ColorSwatch,text,"Color Mismatched In InLine Cart");
+		softAssert.assertAll();
+		Reporter.log("Selected Color Is Added To Cart");
+		ExtentReport.extentTest.info("Selected Color Is Added To Cart");
+
 
 	}
 
