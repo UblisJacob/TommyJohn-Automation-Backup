@@ -11,9 +11,9 @@
     <test name="CategoryTests">
         <parameter name="browser" value="chrome" />
         <classes>
-            <class name="TestModules.ValidatePDP">
+            <class name="TestModules.ValidateHomePage">
                 <methods>
-                    <include name="VerifyReviewRecommendationsSection"/>
+                    <include name=""/>
                 </methods>
             </class>
         </classes>
