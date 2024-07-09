@@ -42,8 +42,10 @@ public class CheckoutPageLocators {
 	public static By PINCODE_TEXTBOX = By.xpath("//input[@id='TextField4']");
 	public static By PHONE_TEXTBOX = By.xpath("(//input[@name='phone'])[1]");
 	public static By REMEMBERME_CHCKBOX = By.cssSelector("#checkout_remember_me");
-	public static By RETURN_TO_CART_LINK = By.xpath("//a[@class='QT4by eVFmT j6D1f janiy adBMs EP07D']");
+	public static By RETURN_TO_CART_LINK = By.xpath("//span[contains(text(),'Return to cart')]");
 	public static By CONTINUE_TO_SHIPPING_BUTTON = By.xpath("//span[contains(text(),'Continue to shipping')]");
+	public static By TEXTMEWITHNEWSLETTERSANDOFFERSCHECKBOX = By.xpath("//input[@name='sms_marketing_opt_in']");
+	public static By PHONENUMBERFIELD = By.xpath("//input[@id='TextField6']");
 
 	//Error Messages in InformationPage
 	public static By EMAIL_ERROR = By.xpath("//p[@id='error-for-email']");
@@ -76,7 +78,7 @@ public class CheckoutPageLocators {
 	public static By CHANGE_LINK_METHOD = By.xpath("(//span[contains(text(),'Change')])[3]");
 	public static By SHIPPING_TEXT = By.cssSelector("h2#checkout-main-header");
 	public static By SHIPPING_RADIO_BUTTON = By.xpath("//input[@type='radio']");
-	public static By RETURN_LINK = By.xpath("(//span[@class='AjwsM'])[2]");
+	public static By RETURN_LINK = By.xpath("//span[contains(text(),'Return to information')]");
 	public static By CONTINUE_TO_PAYMENT_BUTTON = By.xpath("//div[@class='qjCTh']//button");
 
 

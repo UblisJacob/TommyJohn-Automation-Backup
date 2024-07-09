@@ -59,7 +59,7 @@ public class HomePageLocators{
 
 	public static By EXPLORE_LEVEL_ONE_LINKS = By.cssSelector("li[arial-label='open Explore menu'] ul[class='nav-item__list level-one-list alternate']>li[class='level-one-container alternate image-column']");
 
-	public static By MEN_CATEGORY = By.xpath("//a[@aria-label='Men link']");
+	public static By MEN_CATEGORY = By.xpath("//a[@aria-label='Men link']//span[contains(text(),'Men')]");
 	public static By WOMEN_CATEGORY = By.cssSelector(".level-zero-list>.level-zero-container:nth-child(2)> .level-zero-item >a");
 	public static By FINAL_SALE = By.cssSelector(".level-zero-list>.level-zero-container:nth-child(3)> .level-zero-item >a");
 
@@ -68,7 +68,7 @@ public class HomePageLocators{
 	public static By HEADER_RIGHT_SIDE_ELEMENTS_LIST = By.cssSelector(".header-desktop-right>li");
 	public static By HEADER_RIGHT_SIDE_SPECIFIC_ELEMENT = By.cssSelector(".header-desktop-right>li:nth-child(1)");
 	
-	public static By FIRST_lEVEL1_CATEGORY = By.xpath("//a[contains(text(),'Base Layers')]");
+	public static By FIRST_lEVEL1_CATEGORY = By.xpath("(//a[contains(text(),'Base Layers')])[2]");
 
 	public static By WOMENS_FIRST_lEVEL1_CATEGORY = By.xpath("//a[contains(text(),'Intimates')]");
 	public static By SECOND_lEVEL1_CATEGORY = By.cssSelector("li.active> div:nth-child(2)> ul.level-one-list >li.level-one-container:nth-child(3) > div > .level-one-item >a");

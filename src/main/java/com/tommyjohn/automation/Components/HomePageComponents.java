@@ -228,7 +228,7 @@ public class HomePageComponents extends HomePageLocators {
 
 		element = driver.findElement(MEN_CATEGORY);
 		action.moveToElement(element).perform();
-		Thread.sleep(3000);
+		Thread.sleep(10000);
 		if(!driver.findElement(FIRST_lEVEL1_CATEGORY).isDisplayed())
 			throw new Exception("Men Category is not hoverable");
 		Thread.sleep(3000);
