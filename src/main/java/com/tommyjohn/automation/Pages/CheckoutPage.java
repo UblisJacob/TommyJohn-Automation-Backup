@@ -59,6 +59,12 @@ public class CheckoutPage extends CheckoutPageComponents {
 
 	}
 
+	public void Validatetextmewithnewslettersandoffers() throws Exception
+	{
+		new CheckoutPageComponents(driver).Validatetextmewithnewslettersandoffers();
+
+	}
+
 	public void ValidateOrderPlacement() throws Exception {
 		
 		new CheckoutPageComponents(driver).completeorder();

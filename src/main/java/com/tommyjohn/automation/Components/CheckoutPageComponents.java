@@ -374,9 +374,26 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
 		checkmandatoryfields();
 
-
-
 	}
+	public void Validatetextmewithnewslettersandoffers() throws Exception {
+		softAssert = new SoftAssert();
+		jse = (JavascriptExecutor)driver;
+		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
+		new AddToCartComponents(driver).addToCart();
+		driver.findElement(HomePageLocators.CART_ICON).click();
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
+		Reporter.log("Checkout page displayed");
+		ExtentReport.extentTest.info("Checkout page displayed");
+		Thread.sleep(4000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
+		jse.executeScript("arguments[0].click();", driver.findElement(TEXTMEWITHNEWSLETTERSANDOFFERSCHECKBOX));
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		softAssert.assertTrue(driver.findElement(PHONENUMBERFIELD).isDisplayed(), "Phone Number Field is not displayed");
+		Reporter.log("Phone Number Field is displayed");
+		ExtentReport.extentTest.info("Phone Number Field is displayed");
+	}
+
 	public void checkmandatoryfields() throws InterruptedException {
 
 
