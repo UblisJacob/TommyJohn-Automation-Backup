@@ -88,6 +88,7 @@ public class CheckoutPageLocators {
 	public static By PAYMENT_TEXT = By.cssSelector("#main-header");
 	public static By CREDITCARD_OPTION = By.xpath("//span[contains(text(),'Credit card')]");
 	public static By PAYPAL_OPTION = By.xpath("//span[contains(text(),'PayPal')]");
+	public static By SAVE_MY_INFORMATION = By.xpath("//input[@id='RememberMe-RememberMeCheckbox']");
 
 	public static By BILLING_TEXT = By.xpath("//h2[contains(text(),'Billing address')]");
 	public static By COMPLETE_ORDER_BUTTON = By.xpath("//div[@class='qjCTh']//button");

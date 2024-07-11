@@ -81,6 +81,12 @@ public class ValidateCheckoutPage extends ExtentReport {
 	{
 		new CheckoutPage(driver).Validatetextmewithnewslettersandoffers();
 	}
+
+	@Test
+	public void ValidateSaveMyInformationInPaymentPage() throws Exception
+	{
+		new CheckoutPage(driver).ValidateSaveMyInformationInPaymentPage();
+	}
 	
 	@AfterMethod(alwaysRun = true)
 	void tearDown() {

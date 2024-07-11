@@ -159,6 +159,7 @@ public class AccountPageComponents extends AccountPageLocators {
 
 //		After clicking on Manage Addresses link verify if correctly redirected to addresses page, if facing login issue then handle via re-login
 		try{
+			Thread.sleep(5000);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(MANAGE_ADDRESS_BOOK_HEADING));
 		}catch (TimeoutException e) {
 			currentUrl = driver.getCurrentUrl();

@@ -65,6 +65,12 @@ public class CheckoutPage extends CheckoutPageComponents {
 
 	}
 
+	public void ValidateSaveMyInformationInPaymentPage() throws Exception
+	{
+		new CheckoutPageComponents(driver).ValidateSaveMyInformationInPaymentPage();
+
+	}
+
 	public void ValidateOrderPlacement() throws Exception {
 		
 		new CheckoutPageComponents(driver).completeorder();
