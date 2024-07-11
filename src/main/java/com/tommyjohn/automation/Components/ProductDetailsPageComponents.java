@@ -2597,7 +2597,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 	}
 		public void verifyStickyATC() throws Exception {
-			new HomePageComponents(driver).navigateToAllMensCollectionsInMenCategory();
+			new HomePageComponents(driver).navigateToCoolCottonInMensCollection();
 			new CollectionPageComponent(driver).navigateToProductDetailsPage();
 			//new AddToCartComponents(driver).selectSize();
 			
