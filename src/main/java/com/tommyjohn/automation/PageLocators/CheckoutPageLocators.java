@@ -88,6 +88,18 @@ public class CheckoutPageLocators {
 	public static By PAYMENT_TEXT = By.cssSelector("#main-header");
 	public static By CREDITCARD_OPTION = By.xpath("//span[contains(text(),'Credit card')]");
 	public static By PAYPAL_OPTION = By.xpath("//span[contains(text(),'PayPal')]");
+
+	public static By USEDIFFERENTBILLINGADDRESS = By.xpath("//input[@id='billing_address_selector-custom']");
+
+	public static By COUNTRYREGIONFIELD = By.xpath("//select[@name='countryCode']");
+	public static By FIRSTNAME = By.xpath("(//input[@name='firstName'])[1]");
+	public static By LASTNAME = By.xpath("(//input[@name='lastName'])[1]");
+	public static By ADDRESS = By.xpath("(//input[@name='address1'])[1]");
+	public static By CITY = By.xpath("(//input[@name='city'])[1]");
+	public static By STATE = By.xpath("//select[@name='zone']");
+	public static By ZIPCODE = By.xpath("(//input[@name='postalCode'])[1]");
+
+	public static By PHONE = By.xpath("(//input[@name='phone'])[1]");
 	public static By SAVE_MY_INFORMATION = By.xpath("//input[@id='RememberMe-RememberMeCheckbox']");
 
 	public static By BILLING_TEXT = By.xpath("//h2[contains(text(),'Billing address')]");
