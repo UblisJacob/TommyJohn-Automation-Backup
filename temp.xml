@@ -11,9 +11,9 @@
     <test name="CategoryTests">
         <parameter name="browser" value="chrome" />
         <classes>
-            <class name="TestModules.ValidateCheckoutPage">
+            <class name="TestModules.ValidateCartPage">
                 <methods>
-                    <include name="ValidateBillingAddressFieldInPaymentPage"/>
+                    <include name="Validate_Cart_InteractWithPayments"/>
                 </methods>
             </class>
         </classes>

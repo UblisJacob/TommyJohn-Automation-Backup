@@ -307,8 +307,6 @@ public class HomePageComponents extends HomePageLocators {
 	//	}
 	
 	public void validateSearchFunctionEnter(String searchText) throws Exception {
-		
-		
 
 		SoftAssert softAssert = new SoftAssert();
 		action = new Actions(driver);
