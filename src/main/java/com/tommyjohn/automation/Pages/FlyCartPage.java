@@ -84,4 +84,9 @@ public class FlyCartPage extends FlyCartComponents {
 		new FlyCartComponents(driver).verifySelectedColorSwatchIsDisplayedInTheInlineCart();
 
 	}
+
+	public void ValidateRemovingItemsFromInlineCart() throws Exception {
+		new FlyCartComponents(driver).ValidateRemovingItemsFromInlineCart();
+
+	}
 }

@@ -159,7 +159,7 @@ public class AccountPageComponents extends AccountPageLocators {
 
 //		After clicking on Manage Addresses link verify if correctly redirected to addresses page, if facing login issue then handle via re-login
 		try{
-			Thread.sleep(5000);
+			Thread.sleep(8000);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(MANAGE_ADDRESS_BOOK_HEADING));
 		}catch (TimeoutException e) {
 			currentUrl = driver.getCurrentUrl();
@@ -178,7 +178,7 @@ public class AccountPageComponents extends AccountPageLocators {
 		softassert.assertTrue(driver.getCurrentUrl().equals("https://www.tommyjohn.com/account/addresses"),
 				"User Navigated to incorrect page after clicking on Manage Addresses link");
 
-		Thread.sleep(3000);
+		Thread.sleep(6000);
 		softassert.assertTrue(driver.findElement(DEFAULT_SHIPPING_ADDRESS_TITLE).isDisplayed(),
 				"Default address shipping title is not displayed inside 'Address Book' section");
 
