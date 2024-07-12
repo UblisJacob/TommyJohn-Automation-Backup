@@ -483,7 +483,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		ExtentReport.extentTest.info("User is navigated to payment page");
 		Thread.sleep(5000);
 		jse.executeScript("arguments[0].click();", driver.findElement(USEDIFFERENTBILLINGADDRESS));
-		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 		softAssert.assertTrue(driver.findElement(COUNTRYREGIONFIELD).isDisplayed(), "Country/Region Field is not displayed");
 		Reporter.log("Country/Region Field is displayed");
 		ExtentReport.extentTest.info("Country/Region Field is displayed");
@@ -511,6 +511,76 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		softAssert.assertAll();
 		Reporter.log("All the Billing address fields are displayed");
 		ExtentReport.extentTest.info("All the Billing address fields are displayed");
+
+	}
+
+	public void ValidateRequiredBillingAddressFieldsInPaymentPage() throws Exception {
+		jse = (JavascriptExecutor) driver;
+		softAssert = new SoftAssert();
+		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
+		new AddToCartComponents(driver).addToCart();
+
+
+		jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
+//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+
+
+		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
+		Reporter.log("Checkout page displayed");
+		ExtentReport.extentTest.info("Checkout page displayed");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
+		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
+
+		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
+		Thread.sleep(5000);
+		entershippingdetails();
+		Reporter.log("Shipping Address Details entered");
+		ExtentReport.extentTest.info("Shipping Address Details entered");
+
+		// driver.findElement(CONTINUE_TO_SHIPPING_BUTTON).click();
+		WebElement Continue_shipping = driver.findElement(CONTINUE_TO_SHIPPING_BUTTON);
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", Continue_shipping);
+
+		Reporter.log("User is navigated to select shipping method");
+		ExtentReport.extentTest.info("User is navigated to select shipping method");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SHIPPING_RADIO_BUTTON));
+		jse.executeScript("window.scrollBy(0,100)");
+		Thread.sleep(3000);
+		WebElement element = driver.findElement(CONTINUE_TO_PAYMENT_BUTTON);
+		jse.executeScript("arguments[0].click();", element);
+		Reporter.log("User is navigated to payment page");
+		ExtentReport.extentTest.info("User is navigated to payment page");
+		jse.executeScript("window.scrollBy(0,1000)");
+		Thread.sleep(5000);
+		jse.executeScript("arguments[0].click();", driver.findElement(USEDIFFERENTBILLINGADDRESS));
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		WebElement Pay_Now = driver.findElement(COMPLETE_ORDER_BUTTON);
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", Pay_Now);
+		softAssert.assertTrue(driver.findElement(FIRSTNAME_ERROR).isDisplayed(), "Firstname Field Error Message is not displayed");
+		Reporter.log("Error Message displayed for Firstname field");
+		ExtentReport.extentTest.info("Error Message displayed for Firstname field");
+
+		softAssert.assertTrue(driver.findElement(LASTNAME_ERROR).isDisplayed(), "LastName Field Error Message is not displayed");
+		Reporter.log("Error Message displayed for LastName field");
+		ExtentReport.extentTest.info("Error Message displayed for LastName field");
+
+		softAssert.assertTrue(driver.findElement(ADDRESS_ERROR).isDisplayed(), "Address Field Error Message is not displayed");
+		Reporter.log("Error Message displayed for Address field");
+		ExtentReport.extentTest.info("Error Message displayed for Address field");
+
+		softAssert.assertTrue(driver.findElement(ZIPCODE_ERROR).isDisplayed(), "ZipCode Field Error Message is not displayed");
+		Reporter.log("Error Message displayed for ZipCode field");
+		ExtentReport.extentTest.info("Error Message displayed for ZipCode field");
+
+		softAssert.assertTrue(driver.findElement(CITY_ERROR).isDisplayed(), "City Field Error Message is not displayed");
+		Reporter.log("Error Message displayed for City field");
+		ExtentReport.extentTest.info("Error Message displayed for City field");
+
+		softAssert.assertAll();
+		Reporter.log("Error Message displayed for all the required fields");
+		ExtentReport.extentTest.info("Error Message displayed for all the required fields");
+
 
 	}
 
@@ -599,17 +669,17 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 
 	public void CheckMandatoryCardFields() throws InterruptedException {
 
-//		Thread.sleep(5000);
-//		driver.findElement(CARDNAME).clear();
+		Thread.sleep(5000);
+		driver.findElement(CARDNAME_CLEAR).click();
 		WebElement element = driver.findElement(COMPLETE_ORDER_BUTTON);
 		jse.executeScript("arguments[0].click();", element);
 		softAssert.assertTrue(driver.findElement(CARDNUMBER_ERROR).isDisplayed(), "CardNumber Field Error Message is not displayed");
 		Reporter.log("Error Message displayed for CardNumber field");
 		ExtentReport.extentTest.info("Error Message displayed for CardNumber field");
 
-//		softAssert.assertTrue(driver.findElement(CARDNAME_ERROR).isDisplayed(), "CardName Field Error Message is not displayed");
-//		Reporter.log("Error Message displayed for CardName field");
-//		ExtentReport.extentTest.info("Error Message displayed for CardName field");
+		softAssert.assertTrue(driver.findElement(CARDNAME_ERROR).isDisplayed(), "CardName Field Error Message is not displayed");
+		Reporter.log("Error Message displayed for CardName field");
+		ExtentReport.extentTest.info("Error Message displayed for CardName field");
 
 		softAssert.assertTrue(driver.findElement(EXPIRY_ERROR).isDisplayed(), "Expiry Field Error Message is not displayed");
 		Reporter.log("Error Message displayed for Expiry field");

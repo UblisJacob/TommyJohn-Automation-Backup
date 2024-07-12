@@ -105,6 +105,13 @@ public class ValidateInlineCartPage extends ExtentReport {
 		new FlyCartPage(driver).ValidateSelectedColorSwatchIsDisplayedInTheInlineCart();
 	}
 
+	@Test
+	public void ValidateRemovingItemsFromInlineCart() throws Exception
+	{
+
+		new FlyCartPage(driver).ValidateRemovingItemsFromInlineCart();
+	}
+
 
 	
 	@AfterMethod(alwaysRun = true)
