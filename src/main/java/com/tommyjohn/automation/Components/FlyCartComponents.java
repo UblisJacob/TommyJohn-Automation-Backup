@@ -31,6 +31,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 	Properties properties = CustomUtilities.properties;
 	WebElement element;
 	List<WebElement> allElements;
+	List<WebElement> RemoveItems;
 	SoftAssert softAssert = new SoftAssert();
 	public String price;
 	private WebElement text;
@@ -256,6 +257,29 @@ public class FlyCartComponents extends FlyCartPageLocator{
 			ExtentReport.extentTest.info("Selected Color Is Added To Cart");
 
 		}
+
+		public void ValidateRemovingItemsFromInlineCart() throws Exception {
+
+            softAssert = new SoftAssert();
+            jse = (JavascriptExecutor) driver;
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(50));
+            new AddToCartComponents(driver).addToCart();
+			jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
+			RemoveItems = driver.findElements(HomePageLocators.REMOVE_ICON);
+			System.out.println(RemoveItems.size());
+			for(int i=1; i<=RemoveItems.size();i++) {
+
+				jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.REMOVE_ICON));
+
+
+			}
+			softAssert.assertTrue(driver.findElement(By.xpath("//div[@data-tj-qa='inline-cart-empty-message']")).isDisplayed(),
+					"All the items in the Cart are not removed");
+
+			Reporter.log("Items are removed from Cart");
+			ExtentReport.extentTest.info("Items are removed from Cart");
+
+        }
 
 
 	public void verifyAllTextsAndFieldsOnEmptyFlyCart() throws Exception {

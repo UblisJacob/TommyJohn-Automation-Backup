@@ -111,7 +111,7 @@ public class CheckoutPageLocators {
 
 	//CreditCardFields
 	public static By CARDNUMBER = By.xpath("(//label[contains(text(),'Card number')]//following::input)[1]");
-	public static By CARDNAME =  By.xpath("//input[@data-current-field='name']");
+	public static By CARDNAME_CLEAR =  By.xpath("//button[@aria-label='Clear']");
 	public static By EXPIRY =  By.xpath("//input[@data-current-field='expiry']");
 	public static By SECURITYCODE =  By.xpath("//input[@data-current-field='verification_value']");
 

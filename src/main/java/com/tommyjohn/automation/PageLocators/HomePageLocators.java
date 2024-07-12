@@ -272,6 +272,7 @@ public class HomePageLocators{
 	//	public static By CART_ICON = By.cssSelector("i.icon-shopping-cart");
 
 	public static By CART_ICON = By.cssSelector("button[data-tj-qa='header-cart-icon']");
+	public static By REMOVE_ICON = By.xpath("//button[@data-tj-qa='cart-line-item-remove']");
 
 	public static By CART_HEADING_TEXT = By.cssSelector(".inline-cart__col1 > h3");
 
