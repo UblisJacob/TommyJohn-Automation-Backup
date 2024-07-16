@@ -94,6 +94,11 @@ public class ValidateCategoryPages {
 	public void ValidateMultipleSizeVariants() throws Exception {
 		new CollectionPage(driver).validateMultiVariantSizeInQuickshop();
 	}
+
+	@Test
+	public void ValidateProductsOnFiltering() throws Exception {
+		new CollectionPage(driver).ValidateProductsOnFiltering();
+	}
 	
 	
 	

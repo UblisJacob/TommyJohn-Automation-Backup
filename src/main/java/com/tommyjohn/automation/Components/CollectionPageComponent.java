@@ -44,6 +44,30 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	int count=0;
 
 
+	public void ValidateProductsOnFiltering() throws InterruptedException {
+
+		SoftAssert softAssert = new SoftAssert();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//a[@aria-label='Men link']//span[contains(text(),'Men')]")));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//a[@class='select--options__label js-option-select-toggle'])[2]")));
+		String AirFilter = driver.findElement(By.xpath("(//button[@data-filter-btn='Air'])[1]")).getText();
+		System.out.println(AirFilter);
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//button[@data-filter-btn='Air'])[1]")));
+		Thread.sleep(5000);
+		int Filtercount = driver.findElements(By.xpath("//span[@class='collection-meta__title']")).size();
+		System.out.println(Filtercount);
+		String FilterAir = driver.findElement(By.xpath("(//span[@class='collection-meta__title'])[1]")).getText();
+		System.out.println(FilterAir);
+		softAssert.assertEquals(AirFilter,FilterAir,"Appropriate Product is not displayed while filtering");
+		Reporter.log("Appropriate Product is displayed while filtering");
+		ExtentReport.extentTest.info("Appropriate Product is displayed while filtering");
+
+
+	}
+
+
 	public String navigateToProductDetailsPage() throws Exception {
 		String text = null;
 		JavascriptExecutor js = (JavascriptExecutor) driver;
