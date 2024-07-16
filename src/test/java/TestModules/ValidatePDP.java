@@ -58,6 +58,11 @@ public class ValidatePDP extends ExtentReport{
 	public void VerifyStickyATC() throws Exception {
 		new ProductDetailsPage(driver).verifyStickyATC();
 	}
+
+	@Test
+	public void VerifyStickySelectASize() throws Exception {
+		new ProductDetailsPage(driver).verifyStickySelectASize();
+	}
 	
 	@Test
 	public void VerifyReviewRecommendations() throws Exception {
