@@ -199,6 +199,10 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 	public void verifyStickyATC() throws Exception {
 		new ProductDetailsPageComponents(driver).verifyStickyATC();
 	}
+
+	public void verifyStickySelectASize() throws Exception {
+		new ProductDetailsPageComponents(driver).verifyStickySelectASize();
+	}
 	
 	public void verifyReviewRecommendations() throws Exception  {
 		new ProductDetailsPageComponents(driver).verifyReviewRecommendations();
