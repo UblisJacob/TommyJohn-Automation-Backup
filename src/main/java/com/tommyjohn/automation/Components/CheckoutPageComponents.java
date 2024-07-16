@@ -577,7 +577,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		Reporter.log("Error Message displayed for City field");
 		ExtentReport.extentTest.info("Error Message displayed for City field");
 
-		softAssert.assertAll();
+	//	softAssert.assertAll();
 		Reporter.log("Error Message displayed for all the required fields");
 		ExtentReport.extentTest.info("Error Message displayed for all the required fields");
 

@@ -493,6 +493,11 @@ public class CollectionPage extends CollectionPageComponent{
 		// TODO Auto-generated method stub
 		validateSortBy();
 	}
+
+	public void ValidateProductsOnFiltering() throws InterruptedException {
+
+		new CollectionPageComponent(driver).ValidateProductsOnFiltering();
+	}
 }
 
 

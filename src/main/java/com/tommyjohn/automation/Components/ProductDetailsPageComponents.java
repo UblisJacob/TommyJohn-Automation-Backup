@@ -2596,6 +2596,26 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		}
 
 	}
+
+	public void verifyStickySelectASize() throws Exception {
+		new HomePageComponents(driver).navigateToCoolCottonInMensCollection();
+		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		Thread.sleep(5000);
+		jse = (JavascriptExecutor) driver;
+		jse.executeScript("window.scrollBy(0,800)");
+		WebElement Stickynav = driver.findElement(By.cssSelector(".product-bar"));
+		SoftAssert softassert = new SoftAssert();
+		softassert.assertTrue(Stickynav.isDisplayed(), "Sticky nav is not displayed on PDP");
+		WebElement SelectASize = driver.findElement(By.xpath("(//button[@title='Select a Size if not selected and Add to Cart'])[1]"));
+		jse.executeScript("arguments[0].click();", SelectASize);
+		WebElement ProductTitle = driver.findElement(By.xpath("(//h1[@class='product-info__title'])[2]"));
+		softassert.assertTrue(ProductTitle.isDisplayed(), "Sticky Select a Size is not Clickable on PDP");
+		Reporter.log("Scrolling CTA Select a Size is displayed :: Clickable");
+		ExtentReport.extentTest.info("Scrolling CTA Select a Size is displayed :: Clickable");
+
+
+	}
+
 		public void verifyStickyATC() throws Exception {
 			new HomePageComponents(driver).navigateToCoolCottonInMensCollection();
 			new CollectionPageComponent(driver).navigateToProductDetailsPage();
