@@ -112,6 +112,13 @@ public class ValidateInlineCartPage extends ExtentReport {
 		new FlyCartPage(driver).ValidateRemovingItemsFromInlineCart();
 	}
 
+	@Test
+	public void ValidatePageGreyedOutOnAddingProducts() throws Exception
+	{
+
+		new FlyCartPage(driver).ValidatePageGreyedOutOnAddingProducts();
+	}
+
 
 	
 	@AfterMethod(alwaysRun = true)
