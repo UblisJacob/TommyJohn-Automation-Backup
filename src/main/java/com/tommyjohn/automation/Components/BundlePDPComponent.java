@@ -205,8 +205,8 @@ public class BundlePDPComponent extends BundlePDPLocators{
 		public void verifySelectedColorSwatch() throws Exception {
 			String colornew;
 			SoftAssert softAssert = new SoftAssert();
-			new ProductDetailsPage(driver).navigateToAllMensPacksInPacksCategory();
-			//new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
+		//	new ProductDetailsPage(driver).navigateToAllMensPacksInPacksCategory();
+			new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
 			
 			//navigate to PDP
 			WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
