@@ -89,4 +89,9 @@ public class FlyCartPage extends FlyCartComponents {
 		new FlyCartComponents(driver).ValidateRemovingItemsFromInlineCart();
 
 	}
+
+	public void ValidatePageGreyedOutOnAddingProducts() throws Exception {
+		new FlyCartComponents(driver).ValidatePageGreyedOutOnAddingProducts();
+
+	}
 }

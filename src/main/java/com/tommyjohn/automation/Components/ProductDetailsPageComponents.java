@@ -2885,11 +2885,11 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 			js.executeScript("window.scrollBy(0,250)");
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-			wait.until(ExpectedConditions.visibilityOfElementLocated(THIRD_PRODUCT_HEAD_LINE_TEXT));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
 			// get text and click on the first product
 			//text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
-			text= driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT).getText();
-			WebElement el = driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT);
+			text= driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT).getText();
+			WebElement el = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT);
 			JavascriptExecutor executor = (JavascriptExecutor) driver;
 			executor.executeScript("arguments[0].click();", el);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_TITLE));
@@ -2957,7 +2957,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(QUESTION_TAB));
 			jse = (JavascriptExecutor) driver;
 			jse.executeScript("arguments[0].click();", qsntab);
-			Thread.sleep(3000);
+			Thread.sleep(5000);
 			element = driver.findElement(QUESTION_FIRST);
 			softAssert.assertTrue(element.isDisplayed(), "Questions are not displayed");
 			Reporter.log("Questions are :: Displayed");	
