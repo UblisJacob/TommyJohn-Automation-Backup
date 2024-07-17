@@ -281,6 +281,21 @@ public class FlyCartComponents extends FlyCartPageLocator{
 
         }
 
+		public void ValidatePageGreyedOutOnAddingProducts() throws Exception {
+			softAssert = new SoftAssert();
+			jse = (JavascriptExecutor) driver;
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(50));
+			new AddToCartComponents(driver).addToCart();
+			jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			String opacity = driver.findElement(HomePageLocators.OVERLAY).getCssValue("opacity");
+			System.out.println(opacity);
+			softAssert.assertEquals(opacity,"0.95","Page is not greyed out on adding products");
+			Reporter.log("Page is greyed out on adding products");
+			ExtentReport.extentTest.info("Page is greyed out on adding products");
+
+		}
+
 
 	public void verifyAllTextsAndFieldsOnEmptyFlyCart() throws Exception {
 		SoftAssert softAssert = new SoftAssert();

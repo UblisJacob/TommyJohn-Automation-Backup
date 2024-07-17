@@ -157,7 +157,6 @@ public class ADAListenerClass extends ExtentReport implements ITestListener, IEx
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
     }
 
     @Override
