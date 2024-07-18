@@ -11,9 +11,9 @@
     <test name="CategoryTests">
         <parameter name="browser" value="chrome" />
         <classes>
-            <class name="TestModules.ValidateCategoryPages">
+            <class name="TestModules.ValidateAccountPage">
                 <methods>
-                    <include name="ValidateLoadCategoryPage"/>
+                    <include name="Validate_AccountPage"/>
                 </methods>
             </class>
         </classes>
