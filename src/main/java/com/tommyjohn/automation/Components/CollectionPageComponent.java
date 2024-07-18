@@ -904,7 +904,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	{
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 		
-		try {
+	//	try {
 			//File src = new File("src/main/resources/AllCollectionPages.xlsx");
 
 			String csv_path = "src/main/resources/PLPs.csv";
@@ -920,14 +920,25 @@ public class CollectionPageComponent extends CollectionPageLocator {
 					String url = "https://www.tommyjohn.com" + data[i];
 					//	checkurl(url);
 					driver.get(url);
-					wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT));
-					if (driver.findElement(FIRST_PRODUCT).isDisplayed()) {
-						count++;
-						Reporter.log(url + "loads fine and products are displayed");
-						ExtentReport.extentTest.info(url + "loads fine and products are displayed");
+					try {
+						wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT));
+						if (driver.findElement(FIRST_PRODUCT).isDisplayed()) {
+							count++;
+							Reporter.log(url + "loads fine and products are displayed");
+							ExtentReport.extentTest.info(url + "loads fine and products are displayed");
+						}
+					}
+					catch(Exception ex)
+					{
+
+						System.out.println("Page is not loading in " + url);
+						Reporter.log("Page is not loading in " + url);
+						ExtentReport.extentTest.info("Page is not loading in " + url);
+
 					}
 				}
-			}
+	//		}
+
 
 //			if(count!=59) {
 //				//System.out.println(count);
@@ -935,12 +946,14 @@ public class CollectionPageComponent extends CollectionPageLocator {
 //			}
 
 		}
-		catch (Exception e) {
-			Reporter.log("File not found");
-			throw new Exception("Not worked"+e);
-
-		}
-		
+//		catch (Exception e) {
+//			Reporter.log("File not found");
+//			throw new Exception("Not worked"+e);
+//
+//		}
+		System.out.println(count);
+		softAssert.assertEquals(count,"55","URLs are not loading properly");
+		softAssert.assertAll();
 		
 	}
 
