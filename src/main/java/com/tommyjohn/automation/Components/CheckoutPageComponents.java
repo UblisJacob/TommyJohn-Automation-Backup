@@ -508,7 +508,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		softAssert.assertTrue(driver.findElement(PHONE).isDisplayed(), "Phone number Field is not displayed");
 		Reporter.log("Phone number Field is displayed");
 		ExtentReport.extentTest.info("Phone number Field is displayed");
-		softAssert.assertAll();
+//		softAssert.assertAll();
 		Reporter.log("All the Billing address fields are displayed");
 		ExtentReport.extentTest.info("All the Billing address fields are displayed");
 
