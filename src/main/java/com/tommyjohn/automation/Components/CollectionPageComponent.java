@@ -42,6 +42,20 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	String Selected_size1;
 	String Selected_size2;
 	int count=0;
+	int PLPs = 55;
+
+
+
+	public void VerifyInLineBannerInCollectionPage()
+	{
+
+
+
+
+
+
+	}
+
 
 
 	public void ValidateProductsOnFiltering() throws InterruptedException {
@@ -952,7 +966,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 //
 //		}
 		System.out.println(count);
-		softAssert.assertEquals(count,"55","URLs are not loading properly");
+		softAssert.assertEquals(count,PLPs,"URLs are not loading properly");
 		softAssert.assertAll();
 		
 	}
@@ -1524,6 +1538,40 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 
 	}
+
+	public void ValidateOnClickingTheInLineBanner() throws InterruptedException {
+
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,500)");
+		objGeneralMethods.waitTillPageLoad(driver);
+		Thread.sleep(10000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_INLINE_BANNER));
+		WebElement inlineBanner = driver.findElement(PLP_INLINE_BANNER);
+//		System.out.println(driver.getCurrentUrl());
+		String[] InLineBannerText;
+		InLineBannerText = (driver.findElement(INLINEBANNERTEXT).getText().split("Underwear "));
+		String InLineBanner = InLineBannerText[1];
+		System.out.println(InLineBanner);
+//		String InLineBannerText = driver.findElement(By.xpath("//div[@class='plpIlb_maintext']")).getText();
+		Assert.assertTrue(inlineBanner.isEnabled(), "Inline banner is clickable");
+		ExtentReport.extentTest.info("Inline banner is clickable");
+		js.executeScript("arguments[0].scrollIntoView(true);", inlineBanner);
+		//Actions action = new Actions(driver);
+		//action.moveToElement(inlineBanner).click().perform();
+		js.executeScript("arguments[0].click();", inlineBanner);
+		String[] PageHeader;
+		PageHeader = (driver.findElement(PAGEHEADER).getText().split("Underwear "));
+		String PageName = PageHeader[1];
+		System.out.println(PageName);
+		softAssert.assertEquals(InLineBanner,PageName,"User is not directed to Appropriate Page On Clicking the Inline Banner from PLP");
+		Reporter.log("User is directed to Appropriate Page On Clicking the Inline Banner from PLP");
+		ExtentReport.extentTest.info("User is directed to Appropriate Page On Clicking the Inline Banner from PLP");
+
+	}
+
 
 	public void validateOnImageAndSecondaryBadges() throws Exception {
 

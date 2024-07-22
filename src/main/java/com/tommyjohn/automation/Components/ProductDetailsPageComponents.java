@@ -2876,6 +2876,38 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		ExtentReport.extentTest.info("no msg");	
 			
 		}
+		public void ValidateClickingOnRatingsTierMeter() throws Exception {
+			SoftAssert softAssert =  new SoftAssert();
+			new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
+			//		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+			String text = null;
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("window.scrollBy(0,250)");
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
+			// get text and click on the first product
+			//text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
+			text= driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT).getText();
+			WebElement el = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT);
+			JavascriptExecutor executor = (JavascriptExecutor) driver;
+			executor.executeScript("arguments[0].click();", el);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_TITLE));
+			Reporter.log(driver.getCurrentUrl());
+			ExtentReport.extentTest.info(driver.getCurrentUrl());
+			Thread.sleep(6000);
+			WebElement ratingstars = driver.findElement(RATING_STARS);
+			jse = (JavascriptExecutor) driver;
+			jse.executeScript("arguments[0].click();", ratingstars);
+			//ratingstars.click();
+			Thread.sleep(4000);
+
+
+
+
+
+
+
+		}
 		
 		public void verifyReviewRecommendationsSection() throws Exception {
 			SoftAssert softAssert =  new SoftAssert();

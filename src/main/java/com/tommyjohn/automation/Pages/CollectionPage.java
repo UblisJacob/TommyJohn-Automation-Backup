@@ -393,6 +393,11 @@ public class CollectionPage extends CollectionPageComponent{
 		new HomePageComponents(driver).navigateToBraInWomenCategory();
 		validatePLPInlineBanner();
 	}
+
+	public void ValidateOnClickingTheInLineBanner() throws InterruptedException {// TODO Auto-generated method stub
+		new HomePageComponents(driver).navigateToMensAll();
+		new CollectionPageComponent(driver).ValidateOnClickingTheInLineBanner();
+	}
 	
 	public void validateFilters() throws Exception {
 		// TODO Auto-generated method stub
