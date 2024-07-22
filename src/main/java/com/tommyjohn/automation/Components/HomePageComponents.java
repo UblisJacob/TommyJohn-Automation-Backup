@@ -2130,6 +2130,11 @@ public class HomePageComponents extends HomePageLocators {
 		
 	}
 
+	public void navigateToMensAll()
+	{
+		driver.get("https://www.tommyjohn.com/collections/mens-all?sort-by=relevance&sort-order=descending");
+	}
+
 	//navigate to Button down shirts
 	public void navigateToButtonDownShirtInMenCategory() throws Exception {
 
