@@ -99,6 +99,11 @@ public class ValidateCategoryPages {
 	public void ValidateProductsOnFiltering() throws Exception {
 		new CollectionPage(driver).ValidateProductsOnFiltering();
 	}
+
+	@Test
+	public void ValidateOnClickingTheInLineBanner() throws Exception {
+		new CollectionPage(driver).ValidateOnClickingTheInLineBanner();
+	}
 	
 	
 	
