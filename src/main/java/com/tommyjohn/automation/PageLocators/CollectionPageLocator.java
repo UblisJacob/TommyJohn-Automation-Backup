@@ -90,8 +90,9 @@ public class CollectionPageLocator {
 	    public static By PLP_TITLE_COUNT= By.xpath("//span[@class='collection-title-bar__title']");
 	    public static By PLP_INLINE_BANNER= By.cssSelector("img[data-tj-qa='plp-inline-banner']");
 	    public static String PLP_SECTION_HEADER = "(//h2[@class='mega-collection-grid__title'])";
-	    
-	    public static By PRODUCT_IMAGE = By.cssSelector("[data-tj-qa='plp-product-img-main'],img.product-image:nth-child(1)");
+		public static By INLINEBANNERTEXT = By.xpath("//div[@class='plpIlb_maintext']");
+		public static By PAGEHEADER = By.xpath("//h1[@class='collection-title-bar__title']");
+		public static By PRODUCT_IMAGE = By.cssSelector("[data-tj-qa='plp-product-img-main'],img.product-image:nth-child(1)");
 	    public static By PLP_FILTER_SINGLE_PROODUCT = By.cssSelector("div.mega-collection-filters>div:nth-child(7)>ul>li>label>span[data-result-count='1']");
 	    
 	    public static By PLP_SEO_TITLE = By.xpath("//*[data-tj-qa='plp-seo-title'] | //h2[@class='collection-seo-title']");
