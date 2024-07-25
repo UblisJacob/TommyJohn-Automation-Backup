@@ -11,9 +11,9 @@
     <test name="CategoryTests">
         <parameter name="browser" value="chrome" />
         <classes>
-            <class name="TestModules.ValidateCategoryPages">
+            <class name="TestModules.ValidateBundlePDP">
                 <methods>
-                    <include name="ValidateOnClickingTheInLineBanner"/>
+                    <include name="VerifyOnImageBadging"/>
                 </methods>
             </class>
         </classes>
