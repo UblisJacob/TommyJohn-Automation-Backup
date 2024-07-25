@@ -153,6 +153,8 @@ public class AccountPageComponents extends AccountPageLocators {
 		softassert.assertTrue(driver.findElement(ADDRESS_BOOK_TITLE).isDisplayed(),
 				"Address Book title is not displayed on account page");
 
+
+		Thread.sleep(2000);
 		 wait.until(ExpectedConditions.elementToBeClickable(MANAGE_ADDRESSES));
 		 jse.executeScript("arguments[0].click();" , driver.findElement(MANAGE_ADDRESSES));
 		//driver.findElement(MANAGE_ADDRESSES).click();
