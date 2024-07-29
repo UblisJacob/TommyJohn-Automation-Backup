@@ -27,6 +27,8 @@ import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
 import com.tommyjohn.automation.Pages.ProductDetailsPage;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
+import static com.tommyjohn.automation.PageLocators.CollectionPageLocator.FIRST_PRODUCT_IMAGE;
+
 public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 	public WebDriver driver;
 	public WebElement element;
@@ -2674,7 +2676,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		}
 		
 		public void verifyReviewRecommendations() throws Exception {
-			new HomePageComponents(driver).navigateToNewArrivalsInWomenCategory();
+			new HomePageComponents(driver).navigateToAllPantiesnInWomenCategory();
 			new CollectionPageComponent(driver).navigateToProductDetailsPage();
 			//new AddToCartComponents(driver).selectSize();
 				
@@ -2731,9 +2733,15 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 	public void verifyProductNamePrice() throws Exception {
 			
 			new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
-			String prodcttitle= driver.findElement(CollectionPageComponent.FIRST_PRODUCT_IMAGE).getAttribute("alt");
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		    wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_IMAGE));
+			String prodcttitle= driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
 			System.out.println(prodcttitle);
-			new CollectionPageComponent(driver).navigateToProductDetailsPage();
+	//		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+			WebElement el = driver.findElement(By.xpath("(//span[@class='product-meta__title'])[1]"));
+			JavascriptExecutor executor = (JavascriptExecutor) driver;
+			executor.executeScript("arguments[0].click();", el);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_TITLE));
 			//new AddToCartComponents(driver).selectSize();
 			productname = driver.findElement(PRODUCT_TITLE).getText();
 			productprice = driver.findElement(PRODUCT_PRICE).getText();
@@ -2917,11 +2925,11 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 			js.executeScript("window.scrollBy(0,250)");
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-			wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(THIRD_PRODUCT_HEAD_LINE_TEXT));
 			// get text and click on the first product
 			//text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
-			text= driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT).getText();
-			WebElement el = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT);
+			text= driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT).getText();
+			WebElement el = driver.findElement(THIRD_PRODUCT_HEAD_LINE_TEXT);
 			JavascriptExecutor executor = (JavascriptExecutor) driver;
 			executor.executeScript("arguments[0].click();", el);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_TITLE));

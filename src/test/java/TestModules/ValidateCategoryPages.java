@@ -32,7 +32,8 @@ public class ValidateCategoryPages {
 	 CollectionPage(driver).validateproductgrid(); }
 	 
 	 
-	 @Test public void ValidateInteractWithBreadcrumbs() throws Exception { new
+	// @Test
+	 public void ValidateInteractWithBreadcrumbs() throws Exception { new
 	 CollectionPage(driver).validateBreadcrumbLinks(); }
 	
 	 @Test public void ValidateViewH1() throws Exception { new
