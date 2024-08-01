@@ -57,7 +57,7 @@ public class CheckoutPageLocators {
 
 
 	//SideBar
-	public static By ORDER_SUMMARY_SECTION = By.xpath("//div[@class='blA7b']");
+	public static By ORDER_SUMMARY_SECTION = By.xpath("//div[@class='_4QenE']");
 	//public static By DISCOUNT_CODE_TEXTBOX = By.cssSelector("#checkout_reduction_code");
 	public static By DISCOUNT_CODE_TEXTBOX = By.xpath("//input[@id='ReductionsInput0']");
 	//public static By APPLY_DISCOUNT_BUTTON = By.cssSelector(".field__input-btn");
@@ -71,20 +71,20 @@ public class CheckoutPageLocators {
 
 	//                                          Shipping
 
-	public static By CONTACT_EMAIL =  By.xpath("//div[@class='nkp8r']//bdo");
-	public static By SHIP_ADDRESS =  By.xpath("//div[@class='nkp8r']//address");
+	public static By CONTACT_EMAIL =  By.xpath("//div[@class='_1o9eX']//bdo");
+	public static By SHIP_ADDRESS =  By.xpath("//div[@class='_1o9eX']//address");
 	public static By CHANGE_LINK_CONTACT = By.xpath("(//span[contains(text(),'Change')])[1]");
 	public static By CHANGE_LINK_SHIP_TO = By.xpath("(//span[contains(text(),'Change')])[2]");
 	public static By CHANGE_LINK_METHOD = By.xpath("(//span[contains(text(),'Change')])[3]");
 	public static By SHIPPING_TEXT = By.cssSelector("h2#checkout-main-header");
 	public static By SHIPPING_RADIO_BUTTON = By.xpath("//input[@type='radio']");
 	public static By RETURN_LINK = By.xpath("//span[contains(text(),'Return to information')]");
-	public static By CONTINUE_TO_PAYMENT_BUTTON = By.xpath("//div[@class='qjCTh']//button");
+	public static By CONTINUE_TO_PAYMENT_BUTTON = By.xpath("//div[@class='MV9Am']//button");
 
 
 	//                                           payment
 
-	public static By METHOD =  By.xpath("//div[@class='nkp8r']//p");
+	public static By METHOD =  By.xpath("(//div[@class='_1fragemoq']//p)[1]");
 	public static By PAYMENT_TEXT = By.cssSelector("#main-header");
 	public static By CREDITCARD_OPTION = By.xpath("//span[contains(text(),'Credit card')]");
 	public static By PAYPAL_OPTION = By.xpath("//span[contains(text(),'PayPal')]");
@@ -103,7 +103,7 @@ public class CheckoutPageLocators {
 	public static By SAVE_MY_INFORMATION = By.xpath("//input[@id='RememberMe-RememberMeCheckbox']");
 
 	public static By BILLING_TEXT = By.xpath("//h2[contains(text(),'Billing address')]");
-	public static By COMPLETE_ORDER_BUTTON = By.xpath("//div[@class='qjCTh']//button");
+	public static By COMPLETE_ORDER_BUTTON = By.xpath("//div[@class='MV9Am']//button");
 	public static By HOWHEARD_TITLE = By.cssSelector("[data-tj-qa='how-heard-title'],.section__title.how_new_title");
 	public static By HOWHEARD_SUBTITLE = By.cssSelector("[data-tj-qa='how-heard-subtitle'],.section__title.how_new_subtitle");
 	public static By HOWHEARD_DROPDOWN = By.cssSelector("[data-tj-qa='how-heard-dropdown'],.make_selection_select");
