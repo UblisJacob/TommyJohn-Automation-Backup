@@ -67,10 +67,11 @@ public class HomePageComponents extends HomePageLocators {
 
 	}
 
-	public void ValidateAddingProductToCartFromInstagramWidget() throws InterruptedException {
+	public void ValidateAddingProductToCartFromInstagramWidget() throws Exception {
 
 		action = new Actions(driver);
 		JavascriptExecutor js = (JavascriptExecutor)driver;
+		new HomePageComponents(driver).navigatetoPDP();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
 		SoftAssert softAssert = new SoftAssert();
@@ -93,9 +94,10 @@ public class HomePageComponents extends HomePageLocators {
 		ExtentReport.extentTest.info("Product is added to Cart from Instagram Widget");
 	}
 
-	public void ValidateAppropriateProductIsAddedToCartFromInstagramWidget() throws InterruptedException {
+	public void ValidateAppropriateProductIsAddedToCartFromInstagramWidget() throws Exception {
 		action = new Actions(driver);
 		JavascriptExecutor js = (JavascriptExecutor)driver;
+		new HomePageComponents(driver).navigatetoPDP();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
 		SoftAssert softAssert = new SoftAssert();
@@ -121,9 +123,10 @@ public class HomePageComponents extends HomePageLocators {
 
 	}
 
-	public void ValidateSizeOverlayInInstagramWidget() throws InterruptedException {
+	public void ValidateSizeOverlayInInstagramWidget() throws Exception {
 		action = new Actions(driver);
 		JavascriptExecutor js = (JavascriptExecutor)driver;
+		new HomePageComponents(driver).navigatetoPDP();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
 		SoftAssert softAssert = new SoftAssert();
@@ -143,9 +146,10 @@ public class HomePageComponents extends HomePageLocators {
 
 	}
 
-	public void verifySelectedColorSwatchIsDisplayedInTheInlineCart() throws InterruptedException {
+	public void verifySelectedColorSwatchIsDisplayedInTheInlineCart() throws Exception {
 		action = new Actions(driver);
 		JavascriptExecutor js = (JavascriptExecutor)driver;
+		new HomePageComponents(driver).navigatetoPDP();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
 		SoftAssert softAssert = new SoftAssert();
@@ -2240,6 +2244,11 @@ public class HomePageComponents extends HomePageLocators {
 	// navigate to All Womens Packs in Packs category
 	public void navigateToAllWomensPacksInPacksCategory() throws Exception {
 		driver.get("https://tommyjohn.com/collections/womens-packs");
+		Thread.sleep(5000);
+	}
+
+	public void navigatetoPDP() throws Exception {
+		driver.get("https://www.tommyjohn.com/products/womens-downtime-pajama-top-short-set-3?variant=42816122486829\n");
 		Thread.sleep(5000);
 	}
 

@@ -1,5 +1,6 @@
 package TestModules;
 
+import com.tommyjohn.automation.Pages.HomePage;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -26,6 +27,39 @@ public class ValidatePDP extends ExtentReport{
 		}
 	
 	}
+
+		@Test
+	public void ValidateAddingProductToCartFromInstagramWidget() throws
+			Exception {
+
+		new ProductDetailsPage(driver).ValidateAddingProductToCartFromInstagramWidget();
+	}
+
+		@Test
+	public void ValidateAppropriateProductIsAddedToCartFromInstagramWidget() throws
+			Exception {
+
+		new ProductDetailsPage(driver).ValidateAppropriateProductIsAddedToCartFromInstagramWidget();
+	}
+
+		@Test
+	public void ValidateSizeOverlayInInstagramWidget() throws
+			Exception {
+
+		new ProductDetailsPage(driver).ValidateSizeOverlayInInstagramWidget();
+	}
+
+		@Test
+	public void verifySelectedColorSwatchIsDisplayedInTheInlineCart() throws
+			Exception {
+
+		new ProductDetailsPage(driver).verifySelectedColorSwatchIsDisplayedInTheInlineCart();
+	}
+
+
+
+
+
 	@Test
 	public void ViewImageGallery() throws Exception {
 		new ProductDetailsPage(driver).viewImageGallery();
