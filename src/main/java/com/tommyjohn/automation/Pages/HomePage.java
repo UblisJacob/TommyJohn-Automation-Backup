@@ -103,20 +103,20 @@ public class HomePage extends HomePageComponents {
 		new HomePageComponents(driver).navigateToMensLoungewearCategory();
 	}
 
-	public void ValidateAddingProductToCartFromInstagramWidget() throws InterruptedException {
+	public void ValidateAddingProductToCartFromInstagramWidget() throws Exception {
 		new HomePageComponents(driver).ValidateAddingProductToCartFromInstagramWidget();
 	}
 
-	public void ValidateAppropriateProductIsAddedToCartFromInstagramWidget() throws InterruptedException {
+	public void ValidateAppropriateProductIsAddedToCartFromInstagramWidget() throws Exception {
 		new HomePageComponents(driver).ValidateAppropriateProductIsAddedToCartFromInstagramWidget();
 	}
 
-	public void ValidateSizeOverlayInInstagramWidget() throws InterruptedException {
+	public void ValidateSizeOverlayInInstagramWidget() throws Exception {
 		new HomePageComponents(driver).ValidateSizeOverlayInInstagramWidget();
 	}
 
 
-	public void verifySelectedColorSwatchIsDisplayedInTheInlineCart() throws InterruptedException {
+	public void verifySelectedColorSwatchIsDisplayedInTheInlineCart() throws Exception {
 		new HomePageComponents(driver).verifySelectedColorSwatchIsDisplayedInTheInlineCart();
 	}
 

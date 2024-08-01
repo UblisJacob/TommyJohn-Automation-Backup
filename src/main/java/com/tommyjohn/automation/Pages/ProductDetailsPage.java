@@ -243,5 +243,25 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 	public void verifyBundlePDPs() throws Exception  {
 		new ProductDetailsPageComponents(driver).verifyBundlePDPs();
 	}
+
+	public void ValidateAddingProductToCartFromInstagramWidget() throws Exception {
+		new ProductDetailsPageComponents(driver).ValidateAddingProductToCartFromInstagramWidget();
+	}
+
+	public void ValidateAppropriateProductIsAddedToCartFromInstagramWidget() throws Exception {
+		new ProductDetailsPageComponents(driver).ValidateAppropriateProductIsAddedToCartFromInstagramWidget();
+	}
+
+	public void ValidateSizeOverlayInInstagramWidget() throws Exception {
+		new ProductDetailsPageComponents(driver).ValidateSizeOverlayInInstagramWidget();
+	}
+
+
+	public void verifySelectedColorSwatchIsDisplayedInTheInlineCart() throws Exception {
+		new ProductDetailsPageComponents(driver).verifySelectedColorSwatchIsDisplayedInTheInlineCart();
+	}
+
+
+
 	
 	}
