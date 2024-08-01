@@ -6,8 +6,8 @@ import org.openqa.selenium.By;
 public class HomePageLocators{
 
 	//InstagramWidget
-	public static By INSTA_SHOP_ICON = By.xpath("(//div[@class='dyUgc-firstlevel__slidetile-shopIcon'])[1]");
-	public static By INSTA_ATC = By.xpath("(//div[@class='dy-widget-tile-item-17806993 dy-rec--product-tile']//div[@data-tj-qa='product-image']//button)[1]");
+	public static By INSTA_SHOP_ICON = By.xpath("(//div[@class='dyUgc-firstlevel__slidetile-shopIcon'])[2]");
+	public static By INSTA_ATC = By.xpath("(//div[@data-tj-qa='product-image']//button)[1]");
 	public static By INSTA_FIRST_SIZE = By.xpath("//li[@data-tj-qa='plp-quickshop-instock']//label[contains(text(),'S')]");
 	public static By INSTA_FIRST_PRODUCT_NAME = By.xpath("(//span[@class='product-meta__title'])[1]");
 	public static By INSTA_COLOR_SWATCH = By.xpath("(//div[@class='product-item__swatch product-item__swatch--circle js-inline-quickshop-color active'])[2]");

@@ -154,7 +154,7 @@ public class ListenerClass extends ExtentReport implements ITestListener, IExecu
 			throw new RuntimeException(e);
 		}
 		try {
-//		sendSlackNotificationReg(String.valueOf(Fpassed),String.valueOf(Ffailed),String.valueOf(Fskipped),reportLink);
+	//		sendSlackNotificationReg(String.valueOf(Fpassed),String.valueOf(Ffailed),String.valueOf(Fskipped),reportLink);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
