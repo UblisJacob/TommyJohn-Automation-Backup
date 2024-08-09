@@ -35,7 +35,7 @@ public class ValidateReorderPage {
 	}
 
 	@Test
-	public void ValidateUserIsRedirectedToCorrectPDPFromReOrderPage() throws Exception {
+		public void ValidateUserIsRedirectedToCorrectPDPFromReOrderPage() throws Exception {
 		new ReOrderPage(driver).reOrderToPDP();
 	}
 
