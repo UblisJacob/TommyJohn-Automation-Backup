@@ -76,7 +76,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		wait.until(ExpectedConditions.visibilityOf(driver.findElement(INSTA_SHOP_ICON)));
 		js.executeScript("arguments[0].click();", driver.findElement(INSTA_SHOP_ICON));
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
 		js.executeScript("arguments[0].click();", driver.findElement(INSTA_ATC));
 		wait.until(ExpectedConditions.visibilityOf(driver.findElement(INSTA_FIRST_SIZE)));
 		js.executeScript("arguments[0].click();", driver.findElement(INSTA_FIRST_SIZE));
@@ -155,7 +155,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		wait.until(ExpectedConditions.visibilityOf(driver.findElement(INSTA_SHOP_ICON)));
 		js.executeScript("arguments[0].click();", driver.findElement(INSTA_SHOP_ICON));
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		String ColorSwatch = driver.findElement(INSTA_COLOR_SWATCH).getAttribute("title");
 		System.out.println(ColorSwatch);
 
