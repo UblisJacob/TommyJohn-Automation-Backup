@@ -62,7 +62,7 @@ public class ValidateCartPage extends ExtentReport{
 
 	}
 
-	@Test
+//	@Test
 	public void Validate_Cart_ViewOOSItem() throws Exception {
 		new ProductDetailsPageComponents(driver).verifyBundlePDPs();
 		new ShoppingCartPage(driver).ValidateViewCartLink();

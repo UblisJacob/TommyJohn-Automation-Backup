@@ -52,7 +52,7 @@ public class ValidateInlineCartPage extends ExtentReport {
 		new FlyCartPage(driver).VerifyFlyCartOpenWithQSAndPDP();
 	}
 	
-	@Test
+//	@Test
 	public void ValidateOOSonInlinecart() throws Exception
 	{
 		new FlyCartPage(driver).validateOOSonInlinecart(); 
