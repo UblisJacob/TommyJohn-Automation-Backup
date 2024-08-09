@@ -168,7 +168,7 @@ public class StoreLocatorComponent extends StoreLocatorPageLocators
 		System.out.println("Get Direction text is: "+driver.findElement(GET_DIRECTION_BUTTON).getText());
 		softassert.assertEquals(driver.findElement(GET_DIRECTION_BUTTON).getText(),properties.getProperty("GetDirectionsButton"),"Text changed for 'Get Directions' button on store Locator page." );
 		driver.findElement(GET_DIRECTION_BUTTON).click();
-		Thread.sleep(5000);
+		Thread.sleep(10000);
 		//check google map
 		Set<String> handles = null;
 		List<String> list = null;

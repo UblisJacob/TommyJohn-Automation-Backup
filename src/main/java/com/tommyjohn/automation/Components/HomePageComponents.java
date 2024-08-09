@@ -2134,9 +2134,9 @@ public class HomePageComponents extends HomePageLocators {
 		
 	}
 
-	public void navigateToMensAll()
+	public void navigateToWomensUnderwear()
 	{
-		driver.get("https://www.tommyjohn.com/collections/mens-all?sort-by=relevance&sort-order=descending");
+		driver.get("https://www.tommyjohn.com/collections/womens-underwear");
 	}
 
 	//navigate to Button down shirts

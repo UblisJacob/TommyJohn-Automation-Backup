@@ -180,9 +180,10 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		Thread.sleep(7000);
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_QUANTITY));
-		driver.findElement(PRODUCT_QUANTITY).sendKeys("10000" + Keys.ENTER);
-		driver.findElement(PRODUCT_QUANT_ADD).click();
-		
+		driver.findElement(PRODUCT_QUANTITY).clear();
+		driver.findElement(PRODUCT_QUANTITY).sendKeys("600" + Keys.ENTER);
+	//	driver.findElement(PRODUCT_QUANT_ADD).click();
+
 		Thread.sleep(5000);
 		
 		if(driver.findElement(OOS_MESSAGE).isDisplayed()) {

@@ -28,37 +28,33 @@ public class ValidatePDP extends ExtentReport{
 	
 	}
 
-		@Test
+	@Test
 	public void ValidateAddingProductToCartFromInstagramWidget() throws
 			Exception {
 
 		new ProductDetailsPage(driver).ValidateAddingProductToCartFromInstagramWidget();
 	}
 
-		@Test
+	@Test
 	public void ValidateAppropriateProductIsAddedToCartFromInstagramWidget() throws
 			Exception {
 
 		new ProductDetailsPage(driver).ValidateAppropriateProductIsAddedToCartFromInstagramWidget();
 	}
 
-		@Test
+	@Test
 	public void ValidateSizeOverlayInInstagramWidget() throws
 			Exception {
 
 		new ProductDetailsPage(driver).ValidateSizeOverlayInInstagramWidget();
 	}
 
-		@Test
+	@Test
 	public void verifySelectedColorSwatchIsDisplayedInTheInlineCart() throws
 			Exception {
 
 		new ProductDetailsPage(driver).verifySelectedColorSwatchIsDisplayedInTheInlineCart();
 	}
-
-
-
-
 
 	@Test
 	public void ViewImageGallery() throws Exception {
