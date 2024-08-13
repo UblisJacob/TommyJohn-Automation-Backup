@@ -84,7 +84,7 @@ public class CheckoutPageLocators {
 
 	//                                           payment
 
-	public static By METHOD =  By.xpath("(//div[@class='_1fragemoq']//p)[1]");
+	public static By METHOD =  By.xpath("(//div[@class='_5wswo']//p)[1]");
 	public static By PAYMENT_TEXT = By.cssSelector("#main-header");
 	public static By CREDITCARD_OPTION = By.xpath("//span[contains(text(),'Credit card')]");
 	public static By PAYPAL_OPTION = By.xpath("//span[contains(text(),'PayPal')]");
