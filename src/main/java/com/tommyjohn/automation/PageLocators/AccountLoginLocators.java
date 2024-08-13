@@ -19,6 +19,15 @@ public class AccountLoginLocators {
 	public static By LOGIN_BUTTON = By.cssSelector("button[data-tj-qa='account-signup-login']");
 	public static By ERROR_MSG_USERNAME = By.cssSelector(".form-note.is-error, div[data-tj-qa='invalid-account-username']");
 	public static By ERROR_MSG_PASSWORD = By.cssSelector(".form-note.is-error, div[data-tj-qa='invalid-account-password']");
+	public static By GOOGLE_ICON = By.xpath("//div[@class='h_google_button h_google_circle']");
+	public static By FB_ICON = By.xpath("//div[@class='h_facebook_button h_facebook_circle']");
+	public static By APPLE_ICON = By.xpath("//div[@class='h_apple_button h_apple_circle']");
+	public static By AMAZON_ICON = By.xpath("//div[@class='h_amazon_button h_amazon_circle']");
+	public static By TIKTOK_ICON = By.xpath("//div[@class='h_tiktok_button h_tiktok_circle']");
+	public static By TERMSANDCONDITIONSERROR = By.xpath("//div[@class='h_consent h_disagree']");
+	public static By LOGINPAGETERMSANDCONDITIONSCHECKBOX = By.xpath("(//input[@type='checkbox'])[1]");
+	public static By REGISTERPAGETERMSANDCONDITIONSCHECKBOX = By.xpath("(//input[@type='checkbox'])[3]");
+
 	
 	
 	//on create account page

@@ -45,10 +45,93 @@ public class AccountLoginComponents extends AccountLoginLocators {
 	
 	/**
 	 * Creates a new account with the specified email and password, without validations
-	 * @param uniqueEmail
-	 * @param password
+	 * @paramuniqueEmail
+	 * @parampassword
 	 * @throws InterruptedException 
 	 */
+
+	public void ErrorForTermsAndConditionsInLoginPage() throws InterruptedException {
+		softly = new SoftAssert();
+		WebElement element = driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN);
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		executor.executeScript("arguments[0].click();", element);
+
+		Thread.sleep(4000);
+
+		WebElement TCCheckBox = driver.findElement((AccountLoginLocators.LOGINPAGETERMSANDCONDITIONSCHECKBOX));
+		executor.executeScript("arguments[0].click();", TCCheckBox);
+
+		WebElement Google = driver.findElement((AccountLoginLocators.GOOGLE_ICON));
+		executor.executeScript("arguments[0].click();", Google);
+		Thread.sleep(2000);
+		softly.assertTrue(driver.findElement(TERMSANDCONDITIONSERROR).isDisplayed(),"TermsandConditions error is not displayed for Google");
+
+		WebElement FB = driver.findElement((AccountLoginLocators.FB_ICON));
+		executor.executeScript("arguments[0].click();", FB);
+		softly.assertTrue(driver.findElement(TERMSANDCONDITIONSERROR).isDisplayed(),"TermsandConditions error is not displayed for Facebook");
+
+		WebElement Apple = driver.findElement((AccountLoginLocators.APPLE_ICON));
+		executor.executeScript("arguments[0].click();", Apple);
+		softly.assertTrue(driver.findElement(TERMSANDCONDITIONSERROR).isDisplayed(),"TermsandConditions error is not displayed for Apple");
+
+		WebElement Amazon = driver.findElement((AccountLoginLocators.AMAZON_ICON));
+		executor.executeScript("arguments[0].click();", Amazon);
+		softly.assertTrue(driver.findElement(TERMSANDCONDITIONSERROR).isDisplayed(),"TermsandConditions error is not displayed for Amazon");
+
+		WebElement TikTok = driver.findElement((AccountLoginLocators.TIKTOK_ICON));
+		executor.executeScript("arguments[0].click();", TikTok);
+		softly.assertTrue(driver.findElement(TERMSANDCONDITIONSERROR).isDisplayed(),"TermsandConditions error is not displayed for TikTok");
+
+		softly.assertAll();
+		Reporter.log("User is not able to Login via Social media links without accepting the Terms and Conditions");
+		ExtentReport.extentTest.info("User is not able to Login via Social media links without accepting the Terms and Conditions");
+
+	}
+
+	public void ErrorForTermsAndConditionsInCreateAccountPage() throws InterruptedException {
+		softly = new SoftAssert();
+
+		WebElement element = driver.findElement((HomePageLocators.ACCOUNT_NAV_DROPDOWN));
+
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+
+		executor.executeScript("arguments[0].click();", element);
+
+		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(CREATEACCOUNT_BTN, 0));
+		driver.findElement(CREATEACCOUNT_BTN).click();
+
+		Thread.sleep(4000);
+
+		WebElement TCCheckBox = driver.findElement((AccountLoginLocators.REGISTERPAGETERMSANDCONDITIONSCHECKBOX));
+		executor.executeScript("arguments[0].click();", TCCheckBox);
+
+		WebElement Google = driver.findElement((AccountLoginLocators.GOOGLE_ICON));
+		executor.executeScript("arguments[0].click();", Google);
+		Thread.sleep(2000);
+		softly.assertTrue(driver.findElement(TERMSANDCONDITIONSERROR).isDisplayed(),"TermsandConditions error is not displayed for Google");
+
+		WebElement FB = driver.findElement((AccountLoginLocators.FB_ICON));
+		executor.executeScript("arguments[0].click();", FB);
+		softly.assertTrue(driver.findElement(TERMSANDCONDITIONSERROR).isDisplayed(),"TermsandConditions error is not displayed for Facebook");
+
+		WebElement Apple = driver.findElement((AccountLoginLocators.APPLE_ICON));
+		executor.executeScript("arguments[0].click();", Apple);
+		softly.assertTrue(driver.findElement(TERMSANDCONDITIONSERROR).isDisplayed(),"TermsandConditions error is not displayed for Apple");
+
+		WebElement Amazon = driver.findElement((AccountLoginLocators.AMAZON_ICON));
+		executor.executeScript("arguments[0].click();", Amazon);
+		softly.assertTrue(driver.findElement(TERMSANDCONDITIONSERROR).isDisplayed(),"TermsandConditions error is not displayed for Amazon");
+
+		WebElement TikTok = driver.findElement((AccountLoginLocators.TIKTOK_ICON));
+		executor.executeScript("arguments[0].click();", TikTok);
+		softly.assertTrue(driver.findElement(TERMSANDCONDITIONSERROR).isDisplayed(),"TermsandConditions error is not displayed for TikTok");
+
+		softly.assertAll();
+		Reporter.log("User is not able to Register via Social media links without accepting the Terms and Conditions");
+		ExtentReport.extentTest.info("User is not able to Register via Social media links without accepting the Terms and Conditions");
+
+	}
+
 
 	public String createAccount(String email, String password) throws Exception {
 		actions = new Actions(driver);

@@ -38,6 +38,18 @@ public class ValidateCreateAccount_Login {
 	}
 
 	@Test
+	public void ValidateErrorForTermsAndConditionsInLoginPage() throws InterruptedException {
+		new AccountLoginPage(driver).ErrorForTermsAndConditionsInLoginPage();
+	}
+
+	@Test
+	public void ValidateErrorForTermsAndConditionsInCreateAccountPage() throws InterruptedException {
+		new AccountLoginPage(driver).ErrorForTermsAndConditionsInCreateAccountPage();
+	}
+
+
+
+	@Test
 	public void ValidateFieldOnCreateAccountPage() throws Exception
 	{
 		new AccountLoginPage(driver).verifyfieldsandtextsoncreateaccountpage();
