@@ -2139,6 +2139,11 @@ public class HomePageComponents extends HomePageLocators {
 		driver.get("https://www.tommyjohn.com/collections/womens-underwear");
 	}
 
+	public void navigateToMensUnderShirts()
+	{
+		driver.get("https://www.tommyjohn.com/collections/mens-undershirts?sort-by=relevance&sort-order=descending");
+	}
+
 	//navigate to Button down shirts
 	public void navigateToButtonDownShirtInMenCategory() throws Exception {
 
@@ -2272,6 +2277,10 @@ public class HomePageComponents extends HomePageLocators {
 	public void navigateToAllPantiesInWomenCategory() throws Exception {
 		driver.get("https://tommyjohn.com/collections/womens-underwear");
 		Thread.sleep(5000);
+	}
+
+	public void navigateToAWomensAirBikini() throws Exception {
+		driver.get("https://www.tommyjohn.com/collections/womens-air?sort-by=relevance&sort-order=descending");
 	}
 
 	// navigate to cotton basics in shop by collections catagory
