@@ -395,7 +395,7 @@ public class CollectionPage extends CollectionPageComponent{
 	}
 
 	public void ValidateOnClickingTheInLineBanner() throws InterruptedException {// TODO Auto-generated method stub
-		new HomePageComponents(driver).navigateToWomensUnderwear();
+		new HomePageComponents(driver).navigateToMensUnderShirts();
 		new CollectionPageComponent(driver).ValidateOnClickingTheInLineBanner();
 	}
 	

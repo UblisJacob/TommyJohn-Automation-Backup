@@ -60,7 +60,7 @@ public class FooterSectionLocators {
 	public static By PRIVACY_POLICY_LINK = By.cssSelector("a[data-tj-qa='footer-privacy-policy']");
 	public static By TERMS_AND_CONDITION_LINK = By.cssSelector("a[data-tj-qa='footer-terms-&-conditions']");
 	public static By DO_NOT_SELL_PERSONAL_INFO_LINK = By.cssSelector("a[data-tj-qa='footer-ccpa']");
-	public static By CA_SUPPLY_CHAINS_ACT_LINK = By.cssSelector("a[data-tj-qa='footer-transparency-sca']");
+	public static By CA_SUPPLY_CHAINS_ACT_LINK = By.cssSelector("a[data-tj-qa='footer-transparency-SCA']");
 	
 //	FOOTER NEWSLETTER/EMAIL SIGN UP SECTION
 	public static By NEWSLETTER_TITLE = By.cssSelector(".desktop-footer-newsletter input[data-tj-qa='footer-newsletter-email']");

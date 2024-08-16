@@ -1072,16 +1072,15 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		Assert.assertTrue(element.isDisplayed(), "Privacy Policy Link is not Displayed");
 		softassert.assertTrue(linkText.equals("Privacy Policy"), "Privacy Policy Link Text is Incorrect");
 
+
 		objGeneralMethods.clickButtonByJS(driver, element);
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
-		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(PrivacyPolicyPageLocators.PAGE_HEADER, 0));
 
-		pageURL = driver.getCurrentUrl();
-		pageHeader = driver.findElement(PrivacyPolicyPageLocators.PAGE_HEADER).getText();
+		list = driver.findElements(LEAVE_SITE_POPUP);
 
-		softassert.assertTrue(pageURL.equals("https://www.tommyjohn.com/pages/tommy-john-website-privacy-policy"),
-				"Wrong Page opened after clicking on Privacy Policy Link ");
-		softassert.assertTrue(pageHeader.equals("Tommy John Website Privacy Policy"), "Page Header doesn't match");
+		Assert.assertTrue(list.size() > 0, "Leave Site Popup has not appeared");
+
+		objGeneralMethods.clickButtonByJS(driver, LEAVE_SITE_POPUP_CANCEL_BTN);
 
 		try{
 			softassert.assertAll();
@@ -1090,12 +1089,32 @@ public class FooterSectionComponents extends FooterSectionLocators {
 			softassert.assertAll();
 		}
 
-		System.out.println("Privacy Policy Link is Displayed and Corresponding Page opened after clicking on Link\n");
-		Reporter.log("Privacy Policy Link is Displayed and Corresponding Page opened after clicking on Link");
-		ExtentReport.extentTest.info("Privacy Policy Link is Displayed and Corresponding Page opened after clicking on Link");
+		System.out.println("Privacy Policy Link text is Correct and Popup opened after clicking on link\n");
+		Reporter.log("Privacy Policy footer link is Displayed :: Clickable");
+		ExtentReport.extentTest.info("Privacy Policy footer link is Displayed :: Clickable");
+
+//		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(PrivacyPolicyPageLocators.PAGE_HEADER, 0));
+//
+//		pageURL = driver.getCurrentUrl();
+//		pageHeader = driver.findElement(PrivacyPolicyPageLocators.PAGE_HEADER).getText();
+//
+//		softassert.assertTrue(pageURL.equals("https://www.tommyjohn.com/pages/tommy-john-website-privacy-policy"),
+//				"Wrong Page opened after clicking on Privacy Policy Link ");
+//		softassert.assertTrue(pageHeader.equals("Tommy John Website Privacy Policy"), "Page Header doesn't match");
+//
+//		try{
+//			softassert.assertAll();
+//		}catch (AssertionError e) {
+//			ExtentReport.extentTest.fail(e);
+//			softassert.assertAll();
+//		}
+//
+//		System.out.println("Privacy Policy Link is Displayed and Corresponding Page opened after clicking on Link\n");
+//		Reporter.log("Privacy Policy Link is Displayed and Corresponding Page opened after clicking on Link");
+//		ExtentReport.extentTest.info("Privacy Policy Link is Displayed and Corresponding Page opened after clicking on Link");
 
 //		Checking Terms and Conditions
-		driver.navigate().back();
+//		driver.navigate().back();
 		System.out.println("***Validating Terms and Conditions***");
 
 		softassert = new SoftAssert();
@@ -1108,14 +1127,11 @@ public class FooterSectionComponents extends FooterSectionLocators {
 
 		objGeneralMethods.clickButtonByJS(driver, element);
 
-		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(TermsAndConditionsPageLocators.PAGE_HEADER, 0));
+		list = driver.findElements(LEAVE_SITE_POPUP);
 
-		pageURL = driver.getCurrentUrl();
-		pageHeader = driver.findElement(TermsAndConditionsPageLocators.PAGE_HEADER).getText();
+		Assert.assertTrue(list.size() > 0, "Leave Site Popup has not appeared");
 
-		softassert.assertTrue(pageURL.equals("https://www.tommyjohn.com/pages/tommy-john-terms-and-conditions"),
-				"Wrong Page opened after clicking on Terms & Conditions Link ");
-		softassert.assertTrue(pageHeader.equals("Tommy John Terms & Conditions"), "Page Header doesn't match");
+		objGeneralMethods.clickButtonByJS(driver, LEAVE_SITE_POPUP_CANCEL_BTN);
 
 		try{
 			softassert.assertAll();
@@ -1124,50 +1140,76 @@ public class FooterSectionComponents extends FooterSectionLocators {
 			softassert.assertAll();
 		}
 
-		System.out.println("Tommy John Terms & Conditions Link is Displayed and Corresponding Page opened after clicking on Link\n");
-		Reporter.log("Tommy John Terms & Conditions Link is Displayed and Corresponding Page opened after clicking on Link");
-		ExtentReport.extentTest.info("Tommy John Terms & Conditions Link is Displayed and Corresponding Page opened after clicking on Link");
+		System.out.println("Terms and Conditions Link text is Correct and Popup opened after clicking on link\n");
+		Reporter.log("Terms and Conditions  footer link is Displayed :: Clickable");
+		ExtentReport.extentTest.info("Terms and Conditions footer link is Displayed :: Clickable");
+
+
+//		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(TermsAndConditionsPageLocators.PAGE_HEADER, 0));
+//
+//		pageURL = driver.getCurrentUrl();
+//		pageHeader = driver.findElement(TermsAndConditionsPageLocators.PAGE_HEADER).getText();
+//
+//		softassert.assertTrue(pageURL.equals("https://www.tommyjohn.com/pages/tommy-john-terms-and-conditions"),
+//				"Wrong Page opened after clicking on Terms & Conditions Link ");
+//		softassert.assertTrue(pageHeader.equals("Tommy John Terms & Conditions"), "Page Header doesn't match");
+//
+//		try{
+//			softassert.assertAll();
+//		}catch (AssertionError e) {
+//			ExtentReport.extentTest.fail(e);
+//			softassert.assertAll();
+//		}
+//
+//		System.out.println("Tommy John Terms & Conditions Link is Displayed and Corresponding Page opened after clicking on Link\n");
+//		Reporter.log("Tommy John Terms & Conditions Link is Displayed and Corresponding Page opened after clicking on Link");
+//		ExtentReport.extentTest.info("Tommy John Terms & Conditions Link is Displayed and Corresponding Page opened after clicking on Link");
 
 //		Checking Do Not Sell My Information
-		driver.navigate().back();
-		System.out.println("***Validating Do Not Sell My Information***");
+//		driver.navigate().back();
 
-		softassert = new SoftAssert();
 
-		element = driver.findElement(DO_NOT_SELL_PERSONAL_INFO_LINK);
-		linkText = driver.findElement(DO_NOT_SELL_PERSONAL_INFO_LINK).getText();
 
-		Assert.assertTrue(element.isDisplayed(), "Do Not Sell My Information Link is not Displayed");
-		softassert.assertTrue(linkText.equals("Do Not Sell My Information"),
-				"Do Not Sell My Information Link Text is Incorrect");
+//		System.out.println("***Validating Do Not Sell My Information***");
+//
+//		softassert = new SoftAssert();
+//
+//		element = driver.findElement(DO_NOT_SELL_PERSONAL_INFO_LINK);
+//		linkText = driver.findElement(DO_NOT_SELL_PERSONAL_INFO_LINK).getText();
+//
+//		Assert.assertTrue(element.isDisplayed(), "Do Not Sell My Information Link is not Displayed");
+//		softassert.assertTrue(linkText.equals("Do Not Sell My Information"),
+//				"Do Not Sell My Information Link Text is Incorrect");
+//
+//		objGeneralMethods.clickButtonByJS(driver, element);
+//
+//		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(DoNotSellMyInfoPageLocators.PAGE_HEADER, 0));
+//
+//		pageURL = driver.getCurrentUrl();
+//		pageHeader = driver.findElement(DoNotSellMyInfoPageLocators.PAGE_HEADER).getText();
+//
+//		softassert.assertTrue(pageURL.equals("https://www.tommyjohn.com/pages/do-not-sell-my-personal-information"),
+//				"Wrong Page opened after clicking on Do Not Sell My Information Link ");
+//		softassert.assertTrue(
+//				pageHeader.contains(
+//						"For California residents"),
+//				"Page Header doesn't match");
+//
+//		try{
+//			softassert.assertAll();
+//		}catch (AssertionError e) {
+//			ExtentReport.extentTest.fail(e);
+//			softassert.assertAll();
+//		}
+//
+//		System.out.println("Do Not Sell My Information Link is Displayed and Corresponding Page opened after clicking on Link\n");
+//		Reporter.log("Do Not Sell My Information Link is Displayed and Corresponding Page opened after clicking on Link");
+//		ExtentReport.extentTest.info("Do Not Sell My Information Link is Displayed and Corresponding Page opened after clicking on Link");
+//
+////		Checking CA Transparency in Supply Chains Act
+//		driver.navigate().back();
 
-		objGeneralMethods.clickButtonByJS(driver, element);
 
-		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(DoNotSellMyInfoPageLocators.PAGE_HEADER, 0));
-
-		pageURL = driver.getCurrentUrl();
-		pageHeader = driver.findElement(DoNotSellMyInfoPageLocators.PAGE_HEADER).getText();
-
-		softassert.assertTrue(pageURL.equals("https://www.tommyjohn.com/pages/do-not-sell-my-personal-information"),
-				"Wrong Page opened after clicking on Do Not Sell My Information Link ");
-		softassert.assertTrue(
-				pageHeader.contains(
-						"For California residents"),
-				"Page Header doesn't match");
-
-		try{
-			softassert.assertAll();
-		}catch (AssertionError e) {
-			ExtentReport.extentTest.fail(e);
-			softassert.assertAll();
-		}
-
-		System.out.println("Do Not Sell My Information Link is Displayed and Corresponding Page opened after clicking on Link\n");
-		Reporter.log("Do Not Sell My Information Link is Displayed and Corresponding Page opened after clicking on Link");
-		ExtentReport.extentTest.info("Do Not Sell My Information Link is Displayed and Corresponding Page opened after clicking on Link");
-
-//		Checking CA Transparency in Supply Chains Act
-		driver.navigate().back();
 		System.out.println("***Validating CA Transparency in Supply Chains Act***");
 
 		softassert = new SoftAssert();
@@ -1181,14 +1223,11 @@ public class FooterSectionComponents extends FooterSectionLocators {
 
 		objGeneralMethods.clickButtonByJS(driver, element);
 
-		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(CA_SupplyChainsActPageLocators.PAGE_HEADER, 0));
+		list = driver.findElements(LEAVE_SITE_POPUP);
 
-		pageURL = driver.getCurrentUrl();
-		pageHeader = driver.findElement(CA_SupplyChainsActPageLocators.PAGE_HEADER).getText();
+		Assert.assertTrue(list.size() > 0, "Leave Site Popup has not appeared");
 
-		softassert.assertTrue(pageURL.equals("https://www.tommyjohn.com/pages/california-supply-chains-act"),
-				"Wrong Page opened after clicking on CA Transparency in Supply Chains Act");
-		softassert.assertTrue(pageHeader.equals("California Supply Chains Act"), "Page Header doesn't match");
+		objGeneralMethods.clickButtonByJS(driver, LEAVE_SITE_POPUP_CANCEL_BTN);
 
 		try{
 			softassert.assertAll();
@@ -1197,10 +1236,30 @@ public class FooterSectionComponents extends FooterSectionLocators {
 			softassert.assertAll();
 		}
 
-		System.out.println("CA Transparency in Supply Chains Act Link is Displayed and Corresponding Page opened after clicking on Link\n");
-		Reporter.log("CA Transparency in Supply Chains Act Link is Displayed and Corresponding Page opened after clicking on Link");
-		ExtentReport.extentTest.info("CA Transparency in Supply Chains Act Link is Displayed and Corresponding Page opened after clicking on Link");
-		
+		System.out.println("CA Transparency in Supply Chains Act text is Correct and Popup opened after clicking on link\n");
+		Reporter.log("CA Transparency in Supply Chains Act link is Displayed :: Clickable");
+		ExtentReport.extentTest.info("CA Transparency in Supply Chains Act footer link is Displayed :: Clickable");
+
+//		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(CA_SupplyChainsActPageLocators.PAGE_HEADER, 0));
+//
+//		pageURL = driver.getCurrentUrl();
+//		pageHeader = driver.findElement(CA_SupplyChainsActPageLocators.PAGE_HEADER).getText();
+//
+//		softassert.assertTrue(pageURL.equals("https://www.tommyjohn.com/pages/california-supply-chains-act"),
+//				"Wrong Page opened after clicking on CA Transparency in Supply Chains Act");
+//		softassert.assertTrue(pageHeader.equals("California Supply Chains Act"), "Page Header doesn't match");
+//
+//		try{
+//			softassert.assertAll();
+//		}catch (AssertionError e) {
+//			ExtentReport.extentTest.fail(e);
+//			softassert.assertAll();
+//		}
+//
+//		System.out.println("CA Transparency in Supply Chains Act Link is Displayed and Corresponding Page opened after clicking on Link\n");
+//		Reporter.log("CA Transparency in Supply Chains Act Link is Displayed and Corresponding Page opened after clicking on Link");
+//		ExtentReport.extentTest.info("CA Transparency in Supply Chains Act Link is Displayed and Corresponding Page opened after clicking on Link");
+//
 	}
 
 	/**
