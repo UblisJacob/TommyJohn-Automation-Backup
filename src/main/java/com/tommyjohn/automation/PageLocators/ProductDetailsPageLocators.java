@@ -98,6 +98,9 @@ public class ProductDetailsPageLocators {
     public static By PRODUCT_DETAILS_SECTION = By.cssSelector("div.product-info_low-inventory-message");
     public static By BEST_PAIR_GUARANTEE_SECTION = By.cssSelector("div.product-info_low-inventory-message");
     public static By FREE_RETURNS_SECTION = By.cssSelector("div.product-info_low-inventory-message");
+	public static By CART_ICON= By.xpath("//button[@data-tj-qa='header-cart-icon']");
+	public static By OVERLAY= By.xpath("//div[@class='overlay active']");
+
 	
 	//afterpay
 
