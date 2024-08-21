@@ -33,7 +33,7 @@ public class ValidateCartPage extends ExtentReport{
 		}
 	}
 
-//	@Test
+	@Test
 	public void ValidatePromoCodeFIRST20InCartPage() throws Exception {
 		new AddToCartComponents(driver).addsingleproductToCart();
 		new ShoppingCartPage(driver).ValidatePromoCodeFIRST20InCartPage();
