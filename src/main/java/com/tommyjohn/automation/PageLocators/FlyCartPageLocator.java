@@ -52,6 +52,15 @@ public class FlyCartPageLocator {
 	// public static By COLOR_AND_SIZE_IN_CART_MULTI =
 	// By.cssSelector("div.line-item__summary > div:nth-child(2)");
 
+	//COUPONCODE
+	public static By CART_COUPONFIELD = By.xpath("//input[@class='inline-cart__promo-input']");
+	public static By APPLY_CTA = By.xpath("//button[@class='button button--red']");
+	public static By APPLIED_COUPON = By.xpath("//div[@class='cart__items']//span[@class='coupon-code']");
+
+
+
+
+
 	// OOS
 	public static By OOS_MESSAGE_ON_TOP = By
 			.cssSelector("span[data-tj-qa='inline-cart-oos-message'],.inline-cart.active.has-recommendations>div:nth-child(2)>span");

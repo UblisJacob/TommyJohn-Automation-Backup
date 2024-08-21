@@ -30,6 +30,8 @@ import com.tommyjohn.automation.PageLocators.ShoppingCartLocators;
 import com.tommyjohn.automation.commonMethods.GeneralMethods;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
+import static com.tommyjohn.automation.PageLocators.FlyCartPageLocator.*;
+
 public class ShoppingCartComponents extends ShoppingCartLocators{
 
 	public WebDriver driver;
@@ -46,6 +48,58 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		this.driver = driver;
 		
 	}
+
+	public void ValidatePromoCodeFIRST20InCartPage() throws InterruptedException {
+
+		WebElement element;
+		SoftAssert softAssert = new SoftAssert();
+
+		driver.findElement(HomePageLocators.CART_ICON).click();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+		Thread.sleep(3000);
+
+		driver.findElement(CART_COUPONFIELD).sendKeys("FIRST20");
+		driver.findElement(APPLY_CTA).click();
+
+
+		Thread.sleep(2000);
+		String Coupon = driver.findElement(APPLIED_COUPON).getText();
+		System.out.println(Coupon);
+
+		element= driver.findElement(APPLIED_COUPON);
+		softAssert.assertTrue(element.isDisplayed(), "The Coupon code FIRST20 is not getting applied in Cart page");
+		Reporter.log("The Coupon code FIRST20 applied in Cart page");
+		ExtentReport.extentTest.info("The Coupon code FIRST20 applied in Cart page");
+
+	}
+
+	public void ValidateProductSuggestionInCartPage() throws InterruptedException {
+		WebElement element;
+		SoftAssert softAssert = new SoftAssert();
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		//new AddToCartComponents(driver).addToCart();
+		driver.findElement(HomePageLocators.CART_ICON).click();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+			driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+			Thread.sleep(3000);
+
+			element = driver.findElement(By.xpath("//div[@class='dy-rec--title']"));
+			softAssert.assertTrue(element.isDisplayed(), "Product Suggestion is not displayed in the Cart page");
+
+			softAssert.assertAll();
+
+		Reporter.log("Product Suggestion is displayed in the Cart page");
+		ExtentReport.extentTest.info("Product Suggestion is displayed in the Cart page");
+
+	}
+
 
 	public void EmptyCart() throws Exception
 	{
@@ -86,6 +140,8 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		ExtentReport.extentTest.info("Message displayed correctly - Your cart is Empty");
 		
 	}
+
+
 	
 	public void clickOnViewCartLink() throws Exception
 	{

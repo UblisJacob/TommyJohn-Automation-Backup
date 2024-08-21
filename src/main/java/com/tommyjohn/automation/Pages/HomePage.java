@@ -120,6 +120,22 @@ public class HomePage extends HomePageComponents {
 		new HomePageComponents(driver).verifySelectedColorSwatchIsDisplayedInTheInlineCart();
 	}
 
+	public void VerifyPopularCategoriesSectionInSearchDropdown() throws InterruptedException {
+		new HomePageComponents(driver).VerifyPopularCategoriesSectionInSearchDropdown();
+	}
+
+	public void VerifyCategoriesInPopularCategoriesSection() throws InterruptedException {
+		new HomePageComponents(driver).VerifyCategoriesInPopularCategoriesSection();
+	}
+
+	public void VerifyPopularTermsSectionInSearchDropdown() throws InterruptedException {
+		new HomePageComponents(driver).VerifyPopularTermsSectionInSearchDropdown();
+	}
+
+	public void VerifyCategoriesInPopularTermsSection() throws InterruptedException {
+		new HomePageComponents(driver).VerifyCategoriesInPopularTermsSection();
+	}
+
 //	public void validateBlogPage() throws Exception
 //	{
 //		new BlogPageComponents(driver).validateBlog();

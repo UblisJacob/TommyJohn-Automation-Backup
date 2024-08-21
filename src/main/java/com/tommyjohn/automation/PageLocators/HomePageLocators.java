@@ -68,7 +68,7 @@ public class HomePageLocators{
 	public static By HEADER_RIGHT_SIDE_ELEMENTS_LIST = By.cssSelector(".header-desktop-right>li");
 	public static By HEADER_RIGHT_SIDE_SPECIFIC_ELEMENT = By.cssSelector(".header-desktop-right>li:nth-child(1)");
 	
-	public static By FIRST_lEVEL1_CATEGORY = By.xpath("//a[contains(text(),'Base Layers')]");
+	public static By FIRST_lEVEL1_CATEGORY = By.xpath("(//a[contains(text(),'Base Layers')])[2]");
 
 	public static By WOMENS_FIRST_lEVEL1_CATEGORY = By.xpath("//a[contains(text(),'Intimates')]");
 	public static By SECOND_lEVEL1_CATEGORY = By.cssSelector("li.active> div:nth-child(2)> ul.level-one-list >li.level-one-container:nth-child(3) > div > .level-one-item >a");
@@ -219,6 +219,10 @@ public class HomePageLocators{
 //
 	public static By SEARCH_ICON_INPUT = By.cssSelector("input[data-tj-qa=header-search-input]");
 	public static By SEARCH_ICON_FORM_TAG = By.cssSelector(".header-search-form");
+	public static By POPULARCATEGORIES = By.xpath("//div[@class='desktop-search-product-tile-title']");
+	public static By CATEGORIESINSEARCHDROPDOWN = By.xpath("//div[@class='search-product-image popular-product']");
+	public static By POPULARTERMS = By.xpath("//span[@class='recent-searches-title']");
+	public static By CATEGORIESINPOPULARTERMS = By.xpath("//div[@class='autocomplete-suggestions-recent-search popular-terms']//a");
 
 	public static By POPULAR_SEARCHES = By.cssSelector("[data-tj-qa='search-suggestion'],.autocomplete-suggestions-content");
 	public static By PRODUCT_MATCHES_TITLE = By.cssSelector(".desktop-search-product-tile-title");

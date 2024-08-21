@@ -361,6 +361,63 @@ public class HomePageComponents extends HomePageLocators {
 
 	}
 
+	public void VerifyPopularCategoriesSectionInSearchDropdown() throws InterruptedException {
+		SoftAssert softAssert = new SoftAssert();
+		action = new Actions(driver);
+		//searchText ="women";
+		WebElement element = driver.findElement(SEARCH_ICON_INPUT);
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();", element);
+		Thread.sleep(3000);
+		softAssert.assertTrue(driver.findElement(POPULARCATEGORIES).isDisplayed(),"Popular categories is not displayed in the Search Dropdown");
+		Reporter.log("Popular categories is displayed in the Search Dropdown");
+		ExtentReport.extentTest.info("Popular categories is displayed in the Search Dropdown");
+
+	}
+
+	public void VerifyCategoriesInPopularCategoriesSection() throws InterruptedException {
+		SoftAssert softAssert = new SoftAssert();
+		action = new Actions(driver);
+		WebElement element = driver.findElement(SEARCH_ICON_INPUT);
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();", element);
+		Thread.sleep(3000);
+		int Categories = driver.findElements(CATEGORIESINSEARCHDROPDOWN).size();
+		System.out.println(Categories);
+		softAssert.assertEquals(Categories,4,"Popular categories does not contain four categories");
+		Reporter.log("Popular categories contains four categories");
+		ExtentReport.extentTest.info("Popular categories contains four categories");
+
+	}
+
+	public void VerifyCategoriesInPopularTermsSection() throws InterruptedException {
+		SoftAssert softAssert = new SoftAssert();
+		action = new Actions(driver);
+		WebElement element = driver.findElement(SEARCH_ICON_INPUT);
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();", element);
+		Thread.sleep(3000);
+		int Categories = driver.findElements(CATEGORIESINPOPULARTERMS).size();
+		System.out.println(Categories);
+		softAssert.assertEquals(Categories,4,"Popular Terms does not contain four categories");
+		Reporter.log("Popular Terms contains four categories");
+		ExtentReport.extentTest.info("Popular Terms contains four categories");
+
+	}
+
+
+	public void VerifyPopularTermsSectionInSearchDropdown() throws InterruptedException {
+		SoftAssert softAssert = new SoftAssert();
+		action = new Actions(driver);
+		//searchText ="women";
+		WebElement element = driver.findElement(SEARCH_ICON_INPUT);
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();", element);
+		Thread.sleep(3000);
+		softAssert.assertTrue(driver.findElement(POPULARTERMS).isDisplayed(),"Popular Terms is not displayed in the Search Dropdown");
+		Reporter.log("Popular Terms is displayed in the Search Dropdown");
+		ExtentReport.extentTest.info("Popular Terms is displayed in the Search Dropdown");
+	}
 
 	public void validateSearchFunction(String searchText) throws Exception {
 
@@ -2281,6 +2338,11 @@ public class HomePageComponents extends HomePageLocators {
 
 	public void navigateToAWomensAirBikini() throws Exception {
 		driver.get("https://www.tommyjohn.com/collections/womens-air?sort-by=relevance&sort-order=descending");
+	}
+
+	public void navigateToAirTriangleBralette()
+	{
+		driver.get("https://www.tommyjohn.com/products/air-triangle-bralette?color=rugby-tan");
 	}
 
 	// navigate to cotton basics in shop by collections catagory

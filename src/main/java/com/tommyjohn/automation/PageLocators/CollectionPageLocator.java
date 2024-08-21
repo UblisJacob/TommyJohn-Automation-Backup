@@ -26,6 +26,7 @@ public class CollectionPageLocator {
 	public static String PRODUCT_IMAGES = "//div[contains(@class,'product-image')]//a";
 	public static By PRODUCT_COUNT_TEXT = By.xpath("//*[data-tj-qa='plp-total-items']>span | //div[contains(@class,'controls__count')]//span");
 	public static By HOVERED_PRODUCT_IMAGE = By.cssSelector("[data-tj-qa='plp-product-img-hover'],.product-image--hover");
+	public static By FIRST_PRODUCT_HEAD_TEXT = By.xpath("(//span[@class='product-meta__title'])[1]");
 	public static By FIRST_PRODUCT_HEAD_LINE_TEXT = By.xpath("(//span[@class='product-meta__title'])[2]");
 	public static By FIRST_PRODUCT_TEXT = By.xpath("(//span[@class='product-meta__title'])[1]");
 	public static By FILTER = By.xpath("//span[@class='collection-meta__title']");
