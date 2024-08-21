@@ -33,6 +33,19 @@ public class ValidateCartPage extends ExtentReport{
 		}
 	}
 
+//	@Test
+	public void ValidatePromoCodeFIRST20InCartPage() throws Exception {
+		new AddToCartComponents(driver).addsingleproductToCart();
+		new ShoppingCartPage(driver).ValidatePromoCodeFIRST20InCartPage();
+
+	}
+
+	@Test
+	public void ValidateProductSuggestionIsDisplayed() throws Exception {
+		new AddToCartComponents(driver).addToCart();
+		new ShoppingCartPage(driver).ValidateProductSuggestionInCartPage();
+	}
+
 	@Test
 	public void Validate_Cart_InteractWithEmptyCart() throws Exception {
 		new ShoppingCartPage(driver).ValidateEmptyCart();	

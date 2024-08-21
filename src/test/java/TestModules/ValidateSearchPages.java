@@ -35,7 +35,27 @@ public class ValidateSearchPages {
 	public void VerifyLoadSearch() throws Exception {
 		searchText = objGeneralMethods.readPropertiesFile("searchFeatured");
 		new HomePage(driver).validateSearchPM(searchText);
-	}	
+	}
+
+	@Test
+	public void VerifyPopularCategoriesSectionInSearchDropdown() throws InterruptedException{
+		new HomePage(driver).VerifyPopularCategoriesSectionInSearchDropdown();
+	}
+
+	@Test
+	public void VerifyCategoriesInPopularCategoriesSection() throws InterruptedException {
+		new HomePage(driver).VerifyCategoriesInPopularCategoriesSection();
+	}
+
+	@Test
+	public void VerifyPopularTermsSectionInSearchDropdown() throws InterruptedException {
+		new HomePage(driver).VerifyPopularTermsSectionInSearchDropdown();
+	}
+
+	@Test
+	public void VerifyCategoriesInPopularTermsSection() throws InterruptedException {
+		new HomePage(driver).VerifyCategoriesInPopularTermsSection();
+	}
 	
 	@Test
 	public void VerifySearchInteractWithFilters() throws Exception {
