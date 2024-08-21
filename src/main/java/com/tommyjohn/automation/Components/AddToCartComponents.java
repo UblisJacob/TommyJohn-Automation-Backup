@@ -4,6 +4,7 @@ import java.time.Duration;
 import java.util.List;
 import java.util.Properties;
 
+import com.base.ExtentReport;
 import com.tommyjohn.automation.PageLocators.HomePageLocators;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -36,12 +37,39 @@ public class AddToCartComponents extends AddToCartLocators{
 	String text = null;
 
 	String allClasses = null;
+
+	public void AddSingleProduct() throws Exception {
+		new HomePageComponents(driver).navigateToSecondSkinInMenCategory();
+		jse=(JavascriptExecutor)driver;
+		jse.executeScript("window.scrollBy(0,250)");
+		// call method to navigate product details page
+		text = new CollectionPageComponent(driver).navigateToPDP();
+		Thread.sleep(2000);
+		WebElement COLOR = driver.findElement(By.xpath("//span[@class='option-swatch__label-text' and contains(text(),'S')]"));
+		jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", COLOR);
+		WebElement SIZESMALL = driver.findElement(By.xpath("//span[@class='option-swatch__label-text' and contains(text(),'S')]"));
+		jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", SIZESMALL);
+		if(driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON).getText().contains("Add to Cart")) {
+			System.out.println(SIZESMALL.getText() + "Product is added to Cart");
+			jse.executeScript("arguments[0].click();", driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON));
+
+		}
+		else {
+			System.out.println("Add to Cart CTA is not enabled");
+			Reporter.log("Add to Cart CTA is not enabled");
+			ExtentReport.extentTest.info("Add to Cart CTA is not enabled");
+
+		}
+
+	}
 	
 	public String addToCart() throws Exception {
 		
 		
 		// call method to navigate to collection page
-		new HomePageComponents(driver).navigateToAWomensAirBikini();
+		new HomePageComponents(driver).navigateToSecondSkinInMenCategory();
 		jse=(JavascriptExecutor)driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		// call method to navigate product details page
@@ -334,11 +362,11 @@ public class AddToCartComponents extends AddToCartLocators{
 		
 		
 		// call method to navigate to collection page
-		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
+		new HomePageComponents(driver).navigateToSecondSkinInMenCategory();
 		jse=(JavascriptExecutor)driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		// call method to navigate product details page
-		text = new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		text = new CollectionPageComponent(driver).navigateToPDP();
 		
 		Thread.sleep(2000);
 		
