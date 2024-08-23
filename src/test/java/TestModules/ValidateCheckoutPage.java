@@ -1,5 +1,6 @@
 package TestModules;
 
+import com.tommyjohn.automation.Components.AddToCartComponents;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -31,6 +32,20 @@ public class ValidateCheckoutPage extends ExtentReport {
 	//{
 		//new CheckoutPage(driver).ValidateExpressCheckoutOptions();
 //	}
+
+	@Test
+	public void ValidatePromoCodeFIRST20InInformationPage() throws Exception
+	{
+		new AddToCartComponents(driver).addsingleproductToCart();
+		new CheckoutPage(driver).ValidatePromoCodeFIRST20InInformationPage();
+	}
+
+//	@Test
+	public void ValidatePromoCodeFIRST20InShippingPage() throws Exception
+	{
+		new AddToCartComponents(driver).addsingleproductToCart();
+		new CheckoutPage(driver).ValidatePromoCodeFIRST20InShippingPage();
+	}
 	
 	@Test
 	public void ValidateGuestCheckoutFlow() throws Exception
