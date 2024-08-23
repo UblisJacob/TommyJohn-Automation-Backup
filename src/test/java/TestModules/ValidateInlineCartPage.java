@@ -99,7 +99,7 @@ public class ValidateInlineCartPage extends ExtentReport {
 	}
 
 	@Test
-	public void ValidateSelectedColorSwatchIsDisplayedInTheInlineCart() throws Exception
+		public void ValidateSelectedColorSwatchIsDisplayedInTheInlineCart() throws Exception
 	{
 
 		new FlyCartPage(driver).ValidateSelectedColorSwatchIsDisplayedInTheInlineCart();
