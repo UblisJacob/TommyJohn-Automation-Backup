@@ -25,7 +25,6 @@ public class Mens_BestSellers_ADACheck {
 
     @Test
     public void ADACheck_Mens_BestSellers_Page() throws Exception {
-
         driver.get("https://www.tommyjohn.com/collections/mens-best-sellers?sort-by=relevance&sort-order=descending");
         ADACheckMethods.ADACheck(driver, "Mens_BestSellers_Page_ADACheck");
     }

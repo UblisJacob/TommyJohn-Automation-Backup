@@ -39,8 +39,59 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 
 	public CheckoutPageComponents(WebDriver driver) {
 		this.driver = driver;
-		
 	}
+
+
+	public void ValidatePromoCodeFIRST20InInformationPage() throws Exception {
+		WebElement element;
+		SoftAssert softAssert = new SoftAssert();
+		jse = (JavascriptExecutor)driver;
+		driver.findElement(HomePageLocators.CART_ICON).click();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+//		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+		Thread.sleep(5000);
+		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
+		Reporter.log("Checkout page displayed");
+		ExtentReport.extentTest.info("Checkout page displayed");
+		Thread.sleep(4000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
+
+		CheckFirst20PromoCodeApplication("FIRST20");
+
+	}
+	public void ValidatePromoCodeFIRST20InShippingPage() throws Exception {
+		WebElement element;
+		SoftAssert softAssert = new SoftAssert();
+		jse = (JavascriptExecutor)driver;
+		driver.findElement(HomePageLocators.CART_ICON).click();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+//		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+		Thread.sleep(5000);
+		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
+		Reporter.log("Checkout page displayed");
+		ExtentReport.extentTest.info("Checkout page displayed");
+		Thread.sleep(4000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
+		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
+		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
+		entershippingdetails();
+		Reporter.log("Shipping Address Details entered");
+		ExtentReport.extentTest.info("Shipping Address Details entered");
+
+		// driver.findElement(CONTINUE_TO_SHIPPING_BUTTON).click();
+		WebElement Continue_shipping = driver.findElement(CONTINUE_TO_SHIPPING_BUTTON);
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", Continue_shipping);
+		Reporter.log("User is navigated to select shipping method");
+		ExtentReport.extentTest.info("User is navigated to select shipping method");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACT_EMAIL));
+		CheckFirst20PromoCodeApplication("FIRST20");
+	}
+
+
 
 	public void expresscheckout() throws Exception {
 		jse = (JavascriptExecutor)driver;
@@ -865,6 +916,24 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		softAssert.assertTrue(driver.findElement(SHIPPING).isDisplayed(), "Shipping is not displayed");
 		softAssert.assertTrue(driver.findElement(TOTAL).isDisplayed(), "total price is not displayed");
 		softAssert.assertAll();
+
+	}
+
+	public void CheckFirst20PromoCodeApplication(String promocode) throws Exception {
+		softAssert = new SoftAssert();
+		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
+		driver.findElement(DISCOUNT_CODE_TEXTBOX).sendKeys(promocode);
+		driver.findElement(APPLY_DISCOUNT_BUTTON).click();
+		// Thread.sleep(3000);
+		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(APPLIED_PROMO_CODE, 0));
+		System.out.println(driver.findElement(APPLIED_PROMO_CODE).getText());
+		softAssert.assertEquals(driver.findElement(APPLIED_PROMO_CODE).getText(), promocode, "The Coupon code FIRST20 is not getting applied in Information page");
+		driver.findElement(CANCEL_PROMO_CODE).click();
+//		driver.findElement(CANCEL_PROMO_CODE).click();
+		Thread.sleep(4000);
+		softAssert.assertAll();
+		Reporter.log("The Coupon code FIRST20 is applied in Information page");
+		ExtentReport.extentTest.info("The Coupon code FIRST20 is applied in Information page");
 
 	}
 
