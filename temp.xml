@@ -13,7 +13,7 @@
         <classes>
                 <class name="TestModules.ValidateCheckoutPage">
                 <methods>
-                    <include name="ValidatePromoCodeFIRST20InShippingPage"/>
+                    <include name="ValidatePromoCodeFIRST20InInformationPage"/>
                 </methods>
             </class>
         </classes>

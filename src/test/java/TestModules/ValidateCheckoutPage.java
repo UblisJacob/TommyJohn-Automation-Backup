@@ -40,7 +40,7 @@ public class ValidateCheckoutPage extends ExtentReport {
 		new CheckoutPage(driver).ValidatePromoCodeFIRST20InInformationPage();
 	}
 
-//	@Test
+	@Test
 	public void ValidatePromoCodeFIRST20InShippingPage() throws Exception
 	{
 		new AddToCartComponents(driver).addsingleproductToCart();
