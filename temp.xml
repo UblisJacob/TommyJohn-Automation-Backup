@@ -11,9 +11,9 @@
     <test name="CategoryTests">
         <parameter name="browser" value="chrome" />
         <classes>
-                <class name="TestModules.ValidateCheckoutPage">
+            <class name="TestModules.ValidateCheckoutPage">
                 <methods>
-                    <include name="ValidatePromoCodeFIRST20InInformationPage"/>
+                    <include name=""/>
                 </methods>
             </class>
         </classes>
