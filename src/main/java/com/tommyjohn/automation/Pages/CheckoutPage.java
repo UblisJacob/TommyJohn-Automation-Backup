@@ -29,6 +29,12 @@ public class CheckoutPage extends CheckoutPageComponents {
 		new CheckoutPageComponents(driver).ValidatePromoCodeFIRST20InShippingPage();
 
 	}
+
+	public void ValidatePromoCodeFIRST20InPaymentPage() throws Exception
+	{
+		new CheckoutPageComponents(driver).ValidatePromoCodeFIRST20InPaymentPage();
+
+	}
 	
 	public void Validateguestcheckout() throws Exception
 	{
