@@ -91,6 +91,42 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		CheckFirst20PromoCodeApplication("FIRST20");
 	}
 
+	public void ValidatePromoCodeFIRST20InPaymentPage() throws Exception {
+		WebElement element;
+		SoftAssert softAssert = new SoftAssert();
+		jse = (JavascriptExecutor)driver;
+		driver.findElement(HomePageLocators.CART_ICON).click();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+//		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+		Thread.sleep(5000);
+		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
+		Reporter.log("Checkout page displayed");
+		ExtentReport.extentTest.info("Checkout page displayed");
+		Thread.sleep(4000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
+		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
+		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
+		entershippingdetails();
+		Reporter.log("Shipping Address Details entered");
+		ExtentReport.extentTest.info("Shipping Address Details entered");
+
+		// driver.findElement(CONTINUE_TO_SHIPPING_BUTTON).click();
+		WebElement Continue_shipping = driver.findElement(CONTINUE_TO_SHIPPING_BUTTON);
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", Continue_shipping);
+		Reporter.log("User is navigated to select shipping method");
+		ExtentReport.extentTest.info("User is navigated to select shipping method");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACT_EMAIL));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SHIPPING_RADIO_BUTTON));
+		jse.executeScript("window.scrollBy(0,100)");
+		Thread.sleep(3000);
+		element = driver.findElement(CONTINUE_TO_PAYMENT_BUTTON);
+		jse.executeScript("arguments[0].click();", element);
+		Reporter.log("User is navigated to payment page");
+		ExtentReport.extentTest.info("User is navigated to payment page");
+		CheckFirst20PromoCodeApplication("FIRST20");
+	}
 
 
 	public void expresscheckout() throws Exception {
@@ -932,8 +968,8 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 //		driver.findElement(CANCEL_PROMO_CODE).click();
 		Thread.sleep(4000);
 		softAssert.assertAll();
-		Reporter.log("The Coupon code FIRST20 is applied in Information page");
-		ExtentReport.extentTest.info("The Coupon code FIRST20 is applied in Information page");
+		Reporter.log("The Coupon code FIRST20 is applied");
+		ExtentReport.extentTest.info("The Coupon code FIRST20 is applied");
 
 	}
 
