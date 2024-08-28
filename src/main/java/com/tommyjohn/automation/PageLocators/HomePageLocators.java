@@ -67,9 +67,10 @@ public class HomePageLocators{
 	
 	public static By HEADER_RIGHT_SIDE_ELEMENTS_LIST = By.cssSelector(".header-desktop-right>li");
 	public static By HEADER_RIGHT_SIDE_SPECIFIC_ELEMENT = By.cssSelector(".header-desktop-right>li:nth-child(1)");
-	
-	public static By FIRST_lEVEL1_CATEGORY = By.xpath("(//a[contains(text(),'Base Layers')])[2]");
 
+
+	public static By FIRST_lEVEL1_CATEGORY = By.xpath("(//a[contains(text(),'Base Layers')])[2]");
+	public static By FIRST_lEVEL1_CATEGORY_COPY = By.xpath("//a[contains(text(),'Base Layers')]");
 	public static By WOMENS_FIRST_lEVEL1_CATEGORY = By.xpath("//a[contains(text(),'Intimates')]");
 	public static By SECOND_lEVEL1_CATEGORY = By.cssSelector("li.active> div:nth-child(2)> ul.level-one-list >li.level-one-container:nth-child(3) > div > .level-one-item >a");
 	public static By THIRD_lEVEL1_CATEGORY = By.cssSelector("li.active> div:nth-child(2)> ul.level-one-list >li.level-one-container:nth-child(4) > div > .level-one-item >a");
