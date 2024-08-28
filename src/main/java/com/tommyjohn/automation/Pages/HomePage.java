@@ -136,6 +136,10 @@ public class HomePage extends HomePageComponents {
 		new HomePageComponents(driver).VerifyCategoriesInPopularTermsSection();
 	}
 
+	public void ValidateNoResultPageOnSearch() throws InterruptedException {
+		new HomePageComponents(driver).ValidateNoResultPageOnSearch();
+	}
+
 //	public void validateBlogPage() throws Exception
 //	{
 //		new BlogPageComponents(driver).validateBlog();

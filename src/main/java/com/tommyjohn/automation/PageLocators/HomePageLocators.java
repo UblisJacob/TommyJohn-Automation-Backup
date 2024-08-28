@@ -231,6 +231,7 @@ public class HomePageLocators{
 //	public static By SEARCHRESULT_PRODUCT = By.cssSelector(".nxt-ac-products-container > .nxt-ac-item");
 	
 	public static By SEARCHPAGE_TITLE = By.cssSelector("[data-tj-qa='result-title'],.collection-search-title-bar__title");
+	public static By NORESULTPAGETITLE = By.xpath("//div[@data-tj-qa='error-result-title']");
 	public static By SEARCHPAGE_DESC= By.cssSelector("[data-tj-qa='result-tip'],.collection-search-title-bar__description");
 	public static By SEARCHPAGE_ITEMCOUNT= By.cssSelector(".mega-collection-filters--controls__count");
 	public static By SEARCHPAGE_FILTER= By.cssSelector(".collection-filter");

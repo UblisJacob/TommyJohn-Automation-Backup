@@ -67,6 +67,28 @@ public class HomePageComponents extends HomePageLocators {
 
 	}
 
+	public void ValidateNoResultPageOnSearch() throws InterruptedException {
+
+		SoftAssert softAssert = new SoftAssert();
+		action = new Actions(driver);
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(30));
+
+		action.moveToElement(driver.findElement(SEARCH_ICON_INPUT)).build().perform();
+		Thread.sleep(3000);
+
+		driver.findElement(SEARCH_ICON_INPUT).sendKeys("kjefs" + Keys.ENTER);
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(NORESULTPAGETITLE));
+
+		String PageTitle = driver.findElement(NORESULTPAGETITLE).getText();
+		System.out.println(PageTitle);
+
+		softAssert.assertTrue(driver.findElement(NORESULTPAGETITLE).isDisplayed(), "User is not directed to the No results page");
+		Reporter.log("User is directed to the No results page");
+		ExtentReport.extentTest.info("User is directed to the No results page");
+
+	}
+
 	public void ValidateAddingProductToCartFromInstagramWidget() throws Exception {
 
 		action = new Actions(driver);
