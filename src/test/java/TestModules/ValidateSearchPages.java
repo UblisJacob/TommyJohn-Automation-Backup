@@ -38,6 +38,11 @@ public class ValidateSearchPages {
 	}
 
 	@Test
+	public void ValidateNoResultPageOnSearch() throws InterruptedException {
+		new HomePage(driver).ValidateNoResultPageOnSearch();
+	}
+
+	@Test
 	public void VerifyPopularCategoriesSectionInSearchDropdown() throws InterruptedException{
 		new HomePage(driver).VerifyPopularCategoriesSectionInSearchDropdown();
 	}

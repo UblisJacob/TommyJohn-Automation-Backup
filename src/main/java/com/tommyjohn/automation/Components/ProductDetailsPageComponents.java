@@ -63,6 +63,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		this.driver = driver;
 	}
 
+
+
 	public void ValidateAddingProductToCartFromInstagramWidget() throws Exception {
 
 		action = new Actions(driver);
@@ -2827,6 +2829,27 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		jse.executeScript("arguments[0].click();", ratingstars);
 		//ratingstars.click();
 		Thread.sleep(4000);
+
+
+	}
+
+	public void ValidateAskAQuestionCTAIsFunctional() throws InterruptedException {
+		SoftAssert softAssert = new SoftAssert();
+		new HomePageComponents(driver).navigateToAirTriangleBralette();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_TITLE));
+		Reporter.log(driver.getCurrentUrl());
+		ExtentReport.extentTest.info(driver.getCurrentUrl());
+		Thread.sleep(6000);
+		WebElement ratingstars = driver.findElement(RATING_STARS);
+		jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", ratingstars);
+		//ratingstars.click();
+		Thread.sleep(4000);
+		jse.executeScript("window.scrollBy(0, 800)");
+		Thread.sleep(4000);
+
+
 
 
 	}
