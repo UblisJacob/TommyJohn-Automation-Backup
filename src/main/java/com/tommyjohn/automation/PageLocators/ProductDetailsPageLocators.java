@@ -264,6 +264,13 @@ public class ProductDetailsPageLocators {
         public static By QSN_ANS_NAME_ERROR = By.cssSelector(".qna-form__wrapper>div:nth-child(2)>p");
         public static By QSN_ANS_EMAIL_ERROR = By.cssSelector(".qna-form__wrapper>div:nth-child(3)>p");
         public static By QSN_ANS_QUESTION_ERROR = By.cssSelector(".qna-form__wrapper>div:nth-child(4) >p");
+
         
-        
+        //Ratings
+		public static By FIVESTARTIERMETER = By.xpath("(//li[@data-score-distribution='5'])[2]");
+		public static By STARRATING = By.xpath("(//span[@class='yotpo-review-stars']//span[@class='sr-only'])[4]");
+	    public static By FOURSTARTIERMETER = By.xpath("(//li[@data-score-distribution='4'])[2]");
+		public static By THREESTARTIERMETER = By.xpath("(//li[@data-score-distribution='3'])[2]");
+		public static By TWOSTARTIERMETER = By.xpath("(//li[@data-score-distribution='2'])[2]");
+		public static By ONESTARTIERMETER = By.xpath("(//li[@data-score-distribution='1'])[2]");
 }
