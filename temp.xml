@@ -11,9 +11,9 @@
     <test name="CategoryTests">
         <parameter name="browser" value="chrome" />
         <classes>
-            <class name="TestModules.ValidateHomePage">
+            <class name="TestModules.ValidateSearchPages">
                 <methods>
-                    <include name="VerifyLogoAndCategoriesOnHomePage"/>
+                    <include name="VerifySizeChartTextBralette"/>
                 </methods>
             </class>
         </classes>

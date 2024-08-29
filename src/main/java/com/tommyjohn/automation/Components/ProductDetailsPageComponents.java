@@ -2807,36 +2807,19 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 	public void ValidateClickingOnRatingsTierMeter() throws Exception {
 		SoftAssert softAssert = new SoftAssert();
-		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
-		//		new CollectionPageComponent(driver).navigateToProductDetailsPage();
-		String text = null;
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollBy(0,250)");
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
-		// get text and click on the first product
-		//text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
-		text = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT).getText();
-		WebElement el = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT);
-		JavascriptExecutor executor = (JavascriptExecutor) driver;
-		executor.executeScript("arguments[0].click();", el);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_TITLE));
-		Reporter.log(driver.getCurrentUrl());
-		ExtentReport.extentTest.info(driver.getCurrentUrl());
-		Thread.sleep(6000);
-		WebElement ratingstars = driver.findElement(RATING_STARS);
-		jse = (JavascriptExecutor) driver;
-		jse.executeScript("arguments[0].click();", ratingstars);
-		//ratingstars.click();
-		Thread.sleep(4000);
-
-
-	}
-
-	public void ValidateAskAQuestionCTAIsFunctional() throws InterruptedException {
-		SoftAssert softAssert = new SoftAssert();
 		new HomePageComponents(driver).navigateToAirTriangleBralette();
+		//		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+//		String text = null;
+//		JavascriptExecutor js = (JavascriptExecutor) driver;
+//		js.executeScript("window.scrollBy(0,250)");
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
+//		// get text and click on the first product
+//		//text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
+//		text = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT).getText();
+//		WebElement el = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT);
+//		JavascriptExecutor executor = (JavascriptExecutor) driver;
+//		executor.executeScript("arguments[0].click();", el);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_TITLE));
 		Reporter.log(driver.getCurrentUrl());
 		ExtentReport.extentTest.info(driver.getCurrentUrl());
@@ -2844,15 +2827,55 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		WebElement ratingstars = driver.findElement(RATING_STARS);
 		jse = (JavascriptExecutor) driver;
 		jse.executeScript("arguments[0].click();", ratingstars);
+		jse.executeScript("window.scrollBy(0, 1100)");
 		//ratingstars.click();
-		Thread.sleep(4000);
-		jse.executeScript("window.scrollBy(0, 800)");
-		Thread.sleep(4000);
+		Thread.sleep(5000);
+		driver.findElement(FIVESTARTIERMETER).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.STARRATING));
+		String fivestar = driver.findElement(STARRATING).getText();
+		System.out.println(fivestar);
+		softAssert.assertEquals(fivestar,"5 star rating","On Clicking the 5 Star Tier Meter, the results are not displayed with 5 star rating");
+		Reporter.log("On Clicking the 5 Star Tier Meter, the results are displayed with 5 star rating");
+		ExtentReport.extentTest.info("On Clicking the 5 Star Tier Meter, the results are displayed with 5 star rating");
 
+		driver.findElement(FOURSTARTIERMETER).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.STARRATING));
+		String fourstar = driver.findElement(STARRATING).getText();
+		System.out.println(fourstar);
+		softAssert.assertEquals(fourstar,"4 star rating","On Clicking the 4 Star Tier Meter, the results are not displayed with 5 star rating");
+		Reporter.log("On Clicking the 5 Star Tier Meter, the results are displayed with 4 star rating");
+		ExtentReport.extentTest.info("On Clicking the 5 Star Tier Meter, the results are displayed with 4 star rating");
 
+		driver.findElement(THREESTARTIERMETER).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.STARRATING));
+		String threestar = driver.findElement(STARRATING).getText();
+		System.out.println(threestar);
+		softAssert.assertEquals(threestar,"3 star rating","On Clicking the 3 Star Tier Meter, the results are not displayed with 5 star rating");
+		Reporter.log("On Clicking the 3 Star Tier Meter, the results are displayed with 3 star rating");
+		ExtentReport.extentTest.info("On Clicking the 3 Star Tier Meter, the results are displayed with 3 star rating");
 
+		driver.findElement(TWOSTARTIERMETER).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.STARRATING));
+		String twostar = driver.findElement(STARRATING).getText();
+		System.out.println(twostar);
+		softAssert.assertEquals(twostar,"2 star rating","On Clicking the 2 Star Tier Meter, the results are not displayed with 5 star rating");
+		Reporter.log("On Clicking the 2 Star Tier Meter, the results are displayed with 2 star rating");
+		ExtentReport.extentTest.info("On Clicking the 2 Star Tier Meter, the results are displayed with 2 star rating");
+
+		driver.findElement(ONESTARTIERMETER).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.STARRATING));
+		String onestar = driver.findElement(STARRATING).getText();
+		System.out.println(onestar);
+		softAssert.assertEquals(onestar,"1 star rating","On Clicking the 1 Star Tier Meter, the results are not displayed with 5 star rating");
+		Reporter.log("On Clicking the 1 Star Tier Meter, the results are displayed with 1 star rating");
+		ExtentReport.extentTest.info("On Clicking the 1 Star Tier Meter, the results are displayed with 1 star rating");
+
+		softAssert.assertAll();
+		Reporter.log("Ratings Tiermeter displays appropriate results");
+		ExtentReport.extentTest.info("Ratings Tiermeter displays appropriate result");
 
 	}
+
 
 	public void verifyReviewRecommendationsSection() throws Exception {
 		SoftAssert softAssert = new SoftAssert();
@@ -3030,8 +3053,6 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		Reporter.log("Review form is :: Displayed");
 		ExtentReport.extentTest.info("Review form is :: Displayed");
 		softAssert.assertAll();
-
-
 	}
 
 	public void verifyReviewFormErrorMessages() throws Exception {
@@ -3314,7 +3335,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			ExtentReport.extentTest.info("All CupVolume list :: Displayed");
 			String CupVolume_Default_Text = CupVolume_Options.get(0).getText();
 
-			if (!CupVolume_Default_Text.equalsIgnoreCase("Cup"))
+			if (!CupVolume_Default_Text.equalsIgnoreCase("Inches"))
 				throw new Exception("Text change for 'Cup Volume'");
 
 			for (int i = 1; i < CupVolume_Options_Count; i++) {
