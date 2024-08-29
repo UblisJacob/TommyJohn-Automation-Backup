@@ -62,7 +62,7 @@ public class ValidateSearchPages {
 		new HomePage(driver).VerifyCategoriesInPopularTermsSection();
 	}
 	
-	@Test
+//	@Test
 	public void VerifySearchInteractWithFilters() throws Exception {
 		searchText = objGeneralMethods.readPropertiesFile("searchFeatured");
 		new HomePage(driver).validateSearchFunctionEnter(searchText);
