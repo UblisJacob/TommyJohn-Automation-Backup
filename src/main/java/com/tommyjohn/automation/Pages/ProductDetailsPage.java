@@ -19,6 +19,13 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 		this.driver = driver;
 	}
 
+	public void ValidateClickingOnRatingsTierMeter() throws Exception {
+
+
+		new ProductDetailsPageComponents(driver).ValidateClickingOnRatingsTierMeter();
+
+	}
+
 	public void verifyProductDetailsPage() throws Exception {
 
 
