@@ -1,5 +1,7 @@
 package TestModules;
 
+import com.tommyjohn.automation.Components.AddToCartComponents;
+import com.tommyjohn.automation.Pages.ShoppingCartPage;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -26,7 +28,11 @@ public class ValidateInlineCartPage extends ExtentReport {
 		}
 	}
 
-
+	@Test
+	public void ValidatePromoCodeFIRST20InInlineCart() throws Exception {
+		new AddToCartComponents(driver).addsingleproductToCart();
+		new FlyCartPage(driver).ValidatePromoCodeFIRST20InInlineCart();
+	}
 
 	@Test
 	public void ValidateEmptyFlyCart() throws Exception

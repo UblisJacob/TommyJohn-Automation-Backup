@@ -94,4 +94,9 @@ public class FlyCartPage extends FlyCartComponents {
 		new FlyCartComponents(driver).ValidatePageGreyedOutOnAddingProducts();
 
 	}
+
+	public void ValidatePromoCodeFIRST20InInlineCart() throws InterruptedException {
+		new FlyCartComponents(driver).ValidatePromoCodeFIRST20InInlineCart();
+
+	}
 }
