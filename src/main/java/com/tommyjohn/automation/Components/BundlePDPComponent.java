@@ -59,8 +59,8 @@ public class BundlePDPComponent extends BundlePDPLocators{
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT));
 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
-		WebElement el = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT_COPY));
+		WebElement el = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT_COPY);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", el);
 		
