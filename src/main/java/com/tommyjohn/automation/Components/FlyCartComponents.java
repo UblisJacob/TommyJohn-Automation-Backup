@@ -40,6 +40,43 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		this.driver = driver;
 
 	}
+	public void ValidatePromoCodeFIRST20InInlineCart() throws InterruptedException {
+
+		WebElement element;
+		SoftAssert softAssert = new SoftAssert();
+
+		driver.findElement(HomePageLocators.CART_ICON).click();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+		Thread.sleep(3000);
+
+		driver.findElement(CART_COUPONFIELD).sendKeys("FIRST20");
+		driver.findElement(APPLY_CTA).click();
+
+
+		Thread.sleep(2000);
+		String Coupon = driver.findElement(APPLIED_COUPON).getText();
+		System.out.println(Coupon);
+
+		element= driver.findElement(APPLIED_COUPON);
+		softAssert.assertTrue(element.isDisplayed(), "The Coupon code FIRST20 is not getting applied in Cart page");
+		Reporter.log("The Coupon code FIRST20 applied in Cart page");
+		ExtentReport.extentTest.info("The Coupon code FIRST20 applied in Cart page");
+
+		driver.findElement(HomePageLocators.CART_ICON).click();
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.INLINE_CART_APPLIED_COUPON));
+		String Inline_Coupon = driver.findElement(INLINE_CART_APPLIED_COUPON).getText();
+		System.out.println(Inline_Coupon);
+
+		element= driver.findElement(INLINE_CART_APPLIED_COUPON);
+		softAssert.assertTrue(element.isDisplayed(), "The Coupon code FIRST20 is not displayed in Cart page");
+		Reporter.log("The Coupon code FIRST20 is displayed in Cart page");
+		ExtentReport.extentTest.info("The Coupon code FIRST20 is displayed in Cart page");
+
+	}
 
 	public void ValidateAddingProductToCartFromInlineCartSuggestions() throws Exception {
 
