@@ -2832,6 +2832,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		Thread.sleep(5000);
 		driver.findElement(FIVESTARTIERMETER).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.STARRATING));
+		Thread.sleep(2000);
 		String fivestar = driver.findElement(STARRATING).getText();
 		System.out.println(fivestar);
 		softAssert.assertEquals(fivestar,"5 star rating","On Clicking the 5 Star Tier Meter, the results are not displayed with 5 star rating");
@@ -2840,6 +2841,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 		driver.findElement(FOURSTARTIERMETER).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.STARRATING));
+		Thread.sleep(2000);
 		String fourstar = driver.findElement(STARRATING).getText();
 		System.out.println(fourstar);
 		softAssert.assertEquals(fourstar,"4 star rating","On Clicking the 4 Star Tier Meter, the results are not displayed with 5 star rating");
@@ -2848,6 +2850,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 		driver.findElement(THREESTARTIERMETER).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.STARRATING));
+		Thread.sleep(2000);
 		String threestar = driver.findElement(STARRATING).getText();
 		System.out.println(threestar);
 		softAssert.assertEquals(threestar,"3 star rating","On Clicking the 3 Star Tier Meter, the results are not displayed with 5 star rating");
@@ -2856,6 +2859,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 		driver.findElement(TWOSTARTIERMETER).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.STARRATING));
+		Thread.sleep(2000);
 		String twostar = driver.findElement(STARRATING).getText();
 		System.out.println(twostar);
 		softAssert.assertEquals(twostar,"2 star rating","On Clicking the 2 Star Tier Meter, the results are not displayed with 5 star rating");
@@ -2864,6 +2868,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 		driver.findElement(ONESTARTIERMETER).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.STARRATING));
+		Thread.sleep(2000);
 		String onestar = driver.findElement(STARRATING).getText();
 		System.out.println(onestar);
 		softAssert.assertEquals(onestar,"1 star rating","On Clicking the 1 Star Tier Meter, the results are not displayed with 5 star rating");
