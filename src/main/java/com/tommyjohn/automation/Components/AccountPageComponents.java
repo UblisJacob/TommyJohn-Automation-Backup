@@ -154,14 +154,14 @@ public class AccountPageComponents extends AccountPageLocators {
 				"Address Book title is not displayed on account page");
 
 
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 		 wait.until(ExpectedConditions.elementToBeClickable(MANAGE_ADDRESSES));
 		 jse.executeScript("arguments[0].click();" , driver.findElement(MANAGE_ADDRESSES));
 		//driver.findElement(MANAGE_ADDRESSES).click();
 
 //		After clicking on Manage Addresses link verify if correctly redirected to addresses page, if facing login issue then handle via re-login
 		try{
-			Thread.sleep(10000);
+			Thread.sleep(5000);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(MANAGE_ADDRESS_BOOK_HEADING));
 		}catch (TimeoutException e) {
 			currentUrl = driver.getCurrentUrl();
