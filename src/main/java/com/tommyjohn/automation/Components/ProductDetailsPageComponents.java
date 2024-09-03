@@ -3200,7 +3200,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		if (driver.findElement(SIZEGUIDE).isDisplayed()) {
 			WebElement ele = driver.findElement(SIZEGUIDE);
 			jse.executeScript("arguments[0].click();", ele);
-			Thread.sleep(3000);
+			Thread.sleep(10000);
 
 			//verify Fit Range
 			List<WebElement> fitrange = driver.findElements(SIZEGUIDE_FITRANGE);
