@@ -11,9 +11,9 @@
     <test name="CategoryTests">
         <parameter name="browser" value="chrome" />
         <classes>
-            <class name="TestModules.ValidatePDP">
+            <class name="TestModules.ValidateFooterSection">
                 <methods>
-                    <include name="ValidatePromoCodeFIRST20InInlineCart"/>
+                    <include name="VerifyFooterEmailSignUp"/>
                 </methods>
             </class>
         </classes>

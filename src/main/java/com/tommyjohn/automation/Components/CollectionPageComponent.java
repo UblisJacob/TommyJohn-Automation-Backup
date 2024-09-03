@@ -106,11 +106,11 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollBy(0,250)");
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT_COPY));
 		// get text and click on the first product
 		//text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
-		 text= driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT).getText();
-		WebElement el = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT);
+		 text= driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT_COPY).getText();
+		WebElement el = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT_COPY);
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		executor.executeScript("arguments[0].click();", el);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_TITLE));
