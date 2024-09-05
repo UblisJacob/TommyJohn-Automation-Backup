@@ -3191,7 +3191,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		SoftAssert softAssert = new SoftAssert();
 		// call method to navigate to collection page
-		new HomePageComponents(driver).navigateToAllClothingInWomensCategory();
+		new HomePageComponents(driver).navigateToNewArrivalsInWomenCategory();
 		jse = (JavascriptExecutor) driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		// call method to navigate product details page
@@ -3200,14 +3200,15 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		if (driver.findElement(SIZEGUIDE).isDisplayed()) {
 			WebElement ele = driver.findElement(SIZEGUIDE);
 			jse.executeScript("arguments[0].click();", ele);
-			Thread.sleep(10000);
-
+			Thread.sleep(5000);
 			//verify Fit Range
 			List<WebElement> fitrange = driver.findElements(SIZEGUIDE_FITRANGE);
 			int num = fitrange.size();
+			System.out.println(num);
 			if (num > 0) {
 
 				for (int i = 1; i <= num; i++) {
+					Thread.sleep(5000);
 					String range = driver.findElement(By.xpath("(//ul[@data-tj-qa='size-guide-fit-range-graph']//li)[" + i + "]")).getAttribute("class");
 					if (range.contentEquals("selected")) {
 						String rangevalue = driver.findElement(By.xpath("(//ul[@data-tj-qa='size-guide-fit-range-graph']//li)[" + i + "]")).getText();
@@ -3286,9 +3287,9 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 			for (int i = 1; i <= 3; i++) {
 				Thread.sleep(2000);
-				String range = driver.findElement(By.cssSelector(".size-guide-yatpo-fit-graph>ul>li:nth-child(" + i + ")")).getAttribute("class");
+				String range = driver.findElement(By.xpath("(//ul[@data-tj-qa='size-guide-fit-range-graph']//li)[" + i + "]")).getAttribute("class");
 				if (range.contentEquals("selected")) {
-					String rangevalue = driver.findElement(By.cssSelector(".size-guide-yatpo-fit-graph>ul>li:nth-child(" + i + ")")).getText();
+					String rangevalue = driver.findElement(By.xpath("(//ul[@data-tj-qa='size-guide-fit-range-graph']//li)[" + i + "]")).getText();
 					System.out.println(rangevalue + " is selected");
 					Reporter.log("Fit Range is :: Selected");
 					ExtentReport.extentTest.info("Fit Range is :: Selected");
@@ -3340,7 +3341,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			ExtentReport.extentTest.info("All CupVolume list :: Displayed");
 			String CupVolume_Default_Text = CupVolume_Options.get(0).getText();
 
-			if (!CupVolume_Default_Text.equalsIgnoreCase("Inches"))
+			if (!CupVolume_Default_Text.equalsIgnoreCase("Cup"))
 				throw new Exception("Text change for 'Cup Volume'");
 
 			for (int i = 1; i < CupVolume_Options_Count; i++) {
@@ -3390,6 +3391,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 //	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(SIZEGUIDE));
 		//HOW TO Measure
+		Thread.sleep(5000);
 		if (driver.findElement(SIZEGUIDE).isDisplayed()) {
 			WebElement ele = driver.findElement(SIZEGUIDE);
 			jse.executeScript("arguments[0].click();", ele);
@@ -3418,9 +3420,9 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 			for (int i = 1; i <= num; i++) {
 				Thread.sleep(2000);
-				String range = driver.findElement(By.cssSelector(".size-guide-yatpo-fit-graph>ul>li:nth-child(" + i + ")")).getAttribute("class");
+				String range = driver.findElement(By.xpath("(//ul[@data-tj-qa='size-guide-fit-range-graph']//li)[" + i + "]")).getAttribute("class");
 				if (range.contentEquals("selected")) {
-					String rangevalue = driver.findElement(By.cssSelector(".size-guide-yatpo-fit-graph>ul>li:nth-child(" + i + ")")).getText();
+					String rangevalue = driver.findElement(By.xpath("(//ul[@data-tj-qa='size-guide-fit-range-graph']//li)[" + i + "]")).getText();
 					System.out.println(rangevalue + " is selected");
 					Reporter.log("Fit Range is displayed");
 					ExtentReport.extentTest.info("Fit Range is displayed");

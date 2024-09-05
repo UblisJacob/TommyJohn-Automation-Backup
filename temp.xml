@@ -11,9 +11,9 @@
     <test name="CategoryTests">
         <parameter name="browser" value="chrome" />
         <classes>
-            <class name="TestModules.ValidateFooterSection">
+            <class name="TestModules.ValidateCartPage">
                 <methods>
-                    <include name="VerifyFooterEmailSignUp"/>
+                    <include name=""/>
                 </methods>
             </class>
         </classes>

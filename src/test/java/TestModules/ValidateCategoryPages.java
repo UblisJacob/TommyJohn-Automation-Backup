@@ -101,6 +101,16 @@ public class ValidateCategoryPages {
 		new CollectionPage(driver).ValidateProductsOnFiltering();
 	}
 
+//	@Test
+	public void ValidateSizeFiltersCountInAllFiltersDropdownAndInSizeDropdown() throws Exception {
+		new CollectionPage(driver).ValidateSizeFiltersCountInAllFiltersDropdownAndInSizeDropdown();
+	}
+
+//	@Test
+	public void ValidateSizeFiltersNameInAllFiltersDropdownAndInSizeDropdown() throws Exception {
+		new CollectionPage(driver).ValidateSizeFiltersNameInAllFiltersDropdownAndInSizeDropdown();
+	}
+
 	@Test
 	public void ValidateOnClickingTheInLineBanner() throws Exception {
 		new CollectionPage(driver).ValidateOnClickingTheInLineBanner();
