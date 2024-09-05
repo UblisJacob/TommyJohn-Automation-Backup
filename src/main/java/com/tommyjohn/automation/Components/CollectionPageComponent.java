@@ -46,13 +46,59 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 
 
-	public void VerifyInLineBannerInCollectionPage()
+	public void ValidateSizeFiltersCountInAllFiltersDropdownAndInSizeDropdown()
 	{
+		SoftAssert softAssert = new SoftAssert();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//a[@aria-label='Men link']//span[contains(text(),'Men')]")));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//span[@class='select--options__label-text' and contains(text(),'Size')]")));
+		int SizeFilterCountInSizeDropwdown = driver.findElements(By.xpath("//div[@data-tj-qa='plp-filter-size']//li")).size();
+		System.out.println(SizeFilterCountInSizeDropwdown);
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//span[@class='all-filter-pill-span']")));
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//div[@class='filter-element--name' and contains(text(),'Size')]")));
+		int SizeFilterCountInAllFiltersDropwdown = driver.findElements(By.xpath("//button[@data-tj-qa='mobile-filter-size']//following-sibling::div//li")).size();
+		System.out.println(SizeFilterCountInAllFiltersDropwdown);
+		softAssert.assertEquals(SizeFilterCountInSizeDropwdown,SizeFilterCountInAllFiltersDropwdown,"Appropriate Size filters are not displayed");
+		Reporter.log("Appropriate Size filters are displayed");
+		ExtentReport.extentTest.info("Appropriate Size filters are displayed");
+	}
 
+	public void ValidateSizeFiltersNameInAllFiltersDropdownAndInSizeDropdown()
+	{
+		String NamesInSizeDropdown = "";
+		String NamesInAllFiltersDropwn ="";
+		SoftAssert softAssert = new SoftAssert();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//a[@aria-label='Men link']//span[contains(text(),'Men')]")));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//span[@class='select--options__label-text' and contains(text(),'Size')]")));
+		List<WebElement> SizeNameList = driver.findElements(By.xpath("//div[@data-tj-qa='plp-filter-size']//li//button"));
 
+		for (int i = 0; i < SizeNameList.size(); i++)
+		{
+			NamesInSizeDropdown = SizeNameList.get(i).getText();
+			System.out.println(NamesInSizeDropdown);
 
+		}
 
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//span[@class='all-filter-pill-span']")));
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//div[@class='filter-element--name' and contains(text(),'Size')]")));
 
+		List<WebElement> SizeNameListInAllFilters = driver.findElements(By.xpath("//button[@data-tj-qa='mobile-filter-size']//following-sibling::div//li//button"));
+
+		for (int i = 0; i < SizeNameList.size(); i++)
+		{
+			NamesInAllFiltersDropwn = SizeNameListInAllFilters.get(i).getText();
+			System.out.println(NamesInAllFiltersDropwn);
+
+		}
+
+		softAssert.assertEquals(NamesInSizeDropdown,NamesInAllFiltersDropwn, "The Size names are not equal in All Filter Dropdown and Size Dropdown");
+		Reporter.log("The Size names are equal in All Filter Dropdown and Size Dropdown");
+		ExtentReport.extentTest.info("The Size names are equal in All Filter Dropdown and Size Dropdown");
 
 	}
 
@@ -1401,7 +1447,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PLP_PRODUCTS)));
 		
-	org.openqa.selenium.Dimension d= 	driver.findElement(By.cssSelector(".product-image-container>a")).getSize();
+	Dimension d= 	driver.findElement(By.cssSelector(".product-image-container>a")).getSize();
 	if(d.width>278) {
 		ExtentReport.extentTest.info("Product grid conatins incorrect number of items"); 
 		throw new Exception("Product grid conatins incorrect number of items"); 
@@ -1814,7 +1860,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		
 		//WebElement productImage = driver.findElement(By.cssSelector("div[data-index='1']>div>a>img[data-tj-qa='plp-product-img-main']"));
 		WebElement productImage = driver.findElement(By.cssSelector("img[data-tj-qa='plp-product-img-main']"));
-		org.openqa.selenium.Dimension dim = productImage.getSize();
+		Dimension dim = productImage.getSize();
 		int width=	dim.width;
 //		marginLeft = productImage.getCssValue("margin-left");
 //		marginRight = productImage.getCssValue("margin-right");

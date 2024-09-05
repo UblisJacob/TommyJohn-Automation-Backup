@@ -76,7 +76,7 @@ public class ProductDetailsPageLocators {
 	public static By ALL_COLOR_LIST = By.xpath("//div[@class='product-option__color-swatches-wrapper']//li");
 	public static By PRODUCT_DETAILS = By.cssSelector("[data-tj-qa='mobile-footer-accordion-product-details'],.product-details-container>div> ul > li:nth-child(1) > div:nth-child(1) > a");
 	public static By SIZEGUIDE = By.cssSelector("[data-tj-qa='size-guide-link'],button.product-info__header-btn.size-guide");
-	public static By SIZEGUIDE_FITRANGE = By.cssSelector("[data-tj-qa='size-chart-fit-small'],.size-guide-yatpo-fit-graph>ul>li");
+	public static By SIZEGUIDE_FITRANGE = By.xpath("//ul[@data-tj-qa='size-guide-fit-range-graph']//li");
 	public static By SIZEGUIDE_FITRANGE_DROPDOWN= By.cssSelector(".expand-instructions");
 	public static By SIZEGUIDE_FITRANGE_TEXT= By.cssSelector(".instructions-text");
 	public static By SIZEGUIDE_CHART_TABLE= By.cssSelector("[data-tj-qa='size-chart-table'],.product-fit-guide>.size-chart-table");

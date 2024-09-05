@@ -79,7 +79,7 @@ public class AccountPageComponents extends AccountPageLocators {
 		driver.findElement(AccountLoginLocators.CUSTOMER_PASSWORD_INPUTBOX).sendKeys(password);
 		driver.findElement(AccountLoginLocators.LOGIN_BUTTON).click();
 
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ACCOUNT_PAGE_HEADING));
 
 		String loggedInID = driver.findElement(LOGGED_IN_ID).getText();

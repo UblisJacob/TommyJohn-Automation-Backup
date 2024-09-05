@@ -503,6 +503,16 @@ public class CollectionPage extends CollectionPageComponent{
 
 		new CollectionPageComponent(driver).ValidateProductsOnFiltering();
 	}
+
+	public void ValidateSizeFiltersCountInAllFiltersDropdownAndInSizeDropdown()  {
+
+		new CollectionPageComponent(driver).ValidateSizeFiltersCountInAllFiltersDropdownAndInSizeDropdown();
+	}
+
+	public void ValidateSizeFiltersNameInAllFiltersDropdownAndInSizeDropdown()  {
+
+		new CollectionPageComponent(driver).ValidateSizeFiltersNameInAllFiltersDropdownAndInSizeDropdown();
+	}
 }
 
 

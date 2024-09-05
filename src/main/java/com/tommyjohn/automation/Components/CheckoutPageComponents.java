@@ -472,7 +472,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
 		Reporter.log("Checkout page displayed");
 		ExtentReport.extentTest.info("Checkout page displayed");
-		Thread.sleep(4000);
+		Thread.sleep(5000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
 		jse.executeScript("arguments[0].click();", driver.findElement(TEXTMEWITHNEWSLETTERSANDOFFERSCHECKBOX));
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -793,6 +793,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 
 		Reporter.log("Checkout page displayed");
 		ExtentReport.extentTest.info("Checkout page displayed");
+		Thread.sleep(5000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
 		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
 		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
