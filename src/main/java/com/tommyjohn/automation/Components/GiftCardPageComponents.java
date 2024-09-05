@@ -156,7 +156,7 @@ public class GiftCardPageComponents extends GiftCardPageLocators {
 
 		//Check Gift card title on inline cart
 		//jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
-		Thread.sleep(3000);
+		Thread.sleep(10000);
 		softAssert.assertEquals(driver.findElement(GIFT_CARD_TITLE_INLINE_CART).getText(), "E-Gift Card" , "Wrong title is displayed for Gift cart on inline cart.");
 		String text = driver.findElement(GIFT_CARD_TITLE_INLINE_CART).getText();
 		System.out.println("Gift cart title is :: "+ text);
