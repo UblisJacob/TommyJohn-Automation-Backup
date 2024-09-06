@@ -513,6 +513,16 @@ public class CollectionPage extends CollectionPageComponent{
 
 		new CollectionPageComponent(driver).ValidateSizeFiltersNameInAllFiltersDropdownAndInSizeDropdown();
 	}
+
+	public void ValidateColorFiltersCountInAllFiltersDropdownAndInColorDropdown()  {
+
+		new CollectionPageComponent(driver).ValidateColorFiltersCountInAllFiltersDropdownAndInColorDropdown();
+	}
+
+	public void ValidateColorFiltersNameInAllFiltersDropdownAndInColorDropdown()  {
+
+		new CollectionPageComponent(driver).ValidateColorFiltersNameInAllFiltersDropdownAndInColorDropdown();
+	}
 }
 
 
