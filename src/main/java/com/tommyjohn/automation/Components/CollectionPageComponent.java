@@ -44,6 +44,60 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	int count=0;
 	int PLPs = 55;
 
+	public void ValidateColorFiltersCountInAllFiltersDropdownAndInColorDropdown()
+	{
+		SoftAssert softAssert = new SoftAssert();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//a[@aria-label='Men link']//span[contains(text(),'Men')]")));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//span[@class='select--options__label-text' and contains(text(),'Color')]")));
+		int ColorFilterCountInSizeDropwdown = driver.findElements(By.xpath("//div[@data-tj-qa='plp-filter-color']//li")).size();
+		System.out.println(ColorFilterCountInSizeDropwdown);
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//span[@class='all-filter-pill-span']")));
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//div[@class='filter-element--name' and contains(text(),'Color')]")));
+		int ColorFilterCountInAllFiltersDropwdown = driver.findElements(By.xpath("//button[@data-tj-qa='mobile-filter-color']//following-sibling::div//li//span")).size();
+		System.out.println(ColorFilterCountInAllFiltersDropwdown);
+		softAssert.assertEquals(ColorFilterCountInSizeDropwdown,ColorFilterCountInAllFiltersDropwdown,"Appropriate Color filters are not displayed");
+		Reporter.log("Appropriate Color filters are displayed");
+		ExtentReport.extentTest.info("Appropriate Color filters are displayed");
+	}
+
+	public void ValidateColorFiltersNameInAllFiltersDropdownAndInColorDropdown()
+	{
+		String NamesInColorDropdown = "";
+		String NamesInAllFiltersDropwn ="";
+		SoftAssert softAssert = new SoftAssert();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//a[@aria-label='Men link']//span[contains(text(),'Men')]")));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//span[@class='select--options__label-text' and contains(text(),'Color')]")));
+		List<WebElement> ColorNameList = driver.findElements(By.xpath("//div[@data-tj-qa='plp-filter-color']//li//button"));
+
+		for (int i = 0; i < ColorNameList.size(); i++)
+		{
+			NamesInColorDropdown = ColorNameList.get(i).getAttribute("data-filter-btn");
+			System.out.println(NamesInColorDropdown);
+
+		}
+
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//span[@class='all-filter-pill-span']")));
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//div[@class='filter-element--name' and contains(text(),'Color')]")));
+
+		List<WebElement> ColorNameListInAllFilters = driver.findElements(By.xpath("//button[@data-tj-qa='mobile-filter-color']//following-sibling::div//li//button"));
+
+		for (int i = 0; i < ColorNameListInAllFilters.size(); i++)
+		{
+			NamesInAllFiltersDropwn = ColorNameListInAllFilters.get(i).getAttribute("data-filter-btn");
+			System.out.println(NamesInAllFiltersDropwn);
+
+		}
+
+		softAssert.assertEquals(NamesInColorDropdown,NamesInAllFiltersDropwn, "The Color names are not equal in All Filter Dropdown and Size Dropdown");
+		Reporter.log("The Color names are equal in All Filter Dropdown and Size Dropdown");
+		ExtentReport.extentTest.info("The Color names are equal in All Filter Dropdown and Size Dropdown");
+	}
 
 
 	public void ValidateSizeFiltersCountInAllFiltersDropdownAndInSizeDropdown()
