@@ -101,14 +101,24 @@ public class ValidateCategoryPages {
 		new CollectionPage(driver).ValidateProductsOnFiltering();
 	}
 
-//	@Test
+	@Test
 	public void ValidateSizeFiltersCountInAllFiltersDropdownAndInSizeDropdown() throws Exception {
 		new CollectionPage(driver).ValidateSizeFiltersCountInAllFiltersDropdownAndInSizeDropdown();
 	}
 
-//	@Test
+	@Test
 	public void ValidateSizeFiltersNameInAllFiltersDropdownAndInSizeDropdown() throws Exception {
 		new CollectionPage(driver).ValidateSizeFiltersNameInAllFiltersDropdownAndInSizeDropdown();
+	}
+
+	@Test
+	public void ValidateColorFiltersCountInAllFiltersDropdownAndInColorDropdown() throws Exception {
+		new CollectionPage(driver).ValidateColorFiltersCountInAllFiltersDropdownAndInColorDropdown();
+	}
+
+	@Test
+	public void ValidateColorFiltersNameInAllFiltersDropdownAndInColorDropdown() throws Exception {
+		new CollectionPage(driver).ValidateColorFiltersNameInAllFiltersDropdownAndInColorDropdown();
 	}
 
 	@Test
