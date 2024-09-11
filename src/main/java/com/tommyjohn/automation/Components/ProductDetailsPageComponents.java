@@ -3524,8 +3524,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 						System.out.println(elemen.getText() + elements.getText() + "Product is added to Cart");
 						jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_CART_BUTTON));
 						WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-						wait.until(ExpectedConditions.visibilityOfElementLocated(INLINE_CART_CLOSE));
-
+					//	wait.until(ExpectedConditions.visibilityOfElementLocated(INLINE_CART_CLOSE));
+						Thread.sleep(5000);
 						jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
 
 					}
