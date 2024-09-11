@@ -523,6 +523,28 @@ public class CollectionPage extends CollectionPageComponent{
 
 		new CollectionPageComponent(driver).ValidateColorFiltersNameInAllFiltersDropdownAndInColorDropdown();
 	}
+
+	public void ValidateCategoryFiltersCountInAllFiltersDropdownAndInCategoryDropdown()  {
+
+		new CollectionPageComponent(driver).ValidateCategoryFiltersCountInAllFiltersDropdownAndInCategoryDropdown();
+	}
+
+	public void ValidateCategoryFiltersNameInAllFiltersDropdownAndInCategoryDropdown()  {
+
+		new CollectionPageComponent(driver).ValidateCategoryFiltersNameInAllFiltersDropdownAndInCategoryDropdown();
+	}
+
+	public void ValidateCollectionFiltersCountInAllFiltersDropdownAndInCollectionDropdown()  {
+
+		new CollectionPageComponent(driver).ValidateCollectionFiltersCountInAllFiltersDropdownAndInCollectionDropdown();
+	}
+
+	public void ValidateCollectionFiltersNameInAllFiltersDropdownAndInCollectionDropdown()  {
+
+		new CollectionPageComponent(driver).ValidateCollectionFiltersNameInAllFiltersDropdownAndInCollectionDropdown();
+	}
+
+
 }
 
 

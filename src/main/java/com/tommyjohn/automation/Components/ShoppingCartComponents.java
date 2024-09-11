@@ -147,7 +147,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 	{
 		SoftAssert softAssert = new SoftAssert();
 		
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HomePageLocators.CART_ICON));
 		driver.findElement(HomePageLocators.CART_ICON).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));

@@ -122,6 +122,26 @@ public class ValidateCategoryPages {
 	}
 
 	@Test
+	public void ValidateCategoryFiltersCountInAllFiltersDropdownAndInCategoryDropdown() throws Exception {
+		new CollectionPage(driver).ValidateCategoryFiltersCountInAllFiltersDropdownAndInCategoryDropdown();
+	}
+
+	@Test
+	public void ValidateCategoryFiltersNameInAllFiltersDropdownAndInCategoryDropdown() throws Exception {
+		new CollectionPage(driver).ValidateCategoryFiltersNameInAllFiltersDropdownAndInCategoryDropdown();
+	}
+
+	@Test
+	public void ValidateCollectionFiltersCountInAllFiltersDropdownAndInCollectionDropdown() throws Exception {
+		new CollectionPage(driver).ValidateCollectionFiltersCountInAllFiltersDropdownAndInCollectionDropdown();
+	}
+
+	@Test
+	public void ValidateCollectionFiltersNameInAllFiltersDropdownAndInCollectionDropdown() throws Exception {
+		new CollectionPage(driver).ValidateCollectionFiltersNameInAllFiltersDropdownAndInCollectionDropdown();
+	}
+
+	@Test
 	public void ValidateOnClickingTheInLineBanner() throws Exception {
 		new CollectionPage(driver).ValidateOnClickingTheInLineBanner();
 	}

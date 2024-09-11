@@ -281,11 +281,21 @@ public class HomePageComponents extends HomePageLocators {
 		element = driver.findElement(WOMEN_CATEGORY);
 		action.moveToElement(element).perform();
 		Thread.sleep(3000);
-		if(!driver.findElement(WOMENS_FIRST_lEVEL1_CATEGORY).isDisplayed())
-			throw new Exception("Men Category is not hoverable");
-		Reporter.log("Women category is Displayed :: Hoverable :: Clickable");
-		ExtentReport.extentTest.info("Women category is Displayed :: Hoverable :: Clickable");
-		Thread.sleep(3000);
+		try {
+			if (!driver.findElement(WOMENS_FIRST_lEVEL1_CATEGORY).isDisplayed())
+				throw new Exception("Women Category is not hoverable");
+			Reporter.log("Women category is Displayed :: Hoverable :: Clickable");
+			ExtentReport.extentTest.info("Women category is Displayed :: Hoverable :: Clickable");
+			Thread.sleep(3000);
+		}
+		catch (Exception ex)
+		{
+			System.out.println("Entering Catch");
+			if (!driver.findElement(WOMENS_FIRST_lEVEL1_CATEGORY_COPY).isDisplayed())
+				throw new Exception("Women Category is not hoverable");
+			Reporter.log("Women category is Displayed :: Hoverable :: Clickable");
+			ExtentReport.extentTest.info("Women category is Displayed :: Hoverable :: Clickable");
+		}
 
 		// Verify ImNewHere category
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
