@@ -44,6 +44,127 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	int count=0;
 	int PLPs = 55;
 
+	public void ValidateCollectionFiltersCountInAllFiltersDropdownAndInCollectionDropdown()
+	{
+		SoftAssert softAssert = new SoftAssert();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//a[@aria-label='Women link']//span[contains(text(),'Women')]")));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//span[@class='select--options__label-text' and contains(text(),'Collection')]")));
+		int CollectionFilterCountInCollectionDropwdown = driver.findElements(By.xpath("//div[@data-tj-qa='plp-filter-collection']//li")).size();
+		System.out.println(CollectionFilterCountInCollectionDropwdown);
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//span[@class='all-filter-pill-span']")));
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//div[@class='filter-element--name' and contains(text(),'Collection')]")));
+		int CollectionFilterCountInAllFiltersDropwdown = driver.findElements(By.xpath("//button[@data-tj-qa='mobile-filter-collection']//following-sibling::div//li")).size();
+		System.out.println(CollectionFilterCountInAllFiltersDropwdown);
+		softAssert.assertEquals(CollectionFilterCountInCollectionDropwdown,CollectionFilterCountInAllFiltersDropwdown,"Appropriate Collection filters are not displayed");
+		Reporter.log("Appropriate Collection filters are displayed");
+		ExtentReport.extentTest.info("Appropriate Collection filters are displayed");
+
+	}
+
+	public void ValidateCollectionFiltersNameInAllFiltersDropdownAndInCollectionDropdown()
+	{
+		String NamesInCollectionDropdown = "";
+		String NamesInAllFiltersDropdown ="";
+		SoftAssert softAssert = new SoftAssert();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//a[@aria-label='Women link']//span[contains(text(),'Women')]")));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//span[@class='select--options__label-text' and contains(text(),'Collection')]")));
+		List<WebElement> CollectionNameList = driver.findElements(By.xpath("//div[@data-tj-qa='plp-filter-collection']//li//button"));
+
+
+		for (int i = 0; i < CollectionNameList.size(); i++)
+		{
+			NamesInCollectionDropdown = CollectionNameList.get(i).getAttribute("data-filter-btn");
+			System.out.println(NamesInCollectionDropdown);
+
+		}
+
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//span[@class='all-filter-pill-span']")));
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//div[@class='filter-element--name' and contains(text(),'Collection')]")));
+
+		List<WebElement> CollectionNameListInAllFilters = driver.findElements(By.xpath("//button[@data-tj-qa='mobile-filter-collection']//following-sibling::div//li//button"));
+
+		for (int i = 0; i < CollectionNameListInAllFilters.size(); i++)
+		{
+			NamesInAllFiltersDropdown = CollectionNameListInAllFilters.get(i).getAttribute("data-filter-btn");
+			System.out.println(NamesInAllFiltersDropdown);
+			if(NamesInAllFiltersDropdown.contains(NamesInCollectionDropdown))
+			{
+				System.out.println("True");
+			}
+
+		}
+
+		softAssert.assertEquals(NamesInCollectionDropdown,NamesInAllFiltersDropdown, "The Collection names are not equal in All Filter Dropdown and Collection Dropdown");
+		Reporter.log("The Collection names are equal in All Filter Dropdown and Collection Dropdown");
+		ExtentReport.extentTest.info("The Collection names are equal in All Filter Dropdown and Collection Dropdown");
+	}
+
+	public void ValidateCategoryFiltersCountInAllFiltersDropdownAndInCategoryDropdown()
+	{
+		SoftAssert softAssert = new SoftAssert();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//a[@aria-label='Women link']//span[contains(text(),'Women')]")));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//span[@class='select--options__label-text' and contains(text(),'Category')]")));
+		int CategoryFilterCountInCategoryDropwdown = driver.findElements(By.xpath("//div[@data-tj-qa='plp-filter-category']//li")).size();
+		System.out.println(CategoryFilterCountInCategoryDropwdown);
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//span[@class='all-filter-pill-span']")));
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//div[@class='filter-element--name' and contains(text(),'Category')]")));
+		int CategoryFilterCountInAllFiltersDropwdown = driver.findElements(By.xpath("//button[@data-tj-qa='mobile-filter-category']//following-sibling::div//li")).size();
+		System.out.println(CategoryFilterCountInAllFiltersDropwdown);
+		softAssert.assertEquals(CategoryFilterCountInCategoryDropwdown,CategoryFilterCountInAllFiltersDropwdown,"Appropriate Category filters are not displayed");
+		Reporter.log("Appropriate Category filters are displayed");
+		ExtentReport.extentTest.info("Appropriate Category filters are displayed");
+
+	}
+
+	public void ValidateCategoryFiltersNameInAllFiltersDropdownAndInCategoryDropdown()
+	{
+		String NamesInCategoryDropdown = "";
+		String NamesInAllFiltersDropdown ="";
+		SoftAssert softAssert = new SoftAssert();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//a[@aria-label='Women link']//span[contains(text(),'Women')]")));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//span[@class='select--options__label-text' and contains(text(),'Category')]")));
+		List<WebElement> CategoryNameList = driver.findElements(By.xpath("//div[@data-tj-qa='plp-filter-category']//li//button"));
+
+		for (int i = 0; i < CategoryNameList.size(); i++)
+		{
+			NamesInCategoryDropdown = CategoryNameList.get(i).getAttribute("data-filter-btn");
+			System.out.println(NamesInCategoryDropdown);
+
+		}
+
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//span[@class='all-filter-pill-span']")));
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//div[@class='filter-element--name' and contains(text(),'Category')]")));
+
+		List<WebElement> CategoryNameListInAllFilters = driver.findElements(By.xpath("//button[@data-tj-qa='mobile-filter-category']//following-sibling::div//li//button"));
+
+		for (int i = 0; i < CategoryNameListInAllFilters.size(); i++)
+		{
+			NamesInAllFiltersDropdown = CategoryNameListInAllFilters.get(i).getAttribute("data-filter-btn");
+			System.out.println(NamesInAllFiltersDropdown);
+			if(NamesInAllFiltersDropdown.contains(NamesInCategoryDropdown))
+			{
+				System.out.println("True");
+			}
+
+		}
+
+		softAssert.assertEquals(NamesInCategoryDropdown,NamesInAllFiltersDropdown, "The Category names are not equal in All Filter Dropdown and Category Dropdown");
+		Reporter.log("The Category names are equal in All Filter Dropdown and Category Dropdown");
+		ExtentReport.extentTest.info("The Category names are equal in All Filter Dropdown and Category Dropdown");
+	}
+
 	public void ValidateColorFiltersCountInAllFiltersDropdownAndInColorDropdown()
 	{
 		SoftAssert softAssert = new SoftAssert();
@@ -66,7 +187,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	public void ValidateColorFiltersNameInAllFiltersDropdownAndInColorDropdown()
 	{
 		String NamesInColorDropdown = "";
-		String NamesInAllFiltersDropwn ="";
+		String NamesInAllFiltersDropdown ="";
 		SoftAssert softAssert = new SoftAssert();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//a[@aria-label='Men link']//span[contains(text(),'Men')]")));
@@ -89,12 +210,12 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 		for (int i = 0; i < ColorNameListInAllFilters.size(); i++)
 		{
-			NamesInAllFiltersDropwn = ColorNameListInAllFilters.get(i).getAttribute("data-filter-btn");
-			System.out.println(NamesInAllFiltersDropwn);
+			NamesInAllFiltersDropdown = ColorNameListInAllFilters.get(i).getAttribute("data-filter-btn");
+			System.out.println(NamesInAllFiltersDropdown);
 
 		}
 
-		softAssert.assertEquals(NamesInColorDropdown,NamesInAllFiltersDropwn, "The Color names are not equal in All Filter Dropdown and Size Dropdown");
+		softAssert.assertEquals(NamesInColorDropdown,NamesInAllFiltersDropdown, "The Color names are not equal in All Filter Dropdown and Size Dropdown");
 		Reporter.log("The Color names are equal in All Filter Dropdown and Size Dropdown");
 		ExtentReport.extentTest.info("The Color names are equal in All Filter Dropdown and Size Dropdown");
 	}
@@ -122,7 +243,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	public void ValidateSizeFiltersNameInAllFiltersDropdownAndInSizeDropdown()
 	{
 		String NamesInSizeDropdown = "";
-		String NamesInAllFiltersDropwn ="";
+		String NamesInAllFiltersDropdown ="";
 		SoftAssert softAssert = new SoftAssert();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//a[@aria-label='Men link']//span[contains(text(),'Men')]")));
@@ -145,12 +266,12 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 		for (int i = 0; i < SizeNameList.size(); i++)
 		{
-			NamesInAllFiltersDropwn = SizeNameListInAllFilters.get(i).getText();
-			System.out.println(NamesInAllFiltersDropwn);
+			NamesInAllFiltersDropdown = SizeNameListInAllFilters.get(i).getText();
+			System.out.println(NamesInAllFiltersDropdown);
 
 		}
 
-		softAssert.assertEquals(NamesInSizeDropdown,NamesInAllFiltersDropwn, "The Size names are not equal in All Filter Dropdown and Size Dropdown");
+		softAssert.assertEquals(NamesInSizeDropdown,NamesInAllFiltersDropdown, "The Size names are not equal in All Filter Dropdown and Size Dropdown");
 		Reporter.log("The Size names are equal in All Filter Dropdown and Size Dropdown");
 		ExtentReport.extentTest.info("The Size names are equal in All Filter Dropdown and Size Dropdown");
 
