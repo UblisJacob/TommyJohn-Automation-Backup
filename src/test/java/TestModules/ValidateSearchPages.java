@@ -76,7 +76,7 @@ public class ValidateSearchPages {
 	}
 	
 	@Test public void VerifySearchViewOnImageAndSecondaryBadging() throws Exception {
-		searchText = objGeneralMethods.readPropertiesFile("searchFeatured");
+		searchText = objGeneralMethods.readPropertiesFile("searchAir");
 		new HomePage(driver).validateSearchPM(searchText);
 		new CollectionPage(driver).validateOnImageBadgeSearch();
 	}

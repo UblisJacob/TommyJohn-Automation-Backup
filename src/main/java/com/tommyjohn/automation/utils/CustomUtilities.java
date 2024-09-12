@@ -105,7 +105,7 @@ public class CustomUtilities {
 		{
 			//System.setProperty("webdriver.gecko.driver", properties.getProperty("ffDriverPath"));
 			FirefoxOptions options = new FirefoxOptions();
-			options.addArguments("--headless");
+		//	options.addArguments("--headless");
 			options.addArguments("--window-size=1280,800");
 			options.addArguments("--disable-gpu");
 			options.addArguments("--no-sandbox");
