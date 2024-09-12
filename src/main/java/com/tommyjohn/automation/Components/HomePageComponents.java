@@ -473,7 +473,7 @@ public class HomePageComponents extends HomePageLocators {
 		driver.findElement(SEARCH_ICON_INPUT).sendKeys(searchText);
 
 //		action.moveToElement(driver.findElement(SEARCH_ICON_INPUT)).build().perform();
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		//softAssert.assertTrue(driver.findElement(PRODUCT_SUGGESTION).isDisplayed(),
 		//		"Product suggestions section not displayed ");
 		softAssert.assertTrue(driver.findElement(PRODUCT_MATCHES_TITLE).isDisplayed(),
