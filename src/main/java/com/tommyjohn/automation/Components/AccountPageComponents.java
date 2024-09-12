@@ -154,8 +154,9 @@ public class AccountPageComponents extends AccountPageLocators {
 				"Address Book title is not displayed on account page");
 
 
-//		Thread.sleep(10000);
+		Thread.sleep(10000);
 //		 wait.until(ExpectedConditions.elementToBeClickable(MANAGE_ADDRESSES));
+
 		 driver.findElement(MANAGE_ADDRESSES).click();
 		//driver.findElement(MANAGE_ADDRESSES).click();
 
