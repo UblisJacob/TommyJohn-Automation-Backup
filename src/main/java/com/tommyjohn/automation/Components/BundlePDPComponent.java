@@ -245,7 +245,7 @@ public class BundlePDPComponent extends BundlePDPLocators{
 							
 						
 							colornew = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper > ul  > li:nth-child("+i+") > input")).getAttribute("data-variant");
-							imagecolor = driver.findElement(IMAGE_COLOR).getAttribute("data-color-handle");
+							imagecolor = driver.findElement(IMAGE_COLOR).getAttribute("data-color");
 							
 							System.out.println("For Color Swatch: " +colornew);
 							System.out.println("Active Sizes: " +num );

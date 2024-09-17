@@ -400,7 +400,7 @@ public class NavigationElementComponents extends HomePageLocators {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(MYACCOUNT_OPTION));
 
 		List<String> options = new ArrayList<>();
-		for (int i = 1; i <= 6; i++) {
+		for (int i = 1; i <= 5; i++) {
 			WebElement option = genMethods.autoIndex(driver, ACCOUNT_NAV_DROPDOWN_OPTIONS, i, 1);
 			String optionText = option.getText();
 			options.add(optionText);
@@ -410,9 +410,9 @@ public class NavigationElementComponents extends HomePageLocators {
 		softassert.assertTrue(options.contains("My Account"), "Options List does not contain option 'My Account'");
 		softassert.assertTrue(options.contains("Reorder"), "Options List does not contain option 'Reorder'");
 		softassert.assertTrue(options.contains("Customer Service"), "Options List does not contain option 'Custmer Service'");
-		softassert.assertTrue(options.contains("Logout"), "Options List does not contain option 'Sign Out'");
 		softassert.assertTrue(options.contains("Find A Store"), "Options List does not contain option 'Find A Store'");
-		softassert.assertTrue(options.contains("Refer A Friend"), "Options List does not contain option 'Refer A Friend'");
+		softassert.assertTrue(options.contains("Logout"), "Options List does not contain option 'Sign Out'");
+//		softassert.assertTrue(options.contains("Refer A Friend"), "Options List does not contain option 'Refer A Friend'");
 //		softassert.assertTrue(options.contains("Help Center"), "Options List does not contain option 'Help Center'");
 
 

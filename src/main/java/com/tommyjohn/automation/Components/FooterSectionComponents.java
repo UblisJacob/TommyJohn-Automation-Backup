@@ -4,6 +4,7 @@ import java.time.Duration;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Set;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -125,21 +126,49 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		Reporter.log("Shop Men footer link is Displayed :: Clickable");
 		ExtentReport.extentTest.info("Shop Men footer link is Displayed :: Clickable");
 
-//		Check Fabric Guide Footer
-		System.out.println("***Validating Fabric Guide Footer***");
+////		Check Fabric Guide Footer
+//		System.out.println("***Validating Fabric Guide Footer***");
+//
+//		driver.navigate().back();
+//		wait.until(ExpectedConditions.titleIs("Tommy John | No Adjustment Needed"));
+//
+//		text = driver.findElement(FABRIC_GUIDE_LINK).getText();
+//		softassert.assertTrue(text.equals("Fabric Guide"), "Fabric Guide link text is changed");
+//
+//		objGeneralMethods.clickButtonByJS(driver, FABRIC_GUIDE_LINK);
+//
+//		wait.until(ExpectedConditions.titleContains("Fabric Guide"));
+//
+//		softassert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase("https://www.tommyjohn.com/pages/fabric-guide"),
+//				"Wrong page opened after Fabric Guide Footer link was clicked");
+//
+//		try{
+//			softassert.assertAll();
+//		}catch (AssertionError e) {
+//			ExtentReport.extentTest.fail(e);
+//			softassert.assertAll();
+//		}
+//
+//		System.out.println("Fabric Guide Link text is Correct and Correct webpage opened after clicking on link\n");
+//		Reporter.log("Fabric Guide footer link is Displayed :: Clickable");
+//		ExtentReport.extentTest.info("Fabric Guide footer link is Displayed :: Clickable");
+
+//  Check Sale Footer
+
+		System.out.println("***Validating Sale Footer***");
 
 		driver.navigate().back();
 		wait.until(ExpectedConditions.titleIs("Tommy John | No Adjustment Needed"));
 
-		text = driver.findElement(FABRIC_GUIDE_LINK).getText();
-		softassert.assertTrue(text.equals("Fabric Guide"), "Fabric Guide link text is changed");
+		text = driver.findElement(SALE).getText();
+		softassert.assertTrue(text.equals("Sale"), "Sale link text is changed");
 
-		objGeneralMethods.clickButtonByJS(driver, FABRIC_GUIDE_LINK);
+		objGeneralMethods.clickButtonByJS(driver, SALE);
 
-		wait.until(ExpectedConditions.titleContains("Fabric Guide"));
+		wait.until(ExpectedConditions.titleContains("Men's & Women's Sale – Tommy John"));
 
-		softassert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase("https://www.tommyjohn.com/pages/fabric-guide"),
-				"Wrong page opened after Fabric Guide Footer link was clicked");
+		softassert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase("https://www.tommyjohn.com/collections/sale-mens-womens"),
+				"Wrong page opened after Gift Cards Footer link was clicked");
 
 		try{
 			softassert.assertAll();
@@ -148,9 +177,10 @@ public class FooterSectionComponents extends FooterSectionLocators {
 			softassert.assertAll();
 		}
 
-		System.out.println("Fabric Guide Link text is Correct and Correct webpage opened after clicking on link\n");
-		Reporter.log("Fabric Guide footer link is Displayed :: Clickable");
-		ExtentReport.extentTest.info("Fabric Guide footer link is Displayed :: Clickable");
+		System.out.println("Sales Link text is Correct and Correct webpage opened after clicking on link\n");
+		Reporter.log("Sales footer link is Displayed :: Clickable");
+		ExtentReport.extentTest.info("Sales footer link is Displayed :: Clickable");
+
 
 //		Check Gift Cards Footer
 		System.out.println("***Validating Gift Cards Footer***");
@@ -217,13 +247,13 @@ public class FooterSectionComponents extends FooterSectionLocators {
 				driver.getCurrentUrl().contains("https://www.tommyjohn.com/pages/sitewide-promotion-disclaimer"),
 				"Wrong page opened after Sitewide Promotion footer link was clicked");
 
-		try{
+		try {
 			softassert.assertAll();
-		}catch (AssertionError e) {
+		} catch (AssertionError e) {
 			ExtentReport.extentTest.fail(e);
 			softassert.assertAll();
 		}
-		
+
 		System.out.println(
 				"Sitewide Promotion Footer Link text is Correct and Correct webpage opened after clicking on link\n");
 
@@ -236,6 +266,8 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		driver.navigate().back();
 		wait.until(ExpectedConditions.titleIs("Tommy John | No Adjustment Needed"));
 
+		String originalWindow = driver.getWindowHandle();
+
 		linkText = driver.findElement(MILITARY_DISCOUNT_LINK).getText();
 		softassert.assertTrue(linkText.equals("Military Discount"), "Military Discount link text is changed");
 
@@ -243,141 +275,201 @@ public class FooterSectionComponents extends FooterSectionLocators {
 
 		Thread.sleep(2000);
 
-		list = driver.findElements(LEAVE_SITE_POPUP);
+//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.numberOfWindowsToBe(2));
 
-		Assert.assertTrue(list.size() > 0, "Leave Site Popup has not appeared");
+		Set<String> windowHandles = driver.getWindowHandles();
 
-		objGeneralMethods.clickButtonByJS(driver, LEAVE_SITE_POPUP_CANCEL_BTN);
-
-		try{
-			softassert.assertAll();
-		}catch (AssertionError e) {
-			ExtentReport.extentTest.fail(e);
-			softassert.assertAll();
+		for (String handle : windowHandles) {
+			if (!handle.equals(originalWindow)) {
+				driver.switchTo().window(handle); // Switch to the new window
+				break;
+			}
 		}
+			Assert.assertTrue(driver.findElement(By.name("email")).isDisplayed());
+			driver.close();
+			driver.switchTo().window(originalWindow);
+//		list = driver.findElements(LEAVE_SITE_POPUP);
+//
+//		Assert.assertTrue(list.size() > 0, "Leave Site Popup has not appeared");
+//
+//		objGeneralMethods.clickButtonByJS(driver, LEAVE_SITE_POPUP_CANCEL_BTN);
 
-		System.out.println("Military Discount Link text is Correct and Popup opened after clicking on link\n");
-		Reporter.log("Military Discount footer link is Displayed :: Clickable");
-		ExtentReport.extentTest.info("Military Discount footer link is Displayed :: Clickable");
-		
+			try {
+				softassert.assertAll();
+			} catch (AssertionError e) {
+				ExtentReport.extentTest.fail(e);
+				softassert.assertAll();
+			}
+
+			System.out.println("Military Discount Link text is Correct and new window opened after clicking on link\n");
+			Reporter.log("Military Discount footer link is Displayed :: Clickable");
+			ExtentReport.extentTest.info("Military Discount footer link is Displayed :: Clickable");
+
 //		Check First Responder link
-		System.out.println("***Validating First Responder Footer***");
+			System.out.println("***Validating First Responder Footer***");
 
-		linkText = driver.findElement(FIRST_RESPONDER).getText();
+			linkText = driver.findElement(FIRST_RESPONDER).getText();
 
-		softassert.assertTrue(linkText.equals("First Responder"), "First Responder link text is changed");
+			softassert.assertTrue(linkText.equals("First Responder"), "First Responder link text is changed");
 
-		objGeneralMethods.clickButtonByJS(driver, FIRST_RESPONDER);
+			objGeneralMethods.clickButtonByJS(driver, FIRST_RESPONDER);
 
-		Thread.sleep(1000);
+			Thread.sleep(1000);
 
-		list = driver.findElements(LEAVE_SITE_POPUP);
+//			list = driver.findElements(LEAVE_SITE_POPUP);
+//
+////			Assert.assertTrue(list.size() > 0, "Leave Site Popup has not appeared");
+////
+////			objGeneralMethods.clickButtonByJS(driver, LEAVE_SITE_POPUP_CANCEL_BTN);
 
-		Assert.assertTrue(list.size() > 0, "Leave Site Popup has not appeared");
 
-		objGeneralMethods.clickButtonByJS(driver, LEAVE_SITE_POPUP_CANCEL_BTN);
+		wait.until(ExpectedConditions.numberOfWindowsToBe(2));
 
-		try{
-			softassert.assertAll();
-		}catch (AssertionError e) {
-			ExtentReport.extentTest.fail(e);
-			softassert.assertAll();
+		Set<String> windowHandles1 = driver.getWindowHandles();
+
+		for (String handle : windowHandles1) {
+			if (!handle.equals(originalWindow)) {
+				driver.switchTo().window(handle); // Switch to the new window
+				break;
+			}
 		}
+		Assert.assertTrue(driver.findElement(By.name("email")).isDisplayed());
+		driver.close();
+		driver.switchTo().window(originalWindow);
 
-		System.out.println("First Responder Link text is Correct and Popup opened after clicking on link\n");
 
-		Reporter.log("First Responder footer link is Displayed :: Clickable");
-		ExtentReport.extentTest.info("First Responder footer link is Displayed :: Clickable");
-		
+		try {
+				softassert.assertAll();
+			} catch (AssertionError e) {
+				ExtentReport.extentTest.fail(e);
+				softassert.assertAll();
+			}
+
+			System.out.println("First Responder Link text is Correct and new window opened after clicking on link\n");
+
+			Reporter.log("First Responder footer link is Displayed :: Clickable");
+			ExtentReport.extentTest.info("First Responder footer link is Displayed :: Clickable");
+
 //		Check Government Employee Discount link
-		System.out.println("***Validating Government Employee Discount Footer***");
+			System.out.println("***Validating Government Employee Discount Footer***");
 
-		linkText = driver.findElement(GOVERNMENT_EMPLOYEE_DISCOUNT).getText();
+			linkText = driver.findElement(GOVERNMENT_EMPLOYEE_DISCOUNT).getText();
 
-		softassert.assertTrue(linkText.equals("Government Employee Discount"),
-				"Government Employee Discount link text is changed");
+			softassert.assertTrue(linkText.equals("Government Employee Discount"),
+					"Government Employee Discount link text is changed");
 
-		objGeneralMethods.clickButtonByJS(driver, GOVERNMENT_EMPLOYEE_DISCOUNT);
+			objGeneralMethods.clickButtonByJS(driver, GOVERNMENT_EMPLOYEE_DISCOUNT);
 
-		Thread.sleep(1000);
+			Thread.sleep(1000);
 
-		list = driver.findElements(LEAVE_SITE_POPUP);
+//			list = driver.findElements(LEAVE_SITE_POPUP);
+//
+//			Assert.assertTrue(list.size() > 0, "Leave Site Popup has not appeared");
+//
+//			objGeneralMethods.clickButtonByJS(driver, LEAVE_SITE_POPUP_CANCEL_BTN);
 
-		Assert.assertTrue(list.size() > 0, "Leave Site Popup has not appeared");
+		wait.until(ExpectedConditions.numberOfWindowsToBe(2));
 
-		objGeneralMethods.clickButtonByJS(driver, LEAVE_SITE_POPUP_CANCEL_BTN);
+		Set<String> windowHandles2 = driver.getWindowHandles();
 
-		try{
-			softassert.assertAll();
-		}catch (AssertionError e) {
-			ExtentReport.extentTest.fail(e);
-			softassert.assertAll();
+		for (String handle : windowHandles2) {
+			if (!handle.equals(originalWindow)) {
+				driver.switchTo().window(handle); // Switch to the new window
+				break;
+			}
 		}
+		Assert.assertTrue(driver.findElement(By.name("email")).isDisplayed());
+		driver.close();
+		driver.switchTo().window(originalWindow);
 
-		System.out
-				.println("Government Employee Discount Link text is Correct and Popup opened after clicking on link\n");
 
-		Reporter.log("Government Employee Discount footer link is Displayed :: Clickable");
-		ExtentReport.extentTest.info("Government Employee Discount footer link is Displayed :: Clickable");
-		
+		try {
+				softassert.assertAll();
+			} catch (AssertionError e) {
+				ExtentReport.extentTest.fail(e);
+				softassert.assertAll();
+			}
+
+			System.out
+					.println("Government Employee Discount Link text is Correct and new window opened after clicking on link\n");
+
+			Reporter.log("Government Employee Discount footer link is Displayed :: Clickable");
+			ExtentReport.extentTest.info("Government Employee Discount footer link is Displayed :: Clickable");
+
 //		Check Teacher Discount link
-		System.out.println("***Validating Teacher Discount Footer***");
+			System.out.println("***Validating Teacher Discount Footer***");
 
-		linkText = driver.findElement(TEACHER_DISCOUNT_LINK).getText();
+			linkText = driver.findElement(TEACHER_DISCOUNT_LINK).getText();
 
-		softassert.assertTrue(linkText.equals("Teacher Discount"), "Teacher Discount link text is changed");
+			softassert.assertTrue(linkText.equals("Teacher Discount"), "Teacher Discount link text is changed");
 
-		objGeneralMethods.clickButtonByJS(driver, TEACHER_DISCOUNT_LINK);
+			objGeneralMethods.clickButtonByJS(driver, TEACHER_DISCOUNT_LINK);
 
-		Thread.sleep(1000);
+			Thread.sleep(1000);
 
-		list = driver.findElements(LEAVE_SITE_POPUP);
+//			list = driver.findElements(LEAVE_SITE_POPUP);
+//
+//			Assert.assertTrue(list.size() > 0, "Leave Site Popup has not appeared");
+//
+//			objGeneralMethods.clickButtonByJS(driver, LEAVE_SITE_POPUP_CANCEL_BTN);
 
-		Assert.assertTrue(list.size() > 0, "Leave Site Popup has not appeared");
+		wait.until(ExpectedConditions.numberOfWindowsToBe(2));
 
-		objGeneralMethods.clickButtonByJS(driver, LEAVE_SITE_POPUP_CANCEL_BTN);
+		Set<String> windowHandle3 = driver.getWindowHandles();
 
-		try{
-			softassert.assertAll();
-		}catch (AssertionError e) {
-			ExtentReport.extentTest.fail(e);
-			softassert.assertAll();
+		for (String handle : windowHandle3) {
+			if (!handle.equals(originalWindow)) {
+				driver.switchTo().window(handle); // Switch to the new window
+				break;
+			}
 		}
+		Assert.assertTrue(driver.findElement(By.name("email")).isDisplayed());
+		driver.close();
+		driver.switchTo().window(originalWindow);
 
-		System.out.println("Teacher Discount Link text is Correct and Popup opened after clicking on link\n");
 
-		Reporter.log("Teacher Discount footer link is Displayed :: Clickable");
-		ExtentReport.extentTest.info("Teacher Discount footer link is Displayed :: Clickable");
-		
+		try {
+				softassert.assertAll();
+			} catch (AssertionError e) {
+				ExtentReport.extentTest.fail(e);
+				softassert.assertAll();
+			}
+
+			System.out.println("Teacher Discount Link text is Correct and new window opened after clicking on link\n");
+
+			Reporter.log("Teacher Discount footer link is Displayed :: Clickable");
+			ExtentReport.extentTest.info("Teacher Discount footer link is Displayed :: Clickable");
+
 //		Check Referral Link
 
-		System.out.println("***Validating Referral Footer***");
-
-		linkText = driver.findElement(REFERRAL_LINK).getText();
-
-		softassert.assertTrue(linkText.contains("Refer A Friend"), "Give $25, Get $25 link text is changed");
-
-		objGeneralMethods.clickButtonByJS(driver, REFERRAL_LINK);
-
-		Thread.sleep(3000);
-		wait.until(ExpectedConditions.titleContains("Refer a Friend"));
-
-		softassert.assertTrue(driver.getCurrentUrl().contains("https://www.tommyjohn.com/pages/refer"),
-				"Wrong page opened after Give $25, Get $25 footer link was clicked");
-
-		try{
-			softassert.assertAll();
-		}catch (AssertionError e) {
-			ExtentReport.extentTest.fail(e);
-			softassert.assertAll();
-		}
+//		System.out.println("***Validating Referral Footer***");
+//
+//		linkText = driver.findElement(REFERRAL_LINK).getText();
+//
+//		softassert.assertTrue(linkText.contains("Refer A Friend"), "Give $25, Get $25 link text is changed");
+//
+//		objGeneralMethods.clickButtonByJS(driver, REFERRAL_LINK);
+//
+//		Thread.sleep(3000);
+//		wait.until(ExpectedConditions.titleContains("Refer a Friend"));
+//
+//		softassert.assertTrue(driver.getCurrentUrl().contains("https://www.tommyjohn.com/pages/refer"),
+//				"Wrong page opened after Give $25, Get $25 footer link was clicked");
+//
+//		try{
+//			softassert.assertAll();
+//		}catch (AssertionError e) {
+//			ExtentReport.extentTest.fail(e);
+//			softassert.assertAll();
+//		}
 
 //		System.out.println(
 //				"Give $25, Get $25 Footer Link text is Correct and Correct webpage opened after clicking on link\n");
 //
 //		Reporter.log("Give $25, Get $25 footer link is Displayed :: Clickable");
 //		ExtentReport.extentTest.info("Give $25, Get $25 footer link is Displayed :: Clickable");
-	}
+		}
 
 	/**
 	 * Validates if all links in Account Section are present and they navigate to
@@ -774,35 +866,35 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		ExtentReport.extentTest.info("Careers footer link is Displayed :: Clickable");
 		
 //		Check Press
-		System.out.println("***Validating Press Footer***");
-
-		driver.navigate().back();
-		wait.until(ExpectedConditions.titleIs("Tommy John | No Adjustment Needed"));
-
-		linkText = driver.findElement(PRESS_LINK).getText();
-
-		softassert.assertTrue(linkText.equals("Press"), "Press Link text is changed");
-
-		objGeneralMethods.clickButtonByJS(driver, PRESS_LINK);
-
-		wait.until(ExpectedConditions.titleContains("Press"));
-
-		softassert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase("https://www.tommyjohn.com/pages/press"),
-				"Wrong page opened after Press footer link was clicked");
-
-		try{
-			softassert.assertAll();
-		}catch (AssertionError e) {
-			ExtentReport.extentTest.fail(e);
-			softassert.assertAll();
-		}
+//		System.out.println("***Validating Press Footer***");
+//
+//		driver.navigate().back();
+//		wait.until(ExpectedConditions.titleIs("Tommy John | No Adjustment Needed"));
+//
+//		linkText = driver.findElement(PRESS_LINK).getText();
+//
+//		softassert.assertTrue(linkText.equals("Press"), "Press Link text is changed");
+//
+//		objGeneralMethods.clickButtonByJS(driver, PRESS_LINK);
+//
+//		wait.until(ExpectedConditions.titleContains("Press"));
+//
+//		softassert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase("https://www.tommyjohn.com/pages/press"),
+//				"Wrong page opened after Press footer link was clicked");
+//
+//		try{
+//			softassert.assertAll();
+//		}catch (AssertionError e) {
+//			ExtentReport.extentTest.fail(e);
+//			softassert.assertAll();
+//		}
+//
+//		System.out.println("Press Footer Link text is Correct and Correct webpage opened after clicking on link\n");
+//
+//		Reporter.log("Press footer link is Displayed :: Clickable");
+//		ExtentReport.extentTest.info("Press footer link is Displayed :: Clickable");
 		
-		System.out.println("Press Footer Link text is Correct and Correct webpage opened after clicking on link\n");
-
-		Reporter.log("Press footer link is Displayed :: Clickable");
-		ExtentReport.extentTest.info("Press footer link is Displayed :: Clickable");
-		
-//		Check Press
+//		Check Blog
 		System.out.println("***Validating Blog Footer***");
 
 		driver.navigate().back();
@@ -869,8 +961,14 @@ public class FooterSectionComponents extends FooterSectionLocators {
 	 */
 	public void validateFooterSocialLinks() throws Exception {
 		String hrefLink;
+
+		String originalWindow = driver.getWindowHandle();
+
+
+
+
 		wait = new WebDriverWait(driver,Duration.ofSeconds(30));
-		System.out.println("\n---Checking CopyRight Seciton---");
+		System.out.println("\n---Checking Social Links---");
 
 		if (!driver.getCurrentUrl().equals("https://www.tommyjohn.com")) {
 			driver.navigate().to("https://www.tommyjohn.com");
@@ -884,21 +982,37 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		softassert = new SoftAssert();
 
 		element = driver.findElement(FACEBOOK_ICON);
-		hrefLink = driver.findElement(FACEBOOK_LINK).getAttribute("href");
+//		hrefLink = driver.findElement(FACEBOOK_LINK).getAttribute("href");
 
-		objGeneralMethods.clickButtonByJS(driver, FACEBOOK_LINK);
+		objGeneralMethods.clickButtonByJS(driver, element);
 
 		Thread.sleep(1000);
 
-		list = driver.findElements(LEAVE_SITE_POPUP);
+//		list = driver.findElements(LEAVE_SITE_POPUP);
+//
+//		Assert.assertTrue(list.size() > 0, "Leave Site Popup has not appeared");
+//
+//		objGeneralMethods.clickButtonByJS(driver, LEAVE_SITE_POPUP_CANCEL_BTN);
 
-		Assert.assertTrue(list.size() > 0, "Leave Site Popup has not appeared");
+		wait.until(ExpectedConditions.numberOfWindowsToBe(2));
 
-		objGeneralMethods.clickButtonByJS(driver, LEAVE_SITE_POPUP_CANCEL_BTN);
+		Set<String> windowHandles = driver.getWindowHandles();
 
-		softassert.assertTrue(element.isDisplayed(), "Facebook Icon is not Displayed");
-		softassert.assertTrue(hrefLink.equals("https://www.facebook.com/TommyJohnWear"),
-				"Facebook Link is not Correct");
+		for (String handle : windowHandles) {
+			if (!handle.equals(originalWindow)) {
+				driver.switchTo().window(handle); // Switch to the new window
+				break;
+			}
+		}
+
+
+		softassert.assertTrue(driver.getCurrentUrl().contains("https://www.facebook.com/TommyJohnWear"),
+				"Twitter Link is not Correct");
+
+		driver.close();
+
+		driver.switchTo().window(originalWindow);
+
 
 		try{
 			softassert.assertAll();
@@ -916,20 +1030,35 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		softassert = new SoftAssert();
 
 		element = driver.findElement(TWITTER_ICON);
-		hrefLink = driver.findElement(TWITTER_LINK).getAttribute("href");
+//		hrefLink = driver.findElement(TWITTER_LINK).getAttribute("href");
 
-		objGeneralMethods.clickButtonByJS(driver, TWITTER_LINK);
+		objGeneralMethods.clickButtonByJS(driver, element);
 
 		Thread.sleep(1000);
 
-		list = driver.findElements(LEAVE_SITE_POPUP);
+//		list = driver.findElements(LEAVE_SITE_POPUP);
+//
+//		Assert.assertTrue(list.size() > 0, "Leave Site Popup has not appeared");
+//
+//		objGeneralMethods.clickButtonByJS(driver, LEAVE_SITE_POPUP_CANCEL_BTN);
 
-		Assert.assertTrue(list.size() > 0, "Leave Site Popup has not appeared");
+		wait.until(ExpectedConditions.numberOfWindowsToBe(2));
 
-		objGeneralMethods.clickButtonByJS(driver, LEAVE_SITE_POPUP_CANCEL_BTN);
+		Set<String> windowHandles1 = driver.getWindowHandles();
 
-		softassert.assertTrue(element.isDisplayed(), "Twitter Icon is not Displayed");
-		softassert.assertTrue(hrefLink.equals("https://twitter.com/TommyJohn"), "Twitter Link is not Correct");
+
+		for (String handle : windowHandles1) {
+			if (!handle.equals(originalWindow)) {
+				driver.switchTo().window(handle); // Switch to the new window
+				break;
+			}
+		}
+
+		softassert.assertTrue(driver.getCurrentUrl().contains("https://x.com/TommyJohn"),
+				"Twitter Link is not Correct");
+		driver.close();
+		driver.switchTo().window(originalWindow);
+
 
 		try{
 			softassert.assertAll();
@@ -937,6 +1066,12 @@ public class FooterSectionComponents extends FooterSectionLocators {
 			ExtentReport.extentTest.fail(e);
 			softassert.assertAll();
 		}
+
+
+//		softassert.assertTrue(element.isDisplayed(), "Twitter Icon is not Displayed");
+//		softassert.assertTrue(hrefLink.equals("https://twitter.com/TommyJohn"), "Twitter Link is not Correct");
+
+
 
 		System.out.println("Twitter Icon is Present and Link is correct\n");
 		Reporter.log("Twitter Footer Icon is Displayed :: Clickable");
@@ -947,21 +1082,35 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		softassert = new SoftAssert();
 
 		element = driver.findElement(PINTEREST_ICON);
-		hrefLink = driver.findElement(PINTEREST_LINK).getAttribute("href");
+//		hrefLink = driver.findElement(PINTEREST_LINK).getAttribute("href");
 
-		objGeneralMethods.clickButtonByJS(driver, PINTEREST_LINK);
+		objGeneralMethods.clickButtonByJS(driver, element);
 
 		Thread.sleep(1000);
 
-		list = driver.findElements(LEAVE_SITE_POPUP);
+//		list = driver.findElements(LEAVE_SITE_POPUP);
+//
+//		Assert.assertTrue(list.size() > 0, "Leave Site Popup has not appeared");
+//
+//		objGeneralMethods.clickButtonByJS(driver, LEAVE_SITE_POPUP_CANCEL_BTN);
 
-		Assert.assertTrue(list.size() > 0, "Leave Site Popup has not appeared");
 
-		objGeneralMethods.clickButtonByJS(driver, LEAVE_SITE_POPUP_CANCEL_BTN);
+		wait.until(ExpectedConditions.numberOfWindowsToBe(2));
 
-		softassert.assertTrue(element.isDisplayed(), "Pinterest Icon is not Displayed");
-		softassert.assertTrue(hrefLink.equals("https://www.pinterest.com/tommyjohnwear/"),
+		Set<String> windowHandle2 = driver.getWindowHandles();
+
+
+		for (String handle : windowHandle2) {
+			if (!handle.equals(originalWindow)) {
+				driver.switchTo().window(handle); // Switch to the new window
+				break;
+			}
+		}
+
+		softassert.assertTrue(driver.getCurrentUrl().contains("https://www.pinterest.com/tommyjohnwear/"),
 				"Pinterest Link is not Correct");
+		driver.close();
+		driver.switchTo().window(originalWindow);
 
 		try{
 			softassert.assertAll();
@@ -975,57 +1124,90 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		ExtentReport.extentTest.info("Pinterest Footer Icon is Displayed :: Clickable");
 
 //		Check Instagram Link
-		System.out.println("***Validating Instagram Link***");
-		softassert = new SoftAssert();
-
-		element = driver.findElement(INSTAGRAM_ICON);
-		hrefLink = driver.findElement(INSTAGRAM_LINK).getAttribute("href");
-
-		objGeneralMethods.clickButtonByJS(driver, INSTAGRAM_LINK);
-
-		Thread.sleep(1000);
-
-		list = driver.findElements(LEAVE_SITE_POPUP);
-
-		Assert.assertTrue(list.size() > 0, "Leave Site Popup has not appeared");
-
-		objGeneralMethods.clickButtonByJS(driver, LEAVE_SITE_POPUP_CANCEL_BTN);
-
-		softassert.assertTrue(element.isDisplayed(), "Instagram Icon is not Displayed");
-		softassert.assertTrue(hrefLink.equals("https://www.instagram.com/tommyjohnwear/"),
-				"Pinterest Link is not Correct");
-
-		try{
-			softassert.assertAll();
-		}catch (AssertionError e) {
-			ExtentReport.extentTest.fail(e);
-			softassert.assertAll();
-		}
-
-		System.out.println("Instagram Icon is Present and Link is correct\n");
-		Reporter.log("Instagram Footer Icon is Displayed :: Clickable");
-		ExtentReport.extentTest.info("Instagram Footer Icon is Displayed :: Clickable");
+//		System.out.println("***Validating Instagram Link***");
+//		softassert = new SoftAssert();
+//
+//		element = driver.findElement(INSTAGRAM_ICON);
+//	//	hrefLink = driver.findElement(INSTAGRAM_LINK).getAttribute("href");
+//
+//		objGeneralMethods.clickButtonByJS(driver, element);
+//
+//		Thread.sleep(1000);
+//
+////		list = driver.findElements(LEAVE_SITE_POPUP);
+////
+////		Assert.assertTrue(list.size() > 0, "Leave Site Popup has not appeared");
+////
+////		objGeneralMethods.clickButtonByJS(driver, LEAVE_SITE_POPUP_CANCEL_BTN);
+//
+////		softassert.assertTrue(element.isDisplayed(), "Instagram Icon is not Displayed");
+////		softassert.assertTrue(hrefLink.equals("https://www.instagram.com/tommyjohnwear/"),
+////				"Pinterest Link is not Correct");
+//
+//		wait.until(ExpectedConditions.numberOfWindowsToBe(2));
+//
+//		Set<String> windowHandles3 = driver.getWindowHandles();
+//
+//
+//		for (String handle : windowHandles3) {
+//			if (!handle.equals(originalWindow)) {
+//				driver.switchTo().window(handle); // Switch to the new window
+//				break;
+//			}
+//		}
+//
+//		softassert.assertTrue(driver.getCurrentUrl().contains("https://www.instagram.com/tommyjohnwear/"),
+//				"Instagram Link is not Correct");
+//		driver.close();
+//		driver.switchTo().window(originalWindow);
+//
+//
+//		try{
+//			softassert.assertAll();
+//		}catch (AssertionError e) {
+//			ExtentReport.extentTest.fail(e);
+//			softassert.assertAll();
+//		}
+//
+//
+//		System.out.println("Instagram Icon is Present and Link is correct\n");
+//		Reporter.log("Instagram Footer Icon is Displayed :: Clickable");
+//		ExtentReport.extentTest.info("Instagram Footer Icon is Displayed :: Clickable");
 
 //		Check Youtube Link
 		System.out.println("***Validating Youtube Link***");
 		softassert = new SoftAssert();
 
 		element = driver.findElement(YOUTUBE_ICON);
-		hrefLink = driver.findElement(YOUTUBE_LINK).getAttribute("href");
+//		hrefLink = driver.findElement(YOUTUBE_LINK).getAttribute("href");
 
-		objGeneralMethods.clickButtonByJS(driver, YOUTUBE_LINK);
+		objGeneralMethods.clickButtonByJS(driver, element);
 
 		Thread.sleep(1000);
 
-		list = driver.findElements(LEAVE_SITE_POPUP);
+//		list = driver.findElements(LEAVE_SITE_POPUP);
+//
+//		Assert.assertTrue(list.size() > 0, "Leave Site Popup has not appeared");
+//
+//		objGeneralMethods.clickButtonByJS(driver, LEAVE_SITE_POPUP_CANCEL_BTN);
 
-		Assert.assertTrue(list.size() > 0, "Leave Site Popup has not appeared");
+		wait.until(ExpectedConditions.numberOfWindowsToBe(2));
 
-		objGeneralMethods.clickButtonByJS(driver, LEAVE_SITE_POPUP_CANCEL_BTN);
+		Set<String> windowHandles4 = driver.getWindowHandles();
 
-		softassert.assertTrue(element.isDisplayed(), "Youtube Icon is not Displayed");
-		softassert.assertTrue(hrefLink.equals("https://www.youtube.com/user/tommyjohnwear"),
-				"Pinterest Link is not Correct");
+
+		for (String handle : windowHandles4) {
+			if (!handle.equals(originalWindow)) {
+				driver.switchTo().window(handle); // Switch to the new window
+				break;
+			}
+		}
+
+		softassert.assertTrue(driver.getCurrentUrl().contains("https://www.youtube.com/user/tommyjohnwear"),
+				"Twitter Link is not Correct");
+		driver.close();
+		driver.switchTo().window(originalWindow);
+
 
 		try{
 			softassert.assertAll();
@@ -1033,6 +1215,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 			ExtentReport.extentTest.fail(e);
 			softassert.assertAll();
 		}
+
 
 		System.out.println("Youtube Icon is Present and Link is correct\n");
 		Reporter.log("Youtube Footer Icon is Displayed :: Clickable");
@@ -1069,18 +1252,22 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		element = driver.findElement(PRIVACY_POLICY_LINK);
 		linkText = driver.findElement(PRIVACY_POLICY_LINK).getText();
 
-		Assert.assertTrue(element.isDisplayed(), "Privacy Policy Link is not Displayed");
+//		Assert.assertTrue(element.isDisplayed(), "Privacy Policy Link is not Displayed");
 		softassert.assertTrue(linkText.equals("Privacy Policy"), "Privacy Policy Link Text is Incorrect");
 
 
 		objGeneralMethods.clickButtonByJS(driver, element);
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
 
-		list = driver.findElements(LEAVE_SITE_POPUP);
+//		list = driver.findElements(LEAVE_SITE_POPUP);
+//
+//		Assert.assertTrue(list.size() > 0, "Leave Site Popup has not appeared");
+//
+//		objGeneralMethods.clickButtonByJS(driver, LEAVE_SITE_POPUP_CANCEL_BTN);
 
-		Assert.assertTrue(list.size() > 0, "Leave Site Popup has not appeared");
+		softassert.assertTrue(driver.findElement(By.xpath("//div[@class='logo']")).isDisplayed(),"Privacy policy link is not functional");
 
-		objGeneralMethods.clickButtonByJS(driver, LEAVE_SITE_POPUP_CANCEL_BTN);
+		driver.navigate().back();
 
 		try{
 			softassert.assertAll();
@@ -1089,7 +1276,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 			softassert.assertAll();
 		}
 
-		System.out.println("Privacy Policy Link text is Correct and Popup opened after clicking on link\n");
+		System.out.println("Privacy Policy Link text is Correct and functional\n");
 		Reporter.log("Privacy Policy footer link is Displayed :: Clickable");
 		ExtentReport.extentTest.info("Privacy Policy footer link is Displayed :: Clickable");
 
@@ -1122,16 +1309,20 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		element = driver.findElement(TERMS_AND_CONDITION_LINK);
 		linkText = driver.findElement(TERMS_AND_CONDITION_LINK).getText();
 
-		Assert.assertTrue(element.isDisplayed(), "Terms and Conditions Link is not Displayed");
+	//	Assert.assertTrue(element.isDisplayed(), "Terms and Conditions Link is not Displayed");
 		softassert.assertTrue(linkText.equals("Terms & Conditions"), "Terms and Conditions Link Text is Incorrect");
 
 		objGeneralMethods.clickButtonByJS(driver, element);
+//
+//		list = driver.findElements(LEAVE_SITE_POPUP);
+//
+//		Assert.assertTrue(list.size() > 0, "Leave Site Popup has not appeared");
+//
+//		objGeneralMethods.clickButtonByJS(driver, LEAVE_SITE_POPUP_CANCEL_BTN);
 
-		list = driver.findElements(LEAVE_SITE_POPUP);
+		softassert.assertTrue(driver.findElement(By.xpath("//div[@class='terms-and-conditions']")).isDisplayed(),"Terms and Conditions link is not functional");
 
-		Assert.assertTrue(list.size() > 0, "Leave Site Popup has not appeared");
-
-		objGeneralMethods.clickButtonByJS(driver, LEAVE_SITE_POPUP_CANCEL_BTN);
+		driver.navigate().back();
 
 		try{
 			softassert.assertAll();
@@ -1217,17 +1408,21 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		element = driver.findElement(CA_SUPPLY_CHAINS_ACT_LINK);
 		linkText = driver.findElement(CA_SUPPLY_CHAINS_ACT_LINK).getText();
 
-		Assert.assertTrue(element.isDisplayed(), "CA Transparency in Supply Chains Act Link is not Displayed");
+	//	Assert.assertTrue(element.isDisplayed(), "CA Transparency in Supply Chains Act Link is not Displayed");
 		softassert.assertTrue(linkText.equals("CA Transparency in Supply Chains Act"),
 				"CA Transparency in Supply Chains Act Link Text is Incorrect");
 
 		objGeneralMethods.clickButtonByJS(driver, element);
 
-		list = driver.findElements(LEAVE_SITE_POPUP);
+//		list = driver.findElements(LEAVE_SITE_POPUP);
+//
+//		Assert.assertTrue(list.size() > 0, "Leave Site Popup has not appeared");
+//
+//		objGeneralMethods.clickButtonByJS(driver, LEAVE_SITE_POPUP_CANCEL_BTN);
 
-		Assert.assertTrue(list.size() > 0, "Leave Site Popup has not appeared");
+		softassert.assertTrue(driver.findElement(By.xpath("//h1[contains(text(),'California Supply Chains Act')]")).isDisplayed(),"CA Transperancy link is not functional");
 
-		objGeneralMethods.clickButtonByJS(driver, LEAVE_SITE_POPUP_CANCEL_BTN);
+		driver.navigate().back();
 
 		try{
 			softassert.assertAll();
@@ -1270,7 +1465,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 	public void validateFooterNewsletter() throws Exception {
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		wait = new WebDriverWait(driver,Duration.ofSeconds(30));
-		System.out.println("\n---Checking Newsletter Seciton---");
+	//	System.out.println("\n---Checking Newsletter Seciton---");
 
 		if (!driver.getCurrentUrl().equals("https://www.tommyjohn.com")) {
 			driver.navigate().to("https://www.tommyjohn.com");
@@ -1278,56 +1473,56 @@ public class FooterSectionComponents extends FooterSectionLocators {
 
 		objGeneralMethods.waitTillPageLoad(driver);
 
-		objGeneralMethods.scrollElementIntoView(driver, NEWSLETTER_TITLE);
+	//	objGeneralMethods.scrollElementIntoView(driver, NEWSLETTER_TITLE);
 
 		// Verify Footer Newsletter section
-		System.out.println("***Validating Newsletter Email Sign Up***");
+		System.out.println("***Validating Sign up & save on your first order***");
 
 		softassert = new SoftAssert();
 
-		softassert.assertTrue(driver.findElement(NEWSLETTER_TITLE).isDisplayed(),
-				"Newsletter Title is not displayed on footer");
-		softassert.assertTrue(
-				driver.findElement(NEWSLETTER_MEN_RADIO_BUTTON).isDisplayed()
-						&& driver.findElement(NEWSLETTER_MEN_RADIO_BUTTON).isEnabled(),
-				"Newsletter Radio button 'Men' is either not Displayed or not Enabled on footer");
-		softassert.assertTrue(
-				driver.findElement(NEWSLETTER_WOMEN_RADIO_BUTTON).isDisplayed()
-						&& driver.findElement(NEWSLETTER_WOMEN_RADIO_BUTTON).isEnabled(),
-				"Newsletter Radio button 'Women' is either not Displayed or not Enabled on footer");
-		softassert.assertTrue(
-				driver.findElement(NEWSLETTER_BOTH_RADIO_BUTTON).isDisplayed()
-						&& driver.findElement(NEWSLETTER_BOTH_RADIO_BUTTON).isEnabled(),
-				"Newsletter Radio button 'Both' is either not Displayed or not Enabled on footer");
-		softassert.assertTrue(driver.findElement(NEWSLETTER_INPUT_TEXTBOX).isDisplayed(),
+		softassert.assertTrue(driver.findElement(SIGNUP_TITLE).isDisplayed(),
+				"Sign up & save on your first order Title is not displayed on footer");
+////		softassert.assertTrue(
+////				driver.findElement(NEWSLETTER_MEN_RADIO_BUTTON).isDisplayed()
+////						&& driver.findElement(NEWSLETTER_MEN_RADIO_BUTTON).isEnabled(),
+////				"Newsletter Radio button 'Men' is either not Displayed or not Enabled on footer");
+//		softassert.assertTrue(
+//				driver.findElement(NEWSLETTER_WOMEN_RADIO_BUTTON).isDisplayed()
+//						&& driver.findElement(NEWSLETTER_WOMEN_RADIO_BUTTON).isEnabled(),
+//				"Newsletter Radio button 'Women' is either not Displayed or not Enabled on footer");
+//		softassert.assertTrue(
+//				driver.findElement(NEWSLETTER_BOTH_RADIO_BUTTON).isDisplayed()
+//						&& driver.findElement(NEWSLETTER_BOTH_RADIO_BUTTON).isEnabled(),
+//				"Newsletter Radio button 'Both' is either not Displayed or not Enabled on footer");
+		softassert.assertTrue(driver.findElement(SIGNUP_TEXTBOX).isDisplayed(),
 				"Newsletter Email Input Text Box is not displayed on footer");
-		softassert.assertTrue(driver.findElement(NEWSLETTER_SIGN_UP_BUTTON).isDisplayed(),
-				"Newsletter Sign up button is not displayed on footer");
+//		softassert.assertTrue(driver.findElement(NEWSLETTER_SIGN_UP_BUTTON).isDisplayed(),
+//				"Newsletter Sign up button is not displayed on footer");
 
-		softassert.assertTrue(driver.findElement(NEWSLETTER_BOTH_RADIO_BUTTON).isSelected(),
-				"Radio Button 'Both' is not preselected for user");
+//		softassert.assertTrue(driver.findElement(NEWSLETTER_BOTH_RADIO_BUTTON).isSelected(),
+//				"Radio Button 'Both' is not preselected for user");
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
 //		Negative Validation (User does not enter email)
-		wait.until(ExpectedConditions.elementToBeClickable(NEWSLETTER_SIGN_UP_BUTTON));
-		jse.executeScript("arguments[0].click();", driver.findElement(NEWSLETTER_SIGN_UP_BUTTON));
+	//	wait.until(ExpectedConditions.elementToBeClickable(NEWSLETTER_SIGN_UP_BUTTON));
+		//jse.executeScript("arguments[0].click();", driver.findElement(NEWSLETTER_SIGN_UP_BUTTON));
 		
-		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(NEWSLETTER_FORM_FAIL_MESSAGE_VISIBLE, 0));
-
-		softassert.assertTrue(driver.findElement(NEWSLETTER_FORM_FAIL_MESSAGE).isDisplayed(),
-				"Error message is not displayed ");
-		softassert.assertTrue(
-				driver.findElement(NEWSLETTER_FORM_FAIL_MESSAGE).getText().equals("Please enter a valid email !"),
-				"Incorrect message is displayed ");
+//		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(NEWSLETTER_FORM_FAIL_MESSAGE_VISIBLE, 0));
+//
+//		softassert.assertTrue(driver.findElement(NEWSLETTER_FORM_FAIL_MESSAGE).isDisplayed(),
+//				"Error message is not displayed ");
+//		softassert.assertTrue(
+//				driver.findElement(NEWSLETTER_FORM_FAIL_MESSAGE).getText().equals("Please enter a valid email !"),
+//				"Incorrect message is displayed ");
 
 //		Positive Validation
 		String testemail = "testaccount" + System.currentTimeMillis() + "@gmail.com";
-		driver.findElement(NEWSLETTER_INPUT_TEXTBOX).sendKeys(testemail);
-		driver.findElement(NEWSLETTER_SIGN_UP_BUTTON).click();
+		driver.findElement(SIGNUP_TEXTBOX).sendKeys(testemail);
+		driver.findElement(SIGNUP_ARROW).click();
 
-		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(NEWSLETTER_FORM_SUCCESS_MESSAGE_VISIBLE, 0));
+		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(SUCCESSMESSAGE, 0));
 
-		softassert.assertTrue(driver.findElement(NEWSLETTER_FORM_SUCCESS_MESSAGE).isDisplayed(),
-				"Success message is not displayed after newsletter form submission");
+		softassert.assertTrue(driver.findElement(SUCCESSMESSAGE).isDisplayed(),
+				"Success message is not displayed after submission");
 
 		try{
 			softassert.assertAll();

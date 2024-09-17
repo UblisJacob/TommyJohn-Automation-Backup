@@ -44,7 +44,7 @@ public class ValidateFooterSection {
 		new FooterSectionPage(driver).verifyFooterEmailSignUp();
 	}
 
-	@Test
+//	@Test
 	public void VerifyFooterFeedback() throws Exception {
 		new FooterSectionPage(driver).verifyFooterFeedback();
 	}

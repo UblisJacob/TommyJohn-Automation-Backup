@@ -12,7 +12,7 @@ public class AccountPageLocators
 	public static By ACCOUNT_PAGE_HEADING =By.cssSelector("h1[data-tj-qa='account-icon'], .header-account-item-container");
 	public static By ACCOUNT_LOGGED_IN_ICON =By.id("Icon_Account_Login_#2B2B2B");
 	public static By ACCOUNT_PAGE_HEADING_LOGIN =By.cssSelector(".account-logged-in-header>h1[data-tj-qa='account-login-title'] , .customer-login-form-validate>h2[data-tj-qa='account-login-title']");
-	public static By SIGN_OUT_LINK = By.cssSelector(".header-nav-dropdown > ul >li:nth-child(6) > a");
+	public static By SIGN_OUT_LINK = By.cssSelector(".header-nav-dropdown > ul >li:nth-child(5) > a");
 	public static By LOGIN_INFORMATION_TITLE = By.cssSelector("div[data-tj-qa='account-login-info'] h2");
 //	public static By LOGGED_IN_ID = By.cssSelector(".account-logged-content>div:nth-child(1)>div>div>.account-row-column>p");
 	public static By LOGGED_IN_ID = By.xpath("//div[@data-tj-qa='account-login-info']//p");
