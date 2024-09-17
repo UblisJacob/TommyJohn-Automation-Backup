@@ -13,9 +13,9 @@ public class HomePageLocators{
 	public static By INSTA_COLOR_SWATCH = By.xpath("(//div[@class='product-item__swatch product-item__swatch--circle js-inline-quickshop-color active'])[2]");
 
 //-----------------------------------------------------------------------------------------------
-	public static By HOMEPAGE_LOGO = By.cssSelector("a[data-tj-qa='header-logo'],a.header-logo");
+	public static By HOMEPAGE_LOGO = By.xpath("//span[@title='Tommy John logo']");
 	public static By MAIN_HEADER = By.cssSelector(".header-main");
-	public static By SEARCH_ICON_IMAGE= By.cssSelector("label[data-tj-qa='header-search-icon']>svg,form>.header-search-input-icon>svg");
+	public static By SEARCH_ICON_IMAGE= By.xpath("//span[@class='icon block icon-search']");
 	//public static By NEWARRIVALS_CATEGORY = By.cssSelector(".header-desktop-left > ul > li:nth-child(1) > a");
 	//public static By MEN_IN_NEWARRIVALS_CATEGORY = By.cssSelector(".header-desktop-left > ul > li:nth-child(1) > div > ul > li:nth-child(1) > div");
 	public static By LEVEL_TWO_ALL_OPTIONS = By.cssSelector(".nav-item__list.level-zero-list>li:nth-child(1) ul[class^='nav-item__list level-one-list']>li[class^='level-one-container']:nth-child(2) li.level-two-container");
@@ -59,21 +59,23 @@ public class HomePageLocators{
 
 	public static By EXPLORE_LEVEL_ONE_LINKS = By.cssSelector("li[arial-label='open Explore menu'] ul[class='nav-item__list level-one-list alternate']>li[class='level-one-container alternate image-column']");
 
-	public static By MEN_CATEGORY = By.xpath("//a[@aria-label='Men link']//span[contains(text(),'Men')]");
-	public static By WOMEN_CATEGORY = By.cssSelector(".level-zero-list>.level-zero-container:nth-child(2)> .level-zero-item >a");
+	public static By MEN_CATEGORY = By.xpath("(//a[contains(text(),'Men')])[1]");
+	public static By WOMEN_CATEGORY = By.xpath("(//a[contains(text(),'Women')])[1]");
 	public static By FINAL_SALE = By.cssSelector(".level-zero-list>.level-zero-container:nth-child(3)> .level-zero-item >a");
 
 	public static By IM_NEW_HERE = By.cssSelector(".level-zero-list>.level-zero-container:nth-child(3)> .level-zero-item >a");
+
+	public static By NEW_FEATURED = By.xpath("(//a[contains(text(),'New + Featured')])[1]");
 	
 	public static By HEADER_RIGHT_SIDE_ELEMENTS_LIST = By.cssSelector(".header-desktop-right>li");
 	public static By HEADER_RIGHT_SIDE_SPECIFIC_ELEMENT = By.cssSelector(".header-desktop-right>li:nth-child(1)");
 
 
-	public static By FIRST_lEVEL1_CATEGORY = By.xpath("(//a[contains(text(),'Base Layers')])[2]");
+	public static By FIRST_lEVEL1_CATEGORY = By.xpath("(//a[contains(text(),'Undershirts')])[1]");
 	public static By FIRST_lEVEL1_CATEGORY_COPY = By.xpath("//a[contains(text(),'Base Layers')]");
-	public static By WOMENS_FIRST_lEVEL1_CATEGORY = By.xpath("//a[contains(text(),'Intimates')]");
+	public static By WOMENS_FIRST_lEVEL1_CATEGORY = By.xpath("(//a[contains(text(),'Bras & Bralettes')])[1]");
 	public static By WOMENS_FIRST_lEVEL1_CATEGORY_COPY = By.xpath("(//a[contains(text(),'Intimates')])[2]");
-	public static By SECOND_lEVEL1_CATEGORY = By.cssSelector("li.active> div:nth-child(2)> ul.level-one-list >li.level-one-container:nth-child(3) > div > .level-one-item >a");
+	public static By SECOND_lEVEL1_CATEGORY = By.xpath("(//a[contains(text(),'New Arrivals')])[1]");
 	public static By THIRD_lEVEL1_CATEGORY = By.cssSelector("li.active> div:nth-child(2)> ul.level-one-list >li.level-one-container:nth-child(4) > div > .level-one-item >a");
 	public static By FOURTH_lEVEL1_CATEGORY = By.cssSelector("li.active> div:nth-child(2)> ul.level-one-list >li.level-one-container:nth-child(5) > div > .level-one-item >a");
 	public static By FIFTH_lEVEL1_CATEGORY = By.cssSelector("li.active> div:nth-child(2)> ul.level-one-list >li.level-one-container:nth-child(6) > div > .level-one-item >a");
@@ -273,16 +275,17 @@ public class HomePageLocators{
 	public static By TEXT_US_OPTION = By.cssSelector(".header-nav-dropdown > ul > li:nth-child(4) > a");
 	public static By EMAIL_US = By.cssSelector(".header-nav-dropdown > ul > li:nth-child(5) > a");
 	
-	public static By ACCOUNT_NAV_DROPDOWN = By.cssSelector(".header-account-item-container > a");
+	public static By ACCOUNT_NAV_DROPDOWN = By.xpath("//span[@class='icon block icon-account']");
 	public static By HEADER_LOGIN_TITLE = By.cssSelector("span[data-tj-qa='header-login']");
 	//public static By REORDER = By.cssSelector("header-desktop-right > li:nth-child(3) >div > ul > li:nth-child(2) > a ");
 	//	public static By CART_ICON = By.cssSelector("i.icon-shopping-cart");
 
-	public static By CART_ICON = By.cssSelector("button[data-tj-qa='header-cart-icon']");
+	public static By CART_ICON = By.xpath("//span[@class='icon block icon-cart']");
 	public static By REMOVE_ICON = By.xpath("//button[@data-tj-qa='cart-line-item-remove']");
 	public static By OVERLAY = By.xpath("//div[@class='overlay active']");
 
 	public static By CART_HEADING_TEXT = By.cssSelector(".inline-cart__col1 > h3");
+	public static By MINICART_HEADING = By.xpath("//h2[contains(text(),'Your Cart')]");
 
 	public static By ABOUT_LINK = By.cssSelector("a[data-tj-qa='footer-about']");
 	public static By CAREERS_LINK = By.cssSelector("a[data-tj-qa='footer-careers']");

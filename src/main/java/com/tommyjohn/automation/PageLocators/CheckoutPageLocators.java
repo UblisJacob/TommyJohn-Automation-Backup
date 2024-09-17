@@ -73,9 +73,9 @@ public class CheckoutPageLocators {
 
 	public static By CONTACT_EMAIL =  By.xpath("//div[@class='_1o9eX']//bdo");
 	public static By SHIP_ADDRESS =  By.xpath("//div[@class='_1o9eX']//address");
-	public static By CHANGE_LINK_CONTACT = By.xpath("(//span[contains(text(),'Change')])[1]");
-	public static By CHANGE_LINK_SHIP_TO = By.xpath("(//span[contains(text(),'Change')])[2]");
-	public static By CHANGE_LINK_METHOD = By.xpath("(//span[contains(text(),'Change')])[3]");
+	public static By CHANGE_LINK_CONTACT = By.xpath("(//span[contains(text(),'Change')])[2]");
+	public static By CHANGE_LINK_SHIP_TO = By.xpath("(//span[contains(text(),'Change')])[3]");
+	public static By CHANGE_LINK_METHOD = By.xpath("(//span[contains(text(),'Change')])[4]");
 	public static By SHIPPING_TEXT = By.cssSelector("h2#checkout-main-header");
 	public static By SHIPPING_RADIO_BUTTON = By.xpath("//input[@type='radio']");
 	public static By RETURN_LINK = By.xpath("//span[contains(text(),'Return to information')]");
