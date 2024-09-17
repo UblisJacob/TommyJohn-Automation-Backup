@@ -14,12 +14,14 @@ public class ProductDetailsPageLocators {
 	public static By PRODUCT_PRICE = By.cssSelector(" .product-info__price>span#multi-price , span[data-tj-qa='product-price']>span#product-price");
 	
 	// image carousels
-	public static By IMG_CAROUSEL = By.cssSelector("div.pdpVerticalSlides>div>div>div");
+	public static By IMG_CAROUSEL = By.xpath("//div[@class='hidden md:block w-full']//div");
+
+	public static By COLOR_VARIANT = By.xpath("//div[@class='space-y-lg']//span[@class='sr-only']");
 	
 	//first product on PDP
 //	public static By FIRST_PRODUCT = By.cssSelector(".product-item");
-	public static By FIRST_PRODUCT = By.xpath("//div[@data-index='1']");
-	public static By FIRST_PRODUCT_HEAD_LINE_TEXT = By.xpath("(//span[@class='product-meta__title'])[1]");
+	public static By FIRST_PRODUCT = By.xpath("(//div[@class='relative aspect-tile'])[1]");
+	public static By FIRST_PRODUCT_HEAD_LINE_TEXT = By.xpath("(//a[@data-cy='productTileLink'])[1]");
 
 	public static By THIRD_PRODUCT_HEAD_LINE_TEXT = By.xpath("(//span[@class='product-meta__title'])[2]");
 		
