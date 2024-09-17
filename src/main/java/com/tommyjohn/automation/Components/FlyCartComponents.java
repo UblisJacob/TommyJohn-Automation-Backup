@@ -787,7 +787,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 	{
 		Actions action = new Actions(driver);
 		JavascriptExecutor js = (JavascriptExecutor)driver;
-		new HomePageComponents(driver).navigateToNewArrivalsInMenCategory();
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 		Thread.sleep(8000);
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		js.executeScript("window.scrollBy(0,500)");

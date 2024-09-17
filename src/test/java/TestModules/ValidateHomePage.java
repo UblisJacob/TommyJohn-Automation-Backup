@@ -38,7 +38,7 @@ public class ValidateHomePage extends ExtentReport {
 		new HomePage(driver).verifyaccountdropdown();
 	}
 
-//	@Test
+	@Test
 	public void VerifyAccountAndCartIconOnHomePage() throws Exception {
 
 		new HomePage(driver).validateAccountIcon();
