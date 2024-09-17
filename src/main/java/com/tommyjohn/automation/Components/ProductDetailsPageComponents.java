@@ -2315,19 +2315,19 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		executor.executeScript("arguments[0].click();", el);
 
 		Thread.sleep(3000);
-		allElements = driver.findElements(IMG_CAROUSEL);
+		allElements = driver.findElements(COLOR_VARIANT);
 		elementsCount = allElements.size();
 		System.out.println("Image Element count :: " + elementsCount);
 
 		if (elementsCount > 1) {
 			for (int i = 1; i <= elementsCount; i++) {
-				thumbnail = driver.findElement(By.cssSelector(".pdpVerticalSlides>.slick-list.draggable>div>div:nth-child(" + i + ")")).getAttribute("data-slide-id");
+	//			thumbnail = driver.findElement(By.cssSelector(".pdpVerticalSlides>.slick-list.draggable>div>div:nth-child(" + i + ")")).getAttribute("data-slide-id");
 
-				WebElement img = driver.findElement(By.cssSelector(".pdpVerticalSlides>.slick-list.draggable>div>div:nth-child(" + i + ")"));
+				WebElement img = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])["+i+"]"));
 				executor.executeScript("arguments[0].click();", img);
 
 				Thread.sleep(3000);
-				System.out.println(thumbnail);
+	//			System.out.println(thumbnail);
 			}
 			Reporter.log("New Image is visible");
 			ExtentReport.extentTest.info("New Image is visible");
@@ -2424,7 +2424,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		executor.executeScript("arguments[0].click();", el);
 
 		Thread.sleep(3000);
-		allElements = driver.findElements(ALL_COLOR_LIST);
+		allElements = driver.findElements(COLOR_VARIANT);
 
 		elementsCount = allElements.size();
 		System.out.println("Color Element count :: " + elementsCount);
@@ -2433,21 +2433,21 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		if (elementsCount > 1) {
 			for (int i = 1; i < elementsCount; i++) {
 				String imagecolor = null;
-				WebElement elemen = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper>ul>li:nth-child(" + i + ") > label"));
+				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])["+i+"]"));
 				jse = (JavascriptExecutor) driver;
 				jse.executeScript("arguments[0].click();", elemen);
-				driver.findElement(COLOR_TEXT).getText();
+//				driver.findElement(COLOR_VARIANT).getText();
 
 
-				List<WebElement> inactivesizes = driver.findElements(INACTIVE_SIZES);
-				int num1 = inactivesizes.size();
+//				List<WebElement> inactivesizes = driver.findElements(INACTIVE_SIZES);
+//				int num1 = inactivesizes.size();
 
 
-				if (num1 > 0) {
+//				if (num1 > 0) {
 
 
-					colornew = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper > ul  > li:nth-child(" + i + ") > input")).getAttribute("data-color-variant");
-					imagecolor = driver.findElement(IMAGE_COLOR).getAttribute("data-color-handle");
+					colornew = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='font-medium'])[1]")).getText();
+					imagecolor = driver.findElement(COLOR_VARIANT).getText();
 
 					System.out.println("For Color Swatch: " + colornew);
 
@@ -2469,7 +2469,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 					}
 
 					//sizes getting updated
-				}
+//				}
 
 
 				Reporter.log("Colors are present and changing correctly");
