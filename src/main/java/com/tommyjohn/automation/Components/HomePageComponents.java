@@ -298,17 +298,33 @@ public class HomePageComponents extends HomePageLocators {
 		}
 
 		// Verify ImNewHere category
+//		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+//		wait.until(ExpectedConditions.presenceOfElementLocated(IM_NEW_HERE));
+//		if(!driver.findElement(IM_NEW_HERE).isDisplayed())
+//			throw new Exception("Im New Here category is not displayed");
+//		element = driver.findElement(IM_NEW_HERE);
+//		action.moveToElement(element).perform();
+//		//	if(!driver.findElement(FIRST_lEVEL1_CATEGORY).isDisplayed())
+//		//	throw new Exception("Final Sale category is not hoverable");
+//		Reporter.log("ImNewHere category is Displayed :: Hoverable :: clickable");
+//		ExtentReport.extentTest.info("ImNewHere category is Displayed :: Hoverable :: clickable");
+////		softassert.assertAll();
+
+
+
+		// Verify New+Featured category
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.presenceOfElementLocated(IM_NEW_HERE));
-		if(!driver.findElement(IM_NEW_HERE).isDisplayed())
+		wait.until(ExpectedConditions.presenceOfElementLocated(NEW_FEATURED));
+		if(!driver.findElement(NEW_FEATURED).isDisplayed())
 			throw new Exception("Im New Here category is not displayed");
-		element = driver.findElement(IM_NEW_HERE);
+		element = driver.findElement(NEW_FEATURED);
 		action.moveToElement(element).perform();
-		//	if(!driver.findElement(FIRST_lEVEL1_CATEGORY).isDisplayed())
-		//	throw new Exception("Final Sale category is not hoverable");
-		Reporter.log("ImNewHere category is Displayed :: Hoverable :: clickable");
-		ExtentReport.extentTest.info("ImNewHere category is Displayed :: Hoverable :: clickable");
+			if(!driver.findElement(SECOND_lEVEL1_CATEGORY).isDisplayed())
+			throw new Exception("New+Featured category is not hoverable");
+		Reporter.log("New+Featured category is Displayed :: Hoverable :: clickable");
+		ExtentReport.extentTest.info("New+Featured category is Displayed :: Hoverable :: clickable");
 		softassert.assertAll();
+
 	}
 
 	// Verify Underwear category
@@ -958,7 +974,7 @@ public class HomePageComponents extends HomePageLocators {
 		element=driver.findElement(ACCOUNT_NAV_DROPDOWN);
 		((JavascriptExecutor)driver).executeScript("arguments[0].click();", element);
 		Thread.sleep(5000);
-		if(!driver.getCurrentUrl().startsWith("https://tommyjohn.com/account/login"))
+		if(!driver.getCurrentUrl().contains("https://www.tommyjohn.com/account/login?return_url=%2Faccount"))
 			throw new Exception("Wrong page opened after clicked on Account Icon");
 		Reporter.log("Account Icon is Displayed :: Clickable");
 		ExtentReport.extentTest.info("Account Icon is Displayed :: Clickable");
@@ -972,7 +988,7 @@ public class HomePageComponents extends HomePageLocators {
 		wait.until(ExpectedConditions.presenceOfElementLocated(CART_ICON));
 		driver.findElement(CART_ICON).click();
 		Thread.sleep(2000);
-		if(!driver.findElement(CART_HEADING_TEXT).isDisplayed())
+		if(!driver.findElement(MINICART_HEADING).isDisplayed())
 			throw new Exception("Mini Cart is not opened");
 		driver.get(baseUrl);
 		Reporter.log("Cart Icon is Displayed :: Clickable :: Mini Cart is Opened");	
@@ -2375,6 +2391,11 @@ public class HomePageComponents extends HomePageLocators {
 	// navigate to all panties in women catagory
 	public void navigateToAllPantiesInWomenCategory() throws Exception {
 		driver.get("https://tommyjohn.com/collections/womens-underwear");
+		Thread.sleep(5000);
+	}
+
+	public void navigateToMensAndLoungeTops() throws Exception {
+		driver.get("https://www.tommyjohn.com/collections/mens-sleep-lounge-tops?sort-by=relevance&sort-order=descending");
 		Thread.sleep(5000);
 	}
 
