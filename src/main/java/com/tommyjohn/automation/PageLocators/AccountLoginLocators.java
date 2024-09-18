@@ -7,16 +7,16 @@ public class AccountLoginLocators {
 	//on account login page
 	
 	public static By CREATEACCOUNT_TEXT1 = By.cssSelector(".account-logged-out-row.two-tiles.second-row-mobile.on-load > h2");
-	public static By CREATEACCOUNT_TITLE = By.cssSelector("h1[data-tj-qa='no-account-title'], #shopify-section-account-benefits .account-row-title");
+	public static By CREATEACCOUNT_TITLE = By.xpath("(//h1)[2]");
 	public static By CREATEACCOUNT_TEXT2 = By.cssSelector(".account-registration > p");
-	public static By CREATEACCOUNT_BTN = By.cssSelector("button[data-tj-qa='account-create-account-btn']");
+	public static By CREATEACCOUNT_BTN = By.xpath("//a[@class='button w-full']");
 	public static By LOGIN_HEADING_LOGO = By.cssSelector("#Account-fill");
-	public static By EMAIL_LABEL1 = By.cssSelector("label[data-tj-qa='account-email-title'], #customer_login > div:nth-child(4) > label");
-	public static By CUSTOMER_EMAIL_INPUT = By.cssSelector("input[data-tj-qa='account-email-input'], #customer-email");
-	public static By PASSWORD_LABEL1 = By.cssSelector("#customer_login > div:nth-child(5) > label, label[data-tj-qa='account-password-title']");
-	public static By CUSTOMER_PASSWORD_INPUTBOX = By.cssSelector("#customer-password, input[data-tj-qa='account-password-input']");
-	public static By LOGIN_HEADING = By.cssSelector("h1[data-tj-qa='account-login-title'] , h2[data-tj-qa='account-login-title']");
-	public static By LOGIN_BUTTON = By.cssSelector("button[data-tj-qa='account-signup-login']");
+	public static By EMAIL_LABEL1 = By.xpath("(//label[contains(text(),'Email')])[1]");
+	public static By CUSTOMER_EMAIL_INPUT = By.xpath("//input[@id='CustomerLogin-CustomerEmail']");
+	public static By PASSWORD_LABEL1 = By.xpath("(//label[contains(text(),'Password')])[1]");
+	public static By CUSTOMER_PASSWORD_INPUTBOX = By.xpath("//input[@id='CustomerLogin-CustomerPassword']");
+	public static By LOGIN_HEADING = By.xpath("//h1[contains(text(),'Login')]");
+	public static By LOGIN_BUTTON = By.xpath("//button[@id='CustomerLogin-Submit']");
 	public static By ERROR_MSG_USERNAME = By.cssSelector(".form-note.is-error, div[data-tj-qa='invalid-account-username']");
 	public static By ERROR_MSG_PASSWORD = By.cssSelector(".form-note.is-error, div[data-tj-qa='invalid-account-password']");
 	public static By GOOGLE_ICON = By.xpath("//div[@class='h_google_button h_google_circle']");
@@ -26,7 +26,7 @@ public class AccountLoginLocators {
 	public static By TIKTOK_ICON = By.xpath("//div[@class='h_tiktok_button h_tiktok_circle']");
 	public static By TERMSANDCONDITIONSERROR = By.xpath("//div[@class='h_consent h_disagree']");
 	public static By LOGINPAGETERMSANDCONDITIONSCHECKBOX = By.xpath("(//input[@type='checkbox'])[1]");
-	public static By REGISTERPAGETERMSANDCONDITIONSCHECKBOX = By.xpath("(//input[@type='checkbox'])[3]");
+	public static By REGISTERPAGETERMSANDCONDITIONSCHECKBOX = By.xpath("(//input[@type='checkbox'])[2]");
 
 	
 	
@@ -45,7 +45,9 @@ public class AccountLoginLocators {
 	public static By TERMS_LINK = By.cssSelector(".disclaimer.gdpr_Privacy_Policy> a:nth-child(2)");
 	public static By ERRORMESSAGES = By.cssSelector(".error-container-create-account");
 	public static By MYACCOUNT_OPTION_IN_ACCOUNT_ICON = By.cssSelector("div.header-main__inner.container > ul > li:nth-child(3) > div > ul > li:nth-child(1) > a");
-	public static By LOGOUT_OPTION_IN_ACCOUNT_ICON = By.cssSelector(".header-nav-dropdown > ul> li:nth-child(5) >a");
+	public static By LOGOUT_OPTION_IN_ACCOUNT_ICON = By.xpath("//a[@class='button']");
+
+	public static By LOGOUT_OPTION_IN_ACCOUNT_PAGE = By.xpath("//a[@class='button']");
 	public static By CUSTOMER_EMAIL_MESSAGE = By.cssSelector("#customer_login > div:nth-child(5)");
 	public static By CUSTOMER_PASSWORD_MESSAGE = By.cssSelector("#customer_login > div:nth-child(7)");
 //			public static By CREATEACCOUNT_TEXT1 = By.cssSelector
@@ -54,7 +56,7 @@ public class AccountLoginLocators {
 //	on recover password page
 	public static By RECOVER_PASSWORD_CONTAINER = By.cssSelector(".recover-password-container");
 	public static By BACK_TO_lOGIN_LINK = By.cssSelector(".recover-password-container>a, a[data-tj-qa='back-to-login']");
-	public static By FORGOT_YOUR_PASSWORD_LINK = By.cssSelector("#customer_login > a, a[data-tj-qa='account-forget-password']");
+	public static By FORGOT_YOUR_PASSWORD_LINK = By.xpath("//a[@id='RecoverPassword']");
 	public static By RECOVER_YOUR_PASSWORD_HEADING = By.cssSelector("#recover-password-form-validate > div > h2, h2[data-tj-qa='reset-password-title']");
 	public static By PLEAZE_ENTER_YOUR_EMAIL_HEADING = By.cssSelector("#recover-password-form-validate > div > p, p[data-tj-qa='reset-password-label']");
 	public static By EMAIL_ADDRESS_LABEL = By.cssSelector(".form-row.input-group > label, label[data-tj-qa='forgot-password-email-text']");

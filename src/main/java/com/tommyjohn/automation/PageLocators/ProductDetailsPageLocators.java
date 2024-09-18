@@ -44,7 +44,7 @@ public class ProductDetailsPageLocators {
 
 	public static By TOTAL_SIZES = By.cssSelector("[data-tj-qa='product-size'],.option-swatch__option>li>label>span");
 	public static By INACTIVE_SIZES = By.cssSelector(".unavailable[data-tj-qa='product-size'],.option-swatch__option>li>.option-swatch__input.unavailable.email-when-in-stock");
-	public static By SIZE_VALUE = By.cssSelector("[data-tj-qa='product-size'],.option-swatch__option>li>input");
+	public static By SIZE_VALUE = By.xpath("(//span[@class='font-medium'])[2]");
 
 
 	//color swatches
@@ -61,7 +61,7 @@ public class ProductDetailsPageLocators {
 
 	public static By SIZE_DROPDOWN = By.cssSelector(".option-dropdown__option >div>a");
 	//public static By ALL_SIZE_LIST = By.cssSelector("[data-tj-qa='product-size'],.option-swatch__option >li");
-	public static By ALL_SIZE_LIST = By.xpath("//li[@class='option-swatch__item ']");
+	public static By ALL_SIZE_LIST = By.xpath("//input[@name='option[Size]']");
 	public static By SIZE_DROPDOWN_MENS = By.cssSelector(".option-dropdown__option >div[data-option-name = 'Mens Size'] >a");
 	public static By SIZE_DROPDOWN_WOMENS = By.cssSelector(".option-dropdown__option >div[data-option-name = 'Womens Size'] >a");
 	public static By SIZE_TEXT = By.xpath("//input[@class='sizeOption' and @checked='checked']");
