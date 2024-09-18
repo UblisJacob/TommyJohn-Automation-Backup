@@ -65,9 +65,9 @@ public class ProductDetailsPageLocators {
 	public static By SIZE_DROPDOWN_MENS = By.cssSelector(".option-dropdown__option >div[data-option-name = 'Mens Size'] >a");
 	public static By SIZE_DROPDOWN_WOMENS = By.cssSelector(".option-dropdown__option >div[data-option-name = 'Womens Size'] >a");
 	public static By SIZE_TEXT = By.xpath("//input[@class='sizeOption' and @checked='checked']");
-	public static By BRA_BAND_SIZE_DROPDOWN = By.cssSelector("[data-tj-qa='find-your-size-band-size'],.size-guide-size-finder-dropdowns>span:nth-child(1)>select");
+	public static By BRA_BAND_SIZE_DROPDOWN = By.xpath("//select[@id='column-select']");
 	public static By BRA_BAND_SIZE_SELECT = By.cssSelector("[data-tj-qa='find-your-size-band-size'],.size-guide-size-finder-dropdowns>span:nth-child(1)");
-	public static By BAND_SIZE_TEXT = By.cssSelector(".size-guide-size-finder-x-axis-title");
+	public static By BAND_SIZE_TEXT = By.xpath("//label[@for='column-select']");
 	public static By CUP_VOLUME_TEXT = By.cssSelector(".size-guide-size-finder-y-axis-title");
 	public static By BRA_CUP_VOLUME_DROPDOWN = By.cssSelector("[data-tj-qa='find-your-size-cup-size'],.size-guide-size-finder-dropdowns>span:nth-child(2)>select");
 	public static By FIND_SIZE_BUTTON = By.cssSelector("[data-tj-qa='find-your-size-calculator']>button,.calculate-size-button>button.find-size-button");
@@ -77,15 +77,15 @@ public class ProductDetailsPageLocators {
 
 	public static By ALL_COLOR_LIST = By.xpath("//div[@class='product-option__color-swatches-wrapper']//li");
 	public static By PRODUCT_DETAILS = By.xpath("//button[@aria-controls='product-details']");
-	public static By SIZEGUIDE = By.cssSelector("[data-tj-qa='size-guide-link'],button.product-info__header-btn.size-guide");
+	public static By SIZEGUIDE = By.xpath("//button[@class='button-link text-body-sm text-text-tertiary']");
 	public static By SIZEGUIDE_FITRANGE = By.xpath("//ul[@data-tj-qa='size-guide-fit-range-graph']//li");
 	public static By SIZEGUIDE_FITRANGE_DROPDOWN= By.cssSelector(".expand-instructions");
 	public static By SIZEGUIDE_FITRANGE_TEXT= By.cssSelector(".instructions-text");
-	public static By SIZEGUIDE_CHART_TABLE= By.cssSelector("[data-tj-qa='size-chart-table'],.product-fit-guide>.size-chart-table");
+	public static By SIZEGUIDE_CHART_TABLE= By.xpath("//table[@class='not-prose w-full whitespace-nowrap text-center align-baseline text-body-sm leading-6']");
 	
 	public static By SIZEGUIDE_TITLE= By.cssSelector("[data-tj-qa='size-guide-title']");
 	public static By SIZE_GUIDE_BUTTON = By.cssSelector("[data-tj-qa='size-guide-link'],button.product-info__header-btn.size-guide");
-	public static By ADD_TO_CART_BUTTON = By.cssSelector("[data-tj-qa='add-to-cart-cta'],button.product-info__atc.button.js-loop-atc");
+	public static By ADD_TO_CART_BUTTON = By.xpath("//button[@id='ProductForm-Add']");
 	public static By JOIN_THE_WAITLIST = By.cssSelector("[data-tj-qa='add-to-cart-cta'],button.product-info__atc.button.button--red.button--full.js-loop-atc.email-when-in-stock");
 	//public static By QUANTITY = By.cssSelector(".qty-selector.desktop>#updatedQty.pdp.prodQty");
 	public static By QUANTITY = By.cssSelector("[data-tj-qa='add-to-cart-cta'],button.product-info__atc");
@@ -118,9 +118,9 @@ public class ProductDetailsPageLocators {
 	public static By PAIR_GUARANTEE_LINK = By.cssSelector(".product-info__inner-bottom > div:nth-child(1) > button");
 	public static By SHIPING_AND_RETURNS_LINK = By.cssSelector(".product-info__inner-bottom > div:nth-child(2) > button");
 	public static By JOIN_THE_WAITLIST_TEXT = By.cssSelector("[data-tj-qa='add-to-cart-cta'],.multiPdp__atc-container>button");
-	public static By INLINE_CART_TITLE = By.cssSelector("[data-tj-qa='inline-cart-title'],.inline-cart__title");
+	public static By INLINE_CART_TITLE = By.xpath("//h2[@class='text-heading-lg font-medium sm:text-heading']");
 	public static By EMAIL_WHEN_IN_STOCK_BUTTON_CLOSE = By.cssSelector(".close_jtwl");
-	public static By INLINE_CART_CLOSE = By.cssSelector("[data-tj-qa='inline-cart-close'],.inline-cart__close-btn.active");
+	public static By INLINE_CART_CLOSE = By.xpath("//button[@aria-label='Close cart']");
 	
 	
 
@@ -172,7 +172,7 @@ public class ProductDetailsPageLocators {
 	
 
 	
-	public static By WRITE_REVIEW_BUTTON = By.cssSelector("[data-tj-qa='pdp-write-review-cta'],.write-review-button");
+	public static By WRITE_REVIEW_BUTTON = By.xpath("//button[@class='yotpo-new-review-btn yotpo-btn-s']");
 	public static By WRITE_REVIEW_HEADING = By.cssSelector("#pdpReviews > div > div > form > div");
 	public static By WRITE_REVIEW_HEADING1 = By.cssSelector(".y-label.yotpo-header-title");
 	public static By REVIEW_STARS_IN_RATING_AND_REVIEWS = By.cssSelector(".yotpo-bottomline-box-1 > span:nth-child(1)");
@@ -195,28 +195,29 @@ public class ProductDetailsPageLocators {
 	public static By NO_REVIEWS_SUBTEXT = By.cssSelector(".yotpo-no-reviews-container > .yotpo-subtext");
 	public static By NO_REVIEW_WRITE_REVIEW = By.xpath("//button[@class='yotpo-new-review-btn yotpo-btn-s']");
 	
-	public static By WRITE_REVIEW_TITLE = By.cssSelector("[data-tj-qa='reviews-write-review-header']>h3,.yotpo_write-review-header > h3");
-	public static By NAME_TEXTBOX = By.cssSelector("[data-tj-qa='reviews-write-review-name-input'],#yotpo_input_review_name");
-	public static By EMAIL_TEXTBOX = By.cssSelector("[data-tj-qa='reviews-write-review-email-input'],#yotpo_input_review_email");
+	public static By WRITE_REVIEW_TITLE = By.xpath("//h4[@class='yotpo-form-label' and contains(text(),'Write a review')]");
+	public static By WRITE_REVIEW_TEXTBOX = By.xpath("//textarea[@aria-label='Write a review']");
+	public static By NAME_TEXTBOX = By.xpath("//input[@aria-label='Your name']");
+	public static By EMAIL_TEXTBOX = By.xpath("//input[@aria-label='Your email address']");
 	public static By LOCATION_TEXTBOX = By.cssSelector("[data-tj-qa='reviews-write-review-location-input'],#yotpo_input_review_location");
 	public static By FIT_SELECTION = By.cssSelector("[data-tj-qa='reviews-fit-too-large-option'],label[for='yotpo_input__field_option_3']");
 	public static By STAR_SELECTION = By.cssSelector("[data-tj-qa='reviews-overall-fitting-stars'],label[for='yotpo-form-input__review_score__4']");
-	public static By HEADLINE_TEXTBOX = By.cssSelector("[data-tj-qa='reviews-add-headline-input'],#yotpo_input_review_headline");
+	public static By HEADLINE_TEXTBOX = By.xpath("//input[@aria-label='Add a headline']");
 	public static By REVIEW_TEXTBOX = By.cssSelector("[data-tj-qa='reviews-review-input'],#yotpo_input_review_content");
-	public static By SUBMIT_BTN = By.cssSelector("[data-tj-qa='reviews-submit-review'],.yotpo-submit");
+	public static By SUBMIT_BTN = By.xpath("//button[@class='yotpo-new-review-submit']");
 	
-	public static By NAME = By.xpath("//*[data-tj-qa='reviews-write-review-name-label'] | //label[@for = 'yotpo_input_review_name']");
-	public static By EMAIL = By.xpath("//*[data-tj-qa='reviews-write-review-email-label'] | //label[@for = 'yotpo_input_review_email']");
+	public static By NAME = By.xpath("//h4[@class='yotpo-form-label' and contains(text(),'Your name')]");
+	public static By EMAIL = By.xpath("//h4[@class='yotpo-form-label' and contains(text(),'Your email address')]");
 	public static By LOCATION = By.xpath("//*[data-tj-qa='reviews-write-review-location-label'] | //label[@for = 'yotpo_input_review_location']");
 	public static By FIT = By.cssSelector("[data-tj-qa='reviews-fit-header'] , .yotpo-custom-tag-field > span");
-	public static By HEADLINE = By.xpath("//*[data-tj-qa='reviews-add-headline-label'] | //label[@for = 'yotpo_input_review_headline']");
+	public static By HEADLINE = By.xpath("//h4[@class='yotpo-form-label' and contains(text(),'Add a headline')]");
 	public static By REVIEW = By.xpath("//*[data-tj-qa='reviews-review-label'] | //label[@for = 'yotpo_input_review_content']");
 	public static By OVERALLRATING = By.cssSelector("[data-tj-qa='reviews-overall-fitting-label'],.overall-rating-text");
 	
-	public static By NAME_ERROR = By.cssSelector("[data-tj-qa='reviews-name-error-message'],input#yotpo_input_review_name  ~ span.error-message");
-	public static By EMAIL_ERROR = By.cssSelector("[data-tj-qa='reviews-email-error-message'],input#yotpo_input_review_email  ~ span.error-message");
-	public static By HEADLINE_ERROR = By.cssSelector("input#yotpo_input_review_headline  ~ span.error-message");
-	public static By REVIEW_ERROR = By.cssSelector("#yotpo_input_review_content  ~ span.error-message");
+	public static By NAME_ERROR = By.xpath("//input[@aria-label='Your name']//following-sibling::p");
+	public static By EMAIL_ERROR = By.xpath("//input[@aria-label='Your email address']//following-sibling::p");
+	public static By HEADLINE_ERROR = By.xpath("//input[@aria-label='Add a headline']//following-sibling::p");
+	public static By REVIEW_ERROR = By.xpath("//textarea[@aria-label='Write a review']//following-sibling::p");
 	
 	public static By EMAIL_WHEN_IN_STOCK_TITLE = By.cssSelector("[data-tj-qa='join-the-waitlist-title'],.jtwl_header > span");
 	public static By JOINTHEWAITLIST_REMINDER_DESC = By.cssSelector("[data-tj-qa='join-the-waitlist-subtitle'],.jtwl_subtitle_wrapper> span");
@@ -259,16 +260,16 @@ public class ProductDetailsPageLocators {
         public static By REVIEW_FILTER_MESSAGE = By.cssSelector(".yotpo-bottomline__filter-message");
 	    
         //Ask Questions
-        public static By Ask_a_Question_CTA = By.cssSelector("[data-tj-qa='pdp-ask-a-question-cta'],.button--skeleton.yotpo-write-review.yotpo-icon-btn.pull-right.yotpo-hidden-mobile.write-button.ask-question-button");
+        public static By Ask_a_Question_CTA = By.xpath("//a[@id='yotpo-widget-btn']//span");
         public static By ASK_A_QSN_CONTAINER = By.cssSelector(".yotpo-reviews-widget>section>form");
         public static By ASK_A_QUESTION_TITLE = By.cssSelector("[data-tj-qa='ask-a-question-title'],.qna-form-title");
-        public static By QSN_ANS_NAME_TEXTBOX = By.cssSelector("[data-tj-qa='ask-a-question-username-input'],.qna-form__wrapper>div:nth-child(2)>input");
-        public static By QSN_ANS_EMAIL_TEXTBOX = By.cssSelector("[data-tj-qa='ask-a-question-email-input'],.qna-form__wrapper>div:nth-child(3)>input");
-        public static By QSN_ANS_QUESTION_TEXTBOX = By.cssSelector("[data-tj-qa='ask-a-question-input'],.qna-form__wrapper>div:nth-child(4)>textarea");
-        public static By SUBMIT_QUESTION_CTA = By.cssSelector("[data-tj-qa='ask-a-question-submit-btn'],.qna-form__wrapper>div:nth-child(5)>input");
-        public static By QSN_ANS_NAME_ERROR = By.cssSelector(".qna-form__wrapper>div:nth-child(2)>p");
-        public static By QSN_ANS_EMAIL_ERROR = By.cssSelector(".qna-form__wrapper>div:nth-child(3)>p");
-        public static By QSN_ANS_QUESTION_ERROR = By.cssSelector(".qna-form__wrapper>div:nth-child(4) >p");
+        public static By QSN_ANS_NAME_TEXTBOX = By.xpath("//input[@aria-label='Enter your name']");
+        public static By QSN_ANS_EMAIL_TEXTBOX = By.xpath("//input[@aria-label='Enter your email address']");
+        public static By QSN_ANS_QUESTION_TEXTBOX = By.xpath("//textarea[@aria-label='Type your question']");
+        public static By SUBMIT_QUESTION_CTA = By.xpath("//button[@class='yotpo-question-submit']");
+        public static By QSN_ANS_NAME_ERROR = By.xpath("//input[@aria-label='Enter your name']//following-sibling::h6");
+        public static By QSN_ANS_EMAIL_ERROR = By.xpath("//input[@aria-label='Enter your email address']//following-sibling::h6");
+        public static By QSN_ANS_QUESTION_ERROR = By.xpath("//textarea[@aria-label='Type your question']//following-sibling::h6");
 
         
         //Ratings
