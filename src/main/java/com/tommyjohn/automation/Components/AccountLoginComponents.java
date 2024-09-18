@@ -561,9 +561,9 @@ Thread.sleep(3000);
 			driver.findElement(LOGIN_BUTTON).click();
 			Thread.sleep(5000);
 			// logout the account
-			element = driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN);
-			actions.moveToElement(element).perform();
-			WebElement logout = driver.findElement(LOGOUT_OPTION_IN_ACCOUNT_ICON);
+			driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN).click();
+
+			WebElement logout = driver.findElement(LOGOUT_OPTION_IN_ACCOUNT_PAGE);
 			executor.executeScript("arguments[0].click();", logout);
 			Thread.sleep(3000);
 

@@ -2334,7 +2334,6 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		}
 		softAssert.assertAll();
 
-
 	}
 
 
@@ -2506,34 +2505,33 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		if (elementsCount > 1) {
 			for (int i = 1; i <= elementsCount; i++) {
 
-				WebElement elemen = driver.findElement(By.xpath("(//span[@class='option-swatch__label-text'])[" + i + "]"));
+				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])["+i+"]"));
 
 				jse.executeScript("arguments[0].click();", elemen);
 
-				List<WebElement> unavailablecolors = driver.findElements(STRIKED_COLOR_SWATCHES);
-				int num1 = unavailablecolors.size();
-				System.out.println(num1);
+//				List<WebElement> unavailablecolors = driver.findElements(STRIKED_COLOR_SWATCHES);
+//				int num1 = unavailablecolors.size();
+//				System.out.println(num1);
 
-				String sizename = driver.findElement(By.xpath("(//span[@class='option-swatch__label-text'])[" + i + "]")).getText();
+				String sizename = driver.findElement(By.xpath("(//input[@name='option[Size]'])["+i+"]")).getAttribute("value");
 
-				if (num1 > 0 && num1 < elementsCount) {
-					count++;
-					System.out.println("For size: " + sizename);
+//				if (num1 > 0 && num1 < elementsCount) {
+//					count++;
+//					System.out.println("For size: " + sizename);
+//
+//				}
 
-				}
-
-				String sizevalue = driver.findElement(SIZE_VALUE).getAttribute("data-option-name");
-
-				softAssert.assertEquals(driver.findElement(TOTAL_SIZES).getText().equalsIgnoreCase(sizevalue), true, "Color not changing");
+				String sizevalue = driver.findElement(SIZE_VALUE).getText();
+				softAssert.assertEquals(sizename, sizevalue, "Sizes and Colors not changing");
 
 
 			}
 
-			if (count > 0) {
-				System.out.println(count);
-				Reporter.log("Sizes are changing and colors are unavailable for few sizes");
-				ExtentReport.extentTest.info("Sizes are changing and colors are unavailable for few sizes");
-			}
+//			if (count > 0) {
+//				System.out.println(count);
+//				Reporter.log("Sizes are changing and colors are unavailable for few sizes");
+//				ExtentReport.extentTest.info("Sizes are changing and colors are unavailable for few sizes");
+//			}
 
 			Reporter.log("Sizes are changing correctly");
 			ExtentReport.extentTest.info("Sizes are changing correctly");
