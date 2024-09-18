@@ -59,12 +59,12 @@ public class BundlePDPComponent extends BundlePDPLocators{
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT));
 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT_COPY));
-		WebElement el = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT_COPY);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
+		WebElement el = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", el);
 		
-		Thread.sleep(3000);
+		Thread.sleep(7000);
 		allElements = driver.findElements(IMG_CAROUSEL);
 		elementsCount = allElements.size();
 		System.out.println("Image Element count :: "+elementsCount);
