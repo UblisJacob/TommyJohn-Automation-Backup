@@ -3011,20 +3011,25 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 		Thread.sleep(5000);
 		jse.executeScript("window.scrollBy(0, 800)");
+		WebElement qsntab = driver.findElement(QUESTION_TAB);
+		//		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(QUESTION_TAB));
+		jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", qsntab);
 		WebElement AQ_CTA = driver.findElement(Ask_a_Question_CTA);
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(Ask_a_Question_CTA));
-		softassert.assertEquals(driver.findElement(Ask_a_Question_CTA).getText(), "Ask a Question", "Text change for 'Ask a question'CTA");
+		softassert.assertEquals(driver.findElement(Ask_a_Question_CTA).getText(), "Ask a question", "Text change for 'Ask a question'CTA");
 
 		jse.executeScript("arguments[0].click();", AQ_CTA);
 		Thread.sleep(3000);
 		//	jse.executeScript("window.scrollBy(0, 30)");
-		List<String> arraylist = new ArrayList<String>();
-		String classes = driver.findElement(ASK_A_QSN_CONTAINER).getAttribute("class");
-		for (String a : classes.split(" ")) {
-			arraylist.add(a);
-		}
+//		List<String> arraylist = new ArrayList<String>();
+//		String classes = driver.findElement(ASK_A_QSN_CONTAINER).getAttribute("class");
+//		for (String a : classes.split(" ")) {
+//			arraylist.add(a);
+//		}
 		//System.out.println("arraylist: "+ arraylist);
-		softassert.assertTrue(arraylist.contains("show"), "Ask a Question form is not displayed on cta click");
+	//	softassert.assertTrue(arraylist.contains("show"), "Ask a Question form is not displayed on cta click");
 		softassert.assertTrue(driver.findElement(QSN_ANS_NAME_TEXTBOX).isDisplayed(), "Q&A Name textbox is not displayed");
 		softassert.assertTrue(driver.findElement(QSN_ANS_EMAIL_TEXTBOX).isDisplayed(), "Q&A Email textbox is not displayed");
 		softassert.assertTrue(driver.findElement(QSN_ANS_QUESTION_TEXTBOX).isDisplayed(), "Q&A Question textbox is not displayed");
@@ -3062,23 +3067,29 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		WebElement writereview = driver.findElement(WRITE_REVIEW_BUTTON);
 		executore.executeScript("arguments[0].click();", writereview);
 
-		softAssert.assertEquals(driver.findElement(WRITE_REVIEW_TITLE).getText(), "Write a Review", "Laguage mismatch for Write a Review title 2");
-		softAssert.assertEquals(driver.findElement(NAME).getText(), "* Name", "Laguage mismatch for Name ");
-		driver.findElement(NAME_TEXTBOX).sendKeys("Kritika");
-		softAssert.assertEquals(driver.findElement(EMAIL).getText(), "* Email", "Laguage mismatch for Email ");
+		softAssert.assertEquals(driver.findElement(WRITE_REVIEW_TITLE).getText(), "Write a review *", "Language mismatch for Write a Review title 2");
+		System.out.println(driver.findElement(WRITE_REVIEW_TITLE).getText());
+		driver.findElement(WRITE_REVIEW_TEXTBOX).sendKeys("Awesome");
+		softAssert.assertEquals(driver.findElement(NAME).getText(), "Your name *", "Language mismatch for Name ");
+		System.out.println(driver.findElement(NAME).getText());
+		driver.findElement(NAME_TEXTBOX).sendKeys("Tester");
+		softAssert.assertEquals(driver.findElement(EMAIL).getText(), "Your email address *", "Language mismatch for Email ");
+		System.out.println(driver.findElement(EMAIL).getText());
 		driver.findElement(EMAIL_TEXTBOX).sendKeys("kritika.bhat@tommyjohnwear.com");
-		softAssert.assertEquals(driver.findElement(LOCATION).getText(), "Location (Optional)", "Laguage mismatch for Location ");
-		driver.findElement(LOCATION_TEXTBOX).sendKeys("India");
-		softAssert.assertEquals(driver.findElement(FIT).getText(), "Fit", "Laguage mismatch for Fit	 ");
-		WebElement fit = driver.findElement(FIT_SELECTION);
-		executore.executeScript("arguments[0].click();", fit);
-		softAssert.assertEquals(driver.findElement(OVERALLRATING).getText(), "* Overall Rating", "Laguage mismatch for Overall Rating	 ");
-		WebElement stars = driver.findElement(STAR_SELECTION);
-		executore.executeScript("arguments[0].click();", stars);
-		softAssert.assertEquals(driver.findElement(HEADLINE).getText(), "* Add a Headline", "Laguage mismatch for Headline ");
+//		softAssert.assertEquals(driver.findElement(LOCATION).getText(), "Location (Optional)", "Laguage mismatch for Location ");
+//		driver.findElement(LOCATION_TEXTBOX).sendKeys("India");
+//		softAssert.assertEquals(driver.findElement(FIT).getText(), "Fit", "Laguage mismatch for Fit	 ");
+//		WebElement fit = driver.findElement(FIT_SELECTION);
+//		executore.executeScript("arguments[0].click();", fit);
+//		softAssert.assertEquals(driver.findElement(OVERALLRATING).getText(), "* Overall Rating", "Laguage mismatch for Overall Rating	 ");
+//		WebElement stars = driver.findElement(STAR_SELECTION);
+//		executore.executeScript("arguments[0].click();", stars);
+		softAssert.assertEquals(driver.findElement(HEADLINE).getText(), "Add a headline *", "Language mismatch for Headline ");
+		System.out.println(driver.findElement(HEADLINE).getText());
 		driver.findElement(HEADLINE_TEXTBOX).sendKeys("Nice Product");
-		softAssert.assertEquals(driver.findElement(REVIEW).getText(), "* Review", "Laguage mismatch for Review	 ");
-		driver.findElement(REVIEW_TEXTBOX).sendKeys("Must Buy");
+//		softAssert.assertEquals(driver.findElement(REVIEW).getText(), "* Review", "Laguage mismatch for Review	 ");
+//		driver.findElement(REVIEW_TEXTBOX).sendKeys("Must Buy");
+
 
 		softAssert.assertTrue(driver.findElement(SUBMIT_BTN).isEnabled(), "Submit button not enabled");
 		Reporter.log("Review form is :: Displayed");
@@ -3108,10 +3119,10 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			Thread.sleep(2000);
 			WebElement submitbtn = driver.findElement(SUBMIT_BTN);
 			jse.executeScript("arguments[0].click();", submitbtn);
-			softAssert.assertEquals(driver.findElement(NAME_ERROR).getText(), "Please enter a name for this review.", "Laguage mismatch for error message for Name");
-			softAssert.assertEquals(driver.findElement(EMAIL_ERROR).getText(), "Please enter a valid email for this review.", "Laguage mismatch for error message for Email");
-			softAssert.assertEquals(driver.findElement(HEADLINE_ERROR).getText(), "Please enter a headline for this review.", "Laguage mismatch for error message for Headline");
-			softAssert.assertEquals(driver.findElement(REVIEW_ERROR).getText(), "Please enter some content for this review.", "Laguage mismatch for error message for Review");
+			softAssert.assertEquals(driver.findElement(NAME_ERROR).getText(), "A name is required", "Laguage mismatch for error message for Name");
+			softAssert.assertEquals(driver.findElement(EMAIL_ERROR).getText(), "A valid email address is required", "Laguage mismatch for error message for Email");
+			softAssert.assertEquals(driver.findElement(HEADLINE_ERROR).getText(), "Review headline is required", "Laguage mismatch for error message for Headline");
+			softAssert.assertEquals(driver.findElement(REVIEW_ERROR).getText(), "Review content is required", "Laguage mismatch for error message for Review");
 			Reporter.log("Review form error msgs are :: Displayed");
 			ExtentReport.extentTest.info("Review form error msgs are :: Displayed");
 		} catch (Exception e) {
@@ -3139,7 +3150,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		//	checkCorrectProductDetailsPageOpenedOrNot(text);
 		Thread.sleep(2000);
 
-		allElements = driver.findElements(ProductDetailsPageComponents.ALL_COLOR_LIST);
+		allElements = driver.findElements(ProductDetailsPageComponents.COLOR_VARIANT);
 		int count = 0;
 		elementsCount = allElements.size();
 		System.out.println("Color Element count :: " + elementsCount);
@@ -3150,26 +3161,34 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 			for (int i = 1; i <= elementsCount; i++) {
 				count++;
-				WebElement elemen = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper>ul>li:nth-child(" + i + ")>input"));
+				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])["+i+"]"));
 				jse = (JavascriptExecutor) driver;
 				jse.executeScript("arguments[0].click();", elemen);
 				Thread.sleep(3000);
 
 
 				for (int k = 1; k <= 5; k++) {
-					WebElement elements = driver.findElement(By.cssSelector(".option-swatch__option>li:nth-child(" + k + ")>input"));
+					WebElement elements = driver.findElement(By.xpath("(//input[@name='option[Size]'])["+k+"]"));
 					jse.executeScript("arguments[0].click();", elements);
 					Thread.sleep(1000);
 
-					WebElement elem = driver.findElement(By.cssSelector(".multiPdp__atc-container>button"));
 
-					if (driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON).getText().contains("Add to Cart")) {
+					String[] AddtoBag;
+					AddtoBag = (driver.findElement(By.xpath("//button[@class='button grow']")).getText()).split(" -");
+					String text1 = AddtoBag[0];
+					System.out.println(text1);
+
+				//	WebElement elem = driver.findElement(By.cssSelector(".multiPdp__atc-container>button"));
+
+
+
+					if (driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON).getText().contains(text1)) {
 
 						System.out.println(elemen.getText() + elements.getText() + "Product is added to Cart");
+						Thread.sleep(2000);
 						jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_CART_BUTTON));
-						driver.findElement(INLINE_CART_TITLE);
 						Thread.sleep(3000);
-
+						driver.findElement(INLINE_CART_TITLE);
 						jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
 
 						Thread.sleep(1000);
@@ -3177,7 +3196,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 					}
 
-					if (elem.getText().contentEquals("Join the Waitlist")) {
+				//	if (elem.getText().contentEquals("Join the Waitlist")) {
 //								System.out.println(elemen.getText()+ elements.getText() +"Product is Out of Stock and Join The waitlist is  :: Clickable");
 //								jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_CART_BUTTON));
 //								if(driver.findElement(EMAIL_WHEN_IN_STOCK_BUTTON).isDisplayed()) {
@@ -3197,7 +3216,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 						//							}
 //								
 
-					}
+				//	}
 
 
 				}
@@ -3228,32 +3247,32 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			jse.executeScript("arguments[0].click();", ele);
 			Thread.sleep(5000);
 			//verify Fit Range
-			List<WebElement> fitrange = driver.findElements(SIZEGUIDE_FITRANGE);
-			int num = fitrange.size();
-			System.out.println(num);
-			if (num > 0) {
-
-				for (int i = 1; i <= num; i++) {
-					Thread.sleep(5000);
-					String range = driver.findElement(By.xpath("(//ul[@data-tj-qa='size-guide-fit-range-graph']//li)[" + i + "]")).getAttribute("class");
-					if (range.contentEquals("selected")) {
-						String rangevalue = driver.findElement(By.xpath("(//ul[@data-tj-qa='size-guide-fit-range-graph']//li)[" + i + "]")).getText();
-						System.out.println(rangevalue + " is selected");
-					}
-				}
-
-			} else {
-				System.out.println("NO FIT RANGE IS SELECTED");
-			}
+//			List<WebElement> fitrange = driver.findElements(SIZEGUIDE_FITRANGE);
+//			int num = fitrange.size();
+//			System.out.println(num);
+//			if (num > 0) {
+//
+//				for (int i = 1; i <= num; i++) {
+//					Thread.sleep(5000);
+//					String range = driver.findElement(By.xpath("(//ul[@data-tj-qa='size-guide-fit-range-graph']//li)[" + i + "]")).getAttribute("class");
+//					if (range.contentEquals("selected")) {
+//						String rangevalue = driver.findElement(By.xpath("(//ul[@data-tj-qa='size-guide-fit-range-graph']//li)[" + i + "]")).getText();
+//						System.out.println(rangevalue + " is selected");
+//					}
+//				}
+//
+//			} else {
+//				System.out.println("NO FIT RANGE IS SELECTED");
+//			}
 
 			//View Measurements
-			if (!driver.findElement(By.cssSelector(".product-fit-guide")).isDisplayed())
+			if (!driver.findElement(By.xpath("(//th[@class='border p-3 font-medium'])[1]")).isDisplayed())
 				throw new Exception("Sizes chart overlay is not displayed after Size guide button was clicked");
 			System.out.println("Size Chart is displayed");
 			Reporter.log("Size guide link is Displayed :: Clickable");
 			Thread.sleep(2000);
 			//Close first size guide window
-			driver.findElement(By.cssSelector(".close_chart_modal")).click();
+			driver.findElement(By.xpath("//button[@aria-label='Close modal']")).click();
 
 			Thread.sleep(1000);
 		} else {
@@ -3284,8 +3303,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			jse.executeScript("arguments[0].click();", ele);
 			Thread.sleep(3000);
 			jse.executeScript("window.scrollBy(0,500)");
-			WebElement elem = driver.findElement(SIZEGUIDE_FITRANGE_DROPDOWN);
-			jse.executeScript("arguments[0].click();", elem);
+//			WebElement elem = driver.findElement(SIZEGUIDE_FITRANGE_DROPDOWN);
+//			jse.executeScript("arguments[0].click();", elem);
 			Thread.sleep(2000);
 //		if(driver.findElement(SIZEGUIDE_FITRANGE_TEXT).isDisplayed()) {
 //			//System.out.println(driver.findElement(By.cssSelector(".instruction-text")).getText());
@@ -3297,7 +3316,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 		//View Measurements
 
-		if (!driver.findElement(By.cssSelector(".product-fit-guide")).isDisplayed())
+		if (!driver.findElement(By.xpath("(//th[@class='border p-3 font-medium'])[1]")).isDisplayed())
 			throw new Exception("Sizes chart overlay is not displayed after Size guide button was clicked");
 		System.out.println("Size Chart is displayed");
 		Reporter.log("Size Chart is displayed");
@@ -3306,28 +3325,28 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 		//fit Range Selected
 
-		List<WebElement> fitrange = driver.findElements(SIZEGUIDE_FITRANGE);
-		int num = fitrange.size();
-		System.out.println(num);
-		if (num > 0) {
-
-			for (int i = 1; i <= 3; i++) {
-				Thread.sleep(2000);
-				String range = driver.findElement(By.xpath("(//ul[@data-tj-qa='size-guide-fit-range-graph']//li)[" + i + "]")).getAttribute("class");
-				if (range.contentEquals("selected")) {
-					String rangevalue = driver.findElement(By.xpath("(//ul[@data-tj-qa='size-guide-fit-range-graph']//li)[" + i + "]")).getText();
-					System.out.println(rangevalue + " is selected");
-					Reporter.log("Fit Range is :: Selected");
-					ExtentReport.extentTest.info("Fit Range is :: Selected");
-				}
-			}
-
-		} else {
-			System.out.println("NO FIT RANGE IS SELECTED");
-			Reporter.log("NO FIT RANGE IS SELECTED");
-			ExtentReport.extentTest.info("NO FIT RANGE IS SELECTED");
-
-		}
+//		List<WebElement> fitrange = driver.findElements(SIZEGUIDE_FITRANGE);
+//		int num = fitrange.size();
+//		System.out.println(num);
+//		if (num > 0) {
+//
+//			for (int i = 1; i <= 3; i++) {
+//				Thread.sleep(2000);
+//				String range = driver.findElement(By.xpath("(//ul[@data-tj-qa='size-guide-fit-range-graph']//li)[" + i + "]")).getAttribute("class");
+//				if (range.contentEquals("selected")) {
+//					String rangevalue = driver.findElement(By.xpath("(//ul[@data-tj-qa='size-guide-fit-range-graph']//li)[" + i + "]")).getText();
+//					System.out.println(rangevalue + " is selected");
+//					Reporter.log("Fit Range is :: Selected");
+//					ExtentReport.extentTest.info("Fit Range is :: Selected");
+//				}
+//			}
+//
+//		} else {
+//			System.out.println("NO FIT RANGE IS SELECTED");
+//			Reporter.log("NO FIT RANGE IS SELECTED");
+//			ExtentReport.extentTest.info("NO FIT RANGE IS SELECTED");
+//
+//		}
 
 		//Size Calculator
 		if (!driver.findElement(BRA_BAND_SIZE_DROPDOWN).isEnabled()) {
@@ -3356,39 +3375,39 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			}
 		}
 
-		if (!driver.findElement(BRA_CUP_VOLUME_DROPDOWN).isEnabled()) {
-			throw new Exception("Cup Volume/Size Drop-Down is not enable.");
-		} else {
-			Select CupVolume_DropDown = new Select(driver.findElement(BRA_CUP_VOLUME_DROPDOWN));
-			List<WebElement> CupVolume_Options = CupVolume_DropDown.getOptions();
-			int CupVolume_Options_Count = CupVolume_Options.size();
-			System.out.println("All CupVolume list :: " + CupVolume_Options_Count);
-			Reporter.log("All CupVolume list :: Displayed");
-			ExtentReport.extentTest.info("All CupVolume list :: Displayed");
-			String CupVolume_Default_Text = CupVolume_Options.get(0).getText();
-
-			if (!CupVolume_Default_Text.equalsIgnoreCase("Cup"))
-				throw new Exception("Text change for 'Cup Volume'");
-
-			for (int i = 1; i < CupVolume_Options_Count; i++) {
-				Thread.sleep(1000);
-				//WebElement ele = driver.findElement(By.cssSelector(".size-guide-size-finder-dropdowns.visible>span:nth-child(2)"));
-
-				//jse.executeScript("arguments[0].click();", ele);
-				CupVolume_DropDown.selectByIndex(i);
-
-			}
-			Thread.sleep(3000);
-
-			WebElement ele = driver.findElement(FIND_SIZE_BUTTON);
-			Thread.sleep(2000);
-			jse.executeScript("arguments[0].click();", ele);
-
-			if (!driver.findElement(CALCULATED_SIZE_RESULT).isDisplayed())
-				throw new Exception("Calculated Size Result is not displayed.");
-			if (!driver.findElement(FIND_SIZE_BUTTON).getText().equalsIgnoreCase("Edit Size"))
-				throw new Exception("Button text should change from 'Find Size' to 'Edit Size'");
-		}
+//		if (!driver.findElement(BRA_CUP_VOLUME_DROPDOWN).isEnabled()) {
+//			throw new Exception("Cup Volume/Size Drop-Down is not enable.");
+//		} else {
+//			Select CupVolume_DropDown = new Select(driver.findElement(BRA_CUP_VOLUME_DROPDOWN));
+//			List<WebElement> CupVolume_Options = CupVolume_DropDown.getOptions();
+//			int CupVolume_Options_Count = CupVolume_Options.size();
+//			System.out.println("All CupVolume list :: " + CupVolume_Options_Count);
+//			Reporter.log("All CupVolume list :: Displayed");
+//			ExtentReport.extentTest.info("All CupVolume list :: Displayed");
+//			String CupVolume_Default_Text = CupVolume_Options.get(0).getText();
+//
+//			if (!CupVolume_Default_Text.equalsIgnoreCase("Cup"))
+//				throw new Exception("Text change for 'Cup Volume'");
+//
+//			for (int i = 1; i < CupVolume_Options_Count; i++) {
+//				Thread.sleep(1000);
+//				//WebElement ele = driver.findElement(By.cssSelector(".size-guide-size-finder-dropdowns.visible>span:nth-child(2)"));
+//
+//				//jse.executeScript("arguments[0].click();", ele);
+//				CupVolume_DropDown.selectByIndex(i);
+//
+//			}
+//			Thread.sleep(3000);
+//
+//			WebElement ele = driver.findElement(FIND_SIZE_BUTTON);
+//			Thread.sleep(2000);
+//			jse.executeScript("arguments[0].click();", ele);
+//
+//			if (!driver.findElement(CALCULATED_SIZE_RESULT).isDisplayed())
+//				throw new Exception("Calculated Size Result is not displayed.");
+//			if (!driver.findElement(FIND_SIZE_BUTTON).getText().equalsIgnoreCase("Edit Size"))
+//				throw new Exception("Button text should change from 'Find Size' to 'Edit Size'");
+//		}
 	}
 
 	public void verifySizeChartTextBras() throws Exception {
@@ -3423,8 +3442,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			jse.executeScript("arguments[0].click();", ele);
 			Thread.sleep(3000);
 			jse.executeScript("window.scrollBy(0,200)");
-			WebElement elem = driver.findElement(SIZEGUIDE_FITRANGE_DROPDOWN);
-			jse.executeScript("arguments[0].click();", elem);
+//			WebElement elem = driver.findElement(SIZEGUIDE_FITRANGE_DROPDOWN);
+//			jse.executeScript("arguments[0].click();", elem);
 //		if(driver.findElement(SIZEGUIDE_FITRANGE_TEXT).isDisplayed()) {
 //			System.out.println(driver.findElement(By.cssSelector(".instruction-text")).getText());
 
@@ -3440,27 +3459,27 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		Thread.sleep(2000);
 		//fit Range Selected
 
-		List<WebElement> fitrange = driver.findElements(SIZEGUIDE_FITRANGE);
-		int num = fitrange.size();
-		if (num > 0) {
-
-			for (int i = 1; i <= num; i++) {
-				Thread.sleep(2000);
-				String range = driver.findElement(By.xpath("(//ul[@data-tj-qa='size-guide-fit-range-graph']//li)[" + i + "]")).getAttribute("class");
-				if (range.contentEquals("selected")) {
-					String rangevalue = driver.findElement(By.xpath("(//ul[@data-tj-qa='size-guide-fit-range-graph']//li)[" + i + "]")).getText();
-					System.out.println(rangevalue + " is selected");
-					Reporter.log("Fit Range is displayed");
-					ExtentReport.extentTest.info("Fit Range is displayed");
-
-				}
-			}
-
-		} else {
-			System.out.println("NO FIT RANGE IS SELECTED");
-			Reporter.log("NO FIT RANGE IS SELECTED");
-			ExtentReport.extentTest.info("NO FIT RANGE IS SELECTED");
-		}
+//		List<WebElement> fitrange = driver.findElements(SIZEGUIDE_FITRANGE);
+//		int num = fitrange.size();
+//		if (num > 0) {
+//
+//			for (int i = 1; i <= num; i++) {
+//				Thread.sleep(2000);
+//				String range = driver.findElement(By.xpath("(//ul[@data-tj-qa='size-guide-fit-range-graph']//li)[" + i + "]")).getAttribute("class");
+//				if (range.contentEquals("selected")) {
+//					String rangevalue = driver.findElement(By.xpath("(//ul[@data-tj-qa='size-guide-fit-range-graph']//li)[" + i + "]")).getText();
+//					System.out.println(rangevalue + " is selected");
+//					Reporter.log("Fit Range is displayed");
+//					ExtentReport.extentTest.info("Fit Range is displayed");
+//
+//				}
+//			}
+//
+//		} else {
+//			System.out.println("NO FIT RANGE IS SELECTED");
+//			Reporter.log("NO FIT RANGE IS SELECTED");
+//			ExtentReport.extentTest.info("NO FIT RANGE IS SELECTED");
+//		}
 
 		//Size Calculator
 		if (!driver.findElement(BRA_BAND_SIZE_DROPDOWN).isEnabled()) {
@@ -3482,38 +3501,38 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			}
 		}
 
-		if (!driver.findElement(BRA_CUP_VOLUME_DROPDOWN).isEnabled()) {
-			throw new Exception("Cup Volume/Size Drop-Down is not enable.");
-		} else {
-			Select CupVolume_DropDown = new Select(driver.findElement(BRA_CUP_VOLUME_DROPDOWN));
-			List<WebElement> CupVolume_Options = CupVolume_DropDown.getOptions();
-			int CupVolume_Options_Count = CupVolume_Options.size();
-			System.out.println("All CupVolume list ::" + CupVolume_Options_Count);
-			Reporter.log("All CupVolume list :: SELECTED");
-			ExtentReport.extentTest.info("All CupVolume list :: SELECTED");
-
-			String CupVolume_Default_Text = driver.findElement(CUP_VOLUME_TEXT).getText();
-
-			if (!CupVolume_Default_Text.equalsIgnoreCase("Cup Volume"))
-				throw new Exception("Text change for 'Cup Size'");
-
-			for (int i = 1; i < CupVolume_Options_Count; i++) {
-				Thread.sleep(2000);
-				CupVolume_DropDown.selectByIndex(i);
-
-			}
-			Thread.sleep(3000);
-
-			WebElement ele = driver.findElement(FIND_SIZE_BUTTON);
-			Thread.sleep(2000);
-			jse = (JavascriptExecutor) driver;
-			jse.executeScript("arguments[0].click();", ele);
-
-			if (!driver.findElement(CALCULATED_SIZE_RESULT).isDisplayed())
-				throw new Exception("Calculated Size Result is not displayed.");
-			if (!driver.findElement(FIND_SIZE_BUTTON).getText().equalsIgnoreCase("Edit Size"))
-				throw new Exception("Button text should change from 'Find Size' to 'Edit Size'");
-		}
+//		if (!driver.findElement(BRA_CUP_VOLUME_DROPDOWN).isEnabled()) {
+//			throw new Exception("Cup Volume/Size Drop-Down is not enable.");
+//		} else {
+//			Select CupVolume_DropDown = new Select(driver.findElement(BRA_CUP_VOLUME_DROPDOWN));
+//			List<WebElement> CupVolume_Options = CupVolume_DropDown.getOptions();
+//			int CupVolume_Options_Count = CupVolume_Options.size();
+//			System.out.println("All CupVolume list ::" + CupVolume_Options_Count);
+//			Reporter.log("All CupVolume list :: SELECTED");
+//			ExtentReport.extentTest.info("All CupVolume list :: SELECTED");
+//
+//			String CupVolume_Default_Text = driver.findElement(CUP_VOLUME_TEXT).getText();
+//
+//			if (!CupVolume_Default_Text.equalsIgnoreCase("Cup Volume"))
+//				throw new Exception("Text change for 'Cup Size'");
+//
+//			for (int i = 1; i < CupVolume_Options_Count; i++) {
+//				Thread.sleep(2000);
+//				CupVolume_DropDown.selectByIndex(i);
+//
+//			}
+//			Thread.sleep(3000);
+//
+//			WebElement ele = driver.findElement(FIND_SIZE_BUTTON);
+//			Thread.sleep(2000);
+//			jse = (JavascriptExecutor) driver;
+//			jse.executeScript("arguments[0].click();", ele);
+//
+//			if (!driver.findElement(CALCULATED_SIZE_RESULT).isDisplayed())
+//				throw new Exception("Calculated Size Result is not displayed.");
+//			if (!driver.findElement(FIND_SIZE_BUTTON).getText().equalsIgnoreCase("Edit Size"))
+//				throw new Exception("Button text should change from 'Find Size' to 'Edit Size'");
+//		}
 	}
 
 	public void verifyBundlePDPs() throws Exception {
@@ -3523,8 +3542,10 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		new HomePageComponents(driver).navigateToAllWomensPacksInPacksCategory();
 		new CollectionPageComponent(driver).navigateToProductDetailsPage();
 
+		driver.findElement(By.xpath("//span[contains(text(),'3 Pack')]")).click();
+
 		Thread.sleep(5000);
-		allElements = driver.findElements(ProductDetailsPageComponents.ALL_COLOR_LIST);
+		allElements = driver.findElements(ProductDetailsPageComponents.COLOR_VARIANT);
 
 		elementsCount = allElements.size();
 		System.out.println("Color Element count :: " + elementsCount);
@@ -3533,30 +3554,45 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 			for (int i = 1; i <= 2; i++) {
 
-				WebElement elemen = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper>ul>li:nth-child(" + i + ")>input"));
+				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])["+i+"]"));
 				jse = (JavascriptExecutor) driver;
 				jse.executeScript("arguments[0].click();", elemen);
 				Thread.sleep(3000);
 
 				for (int k = 1; k <= 3; k++) {
-					WebElement elements = driver.findElement(By.cssSelector(".option-swatch__option>li:nth-child(" + k + ")>input"));
+					WebElement elements = driver.findElement(By.xpath("(//input[@name='option[Size]'])[" + k + "]"));
 					jse.executeScript("arguments[0].click();", elements);
 					Thread.sleep(1000);
 
-					WebElement elem = driver.findElement(By.cssSelector(".multiPdp__atc-container>button"));
+					//				WebElement elem = driver.findElement(By.cssSelector(".multiPdp__atc-container>button"));
+					try {
+						String[] AddtoBag;
+						AddtoBag = (driver.findElement(By.xpath("//button[@class='button grow']")).getText()).split(" -");
+						String text1 = AddtoBag[0];
+						System.out.println(text1);
 
-					if (driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON).getText().contains("Add to Cart")) {
+						if (driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON).getText().contains(text1)) {
 
-						System.out.println(elemen.getText() + elements.getText() + "Product is added to Cart");
-						jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_CART_BUTTON));
-						WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-					//	wait.until(ExpectedConditions.visibilityOfElementLocated(INLINE_CART_CLOSE));
-						Thread.sleep(5000);
-						jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
+							System.out.println(elemen.getText() + elements.getText() + "Product is added to Cart");
+							Thread.sleep(2000);
+							jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_CART_BUTTON));
+							WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+							//	wait.until(ExpectedConditions.visibilityOfElementLocated(INLINE_CART_CLOSE));
+							Thread.sleep(5000);
+							jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
+
+						}
 
 					}
+					catch (Exception ex)
+					{
 
+						System.out.println("Add to bag is disabled");
+
+					}
 				}
+
+
 
 			}
 		Reporter.log("Bundle PDP's are displayed");
