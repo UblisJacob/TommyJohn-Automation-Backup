@@ -25,8 +25,8 @@ public class ValidateCategoryPages {
 	}
 
 //Not worked exception
-//	 @Test public void ValidateLoadCategoryPage() throws Exception { new
-//	 CollectionPage(driver).validateallplpsareloading(); }
+	 @Test public void ValidateLoadCategoryPage() throws Exception { new
+	 CollectionPage(driver).validateallplpsareloading(); }
 	 
 	 @Test public void ValidateViewProductGrid() throws Exception { new
 	 CollectionPage(driver).validateproductgrid(); }

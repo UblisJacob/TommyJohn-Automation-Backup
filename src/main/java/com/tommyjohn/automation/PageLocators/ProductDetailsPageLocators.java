@@ -6,12 +6,12 @@ public class ProductDetailsPageLocators {
 
 	public static By FIRST_PRODUCT_REVIEW_STARS = By.cssSelector("div.mega-collection-grid__row:nth-child(3) > div:nth-child(3) > a > div");
 	//changed
-	public static By PRODUCT_TITLE = By.cssSelector(".desktop-view>div>h1[data-tj-qa='product-name'] , .multi-pdp-title-wrap.desktop-view.desktop>.product-info__title-wrap>h1");
+	public static By PRODUCT_TITLE = By.xpath("//h1[@class='mb-0']");
  	
 	//changed
 	public static By PRODUCT_TITLE_1 = By.xpath("//div[@class='multi-pdp-title-wrap desktop-view desktop']//h1");//changed
 	//	public static By PRODUCT_PRICE = By.cssSelector("div.product-info__inner-top > span > span:nth-child(2)");
-	public static By PRODUCT_PRICE = By.cssSelector(" .product-info__price>span#multi-price , span[data-tj-qa='product-price']>span#product-price");
+	public static By PRODUCT_PRICE = By.xpath("//span[@data-cy='priceFinal']");
 	
 	// image carousels
 	public static By IMG_CAROUSEL = By.xpath("//div[@class='hidden md:block w-full']//div");
@@ -28,7 +28,7 @@ public class ProductDetailsPageLocators {
 	//image badging
 //	public static By IMAGE_BADGING = By.cssSelector(".productImage-item__badge");
 
-	public static By IMAGE_BADGING = By.xpath("(//div[@class='productImage__badge'])[1]");
+	public static By IMAGE_BADGING = By.xpath("//span[contains(text(),'New Colors')]");
 	
 	//Secondary Badging
 	public static By SECONDARY_BADGING = By.cssSelector("div.multi-pdp-title-wrap.desktop-view.desktop>span");
@@ -42,7 +42,7 @@ public class ProductDetailsPageLocators {
 	public static By COLOR_LISTS = By.cssSelector("[data-tj-qa='color-swatch'],.product-option__color-swatches-wrapper > ul >li");
 	public static By FIRST_COLOR = By.cssSelector(".product-option__color-swatches-wrapper > ul > li:nth-child(1) > label");
 
-	public static By TOTAL_SIZES = By.cssSelector("[data-tj-qa='product-size'],.option-swatch__option>li>label>span");
+	public static By TOTAL_SIZES = By.xpath("//input[@name='option[Size]']");
 	public static By INACTIVE_SIZES = By.cssSelector(".unavailable[data-tj-qa='product-size'],.option-swatch__option>li>.option-swatch__input.unavailable.email-when-in-stock");
 	public static By SIZE_VALUE = By.xpath("(//span[@class='font-medium'])[2]");
 
@@ -76,7 +76,7 @@ public class ProductDetailsPageLocators {
 
 
 	public static By ALL_COLOR_LIST = By.xpath("//div[@class='product-option__color-swatches-wrapper']//li");
-	public static By PRODUCT_DETAILS = By.cssSelector("[data-tj-qa='mobile-footer-accordion-product-details'],.product-details-container>div> ul > li:nth-child(1) > div:nth-child(1) > a");
+	public static By PRODUCT_DETAILS = By.xpath("//button[@aria-controls='product-details']");
 	public static By SIZEGUIDE = By.cssSelector("[data-tj-qa='size-guide-link'],button.product-info__header-btn.size-guide");
 	public static By SIZEGUIDE_FITRANGE = By.xpath("//ul[@data-tj-qa='size-guide-fit-range-graph']//li");
 	public static By SIZEGUIDE_FITRANGE_DROPDOWN= By.cssSelector(".expand-instructions");
@@ -94,12 +94,14 @@ public class ProductDetailsPageLocators {
 	public static By MINUS_BUTTON = By.cssSelector("[data-tj-qa='quantity-minus'],.pdp.minusBtn");
 	public static By BEST_PAIR_GUARANTEE = By.cssSelector("[data-tj-qa='mobile-footer-accordion-best-pair-guarantee'],.product-details-container>div> ul > li:nth-child(2) > div:nth-child(1) > a");
 	public static By FREE_RETURNS = By.cssSelector("[data-tj-qa='mobile-footer-accordion-free-returns'],.product-details-container>div> ul > li:nth-child(3) > div:nth-child(1) > a");
+	public static By FIT_MATERIAL = By.xpath("//button[@aria-controls='product-fit-materials']");
 	public static By CHECKOUT_BUTTON = By.cssSelector("[data-tj-qa='inline-cart-checkout'],.inline-cart__action-btns > a");
 	//public static By COLOR_AND_SIZE = By.cssSelector("div.product-info__variant-select > div:nth-child(1) > div.product-info__header.hide > span");
-    public static By LOW_INVENTORY_MSG = By.cssSelector("div.product-info_low-inventory-message");
-    public static By PRODUCT_DETAILS_SECTION = By.cssSelector("div.product-info_low-inventory-message");
+    public static By LOW_INVENTORY_MSG = By.xpath("//p[contains(text(),'Hurry! Only 10 left in stock!')]");
+    public static By PRODUCT_DETAILS_SECTION = By.xpath("(//dt[@class='font-medium'])[1]");
     public static By BEST_PAIR_GUARANTEE_SECTION = By.cssSelector("div.product-info_low-inventory-message");
     public static By FREE_RETURNS_SECTION = By.cssSelector("div.product-info_low-inventory-message");
+	public static By FIT_MATERIAL_SECTION = By.xpath("//span[@class='font-medium text-text']");
 	public static By CART_ICON= By.xpath("//button[@data-tj-qa='header-cart-icon']");
 	public static By OVERLAY= By.xpath("//div[@class='overlay active']");
 
@@ -127,26 +129,27 @@ public class ProductDetailsPageLocators {
 	//Reviews section
 
 
-	public static By RATING_STARS = By.cssSelector("div.multi-pdp-title-wrap.desktop-view > div.product-info__price-wrap > div.yotpo-star-wrapper > div > div > span[data-tj-qa='product-star-rating'],div.multi-pdp-title-wrap.desktop-view > div.product-info__price-wrap > div.yotpo-star-wrapper > div > div > span.yotpo-stars");
-	public static By RATING_NUMBER = By.cssSelector("[data-tj-qa='product-review-count'],div.multi-pdp-title-wrap.desktop-view > div.product-info__price-wrap > div.yotpo-star-wrapper > div > div > a");
-	public static By RATING_AND_REVIEWS_BOX = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container");
+	public static By RATING_STARS = By.xpath("(//span[@class='flex items-center font-normal text-text-secondary'])[1]");
+	public static By RATING_NUMBER = By.xpath("//div[@class='yotpo-bottom-line-left-panel yotpo-bottom-line-score']");
+	public static By RATING_AND_REVIEWS_BOX = By.xpath("//div[@class='yotpo-header-container']");
 	public static By RATING_AND_REVIEWS_FILTER = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div:nth-child(2)>ul>li");
 	public static By RATING_AND_REVIEWS_FILTER_RATING_COUNT = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div:nth-child(2)>ul>li>div>div:nth-child(3)");
 	public static By NO_RATING_TEXT = By.cssSelector("[data-tj-qa='product-fit'],div.multi-pdp-title-wrap.desktop-view > div.product-info__price-wrap > div.yotpo-star-wrapper > div > div > span:nth-child(1)");
 	public static By RATING_AND_REVIEWS_TOTAL = By.cssSelector(".review-searched-items-wrapper.mobile-hide>span:nth-child(2)");
 	
 	
-	public static By FIRST_BOX_IN_RATING_AND_REVIEWS = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div > div.yotpo-review-bottomline-rating");
+	public static By FIRST_BOX_IN_RATING_AND_REVIEWS = By.xpath("//div[@class='yotpo-summary-section']");
 	public static By STARS_IN_FIRST_BOX = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div > div.yotpo-review-bottomline-rating > .yotpo-stars");
-	public static By AVG_RATING_IN_FIRST_BOX = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div > div.yotpo-review-bottomline-rating > p> .yotpo-review-bottomline-average_rating");
-	public static By TOTAL_REVIEWS_IN_FIRST_BOX = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div > div.yotpo-review-bottomline-rating > p> .yotpo-review-bottomline-total_reviews");
+	public static By AVG_RATING_IN_FIRST_BOX = By.xpath("//div[@class='yotpo-bottom-line-left-panel yotpo-bottom-line-score']");
+	public static By TOTAL_REVIEWS_IN_FIRST_BOX = By.xpath("//div[@class='yotpo-bottom-line-basic-text']");
 
-	public static By SECOND_BOX_IN_RATING_AND_REVIEWS = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div:nth-child(2) > ul.yotpo-revew-bottomline-list");
+	public static By SECOND_BOX_IN_RATING_AND_REVIEWS = By.xpath("//div[@class='yotpo-star-distribution']");
 	public static By RATING_LABEL_IN_SECOND_BOX = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div:nth-child(2) > ul.yotpo-revew-bottomline-list > li > .yotpo-review-bottomline-individual-ratings > .yotpo-review-bottomline-ratings-label");
 	public static By RATING_METER_IN_SECOND_BOX = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div:nth-child(2) > ul.yotpo-revew-bottomline-list > li:nth-child(3) > .yotpo-review-bottomline-individual-ratings > .yotpo-review-bottomline-individual-ratings__meter");
 	public static By RATING_COUNT_IN_SECOND_BOX = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div:nth-child(2) > ul.yotpo-revew-bottomline-list > li:nth-child(5) > .yotpo-review-bottomline-individual-ratings > .yotpo-review-bottomline-individual-ratings__count");
 	
-	public static By THIRD_BOX_IN_RATING_AND_REVIEWS = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div > div.yotpo-review-bottomline-customer-say-container");
+	public static By THIRD_BOX_IN_RATING_AND_REVIEWS = By.xpath("//div[@class='yotpo-new-review-btn-wrapper']");
+	public static By FIT_RANGE = By.xpath("//label[contains(text(),'fit')]");
 	public static By FIT_GRAPH_IN_THIRD_BOX = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div > div.yotpo-review-bottomline-customer-say-container > .size-guide-yatpo-fit-graph > ul > li.selected");
 	public static By FIT_STATUS_IN_THIRD_BOX = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div > div.yotpo-review-bottomline-customer-say-container > .yotpo-review-bottomline-customer-say > .yotpo-review-bottomline-fit");
 	public static By POSTED_REVIEWS_SECTION = By.cssSelector(".yotpo-review-box");
@@ -156,13 +159,13 @@ public class ProductDetailsPageLocators {
 	
 	public static By STAR_RATINGS = By.cssSelector(".yotpo-stars-and-sum-reviews > span > span.sr-only");
 	//filter ratings
-	public static By FILTER_RATINGS = By.cssSelector("[data-tj-qa='pdp-ratings-dropdown'],.yotpo-reviews-qa-header.filters>div:nth-child(2)");
+	public static By FILTER_RATINGS = By.xpath("//input[@class='yotpo-filter-select']");
 	public static By FILTER_FIT = By.cssSelector("[data-tj-qa='pdp-fit-dropdown'],.yotpo-reviews-qa-header.filters>div:nth-child(3)");
-	public static By FILTER_SORTBY = By.cssSelector("[data-tj-qa='pdp-sort-by-dropdown'],.yotpo-reviews-qa-header.filters>div:nth-child(4)");
-	public static By FILTER_SORTBY_SECTION = By.cssSelector(".yotpo-sort-by-options-container.active>ul>li");
+	public static By FILTER_SORTBY = By.xpath("//div[@class='yotpo-selected-value']");
+	public static By FILTER_SORTBY_SECTION = By.xpath("//span[@title='[object Object]']");
 	
-	public static By QUESTION_TAB = By.cssSelector("[data-tj-qa='pdp-reviews-sub-section'],div[class='yotpo-header-tab']");
-	public static By QUESTION_FIRST = By.cssSelector(".qna-main>section:nth-child(1)");
+	public static By QUESTION_TAB = By.xpath("//div[@class='ugc-storefront-widgets-tabs-container__tab']");
+	public static By QUESTION_FIRST = By.xpath("(//span[@class='yotpo-shopper-name'])[1]");
 	public static By ASK_QUESTION = By.cssSelector(".yotpo-ctas>div:nth-child(1)");
 	public static By RESPONSE_FROM_TOMMYJOHN_LIST = By.cssSelector("[data-tj-qa='pdp-customer-review'],.yotpo.yotpo-reviews-container.yotpo-reviews-widget>ul>li");
 	public static By RESPONSE_FROM_TOMMYJOHN = By.cssSelector("p.yotpo-review-response__header");
@@ -190,7 +193,7 @@ public class ProductDetailsPageLocators {
 	
 	public static By NO_REVIEWS_TEXT = By.cssSelector(".yotpo-no-reviews-container > .yotpo-header");
 	public static By NO_REVIEWS_SUBTEXT = By.cssSelector(".yotpo-no-reviews-container > .yotpo-subtext");
-	public static By NO_REVIEW_WRITE_REVIEW = By.cssSelector("div.yotpo-no-reviews-container > div.no-review-write-button");
+	public static By NO_REVIEW_WRITE_REVIEW = By.xpath("//button[@class='yotpo-new-review-btn yotpo-btn-s']");
 	
 	public static By WRITE_REVIEW_TITLE = By.cssSelector("[data-tj-qa='reviews-write-review-header']>h3,.yotpo_write-review-header > h3");
 	public static By NAME_TEXTBOX = By.cssSelector("[data-tj-qa='reviews-write-review-name-input'],#yotpo_input_review_name");

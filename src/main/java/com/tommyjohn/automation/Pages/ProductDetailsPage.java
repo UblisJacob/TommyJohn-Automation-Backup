@@ -167,6 +167,12 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 	
 	}
+
+	public void navigateToMensAll() throws Exception {
+
+		new HomePageComponents(driver).navigateToMensAll();
+
+	}
 	
 	public void navigateToNewArrivalsInWomenCategory() throws Exception {
 

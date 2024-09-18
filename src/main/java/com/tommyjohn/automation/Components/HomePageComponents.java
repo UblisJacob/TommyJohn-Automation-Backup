@@ -2249,9 +2249,15 @@ public class HomePageComponents extends HomePageLocators {
 		
 	}
 
+
 	public void navigateToWomensUnderwear()
 	{
 		driver.get("https://www.tommyjohn.com/collections/womens-underwear");
+	}
+
+	public void navigateToMensAll()
+	{
+		driver.get("https://www.tommyjohn.com/collections/mens-all");
 	}
 
 	public void navigateToMensUnderShirts()

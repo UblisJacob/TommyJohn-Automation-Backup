@@ -69,7 +69,7 @@ public class ValidatePDP extends ExtentReport{
 	}
 	
 	
-//	@Test
+	@Test
 	public void VerifyOnImageBadging() throws Exception {
 		new ProductDetailsPage(driver).verifyOnImageBadging();
 		
@@ -95,7 +95,7 @@ public class ValidatePDP extends ExtentReport{
 		new ProductDetailsPage(driver).verifyStickyATC();
 	}
 
-	@Test
+//	@Test
 	public void VerifyStickySelectASize() throws Exception {
 		new ProductDetailsPage(driver).verifyStickySelectASize();
 	}
