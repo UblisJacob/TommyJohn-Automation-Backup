@@ -13,7 +13,7 @@
         <classes>
             <class name="TestModules.ValidatePDP">
                 <methods>
-                    <include name="ValidateErrorForTermsAndConditionsInCreateAccountPage"/>
+                    <include name="VerifyAvailableSizes"/>
                 </methods>
             </class>
         </classes>

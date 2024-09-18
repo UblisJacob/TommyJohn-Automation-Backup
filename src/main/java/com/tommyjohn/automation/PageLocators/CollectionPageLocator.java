@@ -17,18 +17,18 @@ public class CollectionPageLocator {
 //	public static By FIRST_PRODUCT_HEAD_LINE_TEXT_LINK = By.cssSelector("div.mega-collection-grid__row:nth-child(3) > div:nth-child(1) > a > h2");
 //	public static By FIRST_PRODUCT_REVIEW_STARS = By.cssSelector("div.mega-collection-grid__row:nth-child(3) > div:nth-child(1) > a > div");
 	
-	public static By FIRST_PRODUCT = By.cssSelector("[data-tj-qa='product-image'],div.product-image-container");
+	public static By FIRST_PRODUCT = By.xpath("(//div[@class='relative aspect-tile'])[1]");
 	public static By COMPARE_PRODUCT = By.cssSelector(".product-image-container > div.has-compare");
-	public static By FIRST_PRODUCT_IMAGE = By.xpath("(//img[@class='product-image product-image--main product-image-container__image ls-is-cached lazyloaded'])[1]");
+	public static By FIRST_PRODUCT_IMAGE = By.xpath("(//img[@class='aspect-tile bg-background-image object-cover text-[0] w-full'])[1]");
 	public static By HOVER_PRODUCT_IMAGE = By.cssSelector("[data-tj-qa='plp-product-img-main'],img[data-tj-qa='plp-product-img-hover']");
 
 	//changed
 	public static String PRODUCT_IMAGES = "//div[contains(@class,'product-image')]//a";
 	public static By PRODUCT_COUNT_TEXT = By.xpath("//*[data-tj-qa='plp-total-items']>span | //div[contains(@class,'controls__count')]//span");
 	public static By HOVERED_PRODUCT_IMAGE = By.cssSelector("[data-tj-qa='plp-product-img-hover'],.product-image--hover");
-	public static By FIRST_PRODUCT_HEAD_TEXT = By.xpath("(//span[@class='product-meta__title'])[1]");
+	public static By FIRST_PRODUCT_HEAD_TEXT = By.xpath("(//div[@class='relative aspect-tile'])[1]");
 	public static By FIRST_PRODUCT_HEAD_LINE_TEXT_COPY = By.xpath("(//span[@class='product-meta__title'])[1]");
-	public static By FIRST_PRODUCT_HEAD_LINE_TEXT = By.xpath("(//span[@class='product-meta__title'])[2]");
+	public static By FIRST_PRODUCT_HEAD_LINE_TEXT = By.xpath("(//a[@data-cy='productTileLink'])[1]");
 	public static By FIRST_PRODUCT_TEXT = By.xpath("(//span[@class='product-meta__title'])[1]");
 	public static By FILTER = By.xpath("//span[@class='collection-meta__title']");
 
