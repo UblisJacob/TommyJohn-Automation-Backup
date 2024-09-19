@@ -384,7 +384,7 @@ public class CollectionPage extends CollectionPageComponent{
 	
 	public void validateCategorySectionHeaders() throws Exception {
 		// TODO Auto-generated method stub
-		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
+		new HomePageComponents(driver).navigateToNewArrivalsInMenCategory();
 		validatePLPSectionHeaders();
 	}
 

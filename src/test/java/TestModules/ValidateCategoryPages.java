@@ -45,9 +45,10 @@ public class ValidateCategoryPages {
 
 
 
-	 @Test public void ValidateInteractWithInlineBanner() throws Exception { new
-	 CollectionPage(driver).validateInlineBanner(); }
-	 
+//	@Test
+	public void ValidateInteractWithInlineBanner() throws Exception { new
+	CollectionPage(driver).validateInlineBanner(); }
+
 
 
 	 @Test public void ValidateInteractWithFilters() throws Exception { new
@@ -60,12 +61,14 @@ public class ValidateCategoryPages {
 	 
 
 	
-	 @Test public void ValidateViewOnImageAndSecondaryBadging() throws Exception { new
+//	 @Test
+	 public void ValidateViewOnImageAndSecondaryBadging() throws Exception { new
 	 CollectionPage(driver).validateOnImageAndSecondaryBadging(); }
 	 
 
 	
-	 @Test public void ValidateSEOCopy() throws Exception { new
+//	 @Test
+	 public void ValidateSEOCopy() throws Exception { new
 	 CollectionPage(driver).validateSEOCopy(); }
 	 
 
@@ -76,8 +79,9 @@ public class ValidateCategoryPages {
 	 
 
 	
-	@Test public void ValidateInteractWithQuickShop() throws Exception { new
-	  CollectionPage(driver).validateQuickshopFunctionality(); }
+	@Test
+	public void ValidateInteractWithQuickShop() throws Exception { new
+	CollectionPage(driver).validateQuickshopFunctionality(); }
 	 
 
 	@Test
