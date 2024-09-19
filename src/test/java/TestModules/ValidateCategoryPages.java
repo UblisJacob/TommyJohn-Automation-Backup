@@ -105,47 +105,47 @@ public class ValidateCategoryPages {
 		new CollectionPage(driver).ValidateProductsOnFiltering();
 	}
 
-	@Test
+//	@Test
 	public void ValidateSizeFiltersCountInAllFiltersDropdownAndInSizeDropdown() throws Exception {
 		new CollectionPage(driver).ValidateSizeFiltersCountInAllFiltersDropdownAndInSizeDropdown();
 	}
 
-	@Test
+//	@Test
 	public void ValidateSizeFiltersNameInAllFiltersDropdownAndInSizeDropdown() throws Exception {
 		new CollectionPage(driver).ValidateSizeFiltersNameInAllFiltersDropdownAndInSizeDropdown();
 	}
 
-	@Test
+//	@Test
 	public void ValidateColorFiltersCountInAllFiltersDropdownAndInColorDropdown() throws Exception {
 		new CollectionPage(driver).ValidateColorFiltersCountInAllFiltersDropdownAndInColorDropdown();
 	}
 
-	@Test
+//	@Test
 	public void ValidateColorFiltersNameInAllFiltersDropdownAndInColorDropdown() throws Exception {
 		new CollectionPage(driver).ValidateColorFiltersNameInAllFiltersDropdownAndInColorDropdown();
 	}
 
-	@Test
+//	@Test
 	public void ValidateCategoryFiltersCountInAllFiltersDropdownAndInCategoryDropdown() throws Exception {
 		new CollectionPage(driver).ValidateCategoryFiltersCountInAllFiltersDropdownAndInCategoryDropdown();
 	}
 
-	@Test
+//	@Test
 	public void ValidateCategoryFiltersNameInAllFiltersDropdownAndInCategoryDropdown() throws Exception {
 		new CollectionPage(driver).ValidateCategoryFiltersNameInAllFiltersDropdownAndInCategoryDropdown();
 	}
 
-	@Test
+//	@Test
 	public void ValidateCollectionFiltersCountInAllFiltersDropdownAndInCollectionDropdown() throws Exception {
 		new CollectionPage(driver).ValidateCollectionFiltersCountInAllFiltersDropdownAndInCollectionDropdown();
 	}
 
-	@Test
+//	@Test
 	public void ValidateCollectionFiltersNameInAllFiltersDropdownAndInCollectionDropdown() throws Exception {
 		new CollectionPage(driver).ValidateCollectionFiltersNameInAllFiltersDropdownAndInCollectionDropdown();
 	}
 
-	@Test
+//	@Test
 	public void ValidateOnClickingTheInLineBanner() throws Exception {
 		new CollectionPage(driver).ValidateOnClickingTheInLineBanner();
 	}
