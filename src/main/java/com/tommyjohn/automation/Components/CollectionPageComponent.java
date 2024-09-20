@@ -2084,7 +2084,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_IMAGE));
 		
 		//WebElement productImage = driver.findElement(By.cssSelector("div[data-index='1']>div>a>img[data-tj-qa='plp-product-img-main']"));
-		WebElement productImage = driver.findElement(By.cssSelector("img[data-tj-qa='plp-product-img-main']"));
+		WebElement productImage = driver.findElement(By.xpath("(//img[@class='aspect-tile bg-background-image object-cover text-[0] w-full'])[1]"));
 		Dimension dim = productImage.getSize();
 		int width=	dim.width;
 //		marginLeft = productImage.getCssValue("margin-left");

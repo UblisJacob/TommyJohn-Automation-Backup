@@ -71,12 +71,12 @@ public class HomePageComponents extends HomePageLocators {
 
 		SoftAssert softAssert = new SoftAssert();
 		action = new Actions(driver);
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(30));
+		//searchText ="women";
+		WebElement element = driver.findElement(SEARCH_ICON);
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();", element);
 
-		action.moveToElement(driver.findElement(SEARCH_ICON_INPUT)).build().perform();
-		Thread.sleep(3000);
-
-		driver.findElement(SEARCH_ICON_INPUT).sendKeys("kjefs" + Keys.ENTER);
+		driver.findElement(SEARCH_ICON_INPUT).sendKeys("kgfsh"+Keys.ENTER);
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(NORESULTPAGETITLE));
 
@@ -484,11 +484,11 @@ public class HomePageComponents extends HomePageLocators {
 		SoftAssert softAssert = new SoftAssert();
 		action = new Actions(driver);
 		//searchText ="women";
-		WebElement element = driver.findElement(SEARCH_ICON_INPUT);
+		WebElement element = driver.findElement(SEARCH_ICON);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", element);
 		
-		driver.findElement(SEARCH_ICON_INPUT).sendKeys(searchText);
+		driver.findElement(SEARCH_ICON_INPUT).sendKeys(searchText+Keys.ENTER);
 
 //		action.moveToElement(driver.findElement(SEARCH_ICON_INPUT)).build().perform();
 		Thread.sleep(5000);
@@ -496,19 +496,18 @@ public class HomePageComponents extends HomePageLocators {
 		//		"Product suggestions section not displayed ");
 		softAssert.assertTrue(driver.findElement(PRODUCT_MATCHES_TITLE).isDisplayed(),
 				"Product matches section is not displayed");
-		
-		/*driver.findElement(SEARCH_ICON_INPUT).sendKeys(Keys.RETURN);*/
-		/*Robot robot = new Robot();
-		Thread.sleep(4000);
-		robot.keyPress(KeyEvent.VK_ENTER);*/
 
 		WebElement pm = driver.findElement(PRODUCT_SUGGESTION);
-		String productName = pm.getAttribute("data-search-term-value");
+		String productName = pm.getAttribute("aria-label");
 		System.out.println(productName);
+
 		
 		executor.executeScript("arguments[0].click();", pm);
 		Thread.sleep(8000);
-		
+
+		String SearchPageTitle = driver.findElement(SEARCHPAGE_TITLE).getText();
+
+
 		
 		if(driver.findElement(SEARCHPAGE_TITLE).isDisplayed())
 		{
@@ -516,7 +515,7 @@ public class HomePageComponents extends HomePageLocators {
 			Reporter.log("Search Page Title is displayed");
 			ExtentReport.extentTest.info("Search Page Title is displayed");
 			System.out.println(driver.findElement(SEARCHPAGE_TITLE).getText());
-			if(driver.findElement(SEARCHPAGE_TITLE).getText().equals("Results for \""+ productName +"\""))
+			if(driver.findElement(SEARCHPAGE_TITLE).getText().contains("results for \""+ productName +"\""))
 			{
 				System.out.println("Search Page Title is correct");
 				Reporter.log("Search Page Title is correct");

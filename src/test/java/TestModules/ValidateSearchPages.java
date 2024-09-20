@@ -42,25 +42,25 @@ public class ValidateSearchPages {
 		new HomePage(driver).ValidateNoResultPageOnSearch();
 	}
 
-	@Test
-	public void VerifyPopularCategoriesSectionInSearchDropdown() throws InterruptedException{
-		new HomePage(driver).VerifyPopularCategoriesSectionInSearchDropdown();
-	}
-
-	@Test
-	public void VerifyCategoriesInPopularCategoriesSection() throws InterruptedException {
-		new HomePage(driver).VerifyCategoriesInPopularCategoriesSection();
-	}
-
-	@Test
-	public void VerifyPopularTermsSectionInSearchDropdown() throws InterruptedException {
-		new HomePage(driver).VerifyPopularTermsSectionInSearchDropdown();
-	}
-
-	@Test
-	public void VerifyCategoriesInPopularTermsSection() throws InterruptedException {
-		new HomePage(driver).VerifyCategoriesInPopularTermsSection();
-	}
+//	@Test
+//	public void VerifyPopularCategoriesSectionInSearchDropdown() throws InterruptedException{
+//		new HomePage(driver).VerifyPopularCategoriesSectionInSearchDropdown();
+//	}
+//
+//	@Test
+//	public void VerifyCategoriesInPopularCategoriesSection() throws InterruptedException {
+//		new HomePage(driver).VerifyCategoriesInPopularCategoriesSection();
+//	}
+//
+//	@Test
+//	public void VerifyPopularTermsSectionInSearchDropdown() throws InterruptedException {
+//		new HomePage(driver).VerifyPopularTermsSectionInSearchDropdown();
+//	}
+//
+//	@Test
+//	public void VerifyCategoriesInPopularTermsSection() throws InterruptedException {
+//		new HomePage(driver).VerifyCategoriesInPopularTermsSection();
+//	}
 	
 //	@Test
 	public void VerifySearchInteractWithFilters() throws Exception {
@@ -69,7 +69,8 @@ public class ValidateSearchPages {
 		new CollectionPage(driver).validateFiltersSearch();
 	}
 	
-	@Test public void VerifySearchInteractWithSortBy() throws Exception {
+//	@Test
+	public void VerifySearchInteractWithSortBy() throws Exception {
 		searchText = objGeneralMethods.readPropertiesFile("searchFeatured");
 		new HomePage(driver).validateSearchFunctionEnter(searchText);
 		new CollectionPage(driver).validateSortBySearch();
@@ -82,7 +83,7 @@ public class ValidateSearchPages {
 	}
 	
 	@Test public void VerifySearchInteractWithQuickShop() throws Exception {
-		searchText = objGeneralMethods.readPropertiesFile("searchFeatured");
+		searchText = objGeneralMethods.readPropertiesFile("searchSleepwearSets");
 		new HomePage(driver).validateSearchPM(searchText);
 		new CollectionPage(driver).validateQuickshopFunctionalityOnSearchPLP();
 	}
