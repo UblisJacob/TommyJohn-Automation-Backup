@@ -436,7 +436,7 @@ public class CollectionPage extends CollectionPageComponent{
 	
 	public void validateQuickshopFunctionality() throws Exception {
 		// TODO Auto-generated method stub
-		new HomePageComponents(driver).navigateToNewArrivalsInMenCategory();
+		new HomePageComponents(driver).navigateToMensAndLoungeTops();
 		QuickShopOnMegaCollection();
 		
 		
@@ -456,7 +456,7 @@ public class CollectionPage extends CollectionPageComponent{
 	
 	public void validateMultiVariantSizeInQuickshop() throws Exception {
 		// TODO Auto-generated method stub
-		new HomePageComponents(driver).NavigateToLoungewearSetsInWomenCategory();
+		new HomePageComponents(driver).navigateToMensAndLoungeTops();
 		QuickShopOnMegaCollection();
 	}
   
