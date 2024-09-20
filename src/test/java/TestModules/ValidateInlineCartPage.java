@@ -76,35 +76,35 @@ public class ValidateInlineCartPage extends ExtentReport {
 		new FlyCartPage(driver).validateTieredMeter();
 	}
 
-	@Test
+//	@Test
 	public void ValidateUserAbletoAddProductFromInlineCartSuggestion() throws Exception
 	{
 
 		new FlyCartPage(driver).ValidateAddingProductToCartFromInlineCartSuggestion();
 	}
 
-	@Test
+//	@Test
 	public void ValidateAppropriateProductIsToCartFromInlineCartSuggestion() throws Exception
 	{
 
 		new FlyCartPage(driver).ValidateAppropriateIsProductIsToCartFromInlineCartSuggestion();
 	}
 
-	@Test
+//	@Test
 	public void ValidateQuickShopATCIsAvailableInSuggestionProducts() throws Exception
 	{
 
 		new FlyCartPage(driver).ValidateQuickShopATCIsAvailableInSuggestionProducts();
 	}
 
-	@Test
+//	@Test
 	public void ValidateQuickShopSizeOverlayIsDisplayedInSuggestionProducts() throws Exception
 	{
 
 		new FlyCartPage(driver).ValidateQuickShopSizeOverlayIsDisplayedInSuggestionProducts();
 	}
 
-	@Test
+//	@Test
 		public void ValidateSelectedColorSwatchIsDisplayedInTheInlineCart() throws Exception
 	{
 

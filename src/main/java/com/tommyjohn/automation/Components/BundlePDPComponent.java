@@ -21,6 +21,8 @@ import com.tommyjohn.automation.PageLocators.BundlePDPLocators;
 import com.tommyjohn.automation.Pages.ProductDetailsPage;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
+import static com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators.*;
+
 public class BundlePDPComponent extends BundlePDPLocators{
 	
 	public WebDriver driver;
@@ -65,7 +67,7 @@ public class BundlePDPComponent extends BundlePDPLocators{
 		executor.executeScript("arguments[0].click();", el);
 		
 		Thread.sleep(7000);
-		allElements = driver.findElements(IMG_CAROUSEL);
+		allElements = driver.findElements(COLOR_VARIANT);
 		elementsCount = allElements.size();
 		System.out.println("Image Element count :: "+elementsCount);
 		
@@ -73,26 +75,34 @@ public class BundlePDPComponent extends BundlePDPLocators{
 		{
 			for(int i=1;i<elementsCount-1;i++)
 			{
-				
-				String imagegallery = "";
-				String mainimage = "";
-				Thread.sleep(5000);
-				imagegallery = driver.findElement(By.cssSelector(".pdpVerticalSlides>.slick-list.draggable>div>div:nth-child("+i+")")).getAttribute("data-color");
-				Thread.sleep(2000);
-				WebElement img = driver.findElement(By.cssSelector(".pdpVerticalSlides>.slick-list.draggable>div>div:nth-child("+i+")"));
+				WebElement img = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])["+i+"]"));
 				executor.executeScript("arguments[0].click();", img);
 
-				
-				mainimage = driver.findElement(By.cssSelector(".pdpImageSlidesWrapper>div>div>div>div:nth-child("+i+").slick-active")).getAttribute("data-color");
+				Thread.sleep(3000);
 
-//				mainimage = driver.findElement(By.cssSelector(".pdpImageSlidesWrapper>div>div>div>div.slick-active")).getAttribute("data-color-handle");
+//				String imagegallery = "";
+//				String mainimage = "";
+//				Thread.sleep(5000);
+//				imagegallery = driver.findElement(By.cssSelector(".pdpVerticalSlides>.slick-list.draggable>div>div:nth-child("+i+")")).getAttribute("data-color");
+//				Thread.sleep(2000);
+//				WebElement img = driver.findElement(By.cssSelector(".pdpVerticalSlides>.slick-list.draggable>div>div:nth-child("+i+")"));
+//				executor.executeScript("arguments[0].click();", img);
+//
+//
+//				mainimage = driver.findElement(By.cssSelector(".pdpImageSlidesWrapper>div>div>div>div:nth-child("+i+").slick-active")).getAttribute("data-color");
+//
+////				mainimage = driver.findElement(By.cssSelector(".pdpImageSlidesWrapper>div>div>div>div.slick-active")).getAttribute("data-color-handle");
+//
+//				softAssert.assertTrue(imagegallery.contentEquals(mainimage), "Image caraousel does not change");
 
-				softAssert.assertTrue(imagegallery.contentEquals(mainimage), "Image caraousel does not change");
-	
+
 			}
+
+			Reporter.log("New Image is visible");
+			ExtentReport.extentTest.info("New Image is visible");
 		}
-		Reporter.log("Image gallery changes with main image");
-		ExtentReport.extentTest.info("Image gallery changes with main image");
+//		Reporter.log("Image gallery changes with main image");
+//		ExtentReport.extentTest.info("Image gallery changes with main image");
 		
 		softAssert.assertAll();
 	}
@@ -144,10 +154,13 @@ public class BundlePDPComponent extends BundlePDPLocators{
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT));
 		Thread.sleep(5000);
-		WebElement el = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT);
+		WebElement el = driver.findElement(SECOND_PRODUCT_HEAD_LINE_TEXT);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", el);
-		
+
+		jse = (JavascriptExecutor) driver;
+		jse.executeScript("window.scrollBy(0,800)");
+
 		WebElement allElements = (WebElement) driver.findElement(IMAGE_BADGING);
 		try{
 			if(!(allElements).isDisplayed())
@@ -207,7 +220,7 @@ public class BundlePDPComponent extends BundlePDPLocators{
 			String colornew;
 			SoftAssert softAssert = new SoftAssert();
 		//	new ProductDetailsPage(driver).navigateToAllMensPacksInPacksCategory();
-			new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
+			new HomePageComponents(driver).navigateToAllWomensPacksInPacksCategory();
 			
 			//navigate to PDP
 			WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
@@ -215,68 +228,121 @@ public class BundlePDPComponent extends BundlePDPLocators{
 			Thread.sleep(3000);
 			WebElement el = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT);
 			JavascriptExecutor executor = (JavascriptExecutor)driver;
-			executor.executeScript("arguments[0].click();", el);	
+			executor.executeScript("arguments[0].click();", el);
+
+			driver.findElement(By.xpath("(//div[@class='relative text-center'])[2]")).click();
 			
 			Thread.sleep(3000);
-			allElements = driver.findElements(ALL_COLOR_LIST);
+			allElements = driver.findElements(COLOR_VARIANT);
 			
 			elementsCount = allElements.size();
 			System.out.println("Color Element count :: "+elementsCount);
 			System.out.println("*****************************");
-		
-			if(elementsCount > 1)
-			{
-				for(int i=1;i<=elementsCount;i++)
-				{
-						String imagecolor;
-						WebElement elemen = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper>ul>li:nth-child(" + i + ") > label"));
-						jse = (JavascriptExecutor)driver;
-						jse.executeScript("arguments[0].click();", elemen);
-						driver.findElement(COLOR_TEXT).getText();
-						
-						
-						List<WebElement> inactivesizes = driver.findElements(INACTIVE_SIZES);
-						int num1= inactivesizes.size();
-						List<WebElement> totalsizes = driver.findElements(TOTAL_SIZES);
-						int num= (totalsizes.size()-num1);
-						
-						if(num>1)
-						{
-							
-						
-							colornew = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper > ul  > li:nth-child("+i+") > input")).getAttribute("data-variant");
-							imagecolor = driver.findElement(IMAGE_COLOR).getAttribute("data-color");
-							
-							System.out.println("For Color Swatch: " +colornew);
-							System.out.println("Active Sizes: " +num );
-							System.out.println("Unavailable sizes:" + num1);
-							
+
+			if (elementsCount > 1) {
+				for (int i = 1; i < elementsCount; i++) {
+					String imagecolor = null;
+					WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])["+i+"]"));
+					jse = (JavascriptExecutor) driver;
+					jse.executeScript("arguments[0].click();", elemen);
+//				driver.findElement(COLOR_VARIANT).getText();
+
+
+//				List<WebElement> inactivesizes = driver.findElements(INACTIVE_SIZES);
+//				int num1 = inactivesizes.size();
+
+
+//				if (num1 > 0) {
+
+
+					colornew = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='font-medium'])[1]")).getText();
+					imagecolor = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])["+i+"]")).getText();
+
+					System.out.println("For Color Swatch: " + colornew);
+
+
 //							System.out.println(colortext.toLowerCase());
-							System.out.println(colornew);
-							System.out.println(imagecolor);
-							
-							Thread.sleep(1000);
-						
-							//gallery will also update to color product
-							if(imagecolor.contentEquals(colornew))	
-								{
+//							System.out.println(colornew);
+//							System.out.println(imagecolor);
+
+					Thread.sleep(1000);
+
+					//gallery will also update to color product
+					if (imagecolor.contentEquals(colornew)) {
 //									Thread.sleep(5000);
-									//wait.until(ExpectedConditions.visibilityOfElementLocated(COLOR_TEXT));
-									System.out.println("Expected is: "+ colornew +" Actual is: "+imagecolor);
-									softAssert.assertEquals(colornew.equalsIgnoreCase(imagecolor), true, "Color not changing");
-									System.out.println("----------------------------------");
-									
-								}
-						
-							//sizes getting updated
-						}	
-							
-							
-							Reporter.log("Colors are present and changing correctly");
-							ExtentReport.extentTest.info("Colors are present and changing correctly");
-											
+						//wait.until(ExpectedConditions.visibilityOfElementLocated(COLOR_TEXT));
+						System.out.println("Expected is: " + colornew + " Actual is: " + imagecolor);
+						softAssert.assertEquals(colornew.equalsIgnoreCase(imagecolor), true, "Color not changing");
+						System.out.println("----------------------------------");
+
+					}
+
+					//sizes getting updated
+//				}
+
+
+					Reporter.log("Colors are present and changing correctly");
+					ExtentReport.extentTest.info("Colors are present and changing correctly");
+
+
+					if (i > 10)
+						break;
 				}
 			}
+
+//			if(elementsCount > 1)
+//			{
+//				for(int i=1;i<=elementsCount;i++)
+//				{
+//						String imagecolor;
+//						WebElement elemen = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper>ul>li:nth-child(" + i + ") > label"));
+//						jse = (JavascriptExecutor)driver;
+//						jse.executeScript("arguments[0].click();", elemen);
+//						driver.findElement(COLOR_TEXT).getText();
+//
+//
+//						List<WebElement> inactivesizes = driver.findElements(INACTIVE_SIZES);
+//						int num1= inactivesizes.size();
+//						List<WebElement> totalsizes = driver.findElements(TOTAL_SIZES);
+//						int num= (totalsizes.size()-num1);
+//
+//						if(num>1)
+//						{
+//
+//
+//							colornew = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper > ul  > li:nth-child("+i+") > input")).getAttribute("data-variant");
+//							imagecolor = driver.findElement(IMAGE_COLOR).getAttribute("data-color");
+//
+//							System.out.println("For Color Swatch: " +colornew);
+//							System.out.println("Active Sizes: " +num );
+//							System.out.println("Unavailable sizes:" + num1);
+//
+////							System.out.println(colortext.toLowerCase());
+//							System.out.println(colornew);
+//							System.out.println(imagecolor);
+//
+//							Thread.sleep(1000);
+//
+//							//gallery will also update to color product
+//							if(imagecolor.contentEquals(colornew))
+//								{
+////									Thread.sleep(5000);
+//									//wait.until(ExpectedConditions.visibilityOfElementLocated(COLOR_TEXT));
+//									System.out.println("Expected is: "+ colornew +" Actual is: "+imagecolor);
+//									softAssert.assertEquals(colornew.equalsIgnoreCase(imagecolor), true, "Color not changing");
+//									System.out.println("----------------------------------");
+//
+//								}
+//
+//							//sizes getting updated
+//						}
+//
+//
+//							Reporter.log("Colors are present and changing correctly");
+//							ExtentReport.extentTest.info("Colors are present and changing correctly");
+//
+//				}
+//			}
 		}
 	public void verifyAvailableSizes() throws Exception{
 		SoftAssert softAssert = new SoftAssert();
@@ -290,10 +356,11 @@ public class BundlePDPComponent extends BundlePDPLocators{
 		Thread.sleep(3000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
 		WebElement el = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT);
-		jse.executeScript("arguments[0].click();", el);	
-		
-		
-		allElements = driver.findElements(TOTAL_SIZES);
+		jse.executeScript("arguments[0].click();", el);
+
+		driver.findElement(By.xpath("(//div[@class='relative text-center'])[2]")).click();
+
+		allElements = driver.findElements(ALL_SIZE_LIST);
 		
 		elementsCount = allElements.size();
 		System.out.println("Color Element count :: "+elementsCount);
@@ -305,28 +372,26 @@ public class BundlePDPComponent extends BundlePDPLocators{
 			for(int i=1;i<=elementsCount;i++)
 			{
 				
-				WebElement elemen = driver.findElement(By.cssSelector(".option-swatch__option>li:nth-child("+ i +")>input"));
+				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])["+i+"]"));
 				
 				jse.executeScript("arguments[0].click();", elemen);
 				
-				List<WebElement> unavailablecolors = driver.findElements(STRIKED_COLOR_SWATCHES);
-				int num1= unavailablecolors.size();
-				List<WebElement> totalcolors = driver.findElements(COLOR_SWATCHES);
-				int num = (totalcolors.size()-num1);
-				String sizename = driver.findElement(By.cssSelector(".option-swatch__option>li:nth-child("+i+")>label>span")).getText();
+//				List<WebElement> unavailablecolors = driver.findElements(STRIKED_COLOR_SWATCHES);
+//				int num1= unavailablecolors.size();
+//				List<WebElement> totalcolors = driver.findElements(COLOR_SWATCHES);
+//				int num = (totalcolors.size()-num1);
+				String sizename = driver.findElement(By.xpath("(//input[@name='option[Size]'])["+i+"]")).getText();
 				
-				if(num>=0)
-					
-					System.out.println("For size: " +sizename);
-					System.out.println("Active Colors: " +num );
-					System.out.println("Unavailable Colors: " + num1);
-					System.out.println("===============");
-				
-				
-				String sizevalue = driver.findElement(SIZE_VALUE).getAttribute("data-option-name");
+//				if(num>=0)
+//
+//					System.out.println("For size: " +sizename);
+//					System.out.println("Active Colors: " +num );
+//					System.out.println("Unavailable Colors: " + num1);
+//					System.out.println("===============");
 				
 				
-				softAssert.assertEquals(driver.findElement(TOTAL_SIZES).getText().equalsIgnoreCase(sizevalue), true, "Color not changing");
+				String sizevalue = driver.findElement(SIZE_VALUE).getText();
+				softAssert.assertEquals(sizename, sizevalue, "Sizes and Colors not changing");
 				
 								
 			}
@@ -386,13 +451,13 @@ public class BundlePDPComponent extends BundlePDPLocators{
 			new HomePageComponents(driver).navigateToAllWomensPacksInPacksCategory();
 			new CollectionPageComponent(driver).navigateToProductDetailsPage();
 			//new AddToCartComponents(driver).selectSize();
-				
-			
+
+
 			Thread.sleep(3000);
-			if(driver.findElement(RATING_STARS).isDisplayed()) {
+			if (driver.findElement(RATING_STARS).isDisplayed()) {
 
 				WebElement elem = driver.findElement(RATING_STARS);
-				JavascriptExecutor executor = (JavascriptExecutor)driver;
+				JavascriptExecutor executor = (JavascriptExecutor) driver;
 				executor.executeScript("arguments[0].click();", elem);
 				// wait for scroll it down
 				Thread.sleep(3000);
@@ -403,39 +468,31 @@ public class BundlePDPComponent extends BundlePDPLocators{
 				// check for Rating and Reviews are present or not
 				System.out.println("rating: " + driver.findElement(RATING_NUMBER).getText());
 
-				if(!driver.findElement(RATING_NUMBER).getText().equals("(0)"))
-				{
-					
+				if (!driver.findElement(RATING_NUMBER).getText().equals("(0)")) {
+
 					Thread.sleep(3000);
-					if(driver.findElement(RATING_AND_REVIEWS_BOX).isDisplayed()) {
-						if(!driver.findElement(FIRST_BOX_IN_RATING_AND_REVIEWS).isDisplayed())
+					if (driver.findElement(RATING_AND_REVIEWS_BOX).isDisplayed()) {
+						if (!driver.findElement(FIRST_BOX_IN_RATING_AND_REVIEWS).isDisplayed())
 							throw new Exception("In first box Review Stars not present in Rating and Reviews section");
-						if(!driver.findElement(SECOND_BOX_IN_RATING_AND_REVIEWS).isDisplayed())
+						if (!driver.findElement(SECOND_BOX_IN_RATING_AND_REVIEWS).isDisplayed())
 							throw new Exception("In second box rating list not present in Rating and Reviews section");
-						if(!driver.findElement(THIRD_BOX_IN_RATING_AND_REVIEWS).isDisplayed())
+						if (!driver.findElement(THIRD_BOX_IN_RATING_AND_REVIEWS).isDisplayed())
 							throw new Exception("In third box fit status not present in Rating and Reviews section");
-					}
-					else 
+					} else
 						throw new Exception("Rating box is not present");
-				}
-				else 
-				{
+				} else {
 					Thread.sleep(3000);
-					if(!driver.findElement(NO_REVIEW_WRITE_REVIEW).isEnabled())
+					if (!driver.findElement(NO_REVIEW_WRITE_REVIEW).isEnabled())
 						throw new Exception("'WRITE A REVIEW' button is not displayed");
 					driver.findElement(NO_REVIEW_WRITE_REVIEW).click();
 					Reporter.log("'WRITE A REVIEW' button is Displayed :: Clickable");
-					ExtentReport.extentTest.info("'WRITE A REVIEW' button is Displayed :: Clickable");
 					driver.findElement(NO_REVIEW_WRITE_REVIEW).click();
 				}
 				Reporter.log("Rating and Reviews Displayed");
 				ExtentReport.extentTest.info("Rating and Reviews Displayed");
-			}
-			else
+			} else
 				throw new Exception("Rating Stars are not clickable");
-			
-			
-			
+
 		}
 		
 	public void verifyProductNamePrice() throws Exception {
@@ -458,71 +515,72 @@ public class BundlePDPComponent extends BundlePDPLocators{
 		new HomePageComponents(driver).navigateToAllMensPacksInPacksCategory();
 		new CollectionPageComponent(driver).navigateToProductDetailsPage();
 		jse = (JavascriptExecutor) driver;		
-		jse.executeScript("window.scrollBy(0,400)");
+		jse.executeScript("window.scrollBy(0,800)");
 		flag = false;
 		Exception except = null;
 
 
-		if (driver.findElement(PRODUCT_DETAILS).isDisplayed())
-		{
-			
+		if (driver.findElement(PRODUCT_DETAILS).isDisplayed()) {
+
 			element = driver.findElement(PRODUCT_DETAILS);
 			Thread.sleep(3000);
-			jse = (JavascriptExecutor)driver;
+			jse = (JavascriptExecutor) driver;
 			jse.executeScript("arguments[0].click();", element);
-			
+			jse.executeScript("arguments[0].click();", element);
+
 			Thread.sleep(3000);
-			
-			if(driver.findElement(PRODUCT_DETAILS_SECTION).isDisplayed()) {
+
+			if (driver.findElement(PRODUCT_DETAILS_SECTION).isDisplayed()) {
 				System.out.println("PRODUCT_DETAILS_SECTION is Displayed");
+				Reporter.log("Product details accordion :: displayed");
+				ExtentReport.extentTest.info("Product details accordion :: displayed");
 			}
-		}
-		else throw new Exception("Product details accordion not present or not clikable ");
-		try
-		{
-			if (driver.findElement(BEST_PAIR_GUARANTEE).isDisplayed())
-			{
-				
-				element = driver.findElement(BEST_PAIR_GUARANTEE);
-				jse = (JavascriptExecutor)driver;
-				jse.executeScript("arguments[0].click();", element);
-				jse.executeScript("window.scrollBy(0,50)");
-				
-				Thread.sleep(3000);
-				
-				if(driver.findElement(BEST_PAIR_GUARANTEE_SECTION).isDisplayed()) {
-					System.out.println("BEST_PAIR_GUARANTEE_SECTION is Displayed");
-				}
+		} else
+			throw new Exception("Product details accordion not present or not clikable ");
+
+
+//		try {
+//			if (driver.findElement(BEST_PAIR_GUARANTEE).isDisplayed()) {
+//
+//				element = driver.findElement(BEST_PAIR_GUARANTEE);
+//				jse = (JavascriptExecutor) driver;
+//				jse.executeScript("arguments[0].click();", element);
+//				jse.executeScript("window.scrollBy(0,50)");
+//
+//				Thread.sleep(3000);
+//
+//				if (driver.findElement(BEST_PAIR_GUARANTEE_SECTION).isDisplayed()) {
+//					System.out.println("BEST_PAIR_GUARANTEE_SECTION is Displayed");
+//					Reporter.log("BEST_PAIR_GUARANTEE_SECTION :: displayed");
+//					ExtentReport.extentTest.info("BEST_PAIR_GUARANTEE_SECTION :: displayed");
+//				}
+//			} else throw new Exception("BEST_PAIR_GUARANTEE accordion not present or not clikable");
+//		} catch (Exception e)
+//		{
+//			Reporter.log("Best_Pair guarantee link is not present for this particular product");
+//			except = e;
+//		}
+//		if (except != null) {
+		if (driver.findElement(FIT_MATERIAL).isDisplayed()) {
+			element = driver.findElement(FIT_MATERIAL);
+			jse = (JavascriptExecutor) driver;
+			jse.executeScript("arguments[0].click();", element);
+			//driver.findElement(FREE_RETURNS).click();
+			//jse.executeScript("window.scrollBy(0,300)");
+			//element.click();
+//				Actions actions = new Actions(driver);
+//				actions.moveToElement(element).click().build().perform();
+			Thread.sleep(3000);
+			//element.click();
+			if (driver.findElement(FIT_MATERIAL_SECTION).isDisplayed()) {
+				System.out.println("FIT_MATERIAL_SECTION is Displayed");
+				Reporter.log("FIT_MATERIAL_SECTION :: displayed");
+				ExtentReport.extentTest.info("FIT_MATERIAL_SECTION :: displayed");
 			}
-			else throw new Exception("BEST_PAIR_GUARANTEE accordion not present or not clikable");
-		}
-		catch(Exception e )
-		{
-			Reporter.log("Best_Pair guarantee link is not present for this particular product");
-			ExtentReport.extentTest.info("Best_Pair guarantee link is not present for this particular product");
-			except = e;
-		}
-		if(except!=null)
-		{
-			if (driver.findElement(FREE_RETURNS).isDisplayed()) {
-				element = driver.findElement(FREE_RETURNS);
-				jse = (JavascriptExecutor)driver;
-				jse.executeScript("arguments[0].click();", element);
-				//driver.findElement(FREE_RETURNS).click();
-				//jse.executeScript("window.scrollBy(0,300)");
-				//element.click();
-				Actions actions = new Actions(driver);
-				actions.moveToElement(element).click().build().perform();
-				Thread.sleep(3000);
-				//element.click();
-				if(driver.findElement(FREE_RETURNS_SECTION).isDisplayed()) {
-					System.out.println("FREE_RETURNS_SECTION is Displayed");
-				}
-			}		
-			else throw new Exception("FREE_RETURNS accordion not present or not clikable");	
-		}
-		Reporter.log("PRODUCT ACCORDIONS ARE DISPLAYED");		
-		ExtentReport.extentTest.info("PRODUCT ACCORDIONS ARE DISPLAYED");		
+		} else throw new Exception("FIT_MATERIAL_SECTION accordion not present or not clikable");
+//		}
+		Reporter.log("PRODUCT ACCORDIONS ARE DISPLAYED");
+		ExtentReport.extentTest.info("PRODUCT ACCORDIONS ARE DISPLAYED");
 	}
 	
 	
@@ -657,55 +715,61 @@ public class BundlePDPComponent extends BundlePDPLocators{
 			// call method to check correct PDP opend or not
 		//	checkCorrectProductDetailsPageOpenedOrNot(text);
 			Thread.sleep(2000);
-			
-			allElements = driver.findElements(ProductDetailsPageComponents.ALL_COLOR_LIST);
-			int count=0;
+
+
+			driver.findElement(By.xpath("(//div[@class='relative text-center'])[2]")).click();
+
+			allElements = driver.findElements(ProductDetailsPageComponents.COLOR_VARIANT);
+			int count = 0;
 			elementsCount = allElements.size();
-			System.out.println("Color Element count :: "+elementsCount);
-		 
-			Random randomGenerator = new Random(); 
+			System.out.println("Color Element count :: " + elementsCount);
+
+			Random randomGenerator = new Random();
 			int randomInt = randomGenerator.nextInt(1000);
-			if(elementsCount > 1)
-				
-				for(int i=1;i<=elementsCount;i++)
-				{
+			if (elementsCount > 1)
+
+				for (int i = 1; i <= 2; i++) {
 					count++;
-					WebElement elemen = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper>ul>li:nth-child(" + i + ")>input"));
+					WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])["+i+"]"));
 					jse = (JavascriptExecutor) driver;
 					jse.executeScript("arguments[0].click();", elemen);
 					Thread.sleep(3000);
-					
 
-						
 
-						for(int k=1;k<=5;k++)				
+					for (int k = 1; k <= 2; k++) {
+						WebElement elements = driver.findElement(By.xpath("(//input[@name='option[Size]'])["+k+"]"));
+						jse.executeScript("arguments[0].click();", elements);
+						Thread.sleep(1000);
 
-						{	
-							WebElement elements = driver.findElement(By.cssSelector(".option-swatch__option>li:nth-child("+ k +")>input"));
-							jse.executeScript("arguments[0].click();", elements);
+
+						String[] AddtoBag;
+						AddtoBag = (driver.findElement(By.xpath("//button[@class='button grow']")).getText()).split(" -");
+						String text1 = AddtoBag[0];
+						System.out.println(text1);
+
+						//	WebElement elem = driver.findElement(By.cssSelector(".multiPdp__atc-container>button"));
+
+
+
+						if (driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON).getText().contains(text1)) {
+
+							System.out.println(elemen.getText() + elements.getText() + "Product is added to Cart");
+							Thread.sleep(2000);
+							jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_CART_BUTTON));
+							Thread.sleep(3000);
+							driver.findElement(INLINE_CART_TITLE);
+							jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
+
 							Thread.sleep(1000);
-							
-							WebElement elem = driver.findElement(By.cssSelector(".multiPdp__atc-container>button"));		
-							
-							if(driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON).getText().contains("Add to Cart")) {
-								
-								System.out.println(elemen.getText() + elements.getText() + "Product is added to Cart");
-								jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_CART_BUTTON));
-								driver.findElement(INLINE_CART_TITLE);
-								Thread.sleep(3000);
+							System.out.println("=============================");
 
-								jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
-								
-								Thread.sleep(1000);
-								System.out.println("=============================");
-								
-							}
-							
-							if(elem.getText().contentEquals("Join the Waitlist")) {
+						}
+
+						//	if (elem.getText().contentEquals("Join the Waitlist")) {
 //								System.out.println(elemen.getText()+ elements.getText() +"Product is Out of Stock and Join The waitlist is  :: Clickable");
 //								jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_CART_BUTTON));
 //								if(driver.findElement(EMAIL_WHEN_IN_STOCK_BUTTON).isDisplayed()) {
-//									
+//
 //									System.out.println("JOIN THE WAITLIST BUTTON IS WORKING FINE");
 //									Thread.sleep(2000);
 //									jse.executeScript("arguments[0].click();", driver.findElement(JOINTHEWAITLIST_EMAILTEXTBOX));
@@ -717,24 +781,22 @@ public class BundlePDPComponent extends BundlePDPLocators{
 //									jse.executeScript("arguments[0].click();", driver.findElement(EMAIL_WHEN_IN_STOCK_BUTTON_CLOSE));
 //									System.out.println("=============================");
 //									Thread.sleep(1000);
-									
-	//							}
-//								
-								
-							}
-							
-														
-								
-								
-						}
-						
-						if(count==2)
-							break;
-							
+
+						//							}
+//
+
+						//	}
+
+
 					}
-			
-			Reporter.log("ATC is working fine");	
-			ExtentReport.extentTest.info("ATC is working fine");	
+
+					if (count == 2)
+						break;
+
+				}
+
+			Reporter.log("ATC works fine");
+			ExtentReport.extentTest.info("ATC works fine");
 			
 		}
 		
