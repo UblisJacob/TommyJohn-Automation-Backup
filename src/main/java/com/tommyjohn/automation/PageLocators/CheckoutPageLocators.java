@@ -62,12 +62,12 @@ public class CheckoutPageLocators {
 	public static By DISCOUNT_CODE_TEXTBOX = By.xpath("//input[@id='ReductionsInput0']");
 	//public static By APPLY_DISCOUNT_BUTTON = By.cssSelector(".field__input-btn");
 	public static By APPLY_DISCOUNT_BUTTON = By.xpath("(//button[@type='submit'])[3]");
-	public static By SUBTOTAL = By.xpath("(//div[@class='_1qy6ue68']//span)[1]");
-	public static By SHIPPING = By.xpath("(//div[@class='_1qy6ue68']//span)[2]");
+	public static By SUBTOTAL = By.xpath("(//div[@class='_1qy6ue6b']//span)[1]");
+	public static By SHIPPING = By.xpath("(//div[@class='_1qy6ue6b']//span)[2]");
 	public static By APPLIED_PROMO_CODE = By.xpath("//span[@class='i8os0m3']//span");
 	public static By CANCEL_PROMO_CODE = By.xpath("(//span[@class='i8os0m3']//following::button)[1]");
 //	public static By CANCEL_PROMO_CODE = By.cssSelector("button.tag__button use");
-	public static By TOTAL = By.xpath("//div[@class='_1x41w3p8']");
+	public static By TOTAL = By.xpath("//div[@class='_1x41w3p6']");
 
 	//                                          Shipping
 
