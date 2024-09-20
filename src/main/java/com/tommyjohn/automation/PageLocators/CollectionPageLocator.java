@@ -54,12 +54,13 @@ public class CollectionPageLocator {
 	public static By SORTBYPRICE_HIGH_TO_LOW_FILTER_OPTION = By.cssSelector("[data-tj-qa='plp-sortby-relevance'],.js-mega-collection-filters-sort > option:nth-child(2)");
 	
 	//Quick shop
-		public static By QUICK_SHOP_ATC = By.xpath("//button[@type='button']//span[contains(text(),'Select a size')]");
+		public static By QUICK_SHOP_ATC = By.xpath("//span[@class='font-normal']");
+		public static By ADD_TO_BAG_QUICKSHOP = By.xpath("//button[@class='button grow']");
 		public static By QUICK_SHOP_SIZE_OVERLAY = By.xpath("//div[@class='space-y-lg']");
 		public static By QUICK_SHOP_SIZE_OVERLAY_CLOSE = By.xpath("(//span[@class='icon size-5 icon-x'])[1]");
 		public static By QUICK_SHOP_SIZE_OVERLAY_HEADING = By.xpath("(//span[@class='font-medium'])[2]");
-		public static By QUICK_SHOP_SIZE_LIST_1 = By.xpath("//input[@name='option[Size]']");
-		public static By QUICK_SHOP_SIZE_LIST_2 = By.xpath("//input[@name='option[Pouch Support]']");
+		public static By QUICK_SHOP_SIZE_LIST_1 = By.xpath("//input[@name='option[Top Size]']");
+		public static By QUICK_SHOP_SIZE_LIST_2 = By.xpath("//input[@name='option[Bottom Size]']");
 		public static By QUICK_SHOP_SIZE_LABEL = By.xpath("(//span[@class='font-medium'])[2]");
 		public static By QUICK_SHOP_SIZE_OVERLAY_ATC = By.cssSelector(".inline-quick-shop>.inline-quick-shop__button");
 		public static By PRODUCT_TITLE_ON_COLLECTION = By.xpath("(//a[@data-cy='productTileLink'])");

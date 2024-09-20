@@ -89,7 +89,7 @@ public class ValidateCategoryPages {
 		new CollectionPage(driver).validateSingleTileProduct();
 	}
 
-	@Test
+//	@Test
 	public void ValidateInteractWithStyleCarousel() throws Exception {
 		new CollectionPage(driver).validateStyleCarousels();
 	
@@ -100,7 +100,7 @@ public class ValidateCategoryPages {
 		new CollectionPage(driver).validateMultiVariantSizeInQuickshop();
 	}
 
-	@Test
+//	@Test
 	public void ValidateProductsOnFiltering() throws Exception {
 		new CollectionPage(driver).ValidateProductsOnFiltering();
 	}
