@@ -40,7 +40,7 @@ public class ShoppingCartPage extends ShoppingCartComponents{
 	
 	public void validatePromotion() throws Exception
 	{
-		new AddToCartComponents(driver).addToCart();
+		new AddToCartComponents(driver).addsingleproductToCart();
 		new ShoppingCartComponents(driver).validatePromotionalMessage();
 	}
 	

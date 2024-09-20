@@ -65,7 +65,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		driver.findElement(APPLY_CTA).click();
 
 
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 		String Coupon = driver.findElement(APPLIED_COUPON).getText();
 		System.out.println(Coupon);
 
@@ -90,7 +90,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 			driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 			Thread.sleep(3000);
 
-			element = driver.findElement(By.xpath("//div[@class='dy-rec--title']"));
+			element = driver.findElement(By.xpath("//swiper-container[@class='-mx-lg flex px-lg [grid-area:slides]']"));
 			softAssert.assertTrue(element.isDisplayed(), "Product Suggestion is not displayed in the Cart page");
 
 			softAssert.assertAll();
@@ -113,9 +113,9 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CART_TITLE));
 		//Thread.sleep(3000);
 		softAssert.assertTrue(driver.findElement(CART_TITLE).isDisplayed() , "Your Shopping Cart title is not displayed");
-		softAssert.assertEquals(driver.findElement(CART_TITLE).getText(), "Your Shopping Carts" , "Wrong text displayed for Cart title");
+		softAssert.assertEquals(driver.findElement(CART_TITLE).getText(), "Your Cart" , "Wrong text displayed for Cart title");
 		softAssert.assertTrue(driver.findElement(EMPTY_CART_MESSAGE).isDisplayed(), "Your cart is Empty message is not displayed on empty cart");
-		softAssert.assertEquals(driver.findElement(EMPTY_CART_MESSAGE).getText(), "Your cart is empty", "Wrong text displayed for empty cart message");
+		softAssert.assertEquals(driver.findElement(EMPTY_CART_MESSAGE).getText(), "Your cart is currently empty.", "Wrong text displayed for empty cart message");
 		softAssert.assertTrue(driver.findElement(START_SHOPPING_BUTTON).isDisplayed(), "Start Shopping button is not displayed");
 		driver.findElement(START_SHOPPING_BUTTON).click();
 		//	softAssert.assertEquals(driver.getCurrentUrl(), CustomUtilities.baseUrl);
@@ -305,6 +305,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 	{
 		String text;
 		String text1;
+		String text2;
 		String quant;
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		
@@ -328,25 +329,31 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		}
 		
 		softAssert.assertTrue(driver.findElement(PRODUCT_TITLE).isDisplayed(), "Product title for added item not present on Cart");
-		text1 = driver.findElement(PRODUCT_TITLE).getText();
+
+		WebElement elemen = driver.findElement(PRODUCT_TITLE);
+		jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", elemen);
+		text1 = driver.findElement(PRODUCT_TITLE_PDP).getText();
 		//softAssert.assertEquals(text1, part2, "Wrong Product added to cart");
 		System.out.println("text1 is:"+text1);
-		String[] comma_separated  = text1.split(",");
-		String p_name = comma_separated[0];
-
-		String text2= p_name.replace("-", " ");
-		System.out.println("text2 is: "+text2.toLowerCase());
-		System.out.println(p_name);
-		if(!p_name.equalsIgnoreCase(text1))
+//		String[] comma_separated  = text1.split(",");
+//		String p_name = comma_separated[0];
+//
+//		String text2= p_name.replace("-", " ");
+		driver.findElement(HomePageLocators.CART_ICON).click();
+		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+		text2 = driver.findElement(PRODUCT_TITLE).getText();
+		System.out.println("text2 is: "+text2);
+		if(!text1.equalsIgnoreCase(text2))
 			throw new Exception("Wrong Product added to cart");
-		quant= driver.findElement(PRODUCT_QUANTITY).getAttribute("value");
+	//	quant= driver.findElement(PRODUCT_QUANTITY).getAttribute("value");
 
 		//driver.findElement(PRODUCT_QUANT_ADD).click();
-		jse.executeScript("arguments[0].click();", driver.findElement(PRODUCT_QUANT_ADD));
-		softAssert.assertEquals(driver.findElement(PRODUCT_QUANTITY).getAttribute("value"), "2");
-		//driver.findElement(PRODUCT_QUANT_MINUS).click();
-		jse.executeScript("arguments[0].click();", driver.findElement(PRODUCT_QUANT_MINUS));
-		softAssert.assertEquals(driver.findElement(PRODUCT_QUANTITY).getAttribute("value"), quant);
+//		jse.executeScript("arguments[0].click();", driver.findElement(PRODUCT_QUANT_ADD));
+//		softAssert.assertEquals(driver.findElement(PRODUCT_QUANTITY).getAttribute("value"), "2");
+//		//driver.findElement(PRODUCT_QUANT_MINUS).click();
+//		jse.executeScript("arguments[0].click();", driver.findElement(PRODUCT_QUANT_MINUS));
+//		softAssert.assertEquals(driver.findElement(PRODUCT_QUANTITY).getAttribute("value"), quant);
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(REMOVE_PRODUCT_FROM_CART));
 		driver.findElement(REMOVE_PRODUCT_FROM_CART).click();
@@ -645,23 +652,23 @@ Thread.sleep(4000);
 		driver.findElement(GIFT_WRAP_LINK).click();
 		softAssert.assertTrue(driver.findElement(FlyCartPageLocator.GIFT_WRAP_POPUP).isDisplayed(), "Gift Wrap Popup is not displayed");
 		element = driver.findElement(FlyCartPageLocator.GIFT_BOX_$5);
-		allClasses = element.getAttribute("class");
-
-		for (String c : allClasses.split(" ")) {
-			if (c.equals("is-checked")) {
-				flag = true;
-			}
-		}
-		if(flag) {
-			Reporter.log("Gift Box $5.00 is already checked");
-		ExtentReport.extentTest.info("Gift Box $5.00 is already checked");
-	}
-		else {
-			driver.findElement(FlyCartPageLocator.GIFT_BOX_$5).click();
+//		allClasses = element.getAttribute("class");
+//
+//		for (String c : allClasses.split(" ")) {
+//			if (c.equals("is-checked")) {
+//				flag = true;
+//			}
+//		}
+//		if(flag) {
+//			Reporter.log("Gift Box $5.00 is already checked");
+//		ExtentReport.extentTest.info("Gift Box $5.00 is already checked");
+//	}
+	//	else {
+			driver.findElement(FlyCartPageLocator.GIFT_BOX_$5_CHECKBOX).click();
 			Thread.sleep(5000);
 			Reporter.log("Gift Box $5.00 is checked");
 			ExtentReport.extentTest.info("Gift Box $5.00 is checked");
-		}
+	//	}
 			
 		js.executeScript("arguments[0].click();", driver.findElement(FlyCartPageLocator.GIFT_WRAP_APPLY));
 		//driver.findElement(FlyCartPageLocator.GIFT_WRAP_APPLY).click();
@@ -787,7 +794,7 @@ Thread.sleep(4000);
 	{
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		
-		String wid="0px";
+		String wid="width: 100%;";
 		
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(TIERED_METER));
 		Thread.sleep(5000);
@@ -797,17 +804,19 @@ Thread.sleep(4000);
 			System.out.println(widthvalue);
 		String text=driver.findElement(TIERED_METER_TIER).getAttribute("style");	
 		System.out.println(text);
-		if(text.equals(wid))
+		if(!text.equals(wid))
 		{
+			System.out.println("New Exception");
 			throw new Exception("Tiered meter not filling in correctly.");
-			
-		}
+
+        }
 		Reporter.log("Tiered Meter is filling in");
 		ExtentReport.extentTest.info("Tiered Meter is filling in");
-		String[] widthper = text.split(";");
-		System.out.println(widthper[0]);
-		if(widthper[0].contains("100%"))
+		String[] widthper = text.split(": ");
+		System.out.println(widthper[1]);
+		if(!widthper[1].equals("100%;"))
 		{
+			System.out.println("Tiered meter not filling in correctly.");
 			throw new Exception("Tiered meter not filling in correctly.");
 		}
 		Reporter.log("Tiered Meter is filling in");

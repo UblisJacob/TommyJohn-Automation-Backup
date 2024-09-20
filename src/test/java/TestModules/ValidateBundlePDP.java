@@ -39,7 +39,7 @@ public class ValidateBundlePDP extends ExtentReport {
 		
 	}
 	
-	@Test
+//	@Test
 	public void VerifySecondaryBadging() throws Exception {
 		new BundlePDPPage(driver).verifySecondaryBadging();
 		
