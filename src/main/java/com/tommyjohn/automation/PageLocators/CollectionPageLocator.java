@@ -104,8 +104,8 @@ public class CollectionPageLocator {
 	    public static By PLP_SEO_BODY = By.xpath("//*[data-tj-qa='plp-seo-body'] | //div[@class='collection-seo-body']");
 	    public static By PLP_SEO_LINK = By.xpath("//div[@class='collection-seo-body']//a");
 	    
-	    public static By PLP_PRODUCT_IMAGE_BADGE = By.xpath("");
-	    public static By PLP_PRODUCT_SECONDARY_BADGE = By.xpath("//div[contains(@class,'product-item__badge')]/span");
+	    public static By PLP_PRODUCT_IMAGE_BADGE = By.xpath("//p[contains(@class,'inline-block')]");
+	    public static By PLP_PRODUCT_SECONDARY_BADGE = By.xpath("//p[contains(@class,'inline-block')]");
 	    
 	     public static By SEARCH_PRICE_FILTER = By.xpath("//a[@data-filter-group='facet_price_range']//span[contains(text(),'Price')]");
 	    public static By SEARCH_PRICE_FILTER_1=By.xpath("//button[contains(@for,'25to50')]");
