@@ -51,7 +51,7 @@ public class ProductDetailsPageLocators {
 	public static By COLOR_SWATCHES = By.cssSelector("[data-tj-qa='color-swatch'],.product-option__color-swatches-wrapper>ul>li");
 	public static By SECOND_COLOR = By.cssSelector(".product-option__color-swatches-wrapper > ul > li:nth-child(2) > label");
 	public static By THIRD_COLOR = By.cssSelector(".product-option__color-swatches-wrapper > ul > li:nth-child(3) > label");
-	public static By COLOR_TEXT = By.xpath("//*[data-tj-qa='product-color'] | //div[@title = 'Color'] /span");       //("//div[@class= 'multi-pdp-info__header'] /span]");
+	public static By COLOR_TEXT = By.xpath("(//span[@class='font-medium'])[1]");       //("//div[@class= 'multi-pdp-info__header'] /span]");
 	// ATC
 	
 	
@@ -86,6 +86,7 @@ public class ProductDetailsPageLocators {
 	public static By SIZEGUIDE_TITLE= By.cssSelector("[data-tj-qa='size-guide-title']");
 	public static By SIZE_GUIDE_BUTTON = By.cssSelector("[data-tj-qa='size-guide-link'],button.product-info__header-btn.size-guide");
 	public static By ADD_TO_CART_BUTTON = By.xpath("//button[@id='ProductForm-Add']");
+
 	public static By JOIN_THE_WAITLIST = By.cssSelector("[data-tj-qa='add-to-cart-cta'],button.product-info__atc.button.button--red.button--full.js-loop-atc.email-when-in-stock");
 	//public static By QUANTITY = By.cssSelector(".qty-selector.desktop>#updatedQty.pdp.prodQty");
 	public static By QUANTITY = By.cssSelector("[data-tj-qa='add-to-cart-cta'],button.product-info__atc");

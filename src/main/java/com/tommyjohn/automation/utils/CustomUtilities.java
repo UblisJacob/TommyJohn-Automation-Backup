@@ -61,7 +61,7 @@ public class CustomUtilities {
 			//System.setProperty("webdriver.chrome.driver", properties.getProperty("chromeDriverPath"));
 			ChromeOptions chromeOptions = new ChromeOptions();
 //			chromeOptions.setExperimentalOption("useAutomationExtension", false)
-			chromeOptions.addArguments("--headless");
+	//		chromeOptions.addArguments("--headless");
 			chromeOptions.addArguments("--window-size=1280,800");
 			chromeOptions.addArguments("--disable-gpu");
 			chromeOptions.addArguments("--no-sandbox");

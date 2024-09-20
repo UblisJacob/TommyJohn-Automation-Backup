@@ -375,8 +375,10 @@ public class HomePageComponents extends HomePageLocators {
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(30));
 		
 		
-		action.moveToElement(driver.findElement(SEARCH_ICON_INPUT)).build().perform();
-		Thread.sleep(3000);
+//		action.moveToElement(driver.findElement(SEARCH_ICON_INPUT)).build().perform();
+//		Thread.sleep(3000);
+
+		driver.findElement(SEARCH_ICON).click();
 		
 		driver.findElement(SEARCH_ICON_INPUT).sendKeys(searchText + Keys.ENTER);
 
@@ -388,7 +390,7 @@ public class HomePageComponents extends HomePageLocators {
 			System.out.println("Search Page Title is displayed");
 			Reporter.log("Search Page Title is displayed");
 			ExtentReport.extentTest.info("Search Page Title is displayed");
-			if(driver.findElement(SEARCHPAGE_TITLE).getText().equalsIgnoreCase("Results for \""+ searchText +"\""))
+			if(driver.getCurrentUrl().contains(searchText))
 			{
 				System.out.println("Search Page Title is correct");
 				Reporter.log("Search Page Title is correct");
@@ -2401,7 +2403,7 @@ public class HomePageComponents extends HomePageLocators {
 	}
 
 	public void navigateToMensAndLoungeTops() throws Exception {
-		driver.get("https://www.tommyjohn.com/collections/mens-sleep-lounge-tops?sort-by=relevance&sort-order=descending");
+		driver.get("https://www.tommyjohn.com/collections/mens-sleep-lounge");
 		Thread.sleep(5000);
 	}
 

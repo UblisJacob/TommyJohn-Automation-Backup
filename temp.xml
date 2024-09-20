@@ -11,9 +11,9 @@
     <test name="CategoryTests">
         <parameter name="browser" value="chrome" />
         <classes>
-            <class name="TestModules.ValidateCategoryPages">
+            <class name="TestModules.ValidateInlineCartPage">
                 <methods>
-                    <include name="VerifyAccordions"/>
+                    <include name="VerifyPromotionalMessagingPresence"/>
                 </methods>
             </class>
         </classes>

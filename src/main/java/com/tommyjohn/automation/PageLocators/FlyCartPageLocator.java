@@ -5,29 +5,28 @@ import org.openqa.selenium.By;
 public class FlyCartPageLocator {
 	public static By INLINE_CART_SECTION = By.cssSelector(".section.inline-cart");
 	public static By INLINE_CART_ICON = By.xpath("//button[@class='header-cart-btn']");
-	public static By INLINE_CART_CLOSE_BUTTON = By.cssSelector("button[data-tj-qa='inline-cart-close'],button.inline-cart__close-btn");
-	public static By VIEW_CART_LINK = By.xpath("//a[@class='inline-cart__cart-link']");
-	public static By INLINE_CART_TITLE = By.cssSelector("[data-tj-qa='inline-cart-title'],.inline-cart__title");
-	public static By SHIPING_MESSAGE_TEXT = By.cssSelector(".shipping-message__text");
+	public static By INLINE_CART_CLOSE_BUTTON = By.xpath("//span[@class='icon block size-5 icon-arrow-left']");
+	public static By VIEW_CART_LINK = By.xpath("//a[@class='button-link text-body sm:text-body-sm']");
+	public static By INLINE_CART_TITLE = By.xpath("//h2[contains(text(),'Your Cart')]");
+	public static By SHIPING_MESSAGE_TEXT = By.xpath("//p[contains(text(),'Your cart is currently empty.')]");
 	public static By SHIPING_MESSAGE_METER = By.cssSelector(".shipping-message__meter > span");
-	public static By INLINE_CART_EMPTY_TEXT = By.cssSelector(".inline-cart__empty");
+	public static By INLINE_CART_EMPTY_TEXT = By.xpath("//p[contains(text(),'Your cart is currently empty.')]");
 	public static By RECOMMENDED_PRODUCT_HEADING = By.cssSelector(".recommended-products__heading");
 	public static By RECOMMENDED_PRODUCTS = By.cssSelector(".recommended-products");
 	public static By RECOMMENDED_PRODUCTS_LIST = By.cssSelector(".recommended-products > a");
-	public static By LIST_OF_ITEMS_IN_FLYCART = By.cssSelector(".line-item");
+	public static By LIST_OF_ITEMS_IN_FLYCART = By.xpath("//td[@class='p-0 sm:col-span-2']");
 	public static By LINE_ITEM_IMAGE = By.cssSelector("div[data-tj-qa='cart-line-item-image']");
 	public static By LINE_ITEM_OPTION = By.cssSelector(
 			"div.inline-cart__col1 > div:nth-child(4) > article:nth-child(1) > div.line-item__summary > div.line-item__option");
 	
-	public static By QUANTITY_PLUS_MINUS_BUTTON = By.cssSelector(
+	public static By QUANTITY_PLUS_MINUS_BUTTON = By.xpath(
 			"article:nth-child(1) > div.line-item__summary > div.line-item__total > div.qty-selector.line-item__qty");
-	public static By ADD_GIFT_WRAP_BUTTON = By.cssSelector("span[data-tj-qa='add-gift-wrap-link'],div.inline-cart__gift-wrap > a > span:nth-child(2)");
+	public static By ADD_GIFT_WRAP_BUTTON = By.xpath("//button[@class='button-link text-body sm:text-heading-sm']");
 	public static By SUBTOTAL_TEXT = By.cssSelector("div[data-tj-qa='inline-cart-subtotal-text'],.inline-cart__subtotal--text");
-	public static By ESTIMATE_TOTAL = By.cssSelector("div[data-tj-qa='inline-cart-subtotal-text']>span,div.inline-cart__summary > div > div > span");
+	public static By ESTIMATE_TOTAL = By.xpath("//span[contains(text(),'Subtotal')]");
 	public static By ESTIMATE_TOTAL_SMALL = By.cssSelector("div[data-tj-qa='inline-cart-subtotal-text']>small,div.inline-cart__summary > div > div > small");
-	public static By CHECKOUT_BUTTON = By
-			.cssSelector("a[data-tj-qa='inline-cart-checkout'] , .inline-cart__action-btns>a");
-	public static By FIRST_PRODUCT_TITLE_IN_CART = By.cssSelector("a[data-tj-qa='cart-line-item-title'],div>.line-item__title"); // ("div.inline-cart__col1 >
+	public static By CHECKOUT_BUTTON = By.xpath("//button[@data-cy='cartFormCheckoutButton']");
+	public static By FIRST_PRODUCT_TITLE_IN_CART = By.xpath("(//a[@class='sm:text-heading-sm'])[1]"); // ("div.inline-cart__col1 >
 																						// div:nth-child(7) > article >
 																						// div.line-item__summary > a");
 	public static By PLUS_BUTTON = By.cssSelector("button[data-tj-qa='cart-line-item-plus'],.qty-selector.line-item__qty > button:nth-child(3)");
@@ -35,9 +34,8 @@ public class FlyCartPageLocator {
 	public static By QUANTITY = By.cssSelector("input[data-tj-qa='cart-line-item-qty'] , .qty-selector.line-item__qty > input");
 	public static By CROSS_CLOSE_BUTTON = By.cssSelector("button[data-tj-qa='cart-line-item-remove'],article > div.line-item__summary > button");
 
-	public static By COLOR_AND_SIZE_IN_CART = By.cssSelector("div[data-tj-qa='cart-line-item-option']");
-	public static By PRICE_IN_QUANTITY_LINE = By.cssSelector(
-			"div[data-tj-qa='inline-cart-line-item-subtotal']>span");
+	public static By COLOR_AND_SIZE_IN_CART = By.xpath("(//div[@class='mt-2 text-body text-text-secondary sm:mt-4'])[1]");
+	public static By PRICE_IN_QUANTITY_LINE = By.xpath("(//span[contains(text(),'Regular price')]//following::span[contains(text(),'$32.00')])[2]");
 
 	public static By GIFT_WRAP = By.cssSelector("div.inline-cart__gift-wrap > a");
 	public static By GIFT_WRAP_POPUP = By.cssSelector(".modal-overlay.gift-option.active");
@@ -53,10 +51,10 @@ public class FlyCartPageLocator {
 	// By.cssSelector("div.line-item__summary > div:nth-child(2)");
 
 	//COUPONCODE
-	public static By CART_COUPONFIELD = By.xpath("//input[@class='inline-cart__promo-input']");
-	public static By APPLY_CTA = By.xpath("//button[@class='button button--red']");
-	public static By APPLIED_COUPON = By.xpath("//div[@class='cart__items']//span[@class='coupon-code']");
-	public static By INLINE_CART_APPLIED_COUPON = By.xpath("//div[@class='inline-cart__col1']//span[@class='coupon-code']");
+	public static By CART_COUPONFIELD = By.xpath("//input[@id='Discount-Code']");
+	public static By APPLY_CTA = By.xpath("//button[@class='button button-lg px-8']");
+	public static By APPLIED_COUPON = By.xpath("//span[@class='sr-only' and contains(text(),'Discount:')]");
+	public static By INLINE_CART_APPLIED_COUPON = By.xpath("//div[@class='mt-2 text-body font-medium text-functional-sale']");
 
 
 
@@ -76,11 +74,11 @@ public class FlyCartPageLocator {
 	public static By AFTERPAYLOGO_ICON = By.cssSelector(".afterpay-link");
 	public static By AFTERPAY_FLYCART = By.cssSelector(".afterpay-incart-container > p > span");
 
-	public static By QUICK_SHOP_SIZE_LIST = By.cssSelector(".quickshop-open>.inline-quick-shop>ul>li");
+	public static By QUICK_SHOP_SIZE_LIST = By.xpath("//input[@name='option[Size]']");
 
 	public static By TIERED_METER_TITLE = By.cssSelector("p[data-tj-qa='tier-message-hit'],p#tier-message-reached-cart");
 	public static By TIERED_METER = By.cssSelector("div[data-tj-qa='tier-0']");	
-	public static By PROMOTIONAL_MESSAGE = By.cssSelector("div[data-tj-qa='inline-cart-promo-message']");
+	public static By PROMOTIONAL_MESSAGE = By.xpath("//p[contains(text(),'Congratulations! You have earned free shipping!')]");
 
 	public static By PROMOTIONAL_PRICE = By.xpath("(((//div[@class='cart__content content']//div[@class='line-item__summary'])[1])//span[@class='sale'])[1]");
 
@@ -107,7 +105,7 @@ public class FlyCartPageLocator {
 	public static By QUICK_SHOP_SIZE_LIST_2 = By.cssSelector(".quickshop-open>.inline-quick-shop>ul:nth-child(6)>li");
 	public static By QUICK_SHOP_SIZE_LABEL = By.cssSelector("[data-tj-qa='plp-quickshop-instock']>label,.quickshop-open>.inline-quick-shop>ul>li>label");
 	public static By QUICK_SHOP_SIZE_OVERLAY_ATC = By.cssSelector(".inline-quick-shop>.inline-quick-shop__button");
-	public static By PRODUCT_TITLE_ON_COLLECTION = By.cssSelector("[data-tj-qa='product-title'],.product-meta__title");
+	public static By PRODUCT_TITLE_ON_COLLECTION = By.xpath("(//a[@data-cy='productTileLink'])");
 	public static By PRODUCT_ITEM_SWATCH_CIRCLE = By.cssSelector("[data-tj-qa='product-swatch'],.product-item__swatch-wrapper>div");
 	public static By PRODUCT_AMOUNT_ON_Collection = By.cssSelector("[data-tj-qa='product-price'],.product-meta__price");
 	public static By PRODUCT_TITLE_ON_FLYCART = By.cssSelector("[data-tj-qa='cart-line-item-title'],div.inline-cart__col1 > div:nth-child(6) > .line-item >.line-item__summary>a");

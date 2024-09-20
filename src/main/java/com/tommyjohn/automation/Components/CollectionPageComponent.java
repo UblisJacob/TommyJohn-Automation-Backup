@@ -26,6 +26,9 @@ import com.tommyjohn.automation.PageLocators.FlyCartPageLocator;
 import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
 import com.tommyjohn.automation.commonMethods.GeneralMethods;
 
+import static com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators.INLINE_CART_CLOSE;
+import static com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators.INLINE_CART_TITLE;
+
 public class CollectionPageComponent extends CollectionPageLocator {
 
 	GeneralMethods objGeneralMethods = new GeneralMethods();
@@ -288,11 +291,11 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollBy(0,250)");
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_TEXT));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
 		// get text and click on the first product
 		//text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
-		text = driver.findElement(FIRST_PRODUCT_HEAD_TEXT).getText();
-		WebElement el = driver.findElement(FIRST_PRODUCT_HEAD_TEXT);
+		text = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT).getText();
+		WebElement el = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT);
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		executor.executeScript("arguments[0].click();", el);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_TITLE));
@@ -1234,6 +1237,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		String prod_title = driver.findElement(PRODUCT_TITLE_ON_COLLECTION).getText();
 		String color_name = driver.findElement(PRODUCT_ITEM_SWATCH_CIRCLE).getAttribute("alt");
 		String amount = driver.findElement(PRODUCT_AMOUNT_ON_Collection).getText();
+		int count = 0;
 		Thread.sleep(3000);
 		// If Quick shop ATC is displayed
 		if (driver.findElement(QUICK_SHOP_ATC).isDisplayed()) {
@@ -1275,6 +1279,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			 *
 			 */
 			// select sizes from quick shop size overlay
+			driver.findElement(By.xpath("//span[contains(text(),'Set')]")).click();
 			List<WebElement> allElements1;
 			List<WebElement> allElements2;
 			String classtext;
@@ -1287,29 +1292,68 @@ public class CollectionPageComponent extends CollectionPageLocator {
 				classtext = allElements1.get(i).getAttribute("value");
 //					classtext = classes1[classes1.length - 1];
 				System.out.println("last class name is: " + classtext);
-				element = driver.findElement(By.xpath("(//input[@name='option[Size]'])[" + i + "]"));
+				element = driver.findElement(By.xpath("(//input[@name='option[Top Size]'])[" + i + "]"));
 				js.executeScript("arguments[0].click();", element);
-				try {
-					if (driver.findElement(By.xpath("//button[@aria-label='Out of stock']")).isDisplayed())
-						System.out.println("Out of Stock");
-					break;
-				}
-				catch(Exception ex)
-				{
 
-					Selected_size1 = element.getAttribute("value");
-					System.out.println("Selected size is: " + Selected_size1);
+				for (int k = 1; k < allElements2.size(); k++) {
+
+					classtext = allElements2.get(i).getAttribute("value");
+
+					System.out.println("last class name is: " + classtext);
+					element = driver.findElement(By.xpath("(//input[@name='option[Bottom Size]'])[" + k + "]"));
+					js.executeScript("arguments[0].click();", element);
+
+
+					Thread.sleep(2000);
+					try {
+						System.out.println("Entering Try");
+						if (driver.findElement(By.xpath("//button[@aria-label='Out of stock']")).isDisplayed())
+							System.out.println("Out of Stock");
+
+					} catch (Exception ex) {
+						System.out.println("Entering Catch");
+						count++;
+						Selected_size1 = element.getAttribute("value");
+						System.out.println("Selected size is: " + Selected_size1);
+						String[] AddtoBag;
+						AddtoBag = (driver.findElement(By.xpath("//button[@class='button grow']")).getText()).split(" -");
+						String text1 = AddtoBag[0];
+						System.out.println(text1);
+						//	WebElement elem = driver.findElement(By.cssSelector(".multiPdp__atc-container>button"));
+						if (text1.equals("Add to bag")) {
+							System.out.println(driver.findElement(PRODUCT_TITLE_ON_COLLECTION).getText() + element.getText() + "Product is added to Cart");
+							Thread.sleep(2000);
+							js.executeScript("arguments[0].click();", driver.findElement(ADD_TO_BAG_QUICKSHOP));
+							Thread.sleep(3000);
+							driver.findElement(INLINE_CART_TITLE);
+							js.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
+
+							Thread.sleep(1000);
+							System.out.println("=============================");
+
+						}
+
 
 //					Thread.sleep(3000);
 
+
+					}
+
+					if (count == 1) {
+						break;
+					}
+
+				}
+
+				if (count == 1) {
+					break;
 				}
 			}
-			}
 
 
-		Reporter.log("Quick Shop is functional");
-		ExtentReport.extentTest.info("Quick Shop is functional");
-
+			Reporter.log("Quick Shop is functional");
+			ExtentReport.extentTest.info("Quick Shop is functional");
+		}
 
 	//				if (!classtext.equalsIgnoreCase("not-available")) {
 //						element = driver.findElement(

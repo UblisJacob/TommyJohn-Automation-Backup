@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 public class AddToCartLocators {
 	
 	public static By ALL_SIZE_LIST = By.cssSelector(".product-option__color-swatches-wrapper>ul>li"); //(".product-option__variants.product-option__variants-size > ul > li")
-	public static By ADD_TO_CART_BUTTON = By.cssSelector("button[data-tj-qa='add-to-cart-cta']");
+	public static By ADD_TO_CART_BUTTON = By.xpath("//button[@id='ProductForm-Add']");
 	public static By EMAIL_WHEN_IN_STOCK_BUTTON = By.cssSelector(".jtwl_header>span");
 	public static By QUANTITY = By.cssSelector("#updatedQty.pdp.prodQty");
 	public static By PLUS_BUTTON = By.cssSelector(".qty-selector.desktop> button#plusBtn");
@@ -16,10 +16,10 @@ public class AddToCartLocators {
 	public static By CHECKOUT_BUTTON = By.cssSelector(".inline-cart__action-btns > a:nth-child(3)");
 
 	public static By EMAIL_WHEN_IN_STOCK_BUTTON_CLOSE = By.cssSelector(".close_jtwl");
-	public static By INLINE_CART_CLOSE = By.cssSelector("[data-tj-qa='inline-cart-close']");
+	public static By INLINE_CART_CLOSE = By.xpath("//button[@aria-label='Close cart']");
 	
 	public static By JOIN_THE_WAITLIST = By.cssSelector(".multiPdp__atc-container>button");
-	public static By INLINE_CART_TITLE = By.cssSelector(".inline-cart__title");
+	public static By INLINE_CART_TITLE = By.xpath("//h2[@class='text-heading-lg font-medium sm:text-heading']");
 	
 	
 
