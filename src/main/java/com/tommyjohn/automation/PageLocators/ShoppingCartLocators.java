@@ -20,19 +20,21 @@ public class ShoppingCartLocators {
 	 * CANCEL_PROMO_CODE
 	 */
 
-	public static By CART_TITLE = By.cssSelector("h1[data-tj-qa='cart-title'], .cart__title");
-	public static By EMPTY_CART_MESSAGE = By.cssSelector("h3[data-tj-qa='cart-empty-message'], .cart__empty > h3");
-	public static By START_SHOPPING_BUTTON = By.cssSelector("a[data-tj-qa='cart-start-shopping-cta'], .cart__empty > a");
+	public static By CART_TITLE = By.xpath("//h1[contains(text(),'Your Cart')]");
+	public static By EMPTY_CART_MESSAGE = By.xpath("//p[contains(text(),'Your cart is currently empty.')]");
+	public static By START_SHOPPING_BUTTON = By.xpath("//a[@class='button mt-6']");
 	public static By LIST_OF_ITEMS_IN_SHOPPING_CART = By.cssSelector(".cart__items div[data-tj-qa='cart-line-item-image'], .cart__outer>div:nth-child(1)>div>.line-item");
-	public static By REMOVE_PRODUCT_FROM_CART = By.cssSelector(".cart__items button[data-tj-qa='cart-line-item-remove'], .main-content > .cart.container > div.cart__content.content > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > button");
+	public static By REMOVE_PRODUCT_FROM_CART = By.xpath("//button[contains(text(),'Remove')]");
 	
 	public static By PRODUCT_IMAGE = By.cssSelector(".cart__items div[data-tj-qa='cart-line-item-image']>img, .main-content > .cart.container > div.cart__content.content > div.cart__outer > .cart__items > div > article.line-item > .line-item__image > img");
-	public static By PRODUCT_TITLE = By.cssSelector(".cart__items [data-tj-qa='cart-line-item-title'], .main-content > .cart.container > div.cart__content.content > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > a");
+	public static By PRODUCT_TITLE = By.xpath("//a[@class='sm:text-heading-sm']");
+	public static By PRODUCT_TITLE_TEXT = By.xpath("//div[@class='mt-2 text-body text-text-secondary sm:mt-4']");
+	public static By PRODUCT_TITLE_PDP = By.xpath("//h1[@class='mb-0']");
 	public static By PRODUCT_COLOR_SIZE = By.cssSelector(".cart__items div[data-tj-qa='cart-line-item-option'], .main-content > .cart.container > div.cart__content.content > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > div");
 	public static By PRODUCT_PRICE = By.cssSelector(".cart__items [data-tj-qa='cart-line-item-sale-price'], .main-content > .cart.container > div.cart__content.content > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > div.line-item__price > span");
 	public static By PRODUCT_SUBTOTAL = By.cssSelector(".cart__items div[data-tj-qa='inline-cart-line-item-subtotal']:nth-child(2)>span, .main-content > .cart.container > div.cart__content.content > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > div.line-item__total > div.line-item__subtotal >span");
 	public static By LINE_ITEM_SUBTOTAL_AFTER_DISCOUNT = By.cssSelector(".cart__items span[data-tj-qa='cart-line-item-discounted-total-price']");
-	public static By PRODUCT_QUANTITY = By.cssSelector(".cart__items input[data-tj-qa='cart-line-item-qty'], .main-content > .cart.container > div.cart__content.content > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > div.line-item__total > div > .prodQty");
+	public static By PRODUCT_QUANTITY = By.xpath(".cart__items input[data-tj-qa='cart-line-item-qty'], .main-content > .cart.container > div.cart__content.content > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > div.line-item__total > div > .prodQty");
 //	public static By PRODUCT_QUANTITY = By.xpath("//div[@class='cart__content content']//input[@data-tj-qa='inline-cart-line-item-qty']");
 	public static By LINE_ITEM_PRICE_BEFORE_DISCOUNT = By.cssSelector(".cart__items span[data-tj-qa='cart-line-item-orignal-price']");
 	public static By CART_SUBTOTAL = By.cssSelector("span[data-tj-qa='cart-subtotal-price']");
@@ -40,7 +42,7 @@ public class ShoppingCartLocators {
 	
 	public static By PRODUCT_QUANT_MINUS = By.cssSelector(".cart__items button[data-tj-qa='cart-line-item-minus'], .main-content > .cart.container > div.cart__content.content > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > div.line-item__total > div > button:nth-child(1)");
 //	public static By PRODUCT_QUANT_MINUS = By.xpath("((//div[@class='cart__content content']//div[@class='qty-selector line-item__qty'])[1])//button[@data-tj-qa='inline-cart-line-item-minus']");
-	public static By PRODUCT_QUANT_ADD = By.cssSelector(".cart__items button[data-tj-qa='cart-line-item-plus'], .main-content > .cart.container > div.cart__content.content > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > div.line-item__total > div > button:nth-child(3)");
+	public static By PRODUCT_QUANT_ADD = By.xpath("//span[@class='icon size-5 icon-plus']");
 //	public static By PRODUCT_QUANT_ADD = By.xpath("((//div[@class='cart__content content']//div[@class='qty-selector line-item__qty'])[1])//button[@data-tj-qa='inline-cart-line-item-plus']");
 	
 	
@@ -55,7 +57,7 @@ public class ShoppingCartLocators {
 	public static By ESTIMATE_TOTAL_PRICE_DISCOUTED = By.cssSelector("div[data-discounted-subtotal-div] span[data-tj-qa='cart-estimated-total-price']");
 	//public static By CHECKOUT_BUTTON = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__summary > a");
 	public static By CONTINUE_SHOPPING = By.cssSelector("a[data-tj-qa='cart-continue-shopping'], section > div.cart__content.content > div.cart__outer > div.cart__summary > div.cart__summary-inner-div > a.cart__continue.text-link");
-	public static By GIFT_WRAP_LINK = By.cssSelector("div.cart__outer > div.cart__summary > div.cart__summary-inner-div > div.cart__gift-wrap > a");
+	public static By GIFT_WRAP_LINK = By.xpath("//button[@class='button-link text-body']");
 	//public static By CHECKOUT_BUTTON = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__summary > div.cart__summary-inner-div>a.cart__checkout-btn");
 	public static By CHECKOUT_BUTTON = By.cssSelector("a[data-tj-qa='cart-checkout-cta'], a.cart__checkout-btn");
 	
@@ -82,12 +84,12 @@ public class ShoppingCartLocators {
 	public static By PROMOTIONAL_MESSAGE_CARTPAGE = By.xpath("");
 	public static By PROMOTIONAL_MESSAGE_FLYCART = By.xpath("div[data-tj-qa='inline-cart-promo-message']");
 //	public static By PROMOTIONAL_PRICE = By.xpath("(((//div[@class='cart__content content']//div[@class='line-item__summary'])[1])//span[@class='sale'])[1]");
-	public static By PROMOTIONAL_PRICE = By.cssSelector(".cart__items span[data-tj-qa='cart-line-item-sale-price']");
+	public static By PROMOTIONAL_PRICE = By.xpath(".cart__items span[data-tj-qa='cart-line-item-sale-price']");
 	
 	//Tiered-meter
-	public static By TIERED_METER_TITLE = By.cssSelector(".cart.container p[data-tj-qa='tier-message-away'], #tier-message-cart");
-	public static By TIERED_METER = By.cssSelector("div[data-tj-qa='tiered-meter']");
-	public static By TIERED_METER_TIER= By.cssSelector("div[data-tj-qa='tier-0']>div>div");
+	public static By TIERED_METER_TITLE = By.xpath("//p[@class='text-body']");
+	public static By TIERED_METER = By.xpath("//div[@class='grid gap-1 grid-cols-1']");
+	public static By TIERED_METER_TIER= By.xpath("//div[@class='h-full bg-surface-hover']");
 	//OOS
 	public static By OOS_TAG = By.xpath("//div[@class='cart__content content']//span[@data-tj-qa='inline-cart-line-item-oos-message']");
 	public static By OOS_TAG_FLYCART= By.xpath(".inline-cart.active span[data-tj-qa='inline-cart-line-item-oos-message'], .inline-cart.active span[data-tj-qa='inline-cart-line-item-oos-message']");
