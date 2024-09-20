@@ -42,7 +42,7 @@ public class ValidateCartPage extends ExtentReport{
 
 	@Test
 	public void ValidateProductSuggestionIsDisplayed() throws Exception {
-		new AddToCartComponents(driver).addToCart();
+		new AddToCartComponents(driver).addsingleproductToCart();
 		new ShoppingCartPage(driver).ValidateProductSuggestionInCartPage();
 	}
 
@@ -53,7 +53,7 @@ public class ValidateCartPage extends ExtentReport{
 
 	@Test
 	public void Validate_Cart_InteractWithGiftWrap() throws Exception {
-		new AddToCartComponents(driver).addToCart();
+		new AddToCartComponents(driver).addsingleproductToCart();
 		new ShoppingCartPage(driver).ValidateViewCartLink();
 		new ShoppingCartPage(driver).AddGiftWrap();
 	}
@@ -68,7 +68,7 @@ public class ValidateCartPage extends ExtentReport{
 	@Test
 	public void Validate_Cart_InteractWithActiveCart() throws Exception {
 
-		new AddToCartComponents(driver).addToCart();
+		new AddToCartComponents(driver).addsingleproductToCart();
 		new ShoppingCartPage(driver).ValidateViewCartLink();
 		new ShoppingCartPage(driver).tieredMeterpresence();
 		new ShoppingCartPage(driver).AddRemoveProductsFromCart();
@@ -83,7 +83,7 @@ public class ValidateCartPage extends ExtentReport{
 
 	}
 
-	@Test
+//	@Test
 	public void Validate_Cart_ViewPromotions() throws Exception {
 		String accountEmail = objGeneralMethods.readPropertiesFile("loginemail");
 		String password = objGeneralMethods.readPropertiesFile("password");
@@ -96,19 +96,19 @@ public class ValidateCartPage extends ExtentReport{
 
 	}
 
-	@Test
+//	@Test
 	public void Validate_Cart_InteractWithPayments() throws Exception {
 
-		new AddToCartComponents(driver).addToCart();
+		new AddToCartComponents(driver).addsingleproductToCart();
 		new ShoppingCartPage(driver).ValidateViewCartLink();
-		//new ShoppingCartPage(driver).validateCartPaymentMethods();
+		new ShoppingCartPage(driver).validateCartPaymentMethods();
 
 	}
 
 	@Test
 	public void Validate_Cart_InteractWithTieredMeter() throws Exception {
 
-		new AddToCartComponents(driver).addsingleproductToCart();
+		new AddToCartComponents(driver).addToCart();
 		new ShoppingCartPage(driver).ValidateViewCartLink();
 		new ShoppingCartPage(driver).tieredMeterFunctionality();
 

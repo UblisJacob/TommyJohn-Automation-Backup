@@ -55,7 +55,7 @@ public class FlyCartPage extends FlyCartComponents {
 		String accountEmail = objGeneralMethods.readPropertiesFile("loginemail");
 		String password = objGeneralMethods.readPropertiesFile("password");
 		new AccountLoginPage(driver).loginAccount(accountEmail, password);
-		new AddToCartComponents(driver).addsingleproductToCart();
+		new AddToCartComponents(driver).addToCart();
 		new FlyCartComponents(driver).tieredMeterPresence();
 		new ShoppingCartComponents(driver).tieredMeterFunctionality();
 	}
