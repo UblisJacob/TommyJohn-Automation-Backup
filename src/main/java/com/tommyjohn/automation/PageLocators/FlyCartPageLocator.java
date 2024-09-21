@@ -21,7 +21,7 @@ public class FlyCartPageLocator {
 	
 	public static By QUANTITY_PLUS_MINUS_BUTTON = By.xpath(
 			"article:nth-child(1) > div.line-item__summary > div.line-item__total > div.qty-selector.line-item__qty");
-	public static By ADD_GIFT_WRAP_BUTTON = By.xpath("//button[@class='button-link text-body sm:text-heading-sm']");
+	public static By ADD_GIFT_WRAP_BUTTON = By.xpath("//button[@class='button-link text-body']");
 	public static By SUBTOTAL_TEXT = By.cssSelector("div[data-tj-qa='inline-cart-subtotal-text'],.inline-cart__subtotal--text");
 	public static By ESTIMATE_TOTAL = By.xpath("//span[contains(text(),'Subtotal')]");
 	public static By ESTIMATE_TOTAL_SMALL = By.cssSelector("div[data-tj-qa='inline-cart-subtotal-text']>small,div.inline-cart__summary > div > div > small");
@@ -38,9 +38,10 @@ public class FlyCartPageLocator {
 	public static By PRICE_IN_QUANTITY_LINE = By.xpath("(//span[contains(text(),'Regular price')]//following::span[contains(text(),'$32.00')])[2]");
 
 	public static By GIFT_WRAP = By.cssSelector("div.inline-cart__gift-wrap > a");
-	public static By GIFT_WRAP_POPUP = By.cssSelector(".modal-overlay.gift-option.active");
+	public static By GIFT_WRAP_POPUP = By.xpath("//div[@aria-labelledby='GiftWrap-ModalTitle']");
+	public static By GIFT_BOX_$5_CHECKBOX = By.xpath("//input[@name='gift-box']");
 	public static By GIFT_BOX_$5 = By.cssSelector("div[data-tj-qa='gift-wrap-checkbox'],div.gift-option__input-group.gift-option__gift-box > div");
-	public static By GIFT_WRAP_APPLY = By.cssSelector("button[data-tj-qa='gift-box-apply'],button.gift-option__btn.button");
+	public static By GIFT_WRAP_APPLY = By.xpath("//button[@class='button button-md sm:button-lg w-full']");
 	public static By GIFT_WRAP_PRICE = By.cssSelector("span[data-tj-qa='gift-box-price'],div.inline-cart__gift-wrap > span:nth-child(2)");
 	public static By ESTIMATE_TOTAL_PRICE = By.cssSelector("span[data-tj-qa='inline-cart-subtotal-price'],div.inline-cart__summary > div > span");
 
