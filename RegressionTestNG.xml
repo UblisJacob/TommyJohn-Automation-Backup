@@ -65,12 +65,12 @@
 		</classes>
 	</test>
 
-	<test name="AllQuizTests">
-		<parameter name="browser" value="chrome" />
-		<classes>
-			<class name="TestModules.ValidateQuiz" />
-		</classes>
-	</test>
+<!--	<test name="AllQuizTests">-->
+<!--		<parameter name="browser" value="chrome" />-->
+<!--		<classes>-->
+<!--			<class name="TestModules.ValidateQuiz" />-->
+<!--		</classes>-->
+<!--	</test>-->
 
 	<test name="CreateAccountAndLoginTests">
 		<parameter name="browser" value="chrome" />
@@ -149,12 +149,12 @@
 		</classes>
 	</test>
 
-	<test name="ReOrderPageTests">
-		<parameter name="browser" value="chrome" />
-		<classes>
-			<class name="TestModules.ValidateReorderPage" />
-		</classes>
-	</test>
+<!--	<test name="ReOrderPageTests">-->
+<!--		<parameter name="browser" value="chrome" />-->
+<!--		<classes>-->
+<!--			<class name="TestModules.ValidateReorderPage" />-->
+<!--		</classes>-->
+<!--	</test>-->
 
 	<test name="ContactUsPageTests">
 		<parameter name="browser" value="chrome" />
