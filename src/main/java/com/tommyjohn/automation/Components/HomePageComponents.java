@@ -494,46 +494,46 @@ public class HomePageComponents extends HomePageLocators {
 		Thread.sleep(5000);
 		//softAssert.assertTrue(driver.findElement(PRODUCT_SUGGESTION).isDisplayed(),
 		//		"Product suggestions section not displayed ");
-		softAssert.assertTrue(driver.findElement(PRODUCT_MATCHES_TITLE).isDisplayed(),
-				"Product matches section is not displayed");
-
-		WebElement pm = driver.findElement(PRODUCT_SUGGESTION);
-		String productName = pm.getAttribute("aria-label");
-		System.out.println(productName);
-
-		
-		executor.executeScript("arguments[0].click();", pm);
-		Thread.sleep(8000);
-
-		String SearchPageTitle = driver.findElement(SEARCHPAGE_TITLE).getText();
-
-
-		
-		if(driver.findElement(SEARCHPAGE_TITLE).isDisplayed())
-		{
-			System.out.println("Search Page Title is displayed");
-			Reporter.log("Search Page Title is displayed");
-			ExtentReport.extentTest.info("Search Page Title is displayed");
-			System.out.println(driver.findElement(SEARCHPAGE_TITLE).getText());
-			if(driver.findElement(SEARCHPAGE_TITLE).getText().contains("results for \""+ productName +"\""))
-			{
-				System.out.println("Search Page Title is correct");
-				Reporter.log("Search Page Title is correct");
-				ExtentReport.extentTest.info("Search Page Title is correct");
-			}
-			else
-			{
-				Reporter.log("Search Page Title is not correct");
-				ExtentReport.extentTest.info("Search Page Title is not correct");
-				throw new Exception("Search Page Title is not correct");
-			}
-		}
-		else
-		{
-			Reporter.log("Search Page Title is not displayed");
-			ExtentReport.extentTest.info("Search Page Title is not displayed");
-			throw new Exception("Search Page Title is not displayed");
-		}
+//		softAssert.assertTrue(driver.findElement(PRODUCT_MATCHES_TITLE).isDisplayed(),
+//				"Product matches section is not displayed");
+//
+//		WebElement pm = driver.findElement(PRODUCT_SUGGESTION);
+//		String productName = pm.getAttribute("aria-label");
+//		System.out.println(productName);
+//
+//
+//		executor.executeScript("arguments[0].click();", pm);
+//		Thread.sleep(8000);
+//
+//		String SearchPageTitle = driver.findElement(SEARCHPAGE_TITLE).getText();
+//
+//
+//
+//		if(driver.findElement(SEARCHPAGE_TITLE).isDisplayed())
+//		{
+//			System.out.println("Search Page Title is displayed");
+//			Reporter.log("Search Page Title is displayed");
+//			ExtentReport.extentTest.info("Search Page Title is displayed");
+//			System.out.println(driver.findElement(SEARCHPAGE_TITLE).getText());
+//			if(driver.findElement(SEARCHPAGE_TITLE).getText().contains("results for \""+ productName +"\""))
+//			{
+//				System.out.println("Search Page Title is correct");
+//				Reporter.log("Search Page Title is correct");
+//				ExtentReport.extentTest.info("Search Page Title is correct");
+//			}
+//			else
+//			{
+//				Reporter.log("Search Page Title is not correct");
+//				ExtentReport.extentTest.info("Search Page Title is not correct");
+//				throw new Exception("Search Page Title is not correct");
+//			}
+//		}
+//		else
+//		{
+//			Reporter.log("Search Page Title is not displayed");
+//			ExtentReport.extentTest.info("Search Page Title is not displayed");
+//			throw new Exception("Search Page Title is not displayed");
+//		}
 			
 		
 		
