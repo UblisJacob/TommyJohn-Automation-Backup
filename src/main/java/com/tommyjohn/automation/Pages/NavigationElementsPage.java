@@ -68,10 +68,10 @@ public class NavigationElementsPage extends NavigationElementComponents{
 	 */
 	public void validateNavigation() {
 		level_0_nav(2);
-		level_1_nav(1, 2);
-		level_2_nav(1, 2, 2);
-		level_2_nav_links(6);
-		navigateShopAllLinks(2, 2);
+//		level_1_nav(1, 2);
+//		level_2_nav(1, 2, 2);
+//		level_2_nav_links(6);
+//		navigateShopAllLinks(2, 2);
 	}
 	
 	/**

@@ -88,7 +88,7 @@ public class ShoppingCartLocators {
 	
 	//Tiered-meter
 	public static By TIERED_METER_TITLE = By.xpath("//p[@class='text-body']");
-	public static By TIERED_METER = By.xpath("//div[@class='grid gap-1 grid-cols-1']");
+	public static By TIERED_METER = By.xpath("//div[@class='relative h-0.5 bg-surface-secondary']");
 	public static By TIERED_METER_TIER= By.xpath("//div[@class='h-full bg-surface-hover']");
 	//OOS
 	public static By OOS_TAG = By.xpath("//div[@class='cart__content content']//span[@data-tj-qa='inline-cart-line-item-oos-message']");

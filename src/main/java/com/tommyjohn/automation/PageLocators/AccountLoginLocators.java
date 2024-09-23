@@ -10,7 +10,7 @@ public class AccountLoginLocators {
 	public static By CREATEACCOUNT_TITLE = By.xpath("(//h1)[2]");
 	public static By CREATEACCOUNT_TEXT2 = By.xpath(".account-registration > p");
 	public static By CREATEACCOUNT_BTN = By.xpath("//a[@class='button w-full']");
-	public static By LOGIN_HEADING_LOGO = By.cssSelector("#Account-fill");
+	public static By LOGIN_HEADING_LOGO = By.cssSelector("(//h1)[1]");
 	public static By EMAIL_LABEL1 = By.xpath("(//label[contains(text(),'Email')])[1]");
 	public static By CUSTOMER_EMAIL_INPUT = By.xpath("//input[@id='CustomerLogin-CustomerEmail']");
 	public static By PASSWORD_LABEL1 = By.xpath("(//label[contains(text(),'Password')])[1]");

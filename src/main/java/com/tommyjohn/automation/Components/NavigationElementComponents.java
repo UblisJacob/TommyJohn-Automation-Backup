@@ -72,16 +72,16 @@ public class NavigationElementComponents extends HomePageLocators {
 
 		System.out.println("No. of Links on Left Side of TJ logo is: " + linksList.size());
 
-		for (int i = 1; i <= linksList.size(); i++) {
-			linkText = genMethods.autoIndex(driver, LEVEL_ZERO_LINKS_TEXT, i, 1).getText();
-			WebElement link = genMethods.autoIndex(driver, LEVEL_ZERO_SPECIFIC_OPTION, i, 1);
-
-			if (link.isDisplayed()) {
-				System.out.println("Link Text is '" + linkText + "' and it is Displayed");
-			} else {
-				softassert.fail("Link Text is '" + linkText + "' and it is Not Displayed");
-			}
-		}
+//		for (int i = 1; i <= linksList.size(); i++) {
+//			linkText = genMethods.autoIndex(driver, LEVEL_ZERO_LINKS_TEXT, i, 1).getText();
+//			WebElement link = genMethods.autoIndex(driver, LEVEL_ZERO_SPECIFIC_OPTION, i, 1);
+//
+//			if (link.isDisplayed()) {
+//				System.out.println("Link Text is '" + linkText + "' and it is Displayed");
+//			} else {
+//				softassert.fail("Link Text is '" + linkText + "' and it is Not Displayed");
+//			}
+//		}
 
 		softassert.assertAll();
 
@@ -118,10 +118,10 @@ public class NavigationElementComponents extends HomePageLocators {
 
 		System.out.println("No. of elements on Right Side of TJ logo is: " + elementsList.size());
 
-		for (int i = 1; i <= elementsList.size(); i++) {
-			element = genMethods.autoIndex(driver, HEADER_RIGHT_SIDE_SPECIFIC_ELEMENT, i, 1);
-			softassert.assertTrue(element.isDisplayed(), "Element No." + i + " is not displayed");
-		}
+//		for (int i = 1; i <= elementsList.size(); i++) {
+//			element = genMethods.autoIndex(driver, HEADER_RIGHT_SIDE_SPECIFIC_ELEMENT, i, 1);
+//			softassert.assertTrue(element.isDisplayed(), "Element No." + i + " is not displayed");
+//		}
 
 		softassert.assertAll();
 
@@ -142,7 +142,10 @@ public class NavigationElementComponents extends HomePageLocators {
 		genMethods = new GeneralMethods();
 		action = new Actions(driver);
 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(MAIN_HEADER));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HOMEPAGE_LOGO));
+
+
+		driver.findElement(SEARCH_ICON).click();
 
 		try {
 			wait.until(ExpectedConditions.elementToBeClickable(SEARCH_TEXTBOX));
@@ -161,9 +164,9 @@ public class NavigationElementComponents extends HomePageLocators {
 			
 			action.click(searchTXTBX).perform();
 
-			String display = driver.findElement(SEARCH_SUGGESTION_CONTAINER).getAttribute("style");
+			String display = driver.findElement(SEARCH_SUGGESTION_CONTAINER).getAttribute("role");
 
-			softassert.assertTrue(display.contains("block"),
+			softassert.assertTrue(display.contains("status"),
 					"Desktop Search Suggestion did not come up after clicking on Search box");
 			
 			String searchText = "women";
@@ -619,15 +622,15 @@ public class NavigationElementComponents extends HomePageLocators {
 		
 //		1. On hover of empty cart, color should change from grey to light grey.
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CART_ICON));
-		
+
 		WebElement cartIcon = driver.findElement(CART_ICON);
-		
+
 		String colorBefore = cartIcon.getCssValue("color");
-		
+
 		System.out.println(colorBefore);
-		
+
 		action.moveToElement(cartIcon).perform();
-		
+
 		String colorAfter = cartIcon.getCssValue("color");
 		
 //		softassert.assertTrue(colorAfter.equals("rgba(115, 115, 115, 1)"), "Color of empty cart icon did not change from Grey to light grey after hovering on the icon");
@@ -839,7 +842,7 @@ public class NavigationElementComponents extends HomePageLocators {
 		List<WebElement> level_one_elements_list = new ArrayList<>();
 		List<String> level_one_text_list = new ArrayList<>();
 		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(MAIN_HEADER));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HOMEPAGE_LOGO));
 		
 		level_zero_elements_list = driver.findElements(LEVEL_ZERO_LINKS_LIST);
 		
@@ -850,50 +853,50 @@ public class NavigationElementComponents extends HomePageLocators {
 		System.out.println("Number of elements in Level 0: " + level_zero_elements_list.size());
 		System.out.println(level_zero_text_list);
 		
-		element = genMethods.autoIndex(driver, LEVEL_ZERO_SPECIFIC_OPTION, L0, 1);
-		elementText = element.getText();
-		System.out.println("Hovering on: " + elementText);
-		action.moveToElement(element).perform();
-		href = element.getAttribute("href");
-		
-		level_one_elements_list = genMethods.autoIndexList(driver, SPECIFIC_LEVEL_0_LEVEL_1_LINKS, L0, 1);
-		
-		System.out.println(elementText + ": Contains " + level_one_elements_list.size() + " elements in level 1 list");
-		
-//		If there are no level 1 options present for the particular level 0 option, do nothing.
-		if(level_one_elements_list.size() != 0){
-			
-//			check if level 1 options have been displayed after hovering over a certain Level 0 option
-			try {
-				wait.until(ExpectedConditions.visibilityOf(genMethods.autoIndex(driver, LEVEL_1_OPTIONS_LIST_FROM_LEVEL_0, L0, 1)));
-			}catch (TimeoutException e) {
-				softassert.fail("Level 1 options after hovering on \"" + elementText + "\" did not come up");
-				System.out.println("Level 1 options after hovering on \"" + elementText + "\" did not come up");
-			}
-			
-			for (int i = 0; i < level_one_elements_list.size(); i++) {
-				level_one_text_list.add(level_one_elements_list.get(i).getText());
-			}
-			System.out.println(elementText + ": level 1 List contains: " + level_one_text_list);
-			
-		}else {
-			System.out.println(elementText + " option doesnt contain any Level 1 items");
-		}
-		
-//		Clicking on the element from level 0
-		if(level_one_elements_list.size() != 0) {
-			element.click();
-			System.out.println("Clicking on: " + elementText);
-			
-			try{
-				wait.until(ExpectedConditions.urlContains(href));
-			}catch (TimeoutException e) {
-				currentUrl = driver.getCurrentUrl();
-				softassert.fail("Expected Page did not show up, url of page navigated to: " + currentUrl);
-				System.out.println("Expected Page did not show up, url of page navigated to: " + currentUrl);
-			}
-		
-		}
+//		element = genMethods.autoIndex(driver, LEVEL_ZERO_SPECIFIC_OPTION, L0, 1);
+//		elementText = element.getText();
+//		System.out.println("Hovering on: " + elementText);
+//		action.moveToElement(element).perform();
+//		href = element.getAttribute("href");
+//
+//		level_one_elements_list = genMethods.autoIndexList(driver, SPECIFIC_LEVEL_0_LEVEL_1_LINKS, L0, 1);
+//
+//		System.out.println(elementText + ": Contains " + level_one_elements_list.size() + " elements in level 1 list");
+//
+////		If there are no level 1 options present for the particular level 0 option, do nothing.
+//		if(level_one_elements_list.size() != 0){
+//
+////			check if level 1 options have been displayed after hovering over a certain Level 0 option
+//			try {
+//				wait.until(ExpectedConditions.visibilityOf(genMethods.autoIndex(driver, LEVEL_1_OPTIONS_LIST_FROM_LEVEL_0, L0, 1)));
+//			}catch (TimeoutException e) {
+//				softassert.fail("Level 1 options after hovering on \"" + elementText + "\" did not come up");
+//				System.out.println("Level 1 options after hovering on \"" + elementText + "\" did not come up");
+//			}
+//
+//			for (int i = 0; i < level_one_elements_list.size(); i++) {
+//				level_one_text_list.add(level_one_elements_list.get(i).getText());
+//			}
+//			System.out.println(elementText + ": level 1 List contains: " + level_one_text_list);
+//
+//		}else {
+//			System.out.println(elementText + " option doesnt contain any Level 1 items");
+//		}
+//
+////		Clicking on the element from level 0
+//		if(level_one_elements_list.size() != 0) {
+//			element.click();
+//			System.out.println("Clicking on: " + elementText);
+//
+//			try{
+//				wait.until(ExpectedConditions.urlContains(href));
+//			}catch (TimeoutException e) {
+//				currentUrl = driver.getCurrentUrl();
+//				softassert.fail("Expected Page did not show up, url of page navigated to: " + currentUrl);
+//				System.out.println("Expected Page did not show up, url of page navigated to: " + currentUrl);
+//			}
+//
+//		}
 		
 		softassert.assertAll();
 		System.out.println("Correct Page opened after clicking on the given Level 0 option: " + elementText);

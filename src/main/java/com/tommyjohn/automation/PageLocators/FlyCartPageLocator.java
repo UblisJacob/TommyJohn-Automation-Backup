@@ -21,7 +21,7 @@ public class FlyCartPageLocator {
 	
 	public static By QUANTITY_PLUS_MINUS_BUTTON = By.xpath(
 			"article:nth-child(1) > div.line-item__summary > div.line-item__total > div.qty-selector.line-item__qty");
-	public static By ADD_GIFT_WRAP_BUTTON = By.xpath("//button[@class='button-link text-body']");
+	public static By ADD_GIFT_WRAP_BUTTON = By.xpath("//button[@class='button-link text-body sm:text-heading-sm']");
 	public static By SUBTOTAL_TEXT = By.cssSelector("div[data-tj-qa='inline-cart-subtotal-text'],.inline-cart__subtotal--text");
 	public static By ESTIMATE_TOTAL = By.xpath("//span[contains(text(),'Subtotal')]");
 	public static By ESTIMATE_TOTAL_SMALL = By.cssSelector("div[data-tj-qa='inline-cart-subtotal-text']>small,div.inline-cart__summary > div > div > small");
@@ -35,7 +35,7 @@ public class FlyCartPageLocator {
 	public static By CROSS_CLOSE_BUTTON = By.cssSelector("button[data-tj-qa='cart-line-item-remove'],article > div.line-item__summary > button");
 
 	public static By COLOR_AND_SIZE_IN_CART = By.xpath("(//div[@class='mt-2 text-body text-text-secondary sm:mt-4'])[1]");
-	public static By PRICE_IN_QUANTITY_LINE = By.xpath("(//span[contains(text(),'Regular price')]//following::span[contains(text(),'$32.00')])[2]");
+	public static By PRICE_IN_QUANTITY_LINE = By.xpath("//div[@class='flex gap-2 text-body font-medium sm:text-heading-sm']//span//following-sibling::span");
 
 	public static By GIFT_WRAP = By.cssSelector("div.inline-cart__gift-wrap > a");
 	public static By GIFT_WRAP_POPUP = By.xpath("//div[@aria-labelledby='GiftWrap-ModalTitle']");
@@ -78,7 +78,7 @@ public class FlyCartPageLocator {
 	public static By QUICK_SHOP_SIZE_LIST = By.xpath("//input[@name='option[Size]']");
 
 	public static By TIERED_METER_TITLE = By.cssSelector("p[data-tj-qa='tier-message-hit'],p#tier-message-reached-cart");
-	public static By TIERED_METER = By.cssSelector("div[data-tj-qa='tier-0']");	
+	public static By TIERED_METER = By.cssSelector("//div[@class='relative h-0.5 bg-surface-secondary']");
 	public static By PROMOTIONAL_MESSAGE = By.xpath("//p[contains(text(),'Congratulations! You have earned free shipping!')]");
 
 	public static By PROMOTIONAL_PRICE = By.xpath("(((//div[@class='cart__content content']//div[@class='line-item__summary'])[1])//span[@class='sale'])[1]");

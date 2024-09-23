@@ -5,14 +5,14 @@ import org.openqa.selenium.By;
 public class GiftCardPageLocators {
 
 	public static By NEW_ARRIVALS_OPTION = By.cssSelector(".header-desktop-left > ul > li:nth-child(1) > a");
-	public static By GIFT_CARD_TITLE = By.cssSelector("div.desktop-view>div>h1[data-tj-qa='product-name'] , .product-info__inner-top >div >div:nth-child(1) >h1");
-	public static By GIFT_CARD_PRICE = By.xpath("(//span[@data-tj-qa='product-price'])[2]");
-	public static By COLOR_NAME = By.cssSelector("[data-tj-qa='gproduct-color'],.product-info__option >div >span");
-	public static By GIFT_CARD_AMOUNT_TEXT = By.cssSelector(".option-dropdown__section >div:nth-child(1)");
+	public static By GIFT_CARD_TITLE = By.xpath("//h1[@class='mb-0']");
+	public static By GIFT_CARD_PRICE = By.xpath("(//span[@class='font-medium'])[2]");
+	public static By COLOR_NAME = By.xpath("(//span[@class='font-medium'])[1]");
+	public static By GIFT_CARD_AMOUNT_TEXT = By.xpath("(//span[@class='font-medium'])[2]");
 
 	//Price selector
 	public static By PRICE_DROPDOWN = By.cssSelector(".select.select--options.js-option-select.option-dropdown__option.desktop-view >a");
-	public static By PRICE_OPTIONS = By.cssSelector("[data-tj-qa='gc-amount'],.option-swatch__option>li");
+	public static By PRICE_OPTIONS = By.xpath("option[Amount]");
 	public static By PRICE_100 = By.cssSelector(".select--options__list >li:nth-child(3)");
  
 	//Form
@@ -25,12 +25,12 @@ public class GiftCardPageLocators {
 	public static By DELIVERY_MESSAGE_LABEL = By.cssSelector("[data-tj-qa='gc-product-delivery-date-notification'],.time-label");
 	public static By GIFT_CARD_MESSAGE_LABEL = By.cssSelector("[data-tj-qa='gc-product-message-text'],#gift-card-section >div:nth-child(14)");
 
-	public static By GIFT_CARD_DISPLAY_IMAGE = By.xpath("//div[@class='product-gallery']");
+	public static By GIFT_CARD_DISPLAY_IMAGE = By.xpath("(//img[@class='block h-full w-full object-center !object-cover bg-background-image'])[1]");
 	public static By GIFT_CARD_DISPLAY_IMAGE_SMALL_1 = By.cssSelector("div[tabindex='0'] >img");
 	public static By GIFT_CARD_DISPLAY_IMAGE_SMALL_2 = By.cssSelector(".product-gallery >div:nth-child(1) >div >div >div:nth-child(2) >img");
 	public static By GIFT_CARD_MESSAGE_TEXTBOX = By.cssSelector("[data-tj-qa='gc-product-message-input'],#gift-card-section >textarea");
 	public static By GIFT_CARD_MESSAGE_LIMIT = By.cssSelector("[data-tj-qa='gc-product-message-notification'],.limit-label");
-	public static By ATC_BUTTON = By.cssSelector("[data-tj-qa='add-to-cart-cta']>button,.product-info__atc.button.button--red.button--full.js-loop-atc");
+	public static By ATC_BUTTON = By.xpath("//button[@class='button grow']");
 
 	public static By PRODUCT_DETAILS = By.cssSelector("[data-tj-qa='mobile-footer-accordion-product-details'],div.product-accordion.container> ul > li:nth-child(1) > div:nth-child(1) > a");
 	public static By SHIPING_AND_RETURNS = By.cssSelector("[data-tj-qa='mobile-footer-accordion-free-returns'],div.product-accordion.container> ul > li:nth-child(2) > div:nth-child(1) > a");
@@ -49,10 +49,10 @@ public class GiftCardPageLocators {
 	public static By INLINE_VIEW_CART_BUTTON = By.cssSelector("[data-tj-qa='inline-cart-view-cartPage'],a.inline-cart__cart-link");
 	public static By SHOPPING_CART_TITLE = By.cssSelector("[data-tj-qa='inline-cart-title'],.inline-cart__title");
 	public static By GIFT_CARD_IMAGE_INLINE_CART = By.cssSelector("[data-tj-qa='cart-line-item-image']>img,.line-item >div:nth-child(1) >img");
-	public static By GIFT_CARD_TITLE_INLINE_CART = By.cssSelector("[data-tj-qa='cart-line-item-title'],a.line-item__title");
+	public static By GIFT_CARD_TITLE_INLINE_CART = By.xpath("//a[@class='sm:text-heading-sm']");
 	public static By REMOVE_ITEM_BUTTON = By.cssSelector("[data-tj-qa='cart-line-item-remove'],button.line-item__remove");
 	public static By GIFT_CARD_COLOR_INLINE_CART = By.cssSelector("[data-tj-qa='cart-line-item-option'],.line-item__option");
-	public static By GIFT_CARD_PRICE_INLINE_CART = By.cssSelector("[data-tj-qa='cart-line-item-sale-price'], .line-item__price >span");
+	public static By GIFT_CARD_PRICE_INLINE_CART = By.xpath("(//span[@class='sr-only']//following-sibling::span)[3]");
 	public static By RECIPIENT_MAIL_INLINE_CART = By.xpath("//span[text()[contains(.,'Recipient')]]");
 	public static By DELIVERY_DATE_INLINE_CART = By.xpath("//span[text()[contains(.,'Delivery Date')]]");
 	public static By AMOUNT_IN_INLINE_CART = By.cssSelector("[data-tj-qa='inline-cart-line-item-subtotal']> span,article:nth-child(1) > div.line-item__summary > div.line-item__total > div.line-item__subtotal > span");
