@@ -2516,7 +2516,7 @@ public class HomePageComponents extends HomePageLocators {
 //		JavascriptExecutor jse = (JavascriptExecutor)driver;
 //		text = driver.findElement(CONTACT_US_LINK).getText();
 //		if(!text.contains("Contact & FAQ"))
-//			throw new Exception("Contact Us link text is changed");	
+//			throw new Exception("Contact Us link text is changed");
 //		jse.executeScript("arguments[0].click();", driver.findElement(CONTACT_US_LINK));
 //		Thread.sleep(5000);
 		if(driver.getCurrentUrl().contains("help.tommyjohn.com/hc/en-us")) 

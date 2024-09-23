@@ -1031,17 +1031,17 @@ public class FooterSectionComponents extends FooterSectionLocators {
 
 		element = driver.findElement(TWITTER_ICON);
 //		hrefLink = driver.findElement(TWITTER_LINK).getAttribute("href");
-
+//
 		objGeneralMethods.clickButtonByJS(driver, element);
-
+//
 		Thread.sleep(1000);
-
-//		list = driver.findElements(LEAVE_SITE_POPUP);
 //
-//		Assert.assertTrue(list.size() > 0, "Leave Site Popup has not appeared");
+////		list = driver.findElements(LEAVE_SITE_POPUP);
+////
+////		Assert.assertTrue(list.size() > 0, "Leave Site Popup has not appeared");
+////
+////		objGeneralMethods.clickButtonByJS(driver, LEAVE_SITE_POPUP_CANCEL_BTN);
 //
-//		objGeneralMethods.clickButtonByJS(driver, LEAVE_SITE_POPUP_CANCEL_BTN);
-
 		wait.until(ExpectedConditions.numberOfWindowsToBe(2));
 
 		Set<String> windowHandles1 = driver.getWindowHandles();
@@ -1054,6 +1054,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 			}
 		}
 
+		Thread.sleep(3000);
 		softassert.assertTrue(driver.getCurrentUrl().contains("https://x.com/TommyJohn"),
 				"Twitter Link is not Correct");
 		driver.close();

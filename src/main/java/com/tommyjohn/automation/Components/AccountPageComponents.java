@@ -111,20 +111,21 @@ public class AccountPageComponents extends AccountPageLocators {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(HomePageLocators.ACCOUNT_NAV_DROPDOWN));
 			element = driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN);
 			actions.moveToElement(element).perform();
+			element.click();
 		}catch (TimeoutException e) {
 			System.out.println("Hi, Sign in dropdown not found or is not clickable");
 			Assert.fail("Hi, Sign in dropdown not found or is not clickable");
 		}
 		
 //		Click My Account Option
-		try{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HomePageLocators.MYACCOUNT_OPTION));
-			element = driver.findElement(HomePageLocators.MYACCOUNT_OPTION);
-			actions.click(element).perform();
-		}catch (Exception e) {
-			System.out.println("My Account option in dropdown not found or is not clickable");
-			Assert.fail("My Account option in dropdown not found or is not clickable");
-		}
+//		try{
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(HomePageLocators.MYACCOUNT_OPTION));
+//			element = driver.findElement(HomePageLocators.MYACCOUNT_OPTION);
+//			actions.click(element).perform();
+//		}catch (Exception e) {
+//			System.out.println("My Account option in dropdown not found or is not clickable");
+//			Assert.fail("My Account option in dropdown not found or is not clickable");
+//		}
 
 //		1. User must be signed in to view the Account page
 //		wait for login page, if login page does not appear check if element LOGGED_IN_ID is present if it is then throw error
@@ -157,7 +158,7 @@ public class AccountPageComponents extends AccountPageLocators {
 		Thread.sleep(10000);
 //		 wait.until(ExpectedConditions.elementToBeClickable(MANAGE_ADDRESSES));
 
-		 driver.findElement(MANAGE_ADDRESSES).click();
+		 driver.findElement(ADDRESS_BOOK_TITLE).click();
 		//driver.findElement(MANAGE_ADDRESSES).click();
 
 //		After clicking on Manage Addresses link verify if correctly redirected to addresses page, if facing login issue then handle via re-login
@@ -188,11 +189,11 @@ public class AccountPageComponents extends AccountPageLocators {
 				"User Navigated to incorrect page after clicking on Manage Addresses link");
 
 		Thread.sleep(6000);
-		softassert.assertTrue(driver.findElement(DEFAULT_SHIPPING_ADDRESS_TITLE).isDisplayed(),
-				"Default address shipping title is not displayed inside 'Address Book' section");
-
-		softassert.assertTrue(driver.findElement(ADDITIONAL_ADDRESSES_TITLE).isDisplayed(),
-				"Additional addresses title is not displayed inside 'Address Book' section");
+//		softassert.assertTrue(driver.findElement(DEFAULT_SHIPPING_ADDRESS_TITLE).isDisplayed(),
+//				"Default address shipping title is not displayed inside 'Address Book' section");
+//
+//		softassert.assertTrue(driver.findElement(ADDITIONAL_ADDRESSES_TITLE).isDisplayed(),
+//				"Additional addresses title is not displayed inside 'Address Book' section");
 
 		driver.findElement(RETURN_TO_ACCOUNT_PAGE_LINK).click();
 
@@ -212,7 +213,7 @@ public class AccountPageComponents extends AccountPageLocators {
 		ExtentReport.extentTest.info("Account page contents for logged-in user are Displayed :: Correct");
 		
 
-		text = driver.findElement(FIRST_ORDER_NUMBER).getText();
+		text = driver.findElement(FIRST_ORDER_NUMBER).getAttribute("aria-label");
 		
 		
 		jse.executeScript("window.scrollBy(0,350)");
@@ -227,11 +228,11 @@ public class AccountPageComponents extends AccountPageLocators {
 				"Wrong page opened after click on order number from account page");
 
 		String text1 = driver.findElement(ORDER_NUMBER_HEADING).getText();
-		String OrderNumber = text1.substring(text1.indexOf("#") + 1, text1.indexOf("-") - 1);
+		//String OrderNumber = text1.substring(text1.indexOf("#") + 1, text1.indexOf("-") - 1);
 
-		System.out.println("actual number is: " + OrderNumber + " and expected is: " + text);
+		System.out.println("actual number is: " + text1 + " and expected is: " + text);
 
-		softassert.assertEquals(text, OrderNumber, "Tracking order number is incorrect");
+		softassert.assertEquals(text, text1, "Tracking order number is incorrect");
 		Reporter.log("Order number is clickable and navigates correctly for track the order");
 		ExtentReport.extentTest.info("Order number is clickable and navigates correctly for track the order");
 

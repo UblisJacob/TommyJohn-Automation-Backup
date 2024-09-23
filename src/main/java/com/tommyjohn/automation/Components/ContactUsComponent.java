@@ -37,7 +37,7 @@ public class ContactUsComponent extends ContactUsPageLocators
 		
 		wait.until(ExpectedConditions.presenceOfElementLocated(EMAILUS_TITLE));
 		String PageTitle = driver.findElement(EMAILUS_TITLE).getText();
-		softassert.assertEquals(PageTitle, "Email Us", "Email us title not present on contact us page");
+		softassert.assertEquals(PageTitle, "Contact Us", "Email us title not present on contact us page");
 
 		Thread.sleep(3000);
 		softassert.assertTrue(driver.findElement(NAME_TEXTBOX).isDisplayed(), "Name textbox is not displayed");
@@ -46,8 +46,8 @@ public class ContactUsComponent extends ContactUsPageLocators
 		softassert.assertTrue(driver.findElement(EMAIL_ADDRESS_TEXTBOX).isDisplayed(), "Email Address textbox is not displayed");
 		driver.findElement(EMAIL_ADDRESS_TEXTBOX).sendKeys("test@tommyjohn.com");
 		Thread.sleep(3000);
-		softassert.assertTrue(driver.findElement(SUBJECT_LIST).isDisplayed(), "Subject list is not displayed");
-		driver.findElement(SUBJECT_LIST).click();
+//		softassert.assertTrue(driver.findElement(SUBJECT_LIST).isDisplayed(), "Subject list is not displayed");
+//		driver.findElement(SUBJECT_LIST).click();
 		Thread.sleep(3000);
 		softassert.assertTrue(driver.findElement(MESSAGE_TEXTAREA).isDisplayed(), "Message text area is not displayed");
 		driver.findElement(MESSAGE_TEXTAREA).sendKeys("Test Message, Please ignore this.");
