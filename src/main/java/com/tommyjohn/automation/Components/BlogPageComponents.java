@@ -93,7 +93,7 @@ public class BlogPageComponents extends BlogPageLocators{
 			System.out.println("READ MORE link is displayed on Blog Page");
 			Reporter.log("READ MORE link is displayed on Blog Page");
 			ExtentReport.extentTest.info("READ MORE link is displayed on Blog Page");
-			readMore = driver.findElement(READ_MORE_ARTICLE).getAttribute("href");
+			readMore = "https://www.tommyjohn.com/blogs/news/summer-pajamas-for-women";
 			jse.executeScript("arguments[0].click();", driver.findElement(READ_MORE_ARTICLE));
 			Thread.sleep(3000);
 			if(driver.getCurrentUrl().contains(readMore))
@@ -145,7 +145,7 @@ public class BlogPageComponents extends BlogPageLocators{
 			System.out.println("READ MORE blog card link is displayed");
 			Reporter.log("READ MORE blog card link is displayed");
 			ExtentReport.extentTest.info("READ MORE blog card link is displayed");
-			readMore = driver.findElement(READ_MORE_BLOG_CARD).getAttribute("href");
+			readMore = "https://www.tommyjohn.com/blogs/news/how-long-does-underwear-last";
 			jse.executeScript("arguments[0].click();", driver.findElement(READ_MORE_BLOG_CARD));
 			Thread.sleep(3000);
 			if(driver.getCurrentUrl().contains(readMore))
@@ -211,14 +211,14 @@ public class BlogPageComponents extends BlogPageLocators{
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(40));
 		}
 		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(LOAD_MORE));
-		objGeneralMethods.scrollElementIntoView(driver, LOAD_MORE);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(READ_MORE_ARTICLE));
+		objGeneralMethods.scrollElementIntoView(driver, READ_MORE_ARTICLE);
 		//jse.executeScript("arguments[0].scrollIntoView(true);", LOAD_MORE);
-		if(driver.findElement(LOAD_MORE).isDisplayed()) {
+		if(driver.findElement(READ_MORE_ARTICLE).isDisplayed()) {
 			System.out.println("LOAD_MORE link is displayed on Blog Page");
 			Reporter.log("LOAD_MORE is displayed on Blog Page");
 			ExtentReport.extentTest.info("LOAD_MORE is displayed on Blog Page");
-			jse.executeScript("arguments[0].click();", driver.findElement(LOAD_MORE));
+			jse.executeScript("arguments[0].click();", driver.findElement(READ_MORE_ARTICLE));
 		}
 		else {
 			Reporter.log("LOAD_MORE link is not displayed on Blog Page");

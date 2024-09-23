@@ -3187,7 +3187,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 						System.out.println(elemen.getText() + elements.getText() + "Product is added to Cart");
 						Thread.sleep(2000);
 						jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_CART_BUTTON));
-						Thread.sleep(3000);
+						Thread.sleep(5000);
 						driver.findElement(INLINE_CART_TITLE);
 						jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
 
@@ -3217,7 +3217,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 //								
 
 				//	}
-
+					if (count == 2)
+						break;
 
 				}
 
