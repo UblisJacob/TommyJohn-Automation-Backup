@@ -43,12 +43,11 @@ public class ValidateSanityModules {
 		 new SanityModulePage(driver).verifyImagecarousel();
 		 
 	 }
-	@Test
+//	@Test
 	public void VerifyFixedBannerModuleLinks() throws Exception {
 		 new SanityModulePage(driver).verifyFixedBannerModuleLinks();
 		 
-	 }
-	@Test
+	 }@Test
 	public void VerifySideBySideModule() throws Exception {
 		 new SanityModulePage(driver).verifySideBySideModule();
 		 

@@ -9,29 +9,29 @@ public class AccountPageLocators
 //	ACCOUNT PAGE
 	//public static By ACCOUNT_PAGE_HEADING =By.cssSelector("h1[data-tj-qa='account'], .header-account-item-container");
 
-	public static By ACCOUNT_PAGE_HEADING =By.cssSelector("h1[data-tj-qa='account-icon'], .header-account-item-container");
+	public static By ACCOUNT_PAGE_HEADING =By.xpath("//h1[@class='m-0']");
 	public static By ACCOUNT_LOGGED_IN_ICON =By.id("Icon_Account_Login_#2B2B2B");
 	public static By ACCOUNT_PAGE_HEADING_LOGIN =By.cssSelector(".account-logged-in-header>h1[data-tj-qa='account-login-title'] , .customer-login-form-validate>h2[data-tj-qa='account-login-title']");
 	public static By SIGN_OUT_LINK = By.cssSelector(".header-nav-dropdown > ul >li:nth-child(5) > a");
-	public static By LOGIN_INFORMATION_TITLE = By.cssSelector("div[data-tj-qa='account-login-info'] h2");
+	public static By LOGIN_INFORMATION_TITLE = By.xpath("//h1[@class='m-0']");
 //	public static By LOGGED_IN_ID = By.cssSelector(".account-logged-content>div:nth-child(1)>div>div>.account-row-column>p");
-	public static By LOGGED_IN_ID = By.xpath("//div[@data-tj-qa='account-login-info']//p");
-	public static By ADDRESS_BOOK_TITLE= By.cssSelector(".account-logged-content>div:nth-child(2)>h2, div[data-tj-qa='address-book-title']>h2");
+	public static By LOGGED_IN_ID = By.xpath("(//h2[@class='mt-0']//following::p)[1]");
+	public static By ADDRESS_BOOK_TITLE= By.xpath("//a[contains(text(),'View Addresses')]");
 	public static By DEFAULT_SHIPPING_ADDRESS_TITLE= By.xpath("//h2[@data-tj-qa='default-address']");
 //	.account-logged-content>div:nth-child(2)>div>div>.account-default-shipping-address
 	public static By ADDRESS_CONTENT = By.cssSelector(".account-logged-content>div:nth-child(2)>div>div>p, div[data-tj-qa='address-body']>p");
 //	public static By ORDER_HISTORY_TITLE= By.cssSelector(".account-logged-content>div:nth-child(3)>h2");
-	public static By ORDER_HISTORY_TITLE= By.cssSelector("h2[data-tj-qa='order-history-title']");
+	public static By ORDER_HISTORY_TITLE= By.xpath("(//h2[@class='mt-0'])[2]");
 //	public static By ORDER_HISTORY_TABLE_TITLE_HEADING = By.cssSelector(".account-logged-content>div:nth-child(3)>.account-orders-table>table>thead>tr>th");
-	public static By ORDER_HISTORY_TABLE_TITLE_HEADING = By.cssSelector("div[data-tj-qa='account-orders-table'] th");
+	public static By ORDER_HISTORY_TABLE_TITLE_HEADING = By.xpath("//div[@class='not-prose grid gap-lg xs:grid-cols-2 lg:grid-cols-3']//a");
 //	public static By FIRST_ORDER_NUMBER= By.cssSelector(".account-logged-content>div:nth-child(3)>.account-orders-table>table>tbody>tr:nth-child(1)>td:nth-child(1)>a");
-	public static By FIRST_ORDER_NUMBER= By.cssSelector("div[data-tj-qa='account-orders-table'] tbody>tr:nth-child(1)>td:nth-child(1)");
+	public static By FIRST_ORDER_NUMBER= By.xpath("(//div[@class='not-prose grid gap-lg xs:grid-cols-2 lg:grid-cols-3']//a)[1]");
 	public static By ACCOUNT_CREATE_SUCCESS_MSG = By.cssSelector(".new-customer.account-create-success");
 	public static By MANAGE_ADDRESSES = By.xpath("//a[@class='edit-link']");
-		public static By MANAGE_ADDRESS_BOOK_HEADING = By.xpath("//h1[@data-tj-qa='address-book-heading']");
+		public static By MANAGE_ADDRESS_BOOK_HEADING = By.xpath("//h1[@class='m-0']");
 	public static By ADDITIONAL_ADDRESSES_TITLE = By.cssSelector("h2[data-tj-qa='additional addresses-title']");
-	public static By RETURN_TO_ACCOUNT_PAGE_LINK = By.cssSelector("a[data-tj-qa='return-link']");
-	public static By ORDER_NUMBER_HEADING = By.cssSelector("h1[data-tj-qa='account-order-history-order-number']");
+	public static By RETURN_TO_ACCOUNT_PAGE_LINK = By.xpath("//span[@class='icon icon-arrow-left']");
+	public static By ORDER_NUMBER_HEADING = By.xpath("//h1[@class='mb-0']");
 	public static By ORDER_DETAIL = By.cssSelector("td[data-tj-qa='account-orders-details']");
 	public static By DEFAULT_ADDRESS = By.cssSelector("div[data-tj-qa='default-address-text']");
 	public static By ADDITIONAL_ADDRESSES_INFO = By.cssSelector("div[data-tj-qa='additional addresses-info']");

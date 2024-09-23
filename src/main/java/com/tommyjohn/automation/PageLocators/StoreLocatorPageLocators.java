@@ -5,11 +5,11 @@ import org.openqa.selenium.By;
 public class StoreLocatorPageLocators
 {
 	//Store Locator layout
-		public static By OURSTORES_HEADING = By.cssSelector("[data-tj-qa='store-header-title'],.stores__intro-header");
-		public static By STORES_INTRO_CONTENT = By.cssSelector("[data-tj-qa='store-header-subtitle'],.stores__intro-content");
-		public static By STORES_INDIVIDUAL_TITLE = By.cssSelector("[data-tj-qa='store-address-1']>h1,.stores__individual-title");
-		public static By STORES_INDIVIDUAL_CONTENT = By.cssSelector("[data-tj-qa='store-address-1']>h2,.stores__individual-content");
-		public static By STORE_GET_DIRECTION_LINK = By.cssSelector("[data-tj-qa='store-address-1']>div>a,.storeDirection");
+		public static By OURSTORES_HEADING = By.xpath("//h2[@class='text-display-sm text-accent leading-none']");
+		public static By STORES_INTRO_CONTENT = By.xpath("(//h2[@class='text-display-sm text-accent leading-none']//following::p)[1]");
+		public static By STORES_INDIVIDUAL_TITLE = By.xpath("//div[@class='mt-sm']//h2");
+		public static By STORES_INDIVIDUAL_CONTENT = By.xpath("//div[@class='mt-sm']//p");
+		public static By STORE_GET_DIRECTION_LINK = By.xpath("(//div[@id='scasl-direction']//a)[1]");
 		public static By FIND_A_RETAILER_TITLE = By.cssSelector("[data-tj-qa='find-store'],.bh-sl-heading");
 		public static By USER_LOCATION_INPUT = By.cssSelector("[data-tj-qa='address-input'],.user-location-input");
 		public static By FIND_A_STORE_BUTTON =By.cssSelector(".form-input>div>button:nth-child(3)");

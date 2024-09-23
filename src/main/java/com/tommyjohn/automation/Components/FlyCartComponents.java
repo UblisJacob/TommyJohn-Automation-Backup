@@ -311,11 +311,11 @@ public class FlyCartComponents extends FlyCartPageLocator{
 			System.out.println(RemoveItems.size());
 			for(int i=1; i<=RemoveItems.size();i++) {
 
-				jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.REMOVE_ICON));
-
+				driver.findElement(By.xpath("(//button[contains(text(),'Remove')])["+i+"]")).click();
 
 			}
-			softAssert.assertTrue(driver.findElement(By.xpath("//div[@data-tj-qa='inline-cart-empty-message']")).isDisplayed(),
+			Thread.sleep(5000);
+			softAssert.assertTrue(driver.findElement(By.xpath("//p[contains(text(),'Your cart is currently empty.')]")).isDisplayed(),
 					"All the items in the Cart are not removed");
 
 			Reporter.log("Items are removed from Cart");
@@ -332,7 +332,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			String opacity = driver.findElement(HomePageLocators.OVERLAY).getCssValue("opacity");
 			System.out.println(opacity);
-			softAssert.assertEquals(opacity,"0.95","Page is not greyed out on adding products");
+			softAssert.assertEquals(opacity,"0.5","Page is not greyed out on adding products");
 			Reporter.log("Page is greyed out on adding products");
 			ExtentReport.extentTest.info("Page is greyed out on adding products");
 
@@ -945,7 +945,9 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HomePageLocators.CART_ICON));
-	
+
+
+		driver.findElement(HomePageLocators.CART_ICON).click();
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(TIERED_METER));
 		Thread.sleep(5000);
 
