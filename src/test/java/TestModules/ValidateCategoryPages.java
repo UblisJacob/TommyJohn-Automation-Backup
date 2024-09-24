@@ -61,7 +61,7 @@ public class ValidateCategoryPages {
 	 
 
 	
-//	 @Test
+	 @Test
 	 public void ValidateViewOnImageAndSecondaryBadging() throws Exception { new
 	 CollectionPage(driver).validateOnImageAndSecondaryBadging(); }
 	 

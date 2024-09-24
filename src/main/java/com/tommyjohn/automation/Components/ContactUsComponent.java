@@ -215,7 +215,7 @@ public class ContactUsComponent extends ContactUsPageLocators
 	{
 		
 		
-		Thread.sleep(3000);
+		Thread.sleep(10000);
 		
 		softassert.assertTrue(driver.findElement(HELP_PAGETITLE).isDisplayed(), "Help Center page title is not displayed.");
 		softassert.assertEquals(driver.findElement(HELP_PAGETITLE).getText(), properties.getProperty("PageTitle"),"Text changed for Help Center page title.");
