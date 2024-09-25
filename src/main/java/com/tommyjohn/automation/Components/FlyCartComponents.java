@@ -307,12 +307,13 @@ public class FlyCartComponents extends FlyCartPageLocator{
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(50));
             new AddToCartComponents(driver).addToCart();
 			jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
-			RemoveItems = driver.findElements(HomePageLocators.REMOVE_ICON);
+			RemoveItems = driver.findElements(By.xpath("//button[@class='button-link mt-4 text-body-xs text-text-tertiary' and contains(text(),'Remove')]"));
 			System.out.println(RemoveItems.size());
-			for(int i=1; i<=RemoveItems.size();i++) {
+			for(int i=1; i<=RemoveItems.size(); i++) {
 
-				driver.findElement(By.xpath("(//button[contains(text(),'Remove')])["+i+"]")).click();
-
+				Thread.sleep(5000);
+				jse.executeScript("arguments[0].click();",driver.findElement(By.xpath("(//button[@class='button-link mt-4 text-body-xs text-text-tertiary' and contains(text(),'Remove')])[1]")));
+				System.out.println(i);
 			}
 			Thread.sleep(5000);
 			softAssert.assertTrue(driver.findElement(By.xpath("//p[contains(text(),'Your cart is currently empty.')]")).isDisplayed(),
