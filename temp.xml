@@ -13,7 +13,7 @@
         <classes>
             <class name="TestModules.ValidateContactUsPage">
                 <methods>
-                    <include name=""/>
+                    <include name="ValidateRemovingItemsFromInlineCart"/>
                 </methods>
             </class>
         </classes>
