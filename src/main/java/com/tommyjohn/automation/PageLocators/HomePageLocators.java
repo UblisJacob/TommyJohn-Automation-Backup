@@ -281,7 +281,7 @@ public class HomePageLocators{
 	//	public static By CART_ICON = By.cssSelector("i.icon-shopping-cart");
 
 	public static By CART_ICON = By.xpath("//span[@class='icon block icon-cart']");
-	public static By REMOVE_ICON = By.xpath("//button[contains(text(),'Remove')]");
+	public static By REMOVE_ICON = By.xpath("//button[@class='button-link mt-4 text-body-xs text-text-tertiary' and contains(text(),'Remove')]");
 	public static By OVERLAY = By.xpath("//div[@id='swell-overlay']");
 
 	public static By CART_HEADING_TEXT = By.cssSelector(".inline-cart__col1 > h3");
