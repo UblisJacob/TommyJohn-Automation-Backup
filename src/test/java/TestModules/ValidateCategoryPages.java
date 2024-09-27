@@ -32,7 +32,7 @@ public class ValidateCategoryPages {
 	 CollectionPage(driver).validateproductgrid(); }
 	 
 	 
-	// @Test
+	 @Test
 	 public void ValidateInteractWithBreadcrumbs() throws Exception { new
 	 CollectionPage(driver).validateBreadcrumbLinks(); }
 	
@@ -149,9 +149,6 @@ public class ValidateCategoryPages {
 	public void ValidateOnClickingTheInLineBanner() throws Exception {
 		new CollectionPage(driver).ValidateOnClickingTheInLineBanner();
 	}
-	
-	
-	
 
 	@AfterMethod(alwaysRun = true)
 	void teardown() {
