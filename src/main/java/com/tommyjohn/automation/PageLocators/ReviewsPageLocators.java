@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 public class ReviewsPageLocators {
 	public static By PAGE_TITLE = By.xpath("//h1[contains(text(),'Tommy John Reviews')]");
 	
-	public static By PAGE_TITLE_SUBTEXT = By.xpath("(//div[@id='shopify-section-template--16940781830189__main']//p)[1]");
+	public static By PAGE_TITLE_SUBTEXT = By.xpath("(//div[@id='shopify-section-template--17096995569709__main']//p)[1]");
 	public static By TOTAL_STAR_RATINGS = By.xpath("//span[@class='yotpo-stars']");
 	public static By TOTAL_REVIEWS = By.xpath("//a[@class='text-m']");
 	public static By CX_REVIEWS = By.xpath("//span[@class='y-label yotpo-user-name yotpo-font-bold pull-left']");
