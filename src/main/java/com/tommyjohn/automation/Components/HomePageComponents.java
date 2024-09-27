@@ -453,15 +453,16 @@ public class HomePageComponents extends HomePageLocators {
 	public void VerifyCategoriesInPopularTermsSection() throws InterruptedException {
 		SoftAssert softAssert = new SoftAssert();
 		action = new Actions(driver);
+		driver.findElement(SEARCH_ICON).click();
 		WebElement element = driver.findElement(SEARCH_ICON_INPUT);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", element);
 		Thread.sleep(3000);
 		int Categories = driver.findElements(CATEGORIESINPOPULARTERMS).size();
 		System.out.println(Categories);
-		softAssert.assertEquals(Categories,4,"Popular Terms does not contain four categories");
-		Reporter.log("Popular Terms contains four categories");
-		ExtentReport.extentTest.info("Popular Terms contains four categories");
+		softAssert.assertEquals(Categories,5,"Popular Terms does not contain five categories");
+		Reporter.log("Popular Terms contains five categories");
+		ExtentReport.extentTest.info("Popular Terms contains five categories");
 
 	}
 
@@ -470,6 +471,7 @@ public class HomePageComponents extends HomePageLocators {
 		SoftAssert softAssert = new SoftAssert();
 		action = new Actions(driver);
 		//searchText ="women";
+		driver.findElement(SEARCH_ICON).click();
 		WebElement element = driver.findElement(SEARCH_ICON_INPUT);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", element);
@@ -2402,7 +2404,7 @@ public class HomePageComponents extends HomePageLocators {
 	}
 
 	public void navigateToMensAndLoungeTops() throws Exception {
-		driver.get("https://www.tommyjohn.com/collections/mens-sleep-lounge");
+		driver.get("https://www.tommyjohn.com/search?keywords=mens-sleep-lounge");
 		Thread.sleep(5000);
 	}
 

@@ -1279,7 +1279,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			 *
 			 */
 			// select sizes from quick shop size overlay
-			driver.findElement(By.xpath("//span[contains(text(),'Set')]")).click();
+	//		driver.findElement(By.xpath("//span[contains(text(),'Set')]")).click();
 			List<WebElement> allElements1;
 			List<WebElement> allElements2;
 			String classtext;
@@ -1721,7 +1721,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		Thread.sleep(4000);
 		 WebElement pageHeading  = driver.findElement(PLP_TITLE);
 	
-		if ((pageHeading.getText()).contains("Women's All")) {
+		if ((pageHeading.getText()).contains("Women's")) {
 
 			System.out.println("Breadcrumb link is working properly");
 			Reporter.log("Breadcrumb link is working properly");

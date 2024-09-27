@@ -59,8 +59,8 @@ public class HomePageLocators{
 
 	public static By EXPLORE_LEVEL_ONE_LINKS = By.cssSelector("li[arial-label='open Explore menu'] ul[class='nav-item__list level-one-list alternate']>li[class='level-one-container alternate image-column']");
 
-	public static By MEN_CATEGORY = By.xpath("(//a[contains(text(),'Men')])[1]");
-	public static By WOMEN_CATEGORY = By.xpath("(//a[contains(text(),'Women')])[1]");
+	public static By MEN_CATEGORY = By.xpath("(//a[contains(text(),'Men')])[2]");
+	public static By WOMEN_CATEGORY = By.xpath("(//a[contains(text(),'Women')])[2]");
 	public static By FINAL_SALE = By.cssSelector(".level-zero-list>.level-zero-container:nth-child(3)> .level-zero-item >a");
 
 	public static By IM_NEW_HERE = By.cssSelector(".level-zero-list>.level-zero-container:nth-child(3)> .level-zero-item >a");
@@ -224,9 +224,9 @@ public class HomePageLocators{
 	public static By SEARCH_ICON_INPUT = By.xpath("//input[@id='PredictiveSearch-Query']");
 	public static By SEARCH_ICON_FORM_TAG = By.cssSelector(".header-search-form");
 	public static By POPULARCATEGORIES = By.xpath("//div[@class='desktop-search-product-tile-title']");
-	public static By CATEGORIESINSEARCHDROPDOWN = By.xpath("//div[@class='search-product-image popular-product']");
-	public static By POPULARTERMS = By.xpath("//span[@class='recent-searches-title']");
-	public static By CATEGORIESINPOPULARTERMS = By.xpath("//div[@class='autocomplete-suggestions-recent-search popular-terms']//a");
+	public static By CATEGORIESINSEARCHDROPDOWN = By.xpath("//div[@id='PredictiveSearch-Results']");
+	public static By POPULARTERMS = By.xpath("//div[@id='PredictiveSearch-Results']");
+	public static By CATEGORIESINPOPULARTERMS = By.xpath("//ul[@class='space-y-1']/li");
 
 	public static By POPULAR_SEARCHES = By.cssSelector("[data-tj-qa='search-suggestion'],.autocomplete-suggestions-content");
 	public static By PRODUCT_MATCHES_TITLE = By.xpath("(//a[@class='flex flex-col gap-sm text-sm hover:underline'])[1]");

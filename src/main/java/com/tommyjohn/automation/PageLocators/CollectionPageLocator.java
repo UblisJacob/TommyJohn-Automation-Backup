@@ -89,9 +89,9 @@ public class CollectionPageLocator {
 	    
 	    //new
 	    public static String PLP_PRODUCTS= "//div[@class='relative aspect-tile']";
-	    public static By PLP_BREADCRUMBGENDER= By.cssSelector("nav.breadcrumbs>div:nth-child(2)>a>span");
-	    public static By PLP_BREADCRUMBHOME= By.cssSelector("nav.breadcrumbs>div:nth-child(1)>a>span");
-	    public static By PLP_TITLE= By.xpath("//div[@class='shopify-section']//h1");
+	    public static By PLP_BREADCRUMBGENDER= By.xpath("//span[contains(text(),'Womens')]");
+	    public static By PLP_BREADCRUMBHOME= By.xpath("//span[contains(text(),'Home')]");
+	    public static By PLP_TITLE= By.xpath("(//div[@class='shopify-section']//h1//span)[1]");
 	    public static By PLP_TITLE_COUNT= By.xpath("//vue-app[@data-vue='CollectionCount']//span");
 	    public static By PLP_INLINE_BANNER= By.cssSelector("img[data-tj-qa='plp-inline-banner']");
 	    public static String PLP_SECTION_HEADER = "//p[@class='mb-md font-serif text-body-lg text-text-accent']";

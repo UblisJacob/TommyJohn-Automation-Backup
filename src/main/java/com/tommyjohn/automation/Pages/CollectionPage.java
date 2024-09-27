@@ -484,9 +484,6 @@ public class CollectionPage extends CollectionPageComponent{
       public void validateQuickshopFunctionalityOnSearchPLP() throws Exception {
                 // TODO Auto-generated method stub
     	  QuickShopOnMegaCollection();
-    	  
-                
-               
         }
      
      public void validateSingleTileProductSearch() throws Exception {
