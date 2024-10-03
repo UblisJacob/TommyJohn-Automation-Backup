@@ -24,7 +24,7 @@ public class ValidateStoreLocator {
 	}
 	
 	@Test
-	public void VerifyStoreLocatorLayout() throws Exception {
+		public void VerifyStoreLocatorLayout() throws Exception {
 
 		new StoreLocatorPage(driver).verifyStoreLocatorLayout();
 	}
