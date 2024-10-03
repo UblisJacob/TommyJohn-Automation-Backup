@@ -24,7 +24,7 @@ public class ContactUsPage  {
 	public void HelpFieldValidation_page() throws Exception
 	{
 		new HomePageComponents(driver).navigateToHelpPage();
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		new ContactUsComponent(driver).HelpUsPageValidation();
 		Thread.sleep(3000);
 	}

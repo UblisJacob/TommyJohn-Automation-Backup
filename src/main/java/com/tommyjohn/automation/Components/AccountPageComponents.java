@@ -69,8 +69,8 @@ public class AccountPageComponents extends AccountPageLocators {
 
 	public void navigateTo_AccountPage(String email, String password) throws Exception {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(NavigationElementComponents.ACCOUNT_NAV_DROPDOWN));
-		driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN).click();
-		driver.navigate().to("https://www.tommyjohn.com/account/login");
+	//	driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN).click();
+		driver.get("https://www.tommyjohn.com/account/login");
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(AccountLoginLocators.LOGIN_HEADING));
 		
@@ -79,7 +79,7 @@ public class AccountPageComponents extends AccountPageLocators {
 		driver.findElement(AccountLoginLocators.CUSTOMER_PASSWORD_INPUTBOX).sendKeys(password);
 		driver.findElement(AccountLoginLocators.LOGIN_BUTTON).click();
 
-		Thread.sleep(5000);
+		Thread.sleep(10000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ACCOUNT_PAGE_HEADING));
 
 		String loggedInID = driver.findElement(LOGGED_IN_ID).getText();
@@ -141,10 +141,11 @@ public class AccountPageComponents extends AccountPageLocators {
 		
 //		Go back to homepage
 		driver.navigate().to("https://www.tommyjohn.com");
-		Thread.sleep(4000);
+
 		
 //		Positive Validation
 		navigateTo_AccountPage(email, password);
+		Thread.sleep(4000);
 
 		softassert.assertTrue(driver.findElement(LOGIN_INFORMATION_TITLE).isDisplayed(),
 				"Login Information title is not displayed on account page");
@@ -158,7 +159,9 @@ public class AccountPageComponents extends AccountPageLocators {
 		Thread.sleep(10000);
 //		 wait.until(ExpectedConditions.elementToBeClickable(MANAGE_ADDRESSES));
 
-		 driver.findElement(ADDRESS_BOOK_TITLE).click();
+	//	jse.executeScript("arguments[0].click();", driver.findElement(ADDRESS_BOOK_TITLE));
+		String Address = driver.findElement(ADDRESS_BOOK_TITLE).getAttribute("href");
+		driver.get(Address);
 		//driver.findElement(MANAGE_ADDRESSES).click();
 
 //		After clicking on Manage Addresses link verify if correctly redirected to addresses page, if facing login issue then handle via re-login

@@ -13,7 +13,7 @@
         <classes>
             <class name="TestModules.ValidateSearchPages">
                 <methods>
-                    <include name="VerifyCategoriesInPopularTermsSection"/>
+                    <include name="VerifySearchSearchFieldInNavigation"/>
                 </methods>
             </class>
         </classes>

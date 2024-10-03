@@ -59,8 +59,8 @@ public class HomePageLocators{
 
 	public static By EXPLORE_LEVEL_ONE_LINKS = By.cssSelector("li[arial-label='open Explore menu'] ul[class='nav-item__list level-one-list alternate']>li[class='level-one-container alternate image-column']");
 
-	public static By MEN_CATEGORY = By.xpath("(//a[contains(text(),'Men')])[2]");
-	public static By WOMEN_CATEGORY = By.xpath("(//a[contains(text(),'Women')])[2]");
+	public static By MEN_CATEGORY = By.xpath("(//a[contains(text(),'Men')])[1]");
+	public static By WOMEN_CATEGORY = By.xpath("(//a[contains(text(),'Women')])[1]");
 	public static By FINAL_SALE = By.cssSelector(".level-zero-list>.level-zero-container:nth-child(3)> .level-zero-item >a");
 
 	public static By IM_NEW_HERE = By.cssSelector(".level-zero-list>.level-zero-container:nth-child(3)> .level-zero-item >a");
@@ -228,8 +228,8 @@ public class HomePageLocators{
 	public static By POPULARTERMS = By.xpath("//div[@id='PredictiveSearch-Results']");
 	public static By CATEGORIESINPOPULARTERMS = By.xpath("//ul[@class='space-y-1']/li");
 
-	public static By POPULAR_SEARCHES = By.cssSelector("[data-tj-qa='search-suggestion'],.autocomplete-suggestions-content");
-	public static By PRODUCT_MATCHES_TITLE = By.xpath("(//a[@class='flex flex-col gap-sm text-sm hover:underline'])[1]");
+	public static By POPULAR_SEARCHES = By.xpath("//h2[@id='PredictiveSearch-QUERIES']");
+	public static By PRODUCT_MATCHES_TITLE = By.xpath("//h2[@id='PredictiveSearch-PRODUCTS']");
 	public static By PRODUCT_SUGGESTION = By.xpath("(//a[@class='text-sm hover:underline [&_mark]:bg-transparent [&_mark]:font-bold'])[1]");
 //	public static By SEARCHRESULT_KEYWORD = By.cssSelector(".nxt-ac-section-container > .nxt-ac-item");
 //	public static By SEARCHRESULT_PRODUCT = By.cssSelector(".nxt-ac-products-container > .nxt-ac-item");
@@ -237,26 +237,27 @@ public class HomePageLocators{
 	public static By SEARCHPAGE_TITLE = By.xpath("(//h1)[1]");
 	public static By NORESULTPAGETITLE = By.xpath("(//h1)[1]");
 	public static By SEARCHPAGE_DESC= By.cssSelector("[data-tj-qa='result-tip'],.collection-search-title-bar__description");
-	public static By SEARCHPAGE_ITEMCOUNT= By.cssSelector(".mega-collection-filters--controls__count");
+	public static By SEARCHPAGE_ITEMCOUNT= By.xpath(".mega-collection-filters--controls__count");
 	public static By SEARCHPAGE_FILTER= By.cssSelector(".collection-filter");
 	
 	public static By SEARCHPAGE_PRODUCTS = By.cssSelector(".product-item");
-	public static By SEARCHPAGE_PRODUCT_IMAGE = By.xpath("//span[@class=\"slick-slide slick-current slick-active\"]");
-	public static By SEARCHPAGE_PRODUCT_SWATCHES = By.cssSelector(".product-item__swatches");
-	public static By SEARCHPAGE_PRODUCT_NAME = By.cssSelector(".product-meta__title");
-	public static By SEARCHPAGE_PRODUCT_REVIEWS = By.cssSelector(".yotpo.bottomLine");
-	public static By SEARCHPAGE_PRODUCT_PRICE = By.cssSelector(".product-meta__price");
+	public static By SEARCHPAGE_PRODUCT_IMAGE = By.xpath("(//div[@class='relative aspect-tile'])[1]");
+	public static By SEARCHPAGE_PRODUCT_SWATCHES = By.xpath("(//div[@class='flex items-center'])[1]");
+	public static By SEARCHPAGE_PRODUCT_NAME = By.xpath("(//h2[@class='my-2xs text-body-md']//a)[1]");
+	public static By SEARCHPAGE_PRODUCT_REVIEWS = By.xpath("(//a[@aria-label='Read reviews'])[1]");
+	public static By SEARCHPAGE_PRODUCT_PRICE = By.xpath("(//span[@data-cy='priceFinal'])[1]");
 	public static By SEARCHPAGE_PRODUCT_BADGE = By.cssSelector(".product-item__badge");	
-	public static By RECENT_SEARCHES_TITLE = By.cssSelector("[data-tj-qa='search-recent-title'],.recent-searches-title>span");
-	public static By CLEAR_RECENT_SEARCHES = By.cssSelector("[data-tj-qa='search-clear-recent'],.search-value__clear>span");
+	public static By RECENT_SEARCHES_TITLE = By.xpath("//h2[@id='PredictiveSearch-QUERIES']");
+	public static By CLEAR_RECENT_SEARCHES = By.xpath("//button[@id='PredictiveSearch-ClearRecent']");
 	public static By RECENT_SEARCH_CONTAINER = By.cssSelector(".desktop-recent-search-container");
 	public static By SEARCHPAGE_ALL_FILTERS = By.cssSelector("div.mega-collection-filters > div > a");
 	public static By SEARCHPAGE_ALL_SELECTED_FILTER_OPTIONS = By.cssSelector("div.js-mega-collection-desktop-filter-tags >div> button");
 	public static By SEARCHPAGE_CLEAR_FILTER = By.cssSelector("div.mega-collection-filters--controls > a");
 	public static By SEARCHPAGE_LAST_FILTER = By.cssSelector(".mega-collection-filters > select");
-	public static By SUGGESTED_LINKS = By.cssSelector("div[data-tj-qa='search-recent-keyword']>span");
-	public static By SUGGESTED_PRODUCT_IMG = By.cssSelector("[data-tj-qa='search-product-match-image']>a>img,.search-product-image>a>img");
-	public static By AUTO_SUGGESTED_PRODUCT_TILE_TITLE = By.cssSelector(".autocomplete-suggestions-content>a:nth-child(1)>div>span");
+	public static By SUGGESTED_LINKS = By.xpath("//ul[@class='space-y-1']");
+	public static By SUGGESTED_PRODUCT_IMG = By.xpath("//a[@class='flex flex-col gap-sm text-sm hover:underline']");
+	public static By AUTO_SUGGESTED_PRODUCT_TILE_TITLE = By.xpath("(//li[@id='PredictiveSearch-Descendant-0']//a)[1]");
+	public static By AUTO_SUGGESTED_PRODUCT_IMG_TITLE = By.xpath("(//a[@class='flex flex-col gap-sm text-sm hover:underline']//span)[1]");
 	
 	public static By HELP_CENTER = By.cssSelector(".header-nav-dropdown > ul >li:nth-child(3) > a");
 	public static By CUSTOMER_SERVICE = By.cssSelector(".header-nav-dropdown > ul >li:nth-child(3) > a");
