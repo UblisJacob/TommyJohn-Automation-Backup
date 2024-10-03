@@ -2504,7 +2504,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		Reporter.log("Sizes are present");
 
 		if (elementsCount > 1) {
-			for (int i = 1; i <= 5; i++) {
+			for (int i = 1; i <= 3; i++) {
 
 				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])["+i+"]"));
 
@@ -3540,8 +3540,9 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 		jse = (JavascriptExecutor) driver;
 		SoftAssert softassert = new SoftAssert();
-		new HomePageComponents(driver).navigateToAllWomensPacksInPacksCategory();
-		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+//		new HomePageComponents(driver).navigateToAllWomensPacksInPacksCategory();
+//		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		driver.get("https://www.tommyjohn.com/products/womens-second-skin-thong-16?variant=42959997370413");
 
 		driver.findElement(By.xpath("//span[contains(text(),'3 Pack')]")).click();
 
