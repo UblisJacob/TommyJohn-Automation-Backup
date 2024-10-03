@@ -20,7 +20,7 @@ public class CollectionPageLocator {
 	public static By FIRST_PRODUCT = By.xpath("(//div[@class='relative aspect-tile'])[1]");
 	public static By COMPARE_PRODUCT = By.cssSelector(".product-image-container > div.has-compare");
 	public static By FIRST_PRODUCT_IMAGE = By.xpath("(//img[@class='aspect-tile bg-background-image object-cover text-[0] w-full'])[1]");
-	public static By HOVER_PRODUCT_IMAGE = By.cssSelector("[data-tj-qa='plp-product-img-main'],img[data-tj-qa='plp-product-img-hover']");
+	public static By HOVER_PRODUCT_IMAGE = By.xpath("(//img[@class='aspect-tile bg-background-image object-cover text-[0] w-full'])[1]");
 
 	//changed
 	public static String PRODUCT_IMAGES = "//div[contains(@class,'product-image')]//a";

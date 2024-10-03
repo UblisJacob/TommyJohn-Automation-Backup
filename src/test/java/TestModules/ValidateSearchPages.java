@@ -102,7 +102,7 @@ public class ValidateSearchPages {
 		new CollectionPage(driver).validateSingleTileProductSearch();
 	}
 	
-//	@Test
+	@Test
 	public void VerifySearchSearchFieldInNavigation() throws Exception {
 		new HomePage(driver).validateSearchFunctionality();
 	}
