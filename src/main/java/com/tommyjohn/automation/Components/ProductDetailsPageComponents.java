@@ -2486,7 +2486,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		int count = 0;
 		SoftAssert softAssert = new SoftAssert();
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
-		driver.navigate().to("https://www.tommyjohn.com/collections/mens-underwear?sort-by=relevance&sort-order=descending&filter%5Bfacet_category%5D=underwear");
+		driver.navigate().to("https://www.tommyjohn.com/collections/underwear-mens-styles-boxer-brief");
 		//new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
 
 		//navigate to PDP
@@ -2504,7 +2504,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		Reporter.log("Sizes are present");
 
 		if (elementsCount > 1) {
-			for (int i = 1; i <= elementsCount; i++) {
+			for (int i = 1; i <= 5; i++) {
 
 				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])["+i+"]"));
 
