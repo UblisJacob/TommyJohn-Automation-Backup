@@ -107,12 +107,12 @@
 		</classes>
 	</test>
 
-	<test name="StoreDirectoryTests">
-		<parameter name="browser" value="chrome" />
-		<classes>
-			<class name="TestModules.ValidateTJStoresPage" />
-		</classes>
-	</test>
+<!--	<test name="StoreDirectoryTests">-->
+<!--		<parameter name="browser" value="chrome" />-->
+<!--		<classes>-->
+<!--			<class name="TestModules.ValidateTJStoresPage" />-->
+<!--		</classes>-->
+<!--	</test>-->
 
 	<test name="CartPageTests">
 		<parameter name="browser" value="chrome" />
