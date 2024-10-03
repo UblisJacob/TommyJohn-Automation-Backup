@@ -707,13 +707,14 @@ public class BundlePDPComponent extends BundlePDPLocators{
 			String text = null;
 			new SoftAssert();
 			// call method to navigate to collection page
-			new HomePageComponents(driver).navigateToAllMensPacksInPacksCategory();
-			jse=(JavascriptExecutor)driver;
-			jse.executeScript("window.scrollBy(0,250)");
-			// call method to navigate product details page
-			text = new CollectionPageComponent(driver).navigateToProductDetailsPage();
+//			new HomePageComponents(driver).navigateToAllMensPacksInPacksCategory();
+//			jse=(JavascriptExecutor)driver;
+//			jse.executeScript("window.scrollBy(0,250)");
+//			// call method to navigate product details page
+//			text = new CollectionPageComponent(driver).navigateToProductDetailsPage();
 			// call method to check correct PDP opend or not
 		//	checkCorrectProductDetailsPageOpenedOrNot(text);
+			driver.get("https://www.tommyjohn.com/products/second-skin-mid-length-boxer-brief-6-6-pack?variant=43040515063853");
 			Thread.sleep(2000);
 
 

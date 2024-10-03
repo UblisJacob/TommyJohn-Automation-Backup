@@ -103,7 +103,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		System.out.println("***Validating Shop Men Footer***");
 
 		driver.navigate().back();
-		wait.until(ExpectedConditions.titleIs("Tommy John | No Adjustment Needed"));
+		wait.until(ExpectedConditions.titleIs("Tommy John | Great Days Start With Great Underwear"));
 
 		text = driver.findElement(SHOP_MEN).getText();
 		softassert.assertTrue(text.equals("Shop Men"), "Shop Men link text is changed");
@@ -158,7 +158,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		System.out.println("***Validating Sale Footer***");
 
 		driver.navigate().back();
-		wait.until(ExpectedConditions.titleIs("Tommy John | No Adjustment Needed"));
+		wait.until(ExpectedConditions.titleIs("Tommy John | Great Days Start With Great Underwear"));
 
 		text = driver.findElement(SALE).getText();
 		softassert.assertTrue(text.equals("Sale"), "Sale link text is changed");
@@ -186,7 +186,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		System.out.println("***Validating Gift Cards Footer***");
 
 		driver.navigate().back();
-		wait.until(ExpectedConditions.titleIs("Tommy John | No Adjustment Needed"));
+		wait.until(ExpectedConditions.titleIs("Tommy John | Great Days Start With Great Underwear"));
 
 		text = driver.findElement(GIFT_CARD_LINK).getText();
 		softassert.assertTrue(text.equals("Gift Cards"), "Gift Cards link text is changed");
@@ -264,7 +264,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		System.out.println("***Validating Military Discount Footer***");
 //		Go back to Homepage and wait for load
 		driver.navigate().back();
-		wait.until(ExpectedConditions.titleIs("Tommy John | No Adjustment Needed"));
+		wait.until(ExpectedConditions.titleIs("Tommy John | Great Days Start With Great Underwear"));
 
 		String originalWindow = driver.getWindowHandle();
 
@@ -523,7 +523,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		System.out.println("***Validating Order History Footer***");
 
 		driver.navigate().back();
-		wait.until(ExpectedConditions.titleIs("Tommy John | No Adjustment Needed"));
+		wait.until(ExpectedConditions.titleIs("Tommy John | Great Days Start With Great Underwear"));
 
 		linkText = driver.findElement(ORDER_HISTORY).getText();
 		System.out.println("Order History Link Text is : " + linkText);

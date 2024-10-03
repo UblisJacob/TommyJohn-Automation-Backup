@@ -28,7 +28,7 @@ public class ProductDetailsPageLocators {
 	//image badging
 //	public static By IMAGE_BADGING = By.cssSelector(".productImage-item__badge");
 
-	public static By IMAGE_BADGING = By.xpath("//span[contains(text(),'New Colors')]");
+	public static By IMAGE_BADGING = By.xpath("//span[contains(text(),'New Style')]");
 	
 	//Secondary Badging
 	public static By SECONDARY_BADGING = By.cssSelector("div.multi-pdp-title-wrap.desktop-view.desktop>span");
