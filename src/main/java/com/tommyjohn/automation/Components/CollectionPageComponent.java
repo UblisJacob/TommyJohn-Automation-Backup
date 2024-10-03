@@ -518,12 +518,13 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		jse.executeScript("window.scrollBy(0,250)");
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
+		softAssert.assertTrue(driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT).isDisplayed(),"Prosuct Headline text is not displayed");
 		// get product title and click on product heading text if present
 
-		text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
-		/*driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT).click();
-		Thread.sleep(3000);
-		Reporter.log(driver.getCurrentUrl());*/
+//		text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
+//		/*driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT).click();
+//		Thread.sleep(3000);
+//		Reporter.log(driver.getCurrentUrl());*/
 
 		// check correct Product details page opened or not
 		/*new ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);*/
@@ -1637,13 +1638,12 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		String text1 = driver.findElement(HOVER_PRODUCT_IMAGE).getAttribute("src");
 		String[] imagetext = text1.split("_425");
 		String Hover_on_plp = imagetext[0];
-		
 		String text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("src");
 		String[] list1 = text.split(".jpg");
 		String Second_image_pdp = list1[0];
 		System.out.println(Second_image_pdp);
 		System.out.println(Hover_on_plp);
-		if (Hover_on_plp.equalsIgnoreCase(Second_image_pdp))
+		if (Second_image_pdp.contains(Hover_on_plp))
 			throw new Exception("Product tile hover functionality is not correct on plp");
 		Reporter.log("Verified Product tile hover functionality on plp");
 		ExtentReport.extentTest.info("Verified Product tile hover functionality on plp");
