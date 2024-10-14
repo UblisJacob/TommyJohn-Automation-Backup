@@ -26,7 +26,7 @@ public class ValidateContactUsPage {
 
 	
 	 @Test
-	 public void ValidateContactUsPage() throws Exception {
+		 public void ValidateContactUsPage() throws Exception {
 		 
 		 
 		 new ContactUsPage(driver).HelpFieldValidation_page(); 

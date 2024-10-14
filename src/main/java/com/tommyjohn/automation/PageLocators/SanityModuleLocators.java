@@ -5,12 +5,12 @@ import org.openqa.selenium.By;
 public class SanityModuleLocators {
 
 	//public static By HERO_IMAGE_1 = By.cssSelector("body > main:nth-child(27) > div:nth-child(3) > div:nth-child(1) > div:nth-child(5) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1)");
-	public static By HERO_IMAGE_1 = By.xpath("//div[@id='image-banner-template--17096995274797__image_banner_nD6VeK']//img");
+	public static By HERO_IMAGE_1 = By.xpath("(//div[@class='shopify-section relative']//img)[1]");
 	
 	
 	public static By HERO_IMAGE_TEXT = By.xpath("//div[@class='my-14 md:my-3xl']//h2");
 	
-	public static By FIXED_BANNER_IMG = By.xpath("//div[@id='shopify-section-template--17096995274797__image_banner_nD6VeK']//img");
+	public static By FIXED_BANNER_IMG = By.xpath("(//div[@class='shopify-section relative']//img)[1]");
 	
 	public static By THREE_TILE_MODULE = By.xpath("//div[@class='[grid-area:doorways] flex flex-col md:flex-row gap-2xs my-2xs']");
 	public static By THREE_TILE_IMG_1 = By.xpath("//a[@aria-label='Shop Luxurious softness & daily support.']");

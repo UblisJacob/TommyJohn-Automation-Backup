@@ -390,12 +390,12 @@ public class CollectionPage extends CollectionPageComponent{
 
 	public void validateInlineBanner() throws Exception {
 		// TODO Auto-generated method stub
-		new HomePageComponents(driver).navigateToBraInWomenCategory();
+		new HomePageComponents(driver).navigateToBoxerBriefInMenCategory();
 		validatePLPInlineBanner();
 	}
 
 	public void ValidateOnClickingTheInLineBanner() throws InterruptedException {// TODO Auto-generated method stub
-		new HomePageComponents(driver).navigateToWomensUnderwear();
+		new HomePageComponents(driver).navigateToBoxerBriefInMenCategory();
 		new CollectionPageComponent(driver).ValidateOnClickingTheInLineBanner();
 	}
 	
@@ -407,7 +407,7 @@ public class CollectionPage extends CollectionPageComponent{
 	
 	public void validateSortBy() throws Exception {
 		// TODO Auto-generated method stub
-		new HomePageComponents(driver).NavigateToAllLoungewearInMenCategory();
+	//	new HomePageComponents(driver).NavigateToAllLoungewearInMenCategory();
 		methodToSortByPrice();
 	}
 	

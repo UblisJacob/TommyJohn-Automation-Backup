@@ -38,8 +38,8 @@ public class ValidateBundlePDP extends ExtentReport {
 		new BundlePDPPage(driver).verifyOnImageBadging();
 		
 	}
-	
-//	@Test
+
+	@Test
 	public void VerifySecondaryBadging() throws Exception {
 		new BundlePDPPage(driver).verifySecondaryBadging();
 		
@@ -69,8 +69,13 @@ public class ValidateBundlePDP extends ExtentReport {
 	}
 
 	@Test
-	public void VerifyAddToCart() throws Exception {
+		public void VerifyAddToCart() throws Exception {
 		new BundlePDPPage(driver).verifyAddToCart();
+	}
+
+	@Test
+	public void ValidateLearnMoreLink() throws Exception {
+		new BundlePDPPage(driver).ValidateLearnMoreLink();
 	}
 		
 	@AfterMethod(alwaysRun = true)

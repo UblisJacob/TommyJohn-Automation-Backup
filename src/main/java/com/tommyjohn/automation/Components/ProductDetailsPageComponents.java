@@ -66,6 +66,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 
 
+
 	public void ValidateAddingProductToCartFromInstagramWidget() throws Exception {
 
 		action = new Actions(driver);
@@ -2341,19 +2342,20 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 	public void verifyOnImageBadging() throws Exception {
 
 		SoftAssert softAssert = new SoftAssert();
-		new ProductDetailsPage(driver).navigateToMensAll();
+		new ProductDetailsPage(driver).navigateToSecondSkinSleepCrewNeckPocket();
 
 		//navigate to PDP
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT));
-		Thread.sleep(10000);
-		WebElement el = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT);
-		JavascriptExecutor executor = (JavascriptExecutor) driver;
-		executor.executeScript("arguments[0].click();", el);
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT));
+//		Thread.sleep(10000);
+//		WebElement el = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT);
+//		JavascriptExecutor executor = (JavascriptExecutor) driver;
+//		executor.executeScript("arguments[0].click();", el);
 
+		driver.get("https://www.tommyjohn.com/products/second-skin-sleep-crew-neck-pocket-tee?variant=43014855557165");
 
-		jse = (JavascriptExecutor) driver;
-		jse.executeScript("window.scrollBy(0,800)");
+//		jse = (JavascriptExecutor) driver;
+//		jse.executeScript("window.scrollBy(0,800)");
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(IMAGE_BADGING));
 
@@ -2905,6 +2907,38 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		Reporter.log("Ratings Tiermeter displays appropriate results");
 		ExtentReport.extentTest.info("Ratings Tiermeter displays appropriate result");
 
+	}
+
+	public void ValidateRecs() throws Exception {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		SoftAssert softAssert = new SoftAssert();
+		new HomePageComponents(driver).navigateToMensAll();
+		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		new HomePageComponents(driver).navigateToAirTriangleBralette();
+		WebElement ratingstars = driver.findElement(RATING_STARS);
+		jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", ratingstars);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_TITLE));
+		new HomePageComponents(driver).navigateToSecondSkinMidlengthBoxerBrief();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_TITLE));
+		Reporter.log(driver.getCurrentUrl());
+		ExtentReport.extentTest.info(driver.getCurrentUrl());
+		Thread.sleep(6000);
+		WebElement ratingstars1 = driver.findElement(RATING_STARS);
+		jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", ratingstars1);
+		Thread.sleep(2000);
+		jse.executeScript("window.scrollBy(0, 1000)");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.SHOP_THE_COLLECTION));
+		softAssert.assertTrue(driver.findElement(SHOP_THE_COLLECTION).isDisplayed(),"Shop the Collection section is not avaialable");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PEOPLE_ALSO_BOUGHT));
+		softAssert.assertTrue(driver.findElement(PEOPLE_ALSO_BOUGHT).isDisplayed(),"People also bought section is not avaialable");
+		jse.executeScript("window.scrollBy(0, 1000)");
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.RECENTLY_VIEWED));
+//		softAssert.assertTrue(driver.findElement(RECENTLY_VIEWED).isDisplayed(),"Recently viewed section is not avaialable");
+		softAssert.assertAll();
+		Reporter.log("Recs are available");
+		ExtentReport.extentTest.info("Recs are available");
 	}
 
 

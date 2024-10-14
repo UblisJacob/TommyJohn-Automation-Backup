@@ -100,7 +100,7 @@ public class ValidateCategoryPages {
 		new CollectionPage(driver).validateMultiVariantSizeInQuickshop();
 	}
 
-//	@Test
+	@Test
 	public void ValidateProductsOnFiltering() throws Exception {
 		new CollectionPage(driver).ValidateProductsOnFiltering();
 	}

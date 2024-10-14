@@ -5,6 +5,27 @@ import org.openqa.selenium.By;
 
 public class HomePageLocators{
 
+	//HomePageSections
+	public static By HERO_BANNER_IMAGE = By.xpath("//div[@class='relative size-full']");
+	public static By HERO_BANNER_CTA = By.xpath("(//div[@class='my-lg flex flex-wrap align-center gap-xs text-left justify-start']//a)[1]");
+	public static By CATEGORY_SELECTOR_SECTION = By.xpath("(//div[@class='grid grid-cols-1 md:grid-cols-2'])[1]");
+	public static By CATEGORY_SELECTOR_MEN = By.xpath("(//div[@class='space-x-2 md:space-x-4']//button)[1]");
+	public static By CATEGORY_SELECTOR_WOMEN = By.xpath("(//div[@class='space-x-2 md:space-x-4']//button)[2]");
+	public static By MEN_CATEGORIES = By.xpath("(//ul[@class='mt-6 md:mt-8'])[1]//li");
+	public static By WOMEN_CATEGORIES = By.xpath("(//ul[@class='mt-6 md:mt-8'])[2]//li");
+	public static By IMAGE_BANNER_MENS_CTA = By.xpath("(//a[@class='button-inverse'])[4]");
+	public static By IMAGE_BANNER_WOMENS_CTA = By.xpath("(//a[@class='button-inverse'])[5]");
+	public static By COLLECTION_SELECTOR = By.xpath("//div[@class='size-full']");
+	public static By COLLECTION_SELECTOR_SECOND_SKIN = By.xpath("(//div[@class='mt-3 md:mt-8 space-y-4']//button)[1]");
+	public static By COLLECTION_SELECTOR_COOL_COTTON = By.xpath("(//div[@class='mt-3 md:mt-8 space-y-4']//button)[2]");
+	public static By COLLECTION_SELECTOR_360_SPORT = By.xpath("(//div[@class='mt-3 md:mt-8 space-y-4']//button)[3]");
+	public static By COLLECTION_SELECTOR_APOLLO = By.xpath("(//div[@class='mt-3 md:mt-8 space-y-4']//button)[4]");
+	public static By COLLECTION_SELECTOR_AIR = By.xpath("(//div[@class='mt-3 md:mt-8 space-y-4']//button)[5]");
+	public static By OUR_STORY_CTA = By.xpath("//a[@class='button-inverse' and contains(text(),'Our Story')]");
+	public static By LEARNMORE_CTA = By.xpath("(//a[@class='button-secondary mt-lg'])[1]");
+	public static By OURSHOPPINGPOLICIES_CTA = By.xpath("(//a[@class='button-secondary mt-lg'])[2]");
+	public static By OURSTORY_CTA = By.xpath("(//a[@class='button-secondary mt-lg'])[3]");
+
 	//InstagramWidget
 	public static By INSTA_SHOP_ICON = By.xpath("(//div[@class='dyUgc-firstlevel__slidetile-shopIcon'])[2]");
 	public static By INSTA_ATC = By.xpath("(//div[@data-tj-qa='product-image']//button)[1]");
@@ -60,7 +81,9 @@ public class HomePageLocators{
 	public static By EXPLORE_LEVEL_ONE_LINKS = By.cssSelector("li[arial-label='open Explore menu'] ul[class='nav-item__list level-one-list alternate']>li[class='level-one-container alternate image-column']");
 
 	public static By MEN_CATEGORY = By.xpath("(//a[contains(text(),'Men')])[2]");
+	public static By MEN_CATEGORY_COPY = By.xpath("(//a[contains(text(),'Men')])[1]");
 	public static By WOMEN_CATEGORY = By.xpath("(//a[contains(text(),'Women')])[2]");
+	public static By WOMEN_CATEGORY_COPY = By.xpath("(//a[contains(text(),'Women')])[1]");
 	public static By FINAL_SALE = By.cssSelector(".level-zero-list>.level-zero-container:nth-child(3)> .level-zero-item >a");
 
 	public static By IM_NEW_HERE = By.cssSelector(".level-zero-list>.level-zero-container:nth-child(3)> .level-zero-item >a");
@@ -241,7 +264,7 @@ public class HomePageLocators{
 	public static By SEARCHPAGE_FILTER= By.cssSelector(".collection-filter");
 	
 	public static By SEARCHPAGE_PRODUCTS = By.cssSelector(".product-item");
-	public static By SEARCHPAGE_PRODUCT_IMAGE = By.xpath("(//div[@class='relative aspect-tile'])[1]");
+		public static By SEARCHPAGE_PRODUCT_IMAGE = By.xpath("(//div[@class='relative aspect-tile'])[1]");
 	public static By SEARCHPAGE_PRODUCT_SWATCHES = By.xpath("(//div[@class='flex items-center'])[1]");
 	public static By SEARCHPAGE_PRODUCT_NAME = By.xpath("(//h2[@class='my-2xs text-body-md']//a)[1]");
 	public static By SEARCHPAGE_PRODUCT_REVIEWS = By.xpath("(//a[@aria-label='Read reviews'])[1]");

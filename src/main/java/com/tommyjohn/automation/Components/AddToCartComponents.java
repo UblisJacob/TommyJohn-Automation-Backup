@@ -69,7 +69,7 @@ public class AddToCartComponents extends AddToCartLocators{
 		
 		
 		// call method to navigate to collection page
-		new HomePageComponents(driver).navigateToCoolCottonInMensCollection();
+		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
 		jse=(JavascriptExecutor)driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		// call method to navigate product details page
@@ -383,7 +383,7 @@ public class AddToCartComponents extends AddToCartLocators{
 		
 		
 		// call method to navigate to collection page
-		new HomePageComponents(driver).navigateToNewArrivalsInWomenCategory();
+		new HomePageComponents(driver).navigateToAllPantiesnInWomenCategory();
 		jse=(JavascriptExecutor)driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		// call method to navigate product details page
