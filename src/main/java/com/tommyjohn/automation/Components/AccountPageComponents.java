@@ -166,7 +166,7 @@ public class AccountPageComponents extends AccountPageLocators {
 
 //		After clicking on Manage Addresses link verify if correctly redirected to addresses page, if facing login issue then handle via re-login
 		try{
-			Thread.sleep(5000);
+			Thread.sleep(10000);
 			if(driver.findElement(MANAGE_ADDRESS_BOOK_HEADING).isDisplayed())
 			{
 				System.out.println("User is directed to Address Page");

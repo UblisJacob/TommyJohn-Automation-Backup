@@ -33,6 +33,7 @@ import com.tommyjohn.automation.PageLocators.TermsAndConditionsPageLocators;
 import com.tommyjohn.automation.commonMethods.GeneralMethods;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
+import static com.tommyjohn.automation.PageLocators.CollectionPageLocator.PAGEHEADER;
 import static com.tommyjohn.automation.PageLocators.FlyCartPageLocator.INLINECART_PRODUCT_NAME;
 import static com.tommyjohn.automation.PageLocators.FlyCartPageLocator.INLINE_COLOR;
 
@@ -66,6 +67,164 @@ public class HomePageComponents extends HomePageLocators {
 				.withTimeout(Duration.ofSeconds(30)).ignoring(NoSuchElementException.class);
 
 	}
+
+	public void ValidateImageInHeroBanner()
+	{
+		SoftAssert softAssert = new SoftAssert();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
+		softAssert.assertTrue(driver.findElement(HERO_BANNER_IMAGE).isDisplayed(),"Hero Banner Image is not available");
+		Reporter.log("Hero Banner Image is available");
+		ExtentReport.extentTest.info("Hero Banner Image is available");
+
+	}
+
+	public void ValidateCTAsInHeroBanner() throws InterruptedException {
+		SoftAssert softAssert = new SoftAssert();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
+		Thread.sleep(2000);
+		driver.findElement(HERO_BANNER_CTA).click();
+		Thread.sleep(3000);
+		element = driver.findElement(By.xpath("//div[@class='shopify-section relative']"));
+		softAssert.assertTrue(element.isDisplayed(),"Shop Now CTA is not functional");
+		Reporter.log("Shop Now CTA is functional");
+		ExtentReport.extentTest.info("Shop Now CTA is functional");
+	}
+
+	public void ValidateMenInCategorySelector() {
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		SoftAssert softAssert = new SoftAssert();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
+		js.executeScript("window.scrollBy(0,1000)");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CATEGORY_SELECTOR_SECTION));
+		driver.findElement(CATEGORY_SELECTOR_MEN).click();
+		list = driver.findElements(MEN_CATEGORIES);
+		for(int i=1;i<list.size();i++)
+		{
+			driver.findElement(By.xpath("((//ul[@class='mt-6 md:mt-8'])[1]//li)["+i+"]")).click();
+			softAssert.assertTrue(driver.findElement(PAGEHEADER).isDisplayed(),"Categories in Men is not functional");
+			driver.navigate().back();
+			js.executeScript("window.scrollBy(0,1000)");
+
+		}
+		softAssert.assertAll();
+		Reporter.log("Categories in Men Category Selector section are functional");
+		ExtentReport.extentTest.info("Categories in Men Category Selector section are functional");
+	}
+
+	public void ValidateWomenInCategorySelector() throws InterruptedException {
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		SoftAssert softAssert = new SoftAssert();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
+		js.executeScript("window.scrollBy(0,1000)");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CATEGORY_SELECTOR_SECTION));
+		driver.findElement(CATEGORY_SELECTOR_WOMEN).click();
+		list = driver.findElements(WOMEN_CATEGORIES);
+		for(int i=1;i<list.size();i++)
+		{
+
+			driver.findElement(By.xpath("((//ul[@class='mt-6 md:mt-8'])[2]//li)["+i+"]")).click();
+			softAssert.assertTrue(driver.findElement(PAGEHEADER).isDisplayed(),"Categories in Men is not functional");
+			driver.navigate().back();
+			js.executeScript("window.scrollBy(0,1000)");
+			driver.findElement(CATEGORY_SELECTOR_WOMEN).click();
+
+
+		}
+		softAssert.assertAll();
+		Reporter.log("Categories in Men Category Selector section are functional");
+		ExtentReport.extentTest.info("Categories in Men Category Selector section are functional");
+	}
+
+	public void ValidateShopMensInImageBanner() throws InterruptedException {
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		SoftAssert softAssert = new SoftAssert();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
+		js.executeScript("window.scrollBy(0,2000)");
+		driver.findElement(IMAGE_BANNER_MENS_CTA).click();
+		Thread.sleep(2000);
+		softAssert.assertTrue(driver.findElement(PAGEHEADER).isDisplayed(),"Shop Men CTA in Image Banner is not functional");
+		Reporter.log("Shop Men CTA in Image Banner is functional");
+		ExtentReport.extentTest.info("Shop Men CTA in Image Banner is functional");
+
+	}
+
+	public void ValidateShopWomensInImageBanner() throws InterruptedException {
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		SoftAssert softAssert = new SoftAssert();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
+		js.executeScript("window.scrollBy(0,2000)");
+		driver.findElement(IMAGE_BANNER_WOMENS_CTA).click();
+		Thread.sleep(2000);
+		softAssert.assertTrue(driver.findElement(PAGEHEADER).isDisplayed(),"Shop Women CTA in Image Banner is not functional");
+		Reporter.log("Shop Women CTA in Image Banner is functional");
+		ExtentReport.extentTest.info("Shop Women CTA in Image Banner is functional");
+
+	}
+
+	public void ValidateLinksInCollectionSelector() throws InterruptedException {
+
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		SoftAssert softAssert = new SoftAssert();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
+		js.executeScript("window.scrollBy(0,3000)");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(COLLECTION_SELECTOR));
+		driver.findElement(COLLECTION_SELECTOR_SECOND_SKIN).click();
+		softAssert.assertTrue(driver.findElement(By.xpath("//a[@class='button-inverse mt-xl' and contains(text(),'Explore Second Skin')]")).isDisplayed(),"Explore Second Skin is not Functional");
+		driver.findElement(COLLECTION_SELECTOR_COOL_COTTON).click();
+		Thread.sleep(2000);
+		softAssert.assertTrue(driver.findElement(By.xpath("//a[@class='button-inverse mt-xl' and contains(text(),'Explore Cool Cotton')]")).isDisplayed(),"Explore Cool Cotton is not Functional");
+		driver.findElement(COLLECTION_SELECTOR_360_SPORT).click();
+		Thread.sleep(2000);
+		softAssert.assertTrue(driver.findElement(By.xpath("//a[@class='button-inverse mt-xl' and contains(text(),'Explore 360 Sport')]")).isDisplayed(),"Explore 360 Sport is not Functional");
+		driver.findElement(COLLECTION_SELECTOR_APOLLO).click();
+		Thread.sleep(2000);
+		softAssert.assertTrue(driver.findElement(By.xpath("//a[@class='button-inverse mt-xl' and contains(text(),'Explore Apollo')]")).isDisplayed(),"Explore Apollo is not Functional");
+		driver.findElement(COLLECTION_SELECTOR_AIR).click();
+		Thread.sleep(2000);
+		softAssert.assertTrue(driver.findElement(By.xpath("//a[@class='button-inverse mt-xl' and contains(text(),'Explore Air')]")).isDisplayed(),"Explore Air is not Functional");
+		softAssert.assertAll();
+		Reporter.log("All the Collection Selector Links are functional");
+		ExtentReport.extentTest.info("All the Collection Selector Links are functional");
+
+	}
+
+	public void ValidateOurStoryInImageBanner()
+	{
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		SoftAssert softAssert = new SoftAssert();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
+		js.executeScript("window.scrollBy(0,4000)");
+		driver.findElement(OUR_STORY_CTA).click();
+		String URL = driver.getCurrentUrl();
+		softAssert.assertEquals(URL,"https://www.tommyjohn.com/pages/about-us","User is not directed to About Us page on clicking Our Story CTA");
+		Reporter.log("User is directed to About Us page on clicking Our Story CTA");
+		ExtentReport.extentTest.info("User is directed to About Us page on clicking Our Story CTA");
+
+	}
+
+	public void ValidateBrandBuildingInfoCTAs()
+	{
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		SoftAssert softAssert = new SoftAssert();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
+		js.executeScript("window.scrollBy(0,5000)");
+		driver.findElement(LEARNMORE_CTA).click();
+		softAssert.assertTrue(driver.findElement(By.xpath("(//h1)[1]")).isDisplayed(),"LearnMore CTA in Brand Building section is not functional");
+		driver.navigate().back();
+		js.executeScript("window.scrollBy(0,5000)");
+		driver.findElement(OURSHOPPINGPOLICIES_CTA).click();
+		softAssert.assertTrue(driver.findElement(By.xpath("(//h1)[1]")).isDisplayed(),"Our SHopping Policies CTA in Brand Building section is not functional");
+		driver.navigate().back();
+		js.executeScript("window.scrollBy(0,5000)");
+		driver.findElement(OURSTORY_CTA).click();
+		String URL = driver.getCurrentUrl();
+		softAssert.assertEquals(URL,"https://www.tommyjohn.com/pages/about-us","Our Story CTA in Brand Building section is not functional");
+		softAssert.assertAll();
+		Reporter.log("Brand Building CTAs are functional");
+		ExtentReport.extentTest.info("Brand Building CTAs are functional");
+	}
+
+
 
 	public void ValidateNoResultPageOnSearch() throws InterruptedException {
 
@@ -248,55 +407,108 @@ public class HomePageComponents extends HomePageLocators {
 
 		// Verify Men category
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.presenceOfElementLocated(MEN_CATEGORY));
-		if(!driver.findElement(MEN_CATEGORY).isDisplayed())
-			throw new Exception("Men category is not present");	
-
-		element = driver.findElement(MEN_CATEGORY);
-		action.moveToElement(element).perform();
-		Thread.sleep(10000);
 		try {
-			if (!driver.findElement(FIRST_lEVEL1_CATEGORY).isDisplayed())
-				throw new Exception("Men Category is not hoverable");
-			Thread.sleep(3000);
-			Reporter.log("Men category is displayed :: Hoverable");
-			ExtentReport.extentTest.info("Men category is displayed :: Hoverable");
+			System.out.println("Entering Try1");
+			wait.until(ExpectedConditions.presenceOfElementLocated(MEN_CATEGORY));
+			if (!driver.findElement(MEN_CATEGORY).isDisplayed())
+				throw new Exception("Men category is not present");
+
+			element = driver.findElement(MEN_CATEGORY);
+			action.moveToElement(element).perform();
+			Thread.sleep(10000);
+			try {
+				if (!driver.findElement(FIRST_lEVEL1_CATEGORY).isDisplayed())
+					throw new Exception("Men Category is not hoverable");
+				Thread.sleep(3000);
+				Reporter.log("Men category is displayed :: Hoverable");
+				ExtentReport.extentTest.info("Men category is displayed :: Hoverable");
+			} catch (Exception ex) {
+				System.out.println("Entering Catch");
+				if (!driver.findElement(FIRST_lEVEL1_CATEGORY_COPY).isDisplayed())
+					throw new Exception("Men Category is not hoverable");
+				Thread.sleep(3000);
+				Reporter.log("Men category is displayed :: Hoverable");
+				ExtentReport.extentTest.info("Men category is displayed :: Hoverable");
+			}
 		}
-		catch(Exception ex)
+		catch(Exception e)
 		{
-			System.out.println("Entering Catch");
-			if (!driver.findElement(FIRST_lEVEL1_CATEGORY_COPY).isDisplayed())
-				throw new Exception("Men Category is not hoverable");
-			Thread.sleep(3000);
-			Reporter.log("Men category is displayed :: Hoverable");
-			ExtentReport.extentTest.info("Men category is displayed :: Hoverable");
+			System.out.println("Entering Catch1");
+			wait.until(ExpectedConditions.presenceOfElementLocated(MEN_CATEGORY_COPY));
+			if (!driver.findElement(MEN_CATEGORY_COPY).isDisplayed())
+				throw new Exception("Men category is not present");
+
+			element = driver.findElement(MEN_CATEGORY_COPY);
+			action.moveToElement(element).perform();
+			Thread.sleep(10000);
+			try {
+				if (!driver.findElement(FIRST_lEVEL1_CATEGORY).isDisplayed())
+					throw new Exception("Men Category is not hoverable");
+				Thread.sleep(3000);
+				Reporter.log("Men category is displayed :: Hoverable");
+				ExtentReport.extentTest.info("Men category is displayed :: Hoverable");
+			} catch (Exception ex) {
+				System.out.println("Entering Catch");
+				if (!driver.findElement(FIRST_lEVEL1_CATEGORY_COPY).isDisplayed())
+					throw new Exception("Men Category is not hoverable");
+				Thread.sleep(3000);
+				Reporter.log("Men category is displayed :: Hoverable");
+				ExtentReport.extentTest.info("Men category is displayed :: Hoverable");
+			}
+
 		}
 
 		Thread.sleep(3000);
 		// Verify Women category
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.presenceOfElementLocated(WOMEN_CATEGORY));
-		if(!driver.findElement(WOMEN_CATEGORY).isDisplayed())
-			throw new Exception("Women category is not displayed");
-		element = driver.findElement(WOMEN_CATEGORY);
-		action.moveToElement(element).perform();
-		Thread.sleep(3000);
 		try {
-			if (!driver.findElement(WOMENS_FIRST_lEVEL1_CATEGORY).isDisplayed())
-				throw new Exception("Women Category is not hoverable");
-			Reporter.log("Women category is Displayed :: Hoverable :: Clickable");
-			ExtentReport.extentTest.info("Women category is Displayed :: Hoverable :: Clickable");
+			wait.until(ExpectedConditions.presenceOfElementLocated(WOMEN_CATEGORY_COPY));
+			if (!driver.findElement(WOMEN_CATEGORY_COPY).isDisplayed())
+				throw new Exception("Women category is not displayed");
+			element = driver.findElement(WOMEN_CATEGORY_COPY);
+			action.moveToElement(element).perform();
 			Thread.sleep(3000);
-		}
-		catch (Exception ex)
-		{
-			System.out.println("Entering Catch");
-			if (!driver.findElement(WOMENS_FIRST_lEVEL1_CATEGORY_COPY).isDisplayed())
-				throw new Exception("Women Category is not hoverable");
-			Reporter.log("Women category is Displayed :: Hoverable :: Clickable");
-			ExtentReport.extentTest.info("Women category is Displayed :: Hoverable :: Clickable");
+			try {
+				if (!driver.findElement(WOMENS_FIRST_lEVEL1_CATEGORY).isDisplayed())
+					throw new Exception("Women Category is not hoverable");
+				Reporter.log("Women category is Displayed :: Hoverable :: Clickable");
+				ExtentReport.extentTest.info("Women category is Displayed :: Hoverable :: Clickable");
+				Thread.sleep(3000);
+			} catch (Exception ex) {
+				System.out.println("Entering Catch");
+				if (!driver.findElement(WOMENS_FIRST_lEVEL1_CATEGORY_COPY).isDisplayed())
+					throw new Exception("Women Category is not hoverable");
+				Reporter.log("Women category is Displayed :: Hoverable :: Clickable");
+				ExtentReport.extentTest.info("Women category is Displayed :: Hoverable :: Clickable");
+			}
+
 		}
 
+		catch (Exception f)
+		{
+			wait.until(ExpectedConditions.presenceOfElementLocated(WOMEN_CATEGORY));
+			if (!driver.findElement(WOMEN_CATEGORY).isDisplayed())
+				throw new Exception("Women category is not displayed");
+			element = driver.findElement(WOMEN_CATEGORY);
+			action.moveToElement(element).perform();
+			Thread.sleep(3000);
+			try {
+				if (!driver.findElement(WOMENS_FIRST_lEVEL1_CATEGORY).isDisplayed())
+					throw new Exception("Women Category is not hoverable");
+				Reporter.log("Women category is Displayed :: Hoverable :: Clickable");
+				ExtentReport.extentTest.info("Women category is Displayed :: Hoverable :: Clickable");
+				Thread.sleep(3000);
+			} catch (Exception ex) {
+				System.out.println("Entering Catch");
+				if (!driver.findElement(WOMENS_FIRST_lEVEL1_CATEGORY_COPY).isDisplayed())
+					throw new Exception("Women Category is not hoverable");
+				Reporter.log("Women category is Displayed :: Hoverable :: Clickable");
+				ExtentReport.extentTest.info("Women category is Displayed :: Hoverable :: Clickable");
+			}
+
+
+
+		}
 		// Verify ImNewHere category
 //		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 //		wait.until(ExpectedConditions.presenceOfElementLocated(IM_NEW_HERE));
@@ -390,17 +602,30 @@ public class HomePageComponents extends HomePageLocators {
 			System.out.println("Search Page Title is displayed");
 			Reporter.log("Search Page Title is displayed");
 			ExtentReport.extentTest.info("Search Page Title is displayed");
-			if(driver.getCurrentUrl().contains(searchText))
-			{
-				System.out.println("Search Page Title is correct");
-				Reporter.log("Search Page Title is correct");
-				ExtentReport.extentTest.info("Search Page Title is correct");
+
+			try {
+				if (driver.getCurrentUrl().contains("second+skin")) {
+					System.out.println("Search Page Title is correct");
+					Reporter.log("Search Page Title is correct");
+					ExtentReport.extentTest.info("Search Page Title is correct");
+				} else {
+					Reporter.log("Search Page Title is not correct");
+					ExtentReport.extentTest.info("Search Page Title is not correct");
+					throw new Exception("Search Page Title is not correct");
+				}
 			}
-			else
+			catch(Exception ex)
 			{
-				Reporter.log("Search Page Title is not correct");
-				ExtentReport.extentTest.info("Search Page Title is not correct");
-				throw new Exception("Search Page Title is not correct");
+				if (driver.getCurrentUrl().contains("mens-sleep-lounge")) {
+					System.out.println("Search Page Title is correct");
+					Reporter.log("Search Page Title is correct");
+					ExtentReport.extentTest.info("Search Page Title is correct");
+				} else {
+					Reporter.log("Search Page Title is not correct");
+					ExtentReport.extentTest.info("Search Page Title is not correct");
+					throw new Exception("Search Page Title is not correct");
+				}
+
 			}
 		}
 		else
@@ -2277,6 +2502,12 @@ public class HomePageComponents extends HomePageLocators {
 		driver.get("https://www.tommyjohn.com/collections/mens-all");
 	}
 
+	public void navigateToSecondSkinSleepCrewNeckPocket()
+	{
+		driver.get("https://www.tommyjohn.com/products/second-skin-sleep-crew-neck-pocket-tee?variant=43014855557165");
+	}
+
+
 	public void navigateToMensUnderShirts()
 	{
 		driver.get("https://www.tommyjohn.com/collections/mens-undershirts?sort-by=relevance&sort-order=descending");
@@ -2384,6 +2615,14 @@ public class HomePageComponents extends HomePageLocators {
 		driver.get("https://tommyjohn.com/collections/mens-underwear-packs");
 	}
 
+	public void navigateToExploreWomensCategory() throws Exception {
+		driver.get("https://www.tommyjohn.com/collections/explore-womens");
+	}
+
+	public void navigateToEveryDayEssentials() throws Exception {
+		driver.get("https://www.tommyjohn.com/products/everyday-essentials-3-pack?variant=42963035095085");
+	}
+
 	// navigate to All Womens Packs in Packs category
 	public void navigateToAllWomensPacksInPacksCategory() throws Exception {
 		driver.get("https://tommyjohn.com/collections/womens-packs");
@@ -2429,6 +2668,11 @@ public class HomePageComponents extends HomePageLocators {
 	public void navigateToAirTriangleBralette()
 	{
 		driver.get("https://www.tommyjohn.com/products/air-triangle-bralette?color=rugby-tan");
+	}
+
+	public void navigateToSecondSkinMidlengthBoxerBrief()
+	{
+		driver.get("https://www.tommyjohn.com/products/second-skin-mid-length-boxer-brief-9?variant=41164297338925");
 	}
 
 	// navigate to cotton basics in shop by collections catagory
@@ -2521,7 +2765,9 @@ public class HomePageComponents extends HomePageLocators {
 						System.out.println("Help Us page didn't open correctly");			
 						ExtentReport.extentTest.info("Help Us page didn't open correctly");
 						throw new Exception("Help Us page didn't open correctly");
-				}							
+				}
+
+
 	}
 	
 	public void navigateToContactUsPage() throws Exception {

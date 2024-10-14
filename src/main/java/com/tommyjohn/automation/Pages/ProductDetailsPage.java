@@ -173,6 +173,12 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 		new HomePageComponents(driver).navigateToMensAll();
 
 	}
+
+	public void navigateToSecondSkinSleepCrewNeckPocket() throws Exception {
+
+		new HomePageComponents(driver).navigateToSecondSkinSleepCrewNeckPocket();
+
+	}
 	
 	public void navigateToNewArrivalsInWomenCategory() throws Exception {
 
@@ -185,11 +191,26 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 	
 	}
 
+	public void navigateToEveryDayEssentials() throws Exception {
+
+		new HomePageComponents(driver).navigateToEveryDayEssentials();
+
+	}
+
+	public void navigateToExploreWomensCategory() throws Exception {
+
+		new HomePageComponents(driver).navigateToExploreWomensCategory();
+
+	}
+
 	public void navigateToAllWomensPacksInPacksCategory() throws Exception {
 
 		new HomePageComponents(driver).navigateToAllWomensPacksInPacksCategory();
 	}
-		
+
+	public void ValidateRecs() throws Exception {
+		new ProductDetailsPageComponents(driver).ValidateRecs();
+	}
 		
 	public void viewImageGallery() throws Exception {
 		new ProductDetailsPageComponents(driver).viewImageGallery();

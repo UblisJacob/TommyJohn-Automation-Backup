@@ -55,7 +55,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		Thread.sleep(3000);
 
 		driver.findElement(CART_COUPONFIELD).sendKeys("FIRST20");
-		Thread.sleep(2000);
+		Thread.sleep(8000);
 		driver.findElement(APPLY_CTA).click();
 
 

@@ -23,9 +23,10 @@ public class BundlePDPLocators {
 		
 	//image badging
 	public static By IMAGE_BADGING = By.xpath("//span[contains(text(),'New Colors')]");
+	public static By IMAGE_BADGING_NEW_STYLE = By.xpath("//span[contains(text(),'New Style')]");
 	
 	//Secondary Badging
-	public static By SECONDARY_BADGING = By.cssSelector("div.multi-pdp-title-wrap.desktop-view.desktop>div:nth-child(2)>span");
+	public static By SECONDARY_BADGING = By.xpath("//p[@class='m-0 inline-block text-body-xs leading-none text-[color:var(--text-color)]']//span");
 	
 	//image color
 	public static By IMAGE_COLOR = By.cssSelector(".pdpImageSlidesWrapper>div>div>.slick-track>.product_image.slick-slide.slick-current.slick-active");
@@ -70,6 +71,7 @@ public class BundlePDPLocators {
 	//public static By ALL_SIZE_LIST = By.cssSelector(".product-option__variants.product-option__variants-size > ul > li");
 
 
+	public static By LEARN_MORE = By.xpath("//button[@class='button-link text-text-tertiary text-body-sm']");
 	public static By ALL_COLOR_LIST = By.cssSelector(".product-option__color-swatches-wrapper > ul >li");
 	public static By COLOR_VARIANT = By.xpath("//div[@class='space-y-lg']//span[@class='sr-only']");
 //	public static By PRODUCT_DETAILS = By.cssSelector(".product-info__inner > div:nth-child(2) > ul > li:nth-child(1) > div:nth-child(1) > a");

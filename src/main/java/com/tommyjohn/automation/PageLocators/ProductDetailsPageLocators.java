@@ -28,7 +28,7 @@ public class ProductDetailsPageLocators {
 	//image badging
 //	public static By IMAGE_BADGING = By.cssSelector(".productImage-item__badge");
 
-	public static By IMAGE_BADGING = By.xpath("//span[contains(text(),'New Style')]");
+	public static By IMAGE_BADGING = By.xpath("//span[contains(text(),'New Colors')]");
 	
 	//Secondary Badging
 	public static By SECONDARY_BADGING = By.cssSelector("div.multi-pdp-title-wrap.desktop-view.desktop>span");
@@ -122,8 +122,11 @@ public class ProductDetailsPageLocators {
 	public static By INLINE_CART_TITLE = By.xpath("//h2[@class='text-heading-lg font-medium sm:text-heading']");
 	public static By EMAIL_WHEN_IN_STOCK_BUTTON_CLOSE = By.cssSelector(".close_jtwl");
 	public static By INLINE_CART_CLOSE = By.xpath("//button[@aria-label='Close cart']");
-	
-	
+
+	//RECS
+	public static By SHOP_THE_COLLECTION = By.xpath("(//swiper-container[@class='-mx-lg flex px-lg [grid-area:slides]'])[1]");
+	public static By PEOPLE_ALSO_BOUGHT = By.xpath("(//swiper-container[@class='-mx-lg flex px-lg [grid-area:slides]'])[2]");
+	public static By RECENTLY_VIEWED = By.xpath("(//swiper-container[@class='-mx-lg flex px-lg [grid-area:slides]'])[3]");
 
 
 

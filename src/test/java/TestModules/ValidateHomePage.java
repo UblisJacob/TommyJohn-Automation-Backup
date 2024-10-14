@@ -27,6 +27,61 @@ public class ValidateHomePage extends ExtentReport {
 	}
 
 	@Test
+	public void ValidateImageInHeroBanner() throws Exception {
+
+		new HomePage(driver).ValidateImageInHeroBanner();
+	}
+
+	@Test
+	public void ValidateCTAsInHeroBanner() throws Exception {
+
+		new HomePage(driver).ValidateCTAsInHeroBanner();
+	}
+
+	@Test
+	public void ValidateMenInCategorySelector() throws Exception {
+
+		new HomePage(driver).ValidateMenInCategorySelector();
+	}
+
+	@Test
+	public void ValidateWomenInCategorySelector() throws Exception {
+
+		new HomePage(driver).ValidateWomenInCategorySelector();
+	}
+
+	@Test
+	public void ValidateShopMensInImageBanner() throws Exception {
+
+		new HomePage(driver).ValidateShopMensInImageBanner();
+	}
+
+	@Test
+	public void ValidateShopWomensInImageBanner() throws Exception {
+
+		new HomePage(driver).ValidateShopWomensInImageBanner();
+	}
+
+	@Test
+	public void ValidateLinksInCollectionSelector() throws Exception {
+
+		new HomePage(driver).ValidateLinksInCollectionSelector();
+	}
+
+	@Test
+	public void ValidateOurStoryInImageBanner() throws Exception {
+
+		new HomePage(driver).ValidateOurStoryInImageBanner();
+	}
+
+	@Test
+	public void ValidateBrandBuildingInfoCTAs() throws Exception {
+
+		new HomePage(driver).ValidateBrandBuildingInfoCTAs();
+	}
+
+
+	@Test
 	public void VerifyLogoAndCategoriesOnHomePage() throws Exception {
 
 		new HomePage(driver).ValidateLogoAndCategoriesPresence();
@@ -47,7 +102,7 @@ public class ValidateHomePage extends ExtentReport {
 
 
 	
-//	@Test
+	//@Test
 	public void ValidateDoNotSellMyPersonalInformationPage() throws
 	Exception {
 

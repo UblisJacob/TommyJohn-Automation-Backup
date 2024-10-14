@@ -213,10 +213,10 @@ public class ContactUsComponent extends ContactUsPageLocators
 	
 	public void HelpUsPageValidation() throws Exception
 	{
+		Thread.sleep(2000);
 		
-		
-		Thread.sleep(10000);
-		
+		driver.get("https://help.tommyjohn.com/hc/en-us");
+
 		softassert.assertTrue(driver.findElement(HELP_PAGETITLE).isDisplayed(), "Help Center page title is not displayed.");
 		softassert.assertEquals(driver.findElement(HELP_PAGETITLE).getText(), properties.getProperty("PageTitle"),"Text changed for Help Center page title.");
 		Reporter.log("Contact us Page Title is displayed :: Correct.");

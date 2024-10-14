@@ -267,22 +267,24 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 		SoftAssert softAssert = new SoftAssert();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//a[@aria-label='Men link']//span[contains(text(),'Men')]")));
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//a[contains(text(),'Men')]")));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
-		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//a[@class='select--options__label js-option-select-toggle'])[2]")));
-		String AirFilter = driver.findElement(By.xpath("(//button[@data-filter-btn='Air'])[1]")).getText();
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//span[@class='flex gap-xs items-center leading-none']")));
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//legend[contains(text(),'Collection')]")));
+		String AirFilter = driver.findElement(By.xpath("(//span[contains(text(),'Air')])[3]")).getText();
 		System.out.println(AirFilter);
-		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//button[@data-filter-btn='Air'])[1]")));
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//span[contains(text(),'Air')])[3]")));
 		Thread.sleep(5000);
-		int Filtercount = driver.findElements(By.xpath("//span[@class='collection-meta__title']")).size();
-		System.out.println(Filtercount);
-		String FilterAir = driver.findElement(By.xpath("(//span[@class='collection-meta__title'])[1]")).getText();
-		System.out.println(FilterAir);
-		softAssert.assertEquals(AirFilter, FilterAir, "Appropriate Product is not displayed while filtering");
+//		int Filtercount = driver.findElements(By.xpath("//span[@class='collection-meta__title']")).size();
+//		System.out.println(Filtercount);
+		String FilterAir = driver.findElement(By.xpath("(//a[@data-cy='productTileLink'])[4]")).getText();
+		String[] Filter = FilterAir.split(" Trunk");
+		String text = Filter[0];
+		System.out.println(text);
+		softAssert.assertEquals(AirFilter, text, "Appropriate Product is not displayed while filtering");
 		Reporter.log("Appropriate Product is displayed while filtering");
 		ExtentReport.extentTest.info("Appropriate Product is displayed while filtering");
-
 
 	}
 
@@ -438,19 +440,21 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		String price = null;
 		String updatedPrice = null;
 		double priceValue = 0;
-		driver.findElement(PRICE_DROPDOWN).click();
-		driver.findElement(By.xpath("//div[@class='collection-filter__select']")).click();
-		driver.findElement(PRICEASC_DROPDOWN).click();
-		js.executeScript("window.scrollBy(600,0)");
-		driver.findElement(By.xpath("//div[@class='filter-accordion-overlay active']")).click();
+	//	driver.findElement(PRICE_DROPDOWN).click();
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//span[@class='flex gap-xs items-center leading-none']")));
+		Thread.sleep(2000);
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//legend[@class='mr-auto']")));
+//		driver.findElement(PRICEASC_DROPDOWN).click();
+//		js.executeScript("window.scrollBy(600,0)");
+		driver.findElement(By.xpath("//label[@for='Filters-Sort-price-asc']")).click();
 
 		//Select drpCountry = new Select(sortByPrice);
 		//drpCountry.selectByValue("price:ascending");
-		Thread.sleep(5000);
+//		Thread.sleep(5000);
 
-
-		js.executeScript("window.scrollBy(0,250)");
-		Thread.sleep(5000);
+//
+//		js.executeScript("window.scrollBy(0,250)");
+//		Thread.sleep(5000);
 
 		//js.executeScript("arguments[0].scrollIntoView();", prices);
 
@@ -462,7 +466,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		for (int i = 0; i < list.size(); i++) {
 			price = list.get(i).getText();
 			updatedPrice = price.replaceAll("[^0-9.]", "");
-			priceValue = Double.parseDouble(updatedPrice);
+			priceValue = Double.valueOf(updatedPrice);
 			sortedList.add(priceValue);
 			productPrice.add(priceValue);
 		}
@@ -477,9 +481,9 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			ExtentReport.extentTest.info("The products are sorted in ascending order of price");
 		}
 
-
-		js.executeScript("window.scrollBy(0,250)");
-		Thread.sleep(5000);
+//
+//		js.executeScript("window.scrollBy(0,250)");
+//		Thread.sleep(5000);
 		//drpCountry.selectByValue("price:descending");
 
 		//js.executeScript("window.scrollTo(0, -document.body.scrollHeight)");
@@ -488,25 +492,27 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		//	drpCountry.selectByValue("price:descending");
 //		Thread.sleep(5000);
 
-//		ArrayList<Double> productPrice1 = new ArrayList<Double>();
-//		ArrayList<Double> sortedList1 = new ArrayList<Double>();
-//		List<WebElement> list1 = driver.findElements(PLP_PRICE);
-//		for (int i = 0; i < list1.size(); i++) {
-//			price = list1.get(i).getText();
-//			updatedPrice = price.replaceAll("[^0-9.]", "");
-//			priceValue = Double.parseDouble(updatedPrice);
-//			sortedList1.add(priceValue);
-//			productPrice1.add(priceValue);
-//		}
-//		System.out.println(productPrice1);
-//		Collections.sort(sortedList1);
-//		Collections.reverse(sortedList1);
-//		System.out.println(sortedList1);
-//		if (!sortedList1.equals(productPrice1)) {
-//			throw new Exception("The products are sorted not successfully");
-//		} else {
-//			Reporter.log("The products are sorted successfully");
-//		}
+		driver.findElement(By.xpath("//label[@for='Filters-Sort-price-desc']")).click();
+
+		ArrayList<Double> productPrice1 = new ArrayList<Double>();
+		ArrayList<Double> sortedList1 = new ArrayList<Double>();
+		List<WebElement> list1 = driver.findElements(PLP_PRICE);
+		for (int i = 0; i < list1.size(); i++) {
+			price = list1.get(i).getText();
+			updatedPrice = price.replaceAll("[^0-9.]", "");
+			priceValue = Double.parseDouble(updatedPrice);
+			sortedList1.add(priceValue);
+			productPrice1.add(priceValue);
+		}
+		System.out.println(productPrice1);
+		Collections.sort(sortedList1);
+		Collections.reverse(sortedList1);
+		System.out.println(sortedList1);
+		if (!sortedList1.equals(productPrice1)) {
+			throw new Exception("The products are sorted not successfully");
+		} else {
+			Reporter.log("The products are sorted successfully");
+		}
 
 	}
 
