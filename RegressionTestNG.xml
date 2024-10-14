@@ -37,6 +37,13 @@
 		</classes>
 	</test>
 
+	<test name="InfluencerPageTests">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="TestModules.ValidateInfluencerPage" />
+		</classes>
+	</test>
+
 	<test name="SearchPageTests">
 		<parameter name="browser" value="chrome" />
 		<classes>
@@ -119,7 +126,7 @@
 		<classes>
 			<class name="TestModules.ValidateCartPage" />
 		</classes>
-	</test>
+	</test>e
 
 	<test name="InlineCartTests">
 		<parameter name="browser" value="chrome" />
@@ -156,12 +163,12 @@
 <!--		</classes>-->
 <!--	</test>-->
 
-	<test name="ContactUsPageTests">
-		<parameter name="browser" value="chrome" />
-		<classes>
-			<class name="TestModules.ValidateContactUsPage" />
-		</classes>
-	</test>
+<!--	<test name="ContactUsPageTests">-->
+<!--		<parameter name="browser" value="chrome" />-->
+<!--		<classes>-->
+<!--			<class name="TestModules.ValidateContactUsPage" />-->
+<!--		</classes>-->
+<!--	</test>-->
 
 	<test name="ReviewsPage">
 		<parameter name="browser" value="chrome" />

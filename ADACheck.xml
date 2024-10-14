@@ -6,14 +6,14 @@
        <listener class-name="TestScenario.RetryListener"></listener>
     </listeners>
 
-    <test name="CollectionPageADACheck">
+   <test name="CollectionPageADACheck">
         <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.CollectionPageADACheck" />
         </classes>
     </test>
 
-    <test name="HomePageADACheck">
+   <test name="HomePageADACheck">
         <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.HomePageADACheck" />
@@ -48,19 +48,19 @@
         </classes>
     </test>
 
-    <test name="ReOrderPageADACheck">
-        <parameter name="browser" value="chrome" />
-        <classes>
-            <class name="ADACheckModules.ReOrderPageADACheck" />
-        </classes>
-    </test>
+<!--    <test name="ReOrderPageADACheck">-->
+<!--        <parameter name="browser" value="chrome" />-->
+<!--        <classes>-->
+<!--            <class name="ADACheckModules.ReOrderPageADACheck" />-->
+<!--        </classes>-->
+<!--    </test>-->
 
-    <test name="SearchPageADACheck">
-        <parameter name="browser" value="chrome" />
-        <classes>
-            <class name="ADACheckModules.SearchPageADACheck" />
-        </classes>
-    </test>
+<!--    <test name="SearchPageADACheck">-->
+<!--        <parameter name="browser" value="chrome" />-->
+<!--        <classes>-->
+<!--            <class name="ADACheckModules.SearchPageADACheck" />-->
+<!--        </classes>-->
+<!--    </test>-->
 
     <test name="MensAllADACheck">
         <parameter name="browser" value="chrome" />

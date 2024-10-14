@@ -97,7 +97,7 @@ public class ValidateSearchPages {
 	
 	@Test
 	public void ValidateSearchSingleProductTile() throws Exception {
-		searchText = objGeneralMethods.readPropertiesFile("searchUnderwear");
+		searchText = objGeneralMethods.readPropertiesFile("searchFeatured");
 		new HomePage(driver).validateSearchFunctionEnter(searchText);
 		new CollectionPage(driver).validateSingleTileProductSearch();
 	}
@@ -113,10 +113,6 @@ public class ValidateSearchPages {
 		new HomePage(driver).validateSearchFunctionEnterKeyword(searchText);
 		new CollectionPage(driver).validateQuickshopFunctionalityOnSearchPLP();
 	}
-	
-	
-	
-	
 	
 
 	@AfterMethod(alwaysRun = true)
