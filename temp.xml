@@ -8,14 +8,27 @@
 <!--        <listener class-name="TestScenario.RetryListener"/>-->
     </listeners>
 
-    <test name="CategoryTests">
+    <test name="Tests">
         <parameter name="browser" value="chrome" />
         <classes>
-            <class name="TestModules.ValidateFooterSection">
+            <class name="TestModules.ValidateCartPage">
                 <methods>
-                    <include name="VerifyFooterSectionLinks"/>
+                    <include name="VerifyTieredMeter"/>
                 </methods>
             </class>
         </classes>
     </test>
+
+<!--    <listeners>-->
+<!--        <listener class-name="TestScenario.ADAListenerClass"></listener>-->
+<!--&lt;!&ndash;        <listener class-name="TestScenario.RetryListener"></listener>&ndash;&gt;-->
+<!--    </listeners>-->
+
+<!--    <test name="ADA Check">-->
+<!--        <parameter name="browser" value="chrome" />-->
+<!--        <classes>-->
+<!--            <class name="ADACheckModules.Mens_All_ADACheck" />-->
+<!--        </classes>-->
+<!--    </test>-->
+
 </suite>

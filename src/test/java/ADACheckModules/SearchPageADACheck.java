@@ -47,9 +47,9 @@ public class SearchPageADACheck {
     public void ADACheck_Searchpage() throws Exception {
         Actions action = new Actions(driver);
         WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
-        driver.findElement(SEARCH_TEXTBOX).click();
+        driver.findElement(SEARCH_ICON).click();
         driver.findElement(SEARCH_TEXTBOX).clear();
-        driver.findElement(SEARCH_ICON_INPUT).sendKeys("Second Skin" + Keys.ENTER);
+        driver.findElement(SEARCH_TEXTBOX).sendKeys("Second Skin" + Keys.ENTER);
         Thread.sleep(5000);
         wait.until(ExpectedConditions.visibilityOfElementLocated(SEARCHPAGE_PRODUCT_IMAGE));
         ADACheckMethods.ADACheck(driver, "SearchPageADACheck");

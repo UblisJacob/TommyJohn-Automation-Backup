@@ -45,7 +45,7 @@ public class FlyCartPage extends FlyCartComponents {
 		String accountEmail = objGeneralMethods.readPropertiesFile("loginemail");
 		String password = objGeneralMethods.readPropertiesFile("password");
 		new AccountLoginPage(driver).loginAccount(accountEmail, password);
-		searchText = objGeneralMethods.readPropertiesFile("searchSleepwearSets");
+		searchText = objGeneralMethods.readPropertiesFile("searchFeatured");
 		new HomePage(driver).validateSearchFunctionEnterKeyword(searchText);
 		new CollectionPage(driver).validateQuickshopFunctionalityOnSearchPLP();
 		new AddToCartComponents(driver).addToCart();

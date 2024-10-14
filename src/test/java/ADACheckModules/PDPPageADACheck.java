@@ -26,7 +26,7 @@ public class PDPPageADACheck {
     @Test
     public void ADACheck_PDPPage() throws Exception {
 
-        driver.get("https://www.tommyjohn.com/collections/second-skin-mid-length-boxer-brief-6-3-pack/?color=precious-metals");
+        driver.get("https://www.tommyjohn.com/products/second-skin-trunk-4-3-pack-49?variant=33953798258733");
         ADACheckMethods.ADACheck(driver, "PDPPageADACheck");
     }
 

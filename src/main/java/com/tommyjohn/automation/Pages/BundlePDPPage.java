@@ -51,4 +51,8 @@ public class BundlePDPPage extends BundlePDPComponent{
 	public void verifyAddToCart() throws Exception  {
 		new BundlePDPComponent(driver).verifyAddToCart();
 	}
+
+	public void ValidateLearnMoreLink() throws Exception  {
+		new BundlePDPComponent(driver).ValidateLearnMoreLink();
+	}
 }

@@ -52,6 +52,33 @@ public class BundlePDPComponent extends BundlePDPLocators{
 	public BundlePDPComponent(WebDriver driver) {
 		this.driver = driver;
 	}
+
+	public void ValidateLearnMoreLink() throws Exception {
+		SoftAssert softAssert = new SoftAssert();
+		new ProductDetailsPage(driver).navigateToAllMensPacksInPacksCategory();
+
+		//navigate to PDP
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT));
+		Thread.sleep(5000);
+		WebElement el = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT);
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();", el);
+
+		jse = (JavascriptExecutor) driver;
+		jse.executeScript("window.scrollBy(0,300)");
+
+		driver.findElement(LEARN_MORE).click();
+
+		Thread.sleep(2000);
+		softAssert.assertTrue(driver.findElement(By.xpath("//h2[@class='text-display-sm font-medium leading-none']")).isDisplayed(),"Learn More Link is not functional");
+
+		Reporter.log("Learn More Link is functional");
+		ExtentReport.extentTest.info("Learn More Link is functional");
+
+	}
+
+
 	public void verifyImageGallery() throws Exception {
 		new ProductDetailsPage(driver).navigateToAllWomensPacksInPacksCategory();
 		
@@ -148,20 +175,20 @@ public class BundlePDPComponent extends BundlePDPLocators{
 	public void verifyOnImageBadging() throws Exception {
 		
 		SoftAssert softAssert = new SoftAssert();
-		new ProductDetailsPage(driver).navigateToAllMensPacksInPacksCategory();
+		new ProductDetailsPage(driver).navigateToEveryDayEssentials();
 		
 		//navigate to PDP
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT));
-		Thread.sleep(5000);
-		WebElement el = driver.findElement(SECOND_PRODUCT_HEAD_LINE_TEXT);
-		JavascriptExecutor executor = (JavascriptExecutor)driver;
-		executor.executeScript("arguments[0].click();", el);
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT));
+//		Thread.sleep(5000);
+//		WebElement el = driver.findElement(SECOND_PRODUCT_HEAD_LINE_TEXT);
+//		JavascriptExecutor executor = (JavascriptExecutor)driver;
+//		executor.executeScript("arguments[0].click();", el);
+//
+//		jse = (JavascriptExecutor) driver;
+//		jse.executeScript("window.scrollBy(0,800)");
 
-		jse = (JavascriptExecutor) driver;
-		jse.executeScript("window.scrollBy(0,800)");
-
-		WebElement allElements = (WebElement) driver.findElement(IMAGE_BADGING);
+		WebElement allElements = (WebElement) driver.findElement(IMAGE_BADGING_NEW_STYLE);
 		try{
 			if(!(allElements).isDisplayed())
 				throw new Exception("Badging is not displayed on PDP.");
@@ -184,7 +211,7 @@ public class BundlePDPComponent extends BundlePDPLocators{
 	public void verifySecondaryBadging() throws Exception {
 		
 		SoftAssert softAssert = new SoftAssert();
-		new ProductDetailsPage(driver).navigateToAllMensPacksInPacksCategory();
+		new ProductDetailsPage(driver).navigateToExploreWomensCategory();
 		
 		//navigate to PDP
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
@@ -448,7 +475,7 @@ public class BundlePDPComponent extends BundlePDPLocators{
 		}
 		
 		public void verifyReviewRecommendations() throws Exception {
-			new HomePageComponents(driver).navigateToAllWomensPacksInPacksCategory();
+			new HomePageComponents(driver).navigateToAllMensPacksInPacksCategory();
 			new CollectionPageComponent(driver).navigateToProductDetailsPage();
 			//new AddToCartComponents(driver).selectSize();
 
