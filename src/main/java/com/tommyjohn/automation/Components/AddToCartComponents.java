@@ -92,7 +92,7 @@ public class AddToCartComponents extends AddToCartLocators{
 				jse.executeScript("arguments[0].click();", elemen);
 				Thread.sleep(3000);
 				
-					for(int k=1;k<=2;k++)
+					for(int k=1;k<=3;k++)
 					{	
 						WebElement elements = driver.findElement(By.xpath("(//input[@name='option[Size]'])["+k+"]"));
 						jse.executeScript("arguments[0].click();", elements);

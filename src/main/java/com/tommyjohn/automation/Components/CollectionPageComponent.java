@@ -1817,7 +1817,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollBy(0,150)");
+		js.executeScript("window.scrollBy(0,500)");
 		objGeneralMethods.waitTillPageLoad(driver);
 		Thread.sleep(9000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_INLINE_BANNER));
@@ -1841,7 +1841,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollBy(0,250)");
+		js.executeScript("window.scrollBy(0,500)");
 		objGeneralMethods.waitTillPageLoad(driver);
 		Thread.sleep(10000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_INLINE_BANNER));
@@ -1862,7 +1862,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 //		PageHeader = (driver.findElement(PAGEHEADER).getText().split("Underwear "));
 //		String PageName = PageHeader[1];
 //		System.out.println(PageName);
-		softAssert.assertTrue(driver.findElement(PAGEHEADER).isDisplayed(),"User is not directed to Appropriate Page On Clicking the Inline Banner from PLP");
+		softAssert.assertTrue(driver.findElement(SHOP_PAGEHEADER).isDisplayed(),"User is not directed to Appropriate Page On Clicking the Inline Banner from PLP");
 		Reporter.log("User is directed to Appropriate Page On Clicking the Inline Banner from PLP");
 		ExtentReport.extentTest.info("User is directed to Appropriate Page On Clicking the Inline Banner from PLP");
 
