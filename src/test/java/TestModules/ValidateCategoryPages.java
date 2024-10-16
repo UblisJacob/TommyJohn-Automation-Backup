@@ -45,7 +45,7 @@ public class ValidateCategoryPages {
 
 
 
-//	@Test
+	@Test
 	public void ValidateInteractWithInlineBanner() throws Exception { new
 	CollectionPage(driver).validateInlineBanner(); }
 
@@ -145,7 +145,7 @@ public class ValidateCategoryPages {
 		new CollectionPage(driver).ValidateCollectionFiltersNameInAllFiltersDropdownAndInCollectionDropdown();
 	}
 
-//	@Test
+	@Test
 	public void ValidateOnClickingTheInLineBanner() throws Exception {
 		new CollectionPage(driver).ValidateOnClickingTheInLineBanner();
 	}
