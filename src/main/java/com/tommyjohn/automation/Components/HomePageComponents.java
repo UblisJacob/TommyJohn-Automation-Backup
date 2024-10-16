@@ -84,7 +84,7 @@ public class HomePageComponents extends HomePageLocators {
 		Thread.sleep(2000);
 		driver.findElement(HERO_BANNER_CTA).click();
 		Thread.sleep(3000);
-		element = driver.findElement(By.xpath("//div[@class='shopify-section relative']"));
+		element = driver.findElement(PAGEHEADER);
 		softAssert.assertTrue(element.isDisplayed(),"Shop Now CTA is not functional");
 		Reporter.log("Shop Now CTA is functional");
 		ExtentReport.extentTest.info("Shop Now CTA is functional");
