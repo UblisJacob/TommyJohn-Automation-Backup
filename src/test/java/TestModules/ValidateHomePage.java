@@ -1,5 +1,6 @@
 package TestModules;
 
+import com.tommyjohn.automation.Components.HomePageComponents;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -30,9 +31,9 @@ public class ValidateHomePage extends ExtentReport {
 	}
 
 	@Test
-	public void ValidateCTAsInHeroBanner() throws Exception {
+	public void ValidateCTAInImageBanner() throws Exception {
 
-		new HomePage(driver).ValidateCTAsInHeroBanner();
+		new HomePageComponents(driver).ValidateCTAInImageBanner();
 	}
 
 	@Test
@@ -48,15 +49,15 @@ public class ValidateHomePage extends ExtentReport {
 	}
 
 	@Test
-	public void ValidateShopMensInImageBanner() throws Exception {
+	public void ValidateShopMensInHeroBanner() throws Exception {
 
-		new HomePage(driver).ValidateShopMensInImageBanner();
+		new HomePageComponents(driver).ValidateShopMensInHeroBanner();
 	}
 
 	@Test
-	public void ValidateShopWomensInImageBanner() throws Exception {
+	public void ValidateShopWomensInHeroBanner() throws Exception {
 
-		new HomePage(driver).ValidateShopWomensInImageBanner();
+		new HomePageComponents(driver).ValidateShopWomensInHeroBanner();
 	}
 
 	@Test

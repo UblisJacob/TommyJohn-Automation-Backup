@@ -41,6 +41,113 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		this.driver = driver;
 	}
 
+	public void ValidatePromoCodeErrorScenarioInInformationPage() throws Exception {
+		jse = (JavascriptExecutor)driver;
+		SoftAssert softAssert = new SoftAssert();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		driver.findElement(HomePageLocators.CART_ICON).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+//		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+		Thread.sleep(5000);
+		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
+		CheckErrorMessageForIncorrectPromoCode();
+
+	}
+
+
+	public void Validate3for$48functionalityinInformationPage() throws Exception {
+		jse = (JavascriptExecutor)driver;
+		SoftAssert softAssert = new SoftAssert();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		driver.findElement(HomePageLocators.CART_ICON).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+//		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+		Thread.sleep(5000);
+		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(INFO_DISCOUNT_3for$48));
+		String[] DISCOUNT_3for$48 = driver.findElement(INFO_DISCOUNT_3for$48).getText().split("\\(");
+		System.out.println(DISCOUNT_3for$48[0]);
+		softAssert.assertEquals(DISCOUNT_3for$48[0],"3 FOR $48 ","3 for $48 discount is not applied and not displayed in the Information page line item");
+		String TOTAL = driver.findElement(LINEITEM_TOTAL_3for$48).getText();
+		System.out.println(TOTAL);
+		softAssert.assertEquals(TOTAL,"$16.00","Line Item Total is differ from the 3 for $48 functionality");
+		softAssert.assertAll();
+		Reporter.log("3 for $48 functionality works fine in Information page");
+		ExtentReport.extentTest.info("3 for $48 functionality works fine in Information page");
+
+
+
+	}
+
+	public void Validate3for$48functionalityinShippingPage() throws Exception {
+		jse = (JavascriptExecutor)driver;
+		SoftAssert softAssert = new SoftAssert();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		driver.findElement(HomePageLocators.CART_ICON).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+//		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+		Thread.sleep(5000);
+		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(INFO_DISCOUNT_3for$48));
+		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
+		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
+		entershippingdetails();
+		WebElement Continue_shipping = driver.findElement(CONTINUE_TO_SHIPPING_BUTTON);
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", Continue_shipping);
+		Reporter.log("User is navigated to select shipping method");
+		ExtentReport.extentTest.info("User is navigated to select shipping method");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACT_EMAIL));
+		String[] DISCOUNT_3for$48 = driver.findElement(INFO_DISCOUNT_3for$48).getText().split("\\(");
+		System.out.println(DISCOUNT_3for$48[0]);
+		softAssert.assertEquals(DISCOUNT_3for$48[0],"3 FOR $48 ","3 for $48 discount is not applied and not displayed in the Information page line item");
+		String TOTAL = driver.findElement(SHIPPINGPAGE_LINEITEM_TOTAL_3for$48).getText();
+		System.out.println(TOTAL);
+		softAssert.assertEquals(TOTAL,"$16.00","Line Item Total is differ from the 3 for $48 functionality");
+		softAssert.assertAll();
+		Reporter.log("3 for $48 functionality works fine in Shipping page");
+		ExtentReport.extentTest.info("3 for $48 functionality works fine in Shipping page");
+
+	}
+
+	public void Validate3for$48functionalityinPaymentPage() throws Exception {
+		jse = (JavascriptExecutor)driver;
+		SoftAssert softAssert = new SoftAssert();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		driver.findElement(HomePageLocators.CART_ICON).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+//		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+		Thread.sleep(5000);
+		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(INFO_DISCOUNT_3for$48));
+		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
+		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
+		entershippingdetails();
+		Reporter.log("Shipping Address Details entered");
+		ExtentReport.extentTest.info("Shipping Address Details entered");
+		// driver.findElement(CONTINUE_TO_SHIPPING_BUTTON).click();
+		WebElement Continue_shipping = driver.findElement(CONTINUE_TO_SHIPPING_BUTTON);
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", Continue_shipping);
+		Reporter.log("User is navigated to select shipping method");
+		ExtentReport.extentTest.info("User is navigated to select shipping method");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACT_EMAIL));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SHIPPING_RADIO_BUTTON));
+		jse.executeScript("window.scrollBy(0,100)");
+		Thread.sleep(3000);
+		element = driver.findElement(CONTINUE_TO_PAYMENT_BUTTON);
+		jse.executeScript("arguments[0].click();", element);
+		Reporter.log("User is navigated to payment page");
+		ExtentReport.extentTest.info("User is navigated to payment page");
+		Thread.sleep(5000);
+		String[] DISCOUNT_3for$48 = driver.findElement(INFO_DISCOUNT_3for$48).getText().split("\\(");
+		System.out.println(DISCOUNT_3for$48[0]);
+		softAssert.assertEquals(DISCOUNT_3for$48[0],"3 FOR $48 ","3 for $48 discount is not applied and not displayed in the Payment page line item");
+		String TOTAL = driver.findElement(PAYMENTPAGE_LINEITEM_TOTAL_3for$48).getText();
+		System.out.println(TOTAL);
+		softAssert.assertEquals(TOTAL,"$16.00","Line Item Total is differ from the 3 for $48 functionality");
+		softAssert.assertAll();
+		Reporter.log("3 for $48 functionality works fine in Payment page");
+		ExtentReport.extentTest.info("3 for $48 functionality works fine in Payment page");
+	}
 
 	public void ValidatePromoCodeFIRST20InInformationPage() throws Exception {
 		WebElement element;
@@ -406,6 +513,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		jse = (JavascriptExecutor)driver;
 		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
 		new AddToCartComponents(driver).addsingleproductToCart();
+
 		driver.findElement(HomePageLocators.CART_ICON).click();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 //		try {
@@ -440,6 +548,9 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 				"Return to cart link is not displayed");
 		softAssert.assertTrue(driver.findElement(CONTINUE_TO_SHIPPING_BUTTON).isDisplayed(),
 				"Continue to shipping method button is not displayed");
+		entershippingdetails();
+		driver.findElement(TEXTMEWITHNEWSLETTERSANDOFFERSCHECKBOX).click();
+		Thread.sleep(5000);
 		sidebar();
 		CheckPromoCodeApplication("TECHTESTORDER");
 		softAssert.assertAll();
@@ -452,6 +563,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		jse = (JavascriptExecutor)driver;
 		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
 		new AddToCartComponents(driver).addsingleproductToCart();
+		driver.get("https://www.tommyjohn.com/");
 		driver.findElement(HomePageLocators.CART_ICON).click();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
@@ -644,6 +756,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		WebElement Pay_Now = driver.findElement(COMPLETE_ORDER_BUTTON);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", Pay_Now);
+		Thread.sleep(5000);
 		softAssert.assertTrue(driver.findElement(FIRSTNAME_ERROR).isDisplayed(), "Firstname Field Error Message is not displayed");
 		Reporter.log("Error Message displayed for Firstname field");
 		ExtentReport.extentTest.info("Error Message displayed for Firstname field");
@@ -674,9 +787,12 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	public void checkmandatoryfields() throws InterruptedException {
 
 
-				WebElement Continue_shipping = driver.findElement(CONTINUE_TO_SHIPPING_BUTTON);
-				((JavascriptExecutor) driver).executeScript("arguments[0].click();", Continue_shipping);
+				jse.executeScript("window.scrollBy(0,500)");
 
+				driver.findElement(CONTINUE_TO_SHIPPING_BUTTON).click();
+			//	((JavascriptExecutor) driver).executeScript("arguments[0].click();", Continue_shipping);
+
+				Thread.sleep(5000);
 				softAssert.assertTrue(driver.findElement(EMAIL_ERROR).isDisplayed(), "Email Field Error Message is not displayed");
 				Reporter.log("Error Message displayed for Email field");
 				ExtentReport.extentTest.info("Error Message displayed for Email field");
@@ -760,6 +876,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		driver.findElement(CARDNAME_CLEAR).click();
 		WebElement element = driver.findElement(COMPLETE_ORDER_BUTTON);
 		jse.executeScript("arguments[0].click();", element);
+		Thread.sleep(5000);
 		softAssert.assertTrue(driver.findElement(CARDNUMBER_ERROR).isDisplayed(), "CardNumber Field Error Message is not displayed");
 		Reporter.log("Error Message displayed for CardNumber field");
 		ExtentReport.extentTest.info("Error Message displayed for CardNumber field");
@@ -944,13 +1061,14 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		driver.findElement(PHONE_TEXTBOX).sendKeys("8889996667");
 	}
 
-	public void sidebar() {
+	public void sidebar() throws InterruptedException {
 		softAssert = new SoftAssert();
 		softAssert.assertTrue(driver.findElement(ORDER_SUMMARY_SECTION).isDisplayed(), "ORDER SUMMARY SECTION is not displayed");
 		softAssert.assertTrue(driver.findElement(DISCOUNT_CODE_TEXTBOX).isDisplayed(), "DISCOUNT CODE TEXTBOX is not displayed");
 		softAssert.assertTrue(driver.findElement(APPLY_DISCOUNT_BUTTON).isDisplayed(), "APPLY DISCOUNT BUTTON is not displayed");
 		softAssert.assertTrue(driver.findElement(SUBTOTAL).isDisplayed(), "Subtotal is not displayed");
 		softAssert.assertTrue(driver.findElement(SHIPPING).isDisplayed(), "Shipping is not displayed");
+		Thread.sleep(2000);
 		softAssert.assertTrue(driver.findElement(TOTAL).isDisplayed(), "total price is not displayed");
 		softAssert.assertAll();
 
@@ -959,18 +1077,34 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	public void CheckFirst20PromoCodeApplication(String promocode) throws Exception {
 		softAssert = new SoftAssert();
 		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
+		Thread.sleep(3000);
 		driver.findElement(DISCOUNT_CODE_TEXTBOX).sendKeys(promocode);
 		driver.findElement(APPLY_DISCOUNT_BUTTON).click();
 		// Thread.sleep(3000);
-		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(APPLIED_PROMO_CODE, 0));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(APPLIED_PROMO_CODE));
 		System.out.println(driver.findElement(APPLIED_PROMO_CODE).getText());
 		softAssert.assertEquals(driver.findElement(APPLIED_PROMO_CODE).getText(), promocode, "The Coupon code FIRST20 is not getting applied in Information page");
 		driver.findElement(CANCEL_PROMO_CODE).click();
 //		driver.findElement(CANCEL_PROMO_CODE).click();
-		Thread.sleep(4000);
 		softAssert.assertAll();
 		Reporter.log("The Coupon code FIRST20 is applied");
 		ExtentReport.extentTest.info("The Coupon code FIRST20 is applied");
+
+	}
+
+	public void CheckErrorMessageForIncorrectPromoCode() throws Exception {
+		softAssert = new SoftAssert();
+		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
+		Thread.sleep(3000);
+		driver.findElement(DISCOUNT_CODE_TEXTBOX).sendKeys("first");
+		driver.findElement(APPLY_DISCOUNT_BUTTON).click();
+		Thread.sleep(3000);
+		String Error = driver.findElement(INCORRECT_PROMO_CODE_ERROR_MESSAGE).getText();
+		System.out.println(Error);
+		softAssert.assertTrue(driver.findElement(INCORRECT_PROMO_CODE_ERROR_MESSAGE).isDisplayed(), "Error message is not displayed for Incorrect Promo code");
+		softAssert.assertAll();
+		Reporter.log("Error message is displayed for Incorrect Promo code");
+		ExtentReport.extentTest.info("Error message is displayed for Incorrect Promo code");
 
 	}
 
@@ -980,9 +1114,16 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		driver.findElement(DISCOUNT_CODE_TEXTBOX).sendKeys(promocode);
 		driver.findElement(APPLY_DISCOUNT_BUTTON).click();
 		// Thread.sleep(3000);
-		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(APPLIED_PROMO_CODE, 0));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(APPLIED_PROMO_CODE));
 		softAssert.assertEquals(driver.findElement(APPLIED_PROMO_CODE).getText(), promocode, "Wrong/Invalid Promo Code applied");
-		driver.findElement(CANCEL_PROMO_CODE).click();
+		try {
+			driver.findElement(CANCEL_PROMO_CODE).click();
+		}
+		catch(Exception ex)
+		{
+			driver.findElement(CANCEL_PROMO_CODE1).click();
+
+		}
 //		driver.findElement(CANCEL_PROMO_CODE).click();
 		Thread.sleep(4000);
 		softAssert.assertAll();

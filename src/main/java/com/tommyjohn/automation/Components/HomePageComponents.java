@@ -34,6 +34,7 @@ import com.tommyjohn.automation.commonMethods.GeneralMethods;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
 import static com.tommyjohn.automation.PageLocators.CollectionPageLocator.PAGEHEADER;
+import static com.tommyjohn.automation.PageLocators.CollectionPageLocator.SHOP_PAGEHEADER;
 import static com.tommyjohn.automation.PageLocators.FlyCartPageLocator.INLINECART_PRODUCT_NAME;
 import static com.tommyjohn.automation.PageLocators.FlyCartPageLocator.INLINE_COLOR;
 
@@ -78,7 +79,7 @@ public class HomePageComponents extends HomePageLocators {
 
 	}
 
-	public void ValidateCTAsInHeroBanner() throws InterruptedException {
+	public void ValidateCTAInImageBanner() throws InterruptedException {
 		SoftAssert softAssert = new SoftAssert();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
 		Thread.sleep(2000);
@@ -135,27 +136,27 @@ public class HomePageComponents extends HomePageLocators {
 		ExtentReport.extentTest.info("Categories in Men Category Selector section are functional");
 	}
 
-	public void ValidateShopMensInImageBanner() throws InterruptedException {
+	public void ValidateShopMensInHeroBanner() throws InterruptedException {
 		JavascriptExecutor js = (JavascriptExecutor)driver;
 		SoftAssert softAssert = new SoftAssert();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
-		js.executeScript("window.scrollBy(0,2000)");
+	//	js.executeScript("window.scrollBy(0,2000)");
 		driver.findElement(IMAGE_BANNER_MENS_CTA).click();
 		Thread.sleep(2000);
-		softAssert.assertTrue(driver.findElement(PAGEHEADER).isDisplayed(),"Shop Men CTA in Image Banner is not functional");
+		softAssert.assertTrue(driver.findElement(SHOP_PAGEHEADER).isDisplayed(),"Shop Men CTA in Image Banner is not functional");
 		Reporter.log("Shop Men CTA in Image Banner is functional");
 		ExtentReport.extentTest.info("Shop Men CTA in Image Banner is functional");
 
 	}
 
-	public void ValidateShopWomensInImageBanner() throws InterruptedException {
+	public void ValidateShopWomensInHeroBanner() throws InterruptedException {
 		JavascriptExecutor js = (JavascriptExecutor)driver;
 		SoftAssert softAssert = new SoftAssert();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
-		js.executeScript("window.scrollBy(0,2000)");
+	//	js.executeScript("window.scrollBy(0,2000)");
 		driver.findElement(IMAGE_BANNER_WOMENS_CTA).click();
 		Thread.sleep(2000);
-		softAssert.assertTrue(driver.findElement(PAGEHEADER).isDisplayed(),"Shop Women CTA in Image Banner is not functional");
+		softAssert.assertTrue(driver.findElement(SHOP_PAGEHEADER).isDisplayed(),"Shop Women CTA in Image Banner is not functional");
 		Reporter.log("Shop Women CTA in Image Banner is functional");
 		ExtentReport.extentTest.info("Shop Women CTA in Image Banner is functional");
 

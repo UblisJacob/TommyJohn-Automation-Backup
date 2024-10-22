@@ -14,8 +14,6 @@
 <!--		</classes>-->
 <!--	</test>-->
 
-
-
 	<test name="NavigationAndHomepageTests">
 		<parameter name="browser" value="chrome" />
 		<classes>
