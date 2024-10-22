@@ -49,8 +49,27 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		
 	}
 
-	public void ValidatePromoCodeFIRST20InCartPage() throws InterruptedException {
+	public void Validate3for$48functionalityinCartPage() throws Exception {
+		SoftAssert softAssert = new SoftAssert();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		new AddToCartComponents(driver).add3for$48product();
+		driver.findElement(HomePageLocators.CART_ICON).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+		Thread.sleep(3000);
+		String[] DISCOUNT_3for$48 = driver.findElement(FlyCartPageLocator.DISCOUNT_3for$48).getText().split(":");
+		System.out.println(DISCOUNT_3for$48[1]);
+		softAssert.assertEquals(DISCOUNT_3for$48[1],"3 For $48","3 for $48 discount is not applied and not displayed in the Cart line item");
+		String TOTAL = driver.findElement(FlyCartPageLocator.TOTAL).getText();
+		System.out.println(TOTAL);
+		softAssert.assertEquals(TOTAL,"$48.00","Cart Total is differ from the 3 for $48 functionality");
+		Reporter.log("3 for $48 functionality works fine in Cart page");
+		ExtentReport.extentTest.info("3 for $48 functionality works fine in Cart page");
 
+    }
+
+
+	public void ValidatePromoCodeErrorScenario() throws InterruptedException {
 		WebElement element;
 		SoftAssert softAssert = new SoftAssert();
 
@@ -61,11 +80,40 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		Thread.sleep(3000);
 
+		driver.findElement(CART_COUPONFIELD).sendKeys("First");
+		driver.findElement(APPLY_CTA).click();
+
+		Thread.sleep(5000);
+		String ErrorMessage = driver.findElement(ERROR_COUPON).getText();
+		System.out.println(ErrorMessage);
+		element= driver.findElement(ERROR_COUPON);
+		softAssert.assertTrue(element.isDisplayed(), "Error message is not displayed for the incorrect coupon code");
+		Reporter.log("Error message is displayed for the incorrect coupon code");
+		ExtentReport.extentTest.info("Error message is displayed for the incorrect coupon code");
+
+	}
+
+	public void ValidatePromoCodeFIRST20InCartPage() throws InterruptedException {
+
+		WebElement element;
+		SoftAssert softAssert = new SoftAssert();
+
+		driver.get("https://www.tommyjohn.com/");
+
+		driver.findElement(HomePageLocators.CART_ICON).click();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+		Thread.sleep(3000);
+
 		driver.findElement(CART_COUPONFIELD).sendKeys("FIRST20");
+		Thread.sleep(2000);
 		driver.findElement(APPLY_CTA).click();
 
 
-		Thread.sleep(5000);
+
+		Thread.sleep(10000);
 		String Coupon = driver.findElement(APPLIED_COUPON).getText();
 		System.out.println(Coupon);
 

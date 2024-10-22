@@ -93,11 +93,11 @@ public class CollectionPageLocator {
 	    public static By PLP_BREADCRUMBHOME= By.xpath("//span[contains(text(),'Home')]");
 	    public static By PLP_TITLE= By.xpath("(//div[@class='shopify-section']//h1//span)[1]");
 	    public static By PLP_TITLE_COUNT= By.xpath("//vue-app[@data-vue='CollectionCount']//span");
-	    public static By PLP_INLINE_BANNER= By.xpath("//div[@class='button-inverse']");
+	    public static By PLP_INLINE_BANNER= By.xpath("(//div[@class='button-inverse mt-1'])[1]");
 	    public static String PLP_SECTION_HEADER = "//p[@class='mb-md font-serif text-body-lg text-text-accent']";
 		public static By INLINEBANNERTEXT = By.xpath("//div[@class='plpIlb_maintext']");
-		public static By PAGEHEADER = By.xpath("//span[@class='relative font-medium']");
-		public static By SHOP_PAGEHEADER = By.xpath("//div[@class='mt-14 sm:my-3xl']//h2");
+		public static By PAGEHEADER = By.xpath("//h2");
+		public static By SHOP_PAGEHEADER = By.xpath("//h1");
 		public static By PRODUCT_IMAGE = By.xpath("//img[@class='aspect-tile bg-background-image object-cover text-[0] w-full']");
 	    public static By PLP_FILTER_SINGLE_PROODUCT = By.cssSelector("div.mega-collection-filters>div:nth-child(7)>ul>li>label>span[data-result-count='1']");
 	    
