@@ -3271,7 +3271,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		SoftAssert softAssert = new SoftAssert();
 		// call method to navigate to collection page
-		new HomePageComponents(driver).navigateToNewArrivalsInWomenCategory();
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 		jse = (JavascriptExecutor) driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		// call method to navigate product details page

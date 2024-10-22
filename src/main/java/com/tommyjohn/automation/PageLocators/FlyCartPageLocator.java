@@ -55,8 +55,12 @@ public class FlyCartPageLocator {
 	public static By CART_COUPONFIELD = By.xpath("//input[@id='Discount-Code']");
 	public static By APPLY_CTA = By.xpath("//button[@class='button button-lg px-8']");
 	public static By APPLIED_COUPON = By.xpath("//span[@class='sr-only' and contains(text(),'Discount:')]");
+	public static By ERROR_COUPON = By.xpath("//p[@class='mt-4 text-functional-error']");
 	public static By INLINE_CART_APPLIED_COUPON = By.xpath("//div[@class='mt-2 text-body font-medium text-functional-sale']");
 
+	//3for$48
+	public static By DISCOUNT_3for$48 = By.xpath("//div[@class='mt-2 text-body font-medium text-functional-sale']");
+	public static By TOTAL = By.xpath("(//span[contains(text(),'$48.00')])[2]");
 
 
 

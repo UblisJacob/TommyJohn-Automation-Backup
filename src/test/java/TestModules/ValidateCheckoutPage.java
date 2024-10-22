@@ -34,24 +34,52 @@ public class ValidateCheckoutPage extends ExtentReport {
 //	}
 
 	@Test
+	public void ValidatePromoCodeErrorScenarioInInformationPage() throws Exception
+	{
+		new AddToCartComponents(driver).addsingleproductToCartforFirst20Coupon();
+		new CheckoutPage(driver).ValidatePromoCodeErrorScenarioInInformationPage();
+	}
+
+	@Test
 	public void ValidatePromoCodeFIRST20InInformationPage() throws Exception
 	{
-		new AddToCartComponents(driver).addsingleproductToCart();
+		new AddToCartComponents(driver).addsingleproductToCartforFirst20Coupon();
 		new CheckoutPage(driver).ValidatePromoCodeFIRST20InInformationPage();
 	}
 
 	@Test
 	public void ValidatePromoCodeFIRST20InShippingPage() throws Exception
 	{
-		new AddToCartComponents(driver).addsingleproductToCart();
+		new AddToCartComponents(driver).addsingleproductToCartforFirst20Coupon();
 		new CheckoutPage(driver).ValidatePromoCodeFIRST20InShippingPage();
 	}
 
 	@Test
 	public void ValidatePromoCodeFIRST20InPaymentPage() throws Exception
 	{
-		new AddToCartComponents(driver).addsingleproductToCart();
+		new AddToCartComponents(driver).addsingleproductToCartforFirst20Coupon();
 		new CheckoutPage(driver).ValidatePromoCodeFIRST20InPaymentPage();
+	}
+
+	@Test
+	public void ValidatethreeforfourtyeightfunctionalityinInformationPage() throws Exception
+	{
+		new AddToCartComponents(driver).add3for$48product();
+		new CheckoutPage(driver).Validate3for$48functionalityinInformationPage();
+	}
+
+	@Test
+	public void ValidatethreeforfourtyeightfunctionalityinShippingPage() throws Exception
+	{
+		new AddToCartComponents(driver).add3for$48product();
+		new CheckoutPage(driver).Validate3for$48functionalityinShippingPage();
+	}
+
+	@Test
+	public void ValidatethreeforfourtyeightfunctionalityinPaymentPage() throws Exception
+	{
+		new AddToCartComponents(driver).add3for$48product();
+		new CheckoutPage(driver).Validate3for$48functionalityinPaymentPage();
 	}
 
 	@Test

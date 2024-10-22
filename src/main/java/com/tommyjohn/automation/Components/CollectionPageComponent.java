@@ -1823,8 +1823,6 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_INLINE_BANNER));
 		WebElement inlineBanner = driver.findElement(PLP_INLINE_BANNER);
 		System.out.println(driver.getCurrentUrl());
-		
-
 		Assert.assertTrue(inlineBanner.isEnabled(), "Inline banner is clickable");
 		ExtentReport.extentTest.info("Inline banner is clickable");
 		js.executeScript("arguments[0].scrollIntoView(true);", inlineBanner);
