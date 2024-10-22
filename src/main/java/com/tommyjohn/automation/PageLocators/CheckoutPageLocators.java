@@ -16,7 +16,7 @@ public class CheckoutPageLocators {
 	public static By BREADCRUMB_LINK_CART = By.xpath("//a[contains(text(),'Cart')]");
 	public static By ShipAndPaymentPage_BREADCRUMB_LINK_INFORMATION = By.xpath("//a[contains(text(),'Information')]");
 	public static By BREADCRUMB_LINK_INFORMATION = By.xpath("//span[contains(text(),'Information')]");
-	public static By BREADCRUMB_LINK_SHIPPING = By.xpath("(//span[contains(text(),'Shipping')])[1]");
+	public static By BREADCRUMB_LINK_SHIPPING = By.xpath("(//span[contains(text(),'Shipping')])[2]");
 	public static By PaymentPage_BREADCRUMB_LINK_SHIPPING = By.xpath("(//a[contains(text(),'Shipping')])[1]");
 	public static By BREADCRUMB_LINK_PAYMENT = By.xpath("//span[contains(text(),'Payment')]");
 	
@@ -32,6 +32,7 @@ public class CheckoutPageLocators {
 
 	//shipping address
 	public static By SHIPPINGADD_TEXT = By.xpath("//h2[contains(text(),'Shipping address')]");
+	public static By EMAIL_TEXTBOX = By.xpath("//input[@name='email']");
 	public static By FIRSTNAME_TEXTBOX = By.xpath("(//input[@name='firstName'])[1]");
 	public static By LASTNAME_TEXTBOX = By.xpath("(//input[@name='lastName'])[1]");
 	public static By ADDRESS1_TEXTBOX = By.xpath("//input[@id='shipping-address1']");
@@ -43,7 +44,7 @@ public class CheckoutPageLocators {
 	public static By PHONE_TEXTBOX = By.xpath("(//input[@name='phone'])[1]");
 	public static By REMEMBERME_CHCKBOX = By.cssSelector("#checkout_remember_me");
 	public static By RETURN_TO_CART_LINK = By.xpath("//span[contains(text(),'Return to cart')]");
-	public static By CONTINUE_TO_SHIPPING_BUTTON = By.xpath("//span[contains(text(),'Continue to shipping')]");
+	public static By CONTINUE_TO_SHIPPING_BUTTON = By.xpath("(//button[@type='submit'])[3]");
 	public static By TEXTMEWITHNEWSLETTERSANDOFFERSCHECKBOX = By.xpath("//input[@name='sms_marketing_opt_in']");
 	public static By PHONENUMBERFIELD = By.xpath("//input[@id='TextField6']");
 
@@ -59,15 +60,22 @@ public class CheckoutPageLocators {
 	//SideBar
 	public static By ORDER_SUMMARY_SECTION = By.xpath("//div[@class='_4QenE']");
 	//public static By DISCOUNT_CODE_TEXTBOX = By.cssSelector("#checkout_reduction_code");
-	public static By DISCOUNT_CODE_TEXTBOX = By.xpath("//input[@id='ReductionsInput0']");
+	public static By DISCOUNT_CODE_TEXTBOX = By.xpath("//input[@id='ReductionsInput1']");
 	//public static By APPLY_DISCOUNT_BUTTON = By.cssSelector(".field__input-btn");
-	public static By APPLY_DISCOUNT_BUTTON = By.xpath("(//button[@type='submit'])[3]");
-	public static By SUBTOTAL = By.xpath("(//div[@class='_1qy6ue6b']//span)[1]");
-	public static By SHIPPING = By.xpath("(//div[@class='_1qy6ue6b']//span)[2]");
-	public static By APPLIED_PROMO_CODE = By.xpath("//span[@class='i8os0m3']//span");
-	public static By CANCEL_PROMO_CODE = By.xpath("(//span[@class='i8os0m3']//following::button)[1]");
+	public static By APPLY_DISCOUNT_BUTTON = By.xpath("(//button[@type='submit'])[5]");
+	public static By SUBTOTAL = By.xpath("(//span[contains(text(),'Subtotal')])[2]");
+	public static By SHIPPING = By.xpath("(//span[contains(text(),'Shipping')])[4]");
+	public static By APPLIED_PROMO_CODE = By.xpath("(//span[@class='i8os0m3']//span)[2]");
+	public static By INCORRECT_PROMO_CODE_ERROR_MESSAGE = By.xpath("//p[@id='error-for-ReductionsInput1']");
+	public static By CANCEL_PROMO_CODE = By.xpath("(//button[@aria-label='Remove FIRST20'])[2]");
+	public static By CANCEL_PROMO_CODE1 = By.xpath("(//button[@aria-label='Remove TECHTESTORDER'])[2]");
 //	public static By CANCEL_PROMO_CODE = By.cssSelector("button.tag__button use");
-	public static By TOTAL = By.xpath("//div[@class='_1x41w3p6']");
+	public static By TOTAL = By.xpath("(//span[contains(text(),'Total')])[2]");
+	public static By INFO_DISCOUNT_3for$48 = By.xpath("(//p[@class='_1x52f9s1 _1x52f9s0 _1fragemlj _1x52f9st _1x52f9ss _1fragemnt _1x52f9sp'])[8]");
+	public static By LINEITEM_TOTAL_3for$48 = By.xpath("(//p[@class='_1x52f9s1 _1x52f9s0 _1fragemlj _1x52f9sv _1x52f9su _1fragemnu'])[8]");
+
+	public static By SHIPPINGPAGE_LINEITEM_TOTAL_3for$48 = By.xpath("(//p[@class='_1x52f9s1 _1x52f9s0 _1fragemlj _1x52f9sv _1x52f9su _1fragemnu'])[11]");
+	public static By PAYMENTPAGE_LINEITEM_TOTAL_3for$48 = By.xpath("(//p[@class='_1x52f9s1 _1x52f9s0 _1fragemlj _1x52f9sv _1x52f9su _1fragemnu'])[9]");
 
 	//                                          Shipping
 

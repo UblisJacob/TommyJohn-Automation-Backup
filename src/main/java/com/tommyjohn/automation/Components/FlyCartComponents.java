@@ -44,7 +44,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		WebElement element;
 		SoftAssert softAssert = new SoftAssert();
 
-	//	driver.get("https://www.tommyjohn.com/");
+		driver.get("https://www.tommyjohn.com/");
 
 		Thread.sleep(2000);
 		driver.findElement(HomePageLocators.CART_ICON).click();

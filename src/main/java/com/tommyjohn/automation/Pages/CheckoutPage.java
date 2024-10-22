@@ -18,6 +18,13 @@ public class CheckoutPage extends CheckoutPageComponents {
 		new CheckoutPageComponents(driver).expresscheckout();
 	}
 
+
+	public void ValidatePromoCodeErrorScenarioInInformationPage() throws Exception
+	{
+		new CheckoutPageComponents(driver).ValidatePromoCodeErrorScenarioInInformationPage();
+
+	}
+
 	public void ValidatePromoCodeFIRST20InInformationPage() throws Exception
 	{
 		new CheckoutPageComponents(driver).ValidatePromoCodeFIRST20InInformationPage();
@@ -33,6 +40,22 @@ public class CheckoutPage extends CheckoutPageComponents {
 	public void ValidatePromoCodeFIRST20InPaymentPage() throws Exception
 	{
 		new CheckoutPageComponents(driver).ValidatePromoCodeFIRST20InPaymentPage();
+
+	}
+
+
+	public void Validate3for$48functionalityinInformationPage() throws Exception {
+		new CheckoutPageComponents(driver).Validate3for$48functionalityinInformationPage();
+
+	}
+
+	public void Validate3for$48functionalityinShippingPage() throws Exception {
+		new CheckoutPageComponents(driver).Validate3for$48functionalityinShippingPage();
+
+	}
+
+	public void Validate3for$48functionalityinPaymentPage() throws Exception {
+		new CheckoutPageComponents(driver).Validate3for$48functionalityinPaymentPage();
 
 	}
 	
