@@ -701,7 +701,7 @@ public class HomePageComponents extends HomePageLocators {
 		WebElement element = driver.findElement(SEARCH_ICON_INPUT);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", element);
-		Thread.sleep(3000);
+		Thread.sleep(8000);
 		softAssert.assertTrue(driver.findElement(POPULARTERMS).isDisplayed(),"Popular Terms is not displayed in the Search Dropdown");
 		Reporter.log("Popular Terms is displayed in the Search Dropdown");
 		ExtentReport.extentTest.info("Popular Terms is displayed in the Search Dropdown");
