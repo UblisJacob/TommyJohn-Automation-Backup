@@ -33,7 +33,7 @@ public class ValidateAccountPage extends ExtentReport {
 	void tearDown() {
 
 		driver.close();
-		driver.quit();
+//		driver.quit();
 	}
 
 }

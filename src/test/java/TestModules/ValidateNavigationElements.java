@@ -77,7 +77,7 @@ public class ValidateNavigationElements {
 	void teardown()
 	{
 		driver.close();
-		driver.quit();
+	//	driver.quit();
 	}
 
 }

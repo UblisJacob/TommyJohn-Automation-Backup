@@ -131,7 +131,7 @@ public class ValidateCreateAccount_Login {
 	void teardown () {
 		
 		driver.close();
-		driver.quit();
+//		driver.quit();
 	}
 
 }

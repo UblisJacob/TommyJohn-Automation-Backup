@@ -100,6 +100,8 @@ public class CollectionPageLocator {
 		public static By SHOP_PAGEHEADER = By.xpath("//h1");
 		public static By PRODUCT_IMAGE = By.xpath("//img[@class='aspect-tile bg-background-image object-cover text-[0] w-full']");
 	    public static By PLP_FILTER_SINGLE_PROODUCT = By.cssSelector("div.mega-collection-filters>div:nth-child(7)>ul>li>label>span[data-result-count='1']");
+		public static By MULTIPACKS_CHECKBOX = By.xpath("(//input[@name='filter.pack_size'])[1]");
+		public static By PACKS = By.xpath("//a[@data-cy='productTileLink']");
 	    
 	    public static By PLP_SEO_TITLE = By.xpath("//*[data-tj-qa='plp-seo-title'] | //h2[@class='collection-seo-title']");
 	    public static By PLP_SEO_BODY = By.xpath("//*[data-tj-qa='plp-seo-body'] | //div[@class='collection-seo-body']");
