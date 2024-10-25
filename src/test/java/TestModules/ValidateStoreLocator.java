@@ -32,6 +32,6 @@ public class ValidateStoreLocator {
 	void teardown () {
 		
 		driver.close();
-		driver.quit();
+//		driver.quit();
 	}
 }

@@ -82,7 +82,7 @@ public class ValidateBundlePDP extends ExtentReport {
 	void teardown () {
 
 		driver.close();
-		driver.quit();
+//		driver.quit();
 	
 	}
 }

@@ -131,7 +131,7 @@ public class ValidateInlineCartPage extends ExtentReport {
 	void tearDown() {
 
 		this.driver.close();
-		this.driver.quit();
+//		this.driver.quit();
 
 	}
 }

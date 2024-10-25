@@ -42,7 +42,7 @@ public class ValidateInfluencerPage {
     void teardown() {
 
         driver.close();
-        driver.quit();
+ //       driver.quit();
 
     }
 }

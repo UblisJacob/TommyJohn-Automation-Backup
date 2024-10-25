@@ -171,7 +171,7 @@ public class ValidateHomePage extends ExtentReport {
 	void teardown () {
 
 		driver.close();
-		driver.quit();
+//		driver.quit();
 	}
 
 
