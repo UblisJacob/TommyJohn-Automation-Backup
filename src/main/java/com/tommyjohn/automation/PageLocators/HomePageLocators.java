@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 public class HomePageLocators{
 
 	//HomePageSections
-	public static By HERO_BANNER_IMAGE = By.xpath("//div[@class='relative size-full']");
+	public static By HERO_BANNER_IMAGE = By.xpath("//div[@class='shopify-section relative']");
 	public static By HERO_BANNER_CTA = By.xpath("(//a[@class='button-inverse'])[3]");
 	public static By CATEGORY_SELECTOR_SECTION = By.xpath("(//div[@class='grid grid-cols-1 md:grid-cols-2'])[1]");
 	public static By CATEGORY_SELECTOR_MEN = By.xpath("(//div[@class='space-x-2 md:space-x-4']//button)[1]");

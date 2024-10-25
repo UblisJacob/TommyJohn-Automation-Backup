@@ -119,6 +119,6 @@ public class ValidateSearchPages {
 	void teardown() {
 
 		driver.close();
-		driver.quit();
+//		driver.quit();
 	}
 }

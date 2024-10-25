@@ -1669,6 +1669,48 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		}
 	}
 
+	public void validateMultipacksCheckBox() throws Exception {
+		int count = 0;
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PLP_PRODUCTS)));
+		driver.findElement(MULTIPACKS_CHECKBOX).click();
+		Thread.sleep(5000);
+		List<WebElement> Packs = driver.findElements(By.xpath("//a[@data-cy='productTileLink']"));
+		System.out.println(Packs.size());
+		for(int i=1;i<=7;i++)
+		{
+			String[] PacksName = driver.findElement(By.xpath("(//a[@data-cy='productTileLink'])["+i+"]")).getText().split("\"");
+			System.out.println(PacksName[1]);
+
+			if(PacksName[1].contains("Pack")){
+
+				System.out.println("Product is displayed as multipack");
+
+			}
+
+			else {
+				count++;
+				throw new Exception("Product is not displayed as multipack");
+
+			}
+
+		}
+
+		if (count>1){
+			throw new Exception("Product is displayed as multipack");
+		}
+
+		else{
+
+			System.out.println("Product is not displayed as multipack");
+			Reporter.log("Products are displayed as multipacks on selecting the Multipacks checkbox");
+			ExtentReport.extentTest.info("Products are displayed as multipacks on selecting the Multipacks checkbox");
+
+		}
+	}
+
+
 	// new
 	public void validateProductGrid() throws Exception {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));

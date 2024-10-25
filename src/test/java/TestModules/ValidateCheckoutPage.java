@@ -155,7 +155,7 @@ public class ValidateCheckoutPage extends ExtentReport {
 	void tearDown() {
 
 		this.driver.close();
-		this.driver.quit();
+	//	this.driver.quit();
 
 	}
 

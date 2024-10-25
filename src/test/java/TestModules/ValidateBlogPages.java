@@ -36,6 +36,6 @@ public class ValidateBlogPages{
 	void teardown() {
 
 		 driver.close();
-		driver.quit();
+//		driver.quit();
 	}
 }

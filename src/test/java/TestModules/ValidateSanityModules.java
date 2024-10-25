@@ -57,7 +57,7 @@ public class ValidateSanityModules {
 	void teardown () {
 
 		driver.close();
-		driver.quit();
+//		driver.quit();
 	}
 	
 	
