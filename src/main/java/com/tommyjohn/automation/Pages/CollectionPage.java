@@ -369,6 +369,12 @@ public class CollectionPage extends CollectionPageComponent{
 		new HomePageComponents(driver).navigateToNewArrivalsInMenCategory();
 		validateProductGrid();
 	}
+
+	public void ValidateMultipacksCheckBox() throws Exception {
+		// TODO Auto-generated method stub
+		new HomePageComponents(driver).navigateToMensAll();
+		validateMultipacksCheckBox();
+	}
 	
 	public void validateBreadcrumbLinks() throws Exception {
 		// TODO Auto-generated method stub

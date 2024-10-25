@@ -794,7 +794,7 @@ public class HomePageComponents extends HomePageLocators {
 
 		driver.findElement(SEARCH_TEXTBOX).click();
 		driver.findElement(SEARCH_TEXTBOX).clear();
-		driver.findElement(SEARCH_TEXTBOX).sendKeys("women");
+		driver.findElement(SEARCH_TEXTBOX).sendKeys("second skin");
 		
 	    action.moveToElement(driver.findElement(SEARCH_TEXTBOX)).build().perform();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SUGGESTED_PRODUCT_IMG));
