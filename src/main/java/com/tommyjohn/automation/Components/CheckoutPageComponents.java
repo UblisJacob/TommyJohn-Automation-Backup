@@ -54,6 +54,65 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 
 	}
 
+	public void ValidatePromoCodeErrorScenarioInShippingPage() throws Exception {
+		jse = (JavascriptExecutor)driver;
+		SoftAssert softAssert = new SoftAssert();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		driver.findElement(HomePageLocators.CART_ICON).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+//		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+		Thread.sleep(5000);
+		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
+		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
+		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
+		entershippingdetails();
+		Reporter.log("Shipping Address Details entered");
+		ExtentReport.extentTest.info("Shipping Address Details entered");
+		// driver.findElement(CONTINUE_TO_SHIPPING_BUTTON).click();
+		WebElement Continue_shipping = driver.findElement(CONTINUE_TO_SHIPPING_BUTTON);
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", Continue_shipping);
+		Reporter.log("User is navigated to select shipping method");
+		ExtentReport.extentTest.info("User is navigated to select shipping method");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACT_EMAIL));
+		CheckErrorMessageForIncorrectPromoCode();
+
+	}
+
+
+
+	public void ValidatePromoCodeErrorScenarioInPaymentPage() throws Exception {
+		jse = (JavascriptExecutor)driver;
+		SoftAssert softAssert = new SoftAssert();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		driver.findElement(HomePageLocators.CART_ICON).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+//		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+		Thread.sleep(5000);
+		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
+		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
+		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
+		entershippingdetails();
+		Reporter.log("Shipping Address Details entered");
+		ExtentReport.extentTest.info("Shipping Address Details entered");
+		// driver.findElement(CONTINUE_TO_SHIPPING_BUTTON).click();
+		WebElement Continue_shipping = driver.findElement(CONTINUE_TO_SHIPPING_BUTTON);
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", Continue_shipping);
+		Reporter.log("User is navigated to select shipping method");
+		ExtentReport.extentTest.info("User is navigated to select shipping method");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACT_EMAIL));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SHIPPING_RADIO_BUTTON));
+		jse.executeScript("window.scrollBy(0,100)");
+		Thread.sleep(3000);
+		element = driver.findElement(CONTINUE_TO_PAYMENT_BUTTON);
+		jse.executeScript("arguments[0].click();", element);
+		Reporter.log("User is navigated to payment page");
+		ExtentReport.extentTest.info("User is navigated to payment page");
+		CheckErrorMessageForIncorrectPromoCode();
+
+	}
+
 
 	public void Validate3for$48functionalityinInformationPage() throws Exception {
 		jse = (JavascriptExecutor)driver;
