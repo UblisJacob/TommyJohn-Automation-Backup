@@ -447,6 +447,14 @@ public class CollectionPage extends CollectionPageComponent{
 		
 		
 	}
+
+	public void validateCloseQuickshop() throws Exception {
+		// TODO Auto-generated method stub
+		new HomePageComponents(driver).navigateToMensAndLoungeTops();
+		ValidateCloseQuickshop();
+
+
+	}
 	
 	public void validateSingleTileProduct() throws Exception {
 		// TODO Auto-generated method stub

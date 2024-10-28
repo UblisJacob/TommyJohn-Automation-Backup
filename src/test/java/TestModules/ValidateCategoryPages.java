@@ -85,6 +85,10 @@ public class ValidateCategoryPages {
 	@Test
 	public void ValidateInteractWithQuickShop() throws Exception { new
 	CollectionPage(driver).validateQuickshopFunctionality(); }
+
+	@Test
+	public void validateCloseQuickshop() throws Exception { new
+			CollectionPage(driver).validateCloseQuickshop(); }
 	 
 
 	@Test

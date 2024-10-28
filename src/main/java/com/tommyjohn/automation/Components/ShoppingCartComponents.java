@@ -49,6 +49,26 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		
 	}
 
+	public void ValidateProductCountInInlineCartAndCartPages() throws Exception {
+		SoftAssert softAssert = new SoftAssert();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		new AddToCartComponents(driver).addToCart();
+		driver.get("https://www.tommyjohn.com/");
+		String COUNT_IN_INLINECART = driver.findElement(HomePageLocators.COUNT_IN_INLINECART).getText();
+		System.out.println(COUNT_IN_INLINECART);
+		driver.findElement(HomePageLocators.CART_ICON).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+		Thread.sleep(3000);
+		String COUNT_IN_CART = driver.findElement(HomePageLocators.COUNT_IN_CART).getText();
+		System.out.println(COUNT_IN_CART);
+		softAssert.assertEquals(COUNT_IN_INLINECART,COUNT_IN_CART,"Inappropriate product count is displayed in Cart and Inline cart pages.");
+		Reporter.log("Appropriate product count is displayed in Cart and Inline cart pages.");
+		ExtentReport.extentTest.info("Appropriate product count is displayed in Cart and Inline cart pages.");
+
+	}
+
+
 	public void Validate3for$48functionalityinCartPage() throws Exception {
 		SoftAssert softAssert = new SoftAssert();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
