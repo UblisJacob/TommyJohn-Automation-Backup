@@ -154,6 +154,7 @@ public class HomePageComponents extends HomePageLocators {
 		SoftAssert softAssert = new SoftAssert();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
 	//	js.executeScript("window.scrollBy(0,2000)");
+		Thread.sleep(2000);
 		driver.findElement(IMAGE_BANNER_WOMENS_CTA).click();
 		Thread.sleep(2000);
 		softAssert.assertTrue(driver.findElement(SHOP_PAGEHEADER).isDisplayed(),"Shop Women CTA in Image Banner is not functional");
@@ -823,6 +824,7 @@ public class HomePageComponents extends HomePageLocators {
 //		System.out.println(title);
 		softAssert.assertEquals(text, search_value, "Search page title is not matched with clicked suggested link");
 
+		driver.get("https://www.tommyjohn.com/");
 		driver.findElement(SEARCH_ICON).click();
 		driver.findElement(SEARCH_TEXTBOX).click();
 		driver.findElement(SEARCH_TEXTBOX).sendKeys("women");
