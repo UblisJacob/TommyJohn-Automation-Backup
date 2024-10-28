@@ -78,7 +78,6 @@ public class BundlePDPComponent extends BundlePDPLocators{
 
 	}
 
-
 	public void verifyImageGallery() throws Exception {
 		new ProductDetailsPage(driver).navigateToAllWomensPacksInPacksCategory();
 		

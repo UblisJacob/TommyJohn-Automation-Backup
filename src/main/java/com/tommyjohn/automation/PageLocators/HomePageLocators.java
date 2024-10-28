@@ -14,7 +14,7 @@ public class HomePageLocators{
 	public static By MEN_CATEGORIES = By.xpath("(//ul[@class='mt-6 md:mt-8'])[1]//li");
 	public static By WOMEN_CATEGORIES = By.xpath("(//ul[@class='mt-6 md:mt-8'])[2]//li");
 	public static By IMAGE_BANNER_MENS_CTA = By.xpath("(//a[@class='button-inverse'])[1]");
-	public static By IMAGE_BANNER_WOMENS_CTA = By.xpath("(//a[@class='button-inverse'])[2]");
+	public static By IMAGE_BANNER_WOMENS_CTA = By.xpath("(//a[@class='button-inverse '])[2]");
 	public static By COLLECTION_SELECTOR = By.xpath("//div[@class='size-full']");
 	public static By COLLECTION_SELECTOR_SECOND_SKIN = By.xpath("(//div[@class='mt-3 md:mt-8 space-y-4']//button)[1]");
 	public static By COLLECTION_SELECTOR_COOL_COTTON = By.xpath("(//div[@class='mt-3 md:mt-8 space-y-4']//button)[2]");
@@ -307,9 +307,13 @@ public class HomePageLocators{
 	public static By CART_ICON = By.xpath("//span[@class='icon block icon-cart']");
 	public static By REMOVE_ICON = By.xpath("//button[@class='button-link mt-4 text-body-xs text-text-tertiary' and contains(text(),'Remove')]");
 	public static By OVERLAY = By.xpath("//div[@id='swell-overlay']");
+	public static By COUNT_IN_INLINECART = By.xpath("(//span[@class='icon block icon-cart']//following::span)[1]");
+
+
 
 	public static By CART_HEADING_TEXT = By.cssSelector(".inline-cart__col1 > h3");
 	public static By MINICART_HEADING = By.xpath("//h2[contains(text(),'Your Cart')]");
+	public static By COUNT_IN_CART = By.xpath("//h1[contains(text(),'Your Cart')]//span");
 
 	public static By ABOUT_LINK = By.cssSelector("a[data-tj-qa='footer-about']");
 	public static By CAREERS_LINK = By.cssSelector("a[data-tj-qa='footer-careers']");

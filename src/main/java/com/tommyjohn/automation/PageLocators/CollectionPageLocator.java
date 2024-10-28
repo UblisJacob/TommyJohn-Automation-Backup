@@ -21,7 +21,7 @@ public class CollectionPageLocator {
 	public static By COMPARE_PRODUCT = By.cssSelector(".product-image-container > div.has-compare");
 	public static By FIRST_PRODUCT_IMAGE = By.xpath("(//img[@class='aspect-tile bg-background-image object-cover text-[0] w-full'])[1]");
 	public static By HOVER_PRODUCT_IMAGE = By.xpath("(//img[@class='aspect-tile bg-background-image object-cover text-[0] w-full'])[1]");
-
+	public static By QUICKSHOP_CLOSE = By.xpath("(//span[@class='icon size-5 icon-x'])[1]");
 	//changed
 	public static String PRODUCT_IMAGES = "//div[contains(@class,'product-image')]//a";
 	public static By PRODUCT_COUNT_TEXT = By.xpath("//*[data-tj-qa='plp-total-items']>span | //div[contains(@class,'controls__count')]//span");

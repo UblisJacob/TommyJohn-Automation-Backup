@@ -1238,6 +1238,30 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		AddproductToCartByQuickShop();
 	}
 
+	public void ValidateCloseQuickshop() throws Exception {
+		Actions action = new Actions(driver);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		//Thread.sleep(8000);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		js.executeScript("window.scrollBy(0,500)");
+
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.presenceOfElementLocated(FIRST_PRODUCT_IMAGE));
+		// Hover On product image on collection page
+		element = driver.findElement(FIRST_PRODUCT_IMAGE);
+		js.executeScript("arguments[0].scrollIntoView(true);", element);
+		action.moveToElement(element).build().perform();
+		Thread.sleep(3000);
+		driver.findElement(QUICK_SHOP_ATC).click();
+		Reporter.log("Quick shop ATC button text is validated :: Clickable.");
+		ExtentReport.extentTest.info("Quick shop ATC button text is validated :: Clickable.");
+		driver.findElement(QUICKSHOP_CLOSE).click();
+		softAssert.assertTrue(driver.findElement(QUICK_SHOP_ATC).isDisplayed(),"QUICKSHOP close icon is not functional.");
+		Reporter.log("QUICKSHOP close icon is functional.");
+		ExtentReport.extentTest.info("QUICKSHOP close icon is functional.");
+
+	}
+
 
 	public void AddproductToCartByQuickShop() throws Exception {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
