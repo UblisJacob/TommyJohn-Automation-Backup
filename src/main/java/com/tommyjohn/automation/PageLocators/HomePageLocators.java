@@ -14,7 +14,7 @@ public class HomePageLocators{
 	public static By MEN_CATEGORIES = By.xpath("(//ul[@class='mt-6 md:mt-8'])[1]//li");
 	public static By WOMEN_CATEGORIES = By.xpath("(//ul[@class='mt-6 md:mt-8'])[2]//li");
 	public static By IMAGE_BANNER_MENS_CTA = By.xpath("(//a[@class='button-inverse'])[1]");
-	public static By IMAGE_BANNER_WOMENS_CTA = By.xpath("(//a[@class='button-inverse '])[2]");
+	public static By IMAGE_BANNER_WOMENS_CTA = By.xpath("(//div[@class='my-lg flex flex-wrap align-center gap-xs text-center justify-center']//a)[2]");
 	public static By COLLECTION_SELECTOR = By.xpath("//div[@class='size-full']");
 	public static By COLLECTION_SELECTOR_SECOND_SKIN = By.xpath("(//div[@class='mt-3 md:mt-8 space-y-4']//button)[1]");
 	public static By COLLECTION_SELECTOR_COOL_COTTON = By.xpath("(//div[@class='mt-3 md:mt-8 space-y-4']//button)[2]");
