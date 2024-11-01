@@ -19,7 +19,7 @@ public class AddToCartLocators {
 	public static By INLINE_CART_CLOSE = By.xpath("//button[@aria-label='Close cart']");
 	
 	public static By JOIN_THE_WAITLIST = By.cssSelector(".multiPdp__atc-container>button");
-	public static By INLINE_CART_TITLE = By.xpath("//h2[@class='text-heading-lg font-medium sm:text-heading']");
+	public static By INLINE_CART_TITLE = By.xpath("//h2[@class='text-heading-lg font-medium leading-none sm:text-heading']");
 	
 	
 

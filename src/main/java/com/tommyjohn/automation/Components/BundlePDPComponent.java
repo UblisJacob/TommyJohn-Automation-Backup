@@ -55,19 +55,20 @@ public class BundlePDPComponent extends BundlePDPLocators{
 
 	public void ValidateLearnMoreLink() throws Exception {
 		SoftAssert softAssert = new SoftAssert();
-		new ProductDetailsPage(driver).navigateToAllMensPacksInPacksCategory();
+//		new ProductDetailsPage(driver).navigateToAllMensPacksInPacksCategory();
+//
+//		//navigate to PDP
+//		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT));
+//		Thread.sleep(5000);
+//		WebElement el = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT);
+//		JavascriptExecutor executor = (JavascriptExecutor)driver;
+//		executor.executeScript("arguments[0].click();", el);
+//
+//		jse = (JavascriptExecutor) driver;
+//		jse.executeScript("window.scrollBy(0,300)");
 
-		//navigate to PDP
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT));
-		Thread.sleep(5000);
-		WebElement el = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT);
-		JavascriptExecutor executor = (JavascriptExecutor)driver;
-		executor.executeScript("arguments[0].click();", el);
-
-		jse = (JavascriptExecutor) driver;
-		jse.executeScript("window.scrollBy(0,300)");
-
+		driver.get("https://www.tommyjohn.com/products/second-skin-mid-length-boxer-brief-6-3-pack-52?variant=43053721813037");
 		driver.findElement(LEARN_MORE).click();
 
 		Thread.sleep(2000);
