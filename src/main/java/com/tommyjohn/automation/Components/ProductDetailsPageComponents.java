@@ -2677,6 +2677,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		executor.executeScript("window.scrollBy(0, 300)");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_IMAGE));
+		Thread.sleep(3000);
 		String prodcttitle = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
 		System.out.println(prodcttitle);
 		//		new CollectionPageComponent(driver).navigateToProductDetailsPage();
@@ -2752,6 +2753,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 //			except = e;
 //		}
 //		if (except != null) {
+		Thread.sleep(2000);
 			if (driver.findElement(FIT_MATERIAL).isDisplayed()) {
 				element = driver.findElement(FIT_MATERIAL);
 				jse = (JavascriptExecutor) driver;
@@ -3002,7 +3004,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 			for (int i = 1; i <= sortby; i++) {
 
-				element = driver.findElement(By.xpath("(//span[@title='[object Object]'])["+i+"]"));
+				element = driver.findElement(By.xpath("(//span[@class='yotpo-dropdown-option'])["+i+"]"));
 //					softAssert.assertTrue(element.isDisplayed(), "SORT bY Filter does not work");
 				jse = (JavascriptExecutor) driver;
 				jse.executeScript("arguments[0].click();", element);

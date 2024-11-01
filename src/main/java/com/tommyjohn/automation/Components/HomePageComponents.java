@@ -154,7 +154,7 @@ public class HomePageComponents extends HomePageLocators {
 		SoftAssert softAssert = new SoftAssert();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
 	//	js.executeScript("window.scrollBy(0,2000)");
-		Thread.sleep(2000);
+		Thread.sleep(10000);
 		driver.findElement(IMAGE_BANNER_WOMENS_CTA).click();
 		Thread.sleep(2000);
 		softAssert.assertTrue(driver.findElement(SHOP_PAGEHEADER).isDisplayed(),"Shop Women CTA in Image Banner is not functional");
