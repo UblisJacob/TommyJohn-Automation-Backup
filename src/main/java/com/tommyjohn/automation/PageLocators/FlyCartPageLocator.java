@@ -21,12 +21,12 @@ public class FlyCartPageLocator {
 	
 	public static By QUANTITY_PLUS_MINUS_BUTTON = By.xpath(
 			"article:nth-child(1) > div.line-item__summary > div.line-item__total > div.qty-selector.line-item__qty");
-	public static By ADD_GIFT_WRAP_BUTTON = By.xpath("//button[@class='button-link text-body sm:text-heading-sm']");
+	public static By ADD_GIFT_WRAP_BUTTON = By.xpath("//button[@class='button-link text-body sm:text-body-md']");
 	public static By SUBTOTAL_TEXT = By.cssSelector("div[data-tj-qa='inline-cart-subtotal-text'],.inline-cart__subtotal--text");
 	public static By ESTIMATE_TOTAL = By.xpath("//span[contains(text(),'Subtotal')]");
 	public static By ESTIMATE_TOTAL_SMALL = By.cssSelector("div[data-tj-qa='inline-cart-subtotal-text']>small,div.inline-cart__summary > div > div > small");
 	public static By CHECKOUT_BUTTON = By.xpath("//button[@data-cy='cartFormCheckoutButton']");
-	public static By FIRST_PRODUCT_TITLE_IN_CART = By.xpath("(//a[@class='sm:text-heading-sm'])[1]"); // ("div.inline-cart__col1 >
+	public static By FIRST_PRODUCT_TITLE_IN_CART = By.xpath("(//a[@class='font-medium text-text-primary mt-1 block text-body-lg leading-tight sm:text-body sm:leading-5'])[1]"); // ("div.inline-cart__col1 >
 																						// div:nth-child(7) > article >
 																						// div.line-item__summary > a");
 	public static By PLUS_BUTTON = By.cssSelector("button[data-tj-qa='cart-line-item-plus'],.qty-selector.line-item__qty > button:nth-child(3)");

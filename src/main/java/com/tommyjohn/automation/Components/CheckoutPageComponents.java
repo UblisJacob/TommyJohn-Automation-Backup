@@ -696,10 +696,6 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		Reporter.log("Phone Number Field is displayed");
 		ExtentReport.extentTest.info("Phone Number Field is displayed");
 
-
-
-
-
 	}
 
 	public void ValidateBillingAddressFieldInPaymentPage() throws Exception {

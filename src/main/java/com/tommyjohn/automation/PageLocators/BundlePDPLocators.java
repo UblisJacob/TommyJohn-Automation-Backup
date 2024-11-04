@@ -71,7 +71,7 @@ public class BundlePDPLocators {
 	//public static By ALL_SIZE_LIST = By.cssSelector(".product-option__variants.product-option__variants-size > ul > li");
 
 
-	public static By LEARN_MORE = By.xpath("//button[@class='button-link text-text-tertiary text-body-sm']");
+	public static By LEARN_MORE = By.xpath("//button[contains(text(),' Learn more ')]");
 	public static By ALL_COLOR_LIST = By.cssSelector(".product-option__color-swatches-wrapper > ul >li");
 	public static By COLOR_VARIANT = By.xpath("//div[@class='space-y-lg']//span[@class='sr-only']");
 //	public static By PRODUCT_DETAILS = By.cssSelector(".product-info__inner > div:nth-child(2) > ul > li:nth-child(1) > div:nth-child(1) > a");
