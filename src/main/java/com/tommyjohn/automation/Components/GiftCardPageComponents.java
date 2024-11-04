@@ -38,6 +38,7 @@ public class GiftCardPageComponents extends GiftCardPageLocators {
 	SoftAssert softAssert = new SoftAssert();
 	WebElement Rec_mail;
 	String GC_Price_PDP;
+	String[] GC_Price_PDP_Copy;
 	String Expected_text;
 	String Delivery_date;
 	String newDelivery_Date;
@@ -145,6 +146,7 @@ public class GiftCardPageComponents extends GiftCardPageLocators {
 //		Thread.sleep(3000);
 //
 		GC_Price_PDP =driver.findElement(GiftCard_PageComponents.GIFT_CARD_PRICE).getText();
+		System.out.println(GC_Price_PDP);
 		
 		//Add to cart button
 		jse.executeScript("arguments[0].click();", driver.findElement(ATC_BUTTON));
@@ -165,9 +167,10 @@ public class GiftCardPageComponents extends GiftCardPageLocators {
 
 		//Check Gift card price On inline cart
 		softAssert.assertTrue(driver.findElement(GIFT_CARD_PRICE_INLINE_CART).isDisplayed(), " Gift card price on Inline cart is not displayed");
-		text = driver.findElement(GIFT_CARD_PRICE_INLINE_CART).getText();
-		System.out.println("Gift card price on inline cart is :: "+text);
-		softAssert.assertEquals(text,GC_Price_PDP, "Wrong Gift card price is displayed on inline cart");
+		String[] Price = driver.findElement(GIFT_CARD_PRICE_INLINE_CART).getText().split("\\.");
+		String Pricetext = Price[0];
+		System.out.println("Gift card price on inline cart is :: "+ Pricetext);
+		softAssert.assertEquals(Pricetext,GC_Price_PDP, "Wrong Gift card price is displayed on inline cart");
 		Reporter.log("Gift Card price on inline cart is Displayed :: Correct");
 		ExtentReport.extentTest.info("Gift Card price on inline cart is Displayed :: Correct");
 

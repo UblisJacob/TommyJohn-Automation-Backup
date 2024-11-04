@@ -2448,7 +2448,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 //				if (num1 > 0) {
 
 
-					colornew = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='font-medium'])[1]")).getText();
+					colornew = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='font-medium text-text-primary'])[1]")).getText();
 					imagecolor = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])["+i+"]")).getText();
 
 					System.out.println("For Color Swatch: " + colornew);
@@ -3103,6 +3103,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		WebElement writereview = driver.findElement(WRITE_REVIEW_BUTTON);
 		executore.executeScript("arguments[0].click();", writereview);
 
+		Thread.sleep(2000);
 		softAssert.assertEquals(driver.findElement(WRITE_REVIEW_TITLE).getText(), "Write a review *", "Language mismatch for Write a Review title 2");
 		System.out.println(driver.findElement(WRITE_REVIEW_TITLE).getText());
 		driver.findElement(WRITE_REVIEW_TEXTBOX).sendKeys("Awesome");
