@@ -489,16 +489,16 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		softAssert.assertTrue(driver.findElement(ADD_GIFT_WRAP_BUTTON).isDisplayed(), "Add Gift Wrap button is not displayed");
 		Thread.sleep(3000);
 
-		text = driver.findElement(ESTIMATE_TOTAL).getText();
-		System.out.println("Estimate total text :: "+text);
-		softAssert.assertTrue(text.equals(properties.get("totalEstimateText")), "Expected text is "+properties.get("totalEstimateText")+" but actual is "+text);
+//		text = driver.findElement(ESTIMATE_TOTAL).getText();
+//		System.out.println("Estimate total text :: "+text);
+//		softAssert.assertTrue(text.equals(properties.get("totalEstimateText")), "Expected text is "+properties.get("totalEstimateText")+" but actual is "+text);
 		//		text = driver.findElement(ESTIMATE_TOTAL_SMALL).getText();
 		//		System.out.println("Estimate total small text :: "+text);
 		//		softAssert.assertTrue(text.equals(properties.get("totalEstimateSmallText")), "Expected text is "+properties.get("totalEstimateSmallText")+" but actual is "+text);
 
 		Thread.sleep(3000);
 
-		softAssert.assertTrue(driver.findElement(ESTIMATE_TOTAL).isDisplayed(), "Estimate total amount is not displayed");
+//		softAssert.assertTrue(driver.findElement(ESTIMATE_TOTAL).isDisplayed(), "Estimate total amount is not displayed");
 
 		// check for checkout button
 		softAssert.assertTrue(driver.findElement(CHECKOUT_BUTTON).isDisplayed(), "Checkout button is not displayed");

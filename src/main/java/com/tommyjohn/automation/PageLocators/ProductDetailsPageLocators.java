@@ -119,7 +119,7 @@ public class ProductDetailsPageLocators {
 	public static By PAIR_GUARANTEE_LINK = By.cssSelector(".product-info__inner-bottom > div:nth-child(1) > button");
 	public static By SHIPING_AND_RETURNS_LINK = By.cssSelector(".product-info__inner-bottom > div:nth-child(2) > button");
 	public static By JOIN_THE_WAITLIST_TEXT = By.cssSelector("[data-tj-qa='add-to-cart-cta'],.multiPdp__atc-container>button");
-	public static By INLINE_CART_TITLE = By.xpath("//h2[@class='text-heading-lg font-medium sm:text-heading']");
+	public static By INLINE_CART_TITLE = By.xpath("//h2[@class='text-heading-lg font-medium leading-none sm:text-heading']");
 	public static By EMAIL_WHEN_IN_STOCK_BUTTON_CLOSE = By.cssSelector(".close_jtwl");
 	public static By INLINE_CART_CLOSE = By.xpath("//button[@aria-label='Close cart']");
 
