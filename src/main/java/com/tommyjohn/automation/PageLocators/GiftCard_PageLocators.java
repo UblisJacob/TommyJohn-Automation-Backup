@@ -6,7 +6,7 @@ public class GiftCard_PageLocators {
 
 	public static By NEW_ARRIVALS_OPTION = By.cssSelector(".header-desktop-left > ul > li:nth-child(1) > a");
 	public static By GIFT_CARD_TITLE = By.cssSelector(".product-info__inner-top >div >div:nth-child(1) >h1");
-	public static By GIFT_CARD_PRICE = By.xpath("(//span[@class='font-medium text-text-primary'])[1]");
+	public static By GIFT_CARD_PRICE = By.xpath("(//span[@class='font-medium text-text-primary'])[2]");
 	public static By COLOR_NAME = By.cssSelector(".product-info__option >div >span");
 	public static By GIFT_CARD_AMOUNT_TEXT = By.cssSelector("div.radio-options-container>div>div.optionName >span");
 

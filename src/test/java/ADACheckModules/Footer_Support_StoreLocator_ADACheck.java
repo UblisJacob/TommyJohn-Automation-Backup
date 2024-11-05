@@ -32,7 +32,6 @@ public class Footer_Support_StoreLocator_ADACheck {
 
     @AfterMethod(alwaysRun = true)
     void teardown() {
-
         driver.close();
         driver.quit();
     }

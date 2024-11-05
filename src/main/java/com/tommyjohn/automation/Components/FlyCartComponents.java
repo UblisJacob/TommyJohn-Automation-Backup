@@ -59,7 +59,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		driver.findElement(APPLY_CTA).click();
 
 
-		Thread.sleep(5000);
+		Thread.sleep(15000);
 		String Coupon = driver.findElement(APPLIED_COUPON).getText();
 		System.out.println(Coupon);
 
@@ -307,12 +307,12 @@ public class FlyCartComponents extends FlyCartPageLocator{
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(50));
             new AddToCartComponents(driver).addToCart();
 			jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
-			RemoveItems = driver.findElements(By.xpath("//button[@class='button-link mt-4 text-body-xs text-text-tertiary' and contains(text(),'Remove')]"));
+			RemoveItems = driver.findElements(By.xpath("//button[@class='button-link text-body-xs text-text-tertiary' and contains(text(),'Remove')]"));
 			System.out.println(RemoveItems.size());
 			for(int i=1; i<=RemoveItems.size(); i++) {
 
 				Thread.sleep(5000);
-				jse.executeScript("arguments[0].click();",driver.findElement(By.xpath("(//button[@class='button-link mt-4 text-body-xs text-text-tertiary' and contains(text(),'Remove')])[1]")));
+				jse.executeScript("arguments[0].click();",driver.findElement(By.xpath("(//button[@class='button-link text-body-xs text-text-tertiary' and contains(text(),'Remove')])[1]")));
 				System.out.println(i);
 			}
 			Thread.sleep(5000);

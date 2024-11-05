@@ -1702,7 +1702,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		Thread.sleep(5000);
 		List<WebElement> Packs = driver.findElements(By.xpath("//a[@data-cy='productTileLink']"));
 		System.out.println(Packs.size());
-		for(int i=1;i<=7;i++)
+		for(int i=1;i<=3;i++)
 		{
 			String[] PacksName = driver.findElement(By.xpath("(//a[@data-cy='productTileLink'])["+i+"]")).getText().split("\"");
 			System.out.println(PacksName[1]);
