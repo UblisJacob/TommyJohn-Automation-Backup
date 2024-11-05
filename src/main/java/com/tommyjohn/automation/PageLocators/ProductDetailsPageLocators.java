@@ -44,14 +44,14 @@ public class ProductDetailsPageLocators {
 
 	public static By TOTAL_SIZES = By.xpath("//input[@name='option[Size]']");
 	public static By INACTIVE_SIZES = By.cssSelector(".unavailable[data-tj-qa='product-size'],.option-swatch__option>li>.option-swatch__input.unavailable.email-when-in-stock");
-	public static By SIZE_VALUE = By.xpath("(//span[@class='font-medium'])[2]");
+	public static By SIZE_VALUE = By.xpath("(//span[@class='font-medium text-text-primary'])[2]");
 
 
 	//color swatches
 	public static By COLOR_SWATCHES = By.cssSelector("[data-tj-qa='color-swatch'],.product-option__color-swatches-wrapper>ul>li");
 	public static By SECOND_COLOR = By.cssSelector(".product-option__color-swatches-wrapper > ul > li:nth-child(2) > label");
 	public static By THIRD_COLOR = By.cssSelector(".product-option__color-swatches-wrapper > ul > li:nth-child(3) > label");
-	public static By COLOR_TEXT = By.xpath("(//span[@class='font-medium'])[1]");       //("//div[@class= 'multi-pdp-info__header'] /span]");
+	public static By COLOR_TEXT = By.xpath("(//span[@class='font-medium text-text-primary'])[1]");       //("//div[@class= 'multi-pdp-info__header'] /span]");
 	// ATC
 	
 	
@@ -77,7 +77,7 @@ public class ProductDetailsPageLocators {
 
 	public static By ALL_COLOR_LIST = By.xpath("//div[@class='product-option__color-swatches-wrapper']//li");
 	public static By PRODUCT_DETAILS = By.xpath("//button[@aria-controls='product-details']");
-	public static By SIZEGUIDE = By.xpath("//button[@class='button-link text-body-sm text-text-tertiary']");
+	public static By SIZEGUIDE = By.xpath("//button[@class='button-link text-body-sm text-text-tertiary mr-6 md:mr-0']");
 	public static By SIZEGUIDE_FITRANGE = By.xpath("//ul[@data-tj-qa='size-guide-fit-range-graph']//li");
 	public static By SIZEGUIDE_FITRANGE_DROPDOWN= By.cssSelector(".expand-instructions");
 	public static By SIZEGUIDE_FITRANGE_TEXT= By.cssSelector(".instructions-text");
