@@ -13,7 +13,7 @@
         <classes>
             <class name="TestModules.ValidateReviewsPage">
                 <methods>
-                    <include name="ValidateTextAndLinksonFlyCart"/>
+                    <include name="ValidateRemovingItemsFromInlineCart"/>
                 </methods>
             </class>
         </classes>
@@ -27,8 +27,7 @@
 <!--    <test name="ADA Check">-->
 <!--        <parameter name="browser" value="chrome" />-->
 <!--        <classes>-->
-<!--            <class name="ADACheckModules.Mens_All_ADACheck" />-->
+<!--            <class name="ADACheckModules.Footer_Company_Careers_ADACheck" />-->
 <!--        </classes>-->
 <!--    </test>-->
-
 </suite>

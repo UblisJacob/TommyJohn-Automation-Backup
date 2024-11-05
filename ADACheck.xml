@@ -70,6 +70,7 @@
     </test>
 
     <test name="MensApparelADACheck">
+        1
         <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Mens_Apparel_ADACheck" />
