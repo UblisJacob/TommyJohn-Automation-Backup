@@ -103,7 +103,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		driver.findElement(CART_COUPONFIELD).sendKeys("First");
 		driver.findElement(APPLY_CTA).click();
 
-		Thread.sleep(5000);
+		Thread.sleep(20000);
 		String ErrorMessage = driver.findElement(ERROR_COUPON).getText();
 		System.out.println(ErrorMessage);
 		element= driver.findElement(ERROR_COUPON);

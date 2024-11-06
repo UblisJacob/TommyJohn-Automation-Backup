@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 
 public class FlyCartPageLocator {
 	public static By INLINE_CART_SECTION = By.cssSelector(".section.inline-cart");
-	public static By INLINE_CART_ICON = By.xpath("//button[@class='header-cart-btn']");
+	public static By INLINE_CART_ICON = By.xpath("//span[@class='icon block icon-cart']");
 	public static By INLINE_CART_CLOSE_BUTTON = By.xpath("//span[@class='icon block size-5 icon-arrow-left']");
 	public static By VIEW_CART_LINK = By.xpath("//a[@class='button-link text-body sm:text-body-sm']");
 	public static By INLINE_CART_TITLE = By.xpath("//h2[contains(text(),'Your Cart')]");
@@ -89,26 +89,26 @@ public class FlyCartPageLocator {
 
 	//FlyCart Suggestions
 
-	public static By SUGGESTION_FIRST_PRODUCT = By.xpath("(//img[@data-tj-qa='plp-product-img-main'])[1]");
+	public static By SUGGESTION_FIRST_PRODUCT = By.xpath("(//div[@Class='absolute right-0 top-0 h-full w-[201px] overflow-y-scroll max-sm:hidden']//div[@class='relative aspect-tile'])[1]");
 	public static By SUGGESTION_SECOND_PRODUCT = By.xpath("(//img[@data-tj-qa='plp-product-img-main'])[2]");
-    public static	By QUICK_SHOP_ATC = By.cssSelector("[data-tj-qa='plp-quickshop-cta'],.product-grid-controls.has-quickshop>button");
-	public static By QUICK_SHOP_SIZE_OVERLAY = By.cssSelector(".inline-quick-shop");
+    public static	By QUICK_SHOP_ATC = By.xpath("(//span[@class='icon icon-plus'])[1]");
+	public static By QUICK_SHOP_SIZE_OVERLAY = By.xpath("(//form[@class='mt-0 sm:space-y-lg'])[1]");
 	public static By SUGGESTION_FIRST_PRODUCT_SIZE = By.xpath("(//label[@class='inline-quick-shop__button'])[1]");
 	public static By SUGGESTION_SECOND_PRODUCT_SIZE = By.xpath("(//label[@class='inline-quick-shop__button'])[1]");
-	public static By SUGGESTION_FIRST_PRODUCT_NAME = By.xpath("(//span[@class='product-meta__title'])[1]");
+	public static By SUGGESTION_FIRST_PRODUCT_NAME = By.xpath("//div[@class='mb-xs block text-body-md text-text-secondary']");
 	public static By SUGGESTION_PRODUCTS = By.xpath("//div[@class='product-image-container product-image-container--has-quickshop']");
 	public static By SUGGESTION_SECOND_PRODUCT_NAME = By.xpath("(//span[@class='product-meta__title'])[2]");
-	public static By INLINECART_PRODUCT_NAME = By.xpath("//a[@class='line-item__title']");
+	public static By INLINECART_PRODUCT_NAME = By.xpath("//a[@class='font-medium text-text-primary mt-1 block text-body-lg leading-tight sm:text-body sm:leading-5']");
 	public static By COLOR_SWATCH = By.xpath("(//div[@class='product-item__swatch product-item__swatch--circle js-inline-quickshop-color active'])[1]");
 	public static By INLINE_COLOR = By.xpath("//div[@class='line-item__option']");
 
 
 
-	public static By QUICK_SHOP_SIZE_OVERLAY_CLOSE = By.cssSelector("[data-tj-qa='plp-quickshop-close'],.inline-quick-shop>.icon-close");
-	public static By QUICK_SHOP_SIZE_OVERLAY_HEADING = By.cssSelector(".inline-quick-shop>.inline-quick-shop__option-heading");
+	public static By QUICK_SHOP_SIZE_OVERLAY_CLOSE = By.xpath("//span[@class='icon size-5 icon-x']");
+	public static By QUICK_SHOP_SIZE_OVERLAY_HEADING = By.xpath("//div[@class='mb-xs block text-body-md text-text-secondary']");
 	public static By QUICK_SHOP_SIZE_LIST_1 = By.cssSelector("[data-tj-qa='plp-quickshop-instock'],.quickshop-open>.inline-quick-shop>ul:nth-child(4)>li");
 	public static By QUICK_SHOP_SIZE_LIST_2 = By.cssSelector(".quickshop-open>.inline-quick-shop>ul:nth-child(6)>li");
-	public static By QUICK_SHOP_SIZE_LABEL = By.cssSelector("[data-tj-qa='plp-quickshop-instock']>label,.quickshop-open>.inline-quick-shop>ul>li>label");
+	public static By QUICK_SHOP_SIZE_LABEL = By.xpath("(//span[@class='pr-2xs text-text-tertiary'])[2]");
 	public static By QUICK_SHOP_SIZE_OVERLAY_ATC = By.cssSelector(".inline-quick-shop>.inline-quick-shop__button");
 	public static By PRODUCT_TITLE_ON_COLLECTION = By.xpath("(//a[@data-cy='productTileLink'])");
 	public static By PRODUCT_ITEM_SWATCH_CIRCLE = By.cssSelector("[data-tj-qa='product-swatch'],.product-item__swatch-wrapper>div");

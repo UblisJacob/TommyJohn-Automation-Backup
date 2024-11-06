@@ -76,7 +76,7 @@ public class ValidateInlineCartPage extends ExtentReport {
 		new FlyCartPage(driver).validateTieredMeter();
 	}
 
-//	@Test
+	@Test
 	public void ValidateUserAbletoAddProductFromInlineCartSuggestion() throws Exception
 	{
 
