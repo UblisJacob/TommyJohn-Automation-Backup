@@ -81,7 +81,7 @@
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="TestModules.ValidateCreateAccount_Login" />
-		</classes>
+		</classes>	
 	</test>
 
 	<test name="CheckoutPageTests">
