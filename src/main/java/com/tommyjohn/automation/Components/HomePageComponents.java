@@ -79,16 +79,40 @@ public class HomePageComponents extends HomePageLocators {
 
 	}
 
-	public void ValidateCTAInImageBanner() throws InterruptedException {
+	public void ValidateShopMensCTAInHeroSlider() throws InterruptedException {
 		SoftAssert softAssert = new SoftAssert();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
 		Thread.sleep(2000);
-		driver.findElement(HERO_BANNER_CTA).click();
+		driver.findElement(HERO_SLIDER_SHOPMENS_CTA).click();
 		Thread.sleep(3000);
 		element = driver.findElement(PAGEHEADER);
-		softAssert.assertTrue(element.isDisplayed(),"Shop Now CTA is not functional");
-		Reporter.log("Shop Now CTA is functional");
-		ExtentReport.extentTest.info("Shop Now CTA is functional");
+		softAssert.assertTrue(element.isDisplayed(),"Shop Men's CTA is not functional in Hero Slider");
+		Reporter.log("Shop Men's CTA is functional in Hero Slider");
+		ExtentReport.extentTest.info("Shop Men's CTA is functional in Hero Slider");
+	}
+
+	public void ValidateBrandTicker() throws InterruptedException {
+		SoftAssert softAssert = new SoftAssert();
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
+		Thread.sleep(2000);
+		js.executeScript("window.scrollBy(0,2000)");
+		element = driver.findElement(BRAND_TICKER);
+		softAssert.assertTrue(element.isDisplayed(),"Brand Ticker is not available in Homepage");
+		Reporter.log("Brand Ticker is available in Homepage");
+		ExtentReport.extentTest.info("Brand Ticker is available in Homepage");
+	}
+
+	public void ValidateShopWomensCTAInHeroSlider() throws InterruptedException {
+		SoftAssert softAssert = new SoftAssert();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
+		Thread.sleep(2000);
+		driver.findElement(HERO_SLIDER_SHOPWOMENS_CTA).click();
+		Thread.sleep(3000);
+		element = driver.findElement(PAGEHEADER);
+		softAssert.assertTrue(element.isDisplayed(),"Shop Women's CTA is not functional in Hero Slider");
+		Reporter.log("Shop Women's CTA is functional in Hero Slider");
+		ExtentReport.extentTest.info("Shop Women's CTA is functional in Hero Slider");
 	}
 
 	public void ValidateMenInCategorySelector() {
