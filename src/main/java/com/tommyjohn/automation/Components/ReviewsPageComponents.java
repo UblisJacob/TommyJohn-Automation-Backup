@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.testng.Reporter;
@@ -49,6 +50,9 @@ public class ReviewsPageComponents extends ReviewsPageLocators {
 			softassert.assertEquals(driver.findElement(PAGE_TITLE_SUBTEXT).getCssValue("font-size"), "16px", "Font-size of Subtext is not correct");
 			
 			//Validate total reviews
+			jse = (JavascriptExecutor) driver;
+			jse.executeScript("window.scrollBy(0,500)");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(TOTAL_STAR_RATINGS));
 			WebElement ratings = driver.findElement(TOTAL_STAR_RATINGS);
 			WebElement reviews = driver.findElement(TOTAL_REVIEWS);
 			softassert.assertTrue(ratings.isDisplayed() , "Ratings are not present");

@@ -76,8 +76,8 @@ public class ValidateNavigationElements {
 	@AfterMethod(alwaysRun = true)
 	void teardown()
 	{
-		driver.close();
-	//	driver.quit();
+	//	driver.close();
+		driver.quit();
 	}
 
 }
