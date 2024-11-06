@@ -31,9 +31,21 @@ public class ValidateHomePage extends ExtentReport {
 	}
 
 	@Test
-	public void ValidateCTAInImageBanner() throws Exception {
+	public void ValidateShopMensCTAInHeroSlider() throws Exception {
 
-		new HomePageComponents(driver).ValidateCTAInImageBanner();
+		new HomePageComponents(driver).ValidateShopMensCTAInHeroSlider();
+	}
+
+	@Test
+	public void ValidateShopWomensCTAInHeroSlider() throws Exception {
+
+		new HomePageComponents(driver).ValidateShopWomensCTAInHeroSlider();
+	}
+
+	@Test
+	public void ValidateBrandTicker() throws Exception {
+
+		new HomePageComponents(driver).ValidateBrandTicker();
 	}
 
 	@Test
