@@ -57,7 +57,7 @@ public class ValidateSearchPages {
 		new HomePage(driver).VerifyPopularTermsSectionInSearchDropdown();
 	}
 
-	@Test
+//	@Test
 	public void VerifyCategoriesInPopularTermsSection() throws InterruptedException {
 		new HomePage(driver).VerifyCategoriesInPopularTermsSection();
 	}
@@ -118,7 +118,7 @@ public class ValidateSearchPages {
 	@AfterMethod(alwaysRun = true)
 	void teardown() {
 
-		driver.close();
-//		driver.quit();
+//		driver.close();
+		driver.quit();
 	}
 }

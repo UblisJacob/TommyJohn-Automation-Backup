@@ -11,9 +11,9 @@
     <test name="Tests">
         <parameter name="browser" value="chrome" />
         <classes>
-            <class name="TestModules.ValidateCartPage">
+                <class name="TestModules.ValidateInlineCartPage">
                 <methods>
-                    <include name="ValidatePromoCodeErrorScenario"/>
+                    <include name="ValidateTextAndLinksonFlyCart"/>
                 </methods>
             </class>
         </classes>
@@ -27,7 +27,8 @@
 <!--    <test name="ADA Check">-->
 <!--        <parameter name="browser" value="chrome" />-->
 <!--        <classes>-->
-<!--            <class name="ADACheckModules.HelpCenterADACheck" />-->
+<!--            <class name="ADACheckModules.Mens_All_ADACheck" />-->
 <!--        </classes>-->
 <!--    </test>-->
+
 </suite>
