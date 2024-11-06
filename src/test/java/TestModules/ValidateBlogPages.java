@@ -35,7 +35,7 @@ public class ValidateBlogPages{
 	@AfterMethod(alwaysRun = true)
 	void teardown() {
 
-		 driver.close();
-//		driver.quit();
+//		 driver.close();
+		driver.quit();
 	}
 }
