@@ -54,13 +54,15 @@ public class Slack {
 
     public static void sendSlackNotificationReg(String passed, String failed, String skipped, String reportLink /*, String JSonLink*/) throws Exception {
 
-            //    String ReportLINK = "https://drive.google.com/uc?export=download&id=1WANCMd5qitNr8QRyY2t2W39lVlhBFGaS";
+              //  String ReportLINK = "https://drive.google.com/file/d/12PvzyLbL2-VRpGCwoxFLDPAa2Q-rJ59l/view?usp=sharing";
             // Create JSON payload
                 String Date = setCurrentDatetDate();
 
                 System.out.println(passed+"\n"+failed+"\n"+skipped+"\n"+reportLink+"\n"/*+JSonLink*/);
 
                 String payload = "{\"text\":\"*Regression Results*\n*Time:* " + Date + " \n*Passed:* " + passed + "\n*Failed:* "+ failed + "\n*Skipped:* " + skipped + "\n*Report Link:* <" + reportLink + "|Click> \",\"type\": \"mrkdwn\"}";
+
+     //   String payload = "{\"text\":\"*Regression Results*\n*Time:* " + Date + " \n*Passed:* " + 115 + "\n*Failed:* "+ 16 + "\n*Skipped:* " + skipped + "\n*Report Link:* <" + ReportLINK + "|Click> \",\"type\": \"mrkdwn\"}";
 
             URL url = new URL(TJ_QA_WEBHOOK_URL);
 

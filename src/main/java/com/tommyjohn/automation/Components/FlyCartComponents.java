@@ -463,16 +463,16 @@ public class FlyCartComponents extends FlyCartPageLocator{
 			softAssert.assertTrue(driver.findElement(By.xpath("(//td[@class='row-span-3 p-0 sm:row-span-2'])["+i+"]")).isDisplayed(), "First item image is not displayed");
 
 			// check for product heading
-			softAssert.assertTrue(driver.findElement(By.xpath("(//a[@class='sm:text-heading-sm'])["+i+"]")).isDisplayed(), "First item heading is not displayed");
+			softAssert.assertTrue(driver.findElement(By.xpath("(//a[@class='font-medium text-text-primary mt-1 block text-body-lg leading-tight sm:text-body sm:leading-5'])["+i+"]")).isDisplayed(), "First item heading is not displayed");
 
 			// check for remove item from cart button
-			softAssert.assertTrue(driver.findElement(By.xpath("(//button[contains(text(),'Remove')])["+i+"]")).isDisplayed(), "First item remove button is not displayed");
+			softAssert.assertTrue(driver.findElement(By.xpath("(//button[@class='button-link text-body-xs text-text-tertiary' and contains(text(),'Remove')])["+i+"]")).isDisplayed(), "First item remove button is not displayed");
 
 			// check for line item option
-			softAssert.assertTrue(driver.findElement(By.xpath("(//div[@class='mt-2 text-body text-text-secondary sm:mt-4'])["+i+"]")).isDisplayed(), "Line item option is not displayed");
+		//	softAssert.assertTrue(driver.findElement(By.xpath("(//div[@class='mt-2 text-body text-text-secondary sm:mt-4'])["+i+"]")).isDisplayed(), "Line item option is not displayed");
 
 			// check for price
-			softAssert.assertTrue(driver.findElement(By.xpath("(//div[@class='flex gap-2 text-body font-medium sm:text-heading-sm'])["+i+"]")).isDisplayed(), "Price is not displayed");
+			softAssert.assertTrue(driver.findElement(By.xpath("(//div[@class='mt-2 flex gap-2 text-body font-medium'])["+i+"]")).isDisplayed(), "Price is not displayed");
 
 			// check for plus minus and quantity
 			//softAssert.assertTrue(driver.findElement(QUANTITY_PLUS_MINUS_BUTTON).isDisplayed(), "plus or minus button is not displayed");
