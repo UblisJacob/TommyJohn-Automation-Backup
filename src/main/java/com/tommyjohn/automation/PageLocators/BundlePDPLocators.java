@@ -34,7 +34,7 @@ public class BundlePDPLocators {
 	public static By TOTAL_SIZES = By.cssSelector(".option-swatch__option>li>label>span");
 	public static By ALL_SIZE_LIST = By.xpath("//input[@name='option[Size]']");
 	public static By INACTIVE_SIZES = By.cssSelector(".option-swatch__option>li>.option-swatch__input.unavailable.email-when-in-stock");
-	public static By SIZE_VALUE = By.xpath("(//span[@class='font-medium'])[2]");
+	public static By SIZE_VALUE = By.xpath("(//span[@class='font-medium text-text-primary'])[2]");
 	
 	
 	//color swatches
@@ -117,7 +117,7 @@ public class BundlePDPLocators {
 	public static By PAIR_GUARANTEE_LINK = By.cssSelector(".product-info__inner-bottom > div:nth-child(1) > button");
 	public static By SHIPING_AND_RETURNS_LINK = By.cssSelector(".product-info__inner-bottom > div:nth-child(2) > button");
 	public static By JOIN_THE_WAITLIST_TEXT = By.cssSelector(".multiPdp__atc-container>button");
-	public static By INLINE_CART_TITLE = By.xpath("//h2[@class='text-heading-lg font-medium sm:text-heading']");
+	public static By INLINE_CART_TITLE = By.xpath("//h2[@class='text-heading-lg font-medium leading-none sm:text-heading']");
 	public static By EMAIL_WHEN_IN_STOCK_BUTTON_CLOSE = By.cssSelector(".close_jtwl");
 	public static By INLINE_CART_CLOSE = By.xpath("//button[@aria-label='Close cart']");
 	
