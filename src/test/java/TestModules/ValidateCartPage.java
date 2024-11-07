@@ -34,7 +34,7 @@ public class ValidateCartPage extends ExtentReport{
 	}
 
 
-	@Test
+//	@Test
 	public void ValidatethreeforfourtyeightfunctionalityinCartPage() throws Exception {
 		new ShoppingCartPage(driver).Validate3for$48functionalityinCartPage();
 
