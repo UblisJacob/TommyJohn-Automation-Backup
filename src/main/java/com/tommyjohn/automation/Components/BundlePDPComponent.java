@@ -257,7 +257,7 @@ public class BundlePDPComponent extends BundlePDPLocators{
 			JavascriptExecutor executor = (JavascriptExecutor)driver;
 			executor.executeScript("arguments[0].click();", el);
 
-			driver.findElement(By.xpath("(//div[@class='relative text-center'])[2]")).click();
+		//	driver.findElement(By.xpath("(//div[@class='relative text-center'])[2]")).click();
 			
 			Thread.sleep(3000);
 			allElements = driver.findElements(COLOR_VARIANT);
@@ -282,7 +282,7 @@ public class BundlePDPComponent extends BundlePDPLocators{
 //				if (num1 > 0) {
 
 
-					colornew = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='font-medium'])[1]")).getText();
+					colornew = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='font-medium text-text-primary'])[1]")).getText();
 					imagecolor = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])["+i+"]")).getText();
 
 					System.out.println("For Color Swatch: " + colornew);
