@@ -168,8 +168,8 @@ public class ValidateCheckoutPage extends ExtentReport {
 	@AfterMethod(alwaysRun = true)
 	void tearDown() {
 
-	//	this.driver.close();
-		this.driver.quit();
+		this.driver.close();
+//		this.driver.quit();
 
 	}
 

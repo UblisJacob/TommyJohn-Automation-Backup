@@ -53,8 +53,8 @@ public class ValidateGiftCardFunctionality extends ExtentReport{
 	@AfterMethod(alwaysRun = true)
 	void teardown () {
 
-//		driver.close();
-		driver.quit();
+		driver.close();
+//		driver.quit();
 	}
 
 }
