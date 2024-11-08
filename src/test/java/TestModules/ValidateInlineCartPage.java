@@ -83,7 +83,7 @@ public class ValidateInlineCartPage extends ExtentReport {
 		new FlyCartPage(driver).ValidateAddingProductToCartFromInlineCartSuggestion();
 	}
 
-//	@Test
+	@Test
 	public void ValidateAppropriateProductIsToCartFromInlineCartSuggestion() throws Exception
 	{
 
@@ -130,8 +130,8 @@ public class ValidateInlineCartPage extends ExtentReport {
 	@AfterMethod(alwaysRun = true)
 	void tearDown() {
 
-//		this.driver.close();
-		this.driver.quit();
+		this.driver.close();
+	//	this.driver.quit();
 
 	}
 }
