@@ -35,7 +35,7 @@ public class CollectionPageLocator {
 	public static By FIRST_PRODUCT_REVIEW_STARS = By.cssSelector("[data-tj-qa='product-reviews'],.yotpo-bottomline");
 	public static By FIRST_PRODUCT_URL = By.cssSelector(".product-meta");
 	
-	public static By ALL_COLOR_LIST = By.cssSelector("ul>li>input[data-tj-qa='color-swatch'] , div[data-index='0']>div:nth-child(2)>div>div>div.product-item__swatch--circle");
+	public static By ALL_COLOR_LIST = By.xpath("(//div[@class='relative aspect-tile'])[1]//following::div[@class='flex items-center']//a");
 //	public static By PRODUCT_IMAGE_COLOR_NAME= By.cssSelector("div[data-index='0']>div>a");
 	public static By PRODUCT_IMAGE_COLOR_NAME= By.xpath("(//div[@class='product_image slick-slide slick-current slick-active'])[2]");
 	public static By COLOR_SWATCH_PREV_SLICK_ARROWS = By.cssSelector("div.mega-collection-grid.js-mega-collection-grid > div:nth-child(3) > div:nth-child(1)>div:nth-child(2)>.product-item__swatch-list>.slick-next");
@@ -107,8 +107,8 @@ public class CollectionPageLocator {
 	    public static By PLP_SEO_BODY = By.xpath("//*[data-tj-qa='plp-seo-body'] | //div[@class='collection-seo-body']");
 	    public static By PLP_SEO_LINK = By.xpath("//div[@class='collection-seo-body']//a");
 	    
-	    public static By PLP_PRODUCT_IMAGE_BADGE = By.xpath("//p[contains(@class,'inline-block')]");
-	    public static By PLP_PRODUCT_SECONDARY_BADGE = By.xpath("//p[contains(@class,'inline-block')]");
+	    public static By PLP_PRODUCT_IMAGE_BADGE = By.xpath("(//p[contains(@class,'inline-block')]//span)[1]");
+	    public static By PLP_PRODUCT_SECONDARY_BADGE = By.xpath("(//p[contains(@class,'m-0 inline-block')]//span)[1]");
 	    
 	     public static By SEARCH_PRICE_FILTER = By.xpath("//a[@data-filter-group='facet_price_range']//span[contains(text(),'Price')]");
 	    public static By SEARCH_PRICE_FILTER_1=By.xpath("//button[contains(@for,'25to50')]");

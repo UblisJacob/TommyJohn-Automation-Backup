@@ -118,7 +118,7 @@
 		<classes>
 			<class name="TestModules.ValidateCartPage" />
 		</classes>
-	</test>e
+	</test>
 
 	<test name="InlineCartTests">
 		<parameter name="browser" value="chrome" />
