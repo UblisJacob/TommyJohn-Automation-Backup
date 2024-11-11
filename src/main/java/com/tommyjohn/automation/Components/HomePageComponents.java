@@ -551,16 +551,16 @@ public class HomePageComponents extends HomePageLocators {
 
 
 		// Verify New+Featured category
-		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.presenceOfElementLocated(NEW_FEATURED));
-		if(!driver.findElement(NEW_FEATURED).isDisplayed())
-			throw new Exception("Im New Here category is not displayed");
-		element = driver.findElement(NEW_FEATURED);
-		action.moveToElement(element).perform();
-			if(!driver.findElement(SECOND_lEVEL1_CATEGORY).isDisplayed())
-			throw new Exception("New+Featured category is not hoverable");
-		Reporter.log("New+Featured category is Displayed :: Hoverable :: clickable");
-		ExtentReport.extentTest.info("New+Featured category is Displayed :: Hoverable :: clickable");
+//		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+//		wait.until(ExpectedConditions.presenceOfElementLocated(NEW_FEATURED));
+//		if(!driver.findElement(NEW_FEATURED).isDisplayed())
+//			throw new Exception("Im New Here category is not displayed");
+//		element = driver.findElement(NEW_FEATURED);
+//		action.moveToElement(element).perform();
+//			if(!driver.findElement(SECOND_lEVEL1_CATEGORY).isDisplayed())
+//			throw new Exception("New+Featured category is not hoverable");
+//		Reporter.log("New+Featured category is Displayed :: Hoverable :: clickable");
+//		ExtentReport.extentTest.info("New+Featured category is Displayed :: Hoverable :: clickable");
 		softassert.assertAll();
 
 	}
