@@ -2861,49 +2861,40 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		//ratingstars.click();
 		Thread.sleep(5000);
 		driver.findElement(FIVESTARTIERMETER).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.STARRATING));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.FIVESTARRATING));
 		Thread.sleep(2000);
-		String fivestar = driver.findElement(STARRATING).getText();
-		System.out.println(fivestar);
-		softAssert.assertEquals(fivestar,"5 star rating","On Clicking the 5 Star Tier Meter, the results are not displayed with 5 star rating");
-		Reporter.log("On Clicking the 5 Star Tier Meter, the results are displayed with 5 star rating");
-		ExtentReport.extentTest.info("On Clicking the 5 Star Tier Meter, the results are displayed with 5 star rating");
+//		String fivestar = driver.findElement(FIVESTARRATING);
+//		System.out.println(fivestar);
+		softAssert.assertTrue(driver.findElement(FIVESTARRATING).isDisplayed(),"5 Star Ratings are not displayed");
 
 		driver.findElement(FOURSTARTIERMETER).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.STARRATING));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.FOURSTARRATING));
 		Thread.sleep(2000);
-		String fourstar = driver.findElement(STARRATING).getText();
-		System.out.println(fourstar);
-		softAssert.assertEquals(fourstar,"4 star rating","On Clicking the 4 Star Tier Meter, the results are not displayed with 5 star rating");
-		Reporter.log("On Clicking the 5 Star Tier Meter, the results are displayed with 4 star rating");
-		ExtentReport.extentTest.info("On Clicking the 5 Star Tier Meter, the results are displayed with 4 star rating");
+//		String fourstar = driver.findElement(STARRATING).getText();
+//		System.out.println(fourstar);
+		softAssert.assertTrue(driver.findElement(FOURSTARRATING).isDisplayed(),"4 Star Ratings are not displayed");
 
 		driver.findElement(THREESTARTIERMETER).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.STARRATING));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.THREESTARRATING));
 		Thread.sleep(2000);
-		String threestar = driver.findElement(STARRATING).getText();
-		System.out.println(threestar);
-		softAssert.assertEquals(threestar,"3 star rating","On Clicking the 3 Star Tier Meter, the results are not displayed with 5 star rating");
-		Reporter.log("On Clicking the 3 Star Tier Meter, the results are displayed with 3 star rating");
-		ExtentReport.extentTest.info("On Clicking the 3 Star Tier Meter, the results are displayed with 3 star rating");
+//		String threestar = driver.findElement(STARRATING).getText();
+//		System.out.println(threestar);
+		softAssert.assertTrue(driver.findElement(THREESTARRATING).isDisplayed(),"3 Star Ratings are not displayed");
+
 
 		driver.findElement(TWOSTARTIERMETER).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.STARRATING));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.TWOSTARRATING));
 		Thread.sleep(2000);
-		String twostar = driver.findElement(STARRATING).getText();
-		System.out.println(twostar);
-		softAssert.assertEquals(twostar,"2 star rating","On Clicking the 2 Star Tier Meter, the results are not displayed with 5 star rating");
-		Reporter.log("On Clicking the 2 Star Tier Meter, the results are displayed with 2 star rating");
-		ExtentReport.extentTest.info("On Clicking the 2 Star Tier Meter, the results are displayed with 2 star rating");
+//		String twostar = driver.findElement(STARRATING).getText();
+//		System.out.println(twostar);
+		softAssert.assertTrue(driver.findElement(TWOSTARRATING).isDisplayed(),"2 Star Ratings are not displayed");
 
 		driver.findElement(ONESTARTIERMETER).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.STARRATING));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.ONESTARRATING));
 		Thread.sleep(2000);
-		String onestar = driver.findElement(STARRATING).getText();
-		System.out.println(onestar);
-		softAssert.assertEquals(onestar,"1 star rating","On Clicking the 1 Star Tier Meter, the results are not displayed with 5 star rating");
-		Reporter.log("On Clicking the 1 Star Tier Meter, the results are displayed with 1 star rating");
-		ExtentReport.extentTest.info("On Clicking the 1 Star Tier Meter, the results are displayed with 1 star rating");
+//		String onestar = driver.findElement(ONESTARRATING).getText();
+//		System.out.println(onestar);
+		softAssert.assertTrue(driver.findElement(ONESTARRATING).isDisplayed(),"1 Star Ratings are not displayed");
 
 		softAssert.assertAll();
 		Reporter.log("Ratings Tiermeter displays appropriate results");

@@ -277,10 +277,14 @@ public class ProductDetailsPageLocators {
 
         
         //Ratings
-		public static By FIVESTARTIERMETER = By.xpath("(//li[@data-score-distribution='5'])[2]");
-		public static By STARRATING = By.xpath("(//span[@class='yotpo-review-stars']//span[@class='sr-only'])[4]");
-	    public static By FOURSTARTIERMETER = By.xpath("(//li[@data-score-distribution='4'])[2]");
-		public static By THREESTARTIERMETER = By.xpath("(//li[@data-score-distribution='3'])[2]");
-		public static By TWOSTARTIERMETER = By.xpath("(//li[@data-score-distribution='2'])[2]");
-		public static By ONESTARTIERMETER = By.xpath("(//li[@data-score-distribution='1'])[2]");
+		public static By FIVESTARTIERMETER = By.xpath("(//div[@class='yotpo-progress-bar'])[1]");
+		public static By FIVESTARRATING = By.xpath("(//div[@aria-label='5 star rating out of 5 stars'])[1]");
+	    public static By FOURSTARTIERMETER = By.xpath("(//div[@class='yotpo-progress-bar'])[2]");
+	    public static By FOURSTARRATING = By.xpath("(//div[@aria-label='4 star rating out of 5 stars'])[1]");
+		public static By THREESTARTIERMETER = By.xpath("(//div[@class='yotpo-progress-bar'])[3]");
+	    public static By THREESTARRATING = By.xpath("(//div[@aria-label='3 star rating out of 5 stars'])[1]");
+		public static By TWOSTARTIERMETER = By.xpath("(//div[@class='yotpo-progress-bar'])[4]");
+	    public static By TWOSTARRATING = By.xpath("(//div[@aria-label='2 star rating out of 5 stars'])[1]");
+		public static By ONESTARTIERMETER = By.xpath("(//div[@class='yotpo-progress-bar'])[5]");
+		public static By ONESTARRATING = By.xpath("(//div[@aria-label='1 star rating out of 5 stars'])[1]");
 }

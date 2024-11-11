@@ -26,6 +26,7 @@ public class HelpCenterADACheck {
     @Test
     public void ADACheck_HelpCenter() throws Exception {
 
+
         driver.get("https://help.tommyjohn.com/hc/en-us");
         ADACheckMethods.ADACheck(driver, "HelpCenterADACheck");
     }

@@ -97,14 +97,14 @@ public class ValidateInlineCartPage extends ExtentReport {
 		new FlyCartPage(driver).ValidateQuickShopATCIsAvailableInSuggestionProducts();
 	}
 
-//	@Test
+	@Test
 	public void ValidateQuickShopSizeOverlayIsDisplayedInSuggestionProducts() throws Exception
 	{
 
 		new FlyCartPage(driver).ValidateQuickShopSizeOverlayIsDisplayedInSuggestionProducts();
 	}
 
-//	@Test
+	@Test
 		public void ValidateSelectedColorSwatchIsDisplayedInTheInlineCart() throws Exception
 	{
 

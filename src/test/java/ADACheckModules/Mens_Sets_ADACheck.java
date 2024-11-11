@@ -25,7 +25,7 @@ public class Mens_Sets_ADACheck {
 
     @Test
     public void ADACheck_Mens_Sets_Page() throws Exception {
-
+        
         driver.get("https://www.tommyjohn.com/collections/mens-sleep-lounge-sets?sort-by=relevance&sort-order=descending");
         ADACheckMethods.ADACheck(driver, "Mens_Sets_Page_ADACheck");
     }
