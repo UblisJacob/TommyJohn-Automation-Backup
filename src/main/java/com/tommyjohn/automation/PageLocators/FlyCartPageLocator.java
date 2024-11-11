@@ -91,7 +91,8 @@ public class FlyCartPageLocator {
 
 	public static By SUGGESTION_FIRST_PRODUCT = By.xpath("(//div[@Class='absolute right-0 top-0 h-full w-[201px] overflow-y-scroll max-sm:hidden']//div[@class='relative aspect-tile'])[1]");
 	public static By SUGGESTION_SECOND_PRODUCT = By.xpath("(//img[@data-tj-qa='plp-product-img-main'])[2]");
-    public static	By QUICK_SHOP_ATC = By.xpath("(//span[@class='icon icon-plus'])[1]");
+    public static By QUICK_SHOP_ATC = By.xpath("(//span[@class='icon icon-plus'])[1]");
+	public static By ALL_QUICK_SHOP_ATC = By.xpath("//span[@class='icon icon-plus']");
 	public static By QUICK_SHOP_SIZE_OVERLAY = By.xpath("(//form[@class='mt-0 sm:space-y-lg'])[1]");
 	public static By SUGGESTION_FIRST_PRODUCT_SIZE = By.xpath("(//label[@class='inline-quick-shop__button'])[1]");
 	public static By SUGGESTION_SECOND_PRODUCT_SIZE = By.xpath("(//label[@class='inline-quick-shop__button'])[1]");
@@ -99,8 +100,8 @@ public class FlyCartPageLocator {
 	public static By SUGGESTION_PRODUCTS = By.xpath("//div[@class='product-image-container product-image-container--has-quickshop']");
 	public static By SUGGESTION_SECOND_PRODUCT_NAME = By.xpath("(//span[@class='product-meta__title'])[2]");
 	public static By INLINECART_PRODUCT_NAME = By.xpath("//a[@class='font-medium text-text-primary mt-1 block text-body-lg leading-tight sm:text-body sm:leading-5']");
-	public static By COLOR_SWATCH = By.xpath("(//div[@class='product-item__swatch product-item__swatch--circle js-inline-quickshop-color active'])[1]");
-	public static By INLINE_COLOR = By.xpath("//div[@class='line-item__option']");
+	public static By COLOR_SWATCH = By.xpath("((//div[@Class='absolute right-0 top-0 h-full w-[201px] overflow-y-scroll max-sm:hidden']//div[@class='relative aspect-tile'])[1]//following::a//img)[1]");
+	public static By INLINE_COLOR = By.xpath("//div[@class='mt-2 text-body leading-[18px] text-text-secondary']");
 
 
 

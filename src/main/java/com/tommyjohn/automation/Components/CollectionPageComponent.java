@@ -383,9 +383,9 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			// # if(!driver.findElement(THIRD_PRODUCT_IMAGE).isDisplayed())
 			throw new Exception("Product image is not present");
 
-//		WebElement ele = driver.findElement(FIRST_PRODUCT_IMAGE);
-//
-//		executor.executeScript("arguments[0].click();", ele);
+		WebElement ele = driver.findElement(FIRST_PRODUCT_IMAGE);
+
+		executor.executeScript("arguments[0].click();", ele);
 
 		// driver.findElement(THIRD_PRODUCT_IMAGE).click();
 		Thread.sleep(7000);
@@ -400,7 +400,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 
 		Thread.sleep(5000);
-		
+		driver.navigate().back();
 
 		/*List<WebElement> list = driver.findElements(By.xpath(PRODUCT_IMAGES));
 		int count = 0;
@@ -509,7 +509,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		Collections.reverse(sortedList1);
 		System.out.println(sortedList1);
 		if (!sortedList1.equals(productPrice1)) {
-			throw new Exception("The products are sorted not successfully");
+			throw new Exception("The products are not sorted successfully");
 		} else {
 			Reporter.log("The products are sorted successfully");
 		}
@@ -1665,15 +1665,15 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		js.executeScript("window.scrollBy(0,500)");
 
 		wait.until(ExpectedConditions.presenceOfElementLocated(FIRST_PRODUCT_IMAGE));
-		String text1 = driver.findElement(HOVER_PRODUCT_IMAGE).getAttribute("src");
-		String[] imagetext = text1.split("_425");
-		String Hover_on_plp = imagetext[0];
-		String text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("src");
-		String[] list1 = text.split(".jpg");
-		String Second_image_pdp = list1[0];
-		System.out.println(Second_image_pdp);
-		System.out.println(Hover_on_plp);
-		if (Second_image_pdp.contains(Hover_on_plp))
+		String text1 = driver.findElement(HOVER_PRODUCT_IMAGE).getAttribute("alt");
+//		String[] imagetext = text1.split("_425");
+//		String Hover_on_plp = imagetext[0];
+		String text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
+//		String[] list1 = text.split(".jpg");
+//		String Second_image_pdp = list1[0];
+		System.out.println(text);
+		System.out.println(text1);
+		if (text1.contains(text))
 			throw new Exception("Product tile hover functionality is not correct on plp");
 		Reporter.log("Verified Product tile hover functionality on plp");
 		ExtentReport.extentTest.info("Verified Product tile hover functionality on plp");
