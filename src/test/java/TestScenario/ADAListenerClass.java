@@ -131,12 +131,10 @@ public class ADAListenerClass extends ExtentReport implements ITestListener, IEx
         String testName = result.getName();
         extentTest.log(Status.INFO, result.getThrowable());
         extentTest.log(Status.SKIP, testName + " got failed");
-
     }
 
     @Override
     public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
-
     }
 
     @Override
