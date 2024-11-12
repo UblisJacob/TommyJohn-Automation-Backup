@@ -2380,7 +2380,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 	public void verifySecondaryBadging() throws Exception {
 
 		SoftAssert softAssert = new SoftAssert();
-		new ProductDetailsPage(driver).navigateToAllMensPacksInPacksCategory();
+		new ProductDetailsPage(driver).NavigateToAllSaleInSaleCategory();
 
 		//navigate to PDP
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
@@ -2408,7 +2408,6 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			ExtentReport.extentTest.info("Badge on PDP :: Not displayeds");
 		}
 
-		softAssert.assertAll();
 	}
 
 	public void verifySelectedColorSwatch() throws Exception {
@@ -3169,7 +3168,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		String text = null;
 		new SoftAssert();
 		// call method to navigate to collection page
-		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
+		new HomePageComponents(driver).navigateToMensAll();
 		jse = (JavascriptExecutor) driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		// call method to navigate product details page

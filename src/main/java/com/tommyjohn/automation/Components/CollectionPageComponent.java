@@ -1722,12 +1722,12 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		}
 
 		if (count>1){
-			throw new Exception("Product is displayed as multipack");
+			throw new Exception("Product is not displayed as multipack");
 		}
 
 		else{
 
-			System.out.println("Product is not displayed as multipack");
+			System.out.println("Product is displayed as multipack");
 			Reporter.log("Products are displayed as multipacks on selecting the Multipacks checkbox");
 			ExtentReport.extentTest.info("Products are displayed as multipacks on selecting the Multipacks checkbox");
 

@@ -208,6 +208,13 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 		new HomePageComponents(driver).navigateToAllWomensPacksInPacksCategory();
 	}
 
+	public void NavigateToAllSaleInSaleCategory() throws Exception {
+
+		new HomePageComponents(driver).NavigateToAllSaleInSaleCategory();
+	}
+
+
+
 	public void ValidateRecs() throws Exception {
 		new ProductDetailsPageComponents(driver).ValidateRecs();
 	}
