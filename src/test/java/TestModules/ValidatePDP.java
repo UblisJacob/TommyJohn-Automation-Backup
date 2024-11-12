@@ -84,7 +84,7 @@ public class ValidatePDP extends ExtentReport{
 		
 	}
 	
-//	@Test
+	@Test
 	public void VerifySecondaryBadging() throws Exception {
 		new ProductDetailsPage(driver).verifySecondaryBadging();
 		

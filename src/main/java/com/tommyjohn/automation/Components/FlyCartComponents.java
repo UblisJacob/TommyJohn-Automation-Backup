@@ -825,7 +825,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 	{
 		Actions action = new Actions(driver);
 		JavascriptExecutor js = (JavascriptExecutor)driver;
-		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
+		new HomePageComponents(driver).navigateToNewArrivalsInMenCategory();
 		Thread.sleep(8000);
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		js.executeScript("window.scrollBy(0,500)");
@@ -892,7 +892,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 			throw new Exception("Quick Shop ATC button is not displayed on hover.");
 
 		//Check on pdp
-		new HomePageComponents(driver).navigateToAllWomensCollectionInWomensCategory();
+		//new HomePageComponents(driver).navigateToAllWomensCollectionInWomensCategory();
 		//new CollectionPageComponent(driver).navigateToProductDetailsPage();
 		//new AddToCartComponents(driver).selectSize();
 		new ProductDetailsPageComponents(driver).verifyAddToCart();
