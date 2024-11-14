@@ -30,6 +30,7 @@ public class CustomUtilities {
 	public static WebDriver driver;
 	public EdgeDriver edgedriver;
 	public static String baseUrl = "https://www.tommyjohn.com/";
+//	public static String baseUrl = "https://www.tommyjohn.com/?_ab=0&_fd=0&_sc=1";
 	public static BufferedReader reader;
 	public static Properties properties;
 	public static final String propertiesFilePath = "src/main/resources/configuration.properties";
