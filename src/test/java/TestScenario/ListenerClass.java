@@ -192,6 +192,5 @@ public class ListenerClass extends ExtentReport implements ITestListener, IExecu
 		Fpassed = Fpassed + (context.getPassedTests().size());
 		Ffailed = Ffailed + (context.getFailedTests().size());
 		Fskipped = Fskipped + (context.getSkippedTests().size());
-
 	}
 }
