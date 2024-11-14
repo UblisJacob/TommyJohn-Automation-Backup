@@ -3168,7 +3168,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		String text = null;
 		new SoftAssert();
 		// call method to navigate to collection page
-		new HomePageComponents(driver).navigateToMensAll();
+		new HomePageComponents(driver).navigateToNewArrivalsInMenCategory();
 		jse = (JavascriptExecutor) driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		// call method to navigate product details page

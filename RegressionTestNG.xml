@@ -21,7 +21,6 @@
 		</classes>
 	</test>
 
-
 	<test name="CategoryTests">
 		<parameter name="browser" value="chrome" />
 		<classes>
