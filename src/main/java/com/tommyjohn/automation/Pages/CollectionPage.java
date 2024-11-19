@@ -364,6 +364,10 @@ public class CollectionPage extends CollectionPageComponent{
 		validateallurls();
 	}
 
+	public void ValidateRecsInPLP() throws InterruptedException {
+		new CollectionPageComponent(driver).ValidateRecsInPLP();
+	}
+
 	public void validateproductgrid() throws Exception {
 		// TODO Auto-generated method stub
 		new HomePageComponents(driver).navigateToNewArrivalsInMenCategory();
@@ -452,6 +456,14 @@ public class CollectionPage extends CollectionPageComponent{
 		// TODO Auto-generated method stub
 		new HomePageComponents(driver).navigateToMensAndLoungeTops();
 		ValidateCloseQuickshop();
+
+
+	}
+
+	public void validateLearnMoreInQuickshop() throws Exception {
+		// TODO Auto-generated method stub
+		new HomePageComponents(driver).navigateToMensUnderwear();
+		LearnMoreLinkinQuickShop();
 
 
 	}

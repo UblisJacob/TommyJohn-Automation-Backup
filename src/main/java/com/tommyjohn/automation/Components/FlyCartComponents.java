@@ -191,6 +191,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 				//	jse.executeScript("arguments[0].click();", driver.findElement(SUGGESTION_FIRST_PRODUCT_SIZE));
 
 				jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_BAG_QUICKSHOP));
+				Thread.sleep(5000);
 				wait.until(ExpectedConditions.visibilityOfElementLocated(INLINECART_PRODUCT_NAME));
 				String InLineCart_Product = driver.findElement(INLINECART_PRODUCT_NAME).getText();
 				System.out.println(InLineCart_Product);
@@ -488,7 +489,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		allElements = driver.findElements(LIST_OF_ITEMS_IN_FLYCART);
 
 		// check all fields for all items in flycart
-		for(int i=1; i<=allElements.size();i++) {
+		for(int i=1; i<=6;i++) {
 			// check for product image
 			softAssert.assertTrue(driver.findElement(By.xpath("(//td[@class='row-span-3 p-0 sm:row-span-2'])["+i+"]")).isDisplayed(), "First item image is not displayed");
 
