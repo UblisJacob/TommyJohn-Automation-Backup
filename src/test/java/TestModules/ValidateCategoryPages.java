@@ -27,6 +27,10 @@ public class ValidateCategoryPages {
 //Not worked exception
 	 @Test public void ValidateLoadCategoryPage() throws Exception { new
 	 CollectionPage(driver).validateallplpsareloading(); }
+
+	//@Test
+	public void ValidateRecsInPLP() throws Exception { new
+			CollectionPage(driver).ValidateRecsInPLP(); }
 	 
 	 @Test public void ValidateViewProductGrid() throws Exception { new
 	 CollectionPage(driver).validateproductgrid(); }
@@ -90,6 +94,10 @@ public class ValidateCategoryPages {
 	@Test
 	public void validateCloseQuickshop() throws Exception { new
 			CollectionPage(driver).validateCloseQuickshop(); }
+
+	@Test
+	public void validateLearnMoreLinkQuickshop() throws Exception { new
+			CollectionPage(driver).validateLearnMoreInQuickshop(); }
 	 
 
 	@Test

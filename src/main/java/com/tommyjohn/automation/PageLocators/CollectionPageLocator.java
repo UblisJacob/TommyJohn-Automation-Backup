@@ -31,6 +31,7 @@ public class CollectionPageLocator {
 	public static By FIRST_PRODUCT_HEAD_LINE_TEXT = By.xpath("(//a[@data-cy='productTileLink'])[1]");
 	public static By FIRST_PRODUCT_TEXT = By.xpath("(//span[@class='product-meta__title'])[1]");
 	public static By FILTER = By.xpath("//span[@class='collection-meta__title']");
+	public static By PLP_RECS = By.xpath("//h2[contains(text(),'You May Also Like')]//following::div[@class='relative aspect-tile']");
 
 	public static By FIRST_PRODUCT_REVIEW_STARS = By.cssSelector("[data-tj-qa='product-reviews'],.yotpo-bottomline");
 	public static By FIRST_PRODUCT_URL = By.cssSelector(".product-meta");
@@ -54,6 +55,7 @@ public class CollectionPageLocator {
 	public static By SORTBYPRICE_HIGH_TO_LOW_FILTER_OPTION = By.cssSelector("[data-tj-qa='plp-sortby-relevance'],.js-mega-collection-filters-sort > option:nth-child(2)");
 	
 	//Quick shop
+		public static By QUICK_SHOP_LEARN_MORE = By.xpath("//button[@type='button' and contains(text(),'Learn more')]");
 		public static By QUICK_SHOP_ATC = By.xpath("//span[@class='font-normal']");
 		public static By ADD_TO_BAG_QUICKSHOP = By.xpath("//button[@class='button grow']");
 		public static By QUICK_SHOP_SIZE_OVERLAY = By.xpath("//div[@class='mt-0 sm:space-y-lg max-sm:grid max-sm:gap-y-8']");
