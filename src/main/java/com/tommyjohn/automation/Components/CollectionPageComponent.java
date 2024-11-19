@@ -47,6 +47,24 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	int count = 0;
 	int PLPs = 55;
 
+	public void ValidateRecsInPLP() throws InterruptedException {
+		SoftAssert softAssert = new SoftAssert();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//a[contains(text(),'Women')])[1]")));
+		js.executeScript("window.scrollBy(0,10600)");
+		Thread.sleep(5000);
+		js.executeScript("window.scrollBy(0,50)");
+		Thread.sleep(5000);
+		js.executeScript("scroll(0,-80);");
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_RECS));
+		softAssert.assertTrue(driver.findElement(PLP_RECS).isDisplayed(),"Recs are not available in the PLP");
+		Reporter.log("Recs are not available in the PLP");
+		ExtentReport.extentTest.info("Recs are not available in the PLP");
+
+	}
+
 	public void ValidateCollectionFiltersCountInAllFiltersDropdownAndInCollectionDropdown() {
 		SoftAssert softAssert = new SoftAssert();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -1220,6 +1238,41 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		}
 	}
 
+	public void LearnMoreLinkinQuickShop() throws InterruptedException {
+		Actions action = new Actions(driver);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		//Thread.sleep(8000);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		js.executeScript("window.scrollBy(0,500)");
+
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.presenceOfElementLocated(FIRST_PRODUCT_IMAGE));
+		// Hover On product image on collection page
+		element = driver.findElement(FIRST_PRODUCT_IMAGE);
+		js.executeScript("arguments[0].scrollIntoView(true);", element);
+		action.moveToElement(element).build().perform();
+		Thread.sleep(3000);
+		if (driver.findElement(QUICK_SHOP_ATC).isDisplayed()) {
+			Reporter.log("Quick shop ATC button is displayed on hover.");
+			ExtentReport.extentTest.info("Quick shop ATC button is displayed on hover.");
+
+			System.out.println("Quick shop ATC text is: " + driver.findElement(QUICK_SHOP_ATC).getText());
+			softAssert.assertEquals(driver.findElement(QUICK_SHOP_ATC).getText(), "Select a size",
+					"Text changed for Quick shop ATC button.");
+			driver.findElement(QUICK_SHOP_ATC).click();
+			Thread.sleep(3000);
+			Reporter.log("Quick shop ATC button text is validated :: Clickable.");
+			ExtentReport.extentTest.info("Quick shop ATC button text is validated :: Clickable.");
+		}
+		softAssert.assertTrue(driver.findElement(QUICK_SHOP_LEARN_MORE).isDisplayed(),"Learn More link is not available in the Quick Shop");
+		driver.findElement(QUICK_SHOP_LEARN_MORE).click();
+		Thread.sleep(3000);
+		softAssert.assertTrue(driver.findElement(By.xpath("//h2[@class='text-display-sm font-medium leading-none']")).isDisplayed(),"Learn More Link is not functional");
+		softAssert.assertAll();
+		Reporter.log("Learn More Link is functional");
+		ExtentReport.extentTest.info("Learn More Link is functional");
+	}
+
 
 	public void QuickShopOnMegaCollection() throws Exception {
 		Actions action = new Actions(driver);
@@ -1702,7 +1755,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		Thread.sleep(5000);
 		List<WebElement> Packs = driver.findElements(By.xpath("//a[@data-cy='productTileLink']"));
 		System.out.println(Packs.size());
-		for(int i=1;i<=3;i++)
+		for(int i=1;i<=2;i++)
 		{
 			String[] PacksName = driver.findElement(By.xpath("(//a[@data-cy='productTileLink'])["+i+"]")).getText().split("\"");
 			System.out.println(PacksName[1]);

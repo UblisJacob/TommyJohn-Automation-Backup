@@ -2688,6 +2688,11 @@ public class HomePageComponents extends HomePageLocators {
 		Thread.sleep(5000);
 	}
 
+	public void navigateToMensUnderwear() throws Exception {
+		driver.get("https://www.tommyjohn.com/collections/mens-underwear");
+		Thread.sleep(5000);
+	}
+
 	public void navigateToAWomensAirBikini() throws Exception {
 		driver.get("https://www.tommyjohn.com/collections/womens-air?sort-by=relevance&sort-order=descending");
 	}
