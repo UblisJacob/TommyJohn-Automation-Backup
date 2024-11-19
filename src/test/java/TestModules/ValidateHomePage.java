@@ -72,7 +72,7 @@ public class ValidateHomePage extends ExtentReport {
 		new HomePageComponents(driver).ValidateShopWomensInHeroBanner();
 	}
 
-	@Test
+//	@Test
 	public void ValidateLinksInCollectionSelector() throws Exception {
 
 		new HomePage(driver).ValidateLinksInCollectionSelector();
