@@ -2729,6 +2729,12 @@ public class HomePageComponents extends HomePageLocators {
 		Thread.sleep(5000);
 
 	}
+
+	public void navigateToMensCoolCotton () throws Exception {
+		driver.get("https://www.tommyjohn.com/collections/mens-cool-cotton");
+		Thread.sleep(5000);
+
+	}
 	
 
 	// navigate to Gift Card category
