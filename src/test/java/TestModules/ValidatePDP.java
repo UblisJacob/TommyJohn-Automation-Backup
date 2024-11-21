@@ -63,6 +63,12 @@ public class ValidatePDP extends ExtentReport{
 
 	}
 
+	@Test
+	public void VerifyPromoBannerIsAvailableinPDP() throws Exception {
+		new ProductDetailsPage(driver).VerifyPromoBannerIsAvailableinPDP();
+
+	}
+
 
 	@Test
 	public void ValidateRecs() throws Exception {

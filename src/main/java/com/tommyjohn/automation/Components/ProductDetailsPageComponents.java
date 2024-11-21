@@ -31,8 +31,7 @@ import com.tommyjohn.automation.utils.CustomUtilities;
 
 import static com.tommyjohn.automation.PageLocators.CollectionPageLocator.FIRST_PRODUCT_HEAD_TEXT;
 import static com.tommyjohn.automation.PageLocators.CollectionPageLocator.FIRST_PRODUCT_IMAGE;
-import static com.tommyjohn.automation.PageLocators.FlyCartPageLocator.INLINECART_PRODUCT_NAME;
-import static com.tommyjohn.automation.PageLocators.FlyCartPageLocator.INLINE_COLOR;
+import static com.tommyjohn.automation.PageLocators.FlyCartPageLocator.*;
 import static com.tommyjohn.automation.PageLocators.HomePageLocators.*;
 
 public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
@@ -92,6 +91,18 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		softAssert.assertTrue(driver.findElement(INLINECART_PRODUCT_NAME).isDisplayed(), "Product is not added to Cart from Instagram Widget");
 		Reporter.log("Product is added to Cart from Instagram Widget");
 		ExtentReport.extentTest.info("Product is added to Cart from Instagram Widget");
+	}
+
+	public void VerifyPromoBannerIsAvailableinPDP() throws Exception {
+		new HomePageComponents(driver).navigateToSales();
+		SoftAssert softAssert = new SoftAssert();
+		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PDP_PROMOBANNER));
+		softAssert.assertTrue(driver.findElement(PDP_PROMOBANNER).isDisplayed(),"Promo Banner is not available in the PDP");
+		softAssert.assertAll();
+		Reporter.log("Promo Banner is available in the PDP");
+		ExtentReport.extentTest.info("Promo Banner is available in the PDP");
 	}
 
 	public void ValidateAppropriateProductIsAddedToCartFromInstagramWidget() throws Exception {
@@ -2619,6 +2630,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		ExtentReport.extentTest.info("Scrolling CTA Add to Cart is displayed :: Clickable");
 
 	}
+
 
 	public void verifyReviewRecommendations() throws Exception {
 		new HomePageComponents(driver).navigateToAllPantiesnInWomenCategory();
