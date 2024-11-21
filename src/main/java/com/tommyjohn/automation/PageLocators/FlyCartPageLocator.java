@@ -102,6 +102,7 @@ public class FlyCartPageLocator {
 	public static By INLINECART_PRODUCT_NAME = By.xpath("//a[@class='font-medium text-text-primary mt-1 block text-body-lg leading-tight sm:text-body sm:leading-5']");
 	public static By COLOR_SWATCH = By.xpath("((//div[@Class='absolute right-0 top-0 h-full w-[201px] overflow-y-scroll max-sm:hidden']//div[@class='relative aspect-tile'])[1]//following::a//img)[1]");
 	public static By INLINE_COLOR = By.xpath("//div[@class='mt-2 text-body leading-[18px] text-text-secondary']");
+	public static By PDP_PROMOBANNER = By.xpath("//span[@class='font-bold text-text-primary']");
 
 
 
