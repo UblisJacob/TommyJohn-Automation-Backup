@@ -26,6 +26,13 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 
 	}
 
+	public void VerifyPromoBannerIsAvailableinPDP() throws Exception {
+
+
+		new ProductDetailsPageComponents(driver).VerifyPromoBannerIsAvailableinPDP();
+
+	}
+
 	public void verifyProductDetailsPage() throws Exception {
 
 
