@@ -25,7 +25,7 @@ public class ValidateAccountPage extends ExtentReport {
 	}
 
 	@Test
-	public void Validate_AccountPage() throws Exception {
+		public void Validate_AccountPage() throws Exception {
 		new AccountPage(driver).Verify_AccountPage();
 	}
 
