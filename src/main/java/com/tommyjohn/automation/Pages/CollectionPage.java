@@ -364,6 +364,10 @@ public class CollectionPage extends CollectionPageComponent{
 		validateallurls();
 	}
 
+	public void ValidateStarRatingIsFunctional() {
+	new CollectionPageComponent(driver).ValidateStarRatingIsFunctional();
+	}
+
 	public void ValidateRecsInPLP() throws InterruptedException {
 		new CollectionPageComponent(driver).ValidateRecsInPLP();
 	}
