@@ -822,6 +822,7 @@ public class HomePageComponents extends HomePageLocators {
 		driver.findElement(SEARCH_TEXTBOX).sendKeys("second skin");
 		
 	    action.moveToElement(driver.findElement(SEARCH_TEXTBOX)).build().perform();
+		Thread.sleep(5000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SUGGESTED_PRODUCT_IMG));
 		Thread.sleep(5000);
 		System.out.println(driver.findElement(PRODUCT_MATCHES_TITLE).getText());
@@ -2652,7 +2653,7 @@ public class HomePageComponents extends HomePageLocators {
 	}
 
 	public void navigateToEveryDayEssentials() throws Exception {
-		driver.get("https://www.tommyjohn.com/products/everyday-essentials-3-pack?variant=42963035095085");
+		driver.get("https://www.tommyjohn.com/products/second-skin-trunk-4-3-pack-46?variant=43053722468397");
 	}
 
 	// navigate to All Womens Packs in Packs category

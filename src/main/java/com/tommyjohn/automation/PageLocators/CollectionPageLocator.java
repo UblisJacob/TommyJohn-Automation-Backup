@@ -29,10 +29,11 @@ public class CollectionPageLocator {
 	public static By FIRST_PRODUCT_HEAD_TEXT = By.xpath("(//div[@class='relative aspect-tile'])[1]");
 	public static By FIRST_PRODUCT_HEAD_LINE_TEXT_COPY = By.xpath("(//span[@class='product-meta__title'])[1]");
 	public static By FIRST_PRODUCT_HEAD_LINE_TEXT = By.xpath("(//a[@data-cy='productTileLink'])[1]");
+	public static By FIRST_PRODUCT_STAR_RATING = By.xpath("(//a[@class='my-xs font-normal text-body-xs'])[1]");
 	public static By FIRST_PRODUCT_TEXT = By.xpath("(//span[@class='product-meta__title'])[1]");
 	public static By FILTER = By.xpath("//span[@class='collection-meta__title']");
 	public static By PLP_RECS = By.xpath("//h2[contains(text(),'You May Also Like')]//following::div[@class='relative aspect-tile']");
-
+	public static By REVIEWS = By.xpath("//div[@class='ugc-storefront-widgets-tabs-container__tab selected']");
 	public static By FIRST_PRODUCT_REVIEW_STARS = By.cssSelector("[data-tj-qa='product-reviews'],.yotpo-bottomline");
 	public static By FIRST_PRODUCT_URL = By.cssSelector(".product-meta");
 	

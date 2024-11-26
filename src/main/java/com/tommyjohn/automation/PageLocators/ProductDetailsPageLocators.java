@@ -98,7 +98,7 @@ public class ProductDetailsPageLocators {
 	public static By FIT_MATERIAL = By.xpath("//button[@aria-controls='product-fit-materials']");
 	public static By CHECKOUT_BUTTON = By.cssSelector("[data-tj-qa='inline-cart-checkout'],.inline-cart__action-btns > a");
 	//public static By COLOR_AND_SIZE = By.cssSelector("div.product-info__variant-select > div:nth-child(1) > div.product-info__header.hide > span");
-    public static By LOW_INVENTORY_MSG = By.xpath("//p[contains(text(),'Hurry! Only 10 left in stock!')]");
+    public static By LOW_INVENTORY_MSG = By.xpath("//p[@class='my-2 px-lg md:px-0']");
     public static By PRODUCT_DETAILS_SECTION = By.xpath("(//dt[@class='font-medium'])[1]");
     public static By BEST_PAIR_GUARANTEE_SECTION = By.cssSelector("div.product-info_low-inventory-message");
     public static By FREE_RETURNS_SECTION = By.cssSelector("div.product-info_low-inventory-message");

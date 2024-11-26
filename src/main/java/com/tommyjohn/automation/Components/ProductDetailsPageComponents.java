@@ -2789,8 +2789,9 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 
 	public void verifyLowStockInventory() throws Exception {
-		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
-		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+//		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
+//		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		driver.get("https://www.tommyjohn.com/products/second-skin-trunk-4-23?variant=42962253938733");
 		Thread.sleep(3000);
 		allElements = driver.findElements(COLOR_VARIANT);
 		int count = 0;
@@ -2837,7 +2838,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 		if(count>0) {
 			Reporter.log("Message Displayed");
-			ExtentReport.extentTest.info("Message Displayeds");
+			ExtentReport.extentTest.info("Message Displayed");
 		}
 		else {
 			Reporter.log("No Msg");
