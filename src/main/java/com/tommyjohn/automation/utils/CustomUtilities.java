@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
@@ -21,6 +23,7 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
+import org.testng.ISuite;
 import org.testng.ITestContext;
 import org.testng.Reporter;
 
@@ -61,6 +64,13 @@ public class CustomUtilities {
 			// System.setProperty("webdriver.chrome.driver" ,"/tmp/chromedriver.exe");
 			//System.setProperty("webdriver.chrome.driver", properties.getProperty("chromeDriverPath"));
 			ChromeOptions chromeOptions = new ChromeOptions();
+//			Map<String, String> mobileEmulation = new HashMap<>();
+//			mobileEmulation.put("deviceName", "Nexus 5");
+//
+//			// Add mobile emulation to Chrome options
+//			chromeOptions.setExperimentalOption("mobileEmulation", mobileEmulation);
+
+			// Set other desired capabilities if needed (such as enabling remote d
 //			chromeOptions.setExperimentalOption("useAutomationExtension", false)
 			chromeOptions.addArguments("--headless");
 			chromeOptions.addArguments("--window-size=1280,800");

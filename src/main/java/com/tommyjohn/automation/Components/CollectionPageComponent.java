@@ -47,6 +47,20 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	int count = 0;
 	int PLPs = 55;
 
+	public void ValidateStarRatingIsFunctional()
+	{	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		SoftAssert softAssert = new SoftAssert();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//a[contains(text(),'Women')])[1]")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
+		js.executeScript("arguments[0].click();", driver.findElement(FIRST_PRODUCT_STAR_RATING));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(REVIEWS));
+		softAssert.assertTrue(driver.findElement(REVIEWS).isDisplayed(),"On Clicking the Star Rating under the Product tile the User is not directed directly to the Reviews Section in the PDP");
+		Reporter.log("On Clicking the Star Rating under the Product tile the User is directed directly to the Reviews Section in the PDP");
+		ExtentReport.extentTest.info("On Clicking the Star Rating under the Product tile the User is directed directly to the Reviews Section in the PDP");
+
+	}
+
 	public void ValidateRecsInPLP() throws InterruptedException {
 		SoftAssert softAssert = new SoftAssert();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -1752,7 +1766,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PLP_PRODUCTS)));
 		driver.findElement(MULTIPACKS_CHECKBOX).click();
-		Thread.sleep(5000);
+		Thread.sleep(10000);
 		List<WebElement> Packs = driver.findElements(By.xpath("//a[@data-cy='productTileLink']"));
 		System.out.println(Packs.size());
 		for(int i=1;i<=2;i++)

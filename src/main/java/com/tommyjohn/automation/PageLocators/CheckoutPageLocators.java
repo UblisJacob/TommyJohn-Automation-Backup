@@ -88,6 +88,7 @@ public class CheckoutPageLocators {
 	public static By SHIPPING_RADIO_BUTTON = By.xpath("//input[@type='radio']");
 	public static By RETURN_LINK = By.xpath("//span[contains(text(),'Return to information')]");
 	public static By CONTINUE_TO_PAYMENT_BUTTON = By.xpath("//div[@class='MV9Am']//button");
+	public static By FREE_SHIPPING = By.xpath("(//span[contains(text(),'Free')])[3]");
 
 
 	//                                           payment
