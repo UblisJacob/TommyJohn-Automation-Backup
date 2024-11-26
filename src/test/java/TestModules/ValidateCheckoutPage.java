@@ -41,6 +41,12 @@ public class ValidateCheckoutPage extends ExtentReport {
 	}
 
 	@Test
+	public void validateFreeShipping() throws Exception
+	{
+		new CheckoutPage(driver).validateFreeShipping();
+	}
+
+	@Test
 	public void ValidatePromoCodeErrorScenarioInShippingPage() throws Exception
 	{
 		new AddToCartComponents(driver).addsingleproductToCartforFirst20Coupon();

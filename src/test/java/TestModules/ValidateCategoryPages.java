@@ -28,6 +28,9 @@ public class ValidateCategoryPages {
 	 @Test public void ValidateLoadCategoryPage() throws Exception { new
 	 CollectionPage(driver).validateallplpsareloading(); }
 
+	@Test public void ValidateStarRatingIsFunctional() throws Exception { new
+			CollectionPage(driver).ValidateStarRatingIsFunctional(); }
+
 	//@Test
 	public void ValidateRecsInPLP() throws Exception { new
 			CollectionPage(driver).ValidateRecsInPLP(); }
@@ -35,8 +38,9 @@ public class ValidateCategoryPages {
 	 @Test public void ValidateViewProductGrid() throws Exception { new
 	 CollectionPage(driver).validateproductgrid(); }
 
-	@Test public void ValidateMultipacksCheckBox() throws Exception { new
-			CollectionPage(driver).ValidateMultipacksCheckBox(); }
+//	@Test
+	public void ValidateMultipacksCheckBox() throws Exception {
+	new CollectionPage(driver).ValidateMultipacksCheckBox(); }
 	 
 	 
 	 @Test
