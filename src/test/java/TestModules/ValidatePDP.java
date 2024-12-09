@@ -58,6 +58,12 @@ public class ValidatePDP extends ExtentReport{
 	}
 
 	@Test
+	public void ValidatesectionsinPDP() throws Exception {
+		new ProductDetailsPage(driver).ValidatesectionsinPDP();
+
+	}
+
+	@Test
 	public void ValidateClickingOnRatingsTierMeter() throws Exception {
 		new ProductDetailsPage(driver).ValidateClickingOnRatingsTierMeter();
 
