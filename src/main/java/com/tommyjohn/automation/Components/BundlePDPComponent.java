@@ -741,7 +741,7 @@ public class BundlePDPComponent extends BundlePDPLocators{
 //			text = new CollectionPageComponent(driver).navigateToProductDetailsPage();
 			// call method to check correct PDP opend or not
 		//	checkCorrectProductDetailsPageOpenedOrNot(text);
-			driver.get("https://www.tommyjohn.com/products/second-skin-mid-length-boxer-brief-6-6-pack?variant=43040515063853");
+			driver.get("https://www.tommyjohn.com/products/cool-cotton-relaxed-fit-boxer-6-3-pack-6?variant=42626436694061");
 			Thread.sleep(2000);
 
 

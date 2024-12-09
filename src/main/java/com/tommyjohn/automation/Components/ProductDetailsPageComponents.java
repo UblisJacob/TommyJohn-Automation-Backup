@@ -1,12 +1,15 @@
 package com.tommyjohn.automation.Components;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.net.URL;
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.SearchContext;
@@ -55,6 +58,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 	public static String Sizename2;
 	public static String BundleSizename1;
 	public static String BundleSizename2;
+	int count = 0;
+	int NoTabs = 0;
 
 	double installment;
 
@@ -62,6 +67,157 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 	public ProductDetailsPageComponents(WebDriver driver) {
 		this.driver = driver;
 	}
+
+
+
+	public void ValidatesectionsinPDP() throws InterruptedException, IOException, CsvException, Exception {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		SoftAssert softAssert = new SoftAssert();
+		//	try {
+		//File src = new File("src/main/resources/AllCollectionPages.xlsx");
+
+		String csv_path = "src/main/resources/PDP.csv";
+		CSVReader CSVReader = new CSVReader(new FileReader(csv_path));
+		List<String[]> list = CSVReader.readAll();
+		Thread.sleep(3000);
+		Iterator<String[]> ite = list.iterator();
+		Thread.sleep(2000);
+		while (ite.hasNext()) {
+			String[] data = ite.next();
+			if (data[0].startsWith("#")) {
+				continue;
+			}
+			for (int i = 0; i < data.length; i++) {
+				System.out.println(data[i]);
+				String url = "https://www.tommyjohn.com" + data[i];
+				//	checkurl(url);
+				driver.get(url);
+//				try {
+					//	Thread.sleep(5000);
+					wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_TITLE));
+					Thread.sleep(5000);
+					try {
+						js.executeScript("arguments[0].click();", driver.findElement(PDP_TAB1));
+						try {
+							if (driver.findElement(SWATCH_SECTION).isDisplayed()) {
+								System.out.println("Swatch section is displayed in Tab1");
+							}
+						} catch (Exception ex) {
+							count++;
+							System.out.println("Swatch section is not displayed in Tab1 for " + url);
+							Reporter.log("Swatch section is not displayed in Tab1 for " + url);
+							ExtentReport.extentTest.info("Swatch section is not displayed in Tab1 for " + url);
+						}
+
+						try {
+							if (driver.findElement(SIZE_SECTION).isDisplayed()) {
+								System.out.println("Size section is displayed in Tab1");
+							}
+						} catch (Exception ex) {
+							count++;
+							System.out.println("Size section is not displayed in Tab1 for " + url);
+							Reporter.log("Size section is not displayed in Tab1 for " + url);
+							ExtentReport.extentTest.info("Size section is not displayed in Tab1 for " + url);
+						}
+
+						try {
+							if (driver.findElement(QUANTITY_ATC_SECTION).isDisplayed()) {
+								System.out.println("Quantity and Add to Cart sections are displayed in Tab1");
+							}
+						} catch (Exception ex) {
+							count++;
+							System.out.println("Quantity and Add to Cart sections are displayed in Tab1 for " + url);
+							Reporter.log("Quantity and Add to Cart sections are displayed in Tab1 for " + url);
+							ExtentReport.extentTest.info("Quantity and Add to Cart sections are displayed in Tab1 for " + url);
+						}
+
+
+						js.executeScript("arguments[0].click();", driver.findElement(PDP_TAB2));
+						try {
+							if (driver.findElement(SWATCH_SECTION).isDisplayed()) {
+								System.out.println("Swatch section is displayed in Tab2 ");
+							}
+						} catch (Exception ex) {
+							count++;
+							System.out.println("Swatch section is displayed in Tab2 for " + url);
+							Reporter.log("Swatch section is displayed in Tab2 for " + url);
+							ExtentReport.extentTest.info("Swatch section is displayed in Tab2 for " + url);
+						}
+
+						try {
+							if (driver.findElement(SIZE_SECTION).isDisplayed()) {
+								System.out.println("Size section is displayed in Tab2");
+							}
+						} catch (Exception ex) {
+							count++;
+							System.out.println("Size section is not displayed in Tab2 for " + url);
+							Reporter.log("Size section is not displayed in Tab2 for " + url);
+							ExtentReport.extentTest.info("Size section is not displayed in Tab2 for " + url);
+						}
+
+						try {
+							if (driver.findElement(QUANTITY_ATC_SECTION).isDisplayed()) {
+								System.out.println("Quantity and Add to Cart sections are displayed in Tab2");
+							}
+						} catch (Exception ex) {
+							count++;
+							System.out.println("Quantity and Add to Cart sections are not displayed in Tab2 for " + url);
+							Reporter.log("Quantity and Add to Cart sections are not displayed in Tab2 for " + url);
+							ExtentReport.extentTest.info("Quantity and Add to Cart sections are not displayed in Tab2 for " + url);
+						}
+
+						js.executeScript("arguments[0].click();", driver.findElement(PDP_TAB3));
+						try {
+							if (driver.findElement(SWATCH_SECTION).isDisplayed()) {
+								System.out.println("Swatch section is displayed in Tab3");
+							}
+						} catch (Exception ex) {
+							count++;
+							System.out.println("Swatch section is not displayed in Tab3 for " + url);
+							Reporter.log("Swatch section is not displayed in Tab3 for " + url);
+							ExtentReport.extentTest.info("Swatch section is not displayed in Tab3 for " + url);
+						}
+
+						try {
+							if (driver.findElement(SIZE_SECTION).isDisplayed()) {
+								System.out.println("Size section is displayed in Tab3 ");
+							}
+						} catch (Exception ex) {
+							count++;
+							System.out.println("Size section is not displayed in Tab3 for " + url);
+							Reporter.log("Size section is not displayed in Tab3 for " + url);
+							ExtentReport.extentTest.info("Size section is not displayed in Tab3 for " + url);
+						}
+						try {
+							if (driver.findElement(QUANTITY_ATC_SECTION).isDisplayed()) {
+								System.out.println("Quantity and Add to Cart sections are displayed in Tab3");
+							}
+						} catch (Exception ex) {
+							count++;
+							System.out.println("Quantity and Add to Cart sections are not displayed in Tab3 for " + url);
+							Reporter.log("Quantity and Add to Cart sections are not displayed in Tab3 for " + url);
+							ExtentReport.extentTest.info("Quantity and Add to Cart sections are not displayed in Tab3 for " + url);
+
+						}
+					}
+					catch(Exception e)
+					{
+						NoTabs++;
+						System.out.println("No Tabs are found for the given URL " + url);
+					}
+
+			}
+
+		}
+
+//		softAssert.assertAll();
+		if(count > 1 || NoTabs >1 ){
+			throw new Exception("PDP Sections are not working as expected");
+		}
+
+	}
+
 
 
 
@@ -94,9 +250,10 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 	}
 
 	public void VerifyPromoBannerIsAvailableinPDP() throws Exception {
-		new HomePageComponents(driver).navigateToSales();
+		//new HomePageComponents(driver).navigateToSales();
 		SoftAssert softAssert = new SoftAssert();
-		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		//new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		driver.get("https://www.tommyjohn.com/products/second-skin-pajama-pocket-tee-short-set-11?variant=43049611395117");
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PDP_PROMOBANNER));
 		softAssert.assertTrue(driver.findElement(PDP_PROMOBANNER).isDisplayed(),"Promo Banner is not available in the PDP");
@@ -2498,7 +2655,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		int count = 0;
 		SoftAssert softAssert = new SoftAssert();
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
-		driver.navigate().to("https://www.tommyjohn.com/collections/underwear-mens-styles-boxer-brief");
+		driver.navigate().to("https://www.tommyjohn.com/collections/mens-underwear");
 		//new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
 
 		//navigate to PDP
@@ -3181,7 +3338,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		String text = null;
 		new SoftAssert();
 		// call method to navigate to collection page
-		new HomePageComponents(driver).navigateToNewArrivalsInMenCategory();
+		new HomePageComponents(driver).navigateToWomensAll();
 		jse = (JavascriptExecutor) driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		// call method to navigate product details page
@@ -3313,7 +3470,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			Reporter.log("Size guide link is Displayed :: Clickable");
 			Thread.sleep(2000);
 			//Close first size guide window
-			driver.findElement(By.xpath("//button[@aria-label='Close modal']")).click();
+			driver.findElement(By.xpath("(//button[@aria-label='Close modal'])[2]")).click();
 
 			Thread.sleep(1000);
 		} else {

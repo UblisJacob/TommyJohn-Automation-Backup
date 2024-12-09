@@ -40,6 +40,13 @@ public class ValidateCartPage extends ExtentReport{
 
 	}
 
+//	@Test
+	public void ValidatePromoCodeFromPromoBanner() throws Exception {
+		new ShoppingCartPage(driver).ValidatePromoCodeFromPromoBanner();
+
+	}
+
+
 	@Test
 	public void ValidateProductCount() throws Exception {
 		new ShoppingCartPage(driver).ValidateProductCountInInlineCartAndCartPages();

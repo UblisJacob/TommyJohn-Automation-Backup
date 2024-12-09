@@ -404,7 +404,7 @@ public class CollectionPage extends CollectionPageComponent{
 
 	public void validateInlineBanner() throws Exception {
 		// TODO Auto-generated method stub
-		new HomePageComponents(driver).navigateToMensAll();
+		new HomePageComponents(driver).navigateToWomensAll();
 		validatePLPInlineBanner();
 	}
 
