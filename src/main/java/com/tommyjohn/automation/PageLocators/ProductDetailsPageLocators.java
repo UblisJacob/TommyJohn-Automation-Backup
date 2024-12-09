@@ -4,6 +4,18 @@ import org.openqa.selenium.By;
 
 public class ProductDetailsPageLocators {
 
+
+	//Multipacks Sections
+	public static By PDP_TABS = By.xpath("//span[@class='text-sm text-text-tertiary']");
+	public static By PDP_TAB1 = By.xpath("(//span[@class='text-sm text-text-tertiary'])[1]");
+	public static By SWATCH_SECTION = By.xpath("(//fieldset[@class='grid max-md:ml-lg max-md:items-center'])[1]");
+	public static By SIZE_SECTION = By.xpath("(//fieldset[@class='grid max-md:ml-lg max-md:items-center'])[2]");
+	public static By QUANTITY_ATC_SECTION = By.xpath("//div[@class='mt-3 flex gap-2']");
+	public static By PDP_TAB2 = By.xpath("(//span[@class='text-sm text-text-tertiary'])[2]");
+	public static By PDP_TAB3 = By.xpath("(//span[@class='text-sm text-text-tertiary'])[3]");
+
+
+
 	public static By FIRST_PRODUCT_REVIEW_STARS = By.cssSelector("div.mega-collection-grid__row:nth-child(3) > div:nth-child(3) > a > div");
 	//changed
 	public static By PRODUCT_TITLE = By.xpath("//h1[@class='mb-0']");

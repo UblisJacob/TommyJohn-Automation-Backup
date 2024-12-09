@@ -30,7 +30,10 @@ import com.tommyjohn.automation.PageLocators.ShoppingCartLocators;
 import com.tommyjohn.automation.commonMethods.GeneralMethods;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
+import static com.tommyjohn.automation.Components.HomePageComponents.element;
 import static com.tommyjohn.automation.PageLocators.FlyCartPageLocator.*;
+import static com.tommyjohn.automation.PageLocators.HomePageLocators.HERO_BANNER_IMAGE;
+import static com.tommyjohn.automation.PageLocators.HomePageLocators.PROMO_BANNER_CODE;
 
 public class ShoppingCartComponents extends ShoppingCartLocators{
 
@@ -48,6 +51,34 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		this.driver = driver;
 		
 	}
+
+	public void ValidatePromoCodeFromPromoBanner() throws Exception {
+		SoftAssert softAssert = new SoftAssert();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PROMO_BANNER_CODE));
+		String CODE = driver.findElement(HomePageLocators.PROMO_BANNER_CODE).getText();
+		System.out.println(CODE);
+		String[] PROMO_CODE = driver.findElement(HomePageLocators.PROMO_BANNER_CODE).getText().split(": ");
+		String PROMO_FINAL = PROMO_CODE[1];
+		System.out.println(PROMO_FINAL);
+		new AddToCartComponents(driver).addToCart();
+		driver.findElement(HomePageLocators.CART_ICON).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+		driver.findElement(CART_COUPONFIELD).sendKeys(PROMO_FINAL);
+		Thread.sleep(2000);
+		driver.findElement(APPLY_CTA).click();
+		Thread.sleep(10000);
+		String Coupon = driver.findElement(APPLIED_PROMO_COUPON).getText();
+		System.out.println(Coupon);
+		element= driver.findElement(APPLIED_PROMO_COUPON);
+		softAssert.assertTrue(element.isDisplayed(), "The Coupon code is not getting applied in Cart page");
+		Reporter.log("The Coupon code applied in Cart page");
+		ExtentReport.extentTest.info("The Coupon code applied in Cart page");
+	}
+
+
 
 	public void ValidateProductCountInInlineCartAndCartPages() throws Exception {
 		SoftAssert softAssert = new SoftAssert();
