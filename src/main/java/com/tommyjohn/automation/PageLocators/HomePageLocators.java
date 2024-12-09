@@ -7,6 +7,7 @@ public class HomePageLocators{
 
 	//HomePageSections
 	public static By HERO_BANNER_IMAGE = By.xpath("//div[@class='shopify-section relative']");
+	public static By PROMO_BANNER_CODE = By.xpath("//span[@class='flex items-center gap-xs']");
 	public static By HERO_BANNER_CTA = By.xpath("(//a[@class='button-inverse'])[3]");
 	public static By HERO_SLIDER_SHOPMENS_CTA = By.xpath("(//a[contains(text(),\"Shop Men's\")])[1]");
 	public static By HERO_SLIDER_SHOPWOMENS_CTA = By.xpath("(//a[contains(text(),\"Shop Women's\")])[1]");

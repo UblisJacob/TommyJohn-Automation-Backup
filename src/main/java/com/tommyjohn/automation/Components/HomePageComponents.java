@@ -2530,6 +2530,11 @@ public class HomePageComponents extends HomePageLocators {
 		driver.get("https://www.tommyjohn.com/collections/mens-all");
 	}
 
+	public void navigateToWomensAll()
+	{
+		driver.get("https://www.tommyjohn.com/collections/womens-all");
+	}
+
 	public void navigateToSales()
 	{
 		driver.get("https://www.tommyjohn.com/collections/sale-mens-womens");
@@ -2645,7 +2650,7 @@ public class HomePageComponents extends HomePageLocators {
 
 	// navigate to All Mens Packs in Packs category
 	public void navigateToAllMensPacksInPacksCategory() throws Exception {
-		driver.get("https://tommyjohn.com/collections/mens-underwear-packs");
+		driver.get("https://www.tommyjohn.com/collections/mens-underwear?filter.pack_size=set%3B3%3B6%3B2%3B5");
 	}
 
 	public void navigateToExploreWomensCategory() throws Exception {
