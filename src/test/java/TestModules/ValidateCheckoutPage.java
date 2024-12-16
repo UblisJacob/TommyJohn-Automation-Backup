@@ -54,7 +54,7 @@ public class ValidateCheckoutPage extends ExtentReport {
 	}
 
 	@Test
-	public void ValidatePromoCodeErrorScenarioInPaymentPage() throws Exception
+		public void ValidatePromoCodeErrorScenarioInPaymentPage() throws Exception
 	{
 		new AddToCartComponents(driver).addsingleproductToCartforFirst20Coupon();
 		new CheckoutPage(driver).ValidatePromoCodeErrorScenarioInPaymentPage();
