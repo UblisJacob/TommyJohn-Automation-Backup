@@ -45,7 +45,9 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 	boolean flag = false;
 	Properties properties = CustomUtilities.properties;
 	List<WebElement> allElements;
+	List<WebElement> Tabs;
 	int elementsCount;
+	int Tabs_Count;
 	public static String prodsize;
 	public static String productname;
 	public static String productsize;
@@ -94,119 +96,57 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 				//	checkurl(url);
 				driver.get(url);
 //				try {
-					//	Thread.sleep(5000);
-					wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_TITLE));
-					Thread.sleep(5000);
+				//	Thread.sleep(5000);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_TITLE));
+				Thread.sleep(5000);
+				Tabs = driver.findElements(PDP_TABS);
+				Tabs_Count = Tabs.size();
+				System.out.println(Tabs_Count);
+
+				for(int j =1; j <= Tabs_Count ; j++){
+
 					try {
-						js.executeScript("arguments[0].click();", driver.findElement(PDP_TAB1));
+						js.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//span[@class='text-sm text-text-tertiary'])["+j+"]")));
 						try {
 							if (driver.findElement(SWATCH_SECTION).isDisplayed()) {
-								System.out.println("Swatch section is displayed in Tab1");
+								System.out.println("Swatch section is displayed");
 							}
 						} catch (Exception ex) {
 							count++;
-							System.out.println("Swatch section is not displayed in Tab1 for " + url);
-							Reporter.log("Swatch section is not displayed in Tab1 for " + url);
-							ExtentReport.extentTest.info("Swatch section is not displayed in Tab1 for " + url);
+							System.out.println("Swatch section is not displayed in " + url);
+							Reporter.log("Swatch section is not displayed in " + url);
+							ExtentReport.extentTest.info("Swatch section is not displayed in " + url);
 						}
 
 						try {
 							if (driver.findElement(SIZE_SECTION).isDisplayed()) {
-								System.out.println("Size section is displayed in Tab1");
+								System.out.println("Size section is displayed in");
 							}
 						} catch (Exception ex) {
 							count++;
-							System.out.println("Size section is not displayed in Tab1 for " + url);
-							Reporter.log("Size section is not displayed in Tab1 for " + url);
-							ExtentReport.extentTest.info("Size section is not displayed in Tab1 for " + url);
+							System.out.println("Size section is not displayed in Tab1 " + url);
+							Reporter.log("Size section is not displayed in Tab1 " + url);
+							ExtentReport.extentTest.info("Size section is not displayed in Tab1 " + url);
 						}
 
 						try {
 							if (driver.findElement(QUANTITY_ATC_SECTION).isDisplayed()) {
-								System.out.println("Quantity and Add to Cart sections are displayed in Tab1");
+								System.out.println("Quantity and Add to Cart sections are displayed in");
 							}
 						} catch (Exception ex) {
 							count++;
-							System.out.println("Quantity and Add to Cart sections are displayed in Tab1 for " + url);
-							Reporter.log("Quantity and Add to Cart sections are displayed in Tab1 for " + url);
-							ExtentReport.extentTest.info("Quantity and Add to Cart sections are displayed in Tab1 for " + url);
+							System.out.println("Quantity and Add to Cart sections are displayed in Tab1 " + url);
+							Reporter.log("Quantity and Add to Cart sections are displayed in Tab1 " + url);
+							ExtentReport.extentTest.info("Quantity and Add to Cart sections are displayed in Tab1 " + url);
 						}
 
-
-						js.executeScript("arguments[0].click();", driver.findElement(PDP_TAB2));
-						try {
-							if (driver.findElement(SWATCH_SECTION).isDisplayed()) {
-								System.out.println("Swatch section is displayed in Tab2 ");
-							}
-						} catch (Exception ex) {
-							count++;
-							System.out.println("Swatch section is displayed in Tab2 for " + url);
-							Reporter.log("Swatch section is displayed in Tab2 for " + url);
-							ExtentReport.extentTest.info("Swatch section is displayed in Tab2 for " + url);
-						}
-
-						try {
-							if (driver.findElement(SIZE_SECTION).isDisplayed()) {
-								System.out.println("Size section is displayed in Tab2");
-							}
-						} catch (Exception ex) {
-							count++;
-							System.out.println("Size section is not displayed in Tab2 for " + url);
-							Reporter.log("Size section is not displayed in Tab2 for " + url);
-							ExtentReport.extentTest.info("Size section is not displayed in Tab2 for " + url);
-						}
-
-						try {
-							if (driver.findElement(QUANTITY_ATC_SECTION).isDisplayed()) {
-								System.out.println("Quantity and Add to Cart sections are displayed in Tab2");
-							}
-						} catch (Exception ex) {
-							count++;
-							System.out.println("Quantity and Add to Cart sections are not displayed in Tab2 for " + url);
-							Reporter.log("Quantity and Add to Cart sections are not displayed in Tab2 for " + url);
-							ExtentReport.extentTest.info("Quantity and Add to Cart sections are not displayed in Tab2 for " + url);
-						}
-
-						js.executeScript("arguments[0].click();", driver.findElement(PDP_TAB3));
-						try {
-							if (driver.findElement(SWATCH_SECTION).isDisplayed()) {
-								System.out.println("Swatch section is displayed in Tab3");
-							}
-						} catch (Exception ex) {
-							count++;
-							System.out.println("Swatch section is not displayed in Tab3 for " + url);
-							Reporter.log("Swatch section is not displayed in Tab3 for " + url);
-							ExtentReport.extentTest.info("Swatch section is not displayed in Tab3 for " + url);
-						}
-
-						try {
-							if (driver.findElement(SIZE_SECTION).isDisplayed()) {
-								System.out.println("Size section is displayed in Tab3 ");
-							}
-						} catch (Exception ex) {
-							count++;
-							System.out.println("Size section is not displayed in Tab3 for " + url);
-							Reporter.log("Size section is not displayed in Tab3 for " + url);
-							ExtentReport.extentTest.info("Size section is not displayed in Tab3 for " + url);
-						}
-						try {
-							if (driver.findElement(QUANTITY_ATC_SECTION).isDisplayed()) {
-								System.out.println("Quantity and Add to Cart sections are displayed in Tab3");
-							}
-						} catch (Exception ex) {
-							count++;
-							System.out.println("Quantity and Add to Cart sections are not displayed in Tab3 for " + url);
-							Reporter.log("Quantity and Add to Cart sections are not displayed in Tab3 for " + url);
-							ExtentReport.extentTest.info("Quantity and Add to Cart sections are not displayed in Tab3 for " + url);
-
-						}
 					}
 					catch(Exception e)
 					{
 						NoTabs++;
 						System.out.println("No Tabs are found for the given URL " + url);
 					}
-
+				}
 			}
 
 		}
@@ -217,11 +157,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		}
 
 	}
-
-
-
-
-
+	
 	public void ValidateAddingProductToCartFromInstagramWidget() throws Exception {
 
 		action = new Actions(driver);
@@ -3376,9 +3312,6 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 					System.out.println(text1);
 
 				//	WebElement elem = driver.findElement(By.cssSelector(".multiPdp__atc-container>button"));
-
-
-
 					if (driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON).getText().contains(text1)) {
 
 						System.out.println(elemen.getText() + elements.getText() + "Product is added to Cart");

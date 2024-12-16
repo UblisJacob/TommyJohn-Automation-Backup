@@ -9,11 +9,11 @@
     </listeners>
 
     <test name="Tests">
-        <parameter name="browser" value="chrome" />
+        <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="TestModules.ValidatePDP">
+            <class name="TestModules.ValidateInlineCartPage">
                 <methods>
-                    <include name="ValidatesectionsinPDP"/>
+                    <include name="ValidatePromoCodeFIRST20InInformationPage"/>
                 </methods>
             </class>
         </classes>
@@ -27,7 +27,7 @@
 <!--    <test name="ADA Check">-->
 <!--        <parameter name="browser" value="chrome" />-->
 <!--        <classes>-->
-<!--            <class name="ADACheckModules.CreateAccountPageADACheck" />-->
+<!--            <class name="ADACheckModules.HomePageADACheck" />-->
 <!--        </classes>-->
 <!--    </test>-->
 </suite>

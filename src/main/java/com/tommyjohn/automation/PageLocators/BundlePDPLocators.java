@@ -23,7 +23,7 @@ public class BundlePDPLocators {
 		
 	//image badging
 	public static By IMAGE_BADGING = By.xpath("//span[contains(text(),'New Colors')]");
-	public static By IMAGE_BADGING_NEW_STYLE = By.xpath("//span[contains(text(),'Selling Fast!')]");
+	public static By IMAGE_BADGING_NEW_STYLE = By.xpath("//span[contains(text(),'#2 Gift For Him')]");
 	
 	//Secondary Badging
 	public static By SECONDARY_BADGING = By.xpath("//p[@class='m-0 inline-block text-body-xs leading-none text-[color:var(--text-color)]']//span");

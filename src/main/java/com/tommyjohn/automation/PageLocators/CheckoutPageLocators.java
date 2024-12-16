@@ -36,17 +36,18 @@ public class CheckoutPageLocators {
 	public static By FIRSTNAME_TEXTBOX = By.xpath("(//input[@name='firstName'])[1]");
 	public static By LASTNAME_TEXTBOX = By.xpath("(//input[@name='lastName'])[1]");
 	public static By ADDRESS1_TEXTBOX = By.xpath("//input[@id='shipping-address1']");
-	public static By ADDRESS2_TEXTBOX = By.xpath("//input[@id='TextField2']");
-	public static By CITY_TEXTBOX = By.xpath("//input[@id='TextField3']");
+	public static By ADDRESS2_TEXTBOX = By.xpath("(//input[@name='address2'])[1]");
+	public static By CITY_TEXTBOX = By.xpath("(//input[@name='city'])[1]");
 	public static By COUNTRY_DROPDOWN = By.xpath("//select[@name='countryCode']");
 	public static By STATE_DROPDOWN = By.xpath("//select[@name='zone']");
-	public static By PINCODE_TEXTBOX = By.xpath("//input[@id='TextField4']");
+	public static By PINCODE_TEXTBOX = By.xpath("(//input[@name='postalCode'])[1]");
 	public static By PHONE_TEXTBOX = By.xpath("(//input[@name='phone'])[1]");
 	public static By REMEMBERME_CHCKBOX = By.cssSelector("#checkout_remember_me");
 	public static By RETURN_TO_CART_LINK = By.xpath("//span[contains(text(),'Return to cart')]");
 	public static By CONTINUE_TO_SHIPPING_BUTTON = By.xpath("(//button[@type='submit'])[3]");
 	public static By TEXTMEWITHNEWSLETTERSANDOFFERSCHECKBOX = By.xpath("//input[@name='sms_marketing_opt_in']");
-	public static By PHONENUMBERFIELD = By.xpath("//input[@id='TextField6']");
+	public static By PHONENUMBERFIELD = By.xpath("(//input[@name='phone'])[1]");
+	public static By ADDRESS_SUGGESTIONS = By.xpath("(//span[@class='a8x1wu2 a8x1wu1 _1fragemod _1fragem1t _1fragemkk _1fragemka a8x1wu9 a8x1wuj a8x1wuh _1fragem1y a8x1wun a8x1wul a8x1wuy'])[5]");
 
 	//Error Messages in InformationPage
 	public static By EMAIL_ERROR = By.xpath("//p[@id='error-for-email']");
@@ -60,7 +61,7 @@ public class CheckoutPageLocators {
 	//SideBar
 	public static By ORDER_SUMMARY_SECTION = By.xpath("//div[@class='_4QenE']");
 	//public static By DISCOUNT_CODE_TEXTBOX = By.cssSelector("#checkout_reduction_code");
-	public static By DISCOUNT_CODE_TEXTBOX = By.xpath("//input[@id='ReductionsInput1']");
+	public static By DISCOUNT_CODE_TEXTBOX = By.xpath("(//input[@name='reductions'])[2]");
 	//public static By APPLY_DISCOUNT_BUTTON = By.cssSelector(".field__input-btn");
 	public static By APPLY_DISCOUNT_BUTTON = By.xpath("(//button[@type='submit'])[5]");
 	public static By SUBTOTAL = By.xpath("(//span[contains(text(),'Subtotal')])[2]");
