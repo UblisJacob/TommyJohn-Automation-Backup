@@ -187,7 +187,6 @@ public class BundlePDPComponent extends BundlePDPLocators{
 //
 //		jse = (JavascriptExecutor) driver;
 //		jse.executeScript("window.scrollBy(0,800)");
-
 		WebElement allElements = (WebElement) driver.findElement(IMAGE_BADGING_NEW_STYLE);
 		try{
 			if(!(allElements).isDisplayed())
@@ -741,7 +740,7 @@ public class BundlePDPComponent extends BundlePDPLocators{
 //			text = new CollectionPageComponent(driver).navigateToProductDetailsPage();
 			// call method to check correct PDP opend or not
 		//	checkCorrectProductDetailsPageOpenedOrNot(text);
-			driver.get("https://www.tommyjohn.com/products/cool-cotton-relaxed-fit-boxer-6-3-pack-6?variant=42626436694061");
+			driver.get("https://www.tommyjohn.com/products/cool-cotton-mid-length-boxer-brief-6-6-pack-1?variant=43074701033517");
 			Thread.sleep(2000);
 
 

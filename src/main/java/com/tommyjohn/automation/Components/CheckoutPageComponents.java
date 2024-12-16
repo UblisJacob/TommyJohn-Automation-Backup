@@ -1125,7 +1125,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		driver.findElement(LASTNAME_TEXTBOX).sendKeys("User");
 		driver.findElement(ADDRESS1_TEXTBOX).clear();
 		driver.findElement(ADDRESS1_TEXTBOX).sendKeys("100 Broadway Test");
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 		driver.findElement(ADDRESS2_TEXTBOX).clear();
 		driver.findElement(ADDRESS2_TEXTBOX).sendKeys("8th floor");
 		driver.findElement(CITY_TEXTBOX).clear();
