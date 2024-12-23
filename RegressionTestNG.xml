@@ -16,7 +16,7 @@
 
 	<test name="NavigationAndHomepageTests">
 		<parameter name="browser" value="chrome" />
-		<classes>
+		<classes>+
 			<class name="TestModules.ValidateNavigationElements" />
 		</classes>
 	</test>
