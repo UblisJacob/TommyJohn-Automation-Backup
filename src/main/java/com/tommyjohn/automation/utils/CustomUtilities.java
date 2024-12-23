@@ -33,7 +33,7 @@ public class CustomUtilities {
 	public static WebDriver driver;
 	public EdgeDriver edgedriver;
 	public static String baseUrl = "https://www.tommyjohn.com/";
-//	public static String baseUrl = "https://tommyjohn.myshopify.com/?preview_theme_id=137100230701";
+//	public static String baseUrl = "https://tommyjohn.myshopify.com/?preview_theme_id=137277177901";
 	public static BufferedReader reader;
 	public static Properties properties;
 	public static final String propertiesFilePath = "src/main/resources/configuration.properties";
