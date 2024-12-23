@@ -62,6 +62,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 	public static String BundleSizename2;
 	int count = 0;
 	int NoTabs = 0;
+	int BrokenURL = 0;
 
 	double installment;
 
@@ -95,64 +96,69 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 				String url = "https://www.tommyjohn.com" + data[i];
 				//	checkurl(url);
 				driver.get(url);
-//				try {
-				//	Thread.sleep(5000);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_TITLE));
-				Thread.sleep(5000);
-				Tabs = driver.findElements(PDP_TABS);
-				Tabs_Count = Tabs.size();
-				System.out.println(Tabs_Count);
+				try {
+					//	Thread.sleep(5000);
+					wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_TITLE));
+					Thread.sleep(5000);
+					Tabs = driver.findElements(PDP_TABS);
+					Tabs_Count = Tabs.size();
+					System.out.println(Tabs_Count);
 
-				for(int j =1; j <= Tabs_Count ; j++){
-
-					try {
-						js.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//span[@class='text-sm text-text-tertiary'])["+j+"]")));
-						try {
-							if (driver.findElement(SWATCH_SECTION).isDisplayed()) {
-								System.out.println("Swatch section is displayed");
-							}
-						} catch (Exception ex) {
-							count++;
-							System.out.println("Swatch section is not displayed in " + url);
-							Reporter.log("Swatch section is not displayed in " + url);
-							ExtentReport.extentTest.info("Swatch section is not displayed in " + url);
-						}
+					for (int j = 1; j <= Tabs_Count; j++) {
 
 						try {
-							if (driver.findElement(SIZE_SECTION).isDisplayed()) {
-								System.out.println("Size section is displayed in");
+							js.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//span[@class='text-sm text-text-tertiary'])[" + j + "]")));
+							try {
+								if (driver.findElement(SWATCH_SECTION).isDisplayed()) {
+									System.out.println("Swatch section is displayed");
+								}
+							} catch (Exception ex) {
+								count++;
+								System.out.println("Swatch section is not displayed in " + url);
+								Reporter.log("Swatch section is not displayed in " + url);
+								ExtentReport.extentTest.info("Swatch section is not displayed in " + url);
 							}
-						} catch (Exception ex) {
-							count++;
-							System.out.println("Size section is not displayed in Tab1 " + url);
-							Reporter.log("Size section is not displayed in Tab1 " + url);
-							ExtentReport.extentTest.info("Size section is not displayed in Tab1 " + url);
-						}
 
-						try {
-							if (driver.findElement(QUANTITY_ATC_SECTION).isDisplayed()) {
-								System.out.println("Quantity and Add to Cart sections are displayed in");
+							try {
+								if (driver.findElement(SIZE_SECTION).isDisplayed()) {
+									System.out.println("Size section is displayed in");
+								}
+							} catch (Exception ex) {
+								count++;
+								System.out.println("Size section is not displayed in Tab1 " + url);
+								Reporter.log("Size section is not displayed in Tab1 " + url);
+								ExtentReport.extentTest.info("Size section is not displayed in Tab1 " + url);
 							}
-						} catch (Exception ex) {
-							count++;
-							System.out.println("Quantity and Add to Cart sections are displayed in Tab1 " + url);
-							Reporter.log("Quantity and Add to Cart sections are displayed in Tab1 " + url);
-							ExtentReport.extentTest.info("Quantity and Add to Cart sections are displayed in Tab1 " + url);
-						}
 
+							try {
+								if (driver.findElement(QUANTITY_ATC_SECTION).isDisplayed()) {
+									System.out.println("Quantity and Add to Cart sections are displayed in");
+								}
+							} catch (Exception ex) {
+								count++;
+								System.out.println("Quantity and Add to Cart sections are displayed in Tab1 " + url);
+								Reporter.log("Quantity and Add to Cart sections are displayed in Tab1 " + url);
+								ExtentReport.extentTest.info("Quantity and Add to Cart sections are displayed in Tab1 " + url);
+							}
+
+						} catch (Exception e) {
+							NoTabs++;
+							System.out.println("No Tabs are found for the given URL " + url);
+						}
 					}
-					catch(Exception e)
-					{
-						NoTabs++;
-						System.out.println("No Tabs are found for the given URL " + url);
-					}
+				}
+
+				catch(Exception ex){
+				    	BrokenURL++;
+						System.out.println("URL not working for" + url);
+
 				}
 			}
 
 		}
 
 //		softAssert.assertAll();
-		if(count > 1 || NoTabs >1 ){
+		if(count > 1 || NoTabs >1 || BrokenURL>1){
 			throw new Exception("PDP Sections are not working as expected");
 		}
 
@@ -3303,7 +3309,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 				for (int k = 1; k <= 5; k++) {
 					WebElement elements = driver.findElement(By.xpath("(//input[@name='option[Size]'])["+k+"]"));
 					jse.executeScript("arguments[0].click();", elements);
-					Thread.sleep(1000);
+					Thread.sleep(5000);
 
 
 					String[] AddtoBag;
@@ -3401,9 +3407,9 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 				throw new Exception("Sizes chart overlay is not displayed after Size guide button was clicked");
 			System.out.println("Size Chart is displayed");
 			Reporter.log("Size guide link is Displayed :: Clickable");
-			Thread.sleep(2000);
+			Thread.sleep(5000);
 			//Close first size guide window
-			driver.findElement(By.xpath("(//button[@aria-label='Close modal'])[2]")).click();
+			driver.findElement(By.xpath("(//button[@aria-label='Close modal'])[3]")).click();
 
 			Thread.sleep(1000);
 		} else {

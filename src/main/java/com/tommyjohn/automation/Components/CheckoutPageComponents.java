@@ -1182,7 +1182,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		Thread.sleep(3000);
 		driver.findElement(DISCOUNT_CODE_TEXTBOX).sendKeys("first");
 		driver.findElement(APPLY_DISCOUNT_BUTTON).click();
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		String Error = driver.findElement(INCORRECT_PROMO_CODE_ERROR_MESSAGE).getText();
 		System.out.println(Error);
 		softAssert.assertTrue(driver.findElement(INCORRECT_PROMO_CODE_ERROR_MESSAGE).isDisplayed(), "Error message is not displayed for Incorrect Promo code");

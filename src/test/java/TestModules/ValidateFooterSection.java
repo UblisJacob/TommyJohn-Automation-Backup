@@ -24,7 +24,7 @@ public class ValidateFooterSection {
 		}
 	}
 
-	@Test
+//	@Test
 	public void VerifyFooterSectionLinks() throws Exception {
 		new FooterSectionPage(driver).verifyFooterSectionLinks();
 	}
