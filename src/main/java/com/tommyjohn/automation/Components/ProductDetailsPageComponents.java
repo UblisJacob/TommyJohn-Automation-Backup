@@ -195,7 +195,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		//new HomePageComponents(driver).navigateToSales();
 		SoftAssert softAssert = new SoftAssert();
 		//new CollectionPageComponent(driver).navigateToProductDetailsPage();
-		driver.get("https://www.tommyjohn.com/products/second-skin-pajama-pocket-tee-short-set-11?variant=43049611395117");
+		driver.get("https://www.tommyjohn.com/products/second-skin-sleep-pant-1?variant=43037236920365");
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PDP_PROMOBANNER));
 		softAssert.assertTrue(driver.findElement(PDP_PROMOBANNER).isDisplayed(),"Promo Banner is not available in the PDP");

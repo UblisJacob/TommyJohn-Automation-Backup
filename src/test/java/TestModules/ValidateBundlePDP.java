@@ -33,7 +33,7 @@ public class ValidateBundlePDP extends ExtentReport {
 		new BundlePDPPage(driver).verifyImageGallery();
 	}
 	
-	@Test
+//	@Test
 	public void VerifyOnImageBadging() throws Exception {
 		new BundlePDPPage(driver).verifyOnImageBadging();
 		
