@@ -307,10 +307,10 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		String AirFilter = driver.findElement(By.xpath("(//span[contains(text(),'Air')])[3]")).getText();
 		System.out.println(AirFilter);
 		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//span[contains(text(),'Air')])[3]")));
-		Thread.sleep(5000);
+		Thread.sleep(10000);
 //		int Filtercount = driver.findElements(By.xpath("//span[@class='collection-meta__title']")).size();
 //		System.out.println(Filtercount);
-		String FilterAir = driver.findElement(By.xpath("(//a[@data-cy='productTileLink'])[4]")).getText();
+		String FilterAir = driver.findElement(By.xpath("(//a[contains(text(),'Air Trunk 4')])[1]")).getText();
 		String[] Filter = FilterAir.split(" Trunk");
 		String text = Filter[0];
 		System.out.println(text);
