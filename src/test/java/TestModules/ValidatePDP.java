@@ -69,7 +69,7 @@ public class ValidatePDP extends ExtentReport{
 
 	}
 
-//	@Test
+	@Test
 	public void VerifyPromoBannerIsAvailableinPDP() throws Exception {
 		new ProductDetailsPage(driver).VerifyPromoBannerIsAvailableinPDP();
 
@@ -90,7 +90,7 @@ public class ValidatePDP extends ExtentReport{
 	}
 	
 	
-	@Test
+//	@Test
 	public void VerifyOnImageBadging() throws Exception {
 		new ProductDetailsPage(driver).verifyOnImageBadging();
 		
