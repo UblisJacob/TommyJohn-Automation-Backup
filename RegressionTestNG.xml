@@ -81,7 +81,7 @@
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="TestModules.ValidateCheckoutPage" />
-		</classes>
+		</classes>+
 	</test>
 
 <!--	<test name="GiftCardBalancePageTests">-->

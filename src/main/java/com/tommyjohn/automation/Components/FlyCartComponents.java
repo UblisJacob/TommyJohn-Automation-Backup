@@ -89,7 +89,8 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		SoftAssert softAssert = new SoftAssert();
 		jse = (JavascriptExecutor) driver;
 		jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_ICON));
-		Thread.sleep(5000);
+		jse.executeScript("window.scrollBy(0,500)");
+		Thread.sleep(10000);
 		wait.until(ExpectedConditions.visibilityOf(driver.findElement(SUGGESTION_FIRST_PRODUCT)));
 //		element = driver.findElement(SUGGESTION_FIRST_PRODUCT);
 //		js.executeScript("arguments[0].scrollIntoView(true);", element);
