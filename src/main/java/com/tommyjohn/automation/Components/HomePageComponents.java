@@ -819,10 +819,10 @@ public class HomePageComponents extends HomePageLocators {
 
 		driver.findElement(SEARCH_TEXTBOX).click();
 		driver.findElement(SEARCH_TEXTBOX).clear();
-		driver.findElement(SEARCH_TEXTBOX).sendKeys("second skin");
+		driver.findElement(SEARCH_TEXTBOX).sendKeys("underwear");
 		
 	    action.moveToElement(driver.findElement(SEARCH_TEXTBOX)).build().perform();
-		Thread.sleep(5000);
+		Thread.sleep(10000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SUGGESTED_PRODUCT_IMG));
 		Thread.sleep(5000);
 		System.out.println(driver.findElement(PRODUCT_MATCHES_TITLE).getText());
@@ -2763,6 +2763,10 @@ public class HomePageComponents extends HomePageLocators {
 	public void navigateToBraCategory() throws Exception {
 		driver.get("https://tommyjohn.com/collections/bras");	
 
+	}
+	public void navigateTo360Sport()
+	{
+		driver.get("https://www.tommyjohn.com/collections/underwear-mens-styles-mid-length-boxer-brief-360-sport");
 	}
 
 	//navigate to GC plp
