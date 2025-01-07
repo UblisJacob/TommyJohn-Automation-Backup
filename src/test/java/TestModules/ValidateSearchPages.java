@@ -83,7 +83,7 @@ public class ValidateSearchPages {
 	}
 	
 	@Test public void VerifySearchInteractWithQuickShop() throws Exception {
-		searchText = objGeneralMethods.readPropertiesFile("searchSleepwearSets");
+		searchText = objGeneralMethods.readPropertiesFile("searchFeatured");
 		new HomePage(driver).validateSearchPM(searchText);
 		new CollectionPage(driver).validateQuickshopFunctionalityOnSearchPLP();
 	}
@@ -109,7 +109,7 @@ public class ValidateSearchPages {
 	
 	@Test
 	public void VerifySearchMultipleSizeVariants() throws Exception {
-		searchText = objGeneralMethods.readPropertiesFile("searchSleepwearSets");
+		searchText = objGeneralMethods.readPropertiesFile("searchFeatured");
 		new HomePage(driver).validateSearchFunctionEnterKeyword(searchText);
 		new CollectionPage(driver).validateQuickshopFunctionalityOnSearchPLP();
 	}

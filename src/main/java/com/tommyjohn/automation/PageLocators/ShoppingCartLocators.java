@@ -27,8 +27,8 @@ public class ShoppingCartLocators {
 	public static By REMOVE_PRODUCT_FROM_CART = By.xpath("//button[contains(text(),'Remove')]");
 	
 	public static By PRODUCT_IMAGE = By.cssSelector(".cart__items div[data-tj-qa='cart-line-item-image']>img, .main-content > .cart.container > div.cart__content.content > div.cart__outer > .cart__items > div > article.line-item > .line-item__image > img");
-	public static By PRODUCT_TITLE = By.xpath("//a[@class='font-medium text-text-primary mt-2 text-body sm:text-heading-sm']");
-	public static By PRODUCT_TITLE_TEXT = By.xpath("//div[@class='mt-2 text-body text-text-secondary sm:mt-4']");
+	public static By PRODUCT_TITLE = By.xpath("//a[@class='font-medium text-text-primary mt-1 block text-body-lg leading-tight sm:text-body sm:leading-5']");
+	public static By PRODUCT_TITLE_TEXT = By.xpath("//a[@class='font-medium text-text-primary mt-2 text-body sm:text-heading-sm']");
 	public static By PRODUCT_TITLE_PDP = By.xpath("//h1[@class='mb-0']");
 	public static By PRODUCT_COLOR_SIZE = By.cssSelector(".cart__items div[data-tj-qa='cart-line-item-option'], .main-content > .cart.container > div.cart__content.content > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > div");
 	public static By PRODUCT_PRICE = By.cssSelector(".cart__items [data-tj-qa='cart-line-item-sale-price'], .main-content > .cart.container > div.cart__content.content > div.cart__outer > .cart__items > div > article.line-item > .line-item__summary > div.line-item__price > span");

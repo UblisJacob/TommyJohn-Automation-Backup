@@ -428,9 +428,9 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(CART_TITLE));
 		}
 		
-		softAssert.assertTrue(driver.findElement(PRODUCT_TITLE).isDisplayed(), "Product title for added item not present on Cart");
+		softAssert.assertTrue(driver.findElement(PRODUCT_TITLE_TEXT).isDisplayed(), "Product title for added item not present on Cart");
 
-		WebElement elemen = driver.findElement(PRODUCT_TITLE);
+		WebElement elemen = driver.findElement(PRODUCT_TITLE_TEXT);
 		jse = (JavascriptExecutor) driver;
 		jse.executeScript("arguments[0].click();", elemen);
 		text1 = driver.findElement(PRODUCT_TITLE_PDP).getText();
@@ -442,7 +442,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 //		String text2= p_name.replace("-", " ");
 		driver.findElement(HomePageLocators.CART_ICON).click();
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
-		text2 = driver.findElement(PRODUCT_TITLE).getText();
+		text2 = driver.findElement(PRODUCT_TITLE_TEXT).getText();
 		System.out.println("text2 is: "+text2);
 		if(!text1.equalsIgnoreCase(text2))
 			throw new Exception("Wrong Product added to cart");
