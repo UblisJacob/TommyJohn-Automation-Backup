@@ -638,7 +638,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		// ProductDetailsPageComponents(driver).checkCorrectProductDetailsPageOpenedOrNot(text);
 
 		// validate product details page by calling the method
-		if (driver.findElement(ProductDetailsPageLocators.PRODUCT_TITLE).getText().contains("Set"))
+		if (driver.findElement(ProductDetailsPageLocators.PRODUCT_TITLE).getText().contains("Second"))
 			new ProductDetailsPageComponents(driver).verifybundlepages();
 		else
 			new ProductDetailsPageComponents(driver).validatePage();
@@ -1740,7 +1740,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 //		String Second_image_pdp = list1[0];
 		System.out.println(text);
 		System.out.println(text1);
-		if (text1.contains(text))
+		if (!text1.equals(text))
 			throw new Exception("Product tile hover functionality is not correct on plp");
 		Reporter.log("Verified Product tile hover functionality on plp");
 		ExtentReport.extentTest.info("Verified Product tile hover functionality on plp");
@@ -1765,6 +1765,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PLP_PRODUCTS)));
+		Thread.sleep(2000);
 		driver.findElement(MULTIPACKS_CHECKBOX).click();
 		Thread.sleep(10000);
 		List<WebElement> Packs = driver.findElements(By.xpath("//a[@data-cy='productTileLink']"));

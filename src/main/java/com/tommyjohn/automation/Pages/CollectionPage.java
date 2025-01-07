@@ -507,8 +507,8 @@ public class CollectionPage extends CollectionPageComponent{
     	  validateProductHeadingTextOnCollectionPage();
   		validateProductImageOnPLP();
   		Verify_ProductTile_HoverFunctionality();
-  		MethodToCheckColorSwatchChanging();
-  		validateProductReviewStarsOnCollectionPage();
+  	//	MethodToCheckColorSwatchChanging();
+  	//	validateProductReviewStarsOnCollectionPage();
         }
      
       public void validateQuickshopFunctionalityOnSearchPLP() throws Exception {

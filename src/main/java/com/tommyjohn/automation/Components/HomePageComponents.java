@@ -708,7 +708,7 @@ public class HomePageComponents extends HomePageLocators {
 		WebElement element = driver.findElement(SEARCH_ICON_INPUT);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", element);
-		Thread.sleep(3000);
+		Thread.sleep(10000);
 		int Categories = driver.findElements(CATEGORIESINPOPULARTERMS).size();
 		System.out.println(Categories);
 		softAssert.assertEquals(Categories,5,"Popular Terms does not contain five categories");

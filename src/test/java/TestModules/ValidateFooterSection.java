@@ -24,13 +24,13 @@ public class ValidateFooterSection {
 		}
 	}
 
-//	@Test
+	@Test
 	public void VerifyFooterSectionLinks() throws Exception {
 		new FooterSectionPage(driver).verifyFooterSectionLinks();
 	}
 
 	@Test
-	public void VerifyFooterSocialLinks() throws Exception {
+		public void VerifyFooterSocialLinks() throws Exception {
 		new FooterSectionPage(driver).verifyFooterSocialLinks();
 	}
 
