@@ -188,6 +188,8 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 
 	}
 
+
+
 	public void navigateToSecondSkinSleepCrewNeckPocket() throws Exception {
 
 		new HomePageComponents(driver).navigateToSecondSkinSleepCrewNeckPocket();
