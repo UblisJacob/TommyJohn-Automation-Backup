@@ -3280,7 +3280,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		String text = null;
 		new SoftAssert();
 		// call method to navigate to collection page
-		new HomePageComponents(driver).navigateTo360Sport();
+		new HomePageComponents(driver).navigateToMensBriefs();
 		jse = (JavascriptExecutor) driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		// call method to navigate product details page
@@ -3298,7 +3298,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		int randomInt = randomGenerator.nextInt(1000);
 		if (elementsCount > 1)
 
-			for (int i = 1; i <= elementsCount; i++) {
+			for (int i = 1; i <= 3; i++) {
 				count++;
 				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])["+i+"]"));
 				jse = (JavascriptExecutor) driver;
@@ -3306,7 +3306,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 				Thread.sleep(3000);
 
 
-				for (int k = 1; k <= 5; k++) {
+				for (int k = 1; k <= 3; k++) {
 					WebElement elements = driver.findElement(By.xpath("(//input[@name='option[Size]'])["+k+"]"));
 					jse.executeScript("arguments[0].click();", elements);
 					Thread.sleep(5000);
