@@ -57,7 +57,7 @@ public class ValidateSearchPages {
 		new HomePage(driver).VerifyPopularTermsSectionInSearchDropdown();
 	}
 
-//	@Test
+	@Test
 	public void VerifyCategoriesInPopularTermsSection() throws InterruptedException {
 		new HomePage(driver).VerifyCategoriesInPopularTermsSection();
 	}
@@ -88,7 +88,7 @@ public class ValidateSearchPages {
 		new CollectionPage(driver).validateQuickshopFunctionalityOnSearchPLP();
 	}
 	
-//	@Test
+	@Test
 	public void ValidateSearchProductTile() throws Exception {
 		searchText = objGeneralMethods.readPropertiesFile("searchFeatured");
 		new HomePage(driver).validateSearchPM(searchText);
