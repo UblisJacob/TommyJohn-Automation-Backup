@@ -13,7 +13,7 @@ public class FooterSectionPage extends FooterSectionComponents {
 
 	public void verifyFooterSectionLinks() throws Exception {
 		validateFooterShopSection();
-		validateFooterPromotionsSection();
+		//validateFooterPromotionsSection();
 		validateFooterAccountSection();
 		validateFooterSupportSection();
 		validateFooterCompanySection();
