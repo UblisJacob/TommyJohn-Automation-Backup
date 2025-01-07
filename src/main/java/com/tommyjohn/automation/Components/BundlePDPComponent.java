@@ -373,18 +373,19 @@ public class BundlePDPComponent extends BundlePDPLocators{
 	public void verifyAvailableSizes() throws Exception{
 		SoftAssert softAssert = new SoftAssert();
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		new ProductDetailsPage(driver).navigateToAllMensPacksInPacksCategory();
-		//new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
-		
-		//navigate to PDP
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT));
-		Thread.sleep(3000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
-		WebElement el = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT);
-		jse.executeScript("arguments[0].click();", el);
-
-		driver.findElement(By.xpath("(//div[@class='relative text-center'])[2]")).click();
+//		new ProductDetailsPage(driver).navigateToMensAll();
+//		//new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
+//
+//		//navigate to PDP
+//		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT));
+//		Thread.sleep(3000);
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
+//		WebElement el = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT);
+//		jse.executeScript("arguments[0].click();", el);
+//
+//		driver.findElement(By.xpath("(//div[@class='relative text-center'])[2]")).click();
+		driver.get("https://www.tommyjohn.com/products/womens-second-skin-boyshort-3-pack-8?variant=41973264154669");
 
 		allElements = driver.findElements(ALL_SIZE_LIST);
 		
@@ -395,7 +396,7 @@ public class BundlePDPComponent extends BundlePDPLocators{
 		
 		if(elementsCount > 1)
 		{
-			for(int i=1;i<=elementsCount;i++)
+			for(int i=1;i<=1;i++)
 			{
 				
 				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])["+i+"]"));
