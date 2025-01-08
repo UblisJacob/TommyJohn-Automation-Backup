@@ -80,7 +80,7 @@ public class CheckoutPageLocators {
 
 	//                                          Shipping
 
-	public static By CONTACT_EMAIL =  By.xpath("//div[@class='_1o9eX']//bdo");
+	public static By CONTACT_EMAIL =  By.xpath("//div[@class='_16jwovtc _16jwovtb _1fragemgt _1fragemof']//bdo");
 	public static By SHIP_ADDRESS =  By.xpath("//div[@class='_1o9eX']//address");
 	public static By CHANGE_LINK_CONTACT = By.xpath("(//span[contains(text(),'Change')])[2]");
 	public static By CHANGE_LINK_SHIP_TO = By.xpath("(//span[contains(text(),'Change')])[3]");
