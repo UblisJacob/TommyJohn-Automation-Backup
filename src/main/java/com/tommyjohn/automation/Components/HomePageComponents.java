@@ -2527,7 +2527,7 @@ public class HomePageComponents extends HomePageLocators {
 
 	public void navigateToMensAll()
 	{
-		driver.get("https://www.tommyjohn.com/collections/underwear-mens-styles-boxer-brief?filter.pack_size=set%3B3%3B6%3B2%3B7%3B5");
+		driver.get("https://www.tommyjohn.com/collections/mens-all");
 	}
 
 	public void navigateToWomensAll()
