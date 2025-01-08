@@ -1765,7 +1765,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PLP_PRODUCTS)));
-		Thread.sleep(2000);
+		Thread.sleep(10000);
 		driver.findElement(MULTIPACKS_CHECKBOX).click();
 		Thread.sleep(10000);
 		List<WebElement> Packs = driver.findElements(By.xpath("//a[@data-cy='productTileLink']"));
