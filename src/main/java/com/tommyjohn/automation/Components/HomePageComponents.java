@@ -8,12 +8,8 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.*;
 import org.testng.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -160,32 +156,109 @@ public class HomePageComponents extends HomePageLocators {
 		ExtentReport.extentTest.info("Categories in Men Category Selector section are functional");
 	}
 
+//	public void ValidateShopMensInHeroBanner() throws InterruptedException {
+//		JavascriptExecutor js = (JavascriptExecutor)driver;
+//		SoftAssert softAssert = new SoftAssert();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
+//	//	js.executeScript("window.scrollBy(0,2000)");
+//		driver.findElement(IMAGE_BANNER_MENS_CTA).click();
+//		Thread.sleep(2000);
+//		softAssert.assertTrue(driver.findElement(SHOP_PAGEHEADER).isDisplayed(),"Shop Men CTA in Image Banner is not functional");
+//		Reporter.log("Shop Men CTA in Image Banner is functional");
+//		ExtentReport.extentTest.info("Shop Men CTA in Image Banner is functional");
+//
+//	}
+
+
 	public void ValidateShopMensInHeroBanner() throws InterruptedException {
-		JavascriptExecutor js = (JavascriptExecutor)driver;
+		JavascriptExecutor js = (JavascriptExecutor) driver;
 		SoftAssert softAssert = new SoftAssert();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+		// Wait for the hero banner image to be visible
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
-	//	js.executeScript("window.scrollBy(0,2000)");
-		driver.findElement(IMAGE_BANNER_MENS_CTA).click();
-		Thread.sleep(2000);
-		softAssert.assertTrue(driver.findElement(SHOP_PAGEHEADER).isDisplayed(),"Shop Men CTA in Image Banner is not functional");
+
+		// Scroll to the 'Shop Men's' CTA
+		WebElement mensCTA = driver.findElement(IMAGE_BANNER_MENS_CTA);
+		js.executeScript("arguments[0].scrollIntoView(true);", mensCTA);
+		js.executeScript("window.scrollBy(0, -100);"); // Adjust scrolling to avoid sticky header
+		Thread.sleep(500); // Optional: Add delay for smooth scrolling
+
+		try {
+			// Attempt to click the 'Shop Men's' CTA
+			wait.until(ExpectedConditions.elementToBeClickable(mensCTA)).click();
+		} catch (WebDriverException e) {
+			// Fallback to JavaScript click if standard click fails
+			js.executeScript("arguments[0].click();", mensCTA);
+		}
+
+		// Verify the shop page header is displayed
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SHOP_PAGEHEADER));
+		softAssert.assertTrue(
+				driver.findElement(SHOP_PAGEHEADER).isDisplayed(),
+				"Shop Men CTA in Image Banner is not functional"
+		);
+
+		// Log results
 		Reporter.log("Shop Men CTA in Image Banner is functional");
 		ExtentReport.extentTest.info("Shop Men CTA in Image Banner is functional");
 
+		// Assert all validations
+		softAssert.assertAll();
 	}
 
+
+//	public void ValidateShopWomensInHeroBanner() throws InterruptedException {
+//		JavascriptExecutor js = (JavascriptExecutor)driver;
+//		SoftAssert softAssert = new SoftAssert();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
+//	//	js.executeScript("window.scrollBy(0,2000)");
+//		Thread.sleep(10000);
+//		driver.findElement(IMAGE_BANNER_WOMENS_CTA).click();
+//		Thread.sleep(2000);
+//		softAssert.assertTrue(driver.findElement(SHOP_PAGEHEADER).isDisplayed(),"Shop Women CTA in Image Banner is not functional");
+//		Reporter.log("Shop Women CTA in Image Banner is functional");
+//		ExtentReport.extentTest.info("Shop Women CTA in Image Banner is functional");
+//
+//	}
+
 	public void ValidateShopWomensInHeroBanner() throws InterruptedException {
-		JavascriptExecutor js = (JavascriptExecutor)driver;
+		JavascriptExecutor js = (JavascriptExecutor) driver;
 		SoftAssert softAssert = new SoftAssert();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+		// Wait for the hero banner image to be visible
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
-	//	js.executeScript("window.scrollBy(0,2000)");
-		Thread.sleep(10000);
-		driver.findElement(IMAGE_BANNER_WOMENS_CTA).click();
-		Thread.sleep(2000);
-		softAssert.assertTrue(driver.findElement(SHOP_PAGEHEADER).isDisplayed(),"Shop Women CTA in Image Banner is not functional");
+
+		// Scroll to the 'Shop Women's' CTA
+		WebElement womensCTA = driver.findElement(IMAGE_BANNER_WOMENS_CTA);
+		js.executeScript("arguments[0].scrollIntoView(true);", womensCTA);
+		js.executeScript("window.scrollBy(0, -100);"); // Adjust scrolling for potential header obstruction
+		Thread.sleep(500); // Optional: Add delay for smooth scrolling
+
+		try {
+			// Attempt to click the 'Shop Women's' CTA
+			wait.until(ExpectedConditions.elementToBeClickable(womensCTA)).click();
+		} catch (WebDriverException e) {
+			// Fallback to JavaScript click if standard click fails
+			js.executeScript("arguments[0].click();", womensCTA);
+		}
+
+		// Verify the shop page header is displayed
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SHOP_PAGEHEADER));
+		softAssert.assertTrue(
+				driver.findElement(SHOP_PAGEHEADER).isDisplayed(),
+				"Shop Women CTA in Image Banner is not functional"
+		);
+
+		// Log results
 		Reporter.log("Shop Women CTA in Image Banner is functional");
 		ExtentReport.extentTest.info("Shop Women CTA in Image Banner is functional");
 
+		// Assert all validations
+		softAssert.assertAll();
 	}
+
 
 	public void ValidateLinksInCollectionSelector() throws InterruptedException {
 
@@ -214,41 +287,192 @@ public class HomePageComponents extends HomePageLocators {
 
 	}
 
-	public void ValidateOurStoryInImageBanner()
-	{
-		JavascriptExecutor js = (JavascriptExecutor)driver;
+//	public void ValidateOurStoryInImageBanner() throws InterruptedException {
+//		JavascriptExecutor js = (JavascriptExecutor) driver;
+//		SoftAssert softAssert = new SoftAssert();
+//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//
+//		// Wait for the hero banner image to be visible
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
+//
+//		// Scroll to the 'Our Story' CTA
+//		WebElement ourStoryCTA = driver.findElement(OUR_STORY_CTA);
+//		js.executeScript("arguments[0].scrollIntoView(true);", ourStoryCTA);
+//		js.executeScript("window.scrollBy(0, -100);"); // Adjust scrolling for sticky headers
+//		Thread.sleep(500); // Optional: Add a delay for smoother scrolling
+//
+//		try {
+//			// Attempt to click the 'Our Story' CTA
+//			wait.until(ExpectedConditions.elementToBeClickable(OUR_STORY_CTA)).click();
+//		} catch (WebDriverException e) {
+//			// Fallback to JavaScript click if standard click fails
+//			js.executeScript("arguments[0].click();", ourStoryCTA);
+//		}
+//
+//		// Validate the URL after clicking
+//		String currentURL = driver.getCurrentUrl();
+//		softAssert.assertEquals(
+//				currentURL,
+//				"https://www.tommyjohn.com/pages/about-us",
+//				"User is not directed to About Us page on clicking Our Story CTA"
+//		);
+//
+//		// Log results
+//		Reporter.log("User is directed to About Us page on clicking Our Story CTA");
+//		ExtentReport.extentTest.info("User is directed to About Us page on clicking Our Story CTA");
+//
+//		// Assert all validations
+//		softAssert.assertAll();
+//	}
+
+	public void ValidateOurStoryInImageBanner() throws InterruptedException {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
 		SoftAssert softAssert = new SoftAssert();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+		// Wait for the hero banner image to be visible
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
-		js.executeScript("window.scrollBy(0,4000)");
-		driver.findElement(OUR_STORY_CTA).click();
-		String URL = driver.getCurrentUrl();
-		softAssert.assertEquals(URL,"https://www.tommyjohn.com/pages/about-us","User is not directed to About Us page on clicking Our Story CTA");
+
+		// Scroll to the 'Our Story' CTA
+		WebElement ourStoryCTA = driver.findElement(OUR_STORY_CTA);
+		js.executeScript("arguments[0].scrollIntoView(true);", ourStoryCTA);
+		js.executeScript("window.scrollBy(0, -100);"); // Adjust scrolling for sticky headers
+		Thread.sleep(500); // Optional: Add a delay for smoother scrolling
+
+		try {
+			// Attempt to click the 'Our Story' CTA
+			wait.until(ExpectedConditions.elementToBeClickable(OUR_STORY_CTA)).click();
+		} catch (WebDriverException e) {
+			// Fallback to JavaScript click if standard click fails
+			js.executeScript("arguments[0].click();", ourStoryCTA);
+		}
+
+		// Validate the URL after clicking
+		String currentURL = driver.getCurrentUrl();
+		softAssert.assertEquals(
+				currentURL,
+				"https://www.tommyjohn.com/pages/about-us",
+				"User is not directed to About Us page on clicking Our Story CTA"
+		);
+
+		// Log results
 		Reporter.log("User is directed to About Us page on clicking Our Story CTA");
 		ExtentReport.extentTest.info("User is directed to About Us page on clicking Our Story CTA");
 
+		// Assert all validations
+		softAssert.assertAll();
 	}
 
-	public void ValidateBrandBuildingInfoCTAs()
-	{
-		JavascriptExecutor js = (JavascriptExecutor)driver;
+
+
+//	public void ValidateBrandBuildingInfoCTAs() throws InterruptedException {
+//		JavascriptExecutor js = (JavascriptExecutor)driver;
+//		SoftAssert softAssert = new SoftAssert();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
+//		js.executeScript("arguments[0].scrollIntoView(true);", driver.findElement(LEARNMORE_CTA));
+//		driver.findElement(LEARNMORE_CTA).click();
+//		softAssert.assertTrue(driver.findElement(By.xpath("(//h1)[1]")).isDisplayed(),"LearnMore CTA in Brand Building section is not functional");
+//		driver.navigate().back();
+//		js.executeScript("window.scrollBy(0,5000)");
+//		driver.findElement(OURSHOPPINGPOLICIES_CTA).click();
+//		softAssert.assertTrue(driver.findElement(By.xpath("(//h1)[1]")).isDisplayed(),"Our SHopping Policies CTA in Brand Building section is not functional");
+//		driver.navigate().back();
+//		js.executeScript("window.scrollBy(0,5000)");
+//		driver.findElement(OURSTORY_CTA).click();
+//		String URL = driver.getCurrentUrl();
+//		softAssert.assertEquals(URL,"https://www.tommyjohn.com/pages/about-us","Our Story CTA in Brand Building section is not functional");
+//		softAssert.assertAll();
+//		Reporter.log("Brand Building CTAs are functional");
+//		ExtentReport.extentTest.info("Brand Building CTAs are functional");
+//	}
+
+	public void ValidateBrandBuildingInfoCTAs() throws InterruptedException {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
 		SoftAssert softAssert = new SoftAssert();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
-		js.executeScript("window.scrollBy(0,5000)");
-		driver.findElement(LEARNMORE_CTA).click();
-		softAssert.assertTrue(driver.findElement(By.xpath("(//h1)[1]")).isDisplayed(),"LearnMore CTA in Brand Building section is not functional");
-		driver.navigate().back();
-		js.executeScript("window.scrollBy(0,5000)");
-		driver.findElement(OURSHOPPINGPOLICIES_CTA).click();
-		softAssert.assertTrue(driver.findElement(By.xpath("(//h1)[1]")).isDisplayed(),"Our SHopping Policies CTA in Brand Building section is not functional");
-		driver.navigate().back();
-		js.executeScript("window.scrollBy(0,5000)");
-		driver.findElement(OURSTORY_CTA).click();
-		String URL = driver.getCurrentUrl();
-		softAssert.assertEquals(URL,"https://www.tommyjohn.com/pages/about-us","Our Story CTA in Brand Building section is not functional");
+
+		// Wait for the page to fully load
+		new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(webDriver -> js.executeScript("return document.readyState").equals("complete"));
+
+		// Validate 'Learn More' CTA
+		validateCTA(LEARNMORE_CTA, "(//h1)[1]", "Learn More CTA in Brand Building section is not functional", softAssert);
+
+		// Validate 'Our Shopping Policies' CTA
+		validateCTA(OURSHOPPINGPOLICIES_CTA, "(//h1)[1]", "Our Shopping Policies CTA in Brand Building section is not functional", softAssert);
+
+		// Validate 'Our Story' CTA
+		validateURLCTA(OURSTORY_CTA, "https://www.tommyjohn.com/pages/about-us",
+				"Our Story CTA in Brand Building section is not functional", softAssert);
+
+		// Assert all validations
 		softAssert.assertAll();
 		Reporter.log("Brand Building CTAs are functional");
 		ExtentReport.extentTest.info("Brand Building CTAs are functional");
 	}
+
+
+	// Helper method to validate CTA functionality
+	private void validateCTA(By locator, String xpathToVerify, String errorMessage, SoftAssert softAssert) throws InterruptedException {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		// Wait for the element to be present
+		wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+		WebElement element = driver.findElement(locator);
+
+		// Scroll element into view and adjust for sticky headers
+		js.executeScript("arguments[0].scrollIntoView(true);", element);
+		js.executeScript("window.scrollBy(0, -100);"); // Adjust scrolling for potential header obstruction
+
+		try {
+			// Attempt to click the element when clickable
+			wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+		} catch (WebDriverException e) {
+			// Fallback to JavaScript click if standard click fails
+			js.executeScript("arguments[0].click();", element);
+		}
+
+		// Verify the expected element is displayed
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpathToVerify)));
+		softAssert.assertTrue(driver.findElement(By.xpath(xpathToVerify)).isDisplayed(), errorMessage);
+
+		// Navigate back and wait for the page to stabilize
+		driver.navigate().back();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
+	}
+
+
+	// Helper method to validate URL navigation for CTAs
+	private void validateURLCTA(By locator, String expectedURL, String errorMessage, SoftAssert softAssert) throws InterruptedException {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		// Wait for the element to be present
+		wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+		WebElement element = driver.findElement(locator);
+
+		// Scroll element into view and adjust for sticky headers
+		js.executeScript("arguments[0].scrollIntoView(true);", element);
+		js.executeScript("window.scrollBy(0, -100);"); // Adjust scrolling for potential header obstruction
+
+		try {
+			// Attempt to click the element when clickable
+			wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+		} catch (WebDriverException e) {
+			// Fallback to JavaScript click if standard click fails
+			js.executeScript("arguments[0].click();", element);
+		}
+
+		// Validate the URL
+		String currentURL = driver.getCurrentUrl();
+		softAssert.assertEquals(currentURL, expectedURL, errorMessage);
+
+		// Navigate back and wait for the page to stabilize
+		driver.navigate().back();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
+	}
+
+
 
 
 
@@ -335,7 +559,6 @@ public class HomePageComponents extends HomePageLocators {
 		JavascriptExecutor js = (JavascriptExecutor)driver;
 		new HomePageComponents(driver).navigatetoPDP();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-
 		SoftAssert softAssert = new SoftAssert();
 		Thread.sleep(5000);
 		js.executeScript("window.scrollBy(0,2000)");
@@ -2534,6 +2757,11 @@ public class HomePageComponents extends HomePageLocators {
 	{
 		driver.get("https://www.tommyjohn.com/collections/womens-all");
 	}
+
+	public void navigateToMensApparel()
+	{
+		driver.get("https://www.tommyjohn.com/collections/mens-apparel");
+	}
 	public void navigateToMensBriefs()
 	{
 		driver.get("https://www.tommyjohn.com/collections/underwear-mens-styles-brief");
@@ -2657,6 +2885,8 @@ public class HomePageComponents extends HomePageLocators {
 		driver.get("https://www.tommyjohn.com/collections/mens-underwear?filter.pack_size=set%3B3%3B6%3B2%3B5");
 	}
 
+
+
 	public void navigateToExploreWomensCategory() throws Exception {
 		driver.get("https://www.tommyjohn.com/collections/explore-womens");
 	}
@@ -2765,7 +2995,7 @@ public class HomePageComponents extends HomePageLocators {
 	}
 	// navigate to Bra category
 	public void navigateToBraCategory() throws Exception {
-		driver.get("https://tommyjohn.com/collections/bras");	
+		driver.get("https://tommyjohn.com/collections/bras");
 
 	}
 	public void navigateTo360Sport()

@@ -81,7 +81,7 @@ public class CheckoutPageLocators {
 	//                                          Shipping
 
 	public static By CONTACT_EMAIL =  By.xpath("//div[@class='_16jwovtc _16jwovtb _1fragemgt _1fragemof']//bdo");
-	public static By SHIP_ADDRESS =  By.xpath("//div[@class='_1o9eX']//address");
+	public static By SHIP_ADDRESS =  By.xpath("//div[@class='_1ip0g651 _1ip0g650 _1fragemlj _1fragem3m _1fragem5f _1fragem2s']//address");
 	public static By CHANGE_LINK_CONTACT = By.xpath("(//span[contains(text(),'Change')])[2]");
 	public static By CHANGE_LINK_SHIP_TO = By.xpath("(//span[contains(text(),'Change')])[3]");
 	public static By CHANGE_LINK_METHOD = By.xpath("(//span[contains(text(),'Change')])[4]");
@@ -94,7 +94,7 @@ public class CheckoutPageLocators {
 
 	//                                           payment
 
-	public static By METHOD =  By.xpath("(//div[@class='_5wswo']//p)[1]");
+	public static By METHOD =  By.xpath("(//div[@class='_1ip0g651 _1ip0g650 _1fragemlj _1fragem4v _1fragem6o _1fragem2s']//p)[2]");
 	public static By PAYMENT_TEXT = By.cssSelector("#main-header");
 	public static By CREDITCARD_OPTION = By.xpath("//span[contains(text(),'Credit card')]");
 	public static By PAYPAL_OPTION = By.xpath("//span[contains(text(),'PayPal')]");

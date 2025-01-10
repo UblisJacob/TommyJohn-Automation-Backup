@@ -3,6 +3,7 @@ package com.tommyjohn.automation.Components;
 import com.base.ExtentReport;
 import com.tommyjohn.automation.PageLocators.InfluencerPageLocators;
 import com.tommyjohn.automation.utils.CustomUtilities;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -62,9 +63,12 @@ public class InfluenecerPageComponents extends InfluencerPageLocators {
 
     public void VerifyShopByCategory()
     {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
 
         SoftAssert softAssert = new SoftAssert();
         driver.get("https://www.tommyjohn.com/pages/influencer-lp8-16");
+//        WebElement element = driver.findElement(SHOPBYCATEGORY);
+//        js.executeScript("arguments[0].scrollIntoView(true);", element);
         wait.until(ExpectedConditions.visibilityOfElementLocated(SHOPBYCATEGORY));
 
         softAssert.assertTrue(driver.findElement(SHOPBYCATEGORY).isDisplayed(),"Shop By Category section is not available");

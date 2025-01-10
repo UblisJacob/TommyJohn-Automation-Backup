@@ -52,7 +52,7 @@ public class GiftCardPageLocators {
 	public static By GIFT_CARD_TITLE_INLINE_CART = By.xpath("//a[@class='font-medium text-text-primary mt-1 block text-body-lg leading-tight sm:text-body sm:leading-5']");
 	public static By REMOVE_ITEM_BUTTON = By.cssSelector("[data-tj-qa='cart-line-item-remove'],button.line-item__remove");
 	public static By GIFT_CARD_COLOR_INLINE_CART = By.cssSelector("[data-tj-qa='cart-line-item-option'],.line-item__option");
-	public static By GIFT_CARD_PRICE_INLINE_CART = By.xpath("(//span[@class='sr-only']//following-sibling::span)[2]");
+	public static By GIFT_CARD_PRICE_INLINE_CART = By.xpath("//span[contains(text(),'Regular price')]//following-sibling::span");
 	public static By RECIPIENT_MAIL_INLINE_CART = By.xpath("//span[text()[contains(.,'Recipient')]]");
 	public static By DELIVERY_DATE_INLINE_CART = By.xpath("//span[text()[contains(.,'Delivery Date')]]");
 	public static By AMOUNT_IN_INLINE_CART = By.cssSelector("[data-tj-qa='inline-cart-line-item-subtotal']> span,article:nth-child(1) > div.line-item__summary > div.line-item__total > div.line-item__subtotal > span");

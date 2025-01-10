@@ -79,7 +79,7 @@ public class ProductDetailsPageLocators {
 	public static By SIZE_TEXT = By.xpath("//input[@class='sizeOption' and @checked='checked']");
 	public static By BRA_BAND_SIZE_DROPDOWN = By.xpath("//select[@id='column-select']");
 	public static By BRA_BAND_SIZE_SELECT = By.cssSelector("[data-tj-qa='find-your-size-band-size'],.size-guide-size-finder-dropdowns>span:nth-child(1)");
-	public static By BAND_SIZE_TEXT = By.xpath("//label[@for='column-select']");
+	public static By BAND_SIZE_TEXT = By.xpath("//label[@for='row-select']");
 	public static By CUP_VOLUME_TEXT = By.cssSelector(".size-guide-size-finder-y-axis-title");
 	public static By BRA_CUP_VOLUME_DROPDOWN = By.cssSelector("[data-tj-qa='find-your-size-cup-size'],.size-guide-size-finder-dropdowns>span:nth-child(2)>select");
 	public static By FIND_SIZE_BUTTON = By.cssSelector("[data-tj-qa='find-your-size-calculator']>button,.calculate-size-button>button.find-size-button");
