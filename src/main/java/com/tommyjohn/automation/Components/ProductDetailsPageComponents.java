@@ -195,7 +195,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		//new HomePageComponents(driver).navigateToSales();
 		SoftAssert softAssert = new SoftAssert();
 		//new CollectionPageComponent(driver).navigateToProductDetailsPage();
-		driver.get("https://www.tommyjohn.com/products/second-skin-sleep-pant-1?variant=43037236920365");
+		driver.get("https://www.tommyjohn.com/products/second-skin-mid-length-boxer-brief-13?variant=43183801696301");
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PDP_PROMOBANNER));
 		softAssert.assertTrue(driver.findElement(PDP_PROMOBANNER).isDisplayed(),"Promo Banner is not available in the PDP");
@@ -2946,72 +2946,122 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 	}
 
+//	public void ValidateClickingOnRatingsTierMeter() throws Exception {
+//		SoftAssert softAssert = new SoftAssert();
+//		new HomePageComponents(driver).navigateToAirTriangleBralette();
+//		//		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+////		String text = null;
+////		JavascriptExecutor js = (JavascriptExecutor) driver;
+////		js.executeScript("window.scrollBy(0,250)");
+//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+////		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
+////		// get text and click on the first product
+////		//text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
+////		text = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT).getText();
+////		WebElement el = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT);
+////		JavascriptExecutor executor = (JavascriptExecutor) driver;
+////		executor.executeScript("arguments[0].click();", el);
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_TITLE));
+//		Reporter.log(driver.getCurrentUrl());
+//		ExtentReport.extentTest.info(driver.getCurrentUrl());
+//		Thread.sleep(6000);
+//		WebElement ratingstars = driver.findElement(RATING_STARS);
+//		jse = (JavascriptExecutor) driver;
+//		jse.executeScript("arguments[0].click();", ratingstars);
+//		jse.executeScript("window.scrollBy(0, 1100)");
+//		//ratingstars.click();
+//		Thread.sleep(5000);
+//		driver.findElement(FIVESTARTIERMETER).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.FIVESTARRATING));
+//		Thread.sleep(2000);
+////		String fivestar = driver.findElement(FIVESTARRATING);
+////		System.out.println(fivestar);
+//		softAssert.assertTrue(driver.findElement(FIVESTARRATING).isDisplayed(),"5 Star Ratings are not displayed");
+//
+//		driver.findElement(FOURSTARTIERMETER).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.FOURSTARRATING));
+//		Thread.sleep(2000);
+////		String fourstar = driver.findElement(STARRATING).getText();
+////		System.out.println(fourstar);
+//		softAssert.assertTrue(driver.findElement(FOURSTARRATING).isDisplayed(),"4 Star Ratings are not displayed");
+//
+//		driver.findElement(THREESTARTIERMETER).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.THREESTARRATING));
+//		Thread.sleep(2000);
+////		String threestar = driver.findElement(STARRATING).getText();
+////		System.out.println(threestar);
+//		softAssert.assertTrue(driver.findElement(THREESTARRATING).isDisplayed(),"3 Star Ratings are not displayed");
+//
+//
+//		driver.findElement(TWOSTARTIERMETER).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.TWOSTARRATING));
+//		Thread.sleep(2000);
+////		String twostar = driver.findElement(STARRATING).getText();
+////		System.out.println(twostar);
+//		softAssert.assertTrue(driver.findElement(TWOSTARRATING).isDisplayed(),"2 Star Ratings are not displayed");
+//
+//		driver.findElement(ONESTARTIERMETER).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.ONESTARRATING));
+//		Thread.sleep(2000);
+////		String onestar = driver.findElement(ONESTARRATING).getText();
+////		System.out.println(onestar);
+//		softAssert.assertTrue(driver.findElement(ONESTARRATING).isDisplayed(),"1 Star Ratings are not displayed");
+//
+//		softAssert.assertAll();
+//		Reporter.log("Ratings Tiermeter displays appropriate results");
+//		ExtentReport.extentTest.info("Ratings Tiermeter displays appropriate result");
+//
+//	}
+
 	public void ValidateClickingOnRatingsTierMeter() throws Exception {
 		SoftAssert softAssert = new SoftAssert();
-		new HomePageComponents(driver).navigateToAirTriangleBralette();
-		//		new CollectionPageComponent(driver).navigateToProductDetailsPage();
-//		String text = null;
-//		JavascriptExecutor js = (JavascriptExecutor) driver;
-//		js.executeScript("window.scrollBy(0,250)");
+		JavascriptExecutor js = (JavascriptExecutor) driver;
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-//		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
-//		// get text and click on the first product
-//		//text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
-//		text = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT).getText();
-//		WebElement el = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT);
-//		JavascriptExecutor executor = (JavascriptExecutor) driver;
-//		executor.executeScript("arguments[0].click();", el);
+
+		// Navigate to the Air Triangle Bralette product page
+		new HomePageComponents(driver).navigateToAirTriangleBralette();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_TITLE));
-		Reporter.log(driver.getCurrentUrl());
-		ExtentReport.extentTest.info(driver.getCurrentUrl());
-		Thread.sleep(6000);
-		WebElement ratingstars = driver.findElement(RATING_STARS);
-		jse = (JavascriptExecutor) driver;
-		jse.executeScript("arguments[0].click();", ratingstars);
-		jse.executeScript("window.scrollBy(0, 1100)");
-		//ratingstars.click();
-		Thread.sleep(5000);
-		driver.findElement(FIVESTARTIERMETER).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.FIVESTARRATING));
-		Thread.sleep(2000);
-//		String fivestar = driver.findElement(FIVESTARRATING);
-//		System.out.println(fivestar);
-		softAssert.assertTrue(driver.findElement(FIVESTARRATING).isDisplayed(),"5 Star Ratings are not displayed");
 
-		driver.findElement(FOURSTARTIERMETER).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.FOURSTARRATING));
-		Thread.sleep(2000);
-//		String fourstar = driver.findElement(STARRATING).getText();
-//		System.out.println(fourstar);
-		softAssert.assertTrue(driver.findElement(FOURSTARRATING).isDisplayed(),"4 Star Ratings are not displayed");
+		// Log the current URL
+		String currentURL = driver.getCurrentUrl();
+		Reporter.log(currentURL);
+		ExtentReport.extentTest.info(currentURL);
 
-		driver.findElement(THREESTARTIERMETER).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.THREESTARRATING));
-		Thread.sleep(2000);
-//		String threestar = driver.findElement(STARRATING).getText();
-//		System.out.println(threestar);
-		softAssert.assertTrue(driver.findElement(THREESTARRATING).isDisplayed(),"3 Star Ratings are not displayed");
+		// Wait for and click the rating stars
+		WebElement ratingStars = wait.until(ExpectedConditions.visibilityOfElementLocated(RATING_STARS));
+		js.executeScript("arguments[0].click();", ratingStars);
 
+		// Validate each rating tier meter
+		validateRatingTierMeter(FIVESTARTIERMETER, ProductDetailsPageLocators.FIVESTARRATING, "5 Star Ratings are not displayed", softAssert);
+		validateRatingTierMeter(FOURSTARTIERMETER, ProductDetailsPageLocators.FOURSTARRATING, "4 Star Ratings are not displayed", softAssert);
+		validateRatingTierMeter(THREESTARTIERMETER, ProductDetailsPageLocators.THREESTARRATING, "3 Star Ratings are not displayed", softAssert);
+		validateRatingTierMeter(TWOSTARTIERMETER, ProductDetailsPageLocators.TWOSTARRATING, "2 Star Ratings are not displayed", softAssert);
+		validateRatingTierMeter(ONESTARTIERMETER, ProductDetailsPageLocators.ONESTARRATING, "1 Star Ratings are not displayed", softAssert);
 
-		driver.findElement(TWOSTARTIERMETER).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.TWOSTARRATING));
-		Thread.sleep(2000);
-//		String twostar = driver.findElement(STARRATING).getText();
-//		System.out.println(twostar);
-		softAssert.assertTrue(driver.findElement(TWOSTARRATING).isDisplayed(),"2 Star Ratings are not displayed");
-
-		driver.findElement(ONESTARTIERMETER).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.ONESTARRATING));
-		Thread.sleep(2000);
-//		String onestar = driver.findElement(ONESTARRATING).getText();
-//		System.out.println(onestar);
-		softAssert.assertTrue(driver.findElement(ONESTARRATING).isDisplayed(),"1 Star Ratings are not displayed");
-
+		// Assert all and log results
 		softAssert.assertAll();
-		Reporter.log("Ratings Tiermeter displays appropriate results");
-		ExtentReport.extentTest.info("Ratings Tiermeter displays appropriate result");
-
+		Reporter.log("Ratings Tier Meter displays appropriate results");
+		ExtentReport.extentTest.info("Ratings Tier Meter displays appropriate results");
 	}
+
+	// Helper method to validate a specific rating tier meter
+	private void validateRatingTierMeter(By tierMeterLocator, By ratingLocator, String errorMessage, SoftAssert softAssert) throws InterruptedException {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+		// Click on the tier meter
+		WebElement tierMeter = wait.until(ExpectedConditions.elementToBeClickable(tierMeterLocator));
+		js.executeScript("arguments[0].scrollIntoView(true);", tierMeter);
+		js.executeScript("arguments[0].click();", tierMeter);
+
+		// Wait for the rating to appear
+		WebElement ratingElement = wait.until(ExpectedConditions.visibilityOfElementLocated(ratingLocator));
+		softAssert.assertTrue(ratingElement.isDisplayed(), errorMessage);
+
+		// Optional: Add a small delay for UI stability
+		Thread.sleep(1000);
+	}
+
 
 	public void ValidateRecs() throws Exception {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -3409,7 +3459,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			Reporter.log("Size guide link is Displayed :: Clickable");
 			Thread.sleep(5000);
 			//Close first size guide window
-			driver.findElement(By.xpath("(//button[@aria-label='Close modal'])[3]")).click();
+			driver.findElement(By.xpath("(//button[@aria-label='Close modal'])[2]")).click();
 
 			Thread.sleep(1000);
 		} else {
@@ -3630,6 +3680,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			ExtentReport.extentTest.info("All Band Sizes list :: SELECTED");
 
 			String BandSize_Default_Text = driver.findElement(BAND_SIZE_TEXT).getText();
+			System.out.println(BandSize_Default_Text);
 			if (!BandSize_Default_Text.equalsIgnoreCase("Band Size"))
 				throw new Exception("Text change for 'Band Size'");
 			for (int i = 1; i < BandSize_Options_Count; i++) {
@@ -3678,7 +3729,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		SoftAssert softassert = new SoftAssert();
 //		new HomePageComponents(driver).navigateToAllWomensPacksInPacksCategory();
 //		new CollectionPageComponent(driver).navigateToProductDetailsPage();
-		driver.get("https://www.tommyjohn.com/products/womens-second-skin-thong-16?variant=42959997370413");
+		driver.get("https://www.tommyjohn.com/products/second-skin-brief-3-pack-1?variant=43158495068205");
 
 		driver.findElement(By.xpath("//span[contains(text(),'3 Pack')]")).click();
 

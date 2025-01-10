@@ -39,7 +39,7 @@ public class AddToCartComponents extends AddToCartLocators{
 	String allClasses = null;
 
 	public void AddSingleProduct() throws Exception {
-		new HomePageComponents(driver).navigateToSecondSkinInMenCategory();
+		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
 		jse=(JavascriptExecutor)driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		// call method to navigate product details page
@@ -69,7 +69,7 @@ public class AddToCartComponents extends AddToCartLocators{
 		
 		
 		// call method to navigate to collection page
-		new HomePageComponents(driver).navigateToMensCoolCotton();
+		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
 		jse=(JavascriptExecutor)driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		// call method to navigate product details page
@@ -383,7 +383,7 @@ public class AddToCartComponents extends AddToCartLocators{
 
 
 		// call method to navigate to collection page
-		new HomePageComponents(driver).navigateToAllPantiesnInWomenCategory();
+		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
 		jse = (JavascriptExecutor) driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		// call method to navigate product details page
@@ -457,7 +457,7 @@ public class AddToCartComponents extends AddToCartLocators{
 
 
 		// call method to navigate to collection page
-		new HomePageComponents(driver).navigateToWomensAll();
+		new HomePageComponents(driver).navigateToMensApparel();
 		jse = (JavascriptExecutor) driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		// call method to navigate product details page

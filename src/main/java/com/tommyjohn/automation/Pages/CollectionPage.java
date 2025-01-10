@@ -409,7 +409,7 @@ public class CollectionPage extends CollectionPageComponent{
 	}
 
 	public void ValidateOnClickingTheInLineBanner() throws InterruptedException {// TODO Auto-generated method stub
-		new HomePageComponents(driver).navigateToMensAll();
+		new HomePageComponents(driver).navigateToWomensAll();
 		new CollectionPageComponent(driver).ValidateOnClickingTheInLineBanner();
 	}
 	

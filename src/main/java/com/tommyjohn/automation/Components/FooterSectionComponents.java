@@ -1,15 +1,13 @@
 package com.tommyjohn.automation.Components;
 
 import java.time.Duration;
+
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -1463,82 +1461,145 @@ public class FooterSectionComponents extends FooterSectionLocators {
 	 * 
 	 * @throws Exception
 	 */
-	public void validateFooterNewsletter() throws Exception {
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		wait = new WebDriverWait(driver,Duration.ofSeconds(30));
-	//	System.out.println("\n---Checking Newsletter Seciton---");
+//	public void validateFooterNewsletter() throws Exception {
+//		JavascriptExecutor jse = (JavascriptExecutor)driver;
+//		wait = new WebDriverWait(driver,Duration.ofSeconds(30));
+//	//	System.out.println("\n---Checking Newsletter Seciton---");
+//
+//		if (!driver.getCurrentUrl().equals("https://www.tommyjohn.com")) {
+//			driver.navigate().to("https://www.tommyjohn.com");
+//		}
+//
+//		objGeneralMethods.waitTillPageLoad(driver);
+//
+//	//	objGeneralMethods.scrollElementIntoView(driver, NEWSLETTER_TITLE);
+//
+//		// Verify Footer Newsletter section
+//		System.out.println("***Validating Sign up & save on your first order***");
+//
+//		softassert = new SoftAssert();
+//
+//		softassert.assertTrue(driver.findElement(SIGNUP_TITLE).isDisplayed(),
+//				"Sign up & save on your first order Title is not displayed on footer");
+//////		softassert.assertTrue(
+//////				driver.findElement(NEWSLETTER_MEN_RADIO_BUTTON).isDisplayed()
+//////						&& driver.findElement(NEWSLETTER_MEN_RADIO_BUTTON).isEnabled(),
+//////				"Newsletter Radio button 'Men' is either not Displayed or not Enabled on footer");
+////		softassert.assertTrue(
+////				driver.findElement(NEWSLETTER_WOMEN_RADIO_BUTTON).isDisplayed()
+////						&& driver.findElement(NEWSLETTER_WOMEN_RADIO_BUTTON).isEnabled(),
+////				"Newsletter Radio button 'Women' is either not Displayed or not Enabled on footer");
+////		softassert.assertTrue(
+////				driver.findElement(NEWSLETTER_BOTH_RADIO_BUTTON).isDisplayed()
+////						&& driver.findElement(NEWSLETTER_BOTH_RADIO_BUTTON).isEnabled(),
+////				"Newsletter Radio button 'Both' is either not Displayed or not Enabled on footer");
+//		softassert.assertTrue(driver.findElement(SIGNUP_TEXTBOX).isDisplayed(),
+//				"Newsletter Email Input Text Box is not displayed on footer");
+////		softassert.assertTrue(driver.findElement(NEWSLETTER_SIGN_UP_BUTTON).isDisplayed(),
+////				"Newsletter Sign up button is not displayed on footer");
+//
+////		softassert.assertTrue(driver.findElement(NEWSLETTER_BOTH_RADIO_BUTTON).isSelected(),
+////				"Radio Button 'Both' is not preselected for user");
+//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
+////		Negative Validation (User does not enter email)
+//	//	wait.until(ExpectedConditions.elementToBeClickable(NEWSLETTER_SIGN_UP_BUTTON));
+//		//jse.executeScript("arguments[0].click();", driver.findElement(NEWSLETTER_SIGN_UP_BUTTON));
+//
+////		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(NEWSLETTER_FORM_FAIL_MESSAGE_VISIBLE, 0));
+////
+////		softassert.assertTrue(driver.findElement(NEWSLETTER_FORM_FAIL_MESSAGE).isDisplayed(),
+////				"Error message is not displayed ");
+////		softassert.assertTrue(
+////				driver.findElement(NEWSLETTER_FORM_FAIL_MESSAGE).getText().equals("Please enter a valid email !"),
+////				"Incorrect message is displayed ");
+//
+////		Positive Validation
+//		String testemail = "testaccount" + System.currentTimeMillis() + "@gmail.com";
+//		driver.findElement(SIGNUP_TEXTBOX).sendKeys(testemail);
+//		driver.findElement(SIGNUP_ARROW).click();
+//
+//		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(SUCCESSMESSAGE, 0));
+//
+//		softassert.assertTrue(driver.findElement(SUCCESSMESSAGE).isDisplayed(),
+//				"Success message is not displayed after submission");
+//
+//		try{
+//			softassert.assertAll();
+//		}catch (AssertionError e) {
+//			ExtentReport.extentTest.fail(e);
+//			softassert.assertAll();
+//		}
+//
+//		System.out.println("Newsletter Email Sign Up functionality is working and Success Message is Displayed to user\n");
+//		Reporter.log("Newsletter Email Sign Up functionality is working and Success Message is Displayed to user");
+//		ExtentReport.extentTest.info("Newsletter Email Sign Up functionality is working and Success Message is Displayed to user");
+//
+//	}
 
+	public void validateFooterNewsletter() throws Exception {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		SoftAssert softAssert = new SoftAssert();
+
+		// Navigate to the homepage if not already there
 		if (!driver.getCurrentUrl().equals("https://www.tommyjohn.com")) {
 			driver.navigate().to("https://www.tommyjohn.com");
 		}
 
+		// Wait for the page to load completely
 		objGeneralMethods.waitTillPageLoad(driver);
 
-	//	objGeneralMethods.scrollElementIntoView(driver, NEWSLETTER_TITLE);
+		// Scroll to the newsletter section
+		WebElement newsletterSection = driver.findElement(SIGNUP_TITLE);
+		js.executeScript("arguments[0].scrollIntoView(true);", newsletterSection);
+		js.executeScript("window.scrollBy(0, -100);"); // Adjust for potential header obstruction
 
-		// Verify Footer Newsletter section
-		System.out.println("***Validating Sign up & save on your first order***");
+		// Validate Newsletter Section elements
+		System.out.println("*** Validating Sign up & save on your first order ***");
+		softAssert.assertTrue(
+				driver.findElement(SIGNUP_TITLE).isDisplayed(),
+				"Sign up & save on your first order Title is not displayed on footer"
+		);
 
-		softassert = new SoftAssert();
+		softAssert.assertTrue(
+				driver.findElement(SIGNUP_TEXTBOX).isDisplayed(),
+				"Newsletter Email Input Text Box is not displayed on footer"
+		);
 
-		softassert.assertTrue(driver.findElement(SIGNUP_TITLE).isDisplayed(),
-				"Sign up & save on your first order Title is not displayed on footer");
-////		softassert.assertTrue(
-////				driver.findElement(NEWSLETTER_MEN_RADIO_BUTTON).isDisplayed()
-////						&& driver.findElement(NEWSLETTER_MEN_RADIO_BUTTON).isEnabled(),
-////				"Newsletter Radio button 'Men' is either not Displayed or not Enabled on footer");
-//		softassert.assertTrue(
-//				driver.findElement(NEWSLETTER_WOMEN_RADIO_BUTTON).isDisplayed()
-//						&& driver.findElement(NEWSLETTER_WOMEN_RADIO_BUTTON).isEnabled(),
-//				"Newsletter Radio button 'Women' is either not Displayed or not Enabled on footer");
-//		softassert.assertTrue(
-//				driver.findElement(NEWSLETTER_BOTH_RADIO_BUTTON).isDisplayed()
-//						&& driver.findElement(NEWSLETTER_BOTH_RADIO_BUTTON).isEnabled(),
-//				"Newsletter Radio button 'Both' is either not Displayed or not Enabled on footer");
-		softassert.assertTrue(driver.findElement(SIGNUP_TEXTBOX).isDisplayed(),
-				"Newsletter Email Input Text Box is not displayed on footer");
-//		softassert.assertTrue(driver.findElement(NEWSLETTER_SIGN_UP_BUTTON).isDisplayed(),
-//				"Newsletter Sign up button is not displayed on footer");
+		// Test email input and sign-up functionality
+		String testEmail = "testaccount" + System.currentTimeMillis() + "@gmail.com";
+		driver.findElement(SIGNUP_TEXTBOX).sendKeys(testEmail);
 
-//		softassert.assertTrue(driver.findElement(NEWSLETTER_BOTH_RADIO_BUTTON).isSelected(),
-//				"Radio Button 'Both' is not preselected for user");
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
-//		Negative Validation (User does not enter email)
-	//	wait.until(ExpectedConditions.elementToBeClickable(NEWSLETTER_SIGN_UP_BUTTON));
-		//jse.executeScript("arguments[0].click();", driver.findElement(NEWSLETTER_SIGN_UP_BUTTON));
-		
-//		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(NEWSLETTER_FORM_FAIL_MESSAGE_VISIBLE, 0));
-//
-//		softassert.assertTrue(driver.findElement(NEWSLETTER_FORM_FAIL_MESSAGE).isDisplayed(),
-//				"Error message is not displayed ");
-//		softassert.assertTrue(
-//				driver.findElement(NEWSLETTER_FORM_FAIL_MESSAGE).getText().equals("Please enter a valid email !"),
-//				"Incorrect message is displayed ");
-
-//		Positive Validation
-		String testemail = "testaccount" + System.currentTimeMillis() + "@gmail.com";
-		driver.findElement(SIGNUP_TEXTBOX).sendKeys(testemail);
-		driver.findElement(SIGNUP_ARROW).click();
-
-		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(SUCCESSMESSAGE, 0));
-
-		softassert.assertTrue(driver.findElement(SUCCESSMESSAGE).isDisplayed(),
-				"Success message is not displayed after submission");
-
-		try{
-			softassert.assertAll();
-		}catch (AssertionError e) {
-			ExtentReport.extentTest.fail(e);
-			softassert.assertAll();
+		WebElement signUpArrow = driver.findElement(SIGNUP_ARROW);
+		try {
+			wait.until(ExpectedConditions.elementToBeClickable(signUpArrow)).click();
+		} catch (WebDriverException e) {
+			js.executeScript("arguments[0].click();", signUpArrow); // Fallback to JS click
 		}
 
+		// Wait for the success message
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SUCCESSMESSAGE));
+		softAssert.assertTrue(
+				driver.findElement(SUCCESSMESSAGE).isDisplayed(),
+				"Success message is not displayed after submission"
+		);
+
+		// Catch and log assertion failures
+		try {
+			softAssert.assertAll();
+		} catch (AssertionError e) {
+			ExtentReport.extentTest.fail(e);
+			throw e; // Re-throw to ensure the failure is captured
+		}
+
+		// Log results
 		System.out.println("Newsletter Email Sign Up functionality is working and Success Message is Displayed to user\n");
 		Reporter.log("Newsletter Email Sign Up functionality is working and Success Message is Displayed to user");
 		ExtentReport.extentTest.info("Newsletter Email Sign Up functionality is working and Success Message is Displayed to user");
-
 	}
 
-//		Validation of Give Feedback Section
+
+	//		Validation of Give Feedback Section
 	public void validateFeedbackSection() {
 
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
