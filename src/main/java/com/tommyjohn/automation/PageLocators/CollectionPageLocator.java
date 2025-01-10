@@ -96,7 +96,7 @@ public class CollectionPageLocator {
 	    public static By PLP_BREADCRUMBHOME= By.xpath("//span[contains(text(),'Home')]");
 	    public static By PLP_TITLE= By.xpath("(//div[@class='shopify-section']//h1//span)[1]");
 	    public static By PLP_TITLE_COUNT= By.xpath("//vue-app[@data-vue='CollectionCount']//span");
-	    public static By PLP_INLINE_BANNER= By.xpath("(//a[contains(@class,'not-prose group flex')])[1]");
+	    public static By PLP_INLINE_BANNER= By.xpath("(//a[contains(@class,'not-prose group')])[1]");
 	    public static String PLP_SECTION_HEADER = "//p[@class='mb-md font-serif text-body-lg text-text-accent']";
 		public static By INLINEBANNERTEXT = By.xpath("//div[@class='plpIlb_maintext']");
 		public static By PAGEHEADER = By.xpath("//h2");

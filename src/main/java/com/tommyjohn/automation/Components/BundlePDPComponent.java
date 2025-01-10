@@ -68,7 +68,7 @@ public class BundlePDPComponent extends BundlePDPLocators{
 //		jse = (JavascriptExecutor) driver;
 //		jse.executeScript("window.scrollBy(0,300)");
 
-		driver.get("https://www.tommyjohn.com/products/second-skin-mid-length-boxer-brief-6-3-pack-52?variant=43053721813037");
+		driver.get("https://www.tommyjohn.com/products/second-skin-mid-length-boxer-brief-9?variant=43190760996909");
 		driver.findElement(LEARN_MORE).click();
 
 		Thread.sleep(2000);
@@ -741,7 +741,7 @@ public class BundlePDPComponent extends BundlePDPLocators{
 //			text = new CollectionPageComponent(driver).navigateToProductDetailsPage();
 			// call method to check correct PDP opend or not
 		//	checkCorrectProductDetailsPageOpenedOrNot(text);
-			driver.get("https://www.tommyjohn.com/products/cool-cotton-mid-length-boxer-brief-6-6-pack-1?variant=43074701033517");
+			driver.get("https://www.tommyjohn.com/products/second-skin-v-neck-tee-3-pack-4?variant=43082790764589");
 			Thread.sleep(2000);
 
 

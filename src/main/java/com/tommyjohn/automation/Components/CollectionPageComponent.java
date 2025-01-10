@@ -1259,11 +1259,11 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		js.executeScript("window.scrollBy(0,500)");
 
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 		wait.until(ExpectedConditions.presenceOfElementLocated(FIRST_PRODUCT_IMAGE));
 		// Hover On product image on collection page
 		element = driver.findElement(FIRST_PRODUCT_IMAGE);
-		js.executeScript("arguments[0].scrollIntoView(true);", element);
+//		js.executeScript("arguments[0].scrollIntoView(true);", element);
 		action.moveToElement(element).build().perform();
 		Thread.sleep(3000);
 		if (driver.findElement(QUICK_SHOP_ATC).isDisplayed()) {
