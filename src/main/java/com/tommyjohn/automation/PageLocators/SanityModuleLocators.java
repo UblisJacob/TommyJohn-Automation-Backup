@@ -17,7 +17,7 @@ public class SanityModuleLocators {
 	public static By THREE_TILE_IMG_2 = By.xpath("//a[@aria-label='Shop Stay cool, dry & sweat free.']");
 	public static By THREE_TILE_IMG_3 = By.xpath("//a[@aria-label='Shop Innovative, ultra-light & breathable.']");
 	
-	public static By IMG_CAROUSEL = By.xpath("//div[@class='wrapper']");
+	public static By IMG_CAROUSEL = By.xpath("//div[@class='wrapper max-sm:pr-0']");
 	public static By IMG_CAROUSEL_1 = By.xpath("//a[@aria-label='Shop Underwear']//img");
 	public static By IMG_CAROUSEL_2 = By.xpath("//a[@aria-label='Shop Undershirts']//img");
 	public static By IMG_CAROUSEL_3 = By.xpath("//a[@aria-label='Shop Intimates']//img");
