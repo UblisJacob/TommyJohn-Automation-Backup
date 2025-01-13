@@ -64,36 +64,36 @@ public class AddToCartComponents extends AddToCartLocators{
 		}
 
 	}
-	
+
 	public String addToCart() throws Exception {
-		
-		
+
+
 		// call method to navigate to collection page
 		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
 		jse=(JavascriptExecutor)driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		// call method to navigate product details page
 		text = new CollectionPageComponent(driver).navigateToProductDetailsPage();
-		
+
 		Thread.sleep(2000);
-		
+
 		allElements = driver.findElements(ProductDetailsPageComponents.COLOR_VARIANT);
-		
+
 		elementsCount = allElements.size();
 		System.out.println("Color Element count :: "+elementsCount);
-		
+
 		if(elementsCount > 1)
 		{
 			for(int i=1;i<=2;i++)
 			{
-				
+
 				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])["+i+"]"));
 				jse = (JavascriptExecutor) driver;
 				jse.executeScript("arguments[0].click();", elemen);
 				Thread.sleep(3000);
-				
+
 					for(int k=1;k<=3;k++)
-					{	
+					{
 						WebElement elements = driver.findElement(By.xpath("(//input[@name='option[Size]'])["+k+"]"));
 						jse.executeScript("arguments[0].click();", elements);
 						Thread.sleep(1000);
@@ -134,7 +134,7 @@ public class AddToCartComponents extends AddToCartLocators{
 //							}
 //							break;
 //						}
-						
+
 //						if(elem.getText().contentEquals("Join the Waitlist")) {
 //							System.out.println(elemen.getText()+ elements.getText() +"Product is Out of Stock and Join The waitlist is  :: Clickable");
 //							jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_CART_BUTTON));
@@ -142,21 +142,21 @@ public class AddToCartComponents extends AddToCartLocators{
 //							jse.executeScript("arguments[0].click();", driver.findElement(EMAIL_WHEN_IN_STOCK_BUTTON_CLOSE));
 //
 //							}
-							
-							
-						}
-						
-													
+
+
+					}
+
+
 			}
-							
+
 					}
 		return text;
-						
+
 			}
-	
+
 
 	public void selectSize() throws Exception {
-		
+
 		Thread.sleep(9000);
 		// Select first size between available sizes
 		        String text1= null;
@@ -164,12 +164,12 @@ public class AddToCartComponents extends AddToCartLocators{
 				elementsCount = allElements.size();
 				System.out.println("All sizes list :: "+ elementsCount);
 				JavascriptExecutor executor = (JavascriptExecutor)driver;
-					    
+
 			    try {
 				if(driver.findElement(By.cssSelector("div.radio-options-container")).isDisplayed())
 				{
 
-					//radio			
+					//radio
 					for(int i=3;i<=elementsCount;i=i+2) {
 						boolean flag = false;
 						element = driver.findElement(By.cssSelector(".radio-options-container > .Size > label:nth-child("+i+")"));
@@ -194,7 +194,7 @@ public class AddToCartComponents extends AddToCartLocators{
 									flag = true;
 
 								}
-								else 
+								else
 								{
 
 									WebElement el = driver.findElement(By.cssSelector("div.radios-wrapper > div.radio-options-container > div > label:nth-child("+i+")"));
@@ -217,7 +217,7 @@ public class AddToCartComponents extends AddToCartLocators{
 								//break;
 							}
 						}
-						else 
+						else
 						{
 							jse = (JavascriptExecutor)driver;
 							jse.executeScript("arguments[0].click();" , element);
@@ -228,7 +228,7 @@ public class AddToCartComponents extends AddToCartLocators{
 						if(i==elementsCount) {
 							Reporter.log("No any size available");
 							break;
-						}	
+						}
 
 						if(flag == true)
 							continue;
@@ -252,15 +252,15 @@ public class AddToCartComponents extends AddToCartLocators{
 			    catch(Exception e)
 			    {
 					//dropdown
-							
+
 					for(int i=1;i<=elementsCount;i++) {
 						boolean flag = false;
 						//driver.findElement(SIZE_DROPDOWN).click();
 						executor.executeScript("arguments[0].click();", driver.findElement(ProductDetailsPageComponents.SIZE_DROPDOWN));
 						element = driver.findElement(By.cssSelector(".select--options__list > li:nth-child("+i+") > div"));
-						
+
 						allClasses = element.getAttribute("class");
-						
+
 						// check size available or not
 						for (String c : allClasses.split(" ")) {
 							if (c.equals("unavailable")) {
@@ -273,7 +273,7 @@ public class AddToCartComponents extends AddToCartLocators{
 								jse.executeScript("arguments[0].click();" , element1);
 									//element.click();
 									Thread.sleep(4000);
-							
+
 									driver.navigate().refresh();
 //									driver.findElement(By.cssSelector(".swym-tab-modal-close")).click();
 //									}		
@@ -282,10 +282,10 @@ public class AddToCartComponents extends AddToCartLocators{
 //										Reporter.log("Join the waitlist not functional at the moment");
 //										
 //									}
-										
+
 									System.out.println("Unavailable size clicked");
-									
-									List<WebElement> unavailable_color = driver.findElements(By.cssSelector(".product-option__color-swatches-wrapper > ul >li>input")); 
+
+									List<WebElement> unavailable_color = driver.findElements(By.cssSelector(".product-option__color-swatches-wrapper > ul >li>input"));
 									for(int a=1; a<=unavailable_color.size();a++)
 									{
 										WebElement oos_color = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper > ul >li:nth-child("+a+")>input"));
@@ -298,16 +298,16 @@ public class AddToCartComponents extends AddToCartLocators{
 											break;
 										else continue;
 									}
-									
+
 									element = driver.findElement(ProductDetailsPageLocators.JOIN_THE_WAITLIST);
 									text1 = element.getText();
 									System.out.println("Text of button when Unavailable size selected :: "+text1);
 									if(!(text1.equalsIgnoreCase("JOIN THE WAITLIST")))
 										throw new Exception("Text change for 'JOIN THE WAITLIST' ");
-									
+
 									flag = true;
 								}
-								else 
+								else
 								{
 									driver.findElement(By.cssSelector(".select--options__list> li:nth-child("+i+")")).click();
 									System.out.println("Unavailable size clicked");
@@ -326,8 +326,8 @@ public class AddToCartComponents extends AddToCartLocators{
 								}
 								//break;
 							}
-					
-							else 
+
+							else
 							{
 								jse = (JavascriptExecutor)driver;
 								jse.executeScript("arguments[0].click();" , element);
@@ -338,7 +338,7 @@ public class AddToCartComponents extends AddToCartLocators{
 						if(i==elementsCount) {
 							Reporter.log("No  size available");
 							break;
-						}			
+						}
 						if(flag == true)
 							continue;
 						else {
@@ -352,13 +352,13 @@ public class AddToCartComponents extends AddToCartLocators{
 									throw new Exception("Text change for 'ADD TO CART' ");
 								}
 							}
-			
-			
+
+
 					Thread.sleep(2000);
 					break;
 				}
 			}
-					
+
 			    }
 	}
 
@@ -383,7 +383,7 @@ public class AddToCartComponents extends AddToCartLocators{
 
 
 		// call method to navigate to collection page
-		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
+		new HomePageComponents(driver).navigateToWomensAll();
 		jse = (JavascriptExecutor) driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		// call method to navigate product details page
@@ -452,7 +452,7 @@ public class AddToCartComponents extends AddToCartLocators{
 		return text;
 
 	}
-	
+
 	public String addsingleproductToCart() throws Exception {
 
 
@@ -545,40 +545,41 @@ public class AddToCartComponents extends AddToCartLocators{
 		System.out.println("Color Element count :: " + elementsCount);
 
 		if (elementsCount > 1) {
-			for (int i = 1; i <= 3; i++) {
+			for (int i = 1; i <= 2; i++) {
 
 				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])[" + i + "]"));
 				jse = (JavascriptExecutor) driver;
 				jse.executeScript("arguments[0].click();", elemen);
 				Thread.sleep(3000);
 
+				for (int j = 1; j <= 2; j++) {
 
-				WebElement elements = driver.findElement(By.xpath("(//input[@name='option[Size]'])[" + i + "]"));
-				jse.executeScript("arguments[0].click();", elements);
-				Thread.sleep(1000);
-
-				String[] AddtoBag;
-				AddtoBag = (driver.findElement(By.xpath("//button[@class='button grow']")).getText()).split(" -");
-				String text1 = AddtoBag[0];
-				System.out.println(text1);
-
-				//	WebElement elem = driver.findElement(By.cssSelector(".multiPdp__atc-container>button"));
-
-
-				if (driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON).getText().contains(text1)) {
-
-					System.out.println(elemen.getText() + elements.getText() + "Product is added to Cart");
-					Thread.sleep(5000);
-					jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_CART_BUTTON));
-					Thread.sleep(3000);
-					driver.findElement(INLINE_CART_TITLE);
-					jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
-
+					WebElement elements = driver.findElement(By.xpath("(//input[@name='option[Size]'])[" + j + "]"));
+					jse.executeScript("arguments[0].click();", elements);
 					Thread.sleep(1000);
-					System.out.println("=============================");
+
+					String[] AddtoBag;
+					AddtoBag = (driver.findElement(By.xpath("//button[@class='button grow']")).getText()).split(" -");
+					String text1 = AddtoBag[0];
+					System.out.println(text1);
+
+					//	WebElement elem = driver.findElement(By.cssSelector(".multiPdp__atc-container>button"));
+
+
+					if (driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON).getText().contains(text1)) {
+
+						System.out.println(elemen.getText() + elements.getText() + "Product is added to Cart");
+						Thread.sleep(5000);
+						jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_CART_BUTTON));
+						Thread.sleep(3000);
+						driver.findElement(INLINE_CART_TITLE);
+						jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
+
+						Thread.sleep(1000);
+						System.out.println("=============================");
 //					break;
 
-				}
+					}
 
 
 //						if(driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON).getText().contains("Add to Cart")) {
@@ -590,7 +591,7 @@ public class AddToCartComponents extends AddToCartLocators{
 //							break;
 //
 //						}
-
+				}
 
 			}
 

@@ -29,6 +29,8 @@ public class ProductDetailsPageLocators {
 	public static By IMG_CAROUSEL = By.xpath("//div[@class='hidden md:block w-full']//div");
 
 	public static By COLOR_VARIANT = By.xpath("//div[@class='space-y-lg']//span[@class='sr-only']");
+
+	public static By SIZE_VARIANT = By.xpath("//div[@class='space-y-lg']//span[@class='sr-only']");
 	
 	//first product on PDP
 //	public static By FIRST_PRODUCT = By.cssSelector(".product-item");

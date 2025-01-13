@@ -55,7 +55,7 @@ public class ValidateInlineCartPage extends ExtentReport {
 	@Test
 	public void ValidateFlyCartOpenedWithQSandPDP() throws Exception {
 
-		new FlyCartPage(driver).VerifyFlyCartOpenWithQSAndPDP();
+		new FlyCartPage(driver).VerifyFlyCartOpensWithQSAndPDP();
 	}
 	
 //	@Test

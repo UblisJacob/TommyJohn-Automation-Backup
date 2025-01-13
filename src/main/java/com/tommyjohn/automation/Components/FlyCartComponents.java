@@ -835,7 +835,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 
 		wait.until(ExpectedConditions.presenceOfElementLocated(CollectionPageLocator.FIRST_PRODUCT_IMAGE));
 		element = driver.findElement(CollectionPageLocator.FIRST_PRODUCT_IMAGE);
-		js.executeScript("arguments[0].scrollIntoView(true);", element);
+	//	js.executeScript("arguments[0].scrollIntoView(true);", element);
 		action.moveToElement(element).build().perform();
 		Thread.sleep(3000);
 		if(driver.findElement(CollectionPageLocator.QUICK_SHOP_ATC).isDisplayed())

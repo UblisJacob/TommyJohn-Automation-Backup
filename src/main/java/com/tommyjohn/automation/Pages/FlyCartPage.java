@@ -33,7 +33,7 @@ public class FlyCartPage extends FlyCartComponents {
 		new FlyCartComponents(driver).verifygiftWrap();
 	}
 
-	public void validateFlyCartOpenedWithQSandPDP() throws Exception {
+	public void VerifyFlyCartOpensWithQSAndPDP() throws Exception {
 		new FlyCartComponents(driver).VerifyFlyCartOpenWithQSAndPDP();
 	}
 

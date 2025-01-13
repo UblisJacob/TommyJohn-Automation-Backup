@@ -81,21 +81,21 @@ public class ValidateCheckoutPage extends ExtentReport {
 		new CheckoutPage(driver).ValidatePromoCodeFIRST20InPaymentPage();
 	}
 
-//	@Test
+	@Test
 	public void ValidatethreeforfourtyeightfunctionalityinInformationPage() throws Exception
 	{
 		new AddToCartComponents(driver).add3for$48product();
 		new CheckoutPage(driver).Validate3for$48functionalityinInformationPage();
 	}
 
-//	@Test
+	@Test
 	public void ValidatethreeforfourtyeightfunctionalityinShippingPage() throws Exception
 	{
 		new AddToCartComponents(driver).add3for$48product();
 		new CheckoutPage(driver).Validate3for$48functionalityinShippingPage();
 	}
 
-//	@Test
+	@Test
 	public void ValidatethreeforfourtyeightfunctionalityinPaymentPage() throws Exception
 	{
 		new AddToCartComponents(driver).add3for$48product();
