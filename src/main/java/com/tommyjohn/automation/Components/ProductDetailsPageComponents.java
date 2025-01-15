@@ -2452,7 +2452,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 	public void verifyOnImageBadging() throws Exception {
 
 		SoftAssert softAssert = new SoftAssert();
-		new ProductDetailsPage(driver).navigateToSecondSkinSleepCrewNeckPocket();
+//		new ProductDetailsPage(driver).navigateToSecondSkinSleepCrewNeckPocket();
 
 		//navigate to PDP
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
@@ -2462,7 +2462,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 //		JavascriptExecutor executor = (JavascriptExecutor) driver;
 //		executor.executeScript("arguments[0].click();", el);
 
-		driver.get("https://www.tommyjohn.com/products/second-skin-sleep-crew-neck-pocket-tee?variant=43014855557165");
+		driver.get("https://www.tommyjohn.com/products/second-skin-mid-length-boxer-brief-9?variant=43190760996909");
 
 //		jse = (JavascriptExecutor) driver;
 //		jse.executeScript("window.scrollBy(0,800)");

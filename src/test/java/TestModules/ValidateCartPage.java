@@ -48,7 +48,7 @@ public class ValidateCartPage extends ExtentReport{
 
 
 	@Test
-	public void ValidateProductCount() throws Exception {
+		public void ValidateProductCount() throws Exception {
 		new ShoppingCartPage(driver).ValidateProductCountInInlineCartAndCartPages();
 
 	}
