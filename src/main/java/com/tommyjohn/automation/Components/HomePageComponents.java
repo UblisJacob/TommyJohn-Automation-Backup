@@ -2774,7 +2774,7 @@ public class HomePageComponents extends HomePageLocators {
 
 	public void navigateToSecondSkinSleepCrewNeckPocket()
 	{
-		driver.get("https://www.tommyjohn.com/products/second-skin-sleep-crew-neck-pocket-tee?variant=43014855557165");
+		driver.get("https://www.tommyjohn.com/products/second-skin-mid-length-boxer-brief-9?variant=43190760996909");
 	}
 
 
