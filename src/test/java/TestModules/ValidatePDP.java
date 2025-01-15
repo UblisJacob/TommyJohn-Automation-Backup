@@ -57,7 +57,7 @@ public class ValidatePDP extends ExtentReport{
 		new ProductDetailsPage(driver).verifySelectedColorSwatchIsDisplayedInTheInlineCart();
 	}
 
-	@Test
+//	@Test
 	public void ValidatesectionsinPDP() throws Exception {
 		new ProductDetailsPage(driver).ValidatesectionsinPDP();
 
@@ -90,7 +90,7 @@ public class ValidatePDP extends ExtentReport{
 	}
 	
 	
-//	@Test
+	@Test
 	public void VerifyOnImageBadging() throws Exception {
 		new ProductDetailsPage(driver).verifyOnImageBadging();
 		

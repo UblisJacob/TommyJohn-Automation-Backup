@@ -404,12 +404,12 @@ public class CollectionPage extends CollectionPageComponent{
 
 	public void validateInlineBanner() throws Exception {
 		// TODO Auto-generated method stub
-		new HomePageComponents(driver).navigateToWomensAll();
+		new HomePageComponents(driver).navigateToMensAll();
 		validatePLPInlineBanner();
 	}
 
 	public void ValidateOnClickingTheInLineBanner() throws InterruptedException {// TODO Auto-generated method stub
-		new HomePageComponents(driver).navigateToWomensAll();
+		new HomePageComponents(driver).navigateToMensAll();
 		new CollectionPageComponent(driver).ValidateOnClickingTheInLineBanner();
 	}
 	

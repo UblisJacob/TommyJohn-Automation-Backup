@@ -36,6 +36,7 @@ public class CheckoutPageLocators {
 	public static By FIRSTNAME_TEXTBOX = By.xpath("(//input[@name='firstName'])[1]");
 	public static By LASTNAME_TEXTBOX = By.xpath("(//input[@name='lastName'])[1]");
 	public static By ADDRESS1_TEXTBOX = By.xpath("//input[@id='shipping-address1']");
+	public static By ADDRESS1_TEXTBOX_PAYMENTPAGE = By.xpath("//input[@id='billing-address1']");
 	public static By ADDRESS2_TEXTBOX = By.xpath("(//input[@name='address2'])[1]");
 	public static By CITY_TEXTBOX = By.xpath("(//input[@name='city'])[1]");
 	public static By COUNTRY_DROPDOWN = By.xpath("//select[@name='countryCode']");
