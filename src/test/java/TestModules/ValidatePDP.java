@@ -13,7 +13,7 @@ import com.tommyjohn.automation.Pages.AddToCartPage;
 import com.tommyjohn.automation.Pages.ProductDetailsPage;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
-public class ValidatePDP extends ExtentReport{
+public class 	ValidatePDP extends ExtentReport{
 	
 	WebDriver driver;
  	
@@ -57,9 +57,15 @@ public class ValidatePDP extends ExtentReport{
 		new ProductDetailsPage(driver).verifySelectedColorSwatchIsDisplayedInTheInlineCart();
 	}
 
-//	@Test
+	@Test
 	public void ValidatesectionsinPDP() throws Exception {
 		new ProductDetailsPage(driver).ValidatesectionsinPDP();
+
+	}
+
+	@Test
+	public void ValidateTabPriceAndAddToCartPrice() throws Exception {
+		new ProductDetailsPage(driver).ValidateTabPriceAndAddToCartPrice();
 
 	}
 

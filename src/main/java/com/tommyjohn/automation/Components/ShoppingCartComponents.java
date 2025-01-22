@@ -441,6 +441,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 //
 //		String text2= p_name.replace("-", " ");
 		driver.findElement(HomePageLocators.CART_ICON).click();
+		Thread.sleep(5000);
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		text2 = driver.findElement(PRODUCT_TITLE_TEXT).getText();
 		System.out.println("text2 is: "+text2);

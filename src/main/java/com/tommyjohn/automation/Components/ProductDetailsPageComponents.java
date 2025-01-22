@@ -1,9 +1,7 @@
 package com.tommyjohn.automation.Components;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URL;
 import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -18,12 +16,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
 
-import com.aventstack.extentreports.model.Report;
 import com.base.ExtentReport;
 import com.tommyjohn.automation.PageLocators.CollectionPageLocator;
 import com.tommyjohn.automation.PageLocators.FlyCartPageLocator;
@@ -32,7 +28,6 @@ import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
 import com.tommyjohn.automation.Pages.ProductDetailsPage;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
-import static com.tommyjohn.automation.PageLocators.CollectionPageLocator.FIRST_PRODUCT_HEAD_TEXT;
 import static com.tommyjohn.automation.PageLocators.CollectionPageLocator.FIRST_PRODUCT_IMAGE;
 import static com.tommyjohn.automation.PageLocators.FlyCartPageLocator.*;
 import static com.tommyjohn.automation.PageLocators.HomePageLocators.*;
@@ -46,6 +41,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 	Properties properties = CustomUtilities.properties;
 	List<WebElement> allElements;
 	List<WebElement> Tabs;
+	String TabsPrice;
 	int elementsCount;
 	int Tabs_Count;
 	public static String prodsize;
@@ -72,6 +68,37 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 	}
 
 
+	public void ValidateTabPriceAndAddToCartPrice() throws InterruptedException {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		SoftAssert softAssert = new SoftAssert();
+		driver.get("https://www.tommyjohn.com/products/womens-lounge-henley?variant=34935848402989");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_TITLE));
+		Thread.sleep(5000);
+		Tabs = driver.findElements(PDP_TABS);
+		Tabs_Count = Tabs.size();
+		System.out.println(Tabs_Count);
+		for (int i = 1; i <= Tabs_Count; i++) {
+			js.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//span[@class='text-sm text-text-tertiary'])[" + i + "]")));
+			TabsPrice = driver.findElement(By.xpath("(//span[@class='text-sm text-text-tertiary'])[" + i + "]")).getText();
+			System.out.println(TabsPrice);
+			String[] AddtoBag;
+			AddtoBag = (driver.findElement(By.xpath("//button[@class='button grow']")).getText()).split(" - ");
+			String Text = AddtoBag[1];
+			String Text1 = Text.substring(0, Text.length() - 3);
+			System.out.println(Text1);
+			softAssert.assertEquals(TabsPrice,Text1,"Same values are not displayed in the Tabs and Add to Cart CTA");
+			Reporter.log("Same values are displayed in the Tabs and Add to Cart CTA");
+			ExtentReport.extentTest.info("Same values are displayed in the Tabs and Add to Cart CTA");
+
+		}
+
+
+
+
+
+
+	}
 
 	public void ValidatesectionsinPDP() throws InterruptedException, IOException, CsvException, Exception {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
@@ -121,7 +148,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 							try {
 								if (driver.findElement(SIZE_SECTION).isDisplayed()) {
-									System.out.println("Size section is displayed in");
+									System.out.println("Size section is displayed");
 								}
 							} catch (Exception ex) {
 								count++;
@@ -132,7 +159,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 							try {
 								if (driver.findElement(QUANTITY_ATC_SECTION).isDisplayed()) {
-									System.out.println("Quantity and Add to Cart sections are displayed in");
+									System.out.println("Quantity and Add to Cart sections are displayed");
 								}
 							} catch (Exception ex) {
 								count++;

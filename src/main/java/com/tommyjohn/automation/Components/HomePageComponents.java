@@ -29,8 +29,7 @@ import com.tommyjohn.automation.PageLocators.TermsAndConditionsPageLocators;
 import com.tommyjohn.automation.commonMethods.GeneralMethods;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
-import static com.tommyjohn.automation.PageLocators.CollectionPageLocator.PAGEHEADER;
-import static com.tommyjohn.automation.PageLocators.CollectionPageLocator.SHOP_PAGEHEADER;
+import static com.tommyjohn.automation.PageLocators.CollectionPageLocator.*;
 import static com.tommyjohn.automation.PageLocators.FlyCartPageLocator.INLINECART_PRODUCT_NAME;
 import static com.tommyjohn.automation.PageLocators.FlyCartPageLocator.INLINE_COLOR;
 
@@ -62,6 +61,20 @@ public class HomePageComponents extends HomePageLocators {
 
 		wait = new FluentWait<WebDriver>(driver).pollingEvery(Duration.ofMillis(500))
 				.withTimeout(Duration.ofSeconds(30)).ignoring(NoSuchElementException.class);
+
+	}
+
+	public void ValidateNewMarkdownsSection() throws InterruptedException {
+		SoftAssert softAssert = new SoftAssert();
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
+		Thread.sleep(2000);
+		js.executeScript("window.scrollBy(0,300)");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(NEW_MARKDOWNS_SECTIONS));
+		softAssert.assertTrue(driver.findElement(NEW_MARKDOWNS_SECTIONS).isDisplayed(),"New Markdown Section is not available");
+		Reporter.log("New Markdown Section is available");
+		ExtentReport.extentTest.info("New Markdown Section is available");
+
 
 	}
 
@@ -245,9 +258,9 @@ public class HomePageComponents extends HomePageLocators {
 		}
 
 		// Verify the shop page header is displayed
-		wait.until(ExpectedConditions.visibilityOfElementLocated(SHOP_PAGEHEADER));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(WOMENS_SHOP_PAGEHEADER));
 		softAssert.assertTrue(
-				driver.findElement(SHOP_PAGEHEADER).isDisplayed(),
+				driver.findElement(WOMENS_SHOP_PAGEHEADER).isDisplayed(),
 				"Shop Women CTA in Image Banner is not functional"
 		);
 

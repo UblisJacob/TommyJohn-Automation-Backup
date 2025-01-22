@@ -320,6 +320,26 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 	}
 
+	public String navigateTo3FOR$48PDP() throws Exception {
+		String text = null;
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,250)");
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SECOND_PRODUCT_HEAD_LINE_TEXT));
+		// get text and click on the first product
+		//text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
+		text = driver.findElement(SECOND_PRODUCT_HEAD_LINE_TEXT).getText();
+		WebElement el = driver.findElement(SECOND_PRODUCT_HEAD_LINE_TEXT);
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		executor.executeScript("arguments[0].click();", el);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_TITLE));
+		Reporter.log(driver.getCurrentUrl());
+		ExtentReport.extentTest.info(driver.getCurrentUrl());
+		// text =
+		// driver.findElement(ProductDetailsPageLocators.PRODUCT_TITLE).getText();
+		return text;
+	}
+
 	public String navigateToPDP() throws Exception {
 		String text = null;
 		JavascriptExecutor js = (JavascriptExecutor) driver;

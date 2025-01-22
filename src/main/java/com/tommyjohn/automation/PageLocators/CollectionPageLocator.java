@@ -29,6 +29,7 @@ public class CollectionPageLocator {
 	public static By FIRST_PRODUCT_HEAD_TEXT = By.xpath("(//div[@class='relative aspect-tile'])[1]");
 	public static By FIRST_PRODUCT_HEAD_LINE_TEXT_COPY = By.xpath("(//span[@class='product-meta__title'])[1]");
 	public static By FIRST_PRODUCT_HEAD_LINE_TEXT = By.xpath("(//a[@data-cy='productTileLink'])[1]");
+	public static By SECOND_PRODUCT_HEAD_LINE_TEXT = By.xpath("(//a[@data-cy='productTileLink'])[2]");
 	public static By FIRST_PRODUCT_STAR_RATING = By.xpath("(//a[@class='my-xs font-normal text-body-xs'])[1]");
 	public static By FIRST_PRODUCT_TEXT = By.xpath("(//span[@class='product-meta__title'])[1]");
 	public static By FILTER = By.xpath("//span[@class='collection-meta__title']");
@@ -101,6 +102,7 @@ public class CollectionPageLocator {
 		public static By INLINEBANNERTEXT = By.xpath("//div[@class='plpIlb_maintext']");
 		public static By PAGEHEADER = By.xpath("//h2");
 		public static By SHOP_PAGEHEADER = By.xpath("//h1");
+	    public static By WOMENS_SHOP_PAGEHEADER = By.xpath("//p[contains(text(),'The Ultimate Comfort Collection')]");
 		public static By PRODUCT_IMAGE = By.xpath("//img[@class='aspect-tile bg-background-image object-cover text-[0] w-full']");
 	    public static By PLP_FILTER_SINGLE_PROODUCT = By.cssSelector("div.mega-collection-filters>div:nth-child(7)>ul>li>label>span[data-result-count='1']");
 		public static By MULTIPACKS_CHECKBOX = By.xpath("(//input[@name='filter.pack_size'])[1]");

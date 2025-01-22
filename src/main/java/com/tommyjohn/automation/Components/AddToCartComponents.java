@@ -383,7 +383,7 @@ public class AddToCartComponents extends AddToCartLocators{
 
 
 		// call method to navigate to collection page
-		new HomePageComponents(driver).navigateToWomensAll();
+		new HomePageComponents(driver).navigateToMensAll();
 		jse = (JavascriptExecutor) driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		// call method to navigate product details page
@@ -457,7 +457,7 @@ public class AddToCartComponents extends AddToCartLocators{
 
 
 		// call method to navigate to collection page
-		new HomePageComponents(driver).navigateToMensApparel();
+		new HomePageComponents(driver).navigateToMensAll();
 		jse = (JavascriptExecutor) driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		// call method to navigate product details page
@@ -535,7 +535,7 @@ public class AddToCartComponents extends AddToCartLocators{
 		jse = (JavascriptExecutor) driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		// call method to navigate product details page
-		text = new CollectionPageComponent(driver).navigateToPDP();
+		text = new CollectionPageComponent(driver).navigateTo3FOR$48PDP();
 
 		Thread.sleep(2000);
 
@@ -545,14 +545,14 @@ public class AddToCartComponents extends AddToCartLocators{
 		System.out.println("Color Element count :: " + elementsCount);
 
 		if (elementsCount > 1) {
-			for (int i = 1; i <= 2; i++) {
+			for (int i = 1; i <= 1; i++) {
 
 				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])[" + i + "]"));
 				jse = (JavascriptExecutor) driver;
 				jse.executeScript("arguments[0].click();", elemen);
 				Thread.sleep(3000);
 
-				for (int j = 1; j <= 2; j++) {
+				for (int j = 1; j <= 3; j++) {
 
 					WebElement elements = driver.findElement(By.xpath("(//input[@name='option[Size]'])[" + j + "]"));
 					jse.executeScript("arguments[0].click();", elements);
