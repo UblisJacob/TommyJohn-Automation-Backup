@@ -31,6 +31,12 @@ public class ValidateHomePage extends ExtentReport {
 	}
 
 	@Test
+	public void ValidateNewMarkdownSection() throws Exception {
+
+		new HomePage(driver).ValidateNewMarkdownsSection();
+	}
+
+	@Test
 	public void ValidateShopMensCTAInHeroSlider() throws Exception {
 
 		new HomePageComponents(driver).ValidateShopMensCTAInHeroSlider();

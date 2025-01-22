@@ -11,14 +11,13 @@
     <test name="Tests">
         <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="TestModules.ValidatePDP">
+            <class name="TestModules.ValidateHomePage">
                 <methods>
-                    <include name=""/>
+                    <include name="ValidateShopWomensInHeroBanner"/>
                 </methods>
             </class>
         </classes>
     </test>
-
 <!--    <listeners>-->
 <!--        <listener class-name="TestScenario.ADAListenerClass"></listener>-->
 <!--&lt;!&ndash;        <listener class-name="TestScenario.RetryListener"></listener>&ndash;&gt;-->
