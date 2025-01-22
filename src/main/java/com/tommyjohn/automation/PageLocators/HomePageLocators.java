@@ -7,17 +7,18 @@ public class HomePageLocators{
 
 	//HomePageSections
 	public static By HERO_BANNER_IMAGE = By.xpath("(//div[@class='shopify-section relative'])[1]");
+	public static By NEW_MARKDOWNS_SECTIONS = By.xpath("//swiper-container[@class='-mx-lg flex px-lg [grid-area:slides]']");
 	public static By PROMO_BANNER_CODE = By.xpath("//span[@class='flex items-center gap-xs']");
 	public static By HERO_BANNER_CTA = By.xpath("(//a[@class='button-inverse'])[3]");
-	public static By HERO_SLIDER_SHOPMENS_CTA = By.xpath("(//a[contains(text(),\"Shop Men's\")])[3]");
-	public static By HERO_SLIDER_SHOPWOMENS_CTA = By.xpath("(//a[contains(text(),\"Shop Women's\")])[3]");
+	public static By HERO_SLIDER_SHOPMENS_CTA = By.xpath("(//a[contains(text(),\"Shop Men's\")])[2]");
+	public static By HERO_SLIDER_SHOPWOMENS_CTA = By.xpath("(//a[contains(text(),\"Shop Women's\")])[2]");
 	public static By CATEGORY_SELECTOR_SECTION = By.xpath("(//div[@class='grid grid-cols-1 md:grid-cols-2'])[1]");
 	public static By CATEGORY_SELECTOR_MEN = By.xpath("(//div[@class='space-x-2 md:space-x-4']//button)[1]");
 	public static By CATEGORY_SELECTOR_WOMEN = By.xpath("(//div[@class='space-x-2 md:space-x-4']//button)[2]");
 	public static By MEN_CATEGORIES = By.xpath("(//ul[@class='mt-6 md:mt-8'])[1]//li");
 	public static By WOMEN_CATEGORIES = By.xpath("(//ul[@class='mt-6 md:mt-8'])[2]//li");
-	public static By IMAGE_BANNER_MENS_CTA = By.xpath("(//p[contains(text(),'Shop Now')])[1]");
-	public static By IMAGE_BANNER_WOMENS_CTA = By.xpath("(//p[contains(text(),'Shop Now')])[2]");
+	public static By IMAGE_BANNER_MENS_CTA = By.xpath("(//p[contains(text(),'Shop Now')])[2]");
+	public static By IMAGE_BANNER_WOMENS_CTA = By.xpath("(//p[contains(text(),'Shop Now')])[1]");
 	public static By COLLECTION_SELECTOR = By.xpath("//div[@class='size-full']");
 	public static By COLLECTION_SELECTOR_SECOND_SKIN = By.xpath("(//div[@class='mt-3 md:mt-8 space-y-4']//button)[1]");
 	public static By COLLECTION_SELECTOR_COOL_COTTON = By.xpath("(//div[@class='mt-3 md:mt-8 space-y-4']//button)[2]");
@@ -271,7 +272,7 @@ public class HomePageLocators{
 		public static By SEARCHPAGE_PRODUCT_IMAGE = By.xpath("(//div[@class='relative aspect-tile'])[1]");
 	public static By SEARCHPAGE_PRODUCT_SWATCHES = By.xpath("(//div[@class='flex items-center'])[1]");
 	public static By SEARCHPAGE_PRODUCT_NAME = By.xpath("(//h2[@class='my-2xs text-body-md']//a)[1]");
-	public static By SEARCHPAGE_PRODUCT_REVIEWS = By.xpath("(//a[@aria-label='Read reviews'])[1]");
+	public static By SEARCHPAGE_PRODUCT_REVIEWS = By.xpath("(//a[@class='my-xs font-normal text-body-xs'])[1]");
 	public static By SEARCHPAGE_PRODUCT_PRICE = By.xpath("(//span[@data-cy='priceFinal'])[1]");
 	public static By SEARCHPAGE_PRODUCT_BADGE = By.cssSelector(".product-item__badge");	
 	public static By RECENT_SEARCHES_TITLE = By.xpath("//h2[@id='PredictiveSearch-QUERIES']");

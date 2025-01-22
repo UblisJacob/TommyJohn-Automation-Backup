@@ -76,7 +76,7 @@ public class CheckoutPageLocators {
 	public static By INFO_DISCOUNT_3for$48 = By.xpath("(//p[@class='_1x52f9s1 _1x52f9s0 _1fragemlj _1x52f9st _1x52f9ss _1fragemnv _1x52f9sp'])[10]");
 	public static By LINEITEM_TOTAL_3for$48 = By.xpath("(//p[@class='_1x52f9s1 _1x52f9s0 _1fragemlj _1x52f9sv _1x52f9su _1fragemnw'])[10]");
 
-	public static By SHIPPINGPAGE_LINEITEM_TOTAL_3for$48 = By.xpath("(//p[@class='_1x52f9s1 _1x52f9s0 _1fragemlj _1x52f9sv _1x52f9su _1fragemnw'])[14]");
+	public static By SHIPPINGPAGE_LINEITEM_TOTAL_3for$48 = By.xpath("(//p[@class='_1x52f9s1 _1x52f9s0 _1fragemlj _1x52f9sv _1x52f9su _1fragemnw'])[11]");
 	public static By PAYMENTPAGE_LINEITEM_TOTAL_3for$48 = By.xpath("(//p[@class='_1x52f9s1 _1x52f9s0 _1fragemlj _1x52f9sv _1x52f9su _1fragemnw'])[11]");
 
 	//                                          Shipping

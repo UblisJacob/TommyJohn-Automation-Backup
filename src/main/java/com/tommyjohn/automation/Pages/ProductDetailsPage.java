@@ -26,6 +26,13 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 
 	}
 
+	public void ValidateTabPriceAndAddToCartPrice() throws InterruptedException {
+
+
+		new ProductDetailsPageComponents(driver).ValidateTabPriceAndAddToCartPrice();
+
+	}
+
 	public void ValidateClickingOnRatingsTierMeter() throws Exception {
 
 

@@ -1081,6 +1081,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		sidebar();
 		softAssert.assertTrue(driver.findElement(CONTACT_EMAIL).isDisplayed(), "Contact email is not present");
 		softAssert.assertTrue(driver.findElement(SHIP_ADDRESS).isDisplayed(), "Shipping address is not present");
+		Thread.sleep(2000);
 		softAssert.assertTrue(driver.findElement(METHOD).isDisplayed(), "Shipping method is not present");
 		// WebDriverWait waits = new WebDriverWait(driver, 60);
 		// try {
