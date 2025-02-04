@@ -77,7 +77,7 @@ public class ValidateSearchPages {
 	}
 	
 	@Test public void VerifySearchViewOnImageAndSecondaryBadging() throws Exception {
-		searchText = objGeneralMethods.readPropertiesFile("searchSecondSkinTrunk");
+		searchText = objGeneralMethods.readPropertiesFile("searchMensSleepandLounge");
 		new HomePage(driver).validateSearchPM(searchText);
 		new CollectionPage(driver).validateOnImageBadgeSearch();
 	}

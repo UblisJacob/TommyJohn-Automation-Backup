@@ -64,7 +64,7 @@ public class AccountLoginLocators {
 	public static By SUBMIT_BUTTON = By.xpath("//button[@id='RecoverCustomerPassword-Submit']");
 //	public static By SUBMIT_BUTTON = By.cssSelector("#recover-password-form-new > div:nth-child(4) > input");
 	public static By ERROR_MESSAGE = By.cssSelector("li[data-tj-qa='forgot-password-email-invalid']");
-	public static By EMAIL_RECIEVED_SUCCESS_MESSAGE = By.cssSelector("div.account-reset-password-sent.reset-success > p");
+	public static By EMAIL_RECIEVED_SUCCESS_MESSAGE = By.xpath("//div[@class='mb-4 border-green-600 bg-green-300 p-4 text-green-900']//p");
 	public static By LINK_IN_ERROR_MESSAGE_FROM_RECOVER_PASSWORD = By.cssSelector("div.input-group > ul > li > a");
 	
 	

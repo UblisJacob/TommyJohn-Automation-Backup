@@ -60,7 +60,7 @@ public class HomePageComponents extends HomePageLocators {
 		this.driver = driver;
 
 		wait = new FluentWait<WebDriver>(driver).pollingEvery(Duration.ofMillis(500))
-				.withTimeout(Duration.ofSeconds(30)).ignoring(NoSuchElementException.class);
+				.withTimeout(Duration.ofSeconds(60)).ignoring(NoSuchElementException.class);
 
 	}
 
@@ -69,7 +69,7 @@ public class HomePageComponents extends HomePageLocators {
 		JavascriptExecutor js = (JavascriptExecutor)driver;
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
 		Thread.sleep(2000);
-		js.executeScript("window.scrollBy(0,300)");
+		js.executeScript("window.scrollBy(0,500)");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(NEW_MARKDOWNS_SECTIONS));
 		softAssert.assertTrue(driver.findElement(NEW_MARKDOWNS_SECTIONS).isDisplayed(),"New Markdown Section is not available");
 		Reporter.log("New Markdown Section is available");

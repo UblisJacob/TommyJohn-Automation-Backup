@@ -3480,15 +3480,14 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 //			}
 
 			//View Measurements
-			if (!driver.findElement(By.xpath("(//th[@class='border p-3 font-medium'])[1]")).isDisplayed())
+			if (!driver.findElement(By.xpath("//h2[@class='mb-lg mt-2 pr-14 text-heading-md']")).isDisplayed())
 				throw new Exception("Sizes chart overlay is not displayed after Size guide button was clicked");
 			System.out.println("Size Chart is displayed");
 			Reporter.log("Size guide link is Displayed :: Clickable");
-			Thread.sleep(5000);
 			//Close first size guide window
-			driver.findElement(By.xpath("(//button[@aria-label='Close modal'])[2]")).click();
-
-			Thread.sleep(1000);
+			WebElement SizeChartClose = driver.findElement(By.xpath("(//button[@aria-label='Close modal'])[2]"));
+			jse.executeScript("arguments[0].click();", SizeChartClose);
+	//		driver.findElement(By.xpath("(//button[@aria-label='Close modal'])[2]")).click();
 		} else {
 			System.out.println("Size guide link is not Displayed");
 			Reporter.log("Size guide link is not Displayed.");
@@ -3530,7 +3529,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 		//View Measurements
 
-		if (!driver.findElement(By.xpath("(//th[@class='border p-3 font-medium'])[1]")).isDisplayed())
+		if (!driver.findElement(By.xpath("//h2[@class='mb-lg mt-2 pr-14 text-heading-md']")).isDisplayed())
 			throw new Exception("Sizes chart overlay is not displayed after Size guide button was clicked");
 		System.out.println("Size Chart is displayed");
 		Reporter.log("Size Chart is displayed");

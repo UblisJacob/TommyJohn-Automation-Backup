@@ -28,8 +28,8 @@ public class AccountLoginPage extends AccountLoginComponents {
 		verifyFieldsOnRecoverPasswordPage();
 	}
 
-	public void recoverPasswordFunctionality(String accountCreatedEmail) throws Exception {
-		recoverPassword(accountCreatedEmail);
+	public void recoverPasswordFunctionality() throws Exception {
+		recoverPassword();
 	}
 
 	public void verifyErrorsOnRecoverPasswordPage() throws Exception {

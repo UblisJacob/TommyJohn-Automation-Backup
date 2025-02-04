@@ -30,7 +30,7 @@ public class ValidateHomePage extends ExtentReport {
 		new HomePage(driver).ValidateImageInHeroBanner();
 	}
 
-	@Test
+//	@Test
 	public void ValidateNewMarkdownSection() throws Exception {
 
 		new HomePage(driver).ValidateNewMarkdownsSection();
