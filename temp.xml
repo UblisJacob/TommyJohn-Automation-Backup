@@ -11,9 +11,9 @@
     <test name="Tests">
         <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="TestModules.ValidateHomePage">
+            <class name="TestModules.ValidateCreateAccount_Login">
                 <methods>
-                    <include name="ValidateShopWomensInHeroBanner"/>
+                    <include name="VerifyRecoverPassword"/>
                 </methods>
             </class>
         </classes>
@@ -26,7 +26,7 @@
 <!--    <test name="ADA Check">-->
 <!--        <parameter name="browser" value="chrome" />-->
 <!--        <classes>-->
-<!--            <class name="ADACheckModules.SearchPageADACheck" />-->
+<!--            <class name="ADACheckModules.Footer_Support_ReturnExchange_ADACheck" />-->
 <!--        </classes>-->
 <!--    </test>-->
 </suite>
