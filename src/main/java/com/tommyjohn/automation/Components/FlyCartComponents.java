@@ -206,7 +206,6 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		}
 
 		public void verifyATCInInlineCartSuggestion() throws InterruptedException {
-
 			Actions action = new Actions(driver);
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));

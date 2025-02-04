@@ -1,6 +1,7 @@
 package TestModules;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
@@ -77,9 +78,12 @@ public class ValidateCreateAccount_Login {
 
 //	@Test(dependsOnMethods = { "TC_VerifyCreateAccount" })
 //	@Test(priority = 2)
-	public void TC_VerifyRecoverPassword() throws Exception
+//	@Test
+	public void VerifyRecoverPassword() throws Exception
 	{
-		new AccountLoginPage(driver).recoverPasswordFunctionality(accountCreatedEmail);
+		ChromeOptions chromeOptions = new ChromeOptions();
+
+		new AccountLoginPage(driver).recoverPasswordFunctionality();
 	}
 		
 	@Test

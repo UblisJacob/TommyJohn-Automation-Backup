@@ -53,10 +53,7 @@ public class CustomUtilities {
 
 		// load properties file
 		loadPropertiesFile();
-
 		//proxying to blacklist bounceX popup
-
-
 		if (browser.equalsIgnoreCase("chrome"))
 		{
 			// System.setProperty("webdriver.chrome.driver"
@@ -72,9 +69,12 @@ public class CustomUtilities {
 
 			// Set other desired capabilities if needed (such as enabling remote d
 //			chromeOptions.setExperimentalOption("useAutomationExtension", false)
-			chromeOptions.addArguments("--headless");
-			chromeOptions.addArguments("--window-size=1280,800");
+			chromeOptions.addArguments("--headless=new");
+			chromeOptions.addArguments("--window-size=1920,1080");
 			chromeOptions.addArguments("--disable-gpu");
+			chromeOptions.addArguments("--disable-blink-features=AutomationControlled");
+			chromeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+			chromeOptions.setExperimentalOption("useAutomationExtension", false);
 			chromeOptions.addArguments("--no-sandbox");
 			chromeOptions.addArguments("--disable-dev-shm-usage");
 			chromeOptions.addArguments("--aggressive-cache-discard");
@@ -84,6 +84,7 @@ public class CustomUtilities {
 			chromeOptions.addArguments("--no-default-browser-check");
 			chromeOptions.addArguments("--disable-popup-blocking");
 			chromeOptions.addArguments("--remote-allow-origins=*");
+			chromeOptions.addArguments("--disable-popup-blocking");
 			chromeOptions.setAcceptInsecureCerts(true);
 
 
@@ -141,7 +142,6 @@ public class CustomUtilities {
 			driver.get(baseUrl);
 			driver.manage().window().maximize();
 		}
-
 		else if (browser.equalsIgnoreCase("edge"))
 		{
 //			System.setProperty("webdriver.edge.driver", properties.getProperty("edgeDriverPath"));
@@ -190,8 +190,8 @@ public class CustomUtilities {
 			options.setCapability("--disable-popup-blocking",true);
 
 			options.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
-			
-	
+
+
 
 			driver = new SafariDriver(options);
 			driver.get(baseUrl);
