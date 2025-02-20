@@ -325,11 +325,11 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollBy(0,250)");
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(SECOND_PRODUCT_HEAD_LINE_TEXT));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
 		// get text and click on the first product
 		//text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
-		text = driver.findElement(SECOND_PRODUCT_HEAD_LINE_TEXT).getText();
-		WebElement el = driver.findElement(SECOND_PRODUCT_HEAD_LINE_TEXT);
+		text = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT).getText();
+		WebElement el = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT);
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		executor.executeScript("arguments[0].click();", el);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_TITLE));
@@ -477,95 +477,176 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 	}
 
-	public void methodToSortByPrice() throws Exception {
+//	public void methodToSortByPrice() throws Exception {
+//
+//		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+//
+//		JavascriptExecutor js = (JavascriptExecutor) driver;
+//		js.executeScript("window.scrollBy(0,250)");
+//
+////		wait.until(ExpectedConditions.visibilityOfElementLocated(SORTBYPRICE_DROPDOWN));
+////		WebElement sortByPrice = driver.findElement(SORTBYPRICE_DROPDOWN);
+//
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT));
+//		String price = null;
+//		String updatedPrice = null;
+//		double priceValue = 0;
+//	//	driver.findElement(PRICE_DROPDOWN).click();
+//		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//span[@class='flex gap-xs items-center leading-none']")));
+//		Thread.sleep(2000);
+//		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//legend[@class='mr-auto']")));
+////		driver.findElement(PRICEASC_DROPDOWN).click();
+////		js.executeScript("window.scrollBy(600,0)");
+//		driver.findElement(By.xpath("//label[@for='Filters-Sort-price-asc']")).click();
+//
+//		//Select drpCountry = new Select(sortByPrice);
+//		//drpCountry.selectByValue("price:ascending");
+////		Thread.sleep(5000);
+//
+////
+////		js.executeScript("window.scrollBy(0,250)");
+////		Thread.sleep(5000);
+//
+//		//js.executeScript("arguments[0].scrollIntoView();", prices);
+//
+//
+//		List<WebElement> list = driver.findElements(PLP_PRICE);
+//		ArrayList<Double> productPrice = new ArrayList<Double>();
+//		ArrayList<Double> sortedList = new ArrayList<Double>();
+//
+//		for (int i = 0; i < list.size(); i++) {
+//			price = list.get(i).getText();
+//			updatedPrice = price.replaceAll("[^0-9.]", "");
+//			priceValue = Double.valueOf(updatedPrice);
+//			sortedList.add(priceValue);
+//			productPrice.add(priceValue);
+//		}
+//
+//		System.out.println(productPrice);
+//		Collections.sort(sortedList);
+//		System.out.println(sortedList);
+//		if (!sortedList.equals(productPrice)) {
+//			throw new Exception("The products are not sorted in ascending order");
+//		} else {
+//			Reporter.log("The products are sorted in ascending order of price");
+//			ExtentReport.extentTest.info("The products are sorted in ascending order of price");
+//		}
+//
+////
+////		js.executeScript("window.scrollBy(0,250)");
+////		Thread.sleep(5000);
+//		//drpCountry.selectByValue("price:descending");
+//
+//		//js.executeScript("window.scrollTo(0, -document.body.scrollHeight)");
+//		//	drpCountry.selectByIndex(2);
+//		//	js.executeScript("window.scrollBy(0,450)");
+//		//	drpCountry.selectByValue("price:descending");
+////		Thread.sleep(5000);
+//
+//		driver.findElement(By.xpath("//label[@for='Filters-Sort-price-desc']")).click();
+//
+//		ArrayList<Double> productPrice1 = new ArrayList<Double>();
+//		ArrayList<Double> sortedList1 = new ArrayList<Double>();
+//		List<WebElement> list1 = driver.findElements(PLP_PRICE);
+//		for (int i = 0; i < list1.size(); i++) {
+//			price = list1.get(i).getText();
+//			updatedPrice = price.replaceAll("[^0-9.]", "");
+//			priceValue = Double.parseDouble(updatedPrice);
+//			sortedList1.add(priceValue);
+//			productPrice1.add(priceValue);
+//		}
+//		System.out.println(productPrice1);
+//		Collections.sort(sortedList1);
+//		Collections.reverse(sortedList1);
+//		System.out.println(sortedList1);
+//		if (!sortedList1.equals(productPrice1)) {
+//			throw new Exception("The products are not sorted successfully");
+//		} else {
+//			Reporter.log("The products are sorted successfully");
+//		}
+//
+//	}
 
+	public String methodToSortByPrice() throws Exception {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-
 		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		// Scroll down to bring elements into view
 		js.executeScript("window.scrollBy(0,250)");
 
-//		wait.until(ExpectedConditions.visibilityOfElementLocated(SORTBYPRICE_DROPDOWN));
-//		WebElement sortByPrice = driver.findElement(SORTBYPRICE_DROPDOWN);
-
+		// Wait until the first product is visible before proceeding
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT));
-		String price = null;
-		String updatedPrice = null;
-		double priceValue = 0;
-	//	driver.findElement(PRICE_DROPDOWN).click();
+
+		// Click on sort dropdown (simulate opening sort options)
 		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//span[@class='flex gap-xs items-center leading-none']")));
 		Thread.sleep(2000);
 		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//legend[@class='mr-auto']")));
-//		driver.findElement(PRICEASC_DROPDOWN).click();
-//		js.executeScript("window.scrollBy(600,0)");
+
+		// Click on ascending sort option
 		driver.findElement(By.xpath("//label[@for='Filters-Sort-price-asc']")).click();
 
-		//Select drpCountry = new Select(sortByPrice);
-		//drpCountry.selectByValue("price:ascending");
-//		Thread.sleep(5000);
+		Thread.sleep(5000);
+		// Wait for the sorted prices to load and capture their texts
+		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(PLP_PRICE));
+		List<WebElement> priceElementsAsc = driver.findElements(PLP_PRICE);
+		int limit = Math.min(4, priceElementsAsc.size());
+		ArrayList<Double> productPricesAsc = new ArrayList<>();
+		ArrayList<Double> sortedPricesAsc = new ArrayList<>();
 
-//
-//		js.executeScript("window.scrollBy(0,250)");
-//		Thread.sleep(5000);
-
-		//js.executeScript("arguments[0].scrollIntoView();", prices);
-
-
-		List<WebElement> list = driver.findElements(PLP_PRICE);
-		ArrayList<Double> productPrice = new ArrayList<Double>();
-		ArrayList<Double> sortedList = new ArrayList<Double>();
-
-		for (int i = 0; i < list.size(); i++) {
-			price = list.get(i).getText();
-			updatedPrice = price.replaceAll("[^0-9.]", "");
-			priceValue = Double.valueOf(updatedPrice);
-			sortedList.add(priceValue);
-			productPrice.add(priceValue);
+		// Immediately capture the text of the first 'limit' elements
+		for (int i = 0; i < limit; i++) {
+			String priceText = priceElementsAsc.get(i).getText();
+			String updatedPrice = priceText.replaceAll("[^0-9.]", "");
+			double priceValue = Double.valueOf(updatedPrice);
+			productPricesAsc.add(priceValue);
+			sortedPricesAsc.add(priceValue);
 		}
 
-		System.out.println(productPrice);
-		Collections.sort(sortedList);
-		System.out.println(sortedList);
-		if (!sortedList.equals(productPrice)) {
+		System.out.println("Original prices (asc): " + productPricesAsc);
+		Collections.sort(sortedPricesAsc);
+		System.out.println("Sorted prices (asc): " + sortedPricesAsc);
+
+		if (!sortedPricesAsc.equals(productPricesAsc)) {
 			throw new Exception("The products are not sorted in ascending order");
 		} else {
 			Reporter.log("The products are sorted in ascending order of price");
 			ExtentReport.extentTest.info("The products are sorted in ascending order of price");
 		}
 
-//
-//		js.executeScript("window.scrollBy(0,250)");
-//		Thread.sleep(5000);
-		//drpCountry.selectByValue("price:descending");
-
-		//js.executeScript("window.scrollTo(0, -document.body.scrollHeight)");
-		//	drpCountry.selectByIndex(2);
-		//	js.executeScript("window.scrollBy(0,450)");
-		//	drpCountry.selectByValue("price:descending");
-//		Thread.sleep(5000);
-
+		// Now sort descending
 		driver.findElement(By.xpath("//label[@for='Filters-Sort-price-desc']")).click();
 
-		ArrayList<Double> productPrice1 = new ArrayList<Double>();
-		ArrayList<Double> sortedList1 = new ArrayList<Double>();
-		List<WebElement> list1 = driver.findElements(PLP_PRICE);
-		for (int i = 0; i < list1.size(); i++) {
-			price = list1.get(i).getText();
-			updatedPrice = price.replaceAll("[^0-9.]", "");
-			priceValue = Double.parseDouble(updatedPrice);
-			sortedList1.add(priceValue);
-			productPrice1.add(priceValue);
-		}
-		System.out.println(productPrice1);
-		Collections.sort(sortedList1);
-		Collections.reverse(sortedList1);
-		System.out.println(sortedList1);
-		if (!sortedList1.equals(productPrice1)) {
-			throw new Exception("The products are not sorted successfully");
-		} else {
-			Reporter.log("The products are sorted successfully");
+		Thread.sleep(5000);
+		// Wait for descending sorted prices to load and capture their texts
+		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(PLP_PRICE));
+		List<WebElement> priceElementsDesc = driver.findElements(PLP_PRICE);
+		int limitDesc = Math.min(4, priceElementsDesc.size());
+		ArrayList<Double> productPricesDesc = new ArrayList<>();
+		ArrayList<Double> sortedPricesDesc = new ArrayList<>();
+
+		for (int i = 0; i < limitDesc; i++) {
+			String priceText = priceElementsDesc.get(i).getText();
+			String updatedPrice = priceText.replaceAll("[^0-9.]", "");
+			double priceValue = Double.valueOf(updatedPrice);
+			productPricesDesc.add(priceValue);
+			sortedPricesDesc.add(priceValue);
 		}
 
+		System.out.println("Original prices (desc): " + productPricesDesc);
+		Collections.sort(sortedPricesDesc);
+		Collections.reverse(sortedPricesDesc);
+		System.out.println("Sorted prices (desc): " + sortedPricesDesc);
+
+		if (!sortedPricesDesc.equals(productPricesDesc)) {
+			throw new Exception("The products are not sorted successfully in descending order");
+		} else {
+			Reporter.log("The products are sorted successfully in descending order");
+			ExtentReport.extentTest.info("The products are sorted successfully in descending order");
+		}
+
+		return "Sorting completed successfully";
 	}
 
 	@SuppressWarnings("static-access")
@@ -576,7 +657,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		jse.executeScript("window.scrollBy(0,250)");
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
-		softAssert.assertTrue(driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT).isDisplayed(),"Prosuct Headline text is not displayed");
+		softAssert.assertTrue(driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT).isDisplayed(),"Product Headline text is not displayed");
 		// get product title and click on product heading text if present
 
 //		text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
