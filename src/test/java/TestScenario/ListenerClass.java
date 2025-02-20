@@ -158,7 +158,6 @@ public class ListenerClass extends ExtentReport implements ITestListener, IExecu
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-
 	}
 
 	@Override

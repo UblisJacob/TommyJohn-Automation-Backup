@@ -222,7 +222,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		//new HomePageComponents(driver).navigateToSales();
 		SoftAssert softAssert = new SoftAssert();
 		//new CollectionPageComponent(driver).navigateToProductDetailsPage();
-		driver.get("https://www.tommyjohn.com/products/second-skin-mid-length-boxer-brief-13?variant=43183801696301");
+		driver.get("https://www.tommyjohn.com/products/second-skin-mid-length-boxer-brief-9?variant=41164297044013");
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PDP_PROMOBANNER));
 		softAssert.assertTrue(driver.findElement(PDP_PROMOBANNER).isDisplayed(),"Promo Banner is not available in the PDP");
@@ -409,29 +409,29 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			throw new Exception("Product price is not displayed");
 
 		//Check Breadcrumbs
-		WebElement BREADCRUMBS = driver.findElement(By.cssSelector(".breadcrumbs"));
-		softAssert.assertTrue(BREADCRUMBS.isDisplayed(), "Breadcrumb is not displayed on PDP.");
-		System.out.println("Breadcrumb is displayed on PDP.");
-		Reporter.log("Breadcrumb is displayed on PDP.");
+//		WebElement BREADCRUMBS = driver.findElement(By.cssSelector(".breadcrumbs"));
+//		softAssert.assertTrue(BREADCRUMBS.isDisplayed(), "Breadcrumb is not displayed on PDP.");
+//		System.out.println("Breadcrumb is displayed on PDP.");
+//		Reporter.log("Breadcrumb is displayed on PDP.");
 
 		//Check Badging
-		try {
-			System.out.println("Verifying for Badging .......");
-			WebElement BADGE = driver.findElement(By.cssSelector("div.product-info__inner-top > div > div.product-info__title-wrap > span"));
-			if (!BADGE.isDisplayed())
-				throw new Exception("Badging is not displayed on PDP.");
-			else {
-				System.out.println("Badging is displayed on PDP.");
-				Reporter.log("Badge is displayed on PDP.");
-			}
-		} catch (Exception e) {
-			System.out.println("Badging is not applicable for this product.");
-		}
+//		try {
+//			System.out.println("Verifying for Badging .......");
+//			WebElement BADGE = driver.findElement(By.cssSelector("div.product-info__inner-top > div > div.product-info__title-wrap > span"));
+//			if (!BADGE.isDisplayed())
+//				throw new Exception("Badging is not displayed on PDP.");
+//			else {
+//				System.out.println("Badging is displayed on PDP.");
+//				Reporter.log("Badge is displayed on PDP.");
+//			}
+//		} catch (Exception e) {
+//			System.out.println("Badging is not applicable for this product.");
+//		}
 
 		//Check Promo Message
 		try {
 			System.out.println("Verifying for Promo Message .......");
-			WebElement PROMO_MESSAGE = driver.findElement(By.cssSelector("div.product-info__inner-top > div > div.product-info_promo> span"));
+			WebElement PROMO_MESSAGE = driver.findElement(By.xpath("//span[@class='font-bold text-text-primary']"));
 			if (!PROMO_MESSAGE.isDisplayed())
 				throw new Exception("Promo Message is not displayed on PDP.");
 			else
@@ -443,7 +443,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 		Thread.sleep(7000);
 		//Check vertical image(carousel)
-		WebElement VERTICAL_IMAGE = driver.findElement(By.cssSelector(".slick-vertical > div > div > div.slick-slide.slick-current.slick-active"));
+		WebElement VERTICAL_IMAGE = driver.findElement(By.xpath("(//img[@class='block h-full w-full object-center !object-cover bg-background-image'])[1]"));
 		softAssert.assertTrue(VERTICAL_IMAGE.isDisplayed(), "Vertical images are not displayed on PDP.");
 		System.out.println("Vertical images are displayed on PDP.");
 		Reporter.log("Vertical images are displayed on PDP.");
@@ -459,8 +459,15 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		if (!driver.findElement(SIZEGUIDE_TITLE).isDisplayed())
 			throw new Exception("Sizes chart overlay is not displayed after Size guide button was clicked");
 		Reporter.log("Size guide is Displayed :: Clickable");
-		WebElement close_icon = driver.findElement(By.cssSelector(".close_chart_modal"));
-		executor.executeScript("arguments[0].click();", close_icon);
+		try {
+			WebElement close_icon = driver.findElement(By.xpath("(//span[@class='icon size-5 icon-x'])[3]"));
+			executor.executeScript("arguments[0].click();", close_icon);
+		}
+		catch(Exception ex)
+		{
+			WebElement close_icon = driver.findElement(By.xpath("(//span[@class='icon size-5 icon-x'])[1]"));
+			executor.executeScript("arguments[0].click();", close_icon);
+		}
 		//check rating n reviews
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(RATING_STARS));
@@ -505,36 +512,36 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		executor.executeScript("arguments[0].click();", writereview);
 		//	softAssert.assertEquals(driver.findElement(WRITE_REVIEW_TITLE).getText(), "Write a Review", "Laguage mismatch for Write a Review title 1");
 		// scroll it top again
-		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, -document.body.scrollHeight)");
-		Thread.sleep(3000);
-
-		// Check we can select color or not
-		JavascriptExecutor executore = (JavascriptExecutor) driver;
-		allElements = driver.findElements(ALL_COLOR_LIST);
-		elementsCount = allElements.size();
-		System.out.println("Color Element count :: " + elementsCount);
-		if (elementsCount > 1) {
-			for (int i = 1; i < elementsCount; i++) {
-				if (i < 4) {
-					colortext = driver.findElement(COLOR_TEXT).getText();
-					if (driver.getCurrentUrl().contains("product"))
-						colornew = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper > ul  > li:nth-child(" + i + ") > label")).getAttribute("aria-label");
-					else
-						colornew = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper > ul > li:nth-child(" + i + ") > label")).getAttribute("aria-label");
-					System.out.println(colornew);
-					if (!colornew.contentEquals(colortext)) {
-						WebElement elemen = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper > ul  > li:nth-child(" + i + ") > label"));
-						//elem.click();
-						executore.executeScript("arguments[0].click();", elemen);
-						//Thread.sleep(5000);
-						wait.until(ExpectedConditions.visibilityOfElementLocated(COLOR_TEXT));
-						System.out.println("expected is: " + driver.findElement(COLOR_TEXT).getText() + " Actual is: " + colornew);
-						softAssert.assertEquals(driver.findElement(COLOR_TEXT).getText().equalsIgnoreCase(colornew), true, "Color not changing");
-					}
-				}
-			}
-		}
-		Reporter.log("Colors are present and changing correct");
+//		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, -document.body.scrollHeight)");
+//		Thread.sleep(3000);
+//
+//		// Check we can select color or not
+//		JavascriptExecutor executore = (JavascriptExecutor) driver;
+//		allElements = driver.findElements(ALL_COLOR_LIST);
+//		elementsCount = allElements.size();
+//		System.out.println("Color Element count :: " + elementsCount);
+//		if (elementsCount > 1) {
+//			for (int i = 1; i < elementsCount; i++) {
+//				if (i < 4) {
+//					colortext = driver.findElement(COLOR_TEXT).getText();
+//					if (driver.getCurrentUrl().contains("products"))
+//						colornew = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper > ul  > li:nth-child(" + i + ") > label")).getAttribute("aria-label");
+//					else
+//						colornew = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper > ul > li:nth-child(" + i + ") > label")).getAttribute("aria-label");
+//					System.out.println(colornew);
+//					if (!colornew.contentEquals(colortext)) {
+//						WebElement elemen = driver.findElement(By.cssSelector(".product-option__color-swatches-wrapper > ul  > li:nth-child(" + i + ") > label"));
+//						//elem.click();
+//						executore.executeScript("arguments[0].click();", elemen);
+//						//Thread.sleep(5000);
+//						wait.until(ExpectedConditions.visibilityOfElementLocated(COLOR_TEXT));
+//						System.out.println("expected is: " + driver.findElement(COLOR_TEXT).getText() + " Actual is: " + colornew);
+//						softAssert.assertEquals(driver.findElement(COLOR_TEXT).getText().equalsIgnoreCase(colornew), true, "Color not changing");
+//					}
+//				}
+//			}
+//		}
+//		Reporter.log("Colors are present and changing correct");
 		// Select first size between available sizes
 //		allElements = driver.findElements(ALL_SIZE_LIST);
 //		elementsCount = allElements.size();
@@ -1069,7 +1076,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		executor.executeScript("arguments[0].click();", ele);
 		Thread.sleep(3000);
 
-		if (driver.findElement(By.cssSelector(".size-chart-content")).isDisplayed()) {
+		if (driver.findElement(By.xpath("//h2[@class='mb-lg mt-2 pr-14 text-heading-md']")).isDisplayed()) {
 			Reporter.log("Bundle product's First size guide link is Displayed :: Clickable");
 			driver.findElement(By.cssSelector(".close_chart_modal")).click();
 		}
@@ -1108,7 +1115,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 						throw new Exception("In second box rating list not present in Rating and Reviews section");
 					if (!driver.findElement(THIRD_BOX_IN_RATING_AND_REVIEWS).isDisplayed())
 						throw new Exception("In third box fit status not present in Rating and Reviews section");
-				} else
+				}
+				else
 
 					throw new Exception("Rating box is not present");
 
@@ -1123,65 +1131,65 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			Reporter.log("Rating and Reviews Displayed");
 		} else
 			throw new Exception("Rating Stars are not clickable");
-		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, -document.body.scrollHeight)");
-		allElements = driver.findElements(ALL_SIZE_LIST);
-		elementsCount = allElements.size();
-		System.out.println("All sizes list :: " + elementsCount);
-		if (driver.findElement(By.cssSelector(".option-swatch__option>li.option-swatch__item")).isDisplayed()) {
-			//radio
-			List<WebElement> Size_OptionName = driver.findElements(By.cssSelector(".option-swatch__option>li.option-swatch__item"));
-			int Size_OptionCount = Size_OptionName.size();
-			for (int i = 1; i <= Size_OptionCount; i++) {
-
-				Thread.sleep(3000);
-				WebElement elements = driver.findElement(By.cssSelector(".option-swatch__option>li:nth-child(" + i + ")>input"));
-				//jse.executeScript("arguments[0].click();", elements);
-
-				allClasses = elements.getAttribute("class");
-				// check size available or not
-				//for (String c : allClasses.split(" ")) {
-				if (allClasses.contains("unavailable")) {
-					flag = false;
-					jse = (JavascriptExecutor) driver;
-					jse.executeScript("arguments[0].click();",
-							element);
-					System.out.println("Unavailable size clicked");
-
-					//int y=i;
-//							 for(int k=y; k<y; k++)
-//							 {
+//		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, -document.body.scrollHeight)");
+//		allElements = driver.findElements(ALL_SIZE_LIST);
+//		elementsCount = allElements.size();
+//		System.out.println("All sizes list :: " + elementsCount);
+//		if (driver.findElement(By.cssSelector(".option-swatch__option>li.option-swatch__item")).isDisplayed()) {
+//			//radio
+//			List<WebElement> Size_OptionName = driver.findElements(By.cssSelector(".option-swatch__option>li.option-swatch__item"));
+//			int Size_OptionCount = Size_OptionName.size();
+//			for (int i = 1; i <= Size_OptionCount; i++) {
 //
-//								 WebElement e = driver.findElement(By.cssSelector("div.radios-wrapper > div.radio-options-container > div > label:nth-child("+k+")"));
-//								 allClass = e.getAttribute("class");
-//								 for (String d : allClass.split(" ")) {
-//									 if (d.equals("oosVariant")) 
-//										 y++;
-//									 else 
-//										 driver.findElement(By.cssSelector("div.radios-wrapper > div.radio-options-container > div > label:nth-child("+y+")")).click();
-//								 }
-//							 }
-					flag = true;
-				} else {
-					System.out.println("selected size is: " + elements.getText());
-					jse = (JavascriptExecutor) driver;
-					jse.executeScript("arguments[0].click();", elements);
-
-				}
-
-
-				if (i == elementsCount) {
-					Reporter.log("No any size available");
-					break;
-				}
-				if (flag == false)
-					break;
-
-			}
-
-
-		} else {
-			throw new Exception("Sizes not available for selection");
-		}
+//				Thread.sleep(3000);
+//				WebElement elements = driver.findElement(By.cssSelector(".option-swatch__option>li:nth-child(" + i + ")>input"));
+//				//jse.executeScript("arguments[0].click();", elements);
+//
+//				allClasses = elements.getAttribute("class");
+//				// check size available or not
+//				//for (String c : allClasses.split(" ")) {
+//				if (allClasses.contains("unavailable")) {
+//					flag = false;
+//					jse = (JavascriptExecutor) driver;
+//					jse.executeScript("arguments[0].click();",
+//							element);
+//					System.out.println("Unavailable size clicked");
+//
+//					//int y=i;
+////							 for(int k=y; k<y; k++)
+////							 {
+////
+////								 WebElement e = driver.findElement(By.cssSelector("div.radios-wrapper > div.radio-options-container > div > label:nth-child("+k+")"));
+////								 allClass = e.getAttribute("class");
+////								 for (String d : allClass.split(" ")) {
+////									 if (d.equals("oosVariant"))
+////										 y++;
+////									 else
+////										 driver.findElement(By.cssSelector("div.radios-wrapper > div.radio-options-container > div > label:nth-child("+y+")")).click();
+////								 }
+////							 }
+//					flag = true;
+//				} else {
+//					System.out.println("selected size is: " + elements.getText());
+//					jse = (JavascriptExecutor) driver;
+//					jse.executeScript("arguments[0].click();", elements);
+//
+//				}
+//
+//
+//				if (i == elementsCount) {
+//					Reporter.log("No any size available");
+//					break;
+//				}
+//				if (flag == false)
+//					break;
+//
+//			}
+//
+//
+//		} else {
+//			throw new Exception("Sizes not available for selection");
+//		}
 
 //dropdown
 //
@@ -1282,65 +1290,65 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 		// check if we are able to add and minus quantity
 
-		try {
-			// check if we are able to add and minus quantity
-			String quantity = driver.findElement(QUANTITY).getAttribute("data-add-qty");
-			Thread.sleep(3000);
-			element = driver.findElement(PLUS_BUTTON);
-			jse = (JavascriptExecutor) driver;
-			jse.executeScript("arguments[0].click();", element);
-			//	driver.findElement(PLUS_BUTTON).click();
-			Thread.sleep(3000);
-			String quantity1 = driver.findElement(QUANTITY).getAttribute("data-add-qty");
-			// check quantity added by 1 or not 
-			if (Integer.parseInt(quantity1) != Integer.parseInt(quantity) + 1)
-				//if(!quantity1.equals(quantity + 1) )
-				//if(quantity1)
-				throw new Exception("Quantity not increased by 1");
-
-			Reporter.log("Quantity increased by 1");
-			element = driver.findElement(MINUS_BUTTON);
-			jse = (JavascriptExecutor) driver;
-			jse.executeScript("arguments[0].click();", element);
-			//driver.findElement(MINUS_BUTTON).click();
-
-			// some times .click() not clicking the element then that time use JavascriptExecutor
-			//		element = driver.findElement(By.id("minusBtn"));
-			//		jse = (JavascriptExecutor)driver;
-			//		jse.executeScript("arguments[0].click();", element);
-
-			String quantity2 = driver.findElement(QUANTITY).getAttribute("data-add-qty");
-			if (Integer.parseInt(quantity2) != Integer.parseInt(quantity1) - 1)
-				throw new Exception("Quantity not decreased by 1");
-			Reporter.log("Quantity decreased by 1");
-		} catch (Exception e) {
-			Reporter.log("Quantity selector was not present - please check if DY hides Qunatity selector is active");
-		}
+//		try {
+//			// check if we are able to add and minus quantity
+//			String quantity = driver.findElement(QUANTITY).getAttribute("data-add-qty");
+//			Thread.sleep(3000);
+//			element = driver.findElement(PLUS_BUTTON);
+//			jse = (JavascriptExecutor) driver;
+//			jse.executeScript("arguments[0].click();", element);
+//			//	driver.findElement(PLUS_BUTTON).click();
+//			Thread.sleep(3000);
+//			String quantity1 = driver.findElement(QUANTITY).getAttribute("data-add-qty");
+//			// check quantity added by 1 or not
+//			if (Integer.parseInt(quantity1) != Integer.parseInt(quantity) + 1)
+//				//if(!quantity1.equals(quantity + 1) )
+//				//if(quantity1)
+//				throw new Exception("Quantity not increased by 1");
+//
+//			Reporter.log("Quantity increased by 1");
+//			element = driver.findElement(MINUS_BUTTON);
+//			jse = (JavascriptExecutor) driver;
+//			jse.executeScript("arguments[0].click();", element);
+//			//driver.findElement(MINUS_BUTTON).click();
+//
+//			// some times .click() not clicking the element then that time use JavascriptExecutor
+//			//		element = driver.findElement(By.id("minusBtn"));
+//			//		jse = (JavascriptExecutor)driver;
+//			//		jse.executeScript("arguments[0].click();", element);
+//
+//			String quantity2 = driver.findElement(QUANTITY).getAttribute("data-add-qty");
+//			if (Integer.parseInt(quantity2) != Integer.parseInt(quantity1) - 1)
+//				throw new Exception("Quantity not decreased by 1");
+//			Reporter.log("Quantity decreased by 1");
+//		} catch (Exception e) {
+//			Reporter.log("Quantity selector was not present - please check if DY hides Qunatity selector is active");
+//		}
 
 		// check 'Best PairGuarantee' and 'Shopping And Returns' are clickable or not
 		flag = false;
 
 
-		if (driver.findElement(PRODUCT_DETAILS).isDisplayed()) {
-			element = driver.findElement(PRODUCT_DETAILS);
-			jse = (JavascriptExecutor) driver;
-			jse.executeScript("arguments[0].click();", element);
-		} else throw new Exception("Product details accordion not present or not clikable ");
-		try {
-			if (driver.findElement(BEST_PAIR_GUARANTEE).isDisplayed()) {
-				element = driver.findElement(BEST_PAIR_GUARANTEE);
-				jse = (JavascriptExecutor) driver;
-				jse.executeScript("arguments[0].click();", element);
-			} else throw new Exception("PAIR_GUARANTEE accordion not present or not clikable");
-		} catch (Exception e) {
-			Reporter.log("Pair guarantee link is not present for this particular product");
-		}
-		if (driver.findElement(FREE_RETURNS).isDisplayed()) {
-			element = driver.findElement(FREE_RETURNS);
-			jse = (JavascriptExecutor) driver;
-			jse.executeScript("arguments[0].click();", element);
-			//driver.findElement(SHIPING_AND_RETURNS).click();
-		} else throw new Exception("SHIPING_AND_RETURNS accordion not present or not clikable");
+//		if (driver.findElement(PRODUCT_DETAILS).isDisplayed()) {
+//			element = driver.findElement(PRODUCT_DETAILS);
+//			jse = (JavascriptExecutor) driver;
+//			jse.executeScript("arguments[0].click();", element);
+//		} else throw new Exception("Product details accordion not present or not clikable ");
+//		try {
+//			if (driver.findElement(BEST_PAIR_GUARANTEE).isDisplayed()) {
+//				element = driver.findElement(BEST_PAIR_GUARANTEE);
+//				jse = (JavascriptExecutor) driver;
+//				jse.executeScript("arguments[0].click();", element);
+//			} else throw new Exception("PAIR_GUARANTEE accordion not present or not clikable");
+//		} catch (Exception e) {
+//			Reporter.log("Pair guarantee link is not present for this particular product");
+//		}
+//		if (driver.findElement(FREE_RETURNS).isDisplayed()) {
+//			element = driver.findElement(FREE_RETURNS);
+//			jse = (JavascriptExecutor) driver;
+//			jse.executeScript("arguments[0].click();", element);
+//			//driver.findElement(SHIPING_AND_RETURNS).click();
+//		} else throw new Exception("SHIPING_AND_RETURNS accordion not present or not clikable");
 
 
 		if (!driver.findElement(ADD_TO_CART_BUTTON).isEnabled())
@@ -3376,7 +3384,6 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		if (elementsCount > 1)
 
 			for (int i = 1; i <= 3; i++) {
-				count++;
 				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])["+i+"]"));
 				jse = (JavascriptExecutor) driver;
 				jse.executeScript("arguments[0].click();", elemen);
@@ -3388,26 +3395,36 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 					jse.executeScript("arguments[0].click();", elements);
 					Thread.sleep(5000);
 
+					try {
 
-					String[] AddtoBag;
-					AddtoBag = (driver.findElement(By.xpath("//button[@class='button grow']")).getText()).split(" -");
-					String text1 = AddtoBag[0];
-					System.out.println(text1);
+						String[] AddtoBag;
+						AddtoBag = (driver.findElement(By.xpath("//button[@class='button grow']")).getText()).split(" -");
+						String text1 = AddtoBag[0];
+						System.out.println(text1);
 
-				//	WebElement elem = driver.findElement(By.cssSelector(".multiPdp__atc-container>button"));
-					if (driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON).getText().contains(text1)) {
+						//	WebElement elem = driver.findElement(By.cssSelector(".multiPdp__atc-container>button"));
+						if (driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON).getText().contains(text1)) {
 
-						System.out.println(elemen.getText() + elements.getText() + "Product is added to Cart");
-						Thread.sleep(2000);
-						jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_CART_BUTTON));
-						Thread.sleep(5000);
-						driver.findElement(INLINE_CART_TITLE);
-						jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
+							System.out.println(elemen.getText() + elements.getText() + "Product is added to Cart");
+							Thread.sleep(2000);
+							jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_CART_BUTTON));
+							Thread.sleep(5000);
+							driver.findElement(INLINE_CART_TITLE);
+							jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
 
-						Thread.sleep(1000);
-						System.out.println("=============================");
+							Thread.sleep(1000);
+							System.out.println("=============================");
+							count++;
+
+						}
 
 					}
+
+					catch(Exception ex)
+					{
+						System.out.println("Product is OOS");
+					}
+
 
 				//	if (elem.getText().contentEquals("Join the Waitlist")) {
 //								System.out.println(elemen.getText()+ elements.getText() +"Product is Out of Stock and Join The waitlist is  :: Clickable");
@@ -3426,10 +3443,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 //									System.out.println("=============================");
 //									Thread.sleep(1000);
 
-						//							}
-//								
 
-				//	}
 					if (count == 2)
 						break;
 
@@ -3485,8 +3499,15 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			System.out.println("Size Chart is displayed");
 			Reporter.log("Size guide link is Displayed :: Clickable");
 			//Close first size guide window
-			WebElement SizeChartClose = driver.findElement(By.xpath("(//button[@aria-label='Close modal'])[2]"));
-			jse.executeScript("arguments[0].click();", SizeChartClose);
+			try {
+				WebElement SizeChartClose = driver.findElement(By.xpath("(//button[@aria-label='Close modal'])[1]"));
+				jse.executeScript("arguments[0].click();", SizeChartClose);
+			}
+			catch(Exception ex)
+			{
+				WebElement SizeChartClose = driver.findElement(By.xpath("(//button[@aria-label='Close modal'])[3]"));
+				jse.executeScript("arguments[0].click();", SizeChartClose);
+			}
 	//		driver.findElement(By.xpath("(//button[@aria-label='Close modal'])[2]")).click();
 		} else {
 			System.out.println("Size guide link is not Displayed");

@@ -78,7 +78,7 @@ public class ValidateCreateAccount_Login {
 
 //	@Test(dependsOnMethods = { "TC_VerifyCreateAccount" })
 //	@Test(priority = 2)
-//	@Test
+	@Test
 	public void VerifyRecoverPassword() throws Exception
 	{
 		ChromeOptions chromeOptions = new ChromeOptions();

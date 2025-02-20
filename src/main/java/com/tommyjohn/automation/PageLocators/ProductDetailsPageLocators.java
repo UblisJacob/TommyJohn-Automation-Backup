@@ -89,7 +89,7 @@ public class ProductDetailsPageLocators {
 	//public static By ALL_SIZE_LIST = By.cssSelector(".product-option__variants.product-option__variants-size > ul > li");
 
 
-	public static By ALL_COLOR_LIST = By.xpath("//div[@class='product-option__color-swatches-wrapper']//li");
+	public static By ALL_COLOR_LIST = By.xpath("//div[@class='max-md:w-20 max-md:mr-2xs relative shrink-0 grow-0 text-center max-md:flex']");
 	public static By PRODUCT_DETAILS = By.xpath("//button[@aria-controls='product-details']");
 	public static By SIZEGUIDE = By.xpath("//button[@class='button-link text-body-sm text-text-tertiary mr-6 md:mr-0']");
 	public static By SIZEGUIDE_FITRANGE = By.xpath("//ul[@data-tj-qa='size-guide-fit-range-graph']//li");
@@ -97,7 +97,7 @@ public class ProductDetailsPageLocators {
 	public static By SIZEGUIDE_FITRANGE_TEXT= By.cssSelector(".instructions-text");
 	public static By SIZEGUIDE_CHART_TABLE= By.xpath("//table[@class='not-prose w-full whitespace-nowrap text-center align-baseline text-body-sm leading-6']");
 	
-	public static By SIZEGUIDE_TITLE= By.cssSelector("[data-tj-qa='size-guide-title']");
+	public static By SIZEGUIDE_TITLE= By.xpath("//h2[@class='mb-lg mt-2 pr-14 text-heading-md']");
 	public static By SIZE_GUIDE_BUTTON = By.cssSelector("[data-tj-qa='size-guide-link'],button.product-info__header-btn.size-guide");
 	public static By ADD_TO_CART_BUTTON = By.xpath("//button[@id='ProductForm-Add']");
 
