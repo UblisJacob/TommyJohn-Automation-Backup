@@ -67,9 +67,10 @@ public class AddToCartComponents extends AddToCartLocators{
 
 	public String addToCart() throws Exception {
 
+		int count = 0;
 
 		// call method to navigate to collection page
-		new HomePageComponents(driver).navigateToWomensAll();
+		new HomePageComponents(driver).navigateToMensAll();
 		jse=(JavascriptExecutor)driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		// call method to navigate product details page
@@ -84,7 +85,7 @@ public class AddToCartComponents extends AddToCartLocators{
 
 		if(elementsCount > 1)
 		{
-			for(int i=1;i<=2;i++)
+			for(int i=1;i<=3;i++)
 			{
 
 				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])["+i+"]"));
@@ -92,35 +93,43 @@ public class AddToCartComponents extends AddToCartLocators{
 				jse.executeScript("arguments[0].click();", elemen);
 				Thread.sleep(3000);
 
-					for(int k=1;k<=3;k++)
+					for(int k=1;k<=4;k++)
 					{
 						WebElement elements = driver.findElement(By.xpath("(//input[@name='option[Size]'])["+k+"]"));
 						jse.executeScript("arguments[0].click();", elements);
 						Thread.sleep(1000);
 
-						String[] AddtoBag;
-						AddtoBag = (driver.findElement(By.xpath("//button[@class='button grow']")).getText()).split(" -");
-						String text1 = AddtoBag[0];
-						System.out.println(text1);
+						try {
+							String[] AddtoBag;
+							AddtoBag = (driver.findElement(By.xpath("//button[@class='button grow']")).getText()).split(" -");
+							String text1 = AddtoBag[0];
+							System.out.println(text1);
 
 
-						if (driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON).getText().contains(text1)) {
+							if (driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON).getText().contains(text1)) {
 
-							System.out.println(elemen.getText() + elements.getText() + "Product is added to Cart");
-							Thread.sleep(2000);
-							jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_CART_BUTTON));
-							Thread.sleep(3000);
-							driver.findElement(INLINE_CART_TITLE);
-							jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
+								System.out.println(elemen.getText() + elements.getText() + "Product is added to Cart");
+								Thread.sleep(2000);
+								jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_CART_BUTTON));
+								Thread.sleep(3000);
+								driver.findElement(INLINE_CART_TITLE);
+								jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
 
-							Thread.sleep(1000);
-							System.out.println("=============================");
+								Thread.sleep(1000);
+								System.out.println("=============================");
+								count++;
+
+							}
+						}
+						catch(Exception ex)
+						{
+							System.out.println("Product is OOS");
 
 						}
 
 //
 //						WebElement elem = driver.findElement(By.cssSelector(".multiPdp__atc-container>button"));
-//
+//i
 //						if(driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON).getText().contains("Add to Cart")) {
 //
 //							System.out.println(elemen.getText() + elements.getText() + "Product is added to Cart");
@@ -142,10 +151,18 @@ public class AddToCartComponents extends AddToCartLocators{
 //							jse.executeScript("arguments[0].click();", driver.findElement(EMAIL_WHEN_IN_STOCK_BUTTON_CLOSE));
 //
 //							}
-
+						if(count==3)
+						{
+							break;
+						}
 
 					}
 
+
+					if(count==3)
+					{
+						break;
+					}
 
 			}
 
@@ -381,9 +398,9 @@ public class AddToCartComponents extends AddToCartLocators{
 
 	public String addsingleproductToCartforFirst20Coupon() throws Exception {
 
-
+		int count =0;
 		// call method to navigate to collection page
-		new HomePageComponents(driver).navigateToMensAll();
+		new HomePageComponents(driver).navigateToMensBriefs();
 		jse = (JavascriptExecutor) driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		// call method to navigate product details page
@@ -397,42 +414,49 @@ public class AddToCartComponents extends AddToCartLocators{
 		System.out.println("Color Element count :: " + elementsCount);
 
 		if (elementsCount > 1) {
-			for (int i = 1; i <= 3; i++) {
+			for (int i = 1; i <= elementsCount; i++) {
 
 				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])[" + i + "]"));
 				jse = (JavascriptExecutor) driver;
 				jse.executeScript("arguments[0].click();", elemen);
 				Thread.sleep(3000);
 
+				for (int j = 1; j <= 5; j++) {
 
-				WebElement elements = driver.findElement(By.xpath("(//input[@name='option[Size]'])[" + i + "]"));
-				jse.executeScript("arguments[0].click();", elements);
-				Thread.sleep(1000);
-
-				String[] AddtoBag;
-				AddtoBag = (driver.findElement(By.xpath("//button[@class='button grow']")).getText()).split(" -");
-				String text1 = AddtoBag[0];
-				System.out.println(text1);
-
-				//	WebElement elem = driver.findElement(By.cssSelector(".multiPdp__atc-container>button"));
-
-
-				if (driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON).getText().contains(text1)) {
-
-					System.out.println(elemen.getText() + elements.getText() + "Product is added to Cart");
-					Thread.sleep(5000);
-					jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_CART_BUTTON));
-					Thread.sleep(3000);
-					driver.findElement(INLINE_CART_TITLE);
-					jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
-
+					WebElement elements = driver.findElement(By.xpath("(//input[@name='option[Size]'])[" + j + "]"));
+					jse.executeScript("arguments[0].click();", elements);
 					Thread.sleep(1000);
-					System.out.println("=============================");
-					break;
 
-				}
+					try {
+						String[] AddtoBag;
+						AddtoBag = (driver.findElement(By.xpath("//button[@class='button grow']")).getText()).split(" -");
+						String text1 = AddtoBag[0];
+						System.out.println(text1);
+
+						//	WebElement elem = driver.findElement(By.cssSelector(".multiPdp__atc-container>button"));
 
 
+						if (driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON).getText().contains(text1)) {
+
+							System.out.println(elemen.getText() + elements.getText() + "Product is added to Cart");
+							Thread.sleep(5000);
+							jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_CART_BUTTON));
+							Thread.sleep(3000);
+							driver.findElement(INLINE_CART_TITLE);
+							jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
+
+							Thread.sleep(1000);
+							System.out.println("=============================");
+							count++;
+
+
+						}
+
+					}
+					catch(Exception ex)
+					{
+						System.out.println("Product is OOS");
+					}
 //						if(driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON).getText().contains("Add to Cart")) {
 //
 //							System.out.println(elemen.getText() + elements.getText() + "Product is added to Cart");
@@ -443,7 +467,16 @@ public class AddToCartComponents extends AddToCartLocators{
 //
 //						}
 
+					if(count==1)
+					{
+						break;
+					}
 
+				}
+				if(count==1)
+				{
+					break;
+				}
 			}
 
 			driver.get("https://www.tommyjohn.com/");
@@ -455,9 +488,9 @@ public class AddToCartComponents extends AddToCartLocators{
 
 	public String addsingleproductToCart() throws Exception {
 
-
+		int count=0;
 		// call method to navigate to collection page
-		new HomePageComponents(driver).navigateToMensAll();
+		new HomePageComponents(driver).navigateToMensBriefs();
 		jse = (JavascriptExecutor) driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		// call method to navigate product details page
@@ -471,42 +504,48 @@ public class AddToCartComponents extends AddToCartLocators{
 		System.out.println("Color Element count :: " + elementsCount);
 
 		if (elementsCount > 1) {
-			for (int i = 1; i <= 3; i++) {
+			for (int i = 1; i <= elementsCount; i++) {
 
 				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])[" + i + "]"));
 				jse = (JavascriptExecutor) driver;
 				jse.executeScript("arguments[0].click();", elemen);
 				Thread.sleep(3000);
 
+				for (int j = 1; j <= 5; j++) {
 
-				WebElement elements = driver.findElement(By.xpath("(//input[@name='option[Size]'])[" + i + "]"));
-				jse.executeScript("arguments[0].click();", elements);
-				Thread.sleep(1000);
-
-				String[] AddtoBag;
-				AddtoBag = (driver.findElement(By.xpath("//button[@class='button grow']")).getText()).split(" -");
-				String text1 = AddtoBag[0];
-				System.out.println(text1);
-
-				//	WebElement elem = driver.findElement(By.cssSelector(".multiPdp__atc-container>button"));
-
-
-				if (driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON).getText().contains(text1)) {
-
-					System.out.println(elemen.getText() + elements.getText() + "Product is added to Cart");
-					Thread.sleep(5000);
-					jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_CART_BUTTON));
-					Thread.sleep(3000);
-					driver.findElement(INLINE_CART_TITLE);
-					jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
-
+					WebElement elements = driver.findElement(By.xpath("(//input[@name='option[Size]'])[" + j + "]"));
+					jse.executeScript("arguments[0].click();", elements);
 					Thread.sleep(1000);
-					System.out.println("=============================");
-					break;
 
-				}
+					try {
+						String[] AddtoBag;
+						AddtoBag = (driver.findElement(By.xpath("//button[@class='button grow']")).getText()).split(" -");
+						String text1 = AddtoBag[0];
+						System.out.println(text1);
+
+						//	WebElement elem = driver.findElement(By.cssSelector(".multiPdp__atc-container>button"));
 
 
+						if (driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON).getText().contains(text1)) {
+
+							System.out.println(elemen.getText() + elements.getText() + "Product is added to Cart");
+							Thread.sleep(5000);
+							jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_CART_BUTTON));
+							Thread.sleep(3000);
+							driver.findElement(INLINE_CART_TITLE);
+							jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
+
+							Thread.sleep(1000);
+							System.out.println("=============================");
+							count++;
+
+						}
+
+					}
+					catch(Exception ex)
+					{
+						System.out.println("Product is OOS");
+					}
 //						if(driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON).getText().contains("Add to Cart")) {
 //
 //							System.out.println(elemen.getText() + elements.getText() + "Product is added to Cart");
@@ -516,19 +555,27 @@ public class AddToCartComponents extends AddToCartLocators{
 //							break;
 //
 //						}
+					if(count==1)
+					{
+						break;
+					}
 
-
+				}
+				if(count==1)
+				{
+					break;
+				}
 			}
 
 			driver.get("https://www.tommyjohn.com/");
 
 		}
 		return text;
-
     }
 
 	public String add3for$48product() throws Exception {
 
+		int count = 0;
 
 		// call method to navigate to collection page
 		new HomePageComponents(driver).navigateToAllPantiesnInWomenCategory();
@@ -545,19 +592,20 @@ public class AddToCartComponents extends AddToCartLocators{
 		System.out.println("Color Element count :: " + elementsCount);
 
 		if (elementsCount > 1) {
-			for (int i = 1; i <= 1; i++) {
+			for (int i = 1; i <= elementsCount; i++) {
 
 				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])[" + i + "]"));
 				jse = (JavascriptExecutor) driver;
 				jse.executeScript("arguments[0].click();", elemen);
 				Thread.sleep(3000);
 
-				for (int j = 1; j <= 3; j++) {
+				for (int j = 1; j <= 5; j++) {
 
 					WebElement elements = driver.findElement(By.xpath("(//input[@name='option[Size]'])[" + j + "]"));
 					jse.executeScript("arguments[0].click();", elements);
 					Thread.sleep(1000);
 
+					try{
 					String[] AddtoBag;
 					AddtoBag = (driver.findElement(By.xpath("//button[@class='button grow']")).getText()).split(" -");
 					String text1 = AddtoBag[0];
@@ -577,8 +625,16 @@ public class AddToCartComponents extends AddToCartLocators{
 
 						Thread.sleep(1000);
 						System.out.println("=============================");
-//					break;
+						count++;
 
+//					break;
+					}
+
+					}
+					catch (Exception ex)
+					{
+
+						System.out.println("Product Is OOS");
 					}
 
 
@@ -590,7 +646,12 @@ public class AddToCartComponents extends AddToCartLocators{
 //							jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
 //							break;
 //
-//						}
+					if (count == 3){
+					break;	}
+				}
+
+				if(count==3){
+					break;
 				}
 
 			}

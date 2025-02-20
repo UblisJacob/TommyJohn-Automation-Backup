@@ -489,7 +489,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		allElements = driver.findElements(LIST_OF_ITEMS_IN_FLYCART);
 
 		// check all fields for all items in flycart
-		for(int i=1; i<=6;i++) {
+		for(int i=1; i<=3;i++) {
 			// check for product image
 			softAssert.assertTrue(driver.findElement(By.xpath("(//td[@class='row-span-3 p-0 sm:row-span-2'])["+i+"]")).isDisplayed(), "First item image is not displayed");
 

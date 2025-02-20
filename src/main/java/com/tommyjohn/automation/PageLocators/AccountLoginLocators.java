@@ -57,7 +57,7 @@ public class AccountLoginLocators {
 	public static By RECOVER_PASSWORD_CONTAINER = By.cssSelector(".recover-password-container");
 	public static By BACK_TO_lOGIN_LINK = By.cssSelector(".recover-password-container>a, a[data-tj-qa='back-to-login']");
 	public static By FORGOT_YOUR_PASSWORD_LINK = By.xpath("//a[@id='RecoverPassword']");
-	public static By RECOVER_YOUR_PASSWORD_HEADING = By.xpath("//h2[@id='RecoverPasswordModalTitle']");
+	public static By RECOVER_YOUR_PASSWORD_HEADING = By.xpath("//h2[@class='mt-0']");
 	public static By PLEAZE_ENTER_YOUR_EMAIL_HEADING = By.cssSelector("#recover-password-form-validate > div > p, p[data-tj-qa='reset-password-label']");
 	public static By EMAIL_ADDRESS_LABEL = By.xpath("//label[@for='RecoverCustomerPassword-RecoverEmail']");
 	public static By INPUT_BOX_FOR_EMAIL = By.xpath("//input[@id='RecoverCustomerPassword-RecoverEmail']");

@@ -95,7 +95,7 @@ public class HomePageLocators{
 
 	public static By NEW_FEATURED = By.xpath("(//a[contains(text(),'New + Featured')])[1]");
 	
-	public static By HEADER_RIGHT_SIDE_ELEMENTS_LIST = By.xpath("//div[@class='flex gap-x-8']//span[@aria-hidden]");
+	public static By HEADER_RIGHT_SIDE_ELEMENTS_LIST = By.xpath("//div[@class='flex gap-x-8']//span");
 	public static By HEADER_RIGHT_SIDE_SPECIFIC_ELEMENT = By.xpath("(//div[@class='flex gap-x-8']//span[@aria-hidden='true'])[1]");
 
 

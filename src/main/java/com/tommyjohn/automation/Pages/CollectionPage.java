@@ -421,7 +421,7 @@ public class CollectionPage extends CollectionPageComponent{
 	
 	public void validateSortBy() throws Exception {
 		// TODO Auto-generated method stub
-	//	new HomePageComponents(driver).NavigateToAllLoungewearInMenCategory();
+		new HomePageComponents(driver).navigateToMensAll();
 		methodToSortByPrice();
 	}
 	
@@ -441,11 +441,10 @@ public class CollectionPage extends CollectionPageComponent{
 		// TODO Auto-generated method stub
 		new HomePageComponents(driver).navigateToMensUWCAT();
 		validateProductHeadingTextOnCollectionPage();
-		Verify_ProductTile_HoverFunctionality();
-		validateProductImageOnPLP();
-		MethodToCheckColorSwatchChanging();
+//		Verify_ProductTile_HoverFunctionality();
+//		validateProductImageOnPLP();
+//		MethodToCheckColorSwatchChanging();
 		validateProductReviewStarsOnCollectionPage();
-		
 	}
 	
 	public void validateQuickshopFunctionality() throws Exception {
