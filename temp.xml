@@ -11,9 +11,9 @@
     <test name="Tests">
         <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="TestModules.ValidateCreateAccount_Login">
+            <class name="TestModules.ValidateInfluencerPage">
                 <methods>
-                    <include name="VerifyRecoverPassword"/>
+                    <include name="ValidateInteractWithProductTile"/>
                 </methods>
             </class>
         </classes>

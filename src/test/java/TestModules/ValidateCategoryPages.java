@@ -67,8 +67,8 @@ public class ValidateCategoryPages {
 	 
 
 	
-	// @Test
-	 public void TC_InteractWithSortBy() throws Exception {
+	 @Test
+	 public void ValidateInteractWithSortBy() throws Exception {
 		new CollectionPage(driver).validateSortBy(); }
 	 
 
@@ -85,8 +85,8 @@ public class ValidateCategoryPages {
 	 
 
 	
-//	 @Test
-	 public void TC_InteractWithProductTile() throws Exception { new
+	 @Test
+	 public void ValidateInteractWithProductTile() throws Exception { new
 	 CollectionPage(driver).validateProductTile(); }
 	 
 
