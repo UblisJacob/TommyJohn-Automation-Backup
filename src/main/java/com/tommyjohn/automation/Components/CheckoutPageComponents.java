@@ -427,17 +427,32 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 			softAssert.assertTrue(driver.findElement(ShipAndPaymentPage_BREADCRUMB_LINK_INFORMATION).isDisplayed(),
 					"Information link is not displayed on breadcrumb");
 		}
+		if(driver.findElement(SHIPPING).isDisplayed()) {
 			try {
 				softAssert.assertTrue(driver.findElement(BREADCRUMB_LINK_SHIPPING).isDisplayed(),
 						"Shipping link is not displayed on breadcrumb");
-			}
-			catch(Exception e)
-			{
+
+			} catch (Exception e) {
 				softAssert.assertTrue(driver.findElement(PaymentPage_BREADCRUMB_LINK_SHIPPING).isDisplayed(),
 						"Shipping link is not displayed on breadcrumb");
 			}
-		softAssert.assertTrue(driver.findElement(BREADCRUMB_LINK_PAYMENT).isDisplayed(),
-				"Payment link is not displayed on breadcrumb");
+
+		}
+		else {
+			softAssert.assertTrue(driver.findElement(ShippingPage_BREADCRUMB_LINK_SHIPPING).isDisplayed(),
+					"Shipping link is not displayed on breadcrumb");
+
+		}
+
+		try {
+			softAssert.assertTrue(driver.findElement(BREADCRUMB_LINK_PAYMENT).isDisplayed(),
+					"Payment link is not displayed on breadcrumb");
+		}
+		catch(Exception e)
+		{
+			softAssert.assertTrue(driver.findElement(PaymentPage_BREADCRUMB_LINK_PAYMENT).isDisplayed(),
+					"Payment link is not displayed on breadcrumb");
+		}
 		softAssert.assertAll();
 		Reporter.log("Validated Breadcrumbs on checkout pages");
 	}
