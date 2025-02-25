@@ -11,9 +11,9 @@
     <test name="Tests">
         <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="TestModules.ValidateInfluencerPage">
+            <class name="TestModules.ValidatePDP">
                 <methods>
-                    <include name="ValidateInteractWithProductTile"/>
+                    <include name="ValidateInteractWithInlineBanner"/>
                 </methods>
             </class>
         </classes>
