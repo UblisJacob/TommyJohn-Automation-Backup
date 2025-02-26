@@ -418,41 +418,16 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
 		softAssert.assertTrue(driver.findElement(BREADCRUMB_LINK_CART).isDisplayed(),
 				"Cart link is not displayed on breadcrumb");
-		try {
+
 			softAssert.assertTrue(driver.findElement(BREADCRUMB_LINK_INFORMATION).isDisplayed(),
 					"Information link is not displayed on breadcrumb");
-		}
-		catch(Exception e)
-		{
-			softAssert.assertTrue(driver.findElement(ShipAndPaymentPage_BREADCRUMB_LINK_INFORMATION).isDisplayed(),
-					"Information link is not displayed on breadcrumb");
-		}
-		if(driver.findElement(SHIPPING).isDisplayed()) {
-			try {
-				softAssert.assertTrue(driver.findElement(BREADCRUMB_LINK_SHIPPING).isDisplayed(),
+
+			softAssert.assertTrue(driver.findElement(BREADCRUMB_LINK_SHIPPING).isDisplayed(),
 						"Shipping link is not displayed on breadcrumb");
 
-			} catch (Exception e) {
-				softAssert.assertTrue(driver.findElement(PaymentPage_BREADCRUMB_LINK_SHIPPING).isDisplayed(),
-						"Shipping link is not displayed on breadcrumb");
-			}
-
-		}
-		else {
-			softAssert.assertTrue(driver.findElement(ShippingPage_BREADCRUMB_LINK_SHIPPING).isDisplayed(),
-					"Shipping link is not displayed on breadcrumb");
-
-		}
-
-		try {
 			softAssert.assertTrue(driver.findElement(BREADCRUMB_LINK_PAYMENT).isDisplayed(),
 					"Payment link is not displayed on breadcrumb");
-		}
-		catch(Exception e)
-		{
-			softAssert.assertTrue(driver.findElement(PaymentPage_BREADCRUMB_LINK_PAYMENT).isDisplayed(),
-					"Payment link is not displayed on breadcrumb");
-		}
+
 		softAssert.assertAll();
 		Reporter.log("Validated Breadcrumbs on checkout pages");
 	}
