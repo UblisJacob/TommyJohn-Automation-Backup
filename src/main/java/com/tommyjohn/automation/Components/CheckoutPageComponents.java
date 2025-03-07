@@ -123,10 +123,25 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 //		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		Thread.sleep(5000);
 		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(INFO_DISCOUNT_3for$48));
-		String[] DISCOUNT_3for$48 = driver.findElement(INFO_DISCOUNT_3for$48).getText().split("\\(");
-		System.out.println(DISCOUNT_3for$48[0]);
-		softAssert.assertEquals(DISCOUNT_3for$48[0],"3 FOR $48 ","3 for $48 discount is not applied and not displayed in the Information page line item");
+		try {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(INFO_DISCOUNT_3for$48));
+		}
+		catch(Exception e)
+		{
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(INFO_DISCOUNT_3for$48_1));
+		}
+		try {
+			String[] DISCOUNT_3for$48 = driver.findElement(INFO_DISCOUNT_3for$48).getText().split("\\(");
+			System.out.println(DISCOUNT_3for$48[0]);
+			softAssert.assertEquals(DISCOUNT_3for$48[0], "3 FOR $48 ", "3 for $48 discount is not applied and not displayed in the Information page line item");
+		}
+		catch(Exception e)
+		{
+			String[] DISCOUNT_3for$48 = driver.findElement(INFO_DISCOUNT_3for$48_1).getText().split("\\(");
+			System.out.println(DISCOUNT_3for$48[0]);
+			softAssert.assertEquals(DISCOUNT_3for$48[0], "3 FOR $48 ", "3 for $48 discount is not applied and not displayed in the Information page line item");
+		}
 		String TOTAL = driver.findElement(LINEITEM_TOTAL_3for$48).getText();
 		System.out.println(TOTAL);
 		softAssert.assertEquals(TOTAL,"$16.00","Line Item Total is differ from the 3 for $48 functionality");
@@ -147,7 +162,15 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 //		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		Thread.sleep(5000);
 		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(INFO_DISCOUNT_3for$48));
+		Thread.sleep(5000);
+		try {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(INFO_DISCOUNT_3for$48));
+		}
+		catch(Exception e)
+		{
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(INFO_DISCOUNT_3for$48_1));
+		}
 		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
 		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
 		entershippingdetails();
@@ -155,11 +178,19 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", Continue_shipping);
 		Reporter.log("User is navigated to select shipping method");
 		ExtentReport.extentTest.info("User is navigated to select shipping method");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACT_EMAIL));
-		String[] DISCOUNT_3for$48 = driver.findElement(INFO_DISCOUNT_3for$48).getText().split("\\(");
-		System.out.println(DISCOUNT_3for$48[0]);
-		softAssert.assertEquals(DISCOUNT_3for$48[0],"3 FOR $48 ","3 for $48 discount is not applied and not displayed in the Information page line item");
-		String TOTAL = driver.findElement(SHIPPINGPAGE_LINEITEM_TOTAL_3for$48).getText();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SHIPPING_RADIO_BUTTON));
+		try {
+			String[] DISCOUNT_3for$48 = driver.findElement(INFO_DISCOUNT_3for$48).getText().split("\\(");
+			System.out.println(DISCOUNT_3for$48[0]);
+			softAssert.assertEquals(DISCOUNT_3for$48[0], "3 FOR $48 ", "3 for $48 discount is not applied and not displayed in the Information page line item");
+		}
+		catch(Exception e)
+		{
+			String[] DISCOUNT_3for$48 = driver.findElement(INFO_DISCOUNT_3for$48_1).getText().split("\\(");
+			System.out.println(DISCOUNT_3for$48[0]);
+			softAssert.assertEquals(DISCOUNT_3for$48[0], "3 FOR $48 ", "3 for $48 discount is not applied and not displayed in the Information page line item");
+		}
+		String TOTAL = driver.findElement(LINEITEM_TOTAL_3for$48).getText();
 		System.out.println(TOTAL);
 		softAssert.assertEquals(TOTAL,"$16.00","Line Item Total is differ from the 3 for $48 functionality");
 		softAssert.assertAll();
@@ -177,7 +208,14 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 //		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		Thread.sleep(5000);
 		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(INFO_DISCOUNT_3for$48));
+		try {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(INFO_DISCOUNT_3for$48));
+		}
+		catch(Exception e)
+		{
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(INFO_DISCOUNT_3for$48_1));
+		}
 		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
 		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
 		entershippingdetails();
@@ -197,10 +235,18 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		Reporter.log("User is navigated to payment page");
 		ExtentReport.extentTest.info("User is navigated to payment page");
 		Thread.sleep(5000);
-		String[] DISCOUNT_3for$48 = driver.findElement(INFO_DISCOUNT_3for$48).getText().split("\\(");
-		System.out.println(DISCOUNT_3for$48[0]);
-		softAssert.assertEquals(DISCOUNT_3for$48[0],"3 FOR $48 ","3 for $48 discount is not applied and not displayed in the Payment page line item");
-		String TOTAL = driver.findElement(PAYMENTPAGE_LINEITEM_TOTAL_3for$48).getText();
+		try {
+			String[] DISCOUNT_3for$48 = driver.findElement(INFO_DISCOUNT_3for$48).getText().split("\\(");
+			System.out.println(DISCOUNT_3for$48[0]);
+			softAssert.assertEquals(DISCOUNT_3for$48[0], "3 FOR $48 ", "3 for $48 discount is not applied and not displayed in the Information page line item");
+		}
+		catch(Exception e)
+		{
+			String[] DISCOUNT_3for$48 = driver.findElement(INFO_DISCOUNT_3for$48_1).getText().split("\\(");
+			System.out.println(DISCOUNT_3for$48[0]);
+			softAssert.assertEquals(DISCOUNT_3for$48[0], "3 FOR $48 ", "3 for $48 discount is not applied and not displayed in the Information page line item");
+		}
+		String TOTAL = driver.findElement(LINEITEM_TOTAL_3for$48).getText();
 		System.out.println(TOTAL);
 		softAssert.assertEquals(TOTAL,"$16.00","Line Item Total is differ from the 3 for $48 functionality");
 		softAssert.assertAll();

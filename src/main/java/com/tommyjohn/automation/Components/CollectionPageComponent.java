@@ -781,6 +781,21 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		Reporter.log("Product review stars on collection page is Displayed :: Clickable and validated successfully");
 	}
 
+	public void ValidateFacet() throws InterruptedException {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,250)");
+		Thread.sleep(2000);
+
+		driver.findElement(ALL_FILTERS).click();
+		Thread.sleep(10000);
+		driver.findElement(COLLECTION_FILTER).click();
+		Thread.sleep(10000);
+
+		WebElement element = driver.findElement(FACET_VALUE);
+		js.executeScript("arguments[0].click();", element); // ✅ Ensure JavaScript Click
+		Thread.sleep(5000);  // ✅ Wait for network request
+	}
+
 	public void validateReviewStarOnGCPLP() throws Exception {
 		// changed
 		/*
@@ -979,7 +994,10 @@ public class CollectionPageComponent extends CollectionPageLocator {
 //
 //			// scroll it top again
 //			// JavascriptExecutor js = (JavascriptExecutor) driver;
-//			// js.executeScript("arguments[0].scrollIntoView();",
+//			// js.executeScript("arguments[
+//
+//
+//			0].scrollIntoView();",
 //			// driver.findElement(CLEAR_FILTER_BUTTON));
 //			// ((JavascriptExecutor) driver).executeScript("window.scrollTo(0,
 //			// -document.body.scrollHeight)");
