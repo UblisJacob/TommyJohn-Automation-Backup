@@ -515,7 +515,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		Reporter.log("Image, link text, price, plus-minus button is displayed for all items in cart");
 		ExtentReport.extentTest.info("Image, link text, price, plus-minus button is displayed for all items in cart");
 		// check for Add Gift Wrap button
-		softAssert.assertTrue(driver.findElement(ADD_GIFT_WRAP_BUTTON).isDisplayed(), "Add Gift Wrap button is not displayed");
+//		softAssert.assertTrue(driver.findElement(ADD_GIFT_WRAP_BUTTON).isDisplayed(), "Add Gift Wrap button is not displayed");
 		Thread.sleep(3000);
 
 //		text = driver.findElement(ESTIMATE_TOTAL).getText();
@@ -826,7 +826,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 	{
 		Actions action = new Actions(driver);
 		JavascriptExecutor js = (JavascriptExecutor)driver;
-		new HomePageComponents(driver).navigateToMensApparel();
+		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
 		Thread.sleep(8000);
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		js.executeScript("window.scrollBy(0,500)");

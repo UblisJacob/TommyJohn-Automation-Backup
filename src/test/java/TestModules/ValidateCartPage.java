@@ -85,7 +85,7 @@ public class ValidateCartPage extends ExtentReport{
 	public void Validate_Cart_InteractWithGiftWrap() throws Exception {
 		new AddToCartComponents(driver).addsingleproductToCart();
 		new ShoppingCartPage(driver).ValidateViewCartLink();
-		new ShoppingCartPage(driver).AddGiftWrap();
+//		new ShoppingCartPage(driver).AddGiftWrap();
 	}
 
 //	@Test

@@ -486,7 +486,18 @@ public class HomePageComponents extends HomePageLocators {
 	}
 
 
+	public void ValidateSearchResult() throws InterruptedException {
 
+		SoftAssert softAssert = new SoftAssert();
+		action = new Actions(driver);
+		//searchText ="women";
+		WebElement element = driver.findElement(SEARCH_ICON);
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();", element);
+
+		driver.findElement(SEARCH_ICON_INPUT).sendKeys("second skin"+Keys.ENTER);
+
+	}
 
 
 	public void ValidateNoResultPageOnSearch() throws InterruptedException {
