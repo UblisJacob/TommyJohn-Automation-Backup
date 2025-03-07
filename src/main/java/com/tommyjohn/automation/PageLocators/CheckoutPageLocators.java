@@ -15,12 +15,12 @@ public class CheckoutPageLocators {
 	public static By SHOP_PAY = By.xpath("//div[@data-testid='ShopifyPay-button']" );
 	public static By BREADCRUMB_LINK_CART = By.xpath("//a[contains(text(),'Cart')]");
 	public static By ShipAndPaymentPage_BREADCRUMB_LINK_INFORMATION = By.xpath("(//nav[@class='_1fragem1y _1fragemlo']//div)[2]");
-	public static By BREADCRUMB_LINK_INFORMATION = By.xpath("(//nav[@class='_1fragem1y _1fragemlo']//div)[3]");
-	public static By BREADCRUMB_LINK_SHIPPING = By.xpath("(//nav[@class='_1fragem1y _1fragemlo']//div)[4]");
+	public static By BREADCRUMB_LINK_INFORMATION = By.xpath("(//nav[@aria-label='Breadcrumb']//div)[3]");
+	public static By BREADCRUMB_LINK_SHIPPING = By.xpath("(//nav[@aria-label='Breadcrumb']//div)[4]");
 	public static By Informationpage_LINK_SHIPPING = By.xpath("//li[@class='_5uqybw0 _1fragemlo _1fragem28 _1fragem78']//span[contains(text(),'Shipping')]");
 	public static By PaymentPage_BREADCRUMB_LINK_SHIPPING = By.xpath("//li[@class='_5uqybw0 _1fragemlo _1fragem28 _1fragem78']//a[contains(text(),'Shipping')]");
 	public static By ShippingPage_BREADCRUMB_LINK_SHIPPING = By.xpath("//li[@class='_5uqybw0 _1fragemlo _1fragem28 _1fragem78']//strong[contains(text(),'Shipping')]");
-	public static By BREADCRUMB_LINK_PAYMENT = By.xpath("(//nav[@class='_1fragem1y _1fragemlo']//div)[5]");
+	public static By BREADCRUMB_LINK_PAYMENT = By.xpath("(//nav[@aria-label='Breadcrumb']//div)[5]");
 	public static By PaymentPage_BREADCRUMB_LINK_PAYMENT = By.xpath("//li[@class='_5uqybw0 _1fragemlo _1fragem28 _1fragem78']//strong[contains(text(),'Payment')]");
 	
 	
@@ -76,16 +76,17 @@ public class CheckoutPageLocators {
 	public static By CANCEL_PROMO_CODE1 = By.xpath("(//button[@aria-label='Remove TECHTESTORDER'])[2]");
 //	public static By CANCEL_PROMO_CODE = By.cssSelector("button.tag__button use");
 	public static By TOTAL = By.xpath("(//strong[contains(text(),'Total')])[2]");
-	public static By INFO_DISCOUNT_3for$48 = By.xpath("(//p[@class='_1x52f9s1 _1x52f9s0 _1fragemlo _1x52f9st _1x52f9ss _1fragemo0 _1x52f9sp'])[8]");
-	public static By LINEITEM_TOTAL_3for$48 = By.xpath("(//p[@class='_1x52f9s1 _1x52f9s0 _1fragemlo _1x52f9sv _1x52f9su _1fragemo1'])[8]");
+	public static By INFO_DISCOUNT_3for$48 = By.xpath("(//p[contains(text(),'3 FOR $48 (-$6.00)')])[4]");
+	public static By INFO_DISCOUNT_3for$48_1 = By.xpath("(//p[contains(text(),'3 FOR $48 (-$2.00)')])[4]");
+	public static By LINEITEM_TOTAL_3for$48 = By.xpath("(//p[contains(text(),'$16.00')])[4]");
 
-	public static By SHIPPINGPAGE_LINEITEM_TOTAL_3for$48 = By.xpath("(//p[@class='_1x52f9s1 _1x52f9s0 _1fragemlo _1x52f9sv _1x52f9su _1fragemo1'])[12]");
-	public static By PAYMENTPAGE_LINEITEM_TOTAL_3for$48 = By.xpath("(//p[@class='_1x52f9s1 _1x52f9s0 _1fragemlo _1x52f9sv _1x52f9su _1fragemo1'])[9]");
+	public static By SHIPPINGPAGE_LINEITEM_TOTAL_3for$48 = By.xpath("(//p[@class='_1x52f9s1 _1x52f9s0 _1fragemlj _1x52f9sv _1x52f9su _1fragemnw'])[12]");
+	public static By PAYMENTPAGE_LINEITEM_TOTAL_3for$48 = By.xpath("(//p[@class='_1x52f9s1 _1x52f9s0 _1fragemlj _1x52f9sv _1x52f9su _1fragemnw'])[9]");
 
 	//                                          Shipping
 
-	public static By CONTACT_EMAIL =  By.xpath("//div[@class='_16jwovtc _16jwovtb _1fragemgt _1fragemok']//bdo");
-	public static By SHIP_ADDRESS =  By.xpath("//div[@class='_1ip0g651 _1ip0g650 _1fragemlo _1fragem3m _1fragem5f _1fragem2s']//address");
+	public static By CONTACT_EMAIL =  By.xpath("//span[contains(text(),'Contact')]//following::div//bdo");
+	public static By SHIP_ADDRESS =  By.xpath("//span[contains(text(),'Ship to')]//following::div//address");
 	public static By CHANGE_LINK_CONTACT = By.xpath("(//span[contains(text(),'Change')])[2]");
 	public static By CHANGE_LINK_SHIP_TO = By.xpath("(//span[contains(text(),'Change')])[3]");
 	public static By CHANGE_LINK_METHOD = By.xpath("(//span[contains(text(),'Change')])[4]");
@@ -98,7 +99,7 @@ public class CheckoutPageLocators {
 
 	//                                           payment
 
-	public static By METHOD =  By.xpath("(//div[@class='_16jwovt5 _16jwovt4 _1fragem28 _1fragemmg'])[3]");
+	public static By METHOD =  By.xpath("(//span[contains(text(),'Shipping method')]//following::p)[1]");
 	public static By PAYMENT_TEXT = By.cssSelector("#main-header");
 	public static By CREDITCARD_OPTION = By.xpath("//span[contains(text(),'Credit card')]");
 	public static By PAYPAL_OPTION = By.xpath("//span[contains(text(),'PayPal')]");
