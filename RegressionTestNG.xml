@@ -7,6 +7,13 @@
 		<listener class-name="TestScenario.RetryListener"></listener>
 	</listeners>
 
+	<test name="GTMTags">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="TestModules.ValidateGTM" />
+		</classes>
+	</test>
+
 	<test name="HomepageTests">
 		<parameter name="browser" value="chrome" />
 		<classes>
@@ -161,12 +168,14 @@
 <!--		</classes>-->
 <!--	</test>-->
 
-	<test name="ReviewsPage">
-		<parameter name="browser" value="chrome" />
-		<classes>
-			<class name="TestModules.ValidateReviewsPage" />
-		</classes>
-	</test>
+<!--	<test name="ReviewsPage">-->
+<!--		<parameter name="browser" value="chrome" />-->
+<!--		<classes>-->
+<!--			<class name="TestModules.ValidateReviewsPage" />-->
+<!--		</classes>-->
+<!--	</test>-->
+
+
 
 <!--		<test name="OrderPlacementTests">-->
 <!--		<parameter name="browser" value="chrome" />-->

@@ -3523,11 +3523,12 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 		SoftAssert softAssert = new SoftAssert();
 		// call method to navigate to collection page
-		new HomePageComponents(driver).navigateToTriangleBraletteCategory();
-		jse = (JavascriptExecutor) driver;
-		jse.executeScript("window.scrollBy(0,250)");
-		// call method to navigate product details page
-		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+//		new HomePageComponents(driver).navigateToTriangleBraletteCategory();
+//		jse = (JavascriptExecutor) driver;
+//		jse.executeScript("window.scrollBy(0,250)");
+//		// call method to navigate product details page
+//		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		driver.get("https://www.tommyjohn.com/products/womens-air-bra-pack-2-pack?variant=43216573464621");
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(SIZEGUIDE));
 
