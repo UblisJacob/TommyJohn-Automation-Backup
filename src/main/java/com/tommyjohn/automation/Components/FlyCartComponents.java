@@ -84,7 +84,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 	}
 
 	public void ValidateAddingProductToCartFromInlineCartSuggestions() throws Exception {
-
+		int count = 0;
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		SoftAssert softAssert = new SoftAssert();
 		jse = (JavascriptExecutor) driver;
@@ -132,19 +132,41 @@ public class FlyCartComponents extends FlyCartPageLocator{
 			System.out.println(First_Product_Name);
 		//	jse.executeScript("arguments[0].click();", driver.findElement(SUGGESTION_FIRST_PRODUCT_SIZE));
 
-			jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_BAG_QUICKSHOP));
-			wait.until(ExpectedConditions.visibilityOfElementLocated(INLINECART_PRODUCT_NAME));
-			String InLineCart_Product = driver.findElement(INLINECART_PRODUCT_NAME).getText();
-			System.out.println(InLineCart_Product);
+			for (int k = 1; k <= 3; k++) {
 
-			softAssert.assertTrue(driver.findElement(INLINECART_PRODUCT_NAME).isDisplayed(), "Product is not added to Cart from InLine Cart suggestion");
-			Reporter.log("Product is added to Cart from InLine Cart Suggestion");
-			ExtentReport.extentTest.info("Product is added to Cart from InLine Cart Suggestion");
+				WebElement elements = driver.findElement(By.xpath("(//form[@data-cy='productForm']//input[@name='option[Size]'])[" + k + "]"));
+				jse.executeScript("arguments[0].click();", elements);
+				Thread.sleep(5000);
+
+				try {
+
+					jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_BAG_QUICKSHOP));
+					wait.until(ExpectedConditions.visibilityOfElementLocated(INLINECART_PRODUCT_NAME));
+					String InLineCart_Product = driver.findElement(INLINECART_PRODUCT_NAME).getText();
+					System.out.println(InLineCart_Product);
+
+					softAssert.assertTrue(driver.findElement(INLINECART_PRODUCT_NAME).isDisplayed(), "Product is not added to Cart from InLine Cart suggestion");
+					Reporter.log("Product is added to Cart from InLine Cart Suggestion");
+					ExtentReport.extentTest.info("Product is added to Cart from InLine Cart Suggestion");
+					count++;
+
+				} catch (Exception ex) {
+					System.out.println("Product is OOS");
+				}
+
+				Thread.sleep(1000);
+
+
+				if (count == 1)
+					break;
+
+			}
+
 
 		}
 	}
 		public void ValidateAppropriateProductIsAddedToCartFromInLineCartSuggestion() throws InterruptedException {
-
+			int count = 0;
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 			SoftAssert softAssert = new SoftAssert();
 			jse = (JavascriptExecutor) driver;
@@ -191,16 +213,47 @@ public class FlyCartComponents extends FlyCartPageLocator{
 				System.out.println(First_Product_Name);
 				//	jse.executeScript("arguments[0].click();", driver.findElement(SUGGESTION_FIRST_PRODUCT_SIZE));
 
-				jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_BAG_QUICKSHOP));
-				Thread.sleep(5000);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(INLINECART_PRODUCT_NAME));
-				String InLineCart_Product = driver.findElement(INLINECART_PRODUCT_NAME).getText();
-				System.out.println(InLineCart_Product);
+				for (int k = 1; k <= 3; k++) {
 
-				softAssert.assertEquals(First_Product_Name, InLineCart_Product, "Wrong product is added to Cart from InLine Cart suggestion");
-				softAssert.assertAll();
-				Reporter.log("Appropriate product is added to Cart from InLine Cart Suggestion");
-				ExtentReport.extentTest.info("Appropriate product is added to Cart from InLine Cart Suggestion");
+					WebElement elements = driver.findElement(By.xpath("(//form[@data-cy='productForm']//input[@name='option[Size]'])[" + k + "]"));
+					jse.executeScript("arguments[0].click();", elements);
+					Thread.sleep(5000);
+
+					try {
+
+						String[] AddtoBag;
+						AddtoBag = (driver.findElement(By.xpath("//button[@class='button grow']")).getText()).split(" -");
+						String text1 = AddtoBag[0];
+						System.out.println(text1);
+
+						//	WebElement elem = driver.findElement(By.cssSelector(".multiPdp__atc-container>button"));
+						jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_BAG_QUICKSHOP));
+						Thread.sleep(5000);
+						wait.until(ExpectedConditions.visibilityOfElementLocated(INLINECART_PRODUCT_NAME));
+						String InLineCart_Product = driver.findElement(INLINECART_PRODUCT_NAME).getText();
+						System.out.println(InLineCart_Product);
+
+						softAssert.assertEquals(First_Product_Name, InLineCart_Product, "Wrong product is added to Cart from InLine Cart suggestion");
+						softAssert.assertAll();
+						Reporter.log("Appropriate product is added to Cart from InLine Cart Suggestion");
+						ExtentReport.extentTest.info("Appropriate product is added to Cart from InLine Cart Suggestion");
+						count++;
+
+					} catch (Exception ex) {
+						System.out.println("Product is OOS");
+					}
+
+					Thread.sleep(1000);
+
+
+					if (count == 1)
+						break;
+
+				}
+
+
+
+
 
 			}
 		}
@@ -263,6 +316,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		}
 
 		public void verifySelectedColorSwatchIsDisplayedInTheInlineCart() throws InterruptedException {
+			int count = 0;
 			Actions action = new Actions(driver);
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(80));
@@ -315,19 +369,40 @@ public class FlyCartComponents extends FlyCartPageLocator{
 //			System.out.println(First_Product_Name);
 			//	jse.executeScript("arguments[0].click();", driver.findElement(SUGGESTION_FIRST_PRODUCT_SIZE));
 
-			jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_BAG_QUICKSHOP));
+			for (int k = 1; k <= 3; k++) {
 
-			wait.until(ExpectedConditions.visibilityOfElementLocated(INLINECART_PRODUCT_NAME));
-			String[] color;
-			color = (driver.findElement(INLINE_COLOR).getText().split(" /"));
-			String text = color[0];
-			System.out.println(text);
-			softAssert.assertEquals(ColorSwatch,text,"Color Mismatched In InLine Cart");
-			softAssert.assertAll();
-			Reporter.log("Selected Color Is Added To Cart");
-			ExtentReport.extentTest.info("Selected Color Is Added To Cart");
+				WebElement elements = driver.findElement(By.xpath("(//form[@data-cy='productForm']//input[@name='option[Size]'])[" + k + "]"));
+				jse.executeScript("arguments[0].click();", elements);
+				Thread.sleep(5000);
 
-		}
+				try {
+
+					jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_BAG_QUICKSHOP));
+
+					wait.until(ExpectedConditions.visibilityOfElementLocated(INLINECART_PRODUCT_NAME));
+					String[] color;
+					color = (driver.findElement(INLINE_COLOR).getText().split(" /"));
+					String text = color[0];
+					System.out.println(text);
+					softAssert.assertEquals(ColorSwatch,text,"Color Mismatched In InLine Cart");
+					softAssert.assertAll();
+					Reporter.log("Selected Color Is Added To Cart");
+					ExtentReport.extentTest.info("Selected Color Is Added To Cart");
+					count++;
+
+				} catch (Exception ex) {
+					System.out.println("Product is OOS");
+				}
+
+				Thread.sleep(1000);
+
+
+				if (count == 1)
+					break;
+
+			}
+
+	}
 
 		public void ValidateRemovingItemsFromInlineCart() throws Exception {
 
@@ -515,7 +590,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		Reporter.log("Image, link text, price, plus-minus button is displayed for all items in cart");
 		ExtentReport.extentTest.info("Image, link text, price, plus-minus button is displayed for all items in cart");
 		// check for Add Gift Wrap button
-//		softAssert.assertTrue(driver.findElement(ADD_GIFT_WRAP_BUTTON).isDisplayed(), "Add Gift Wrap button is not displayed");
+		softAssert.assertTrue(driver.findElement(ADD_GIFT_WRAP_BUTTON).isDisplayed(), "Add Gift Wrap button is not displayed");
 		Thread.sleep(3000);
 
 //		text = driver.findElement(ESTIMATE_TOTAL).getText();

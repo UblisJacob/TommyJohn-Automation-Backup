@@ -32,6 +32,41 @@ public class ValidateGTM {
 
     }
 
+    @Test
+    public void ValidateSplunk() throws Exception {
+
+        new GTMValidations(driver).validateSplunk();
+
+    }
+
+    @Test
+    public void Validatepowerfront() throws Exception {
+
+        new GTMValidations(driver).validatePowerfront();
+
+    }
+
+    @Test
+    public void ValidateRudderstack() throws Exception {
+
+        new GTMValidations(driver).validateRudderstack();
+
+    }
+
+    @Test
+    public void ValidateKlaviyo() throws Exception {
+
+        new GTMValidations(driver).validateKlaviyo();
+
+    }
+
+    @Test
+    public void ValidateContentSquare() throws Exception {
+
+        new GTMValidations(driver).validateContentSquare();
+
+    }
+
 
 
     @AfterMethod(alwaysRun = true)

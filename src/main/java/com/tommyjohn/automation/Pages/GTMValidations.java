@@ -25,6 +25,38 @@ public class GTMValidations extends GTMComponents {
         new GTMComponents(driver).ValidateGTMForSearchEvent();
         new GTMComponents(driver).ValidateGTMForRemoveFromCartEvent();
 
+    }
+
+    public void validateSplunk() throws Exception
+    {
+        new GTMComponents(driver).ValidateSplunk();
+
+    }
+
+    public void validatePowerfront() throws Exception
+    {
+        new GTMComponents(driver).ValidatePowerfront();
+
+    }
+
+    public void validateRudderstack() throws Exception
+    {
+        new GTMComponents(driver).ValidateRudderstackForPLP();
+        new GTMComponents(driver).ValidateRudderstackForPDP();
+
+    }
+
+    public void validateKlaviyo() throws Exception
+    {
+        new GTMComponents(driver).ValidateKlaviyo();
+
+
+    }
+
+    public void validateContentSquare() throws Exception
+    {
+        new GTMComponents(driver).ValidateContentSquare();
+
 
     }
 
