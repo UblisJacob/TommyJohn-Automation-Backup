@@ -11,9 +11,9 @@
     <test name="Tests">
         <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="TestModules.ValidateGTM">
+            <class name="TestModules.ValidateCartPage">
                 <methods>
-                    <include name=""/>
+                    <include name="ValidateContentSquare"/>
                 </methods>
             </class>
         </classes>
@@ -29,4 +29,5 @@
 <!--            <class name="ADACheckModules.Footer_Support_ReturnExchange_ADACheck" />-->
 <!--        </classes>-->
 <!--    </test>-->
+
 </suite>

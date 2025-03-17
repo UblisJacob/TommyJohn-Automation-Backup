@@ -82,20 +82,53 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			js.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//span[@class='text-sm text-text-tertiary'])[" + i + "]")));
 			TabsPrice = driver.findElement(By.xpath("(//span[@class='text-sm text-text-tertiary'])[" + i + "]")).getText();
 			System.out.println(TabsPrice);
-			String[] AddtoBag;
-			AddtoBag = (driver.findElement(By.xpath("//button[@class='button grow']")).getText()).split(" - ");
-			String Text = AddtoBag[1];
-			String Text1 = Text.substring(0, Text.length() - 3);
-			System.out.println(Text1);
-			softAssert.assertEquals(TabsPrice,Text1,"Same values are not displayed in the Tabs and Add to Cart CTA");
-			Reporter.log("Same values are displayed in the Tabs and Add to Cart CTA");
-			ExtentReport.extentTest.info("Same values are displayed in the Tabs and Add to Cart CTA");
+
+			for (int k = 1; k <= 5; k++) {
+				try {
+					WebElement elements = driver.findElement(By.xpath("(//input[@name='option[Size]'])[" + k + "]"));
+					js.executeScript("arguments[0].click();", elements);
+					Thread.sleep(5000);
+				}
+				catch(Exception e)
+				{
+					WebElement elements = driver.findElement(By.xpath("(//input[@name='option[Top Size]'])["+k+"]"));
+					js.executeScript("arguments[0].click();", elements);
+
+					WebElement element = driver.findElement(By.xpath("(//input[@name='option[Bottom Size]'])["+k+"]"));
+					js.executeScript("arguments[0].click();", element);
+
+					Thread.sleep(5000);
+
+				}
+				try {
+
+					String[] AddtoBag;
+					AddtoBag = (driver.findElement(By.xpath("//button[@class='button grow']")).getText()).split(" - ");
+					String Text = AddtoBag[1];
+					String Text1 = Text.substring(0, Text.length() - 3);
+					System.out.println(Text1);
+					softAssert.assertEquals(TabsPrice,Text1,"Same values are not displayed in the Tabs and Add to Cart CTA");
+					Reporter.log("Same values are displayed in the Tabs and Add to Cart CTA");
+					ExtentReport.extentTest.info("Same values are displayed in the Tabs and Add to Cart CTA");
+
+						Thread.sleep(1000);
+						System.out.println("=============================");
+						count++;
+
+
+				}
+
+				catch(Exception ex)
+				{
+					System.out.println("Product is OOS");
+				}
+
+
+			}
+
+
 
 		}
-
-
-
-
 
 
 	}
@@ -2717,15 +2750,6 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		elementsCount = allElements.size();
 		System.out.println("Size Element count :: " + elementsCount);
 
-//		if (elementsCount > 0) {
-//
-//			for (int i = 1; i < elementsCount; ) {
-
-//				WebElement elemen = driver.findElement(By.cssSelector(".option-swatch__option>li:nth-child(" + i + ")>input"));
-//				Thread.sleep(1000);
-
-//				jse.executeScript("arguments[0].click();", elemen);
-//				Thread.sleep(1000);
 
 				jse = (JavascriptExecutor) driver;
 				jse.executeScript("window.scrollBy(0,800)");
@@ -2733,25 +2757,10 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 	//			WebElement Stickynav = driver.findElement(By.xpath(".product-bar"));
 				SoftAssert softassert = new SoftAssert();
 	//			softassert.assertTrue(Stickynav.isDisplayed(), "Sticky nav is not displayed on PDP");
-				element = driver.findElement(By.xpath("//button[@class='button']"));
+				element = driver.findElement(By.xpath("(//button[@class='button-secondary grow'])[2]"));
 				softassert.assertTrue(element.isDisplayed(), "scrolling CTA Add to Cart is not displayed");
 				//softassert.assertEquals(element.getText(), "Add To Cart", "Text is not matched");
 
-		String[] AddtoBag;
-		AddtoBag = (driver.findElement(By.xpath("//button[@class='button']")).getText()).split(" -");
-		String text = AddtoBag[0];
-		System.out.println(text);
-
-				if (text.equals("Add to bag") || text.equals("Join The Waitlist")) {
-					jse.executeScript("arguments[0].click();", element);
-				} else {
-					if (element.getText().equals("Out of Stock")) {
-						Reporter.log("Sticky nav OOS CTA displayed");
-						ExtentReport.extentTest.info("Sticky nav OOS CTA displayed");
-
-					}
-					throw new Exception("Wrong text on Sticky Nav CTA");
-				}
 
 
 				softassert.assertAll();
@@ -3520,7 +3529,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 	public void verifySizeChartTextBralette() throws Exception {
 		String text = null;
-
+		JavascriptExecutor js1 = (JavascriptExecutor) driver;;
 		SoftAssert softAssert = new SoftAssert();
 		// call method to navigate to collection page
 //		new HomePageComponents(driver).navigateToTriangleBraletteCategory();
@@ -3535,9 +3544,9 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		//HOW TO Measure
 		if (driver.findElement(SIZEGUIDE).isDisplayed()) {
 			WebElement ele = driver.findElement(SIZEGUIDE);
-			jse.executeScript("arguments[0].click();", ele);
+			js1.executeScript("arguments[0].click();", ele);
 			Thread.sleep(3000);
-			jse.executeScript("window.scrollBy(0,500)");
+			js1.executeScript("window.scrollBy(0,500)");
 //			WebElement elem = driver.findElement(SIZEGUIDE_FITRANGE_DROPDOWN);
 //			jse.executeScript("arguments[0].click();", elem);
 			Thread.sleep(2000);

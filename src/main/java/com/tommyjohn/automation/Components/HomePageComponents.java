@@ -2968,7 +2968,7 @@ public class HomePageComponents extends HomePageLocators {
 
 	public void navigateToAirTriangleBralette()
 	{
-		driver.get("https://www.tommyjohn.com/products/air-triangle-bralette?color=rugby-tan");
+		driver.get("https://www.tommyjohn.com/products/air-triangle-bralette?variant=42358949773357");
 	}
 
 	public void navigateToSecondSkinMidlengthBoxerBrief()
