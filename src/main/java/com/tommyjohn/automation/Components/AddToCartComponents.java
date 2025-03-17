@@ -671,14 +671,17 @@ public class AddToCartComponents extends AddToCartLocators{
 	public String add3for$48product() throws Exception {
 
 		int count = 0;
-
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		// call method to navigate to collection page
-		new HomePageComponents(driver).navigateToAllPantiesnInWomenCategory();
-		jse = (JavascriptExecutor) driver;
-		jse.executeScript("window.scrollBy(0,250)");
-		// call method to navigate product details page
-		text = new CollectionPageComponent(driver).navigateTo3FOR$48PDP();
-
+//		new HomePageComponents(driver).navigateToAllPantiesnInWomenCategory();
+//		jse = (JavascriptExecutor) driver;
+//		jse.executeScript("window.scrollBy(0,250)");
+//		// call method to navigate product details page
+//		text = new CollectionPageComponent(driver).navigateTo3FOR$48PDP();
+		driver.get("https://www.tommyjohn.com/products/womens-air-brief-1?variant=43190791372845");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_TITLE));
+		Reporter.log(driver.getCurrentUrl());
+		ExtentReport.extentTest.info(driver.getCurrentUrl());
 		Thread.sleep(2000);
 
 		allElements = driver.findElements(ProductDetailsPageComponents.COLOR_VARIANT);

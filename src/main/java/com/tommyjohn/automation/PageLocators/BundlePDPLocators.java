@@ -35,6 +35,7 @@ public class BundlePDPLocators {
 	public static By ALL_SIZE_LIST = By.xpath("//input[@name='option[Size]']");
 	public static By INACTIVE_SIZES = By.cssSelector(".option-swatch__option>li>.option-swatch__input.unavailable.email-when-in-stock");
 	public static By SIZE_VALUE = By.xpath("(//span[@class='font-medium text-text-primary'])[2]");
+	public static By SIZE_NAME = By.xpath("(//span[@class='font-medium text-text-primary'])[2]");
 	
 	
 	//color swatches

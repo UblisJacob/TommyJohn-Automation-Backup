@@ -402,24 +402,17 @@ public class BundlePDPComponent extends BundlePDPLocators{
 				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])["+i+"]"));
 				
 				jse.executeScript("arguments[0].click();", elemen);
-				
-//				List<WebElement> unavailablecolors = driver.findElements(STRIKED_COLOR_SWATCHES);
-//				int num1= unavailablecolors.size();
-//				List<WebElement> totalcolors = driver.findElements(COLOR_SWATCHES);
-//				int num = (totalcolors.size()-num1);
-				String sizename = driver.findElement(By.xpath("(//input[@name='option[Size]'])["+i+"]")).getText();
-				
-//				if(num>=0)
-//
-//					System.out.println("For size: " +sizename);
-//					System.out.println("Active Colors: " +num );
-//					System.out.println("Unavailable Colors: " + num1);
-//					System.out.println("===============");
-				
-				
+
+				WebElement elem = driver.findElement(By.xpath("(//input[@name='option[Size]'])["+i+"]"));
+
+				jse.executeScript("arguments[0].click();", elem);
+
+
+				String sizename = driver.findElement(By.xpath("(//label[@class='pills not-prose peer-focus-visible:ring-2 peer-focus-visible:ring-offset-1']//span)["+i+"]")).getText();
+				System.out.println(sizename);
 				String sizevalue = driver.findElement(SIZE_VALUE).getText();
+				System.out.println(sizevalue);
 				softAssert.assertEquals(sizename, sizevalue, "Sizes and Colors not changing");
-				
 								
 			}
 			Reporter.log("Sizes are changing correctly");

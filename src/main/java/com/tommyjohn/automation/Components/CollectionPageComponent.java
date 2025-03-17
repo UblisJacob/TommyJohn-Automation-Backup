@@ -788,11 +788,11 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 		driver.findElement(ALL_FILTERS).click();
 		Thread.sleep(10000);
-		driver.findElement(COLLECTION_FILTER).click();
+		WebElement element1 = driver.findElement(COLLECTION_FILTER);
+		js.executeScript("arguments[0].click();", element1);
 		Thread.sleep(10000);
-
-		WebElement element = driver.findElement(FACET_VALUE);
-		js.executeScript("arguments[0].click();", element); // ✅ Ensure JavaScript Click
+		WebElement element2 = driver.findElement(FACET_VALUE);
+		js.executeScript("arguments[0].click();", element2); // ✅ Ensure JavaScript Click
 		Thread.sleep(5000);  // ✅ Wait for network request
 	}
 
