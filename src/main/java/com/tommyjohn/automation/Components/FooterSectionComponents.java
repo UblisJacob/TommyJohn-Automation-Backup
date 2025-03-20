@@ -1005,7 +1005,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 
 
 		softassert.assertTrue(driver.getCurrentUrl().contains("https://www.facebook.com/TommyJohnWear"),
-				"Twitter Link is not Correct");
+				"Facebook Link is not Correct");
 
 		driver.close();
 
@@ -1203,7 +1203,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		}
 
 		softassert.assertTrue(driver.getCurrentUrl().contains("https://www.youtube.com/user/tommyjohnwear"),
-				"Twitter Link is not Correct");
+				"Youtube Link is not Correct");
 		driver.close();
 		driver.switchTo().window(originalWindow);
 
