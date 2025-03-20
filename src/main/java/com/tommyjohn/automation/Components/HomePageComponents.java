@@ -1066,7 +1066,7 @@ public class HomePageComponents extends HomePageLocators {
 
 		driver.findElement(SEARCH_TEXTBOX).click();
 		driver.findElement(SEARCH_TEXTBOX).clear();
-		driver.findElement(SEARCH_TEXTBOX).sendKeys("underwear");
+		driver.findElement(SEARCH_TEXTBOX).sendKeys("briefs");
 		
 	    action.moveToElement(driver.findElement(SEARCH_TEXTBOX)).build().perform();
 		Thread.sleep(10000);
