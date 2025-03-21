@@ -85,7 +85,7 @@ public class CheckoutPageLocators {
 
 	//                                          Shipping
 
-	public static By CONTACT_EMAIL =  By.xpath("//span[contains(text(),'Contact')]//following::div//bdo");
+	public static By CONTACT_EMAIL =  By.xpath("(//span[contains(text(),'Contact')]//following::div//span)[1]");
 	public static By SHIP_ADDRESS =  By.xpath("//span[contains(text(),'Ship to')]//following::div//address");
 	public static By CHANGE_LINK_CONTACT = By.xpath("(//span[contains(text(),'Change')])[2]");
 	public static By CHANGE_LINK_SHIP_TO = By.xpath("(//span[contains(text(),'Change')])[3]");

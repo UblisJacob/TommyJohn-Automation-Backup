@@ -470,13 +470,13 @@ public class AddToCartComponents extends AddToCartLocators{
 //
 //						}
 
-					if(count==1)
+					if(count==2)
 					{
 						break;
 					}
 
 				}
-				if(count==1)
+				if(count==2)
 				{
 					break;
 				}
