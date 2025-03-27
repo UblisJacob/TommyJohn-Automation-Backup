@@ -58,6 +58,12 @@ public class 	ValidatePDP extends ExtentReport{
 	}
 
 	@Test
+	public void ValidateDisabledATC() throws Exception {
+		new ProductDetailsPage(driver).ValidateDisabledATC();
+
+	}
+
+	@Test
 	public void ValidatesectionsinPDP() throws Exception {
 		new ProductDetailsPage(driver).ValidatesectionsinPDP();
 
