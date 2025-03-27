@@ -1066,8 +1066,9 @@ public class HomePageComponents extends HomePageLocators {
 
 		driver.findElement(SEARCH_TEXTBOX).click();
 		driver.findElement(SEARCH_TEXTBOX).clear();
-		driver.findElement(SEARCH_TEXTBOX).sendKeys("briefs");
-		
+		driver.findElement(SEARCH_TEXTBOX).sendKeys("Second");
+
+		Thread.sleep(5000);
 	    action.moveToElement(driver.findElement(SEARCH_TEXTBOX)).build().perform();
 		Thread.sleep(10000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SUGGESTED_PRODUCT_IMG));
@@ -2756,6 +2757,13 @@ public class HomePageComponents extends HomePageLocators {
 	}
 	public void navigateToAllUnderwearInMenCategory() throws Exception {
 		driver.get("https://www.tommyjohn.com/collections/underwear-mens-styles-boxer-brief");
+		Thread.sleep(5000);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("window.scrollBy(0,250)");
+	}
+
+	public void navigateToMensAllUnderwear() throws Exception {
+		driver.get("https://www.tommyjohn.com/collections/mens-underwear");
 		Thread.sleep(5000);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		jse.executeScript("window.scrollBy(0,250)");
