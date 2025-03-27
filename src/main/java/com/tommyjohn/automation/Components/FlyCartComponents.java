@@ -904,7 +904,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
 		Thread.sleep(8000);
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		js.executeScript("window.scrollBy(0,500)");
+		js.executeScript("window.scrollBy(0,800)");
 		int count = 0;
 
 		wait.until(ExpectedConditions.presenceOfElementLocated(CollectionPageLocator.FIRST_PRODUCT_IMAGE));
@@ -914,7 +914,9 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		Thread.sleep(3000);
 		if(driver.findElement(CollectionPageLocator.QUICK_SHOP_ATC).isDisplayed())
 		{
-			driver.findElement(CollectionPageLocator.QUICK_SHOP_ATC).click();
+			element = driver.findElement(CollectionPageLocator.QUICK_SHOP_ATC);
+			js.executeScript("arguments[0].click();", element);
+		//	driver.findElement(CollectionPageLocator.QUICK_SHOP_ATC).click();
 			Thread.sleep(3000);
 			//select sizes from quick shop size overlay
 			List<WebElement> allElements;

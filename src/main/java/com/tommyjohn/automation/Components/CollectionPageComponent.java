@@ -713,13 +713,15 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 
+		Thread.sleep(5000);
 		jse.executeScript("window.scrollBy(0,250)");
 		Thread.sleep(3000);
 
 		wait.until(ExpectedConditions.presenceOfElementLocated(FIRST_PRODUCT_REVIEW_STARS));
 
 		driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
-		driver.findElement(FIRST_PRODUCT_REVIEW_STARS).click();
+		WebElement element1 = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT);
+		jse.executeScript("arguments[0].click();", element1);
 		Thread.sleep(3000);
 		Reporter.log(driver.getCurrentUrl());
 		ExtentReport.extentTest.info(driver.getCurrentUrl());
@@ -1392,7 +1394,11 @@ public class CollectionPageComponent extends CollectionPageLocator {
 			System.out.println("Quick shop ATC text is: " + driver.findElement(QUICK_SHOP_ATC).getText());
 			softAssert.assertEquals(driver.findElement(QUICK_SHOP_ATC).getText(), "Select a size",
 					"Text changed for Quick shop ATC button.");
-			driver.findElement(QUICK_SHOP_ATC).click();
+
+			WebElement element1 = driver.findElement(QUICK_SHOP_ATC);
+			js.executeScript("arguments[0].click();", element1);
+			//
+			// .driver.findElement(QUICK_SHOP_ATC).click();
 			Thread.sleep(3000);
 			Reporter.log("Quick shop ATC button text is validated :: Clickable.");
 			ExtentReport.extentTest.info("Quick shop ATC button text is validated :: Clickable.");
