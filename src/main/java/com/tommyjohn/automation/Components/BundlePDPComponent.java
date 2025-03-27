@@ -65,11 +65,12 @@ public class BundlePDPComponent extends BundlePDPLocators{
 //		JavascriptExecutor executor = (JavascriptExecutor)driver;
 //		executor.executeScript("arguments[0].click();", el);
 //
-//		jse = (JavascriptExecutor) driver;
+		jse = (JavascriptExecutor) driver;
 //		jse.executeScript("window.scrollBy(0,300)");
 
-		driver.get("https://www.tommyjohn.com/products/second-skin-mid-length-boxer-brief-9?variant=43190760996909");
-		driver.findElement(LEARN_MORE).click();
+		driver.get("https://www.tommyjohn.com/products/second-skin-mid-length-boxer-brief-6-6-pack-1?variant=43194128138285");
+		WebElement element1 = driver.findElement(LEARN_MORE);
+		jse.executeScript("arguments[0].click();", element1);
 
 		Thread.sleep(2000);
 		softAssert.assertTrue(driver.findElement(By.xpath("//h2[@class='text-display-sm font-medium leading-none']")).isDisplayed(),"Learn More Link is not functional");

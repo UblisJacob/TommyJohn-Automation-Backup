@@ -1051,7 +1051,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACT_EMAIL));
 		
 		CheckBreadcrumbs();
-
+		Thread.sleep(5000);
 		softAssert.assertTrue(driver.findElement(CONTACT_EMAIL).isDisplayed(), "Contact email is not present");
 		softAssert.assertTrue(driver.findElement(SHIP_ADDRESS).isDisplayed(), "Shipping address is not present");
 		softAssert.assertTrue(driver.findElement(CHANGE_LINK_CONTACT).isDisplayed(), "Contact change link is not present to chnage ");

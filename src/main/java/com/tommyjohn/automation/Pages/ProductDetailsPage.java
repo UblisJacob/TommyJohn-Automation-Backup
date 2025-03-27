@@ -26,6 +26,13 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 
 	}
 
+	public void ValidateDisabledATC() throws Exception {
+
+
+		new ProductDetailsPageComponents(driver).ValidateDisabledATC();
+
+	}
+
 	public void ValidateTabPriceAndAddToCartPrice() throws InterruptedException {
 
 

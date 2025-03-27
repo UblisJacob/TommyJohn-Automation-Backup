@@ -21,7 +21,7 @@ public class ProductDetailsPageLocators {
 	public static By PRODUCT_TITLE = By.xpath("//h1[@class='mb-0']");
  	
 	//changed
-	public static By PRODUCT_TITLE_1 = By.xpath("//div[@class='multi-pdp-title-wrap desktop-view desktop']//h1");//changed
+	public static By PRODUCT_TITLE_1 = By.xpath("//h1[@class='mb-0']");//changed
 	//	public static By PRODUCT_PRICE = By.cssSelector("div.product-info__inner-top > span > span:nth-child(2)");
 	public static By PRODUCT_PRICE = By.xpath("//span[@data-cy='priceFinal']");
 	

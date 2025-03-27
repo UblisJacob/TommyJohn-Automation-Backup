@@ -69,7 +69,7 @@ public class CustomUtilities {
 
 			// Set other desired capabilities if needed (such as enabling remote d
 //			chromeOptions.setExperimentalOption("useAutomationExtension", false)
-//			chromeOptions.addArguments("--headless=new");
+			chromeOptions.addArguments("--headless=new");
 			chromeOptions.addArguments("--window-size=1920,1080");
 			chromeOptions.addArguments("--disable-gpu");
 			chromeOptions.addArguments("--disable-blink-features=AutomationControlled");
