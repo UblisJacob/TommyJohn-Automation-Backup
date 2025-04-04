@@ -383,6 +383,12 @@ public class CollectionPage extends CollectionPageComponent{
 		new HomePageComponents(driver).navigateToMensAll();
 		validateMultipacksCheckBox();
 	}
+
+	public void ValidateHammockPouchToggleButton() throws Exception {
+		// TODO Auto-generated method stub
+		new HomePageComponents(driver).navigateToMensAll();
+		validateHammockpouchCheckboxInFilters();
+	}
 	
 	public void validateBreadcrumbLinks() throws Exception {
 		// TODO Auto-generated method stub
@@ -418,7 +424,14 @@ public class CollectionPage extends CollectionPageComponent{
 		new HomePageComponents(driver).navigateToMenssleepLoungeCategory();
 		methodToCheckAllFilters();
 	}
-	
+
+	public void ValidateHammockPouchIconInFilters() throws Exception {
+		// TODO Auto-generated method stub
+		new HomePageComponents(driver).navigateToMensAllUnderwear();
+		validateHammockPouchIconInFilters();
+	}
+
+
 	public void validateSortBy() throws Exception {
 		// TODO Auto-generated method stub
 		new HomePageComponents(driver).navigateToMensAll();
