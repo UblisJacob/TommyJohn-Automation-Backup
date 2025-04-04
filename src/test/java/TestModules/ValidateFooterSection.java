@@ -44,6 +44,11 @@ public class ValidateFooterSection {
 		new FooterSectionPage(driver).verifyFooterEmailSignUp();
 	}
 
+	@Test
+	public void VerifyCustomerHelpCode() throws Exception {
+		new FooterSectionPage(driver).VerifyCustomerHelpCode();
+	}
+
 //	@Test
 	public void VerifyFooterFeedback() throws Exception {
 		new FooterSectionPage(driver).verifyFooterFeedback();

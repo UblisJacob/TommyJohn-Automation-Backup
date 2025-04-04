@@ -1536,6 +1536,31 @@ public class FooterSectionComponents extends FooterSectionLocators {
 //
 //	}
 
+	public void verifyCustomerHelpCode() {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+
+		// Ensure the page has fully loaded
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.tagName("body")));
+
+		// Scroll to footer using JavaScript
+		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+
+		// Wait for the Help Code to become visible
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HELP_CODE));
+
+		// Get and print Help Code text
+		String text = driver.findElement(HELP_CODE).getText();
+		System.out.println(text);
+
+		// Assert that the Help Code is displayed
+		softassert.assertTrue(driver.findElement(HELP_CODE).isDisplayed(), "Help Code is not generated");
+		softassert.assertAll();
+
+		Reporter.log("Help Code is generated");
+		ExtentReport.extentTest.info("Help Code is generated");
+	}
+
+
 	public void validateFooterNewsletter() throws Exception {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));

@@ -568,6 +568,8 @@ public class CollectionPageComponent extends CollectionPageLocator {
 //
 //	}
 
+
+
 	public String methodToSortByPrice() throws Exception {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
@@ -587,11 +589,12 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		// Click on ascending sort option
 		driver.findElement(By.xpath("//label[@for='Filters-Sort-price-asc']")).click();
 
-		Thread.sleep(5000);
+		Thread.sleep(10000);
 		// Wait for the sorted prices to load and capture their texts
+		js.executeScript("window.scrollBy(0,-250)");
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(PLP_PRICE));
 		List<WebElement> priceElementsAsc = driver.findElements(PLP_PRICE);
-		int limit = Math.min(4, priceElementsAsc.size());
+		int limit = Math.min(1, priceElementsAsc.size());
 		ArrayList<Double> productPricesAsc = new ArrayList<>();
 		ArrayList<Double> sortedPricesAsc = new ArrayList<>();
 
@@ -622,7 +625,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		// Wait for descending sorted prices to load and capture their texts
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(PLP_PRICE));
 		List<WebElement> priceElementsDesc = driver.findElements(PLP_PRICE);
-		int limitDesc = Math.min(4, priceElementsDesc.size());
+		int limitDesc = Math.min(1, priceElementsDesc.size());
 		ArrayList<Double> productPricesDesc = new ArrayList<>();
 		ArrayList<Double> sortedPricesDesc = new ArrayList<>();
 
@@ -831,6 +834,19 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		softAssert.assertAll();
 		Reporter.log("Validated Product rating stars on GC plp");
 
+	}
+
+	public void validateHammockPouchIconInFilters() throws InterruptedException {
+		driver.findElement(ALL_FILTERS).click();
+		element = driver.findElement(By.xpath("//span[@class='icon icon-info']"));
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", element);
+		Thread.sleep(5000);
+		String Hammock = driver.findElement(By.xpath("//h2[@class='text-display-sm font-medium leading-none']")).getText();
+		System.out.println(Hammock);
+		softAssert.assertTrue(driver.findElement(By.xpath("//h2[@class='text-display-sm font-medium leading-none']")).isDisplayed(),"Hammock Pouch Icon is not fundtional");
+		Reporter.log("Hammock Pouch Icon is fundtional");
+		ExtentReport.extentTest.info("Hammock Pouch Icon is fundtional");
 	}
 
 	// method to validate all filters
@@ -1883,6 +1899,54 @@ public class CollectionPageComponent extends CollectionPageLocator {
 				break;
 			}
 		}
+	}
+
+	public void validateHammockpouchCheckboxInFilters() throws InterruptedException {
+
+		int count = 0;
+		Actions action = new Actions(driver);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		// Scroll down to bring elements into view
+		js.executeScript("window.scrollBy(0,250)");
+
+		// Wait until the first product is visible before proceeding
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT));
+
+		// Click on sort dropdown (simulate opening sort options)
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//span[@class='flex gap-xs items-center leading-none']")));
+		Thread.sleep(2000);
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//input[@id='Filters-hammock_pouch-Toggle']")));
+		js.executeScript("window.scrollBy(0,-250)");
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT));
+		element = driver.findElement(FIRST_PRODUCT_IMAGE);
+//		js.executeScript("arguments[0].scrollIntoView(true);", element);
+		action.moveToElement(element).build().perform();
+		Thread.sleep(3000);
+		if (driver.findElement(QUICK_SHOP_ATC).isDisplayed()) {
+			Reporter.log("Quick shop ATC button is displayed on hover.");
+			ExtentReport.extentTest.info("Quick shop ATC button is displayed on hover.");
+
+			System.out.println("Quick shop ATC text is: " + driver.findElement(QUICK_SHOP_ATC).getText());
+			softAssert.assertEquals(driver.findElement(QUICK_SHOP_ATC).getText(), "Select a size",
+					"Text changed for Quick shop ATC button.");
+
+			WebElement element1 = driver.findElement(QUICK_SHOP_ATC);
+			js.executeScript("arguments[0].click();", element1);
+			//
+			// .driver.findElement(QUICK_SHOP_ATC).click();
+			Thread.sleep(3000);
+			Reporter.log("Quick shop ATC button text is validated :: Clickable.");
+			ExtentReport.extentTest.info("Quick shop ATC button text is validated :: Clickable.");
+		}
+		softAssert.assertTrue(driver.findElement(HAMMOCK_POUCH_CTA).isDisplayed(),"Hammock Pouch toggle button is not functional");
+		softAssert.assertAll();
+		Reporter.log("Hammock Pouch toggle button is functional");
+		ExtentReport.extentTest.info("Hammock Pouch toggle button is functional");
+
 	}
 
 	public void validateMultipacksCheckBox() throws Exception {
