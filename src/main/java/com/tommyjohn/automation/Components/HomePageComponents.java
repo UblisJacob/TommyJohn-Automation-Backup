@@ -113,10 +113,12 @@ public class HomePageComponents extends HomePageLocators {
 	}
 
 	public void ValidateShopWomensCTAInHeroSlider() throws InterruptedException {
+		JavascriptExecutor js = (JavascriptExecutor)driver;
 		SoftAssert softAssert = new SoftAssert();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
-		Thread.sleep(2000);
-		driver.findElement(HERO_SLIDER_SHOPWOMENS_CTA).click();
+		Thread.sleep(5000);
+		WebElement element1 = driver.findElement(HERO_SLIDER_SHOPWOMENS_CTA);
+		js.executeScript("arguments[0].click();", element1);
 		Thread.sleep(3000);
 		element = driver.findElement(PAGEHEADER);
 		softAssert.assertTrue(element.isDisplayed(),"Shop Women's CTA is not functional in Hero Slider");

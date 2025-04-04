@@ -27,6 +27,10 @@ public class FooterSectionPage extends FooterSectionComponents {
 		validateFooterCopyrightCCPASection();
 	}
 
+	public void VerifyCustomerHelpCode() throws Exception {
+		verifyCustomerHelpCode();
+	}
+
 	public void verifyFooterEmailSignUp() throws Exception {
 		validateFooterNewsletter();
 	}

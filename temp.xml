@@ -11,13 +11,15 @@
     <test name="Tests">
         <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="TestModules.ValidateInlineCartPage">
+            <class name="TestModules.ValidateCategoryPages">
                 <methods>
-                    <include name="ValidateFlyCartOpenedWithQSandPDP"/>
+                    <include name="ValidateOnClickingTheInLineBanner"/>
                 </methods>
             </class>
         </classes>
     </test>
+
+
 <!--    <listeners>-->
 <!--        <listener class-name="TestScenario.ADAListenerClass"></listener>-->
 <!--&lt;!&ndash;        <listener class-name="TestScenario.RetryListener"></listener>&ndash;&gt;-->
@@ -26,7 +28,7 @@
 <!--    <test name="ADA Check">-->
 <!--        <parameter name="browser" value="chrome" />-->
 <!--        <classes>-->
-<!--            <class name="ADACheckModules.Footer_Support_ReturnExchange_ADACheck" />-->
+<!--            <class name="ADACheckModules.HomePageADACheck" />-->
 <!--        </classes>-->
 <!--    </test>-->
 

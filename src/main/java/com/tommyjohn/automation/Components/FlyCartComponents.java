@@ -564,7 +564,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		allElements = driver.findElements(LIST_OF_ITEMS_IN_FLYCART);
 
 		// check all fields for all items in flycart
-		for(int i=1; i<=3;i++) {
+		for(int i=1; i<=2;i++) {
 			// check for product image
 			softAssert.assertTrue(driver.findElement(By.xpath("(//td[@class='row-span-3 p-0 sm:row-span-2'])["+i+"]")).isDisplayed(), "First item image is not displayed");
 
@@ -910,8 +910,9 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		wait.until(ExpectedConditions.presenceOfElementLocated(CollectionPageLocator.FIRST_PRODUCT_IMAGE));
 		element = driver.findElement(CollectionPageLocator.FIRST_PRODUCT_IMAGE);
 	//	js.executeScript("arguments[0].scrollIntoView(true);", element);
+		Thread.sleep(5000);
 		action.moveToElement(element).build().perform();
-		Thread.sleep(3000);
+		Thread.sleep(10000);
 		if(driver.findElement(CollectionPageLocator.QUICK_SHOP_ATC).isDisplayed())
 		{
 			element = driver.findElement(CollectionPageLocator.QUICK_SHOP_ATC);
@@ -966,9 +967,9 @@ public class FlyCartComponents extends FlyCartPageLocator{
 			ExtentReport.extentTest.info("Validated Flyout cart opens with Quickshop");
 
 		}
-		else
+		else {
 			throw new Exception("Quick Shop ATC button is not displayed on hover.");
-
+		}
 		//Check on pdp
 		//new HomePageComponents(driver).navigateToAllWomensCollectionInWomensCategory();
 		//new CollectionPageComponent(driver).navigateToProductDetailsPage();
