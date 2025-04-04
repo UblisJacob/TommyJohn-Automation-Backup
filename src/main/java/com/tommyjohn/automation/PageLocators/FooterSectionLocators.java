@@ -10,6 +10,7 @@ public class FooterSectionLocators {
 	public static By FABRIC_GUIDE_LINK = By.xpath("a[data-tj-qa='footer-fabric-guide']");
 	public static By SALE = By.xpath("//div[@id='quick-links-tabpanel-1']//a[contains(text(),'Sale')]");
 	public static By GIFT_CARD_LINK = By.xpath("//div[@id='quick-links-tabpanel-1']//a[contains(text(),'Gift Cards')]");
+	public static By HELP_CODE = By.xpath("//li[contains(text(),'Customer Help Code ')]");
 	
 //	FOOTER PROMOTIONS SECTION
 	public static By SITEWIDE_PROMOTION_LINK = By.xpath("//div[@id='quick-links-tabpanel-2']//a[contains(text(),'Sitewide Promotion')]");

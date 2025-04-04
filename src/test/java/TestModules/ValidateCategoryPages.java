@@ -41,6 +41,10 @@ public class ValidateCategoryPages {
 	@Test
 	public void ValidateMultipacksCheckBox() throws Exception {
 	new CollectionPage(driver).ValidateMultipacksCheckBox(); }
+
+	@Test
+	public void ValidateHammockPouchCheckBox() throws Exception {
+		new CollectionPage(driver).ValidateHammockPouchToggleButton(); }
 	 
 	 
 	 @Test
@@ -64,8 +68,9 @@ public class ValidateCategoryPages {
 
 	 @Test public void ValidateInteractWithFilters() throws Exception { new
 	 CollectionPage(driver).validateFilters(); }
-	 
 
+	@Test public void ValidateHammockPouchIconInFilters() throws Exception { new
+			CollectionPage(driver).ValidateHammockPouchIconInFilters(); }
 	
 	 @Test
 	 public void ValidateInteractWithSortBy() throws Exception {

@@ -154,7 +154,7 @@ public class AddToCartComponents extends AddToCartLocators{
 //							jse.executeScript("arguments[0].click();", driver.findElement(EMAIL_WHEN_IN_STOCK_BUTTON_CLOSE));
 //
 //							}
-						if(count==3)
+						if(count==2)
 						{
 							break;
 						}
@@ -162,7 +162,7 @@ public class AddToCartComponents extends AddToCartLocators{
 					}
 
 
-					if(count==3)
+					if(count==2)
 					{
 						break;
 					}
