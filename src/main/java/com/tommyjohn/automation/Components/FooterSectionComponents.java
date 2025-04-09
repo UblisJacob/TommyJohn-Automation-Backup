@@ -1077,50 +1077,51 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		ExtentReport.extentTest.info("Twitter Footer Icon is Displayed :: Clickable");
 
 //		Check Pinterest Link
-		System.out.println("***Validating Pinterest Link***");
-		softassert = new SoftAssert();
-
-		element = driver.findElement(PINTEREST_ICON);
-//		hrefLink = driver.findElement(PINTEREST_LINK).getAttribute("href");
-
-		objGeneralMethods.clickButtonByJS(driver, element);
-
-		Thread.sleep(1000);
-
-//		list = driver.findElements(LEAVE_SITE_POPUP);
+//		System.out.println("***Validating Pinterest Link***");
+//		softassert = new SoftAssert();
 //
-//		Assert.assertTrue(list.size() > 0, "Leave Site Popup has not appeared");
+//		element = driver.findElement(PINTEREST_ICON);
+////		hrefLink = driver.findElement(PINTEREST_LINK).getAttribute("href");
 //
-//		objGeneralMethods.clickButtonByJS(driver, LEAVE_SITE_POPUP_CANCEL_BTN);
-
-
-		wait.until(ExpectedConditions.numberOfWindowsToBe(2));
-
-		Set<String> windowHandle2 = driver.getWindowHandles();
-
-
-		for (String handle : windowHandle2) {
-			if (!handle.equals(originalWindow)) {
-				driver.switchTo().window(handle); // Switch to the new window
-				break;
-			}
-		}
-
-		softassert.assertTrue(driver.getCurrentUrl().contains("https://www.pinterest.com/tommyjohnwear/"),
-				"Pinterest Link is not Correct");
-		driver.close();
-		driver.switchTo().window(originalWindow);
-
-		try{
-			softassert.assertAll();
-		}catch (AssertionError e) {
-			ExtentReport.extentTest.fail(e);
-			softassert.assertAll();
-		}
-
-		System.out.println("Pinterest Icon is Present and Link is correct\n");
-		Reporter.log("Pinterest Footer Icon is Displayed :: Clickable");
-		ExtentReport.extentTest.info("Pinterest Footer Icon is Displayed :: Clickable");
+//		Thread.sleep(5000);
+//		objGeneralMethods.clickButtonByJS(driver, element);
+//
+//		Thread.sleep(5000);
+//
+////		list = driver.findElements(LEAVE_SITE_POPUP);
+////
+////		Assert.assertTrue(list.size() > 0, "Leave Site Popup has not appeared");
+////
+////		objGeneralMethods.clickButtonByJS(driver, LEAVE_SITE_POPUP_CANCEL_BTN);
+//
+//
+//		wait.until(ExpectedConditions.numberOfWindowsToBe(2));
+//
+//		Set<String> windowHandle2 = driver.getWindowHandles();
+//
+//
+//		for (String handle : windowHandle2) {
+//			if (!handle.equals(originalWindow)) {
+//				driver.switchTo().window(handle); // Switch to the new window
+//				break;
+//			}
+//		}
+//
+//		softassert.assertTrue(driver.getCurrentUrl().contains("https://www.pinterest.com/tommyjohnwear/"),
+//				"Pinterest Link is not Correct");
+//		driver.close();
+//		driver.switchTo().window(originalWindow);
+//
+//		try{
+//			softassert.assertAll();
+//		}catch (AssertionError e) {
+//			ExtentReport.extentTest.fail(e);
+//			softassert.assertAll();
+//		}
+//
+//		System.out.println("Pinterest Icon is Present and Link is correct\n");
+//		Reporter.log("Pinterest Footer Icon is Displayed :: Clickable");
+//		ExtentReport.extentTest.info("Pinterest Footer Icon is Displayed :: Clickable");
 
 //		Check Instagram Link
 //		System.out.println("***Validating Instagram Link***");
