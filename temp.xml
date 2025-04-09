@@ -13,7 +13,7 @@
         <classes>
             <class name="TestModules.ValidateCategoryPages">
                 <methods>
-                    <include name="ValidateOnClickingTheInLineBanner"/>
+                    <include name="ValidateInteractWithSortBy"/>
                 </methods>
             </class>
         </classes>
