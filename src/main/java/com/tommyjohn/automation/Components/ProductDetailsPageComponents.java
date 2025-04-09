@@ -69,6 +69,21 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		this.driver = driver;
 	}
 
+	public void ValidateReviewsSummaryLink() throws Exception {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
+		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		SoftAssert softAssert = new SoftAssert();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_TITLE));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(REVIEW_SUMMARY));
+		WebElement ReviewSummary = driver.findElement(REVIEW_SUMMARY);
+		js.executeScript("arguments[0].click();", driver.findElement(REVIEW_SUMMARY));
+		softAssert.assertTrue(driver.findElement(REVIEW_SUMMARY).isDisplayed(),"Review Summary link is not functional");
+		Reporter.log("Review Summary link is functional");
+		ExtentReport.extentTest.info("Review Summary link is functional");
+	}
+
 	public void ValidateDisabledATC() throws Exception {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
@@ -90,7 +105,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			System.out.println(Sticky_SelectASize_CTA);
 
 			softAssert.assertEquals(SelectASize_CTA,Sticky_SelectASize_CTA,"ATC CTA is not disabled in Sticky and Regular CTAs when the User doesn't select any size");
-
+			Reporter.log("ATC CTA is disabled in Sticky and Regular CTAs when the User doesn't select any size");
+			ExtentReport.extentTest.info("ATC CTA is disabled in Sticky and Regular CTAs when the User doesn't select any size");
 		}
 
 

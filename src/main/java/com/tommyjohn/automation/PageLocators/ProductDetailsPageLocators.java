@@ -19,7 +19,8 @@ public class ProductDetailsPageLocators {
 	public static By FIRST_PRODUCT_REVIEW_STARS = By.cssSelector("div.mega-collection-grid__row:nth-child(3) > div:nth-child(3) > a > div");
 	//changed
 	public static By PRODUCT_TITLE = By.xpath("//h1[@class='mb-0']");
- 	
+	public static By REVIEW_SUMMARY = By.xpath("//span[@class='yotpo-star-rating-reviews-summary-text']");
+	public static By REVIEW_SUMMARY_TITLE = By.xpath("//div[@class='yotpo-summary-header-title']");
 	//changed
 	public static By PRODUCT_TITLE_1 = By.xpath("//h1[@class='mb-0']");//changed
 	//	public static By PRODUCT_PRICE = By.cssSelector("div.product-info__inner-top > span > span:nth-child(2)");
@@ -147,7 +148,7 @@ public class ProductDetailsPageLocators {
 	//Reviews section
 
 
-	public static By RATING_STARS = By.xpath("(//span[@class='flex items-center font-normal text-text-secondary'])[1]");
+	public static By RATING_STARS = By.xpath("//div[@class='yotpo-sr-bottom-line-text yotpo-sr-bottom-line-text--right-panel']");
 	public static By RATING_NUMBER = By.xpath("//div[@class='yotpo-bottom-line-left-panel yotpo-bottom-line-score']");
 	public static By RATING_AND_REVIEWS_BOX = By.xpath("//div[@class='yotpo-header-container']");
 	public static By RATING_AND_REVIEWS_FILTER = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div:nth-child(2)>ul>li");

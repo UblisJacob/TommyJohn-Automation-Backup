@@ -33,6 +33,13 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 
 	}
 
+	public void ValidateReviewSummaryLink() throws Exception {
+
+
+		new ProductDetailsPageComponents(driver).ValidateReviewsSummaryLink();
+
+	}
+
 	public void ValidateTabPriceAndAddToCartPrice() throws InterruptedException {
 
 
