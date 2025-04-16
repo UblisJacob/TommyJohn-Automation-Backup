@@ -33,6 +33,13 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 
 	}
 
+	public void ValidateWriteAReviewLink()  {
+
+
+		new ProductDetailsPageComponents(driver).ValidateWriteAReviewLink();
+
+	}
+
 	public void ValidateReviewSummaryLink() throws Exception {
 
 

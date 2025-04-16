@@ -33,7 +33,7 @@ public class CustomUtilities {
 	public static WebDriver driver;
 	public EdgeDriver edgedriver;
 	public static String baseUrl = "https://www.tommyjohn.com/";
-//	public static String baseUrl = "https://tommyjohn.myshopify.com/?preview_theme_id=139515559981";
+//	public static String baseUrl = "https://www.tommyjohn.com/?_ab=0&_fd=0&_sc=1&preview_theme_id=140061376557";
 	public static BufferedReader reader;
 	public static Properties properties;
 	public static final String propertiesFilePath = "src/main/resources/configuration.properties";
@@ -70,7 +70,7 @@ public class CustomUtilities {
 			// Set other desired capabilities if needed (such as enabling remote d
 //			chromeOptions.setExperimentalOption("useAutomationExtension", false)
 			chromeOptions.addArguments("--disable-gpu");
-//			chromeOptions.addArguments("--headless=new");
+			chromeOptions.addArguments("--headless=new");
 			chromeOptions.addArguments("--window-size=1920,1080");
 			chromeOptions.addArguments("--disable-blink-features=AutomationControlled");
 			chromeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
