@@ -10,8 +10,8 @@ public class HomePageLocators{
 	public static By NEW_MARKDOWNS_SECTIONS = By.xpath("//swiper-container[@class='-mx-lg flex px-lg [grid-area:slides]']");
 	public static By PROMO_BANNER_CODE = By.xpath("//span[@class='flex items-center gap-xs']");
 	public static By HERO_BANNER_CTA = By.xpath("(//a[@class='button-inverse'])[3]");
-	public static By HERO_SLIDER_SHOPMENS_CTA = By.xpath("(//a[contains(text(),\"Shop Men's\")])[3]");
-	public static By HERO_SLIDER_SHOPWOMENS_CTA = By.xpath("(//a[contains(text(),\"Shop Women's\")])[3]");
+	public static By HERO_SLIDER_SHOPMENS_CTA = By.xpath("(//a[contains(text(),\"Shop Men's\")])[2]");
+	public static By HERO_SLIDER_SHOPWOMENS_CTA = By.xpath("(//a[contains(text(),\"Shop Women's\")])[2]");
 	public static By CATEGORY_SELECTOR_SECTION = By.xpath("(//div[@class='grid grid-cols-1 md:grid-cols-2'])[1]");
 	public static By CATEGORY_SELECTOR_MEN = By.xpath("(//div[@class='space-x-2 md:space-x-4']//button)[1]");
 	public static By CATEGORY_SELECTOR_WOMEN = By.xpath("(//div[@class='space-x-2 md:space-x-4']//button)[2]");
@@ -85,9 +85,9 @@ public class HomePageLocators{
 
 	public static By EXPLORE_LEVEL_ONE_LINKS = By.cssSelector("li[arial-label='open Explore menu'] ul[class='nav-item__list level-one-list alternate']>li[class='level-one-container alternate image-column']");
 
-	public static By MEN_CATEGORY = By.xpath("(//a[contains(text(),'Men')])[4]");
+	public static By MEN_CATEGORY = By.xpath("(//a[contains(text(),'Men')])[2]");
 	public static By MEN_CATEGORY_COPY = By.xpath("(//a[contains(text(),'Men')])[3]");
-	public static By WOMEN_CATEGORY = By.xpath("(//a[contains(text(),'Women')])[4]");
+	public static By WOMEN_CATEGORY = By.xpath("(//a[contains(text(),'Women')])[2]");
 	public static By WOMEN_CATEGORY_COPY = By.xpath("(//a[contains(text(),'Women')])[3]");
 	public static By FINAL_SALE = By.cssSelector(".level-zero-list>.level-zero-container:nth-child(3)> .level-zero-item >a");
 

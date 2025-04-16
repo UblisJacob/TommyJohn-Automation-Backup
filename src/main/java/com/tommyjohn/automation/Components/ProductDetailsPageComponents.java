@@ -69,6 +69,20 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		this.driver = driver;
 	}
 
+	public void ValidateWriteAReviewLink()
+	{
+
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+		driver.get("https://www.tommyjohn.com/products/performance-ankle-sock-3-pack?variant=43269073961005");
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		SoftAssert softAssert = new SoftAssert();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_TITLE));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(WRITE_A_REVIEW_LINK));
+		softAssert.assertTrue(driver.findElement(WRITE_A_REVIEW_LINK).isDisplayed(),"Write a Review Link is not available");
+		Reporter.log("Write a Review Link is available");
+		ExtentReport.extentTest.info("Write a Review Link is available");
+	}
+
 	public void ValidateReviewsSummaryLink() throws Exception {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();

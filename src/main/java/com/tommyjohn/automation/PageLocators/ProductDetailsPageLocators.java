@@ -20,6 +20,7 @@ public class ProductDetailsPageLocators {
 	//changed
 	public static By PRODUCT_TITLE = By.xpath("//h1[@class='mb-0']");
 	public static By REVIEW_SUMMARY = By.xpath("//span[@class='yotpo-star-rating-reviews-summary-text']");
+	public static By WRITE_A_REVIEW_LINK = By.xpath("//div[@class='yotpo-sr-bottom-line-new-review']");
 	public static By REVIEW_SUMMARY_TITLE = By.xpath("//div[@class='yotpo-summary-header-title']");
 	//changed
 	public static By PRODUCT_TITLE_1 = By.xpath("//h1[@class='mb-0']");//changed

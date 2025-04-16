@@ -51,7 +51,7 @@ public class InfluenecerPageComponents extends InfluencerPageLocators {
     {
 
         SoftAssert softAssert = new SoftAssert();
-        driver.get("https://www.tommyjohn.com/pages/influencer-lp8-16");
+            driver.get("https://www.tommyjohn.com/pages/influencer-lp8-16");
         wait.until(ExpectedConditions.visibilityOfElementLocated(TRENDINGTHISWEEK));
 
         softAssert.assertTrue(driver.findElement(TRENDINGTHISWEEK).isDisplayed(),"Trending this week section is not available");

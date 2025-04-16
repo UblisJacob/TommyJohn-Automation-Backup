@@ -179,7 +179,7 @@ public class GTMComponents {
         devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
 
         // ✅ Expected JSON Payload for Comparison (Ignoring "sourceId" & "sessionid")
-        String expectedPayload = "[{\"action\":\"add-to-cart\",\"target\":{\"product\":\"7884328239149\"},"
+        String expectedPayload = "[{\"action\":\"add-to-cart\",\"target\":{\"product\":\"5290360471597\"},"
                 + "\"metadata\":{\"locale\":\"en_US\",\"quantity\":1},"
                 + "\"user\":{\"identities\":{},\"segments\":[],\"traits\":{}}}]";
         final boolean[] payloadMatched = {false};
@@ -232,7 +232,7 @@ public class GTMComponents {
         devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
 
         // ✅ Expected JSON Payload for "click" event
-        String expectedPayload = "[{\"action\":\"click\",\"target\":{\"product\":\"7884328239149\"},"
+        String expectedPayload = "[{\"action\":\"click\",\"target\":{\"product\":\"5290360471597\"},"
                 + "\"metadata\":{\"locale\":\"en_US\"},"
                 + "\"user\":{\"identities\":{},\"segments\":[],\"traits\":{}}}]";
 
@@ -288,7 +288,7 @@ public class GTMComponents {
         devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
 
         // ✅ Expected JSON Payload for "view" product event
-        String expectedPayload = "[{\"action\":\"view\",\"target\":{\"product\":\"7884328239149\"},"
+        String expectedPayload = "[{\"action\":\"view\",\"target\":{\"product\":\"5290360471597\"},"
                 + "\"metadata\":{\"locale\":\"en_US\"},"
                 + "\"user\":{\"identities\":{},\"segments\":[],\"traits\":{}}}]";
 
@@ -398,7 +398,7 @@ public class GTMComponents {
         devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
 
         // ✅ Expected JSON Payload (product ID will be dynamically matched)
-        String expectedPayload = "[{\"action\":\"remove-from-cart\",\"target\":{\"product\":\"7884328239149\"},"
+        String expectedPayload = "[{\"action\":\"remove-from-cart\",\"target\":{\"product\":\"7884372607021\"},"
                 + "\"metadata\":{\"locale\":\"en_US\"},"
                 + "\"user\":{\"identities\":{},\"segments\":[],\"traits\":{}}}]";
 
@@ -673,7 +673,7 @@ public class GTMComponents {
                             JSONObject properties = jsonPayload.getJSONObject("properties");
 
                             // ✅ Extract values
-                            String productId = properties.optString("product_id", "4931429924909");
+                            String productId = properties.optString("product_id", "5290360471597");
                             String activeVariantSku = properties.optString("active_variant_sku", "3636:S");
                             String defaultSwatchVariantSku = properties.optString("default_swatch_variant_sku", "3636:S");
 

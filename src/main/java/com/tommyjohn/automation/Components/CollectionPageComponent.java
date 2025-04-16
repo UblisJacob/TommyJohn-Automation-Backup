@@ -591,7 +591,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 		Thread.sleep(10000);
 		// Wait for the sorted prices to load and capture their texts
-		js.executeScript("window.scrollBy(0,-250)");
+		//js.executeScript("window.scrollBy(0,-250)");
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(PLP_PRICE));
 		List<WebElement> priceElementsAsc = driver.findElements(PLP_PRICE);
 		int limit = Math.min(1, priceElementsAsc.size());

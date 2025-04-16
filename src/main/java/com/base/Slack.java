@@ -54,7 +54,7 @@ public class Slack {
 
     public static void sendSlackNotificationReg(String passed, String failed, String skipped, String reportLink /*, String JSonLink*/) throws Exception {
 
-             //   String ReportLINK = "https://drive.google.com/uc?export=download&id=1tUUFIjhfeBoCCPcpjK4dh2Wyh0ahPH6j";
+             //   String ReportLINK = "https://drive.google.com/uc?export=download&id=1EuaYMvHHYdmC0cAo-OI3CNp94agIZqiq";
             // Create JSON payload
                 String Date = setCurrentDatetDate();
 
