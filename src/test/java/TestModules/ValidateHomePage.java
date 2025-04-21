@@ -54,13 +54,13 @@ public class ValidateHomePage extends ExtentReport {
 		new HomePageComponents(driver).ValidateBrandTicker();
 	}
 
-//	@Test
+	@Test
 	public void ValidateMenInCategorySelector() throws Exception {
 
 		new HomePage(driver).ValidateMenInCategorySelector();
 	}
 
-//	@Test
+	@Test
 	public void ValidateWomenInCategorySelector() throws Exception {
 
 		new HomePage(driver).ValidateWomenInCategorySelector();

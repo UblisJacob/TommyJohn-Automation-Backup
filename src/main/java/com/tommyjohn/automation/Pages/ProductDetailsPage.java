@@ -40,6 +40,13 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 
 	}
 
+	public void ValidateReadAllReviewsLinkInReviewsSummary() throws Exception {
+
+
+		new ProductDetailsPageComponents(driver).ValidateReadAllReviewsLinkInReviewsSummary();
+
+	}
+
 	public void ValidateReviewSummaryLink() throws Exception {
 
 

@@ -88,7 +88,7 @@ public class AddToCartComponents extends AddToCartLocators{
 
 		if(elementsCount > 1)
 		{
-			for(int i=1;i<=3;i++)
+			for(int i=1;i<=4;i++)
 			{
 
 				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])["+i+"]"));
@@ -154,7 +154,7 @@ public class AddToCartComponents extends AddToCartLocators{
 //							jse.executeScript("arguments[0].click();", driver.findElement(EMAIL_WHEN_IN_STOCK_BUTTON_CLOSE));
 //
 //							}
-						if(count==2)
+						if(count==3)
 						{
 							break;
 						}
@@ -162,7 +162,7 @@ public class AddToCartComponents extends AddToCartLocators{
 					}
 
 
-					if(count==2)
+					if(count==3)
 					{
 						break;
 					}
@@ -410,6 +410,8 @@ public class AddToCartComponents extends AddToCartLocators{
 		text = new CollectionPageComponent(driver).navigateToPDP();
 
 		Thread.sleep(2000);
+
+		jse.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//span[@class='text-sm text-text-tertiary'])[1]")));
 
 		allElements = driver.findElements(ProductDetailsPageComponents.COLOR_VARIANT);
 

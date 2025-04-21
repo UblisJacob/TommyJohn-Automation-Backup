@@ -126,17 +126,20 @@ public class HomePageComponents extends HomePageLocators {
 		ExtentReport.extentTest.info("Shop Women's CTA is functional in Hero Slider");
 	}
 
-	public void ValidateMenInCategorySelector() {
+	public void ValidateMenInCategorySelector() throws InterruptedException {
 		JavascriptExecutor js = (JavascriptExecutor)driver;
 		SoftAssert softAssert = new SoftAssert();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
 		js.executeScript("window.scrollBy(0,1000)");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CATEGORY_SELECTOR_SECTION));
-		driver.findElement(CATEGORY_SELECTOR_MEN).click();
+		js.executeScript("arguments[0].click();", driver.findElement(CATEGORY_SELECTOR_MEN));
+	//	driver.findElement(CATEGORY_SELECTOR_MEN).click();
 		list = driver.findElements(MEN_CATEGORIES);
 		for(int i=1;i<list.size();i++)
 		{
-			driver.findElement(By.xpath("((//ul[@class='mt-6 md:mt-8'])[1]//li)["+i+"]")).click();
+			Thread.sleep(10000);
+			js.executeScript("arguments[0].click();", driver.findElement(By.xpath("((//ul[@class='mt-6 md:mt-8'])[1]//li//a)["+i+"]")));
+//			driver.findElement(By.xpath("((//ul[@class='mt-6 md:mt-8'])[1]//li)["+i+"]")).click();
 			softAssert.assertTrue(driver.findElement(PAGEHEADER).isDisplayed(),"Categories in Men is not functional");
 			driver.navigate().back();
 			js.executeScript("window.scrollBy(0,1000)");
@@ -153,16 +156,18 @@ public class HomePageComponents extends HomePageLocators {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
 		js.executeScript("window.scrollBy(0,1000)");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CATEGORY_SELECTOR_SECTION));
-		driver.findElement(CATEGORY_SELECTOR_WOMEN).click();
+		js.executeScript("arguments[0].click();", driver.findElement(CATEGORY_SELECTOR_WOMEN));
+//		driver.findElement(CATEGORY_SELECTOR_WOMEN).click();
 		list = driver.findElements(WOMEN_CATEGORIES);
 		for(int i=1;i<list.size();i++)
 		{
-
-			driver.findElement(By.xpath("((//ul[@class='mt-6 md:mt-8'])[2]//li)["+i+"]")).click();
+			Thread.sleep(10000);
+			js.executeScript("arguments[0].click();", driver.findElement(By.xpath("((//ul[@class='mt-6 md:mt-8'])[2]//li//a)["+i+"]")));
 			softAssert.assertTrue(driver.findElement(PAGEHEADER).isDisplayed(),"Categories in Men is not functional");
 			driver.navigate().back();
 			js.executeScript("window.scrollBy(0,1000)");
-			driver.findElement(CATEGORY_SELECTOR_WOMEN).click();
+		//	driver.findElement(CATEGORY_SELECTOR_WOMEN).click();
+			js.executeScript("arguments[0].click();", driver.findElement(CATEGORY_SELECTOR_WOMEN));
 
 
 		}
@@ -2799,6 +2804,11 @@ public class HomePageComponents extends HomePageLocators {
 	public void navigateToMensBriefs()
 	{
 		driver.get("https://www.tommyjohn.com/collections/underwear-mens-styles-brief");
+	}
+
+	public void navigateToWomensBriefs()
+	{
+		driver.get("https://www.tommyjohn.com/collections/underwear-womens-styles-brief");
 	}
 
 	public void navigateToSales()
