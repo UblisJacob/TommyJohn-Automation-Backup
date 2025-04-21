@@ -58,6 +58,12 @@ public class 	ValidatePDP extends ExtentReport{
 	}
 
 	@Test
+	public void ValidateReadAllReviewsLinkInReviewsSummary() throws Exception {
+		new ProductDetailsPage(driver).ValidateReadAllReviewsLinkInReviewsSummary();
+
+	}
+
+	@Test
 	public void ValidateWriteAReviewLink() throws Exception {
 		new ProductDetailsPage(driver).ValidateWriteAReviewLink();
 

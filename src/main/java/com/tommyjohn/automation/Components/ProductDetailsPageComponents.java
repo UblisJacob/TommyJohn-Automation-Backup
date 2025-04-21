@@ -69,6 +69,27 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		this.driver = driver;
 	}
 
+	public void ValidateReadAllReviewsLinkInReviewsSummary() throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+		new HomePageComponents(driver).navigateToWomensBriefs();
+		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		SoftAssert softAssert = new SoftAssert();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_TITLE));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(REVIEW_SUMMARY));
+		js.executeScript("arguments[0].click();", driver.findElement(REVIEW_SUMMARY));
+		softAssert.assertTrue(driver.findElement(REVIEW_SUMMARY).isDisplayed(),"Review Summary link is not functional");
+		Reporter.log("Review Summary link is functional");
+		ExtentReport.extentTest.info("Review Summary link is functional");
+		js.executeScript("arguments[0].click();", driver.findElement(READ_ALL_REVIEWS));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_REVIEW));
+		softAssert.assertTrue(driver.findElement(FIRST_REVIEW).isDisplayed(),"Read All Review link is not functional");
+		Reporter.log("Read All Review link is not functional");
+		ExtentReport.extentTest.info("Read All Review link is not functional");
+
+	}
+
 	public void ValidateWriteAReviewLink()
 	{
 
@@ -85,7 +106,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 	public void ValidateReviewsSummaryLink() throws Exception {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
-		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
+		new HomePageComponents(driver).navigateToWomensBriefs();
 		new CollectionPageComponent(driver).navigateToProductDetailsPage();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		SoftAssert softAssert = new SoftAssert();
@@ -2836,7 +2857,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 
 	public void verifyReviewRecommendations() throws Exception {
-		new HomePageComponents(driver).navigateToAllPantiesnInWomenCategory();
+		new HomePageComponents(driver).navigateToWomensBriefs();
 		new CollectionPageComponent(driver).navigateToProductDetailsPage();
 		//new AddToCartComponents(driver).selectSize();
 
