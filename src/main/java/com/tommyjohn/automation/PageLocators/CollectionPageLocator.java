@@ -29,6 +29,8 @@ public class CollectionPageLocator {
 	public static By FIRST_PRODUCT_HEAD_TEXT = By.xpath("(//div[@class='relative aspect-tile'])[1]");
 	public static By FIRST_PRODUCT_HEAD_LINE_TEXT_COPY = By.xpath("(//span[@class='product-meta__title'])[1]");
 	public static By FIRST_PRODUCT_HEAD_LINE_TEXT = By.xpath("(//a[@data-cy='productTileLink'])[1]");
+	public static By COLLECTION_DOORWAYS = By.xpath("//swiper-container[@class='flex overflow-auto -mx-lg px-lg']");
+	public static By COLLECTION_DOORWAYS_COUNT = By.xpath("//p[@class='text-heading-sm font-medium text-text-primary mb-2xs leading-tight']");
 	public static By SECOND_PRODUCT_HEAD_LINE_TEXT = By.xpath("(//a[@data-cy='productTileLink'])[4]");
 	public static By MENS_SECOND_PRODUCT_HEAD_LINE_TEXT = By.xpath("(//a[@data-cy='productTileLink'])[2]");
 	public static By FIRST_PRODUCT_STAR_RATING = By.xpath("(//a[@class='my-xs font-normal text-body-xs'])[1]");

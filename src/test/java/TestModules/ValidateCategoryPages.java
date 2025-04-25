@@ -25,6 +25,15 @@ public class ValidateCategoryPages {
 	}
 
 //Not worked exception
+
+	@Test public void ValidateCollectionDoorways() throws Exception { new
+			CollectionPage(driver).ValidateCollectionDoorways(); }
+
+
+	@Test public void ValidateFunctionalityOfCollectionDoorways() throws Exception { new
+			CollectionPage(driver).ValidateFunctionalityOfCollectionDoorways(); }
+
+
 	 @Test public void ValidateLoadCategoryPage() throws Exception { new
 	 CollectionPage(driver).validateallplpsareloading(); }
 
