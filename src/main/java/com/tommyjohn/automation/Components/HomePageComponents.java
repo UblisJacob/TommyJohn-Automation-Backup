@@ -154,6 +154,7 @@ public class HomePageComponents extends HomePageLocators {
 		JavascriptExecutor js = (JavascriptExecutor)driver;
 		SoftAssert softAssert = new SoftAssert();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
+		Thread.sleep(5000);
 		js.executeScript("window.scrollBy(0,1000)");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CATEGORY_SELECTOR_SECTION));
 		js.executeScript("arguments[0].click();", driver.findElement(CATEGORY_SELECTOR_WOMEN));
@@ -354,6 +355,8 @@ public class HomePageComponents extends HomePageLocators {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
 
 		// Scroll to the 'Our Story' CTA
+		Thread.sleep(5000);
+		js.executeScript("window.scrollBy(0, 1000);");
 		WebElement ourStoryCTA = driver.findElement(OUR_STORY_CTA);
 		js.executeScript("arguments[0].scrollIntoView(true);", ourStoryCTA);
 		js.executeScript("window.scrollBy(0, -100);"); // Adjust scrolling for sticky headers
@@ -421,8 +424,8 @@ public class HomePageComponents extends HomePageLocators {
 		validateCTA(OURSHOPPINGPOLICIES_CTA, "(//h1)[1]", "Our Shopping Policies CTA in Brand Building section is not functional", softAssert);
 
 		// Validate 'Our Story' CTA
-		validateURLCTA(OURSTORY_CTA, "https://www.tommyjohn.com/pages/about-us",
-				"Our Story CTA in Brand Building section is not functional", softAssert);
+		validateURLCTA(SIGNUP_CTA, "https://www.tommyjohn.com/pages/sms-signup",
+				"Sign Up CTA in Brand Building section is not functional", softAssert);
 
 		// Assert all validations
 		softAssert.assertAll();
@@ -1126,6 +1129,7 @@ public class HomePageComponents extends HomePageLocators {
 		driver.findElement(SEARCH_ICON_INPUT).click();
 		driver.findElement(SEARCH_ICON_INPUT).sendKeys(Search_keyword + Keys.ENTER);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SEARCHPAGE_PRODUCT_IMAGE));
+		executor.executeScript("window.scrollBy(0,100)");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SEARCHPAGE_PRODUCT_REVIEWS));
 		softAssert.assertTrue(driver.findElement(SEARCHPAGE_TITLE).isDisplayed(), "Search Page title is not displayed on search page");
 		String[] list = driver.findElement(SEARCHPAGE_TITLE).getText().split("for ");
@@ -1169,7 +1173,8 @@ public class HomePageComponents extends HomePageLocators {
 		Reporter.log("Search page is displayed :: Correct");
 		ExtentReport.extentTest.info("Search page is displayed :: Correct");
 
-		driver.findElement(SEARCH_ICON).click();
+		executor.executeScript("arguments[0].click();", driver.findElement(SEARCH_ICON) );
+	//	driver.findElement(SEARCH_ICON).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(RECENT_SEARCHES_TITLE));
 		softAssert.assertTrue(driver.findElement(CLEAR_RECENT_SEARCHES).isDisplayed(), "Clear recent search link is not displayed");
 		driver.findElement(CLEAR_RECENT_SEARCHES).click();
@@ -1540,7 +1545,6 @@ public class HomePageComponents extends HomePageLocators {
 
 //		Scroll to bottom of page for footer section to be visible
 		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-
 //		Check Shop Women
 		System.out.println("***Validating Shop Women Footer***");
 
