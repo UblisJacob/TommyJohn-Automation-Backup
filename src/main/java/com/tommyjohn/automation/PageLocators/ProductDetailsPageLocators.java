@@ -100,6 +100,14 @@ public class ProductDetailsPageLocators {
 	public static By SIZEGUIDE_FITRANGE_DROPDOWN= By.cssSelector(".expand-instructions");
 	public static By SIZEGUIDE_FITRANGE_TEXT= By.cssSelector(".instructions-text");
 	public static By SIZEGUIDE_CHART_TABLE= By.xpath("//table[@class='not-prose w-full whitespace-nowrap text-center align-baseline text-body-sm leading-6']");
+	public static By PRODUCT_NAME_IN_SIZECHART= By.xpath("//h2[@class='mb-lg mt-2 pr-14 text-heading-md']");
+	public static By HOW_TO_MEASURE_CTA_IN_SIZECHART= By.xpath("//select[@id='column-select']");
+	public static By BAND_SIZE= By.xpath("//select[@id='column-select']");
+	public static By CUP_VOLUME= By.xpath("//select[@id='row-select']");
+	public static By HOW_TO_MEASURE_SECTION= By.xpath("//div[@class='px-2']");
+	public static By SIZE_RESULT= By.xpath("//span[@class='text-text-accent']");
+
+
 	
 	public static By SIZEGUIDE_TITLE= By.xpath("//h2[@class='mb-lg mt-2 pr-14 text-heading-md']");
 	public static By SIZE_GUIDE_BUTTON = By.cssSelector("[data-tj-qa='size-guide-link'],button.product-info__header-btn.size-guide");

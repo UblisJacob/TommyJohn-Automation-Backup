@@ -403,7 +403,7 @@ public class AddToCartComponents extends AddToCartLocators{
 
 		int count =0;
 		// call method to navigate to collection page
-		new HomePageComponents(driver).navigateToMensAll();
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 		jse = (JavascriptExecutor) driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		// call method to navigate product details page

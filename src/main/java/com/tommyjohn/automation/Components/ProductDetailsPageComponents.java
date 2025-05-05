@@ -69,6 +69,96 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		this.driver = driver;
 	}
 
+	public void ValidateAppropriateResultForSelectingBandSizeAndCupVolume() throws Exception {
+		String text = null;
+		JavascriptExecutor js1 = (JavascriptExecutor) driver;;
+		SoftAssert softAssert = new SoftAssert();
+		new HomePageComponents(driver).navigateToBraInWomenCategory();
+		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+//		driver.get("https://www.tommyjohn.com/products/womens-air-bra-pack-2-pack?variant=43216573464621");
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(SIZEGUIDE));
+
+		//HOW TO Measure
+		if (driver.findElement(SIZEGUIDE).isDisplayed()) {
+			WebElement ele = driver.findElement(SIZEGUIDE);
+			js1.executeScript("arguments[0].click();", ele);
+			Thread.sleep(3000);
+			js1.executeScript("window.scrollBy(0,500)");
+			Thread.sleep(2000);
+		}
+
+		if (!driver.findElement(By.xpath("//h2[@class='mb-lg mt-2 pr-14 text-heading-md']")).isDisplayed())
+			throw new Exception("Sizes chart overlay is not displayed after Size guide button was clicked");
+		System.out.println("Size Chart is displayed");
+		Reporter.log("Size Chart is displayed");
+		ExtentReport.extentTest.info("Size Chart is displayed");
+		Thread.sleep(2000);
+		//Size Calculator
+		wait.until(ExpectedConditions.visibilityOfElementLocated(BRA_BAND_SIZE_DROPDOWN));
+		if (!driver.findElement(BRA_BAND_SIZE_DROPDOWN).isEnabled()) {
+			throw new Exception("Band Size Drop-Down is not enable.");
+		} else {
+			Select BandSize_DropDown = new Select(driver.findElement(BRA_BAND_SIZE_DROPDOWN));
+			BandSize_DropDown.selectByIndex(1);
+		}
+		if (!driver.findElement(CUP_VOLUME).isEnabled()) {
+			throw new Exception("Band Size Drop-Down is not enable.");
+		} else {
+			Select CupVoulme_DropDown = new Select(driver.findElement(CUP_VOLUME));
+			CupVoulme_DropDown.selectByValue("A");
+		}
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SIZE_RESULT));
+		softAssert.assertTrue(driver.findElement(SIZE_RESULT).isDisplayed(),"Size Result is not displayed on selecting the Band Size and Cup Volume");
+		String Size_Result = driver.findElement(SIZE_RESULT).getText();
+		System.out.println("Size Result is:"+ Size_Result);
+		Reporter.log("Size Result is displayed on selecting the Band Size and Cup Volume");
+		ExtentReport.extentTest.info("Size Result is displayed on selecting the Band Size and Cup Volume\"");
+	}
+
+	public void ValidateSizeChartDetailsForBrasandBrallets() throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+		new HomePageComponents(driver).navigateToBraCategory();
+		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		SoftAssert softAssert = new SoftAssert();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_TITLE));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SIZEGUIDE));
+		if (driver.findElement(SIZEGUIDE).isDisplayed()) {
+			WebElement ele = driver.findElement(SIZEGUIDE);
+			js.executeScript("arguments[0].click();", ele);
+			Thread.sleep(5000);
+			softAssert.assertTrue(driver.findElement(PRODUCT_NAME_IN_SIZECHART).isDisplayed(),"Product name is not displayed in the Size chart");
+			softAssert.assertTrue(driver.findElement(HOW_TO_MEASURE_CTA_IN_SIZECHART).isDisplayed(),"How to measure CTA is not displayed in Size chart");
+			softAssert.assertTrue(driver.findElement(BAND_SIZE).isDisplayed(),"Band Size dropdown is not displayed in the Size chart");
+			softAssert.assertTrue(driver.findElement(CUP_VOLUME).isDisplayed(),"Cup Volume dropdown is not displayed in the Size chart");
+			softAssert.assertTrue(driver.findElement(SIZEGUIDE_CHART_TABLE).isDisplayed(),"Size Guide Table is not displayed in the Size chart");
+			softAssert.assertTrue(driver.findElement(HOW_TO_MEASURE_SECTION).isDisplayed(),"How to measure section is not displayed in the Size chart");
+
+			//Close first size guide window
+			try {
+				WebElement SizeChartClose = driver.findElement(By.xpath("(//button[@aria-label='Close modal'])[1]"));
+				jse.executeScript("arguments[0].click();", SizeChartClose);
+			}
+			catch(Exception ex)
+			{
+				WebElement SizeChartClose = driver.findElement(By.xpath("(//button[@aria-label='Close modal'])[2]"));
+				js.executeScript("arguments[0].click();", SizeChartClose);
+			}
+			//		driver.findElement(By.xpath("(//button[@aria-label='Close modal'])[2]")).click();
+		} else {
+			System.out.println("Size guide link is not Displayed");
+			Reporter.log("Size guide link is not Displayed.");
+			ExtentReport.extentTest.info("Size guide link is not Displayed.");
+		}
+
+		softAssert.assertAll();
+		Reporter.log("Size Chart contains all the details");
+		ExtentReport.extentTest.info("Size Chart contains all the details");
+	}
+
 	public void ValidateReadAllReviewsLinkInReviewsSummary() throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
@@ -94,7 +184,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 	{
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
-		driver.get("https://www.tommyjohn.com/products/performance-ankle-sock-3-pack?variant=43269073961005");
+		driver.get("https://www.tommyjohn.com/products/cushioned-no-show-sock-3-pack?variant=43269074059309");
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		SoftAssert softAssert = new SoftAssert();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_TITLE));
@@ -3628,14 +3718,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			js1.executeScript("arguments[0].click();", ele);
 			Thread.sleep(3000);
 			js1.executeScript("window.scrollBy(0,500)");
-//			WebElement elem = driver.findElement(SIZEGUIDE_FITRANGE_DROPDOWN);
-//			jse.executeScript("arguments[0].click();", elem);
 			Thread.sleep(2000);
-//		if(driver.findElement(SIZEGUIDE_FITRANGE_TEXT).isDisplayed()) {
-//			//System.out.println(driver.findElement(By.cssSelector(".instruction-text")).getText());
-//			Reporter.log("How to Measure :: Displayed.");
-//			ExtentReport.extentTest.info("How to Measure :: Displayed.");				
-//		}
 
 		}
 
@@ -3648,30 +3731,6 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		ExtentReport.extentTest.info("Size Chart is displayed");
 		Thread.sleep(2000);
 
-		//fit Range Selected
-
-//		List<WebElement> fitrange = driver.findElements(SIZEGUIDE_FITRANGE);
-//		int num = fitrange.size();
-//		System.out.println(num);
-//		if (num > 0) {
-//
-//			for (int i = 1; i <= 3; i++) {
-//				Thread.sleep(2000);
-//				String range = driver.findElement(By.xpath("(//ul[@data-tj-qa='size-guide-fit-range-graph']//li)[" + i + "]")).getAttribute("class");
-//				if (range.contentEquals("selected")) {
-//					String rangevalue = driver.findElement(By.xpath("(//ul[@data-tj-qa='size-guide-fit-range-graph']//li)[" + i + "]")).getText();
-//					System.out.println(rangevalue + " is selected");
-//					Reporter.log("Fit Range is :: Selected");
-//					ExtentReport.extentTest.info("Fit Range is :: Selected");
-//				}
-//			}
-//
-//		} else {
-//			System.out.println("NO FIT RANGE IS SELECTED");
-//			Reporter.log("NO FIT RANGE IS SELECTED");
-//			ExtentReport.extentTest.info("NO FIT RANGE IS SELECTED");
-//
-//		}
 
 		//Size Calculator
 		if (!driver.findElement(BRA_BAND_SIZE_DROPDOWN).isEnabled()) {
@@ -3687,12 +3746,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 			for (int i = 1; i < BandSize_Options_Count; i++) {
 
-//			driver.findElement(By.cssSelector(".size-guide-size-finder-dropdowns.visible>span:nth-child(1)>select")).click();
-
 				Thread.sleep(2000);
 				BandSize_DropDown.selectByIndex(i);
-//			WebElement bandopt = BandSize_Options.get(i);
-//			jse.executeScript("arguments[0].click();", bandopt);
 				Thread.sleep(2500);
 
 				//driver.findElement(By.cssSelector(".size-guide-size-finder-dropdowns.visible>span:nth-child(1)")).click();
@@ -3700,39 +3755,6 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			}
 		}
 
-//		if (!driver.findElement(BRA_CUP_VOLUME_DROPDOWN).isEnabled()) {
-//			throw new Exception("Cup Volume/Size Drop-Down is not enable.");
-//		} else {
-//			Select CupVolume_DropDown = new Select(driver.findElement(BRA_CUP_VOLUME_DROPDOWN));
-//			List<WebElement> CupVolume_Options = CupVolume_DropDown.getOptions();
-//			int CupVolume_Options_Count = CupVolume_Options.size();
-//			System.out.println("All CupVolume list :: " + CupVolume_Options_Count);
-//			Reporter.log("All CupVolume list :: Displayed");
-//			ExtentReport.extentTest.info("All CupVolume list :: Displayed");
-//			String CupVolume_Default_Text = CupVolume_Options.get(0).getText();
-//
-//			if (!CupVolume_Default_Text.equalsIgnoreCase("Cup"))
-//				throw new Exception("Text change for 'Cup Volume'");
-//
-//			for (int i = 1; i < CupVolume_Options_Count; i++) {
-//				Thread.sleep(1000);
-//				//WebElement ele = driver.findElement(By.cssSelector(".size-guide-size-finder-dropdowns.visible>span:nth-child(2)"));
-//
-//				//jse.executeScript("arguments[0].click();", ele);
-//				CupVolume_DropDown.selectByIndex(i);
-//
-//			}
-//			Thread.sleep(3000);
-//
-//			WebElement ele = driver.findElement(FIND_SIZE_BUTTON);
-//			Thread.sleep(2000);
-//			jse.executeScript("arguments[0].click();", ele);
-//
-//			if (!driver.findElement(CALCULATED_SIZE_RESULT).isDisplayed())
-//				throw new Exception("Calculated Size Result is not displayed.");
-//			if (!driver.findElement(FIND_SIZE_BUTTON).getText().equalsIgnoreCase("Edit Size"))
-//				throw new Exception("Button text should change from 'Find Size' to 'Edit Size'");
-//		}
 	}
 
 	public void verifySizeChartTextBras() throws Exception {

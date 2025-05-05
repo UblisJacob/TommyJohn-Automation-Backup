@@ -47,6 +47,21 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 
 	}
 
+	public void ValidateSizeChartDetailsForBrasandBrallets() throws Exception {
+
+
+		new ProductDetailsPageComponents(driver).ValidateSizeChartDetailsForBrasandBrallets();
+
+	}
+
+	public void ValidateAppropriateResultForSelectingBandSizeAndCupVolume() throws Exception {
+
+
+		new ProductDetailsPageComponents(driver).ValidateAppropriateResultForSelectingBandSizeAndCupVolume();
+
+	}
+
+
 	public void ValidateReviewSummaryLink() throws Exception {
 
 
