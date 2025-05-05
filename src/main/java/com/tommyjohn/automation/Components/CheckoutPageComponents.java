@@ -1030,6 +1030,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		
 		driver.findElement(HomePageLocators.CART_ICON).click();
 
+		Thread.sleep(5000);
 		WebElement checkout_btn = driver.findElement(FlyCartComponents.CHECKOUT_BUTTON);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", checkout_btn);
 

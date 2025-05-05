@@ -114,7 +114,7 @@ public class NavigationElementComponents extends HomePageLocators {
 		List<WebElement> elementsList = driver.findElements(HEADER_RIGHT_SIDE_ELEMENTS_LIST);
 
 		softassert.assertTrue(elementsList.size() == 3, "No. of elements on Right Side of TJ logo is: "
-				+ elementsList.size() + "No. of elements should be upto 3");
+				+ elementsList.size() + "No. of elements should be upto 4");
 
 		System.out.println("No. of elements on Right Side of TJ logo is: " + elementsList.size());
 

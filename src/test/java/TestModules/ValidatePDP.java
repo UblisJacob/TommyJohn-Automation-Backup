@@ -58,6 +58,17 @@ public class 	ValidatePDP extends ExtentReport{
 	}
 
 	@Test
+	public void ValidateAppropriateResultForSelectingBandSizeAndCupVolume() throws Exception {
+		new ProductDetailsPage(driver).ValidateAppropriateResultForSelectingBandSizeAndCupVolume();
+	}
+
+	@Test
+	public void ValidateSizeChartDetailsForBrasandBrallets() throws Exception {
+		new ProductDetailsPage(driver).ValidateSizeChartDetailsForBrasandBrallets();
+
+	}
+
+	@Test
 	public void ValidateReadAllReviewsLinkInReviewsSummary() throws Exception {
 		new ProductDetailsPage(driver).ValidateReadAllReviewsLinkInReviewsSummary();
 
