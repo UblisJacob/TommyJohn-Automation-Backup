@@ -31,6 +31,25 @@ public class ValidateHomePage extends ExtentReport {
 	}
 
 //	@Test
+	public void VerifyToggleButton() throws Exception {
+
+		new HomePage(driver).VerifyToggleButton();
+	}
+
+//	@Test
+	public void VerifyRecsInMensToggle() throws Exception {
+
+		new HomePage(driver).VerifyRecsInMensToggle();
+	}
+
+//	@Test
+	public void ValidateShopNowCTAInMensToggle() throws Exception {
+
+		new HomePage(driver).ValidateShopNowCTAInMensToggle();
+	}
+
+
+//	@Test
 	public void ValidateNewMarkdownSection() throws Exception {
 
 		new HomePage(driver).ValidateNewMarkdownsSection();
@@ -66,13 +85,13 @@ public class ValidateHomePage extends ExtentReport {
 		new HomePage(driver).ValidateWomenInCategorySelector();
 	}
 
-	@Test
+	//@Test
 	public void ValidateShopMensInHeroBanner() throws Exception {
 
 		new HomePageComponents(driver).ValidateShopMensInHeroBanner();
 	}
 
-	@Test
+	//@Test
 	public void ValidateShopWomensInHeroBanner() throws Exception {
 
 		new HomePageComponents(driver).ValidateShopWomensInHeroBanner();

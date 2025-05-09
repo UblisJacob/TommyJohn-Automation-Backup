@@ -26,7 +26,7 @@ public class ValidateGTM {
 
 
     @Test
-    public void ValidateGTMForFredHopper() throws Exception {
+            public void ValidateGTMForFredHopper() throws Exception {
 
         new GTMValidations(driver).validateGTMEventsForFredHopper();
 

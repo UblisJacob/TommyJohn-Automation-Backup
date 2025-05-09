@@ -58,6 +58,24 @@ public class 	ValidatePDP extends ExtentReport{
 	}
 
 	@Test
+	public void VerifyComparisonModule() throws Exception {
+		new ProductDetailsPage(driver).VerifyComparisonModule();
+	}
+
+	@Test
+	public void VerifyHowToMeasureSection() throws Exception {
+		new ProductDetailsPage(driver).VerifyHowToMeasureSection();
+
+	}
+
+	@Test
+	public void VerifyProductSets() throws Exception {
+		new ProductDetailsPage(driver).VerifyProductSets();
+
+	}
+
+
+	@Test
 	public void ValidateAppropriateResultForSelectingBandSizeAndCupVolume() throws Exception {
 		new ProductDetailsPage(driver).ValidateAppropriateResultForSelectingBandSizeAndCupVolume();
 	}

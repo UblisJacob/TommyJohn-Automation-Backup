@@ -7,6 +7,8 @@ public class ProductDetailsPageLocators {
 
 	//Multipacks Sections
 	public static By PDP_TABS = By.xpath("//span[@class='text-sm text-text-tertiary']");
+	public static By PDP_PRODUCT_SETS = By.xpath("//div[@class='grid grid-flow-col']//span");
+	public static By COMPARISON_MODULE = By.xpath("//div[@class='wrapper pr-0 sm:pr-8']");
 	public static By PDP_TAB1 = By.xpath("(//span[@class='text-sm text-text-tertiary'])[1]");
 	public static By SWATCH_SECTION = By.xpath("(//fieldset[@class='grid max-md:ml-lg max-md:items-center'])[1]");
 	public static By SIZE_SECTION = By.xpath("(//fieldset[@class='grid max-md:ml-lg max-md:items-center'])[2]");
@@ -106,7 +108,7 @@ public class ProductDetailsPageLocators {
 	public static By CUP_VOLUME= By.xpath("//select[@id='row-select']");
 	public static By HOW_TO_MEASURE_SECTION= By.xpath("//div[@class='px-2']");
 	public static By SIZE_RESULT= By.xpath("//span[@class='text-text-accent']");
-
+	public static By STEPS = By.xpath("//div[@class='flex flex-col-reverse items-start justify-between gap-x-12 sm:flex-row sm:items-center']");
 
 	
 	public static By SIZEGUIDE_TITLE= By.xpath("//h2[@class='mb-lg mt-2 pr-14 text-heading-md']");

@@ -11,9 +11,9 @@
     <test name="Tests">
         <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="TestModules.ValidateCheckoutPage">
+                    <class name="TestModules.ValidateCreateAccount_Login">
                 <methods>
-                    <include name="ValidateWriteAReviewLink"/>
+                    <include name="ValidateShopWomensCTAInHeroSlider"/>
                 </methods>
             </class>
         </classes>
