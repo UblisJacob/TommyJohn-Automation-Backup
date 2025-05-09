@@ -114,7 +114,7 @@ public class NavigationElementComponents extends HomePageLocators {
 		List<WebElement> elementsList = driver.findElements(HEADER_RIGHT_SIDE_ELEMENTS_LIST);
 
 		softassert.assertTrue(elementsList.size() == 3, "No. of elements on Right Side of TJ logo is: "
-				+ elementsList.size() + "No. of elements should be upto 4");
+				+ elementsList.size() + "No. of elements should be upto 3");
 
 		System.out.println("No. of elements on Right Side of TJ logo is: " + elementsList.size());
 
@@ -615,12 +615,13 @@ public class NavigationElementComponents extends HomePageLocators {
 	 * 1. On hover of empty cart, color should change from grey to light grey.
 	 * 2. Clicking the Cart icon prompts the inline cart.
 	 */
-	public void validateCartIconInteraction() {
+	public void validateCartIconInteraction() throws InterruptedException {
 		softassert = new SoftAssert();
 		genMethods = new GeneralMethods();
 		action = new Actions(driver);
 		
 //		1. On hover of empty cart, color should change from grey to light grey.
+		Thread.sleep(5000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CART_ICON));
 
 		WebElement cartIcon = driver.findElement(CART_ICON);

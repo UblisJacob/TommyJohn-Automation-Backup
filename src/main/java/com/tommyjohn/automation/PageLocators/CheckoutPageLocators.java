@@ -80,6 +80,10 @@ public class CheckoutPageLocators {
 	public static By INFO_DISCOUNT_3for$48_1 = By.xpath("(//p[contains(text(),'3 FOR $48 (-$2.00)')])[4]");
 	public static By LINEITEM_TOTAL_3for$48 = By.xpath("(//p[contains(text(),'$16.00')])[4]");
 
+	public static By INFO_DISCOUNT_5for$59 = By.xpath("(//p[contains(text(),'5 FOR $59 (-$10.20)')])[6]");
+	public static By INFO_DISCOUNT_5for$59_1 = By.xpath("(//p[contains(text(),'3 FOR $48 (-$2.00)')])[4]");
+	public static By LINEITEM_TOTAL_5for$59 = By.xpath("(//p[contains(text(),'$11.80')])[6]");
+
 	public static By SHIPPINGPAGE_LINEITEM_TOTAL_3for$48 = By.xpath("(//p[@class='_1x52f9s1 _1x52f9s0 _1fragemlj _1x52f9sv _1x52f9su _1fragemnw'])[12]");
 	public static By PAYMENTPAGE_LINEITEM_TOTAL_3for$48 = By.xpath("(//p[@class='_1x52f9s1 _1x52f9s0 _1fragemlj _1x52f9sv _1x52f9su _1fragemnw'])[9]");
 

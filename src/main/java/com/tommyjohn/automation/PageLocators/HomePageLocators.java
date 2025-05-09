@@ -6,6 +6,11 @@ import org.openqa.selenium.By;
 public class HomePageLocators{
 
 	//HomePageSections
+	public static By TOGGLE_BUTTON = By.xpath("//div[@class='relative flex w-full max-w-[300px] rounded-[100px] bg-surface-secondary p-1']");
+	public static By MENS_TOGGLE = By.xpath("(//button[@class='relative z-10 flex-1 cursor-pointer rounded-[100px] border-none bg-transparent px-6 py-3 text-base text-black transition-all duration-300 hover:text-gray-800'])[1]");
+	public static By MENS_RECS = By.xpath("(//swiper-container[@class=\"-mx-lg flex px-lg [grid-area:slides]\"])[1]");
+	public static By MENS_SHOP_NOW_CTA = By.xpath("(//a[@class='button-inverse'])[1]");
+	public static By PRODUCT_TITLE = By.xpath("//h1[@class='mb-0']");
 	public static By HERO_BANNER_IMAGE = By.xpath("(//div[@class='shopify-section relative'])[1]");
 	public static By NEW_MARKDOWNS_SECTIONS = By.xpath("//swiper-container[@class='-mx-lg flex px-lg [grid-area:slides]']");
 	public static By PROMO_BANNER_CODE = By.xpath("//span[@class='flex items-center gap-xs']");

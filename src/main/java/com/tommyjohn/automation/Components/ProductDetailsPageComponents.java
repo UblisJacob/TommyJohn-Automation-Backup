@@ -41,11 +41,13 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 	Properties properties = CustomUtilities.properties;
 	List<WebElement> allElements;
 	List<WebElement> Tabs;
+	List<WebElement> Steps;
 	String TabsPrice;
 	String SelectASize_CTA;
 	String Sticky_SelectASize_CTA;
 	int elementsCount;
 	int Tabs_Count;
+	int Steps_Count;
 	public static String prodsize;
 	public static String productname;
 	public static String productsize;
@@ -67,6 +69,57 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 	public ProductDetailsPageComponents(WebDriver driver) {
 		this.driver = driver;
+	}
+
+	public void VerifyComparisonModule() throws InterruptedException {
+
+		JavascriptExecutor js1 = (JavascriptExecutor) driver;;
+		SoftAssert softAssert = new SoftAssert();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+//		new HomePageComponents(driver).navigateToBraInWomenCategory();
+//		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		driver.get("https://www.tommyjohn.com/products/performance-ankle-sock-3-pack?variant=43269073961005");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_TITLE));
+		js1.executeScript("window.scrollBy(0,500)");
+		Thread.sleep(2000);
+		softAssert.assertTrue(driver.findElement(COMPARISON_MODULE).isDisplayed(),"Comparison Module is not available");
+		Reporter.log("Comparison Module is available");
+		ExtentReport.extentTest.info("Comparison Module is available");
+
+	}
+
+	public void VerifyProductSets() throws InterruptedException {
+		JavascriptExecutor js1 = (JavascriptExecutor) driver;;
+		SoftAssert softAssert = new SoftAssert();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+//		new HomePageComponents(driver).navigateToBraInWomenCategory();
+//		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		driver.get("https://www.tommyjohn.com/products/second-skin-sleep-pocket-tee-and-short-set?variant=43344192995373");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_TITLE));
+		Thread.sleep(5000);
+		Tabs = driver.findElements(PDP_PRODUCT_SETS);
+		Tabs_Count = Tabs.size();
+		System.out.println(Tabs_Count);
+		softAssert.assertEquals(Tabs_Count,6,"Product Sets is not appropriate");
+//		List<WebElement> Product_Sets = Tabs;
+//		for (WebElement Set : Product_Sets) {
+//			String text1 = Set.getText();
+//			System.out.println("Product Sets are" + text1);
+//		}
+		List<WebElement> Product_Sets = Tabs;
+
+		for (int i = 0; i < Product_Sets.size(); i++) {
+			String text = Product_Sets.get(i).getText();
+			System.out.println("Product Set:  [" + i + "]: " + text);
+
+			// Soft assertion to check text is not empty
+			softAssert.assertFalse(text.trim().isEmpty(), " Product Set" + i + " is empty.");
+		}
+		softAssert.assertAll();
+
+
+
+
 	}
 
 	public void ValidateAppropriateResultForSelectingBandSizeAndCupVolume() throws Exception {
@@ -117,8 +170,30 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		ExtentReport.extentTest.info("Size Result is displayed on selecting the Band Size and Cup Volume\"");
 	}
 
-	public void ValidateSizeChartDetailsForBrasandBrallets() throws Exception {
+	public void VerifyHowToMeasureSection() throws Exception {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+		new HomePageComponents(driver).navigateToBraCategory();
+		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		SoftAssert softAssert = new SoftAssert();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_TITLE));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SIZEGUIDE));
+		if (driver.findElement(SIZEGUIDE).isDisplayed()) {
+			WebElement ele = driver.findElement(SIZEGUIDE);
+			js.executeScript("arguments[0].click();", ele);
+			Thread.sleep(5000);
+			softAssert.assertTrue(driver.findElement(HOW_TO_MEASURE_SECTION).isDisplayed(),"How to measure section is not displayed in the Size chart");
+			Steps = driver.findElements(STEPS);
+			Steps_Count = Steps.size();
+			System.out.println(Steps_Count);
+			softAssert.assertEquals(Steps_Count, 3,"The How to Measure section does not contain 3 steps");
+			softAssert.assertAll();
+			Reporter.log("The How to Measure section is available and contain 3 steps");
+			ExtentReport.extentTest.info("The How to Measure section is available and contain 3 steps");
 
+		}
+	}
+	public void ValidateSizeChartDetailsForBrasandBrallets() throws Exception {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 		new HomePageComponents(driver).navigateToBraCategory();
 		new CollectionPageComponent(driver).navigateToProductDetailsPage();
@@ -184,7 +259,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 	{
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
-		driver.get("https://www.tommyjohn.com/products/cushioned-no-show-sock-3-pack?variant=43269074059309");
+		driver.get("https://www.tommyjohn.com/products/low-cut-liner-sock-3-pack?variant=43269074190381");
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		SoftAssert softAssert = new SoftAssert();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_TITLE));
