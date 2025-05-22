@@ -75,6 +75,13 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 
 	}
 
+	public void ValidateComparisonModule() throws InterruptedException {
+
+
+		new ProductDetailsPageComponents(driver).ValidateComparisonModule();
+
+	}
+
 
 	public void VerifyProductSets() throws InterruptedException {
 

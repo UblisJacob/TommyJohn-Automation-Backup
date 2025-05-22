@@ -71,6 +71,37 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		this.driver = driver;
 	}
 
+	public void ValidateComparisonModule() throws InterruptedException {
+		JavascriptExecutor js1 = (JavascriptExecutor) driver;;
+		SoftAssert softAssert = new SoftAssert();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+//		new HomePageComponents(driver).navigateToBraInWomenCategory();
+//		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		driver.get("https://www.tommyjohn.com/products/performance-ankle-sock-3-pack?variant=43269073961005");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_TITLE));
+		js1.executeScript("window.scrollBy(0,800)");
+		Thread.sleep(2000);
+		softAssert.assertTrue(driver.findElement(COMPARISON_MODULE).isDisplayed(),"Comparison Module is not available");
+		Reporter.log("Comparison Module is available");
+		ExtentReport.extentTest.info("Comparison Module is available");
+		WebElement ele = driver.findElement(SHOP_LINER_CTA);
+		js1.executeScript("arguments[0].click();", ele);
+	//	driver.findElement(SHOP_LINER_CTA).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_TITLE));
+		softAssert.assertTrue(driver.findElement(PRODUCT_TITLE).isDisplayed(),"Shop Liner CTA is Functional");
+		driver.navigate().back();
+		WebElement elem = driver.findElement(SHOP_NO_SHOW_CTA);
+		js1.executeScript("arguments[0].click();", elem);
+	//	driver.findElement(SHOP_NO_SHOW_CTA).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_TITLE));
+		softAssert.assertTrue(driver.findElement(PRODUCT_TITLE).isDisplayed(),"Shop No SHOW CTA is Functional");
+		driver.navigate().back();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_TITLE));
+		softAssert.assertAll();
+		Reporter.log("Comparison Module is functional");
+		ExtentReport.extentTest.info("Comparison Module is functional");
+	}
+
 	public void VerifyComparisonModule() throws InterruptedException {
 
 		JavascriptExecutor js1 = (JavascriptExecutor) driver;;
@@ -242,11 +273,13 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		SoftAssert softAssert = new SoftAssert();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_TITLE));
+		Thread.sleep(5000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(REVIEW_SUMMARY));
 		js.executeScript("arguments[0].click();", driver.findElement(REVIEW_SUMMARY));
 		softAssert.assertTrue(driver.findElement(REVIEW_SUMMARY).isDisplayed(),"Review Summary link is not functional");
 		Reporter.log("Review Summary link is functional");
 		ExtentReport.extentTest.info("Review Summary link is functional");
+		Thread.sleep(5000);
 		js.executeScript("arguments[0].click();", driver.findElement(READ_ALL_REVIEWS));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_REVIEW));
 		softAssert.assertTrue(driver.findElement(FIRST_REVIEW).isDisplayed(),"Read All Review link is not functional");
@@ -276,6 +309,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		SoftAssert softAssert = new SoftAssert();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_TITLE));
+		Thread.sleep(5000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(REVIEW_SUMMARY));
 		WebElement ReviewSummary = driver.findElement(REVIEW_SUMMARY);
 		js.executeScript("arguments[0].click();", driver.findElement(REVIEW_SUMMARY));
@@ -3339,16 +3373,19 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
-		// Click on the tier meter
-		WebElement tierMeter = wait.until(ExpectedConditions.elementToBeClickable(tierMeterLocator));
+		// Always re-locate the element just before interacting with it
+		WebElement tierMeter = wait.until(ExpectedConditions.presenceOfElementLocated(tierMeterLocator));
 		js.executeScript("arguments[0].scrollIntoView(true);", tierMeter);
+
+		// Re-fetch again before clicking to avoid stale reference
+		tierMeter = wait.until(ExpectedConditions.elementToBeClickable(tierMeterLocator));
 		js.executeScript("arguments[0].click();", tierMeter);
 
-		// Wait for the rating to appear
+		// Wait for the corresponding rating result
 		WebElement ratingElement = wait.until(ExpectedConditions.visibilityOfElementLocated(ratingLocator));
 		softAssert.assertTrue(ratingElement.isDisplayed(), errorMessage);
 
-		// Optional: Add a small delay for UI stability
+		// Optional delay to handle transitions
 		Thread.sleep(1000);
 	}
 

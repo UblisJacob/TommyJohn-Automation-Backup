@@ -24,7 +24,6 @@ public class GTMValidations extends GTMComponents {
         new GTMComponents(driver).ValidateGTMForViewProductEvent();
         new GTMComponents(driver).ValidateGTMForSearchEvent();
         new GTMComponents(driver).ValidateGTMForRemoveFromCartEvent();
-
     }
 
     public void validateSplunk() throws Exception
@@ -57,6 +56,26 @@ public class GTMValidations extends GTMComponents {
     {
         new GTMComponents(driver).ValidateContentSquare();
 
+
+    }
+
+    public void validateClaritas() throws Exception
+    {
+       new GTMComponents(driver).validateGTMClaritasForSiteWide();
+       new GTMComponents(driver).validateGTMClaritasForAddToCart();
+      //   new GTMComponents(driver).validateGTMClaritasForCheckout();
+
+    }
+
+    public void validateArtsai() throws Exception
+    {
+        new GTMComponents(driver).validateGTMArtsaiForContent();
+
+    }
+
+    public void validateBing() throws Exception
+    {
+        new GTMComponents(driver).validateGTMBingEvent();
 
     }
 

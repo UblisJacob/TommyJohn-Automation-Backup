@@ -830,17 +830,24 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 	public void ValidateFacet() throws InterruptedException {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollBy(0,250)");
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+		js.executeScript("window.scrollBy(0, 250)");
 		Thread.sleep(2000);
 
 		driver.findElement(ALL_FILTERS).click();
-		Thread.sleep(10000);
-		WebElement element1 = driver.findElement(COLLECTION_FILTER);
-		js.executeScript("arguments[0].click();", element1);
-		Thread.sleep(10000);
-		WebElement element2 = driver.findElement(FACET_VALUE);
-		js.executeScript("arguments[0].click();", element2); // ✅ Ensure JavaScript Click
-		Thread.sleep(5000);  // ✅ Wait for network request
+		Thread.sleep(5000);
+
+		js.executeScript("window.scrollBy(0, 250)");
+		WebElement collectionFilter = wait.until(ExpectedConditions.elementToBeClickable(COLLECTION_FILTER));
+		js.executeScript("arguments[0].click();", collectionFilter);
+		Thread.sleep(5000);
+
+		WebElement facetElement = wait.until(ExpectedConditions.visibilityOfElementLocated(FACET_VALUE));
+		js.executeScript("arguments[0].scrollIntoView(true);", facetElement);
+		Thread.sleep(1000);
+		js.executeScript("arguments[0].click();", facetElement);
+		Thread.sleep(5000);  // Wait for the network call
 	}
 
 	public void validateReviewStarOnGCPLP() throws Exception {
