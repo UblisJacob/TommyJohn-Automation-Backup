@@ -146,7 +146,7 @@ public class CustomUtilities {
 		{
 //			System.setProperty("webdriver.edge.driver", properties.getProperty("edgeDriverPath"));
 			EdgeOptions options = new EdgeOptions();
-			options.addArguments("inprivate","headless");
+//			options.addArguments("inprivate","headless");
 //			options.setCapability("--window-size=1280,800",true);
 //			options.setCapability("--disable-gpu",true);
 //			options.setCapability("--no-sandbox",true);

@@ -418,7 +418,7 @@ public class HomePageComponents extends HomePageLocators {
 
 		// Scroll to the 'Our Story' CTA
 		Thread.sleep(5000);
-		js.executeScript("window.scrollBy(0, 1000);");
+		js.executeScript("window.scrollBy(0, 1500);");
 		WebElement ourStoryCTA = driver.findElement(OUR_STORY_CTA);
 		js.executeScript("arguments[0].scrollIntoView(true);", ourStoryCTA);
 		js.executeScript("window.scrollBy(0, -100);"); // Adjust scrolling for sticky headers

@@ -63,6 +63,12 @@ public class 	ValidatePDP extends ExtentReport{
 	}
 
 	@Test
+	public void ValidateComparisonModule() throws Exception {
+		new ProductDetailsPage(driver).ValidateComparisonModule();
+	}
+
+
+	@Test
 	public void VerifyHowToMeasureSection() throws Exception {
 		new ProductDetailsPage(driver).VerifyHowToMeasureSection();
 

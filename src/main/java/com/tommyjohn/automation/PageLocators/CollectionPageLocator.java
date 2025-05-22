@@ -52,7 +52,7 @@ public class CollectionPageLocator {
 	public static By ALL_FILTERS = By.xpath("//span[@class='icon icon-filters']");
 	public static By ALL_FILTERS_LIST = By.xpath("//div[@class='font-sans']");
 	public static By COLLECTION_FILTER = By.xpath("//legend[contains(text(),'Collection')]");
-	public static By FACET_VALUE = By.xpath("//span[@class='font-medium' and contains(text(),'Cool Cotton')]");//span[@class='font-medium' and contains(text(),'Cool Cotton')]
+	public static By FACET_VALUE = By.xpath("//label[@for='Filters-facet_collection-coolcotton']");//span[@class='font-medium' and contains(text(),'Cool Cotton')]
 	//changed
 	public static By DISPLAYED_ALL_SELECTED_OPTIONS = By.xpath("(//div[contains(@class,'mega-collection-filter-tags mega-collection-filter-tags--desktop')]//button)");
 	public static By CLEAR_FILTER_BUTTON = By.cssSelector("[data-tj-qa='plp-clear-filters'],div.mega-collection-filters--controls > a");

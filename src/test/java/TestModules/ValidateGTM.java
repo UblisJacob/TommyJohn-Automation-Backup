@@ -67,6 +67,26 @@ public class ValidateGTM {
 
     }
 
+    @Test
+    public void ValidateClaritas() throws Exception {
+
+        new GTMValidations(driver).validateClaritas();
+
+    }
+
+    @Test
+    public void ValidateArtsai() throws Exception {
+
+        new GTMValidations(driver).validateArtsai();
+    }
+
+
+    @Test
+    public void ValidateBing() throws Exception {
+
+        new GTMValidations(driver).validateBing();
+    }
+
 
 
     @AfterMethod(alwaysRun = true)

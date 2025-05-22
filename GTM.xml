@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Regression Test Suite" thread-count="3">
+
+	<listeners>
+		<listener class-name="TestScenario.GTMListenerClass"></listener>
+		<listener class-name="TestScenario.RetryListener"></listener>
+	</listeners>
+
+	<test name="GTMTests">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="TestModules.ValidateGTM" />
+		</classes>	
+	</test>
+
+</suite>

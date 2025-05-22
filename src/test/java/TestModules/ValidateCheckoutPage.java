@@ -41,6 +41,12 @@ public class ValidateCheckoutPage extends ExtentReport {
 	}
 
 	@Test
+	public void ValidateNonFreeShipping() throws Exception
+	{
+		new CheckoutPage(driver).validateNonFreeShipping();
+	}
+
+	@Test
 	public void validateFreeShipping() throws Exception
 	{
 		new CheckoutPage(driver).validateFreeShipping();
