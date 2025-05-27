@@ -40,6 +40,57 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 
 	}
 
+	public void ValidateReadAllReviewsLinkInReviewsSummary() throws Exception {
+
+
+		new ProductDetailsPageComponents(driver).ValidateReadAllReviewsLinkInReviewsSummary();
+
+	}
+
+	public void ValidateSizeChartDetailsForBrasandBrallets() throws Exception {
+
+
+		new ProductDetailsPageComponents(driver).ValidateSizeChartDetailsForBrasandBrallets();
+
+	}
+
+	public void ValidateAppropriateResultForSelectingBandSizeAndCupVolume() throws Exception {
+
+
+		new ProductDetailsPageComponents(driver).ValidateAppropriateResultForSelectingBandSizeAndCupVolume();
+
+	}
+
+	public void VerifyHowToMeasureSection() throws Exception {
+
+
+		new ProductDetailsPageComponents(driver).VerifyHowToMeasureSection();
+
+	}
+
+	public void VerifyComparisonModule() throws InterruptedException {
+
+
+		new ProductDetailsPageComponents(driver).VerifyComparisonModule();
+
+	}
+
+	public void ValidateComparisonModule() throws InterruptedException {
+
+
+		new ProductDetailsPageComponents(driver).ValidateComparisonModule();
+
+	}
+
+
+	public void VerifyProductSets() throws InterruptedException {
+
+
+		new ProductDetailsPageComponents(driver).VerifyProductSets();
+
+	}
+
+
 	public void ValidateReviewSummaryLink() throws Exception {
 
 

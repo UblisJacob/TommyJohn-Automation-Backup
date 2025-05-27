@@ -6,19 +6,24 @@ import org.openqa.selenium.By;
 public class HomePageLocators{
 
 	//HomePageSections
+	public static By TOGGLE_BUTTON = By.xpath("//div[@class='relative flex w-full max-w-[300px] rounded-[100px] bg-surface-secondary p-1']");
+	public static By MENS_TOGGLE = By.xpath("(//button[@class='relative z-10 flex-1 cursor-pointer rounded-[100px] border-none bg-transparent px-6 py-3 text-base text-black transition-all duration-300 hover:text-gray-800'])[1]");
+	public static By MENS_RECS = By.xpath("(//swiper-container[@class=\"-mx-lg flex px-lg [grid-area:slides]\"])[1]");
+	public static By MENS_SHOP_NOW_CTA = By.xpath("(//a[@class='button-inverse'])[1]");
+	public static By PRODUCT_TITLE = By.xpath("//h1[@class='mb-0']");
 	public static By HERO_BANNER_IMAGE = By.xpath("(//div[@class='shopify-section relative'])[1]");
 	public static By NEW_MARKDOWNS_SECTIONS = By.xpath("//swiper-container[@class='-mx-lg flex px-lg [grid-area:slides]']");
 	public static By PROMO_BANNER_CODE = By.xpath("//span[@class='flex items-center gap-xs']");
 	public static By HERO_BANNER_CTA = By.xpath("(//a[@class='button-inverse'])[3]");
-	public static By HERO_SLIDER_SHOPMENS_CTA = By.xpath("(//a[contains(text(),\"Shop Men's\")])[2]");
-	public static By HERO_SLIDER_SHOPWOMENS_CTA = By.xpath("(//a[contains(text(),\"Shop Women's\")])[2]");
+	public static By HERO_SLIDER_SHOPMENS_CTA = By.xpath("(//a[contains(text(),\"Shop Men's\")])[1]");
+	public static By HERO_SLIDER_SHOPWOMENS_CTA = By.xpath("(//a[contains(text(),\"Shop Women's\")])[1]");
 	public static By CATEGORY_SELECTOR_SECTION = By.xpath("(//div[@class='grid grid-cols-1 md:grid-cols-2'])[1]");
 	public static By CATEGORY_SELECTOR_MEN = By.xpath("(//div[@class='space-x-2 md:space-x-4']//button)[1]");
 	public static By CATEGORY_SELECTOR_WOMEN = By.xpath("(//div[@class='space-x-2 md:space-x-4']//button)[2]");
 	public static By MEN_CATEGORIES = By.xpath("(//ul[@class='mt-6 md:mt-8'])[1]//li");
 	public static By WOMEN_CATEGORIES = By.xpath("(//ul[@class='mt-6 md:mt-8'])[2]//li");
-	public static By IMAGE_BANNER_MENS_CTA = By.xpath("(//p[contains(text(),'Shop Now')])[2]");
-	public static By IMAGE_BANNER_WOMENS_CTA = By.xpath("(//p[contains(text(),'Shop Now')])[1]");
+	public static By IMAGE_BANNER_MENS_CTA = By.xpath("(//p[contains(text(),'Shop Now')])[1]");
+	public static By IMAGE_BANNER_WOMENS_CTA = By.xpath("(//p[contains(text(),'Shop Now')])[2]");
 	public static By COLLECTION_SELECTOR = By.xpath("//div[@class='size-full']");
 	public static By COLLECTION_SELECTOR_SECOND_SKIN = By.xpath("(//div[@class='mt-3 md:mt-8 space-y-4']//button)[1]");
 	public static By COLLECTION_SELECTOR_COOL_COTTON = By.xpath("(//div[@class='mt-3 md:mt-8 space-y-4']//button)[2]");
@@ -29,6 +34,7 @@ public class HomePageLocators{
 	public static By LEARNMORE_CTA = By.xpath("(//a[@class='button-secondary mt-lg'])[1]");
 	public static By OURSHOPPINGPOLICIES_CTA = By.xpath("(//a[@class='button-secondary mt-lg'])[2]");
 	public static By OURSTORY_CTA = By.xpath("(//a[@class='button-secondary mt-lg'])[3]");
+	public static By SIGNUP_CTA = By.xpath("(//a[@class='button-secondary mt-lg'])[3]");
 	public static By BRAND_TICKER = By.xpath("//div[@id='ticker']");
 
 	//InstagramWidget

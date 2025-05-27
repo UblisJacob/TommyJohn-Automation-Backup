@@ -615,12 +615,13 @@ public class NavigationElementComponents extends HomePageLocators {
 	 * 1. On hover of empty cart, color should change from grey to light grey.
 	 * 2. Clicking the Cart icon prompts the inline cart.
 	 */
-	public void validateCartIconInteraction() {
+	public void validateCartIconInteraction() throws InterruptedException {
 		softassert = new SoftAssert();
 		genMethods = new GeneralMethods();
 		action = new Actions(driver);
 		
 //		1. On hover of empty cart, color should change from grey to light grey.
+		Thread.sleep(5000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CART_ICON));
 
 		WebElement cartIcon = driver.findElement(CART_ICON);

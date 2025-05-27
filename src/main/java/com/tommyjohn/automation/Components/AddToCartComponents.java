@@ -22,6 +22,7 @@ import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
 import static com.tommyjohn.automation.ADACheck.ADACheckMethods.softAssert;
+import static com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators.PDP_TABS;
 
 public class AddToCartComponents extends AddToCartLocators{
 
@@ -38,6 +39,7 @@ public class AddToCartComponents extends AddToCartLocators{
 	List<WebElement> allElements;
 	int elementsCount;
 	String text = null;
+	List<WebElement> Tabs;
 
 	String allClasses = null;
 
@@ -68,6 +70,118 @@ public class AddToCartComponents extends AddToCartLocators{
 
 	}
 
+	public String NonFreeShippingAddToCart() throws Exception {
+
+		int count = 0;
+
+		// call method to navigate to collection page
+		new HomePageComponents(driver).navigateToMensAll();
+		jse=(JavascriptExecutor)driver;
+		jse.executeScript("window.scrollBy(0,250)");
+		// call method to navigate product details page
+		text = new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		Tabs = driver.findElements(PDP_TABS);
+		System.out.println(Tabs.size());
+		if(Tabs.size()>=3)
+		{
+			jse.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//span[@class='text-sm text-text-tertiary'])[1]")));
+		}
+
+		Thread.sleep(2000);
+
+		allElements = driver.findElements(ProductDetailsPageComponents.COLOR_VARIANT);
+
+		elementsCount = allElements.size();
+		System.out.println("Color Element count :: "+elementsCount);
+
+		if(elementsCount > 1)
+		{
+			for(int i=1;i<=4;i++)
+			{
+
+				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])["+i+"]"));
+				jse = (JavascriptExecutor) driver;
+				jse.executeScript("arguments[0].click();", elemen);
+				Thread.sleep(3000);
+
+				for(int k=1;k<=4;k++)
+				{
+					WebElement elements = driver.findElement(By.xpath("(//input[@name='option[Size]'])["+k+"]"));
+					jse.executeScript("arguments[0].click();", elements);
+					Thread.sleep(1000);
+
+					try {
+						String[] AddtoBag;
+						AddtoBag = (driver.findElement(By.xpath("//button[@class='button grow']")).getText()).split(" -");
+						String text1 = AddtoBag[0];
+						System.out.println(text1);
+
+
+						if (driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON).getText().contains(text1)) {
+
+							System.out.println(elemen.getText() + elements.getText() + "Product is added to Cart");
+							Thread.sleep(2000);
+							jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_CART_BUTTON));
+							Thread.sleep(3000);
+							driver.findElement(INLINE_CART_TITLE);
+							jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
+
+							Thread.sleep(1000);
+							System.out.println("=============================");
+							count++;
+
+						}
+					}
+					catch(Exception ex)
+					{
+						System.out.println("Product is OOS");
+
+					}
+
+//
+//						WebElement elem = driver.findElement(By.cssSelector(".multiPdp__atc-container>button"));
+//i
+//						if(driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON).getText().contains("Add to Cart")) {
+//
+//							System.out.println(elemen.getText() + elements.getText() + "Product is added to Cart");
+//							jse.executeScript("arguments[0].click();", driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON));
+//							Thread.sleep(2000);
+//							try{
+//								jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
+//							}catch (Exception e) {
+//								Thread.sleep(2000);
+//								jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
+//							}
+//							break;
+//						}
+
+//						if(elem.getText().contentEquals("Join the Waitlist")) {
+//							System.out.println(elemen.getText()+ elements.getText() +"Product is Out of Stock and Join The waitlist is  :: Clickable");
+//							jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_CART_BUTTON));
+//							Thread.sleep(2000);
+//							jse.executeScript("arguments[0].click();", driver.findElement(EMAIL_WHEN_IN_STOCK_BUTTON_CLOSE));
+//
+//							}
+					if(count==1)
+					{
+						break;
+					}
+
+				}
+
+
+				if(count==1)
+				{
+					break;
+				}
+
+			}
+
+		}
+		return text;
+
+	}
+
 	public String addToCart() throws Exception {
 
 		int count = 0;
@@ -88,7 +202,7 @@ public class AddToCartComponents extends AddToCartLocators{
 
 		if(elementsCount > 1)
 		{
-			for(int i=1;i<=3;i++)
+			for(int i=1;i<=4;i++)
 			{
 
 				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])["+i+"]"));
@@ -154,7 +268,7 @@ public class AddToCartComponents extends AddToCartLocators{
 //							jse.executeScript("arguments[0].click();", driver.findElement(EMAIL_WHEN_IN_STOCK_BUTTON_CLOSE));
 //
 //							}
-						if(count==2)
+						if(count==3)
 						{
 							break;
 						}
@@ -162,7 +276,7 @@ public class AddToCartComponents extends AddToCartLocators{
 					}
 
 
-					if(count==2)
+					if(count==3)
 					{
 						break;
 					}
@@ -403,13 +517,15 @@ public class AddToCartComponents extends AddToCartLocators{
 
 		int count =0;
 		// call method to navigate to collection page
-		new HomePageComponents(driver).navigateToMensBriefs();
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 		jse = (JavascriptExecutor) driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		// call method to navigate product details page
 		text = new CollectionPageComponent(driver).navigateToPDP();
 
 		Thread.sleep(2000);
+
+		jse.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//span[@class='text-sm text-text-tertiary'])[1]")));
 
 		allElements = driver.findElements(ProductDetailsPageComponents.COLOR_VARIANT);
 
@@ -833,11 +949,11 @@ public class AddToCartComponents extends AddToCartLocators{
 //							jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
 //							break;
 //
-					if (count == 3){
+					if (count == 5){
 					break;	}
 				}
 
-				if(count==3){
+				if(count==5){
 					break;
 				}
 

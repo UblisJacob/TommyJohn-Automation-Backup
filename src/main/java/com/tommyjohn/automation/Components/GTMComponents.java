@@ -40,6 +40,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.logging.Level;
 
 import static com.tommyjohn.automation.PageLocators.CollectionPageLocator.*;
+import static com.tommyjohn.automation.PageLocators.FlyCartPageLocator.CHECKOUT_BUTTON;
 
 
 public class GTMComponents {
@@ -58,6 +59,9 @@ public class GTMComponents {
         // ✅ 1. Setup Chrome with DevTools
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless=new");
+        options.addArguments("--disable-gpu");
+        options.addArguments("--window-size=1920,1080");
+
         ChromeDriver driver = new ChromeDriver(options);
         DevTools devTools = driver.getDevTools();
         devTools.createSession();
@@ -65,38 +69,51 @@ public class GTMComponents {
         // ✅ 2. Enable network monitoring
         devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
 
-        // ✅ 3. Expected JSON Payload for Comparison
-        String expectedPayload = "[{\"action\":\"click\",\"target\":{\"facet\":\"b2787170-7dc6-41dc-8a60-6fcdd22ba0ce\","
-                + "\"facet-id\":\"coolcotton\"},"
-                + "\"metadata\":{\"locale\":\"en_US\"},"
-                + "\"user\":{\"identities\":{},\"segments\":[],\"traits\":{}}}]";
-
+        // ✅ 3. Expected Payload
+        String expectedPayload = "[{\"action\":\"click\",\"target\":{\"facet\":\"b2787170-7dc6-41dc-8a60-6fcdd22ba0ce\",\"facet-id\":\"coolcotton\"},\"metadata\":{\"locale\":\"en_US\"},\"user\":{\"identities\":{},\"segments\":[],\"traits\":{}}}]";
         AtomicReference<String> capturedPayload = new AtomicReference<>();
 
-        // ✅ 4. Listen for network requests
+        // ✅ 4. Listen for Attraqt requests
         devTools.addListener(Network.requestWillBeSent(), requestSent -> {
             Request request = requestSent.getRequest();
             String url = request.getUrl();
 
-            if (url.contains("collect-eu.attraqt.io")) {  // ✅ Filter requests to Attraqt
+            if (url.contains("collect-eu.attraqt.io")) {
                 request.getPostData().ifPresent(payload -> {
                     System.out.println("🔹 Captured Network Request:");
-                    System.out.println(payload);  // 🔹 Print actual payload for debugging
+                    System.out.println(payload);
 
-                    if (payload.contains("\"action\":\"click\"")) {  // ✅ Ensure it's a click event
+                    if (payload.contains("\"action\":\"click\"")) {
                         System.out.println("🔹 Found 'Click' Event Network Request!");
-                        capturedPayload.set(payload); // Store the payload for validation
+                        capturedPayload.set(payload);
                     }
                 });
             }
         });
 
-        // ✅ 5. Navigate to the target page
+        // ✅ 5. Navigate to PLP
         driver.get("https://www.tommyjohn.com/collections/mens-all");
-        Thread.sleep(5000);
-        new CollectionPageComponent(driver).ValidateFacet();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
 
-        // ✅ 7. Validate the captured payload
+        // ✅ 6. Expand filters
+        By ALL_FILTERS = By.xpath("//span[@class='icon icon-filters']");
+        wait.until(ExpectedConditions.elementToBeClickable(ALL_FILTERS)).click();
+        Thread.sleep(2000);  // allow panel to expand
+
+        // ✅ 7. Expand "Collection" filter
+        By COLLECTION_FILTER = By.xpath("//legend[contains(text(),'Collection')]/..");  // Select parent fieldset
+        WebElement collectionFilter = wait.until(ExpectedConditions.presenceOfElementLocated(COLLECTION_FILTER));
+        js.executeScript("arguments[0].click();", collectionFilter);  // JS click
+        Thread.sleep(2000);
+
+        // ✅ 8. Click on Cool Cotton facet
+        By COOL_COTTON_FACET = By.xpath("//label[@for='Filters-facet_collection-coolcotton']");
+        WebElement facetElement = wait.until(ExpectedConditions.visibilityOfElementLocated(COOL_COTTON_FACET));
+        js.executeScript("arguments[0].click();", facetElement);  // JS click
+        Thread.sleep(8000);  // Wait for network call to trigger
+
+        // ✅ 9. Validate the captured payload
         if (capturedPayload.get() != null) {
             boolean isValid = compareJSONPayload(capturedPayload.get(), expectedPayload);
             if (!isValid) {
@@ -108,7 +125,7 @@ public class GTMComponents {
             Assert.fail("❌ Test Failed: Expected 'click' event was NOT found!");
         }
 
-        driver.quit();  // ✅ Close the browser
+        driver.quit();
     }
 
     public void ValidateGTMforViewCollectionEvent() throws InterruptedException {
@@ -156,9 +173,9 @@ public class GTMComponents {
 
         // ✅ 6. Navigate to the target page & wait for requests
         driver.get("https://www.tommyjohn.com/collections/mens-all");
-        Thread.sleep(10000); // Wait for network requests to be captured
+        Thread.sleep(20000); // Wait for network requests to be captured
         if (!payloadMatched[0]) {
-            Assert.fail("❌ Test Failed: Expected 'add-to-cart' event was NOT found or didn't match!");
+            Assert.fail("❌ Test Failed: Expected 'view' event was NOT found or didn't match!");
         }
 
         driver.quit();  // ✅ Close the browser
@@ -555,9 +572,93 @@ public class GTMComponents {
 
     }
 
+//    public void ValidateRudderstackForPLP() throws InterruptedException {
+//        ChromeOptions options = new ChromeOptions();
+//        options.addArguments("--headless=new");  // ✅ Run in headless mode
+//        options.addArguments("--disable-gpu");
+//        options.addArguments("--window-size=1920,1080");
+//
+//        ChromeDriver driver = new ChromeDriver(options);
+//        DevTools devTools = driver.getDevTools();
+//        devTools.createSession();
+//
+//        // ✅ Enable network monitoring
+//        devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
+//
+//        final boolean[] propertiesFound = {false};  // ✅ Track if 'properties' were found
+//
+//        // ✅ Listen for network requests
+//        devTools.addListener(Network.requestWillBeSent(), requestSent -> {
+//            Request request = requestSent.getRequest();
+//            String url = request.getUrl();
+//
+//            if (url.equals("https://dp.tommyjohn.com/v1/page")) {  // ✅ Filter by exact URL
+//                request.getPostData().ifPresent(payload -> {
+//                    System.out.println("🔹 Found Tommy John Network Request:");
+//                    System.out.println("  ➤ URL: " + url);
+//                    System.out.println("  ➤ Payload: " + payload);
+//
+//                    // ✅ Extract "properties" from JSON payload
+//                    try {
+//                        JSONObject jsonPayload = new JSONObject(payload);
+//
+//                        if (jsonPayload.has("properties")) {
+//                            JSONObject properties = jsonPayload.getJSONObject("properties");
+//
+//                            // ✅ Extract values
+//                            String productId = properties.optString("product_id", "");
+//                            String activeVariantSku = properties.optString("active_variant_sku", "");
+//                            String defaultSwatchVariantSku = properties.optString("default_swatch_variant_sku", "");
+//
+//                            System.out.println("  ➤ Extracted Properties:");
+//                            System.out.println("    • product_id: " + productId);
+//                            System.out.println("    • active_variant_sku: " + activeVariantSku);
+//                            System.out.println("    • default_swatch_variant_sku: " + defaultSwatchVariantSku);
+//
+//                            // ✅ Ensure values are present
+//                            if (!productId.isEmpty() && !activeVariantSku.isEmpty() && !defaultSwatchVariantSku.isEmpty()) {
+//                                propertiesFound[0] = true;
+//                            } else {
+//                                System.out.println("❌ One or more required properties are missing!");
+//                            }
+//                        } else {
+//                            System.out.println("❌ 'properties' object NOT found in JSON!");
+//                        }
+//                    } catch (JSONException e) {
+//                        Assert.fail("❌ Test Failed: Error parsing JSON - " + e.getMessage());
+//                    }
+//                });
+//            }
+//        });
+//
+//        // ✅ Perform a page navigation or interaction
+//        driver.get("https://www.tommyjohn.com/collections/mens-underwear");
+//        Thread.sleep(5000);
+//
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
+//
+//        WebElement el = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT);
+//        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", el);
+//
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_TITLE));
+//        System.out.println("🔹 Current URL: " + driver.getCurrentUrl());
+//
+//        Thread.sleep(5000); // ✅ Wait for network request
+//
+//        driver.quit();  // ✅ Close the browser
+//
+//        // ✅ Fail the test if 'properties' were not found
+//        if (!propertiesFound[0]) {
+//            Assert.fail("❌ Test Failed: Expected 'properties' object was NOT found in the network request!");
+//        } else {
+//            System.out.println("✅ Test Passed: 'properties' object was found successfully!");
+//        }
+//    }
+
     public void ValidateRudderstackForPLP() throws InterruptedException {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new");  // ✅ Run in headless mode
+        options.addArguments("--headless=new");
         options.addArguments("--disable-gpu");
         options.addArguments("--window-size=1920,1080");
 
@@ -565,79 +666,59 @@ public class GTMComponents {
         DevTools devTools = driver.getDevTools();
         devTools.createSession();
 
-        // ✅ Enable network monitoring
         devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
 
-        final boolean[] propertiesFound = {false};  // ✅ Track if 'properties' were found
+        final boolean[] isValidPayload = {false};
 
-        // ✅ Listen for network requests
         devTools.addListener(Network.requestWillBeSent(), requestSent -> {
             Request request = requestSent.getRequest();
             String url = request.getUrl();
 
-            if (url.equals("https://dp.tommyjohn.com/v1/page")) {  // ✅ Filter by exact URL
+            // Filter only for dp.tommyjohn.com/v1/page
+            if (url.equals("https://dp.tommyjohn.com/v1/page")) {
                 request.getPostData().ifPresent(payload -> {
-                    System.out.println("🔹 Found Tommy John Network Request:");
-                    System.out.println("  ➤ URL: " + url);
-                    System.out.println("  ➤ Payload: " + payload);
-
-                    // ✅ Extract "properties" from JSON payload
                     try {
-                        JSONObject jsonPayload = new JSONObject(payload);
+                        JSONObject json = new JSONObject(payload);
+                        JSONObject properties = json.optJSONObject("properties");
 
-                        if (jsonPayload.has("properties")) {
-                            JSONObject properties = jsonPayload.getJSONObject("properties");
+                        if (properties != null) {
+                            String handle = properties.optString("collection_handle", "");
+                            String title = properties.optString("collection_title", "");
+                            String division = properties.optString("page_division", "");
 
-                            // ✅ Extract values
-                            String productId = properties.optString("product_id", "");
-                            String activeVariantSku = properties.optString("active_variant_sku", "");
-                            String defaultSwatchVariantSku = properties.optString("default_swatch_variant_sku", "");
+                            System.out.println("🔹 Extracted Properties:");
+                            System.out.println("  • collection_handle: " + handle);
+                            System.out.println("  • collection_title: " + title);
+                            System.out.println("  • page_division: " + division);
 
-                            System.out.println("  ➤ Extracted Properties:");
-                            System.out.println("    • product_id: " + productId);
-                            System.out.println("    • active_variant_sku: " + activeVariantSku);
-                            System.out.println("    • default_swatch_variant_sku: " + defaultSwatchVariantSku);
-
-                            // ✅ Ensure values are present
-                            if (!productId.isEmpty() && !activeVariantSku.isEmpty() && !defaultSwatchVariantSku.isEmpty()) {
-                                propertiesFound[0] = true;
+                            if (!handle.isEmpty() && !title.isEmpty() && !division.isEmpty()) {
+                                isValidPayload[0] = true;
                             } else {
-                                System.out.println("❌ One or more required properties are missing!");
+                                System.out.println("❌ One or more expected properties are missing!");
                             }
-                        } else {
-                            System.out.println("❌ 'properties' object NOT found in JSON!");
                         }
-                    } catch (JSONException e) {
-                        Assert.fail("❌ Test Failed: Error parsing JSON - " + e.getMessage());
+                    } catch (Exception e) {
+                        System.out.println("❌ Failed to parse payload: " + e.getMessage());
                     }
                 });
             }
         });
 
-        // ✅ Perform a page navigation or interaction
+        // Navigate to PLP
         driver.get("https://www.tommyjohn.com/collections/mens-underwear");
-        Thread.sleep(5000);
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
+        // Wait for network events to complete
+        Thread.sleep(15000);
 
-        WebElement el = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", el);
+        driver.quit();
 
-        wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_TITLE));
-        System.out.println("🔹 Current URL: " + driver.getCurrentUrl());
-
-        Thread.sleep(5000); // ✅ Wait for network request
-
-        driver.quit();  // ✅ Close the browser
-
-        // ✅ Fail the test if 'properties' were not found
-        if (!propertiesFound[0]) {
-            Assert.fail("❌ Test Failed: Expected 'properties' object was NOT found in the network request!");
+        if (!isValidPayload[0]) {
+            Assert.fail("❌ Test failed: Expected PLP properties were not found in the request payload.");
         } else {
-            System.out.println("✅ Test Passed: 'properties' object was found successfully!");
+            System.out.println("✅ PLP properties validated successfully!");
         }
     }
+
 
     public void ValidateRudderstackForPDP() throws InterruptedException {
         ChromeOptions options = new ChromeOptions();
@@ -856,6 +937,222 @@ public class GTMComponents {
         }
     }
 
+    public void validateGTMClaritasForSiteWide() throws Exception {
+        // Setup Chrome options
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless=new");
+        options.addArguments("--disable-gpu");
+        options.addArguments("--window-size=1920,1080");
+
+        // Launch ChromeDriver
+        ChromeDriver driver = new ChromeDriver(options);
+        DevTools devTools = driver.getDevTools();
+        devTools.createSession();
+
+        // Enable network logging
+        devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
+
+        // Store all matching TRKN URLs
+        List<String> trknUrls = new ArrayList<>();
+
+        // Add listener for network requests
+        devTools.addListener(Network.requestWillBeSent(), request -> {
+            String url = request.getRequest().getUrl();
+            if (url.contains("trkn.us/pixel/conv")) {
+                System.out.println("📡 TRKN Pixel Fired: " + url);
+                trknUrls.add(url);
+            }
+        });
+
+        // Step 1: Go to Tommy John homepage
+        driver.get("https://www.tommyjohn.com/collections/mens-all");
+
+        // Optional: Wait or interact with the page to let the pixel fire
+        Thread.sleep(10000);  // Wait 10 seconds to allow events to fire
+
+        // Step 2: Validate the pixel parameters
+        boolean pixelFired = trknUrls.stream().anyMatch(url ->
+                url.contains("ppt=15693") &&
+                        url.contains("g=sitewide_pixel") &&
+                        url.contains("gid=38495")
+        );
+
+        if (!pixelFired) {
+            Assert.fail("❌ Expected TRKN pixel was NOT fired!");
+        } else {
+            System.out.println("✅ TRKN pixel with expected parameters was fired successfully.");
+        }
+
+        // Close browser
+        driver.quit();
+    }
+
+    public void validateGTMClaritasForAddToCart() throws Exception {
+        ChromeOptions options = new ChromeOptions();
+         options.addArguments("--headless=new"); // Enable for headless mode
+        options.addArguments("--disable-gpu");
+        options.addArguments("--window-size=1920,1080");
+
+        ChromeDriver driver = new ChromeDriver(options);
+        DevTools devTools = driver.getDevTools();
+        devTools.createSession();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+        // Enable network monitoring
+        devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
+
+        // Store matching TRKN pixel URLs
+        List<String> trknPixelUrls = new ArrayList<>();
+
+        // Listen to all network requests
+        devTools.addListener(Network.requestWillBeSent(), request -> {
+            String url = request.getRequest().getUrl();
+            if (url.contains("trkn.us/pixel/conv/") && url.contains("g=add_to_cart")) {
+                trknPixelUrls.add(url);
+                System.out.println("🟢 TRKN AddToCart Pixel Fired: " + url);
+            }
+        });
+
+        new AddToCartComponents(driver).addsingleproductToCart();
+        Thread.sleep(10000); // ✅ Wait for network request
+        if (trknPixelUrls.isEmpty()) {
+            Assert.fail("❌ TRKN 'add_to_cart' pixel was NOT fired!");
+        } else {
+            System.out.println("✅ TRKN 'add_to_cart' pixel fired successfully.");
+        }
+
+        driver.quit();
+    }
+
+    public void validateGTMClaritasForCheckout() throws Exception {
+        ChromeOptions options = new ChromeOptions();
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
+         options.addArguments("--headless=new"); // Enable for headless mode
+        options.addArguments("--disable-gpu");
+        options.addArguments("--window-size=1920,1080");
+
+        ChromeDriver driver = new ChromeDriver(options);
+        DevTools devTools = driver.getDevTools();
+        devTools.createSession();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+        // Enable network monitoring
+        devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
+
+        // Store matching TRKN pixel URLs
+        List<String> trknCheckoutUrls  = new ArrayList<>();
+
+        // Listen to all network requests
+        devTools.addListener(Network.requestWillBeSent(), request -> {
+            String url = request.getRequest().getUrl();
+            if (url.contains("trkn.us/pixel/conv/") && url.contains("g=checkout")) {
+                trknCheckoutUrls.add(url);
+                System.out.println("🟢 TRKN Checkout Pixel Fired: " + url);
+            }
+        });
+
+        new AddToCartComponents(driver).addsingleproductToCart();
+        driver.findElement(HomePageLocators.CART_ICON).click();
+        Thread.sleep(5000); // Let cart overlay load
+
+        // Step 2: Click Checkout (simulate user action)
+//        WebElement checkoutBtn = driver.findElement(CHECKOUT_BUTTON);
+//        jse.executeScript("arguments[0].click();", checkoutBtn);
+        driver.findElement(CHECKOUT_BUTTON).click();
+        Thread.sleep(10000); // ✅ Wait for network request
+        if (trknCheckoutUrls.isEmpty()) {
+            Assert.fail("❌ TRKN 'checkout' pixel was NOT fired!");
+        } else {
+            System.out.println("✅ TRKN 'checkout' pixel fired successfully.");
+        }
+
+        driver.quit();
+
+
+    }
+
+    public void validateGTMArtsaiForContent() throws InterruptedException {
+    ChromeOptions options = new ChromeOptions();
+    options.addArguments("--headless=new");
+    options.addArguments("--disable-gpu");
+    options.addArguments("--window-size=1920,1080");
+
+    // Launch ChromeDriver
+    ChromeDriver driver = new ChromeDriver(options);
+    DevTools devTools = driver.getDevTools();
+    devTools.createSession();
+
+    // Enable network logging
+    devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
+
+    // Store all matching Adxcel URLs
+    List<String> adxcelUrls = new ArrayList<>();
+
+    // Add listener for network requests
+    devTools.addListener(Network.requestWillBeSent(), request -> {
+        String url = request.getRequest().getUrl();
+        if (url.contains("data.adxcel") && url.contains("pixel/?ad_log=refer&action=content")) {
+            System.out.println("📡 Adxcel Pixel Fired: " + url);
+            adxcelUrls.add(url);
+        }
+    });
+
+    // Step 1: Navigate to Tommy John page where pixel should fire
+    driver.get("https://www.tommyjohn.com/collections/mens-all");
+
+    // Optional: Wait for pixel scripts to fire
+    Thread.sleep(20000);
+
+    // Step 2: Validate the Adxcel pixel
+    if (adxcelUrls.isEmpty()) {
+        Assert.fail("❌ Adxcel 'content' pixel was NOT fired!");
+    } else {
+        System.out.println("✅ Adxcel 'content' pixel fired successfully.");
+    }
+
+    // Close browser
+    driver.quit();
+}
+
+    public void validateGTMBingEvent() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless=new");
+        options.addArguments("--disable-gpu");
+        options.addArguments("--window-size=1920,1080");
+
+        ChromeDriver driver = new ChromeDriver(options);
+        DevTools devTools = driver.getDevTools();
+        devTools.createSession();
+
+        devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
+
+        List<String> bingUrls = new ArrayList<>();
+
+        devTools.addListener(Network.requestWillBeSent(), request -> {
+            String url = request.getRequest().getUrl();
+            if (url.contains("bat.bing.com/bat.js")) {
+                System.out.println("📡 Bing Script Loaded: " + url);
+                bingUrls.add(url);
+            }
+        });
+
+        driver.get("https://www.tommyjohn.com/collections/mens-all");
+
+        // Wait up to 20 seconds for the Bing URL to appear in the list
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        boolean scriptFound = wait.until(driver1 -> !bingUrls.isEmpty());
+
+        if (!scriptFound) {
+            Assert.fail("❌ Bing bat.js script was NOT loaded!");
+        } else {
+            System.out.println("✅ Bing bat.js script was loaded successfully.");
+        }
+
+        driver.quit();
+    }
+
 
 
     // ✅ Function to Compare JSON Payloads
@@ -899,4 +1196,7 @@ public class GTMComponents {
             return false;
         }
     }
+
+
+
 }

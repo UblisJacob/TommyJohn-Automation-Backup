@@ -46,6 +46,48 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	String Selected_size2;
 	int count = 0;
 	int PLPs = 55;
+	List<WebElement> CollectionDoorways;
+	int Count;
+
+	public void ValidateFunctionalityOfCollectionDoorways()
+	{
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		SoftAssert softAssert = new SoftAssert();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		new HomePageComponents(driver).navigateToWomensAll();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(COLLECTION_DOORWAYS));
+		softAssert.assertTrue(driver.findElement(COLLECTION_DOORWAYS).isDisplayed(),"Collection Doorways is displayed in the PLP");
+		Reporter.log("Collection Doorways is displayed in the PLP");
+		ExtentReport.extentTest.info("Collection Doorways is displayed in the PLP");
+		CollectionDoorways = driver.findElements(COLLECTION_DOORWAYS_COUNT);
+		Count = CollectionDoorways.size();
+		System.out.println(Count);
+		for(int i=1;i<=Count;i++)
+		{
+			js.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//p[@class='text-heading-sm font-medium text-text-primary mb-2xs leading-tight'])[" + i + "]")));
+			softAssert.assertTrue(driver.findElement(By.xpath("//h1[@class='inline']")).isDisplayed(),"Header is displayed on the Collection Doorways");
+			driver.navigate().back();
+		}
+
+		softAssert.assertAll();
+		Reporter.log("Collection Doorways is displayed and functional in the PLP");
+		ExtentReport.extentTest.info("Collection Doorways is displayed and functional in the PLP");
+
+	}
+
+
+
+
+	public void ValidateCollectionDoorways()
+	{
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		SoftAssert softAssert = new SoftAssert();
+		new HomePageComponents(driver).navigateToMensAll();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(COLLECTION_DOORWAYS));
+		softAssert.assertTrue(driver.findElement(COLLECTION_DOORWAYS).isDisplayed(),"Collection Doorways is displayed in the PLP");
+		Reporter.log("Collection Doorways is displayed in the PLP");
+		ExtentReport.extentTest.info("Collection Doorways is displayed in the PLP");
+	}
 
 	public void ValidateStarRatingIsFunctional()
 	{	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -619,7 +661,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		}
 
 		// Now sort descending
-		driver.findElement(By.xpath("//label[@for='Filters-Sort-price-desc']")).click();
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//label[@for='Filters-Sort-price-desc']")));
 
 		Thread.sleep(5000);
 		// Wait for descending sorted prices to load and capture their texts
@@ -788,17 +830,24 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 	public void ValidateFacet() throws InterruptedException {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollBy(0,250)");
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+		js.executeScript("window.scrollBy(0, 250)");
 		Thread.sleep(2000);
 
 		driver.findElement(ALL_FILTERS).click();
-		Thread.sleep(10000);
-		WebElement element1 = driver.findElement(COLLECTION_FILTER);
-		js.executeScript("arguments[0].click();", element1);
-		Thread.sleep(10000);
-		WebElement element2 = driver.findElement(FACET_VALUE);
-		js.executeScript("arguments[0].click();", element2); // ✅ Ensure JavaScript Click
-		Thread.sleep(5000);  // ✅ Wait for network request
+		Thread.sleep(5000);
+
+		js.executeScript("window.scrollBy(0, 250)");
+		WebElement collectionFilter = wait.until(ExpectedConditions.elementToBeClickable(COLLECTION_FILTER));
+		js.executeScript("arguments[0].click();", collectionFilter);
+		Thread.sleep(5000);
+
+		WebElement facetElement = wait.until(ExpectedConditions.visibilityOfElementLocated(FACET_VALUE));
+		js.executeScript("arguments[0].scrollIntoView(true);", facetElement);
+		Thread.sleep(1000);
+		js.executeScript("arguments[0].click();", facetElement);
+		Thread.sleep(5000);  // Wait for the network call
 	}
 
 	public void validateReviewStarOnGCPLP() throws Exception {

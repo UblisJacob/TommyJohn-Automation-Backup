@@ -364,6 +364,14 @@ public class CollectionPage extends CollectionPageComponent{
 		validateallurls();
 	}
 
+	public void ValidateCollectionDoorways() {
+		new CollectionPageComponent(driver).ValidateCollectionDoorways();
+	}
+
+	public void ValidateFunctionalityOfCollectionDoorways() {
+		new CollectionPageComponent(driver).ValidateFunctionalityOfCollectionDoorways();
+	}
+
 	public void ValidateStarRatingIsFunctional() {
 	new CollectionPageComponent(driver).ValidateStarRatingIsFunctional();
 	}

@@ -59,7 +59,7 @@ public class NavigationElementsPage extends NavigationElementComponents{
 		validateElementsWhenSignedInDesktop();
 	}
 	
-	public void validateCartIcon() {
+	public void validateCartIcon() throws InterruptedException {
 		validateCartIconInteraction();
 	}
 	

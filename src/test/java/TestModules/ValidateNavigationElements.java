@@ -56,7 +56,7 @@ public class ValidateNavigationElements {
 	}
 	
 	@Test
-	public void ValidateCartIcon() {
+	public void ValidateCartIcon() throws InterruptedException {
 		new NavigationElementsPage(driver).validateCartIcon();
 	}
 	
