@@ -29,6 +29,8 @@ public class CollectionPageLocator {
 	public static By FIRST_PRODUCT_HEAD_TEXT = By.xpath("(//div[@class='relative aspect-tile'])[1]");
 	public static By FIRST_PRODUCT_HEAD_LINE_TEXT_COPY = By.xpath("(//span[@class='product-meta__title'])[1]");
 	public static By FIRST_PRODUCT_HEAD_LINE_TEXT = By.xpath("(//a[@data-cy='productTileLink'])[1]");
+	public static By COLLECTION_DOORWAYS = By.xpath("//swiper-container[@class='flex overflow-auto -mx-lg px-lg']");
+	public static By COLLECTION_DOORWAYS_COUNT = By.xpath("//p[@class='text-heading-sm font-medium text-text-primary mb-2xs leading-tight']");
 	public static By SECOND_PRODUCT_HEAD_LINE_TEXT = By.xpath("(//a[@data-cy='productTileLink'])[4]");
 	public static By MENS_SECOND_PRODUCT_HEAD_LINE_TEXT = By.xpath("(//a[@data-cy='productTileLink'])[2]");
 	public static By FIRST_PRODUCT_STAR_RATING = By.xpath("(//a[@class='my-xs font-normal text-body-xs'])[1]");
@@ -50,7 +52,7 @@ public class CollectionPageLocator {
 	public static By ALL_FILTERS = By.xpath("//span[@class='icon icon-filters']");
 	public static By ALL_FILTERS_LIST = By.xpath("//div[@class='font-sans']");
 	public static By COLLECTION_FILTER = By.xpath("//legend[contains(text(),'Collection')]");
-	public static By FACET_VALUE = By.xpath("//span[@class='font-medium' and contains(text(),'Cool Cotton')]");//span[@class='font-medium' and contains(text(),'Cool Cotton')]
+	public static By FACET_VALUE = By.xpath("//label[@for='Filters-facet_collection-coolcotton']");//span[@class='font-medium' and contains(text(),'Cool Cotton')]
 	//changed
 	public static By DISPLAYED_ALL_SELECTED_OPTIONS = By.xpath("(//div[contains(@class,'mega-collection-filter-tags mega-collection-filter-tags--desktop')]//button)");
 	public static By CLEAR_FILTER_BUTTON = By.cssSelector("[data-tj-qa='plp-clear-filters'],div.mega-collection-filters--controls > a");

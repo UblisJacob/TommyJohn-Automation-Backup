@@ -31,6 +31,12 @@ public class CheckoutPage extends CheckoutPageComponents {
 
 	}
 
+	public void validateNonFreeShipping() throws Exception
+	{
+		new CheckoutPageComponents(driver).validateNonFreeShipping();
+
+	}
+
 
 	public void ValidatePromoCodeErrorScenarioInShippingPage() throws Exception
 	{

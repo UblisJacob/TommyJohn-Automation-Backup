@@ -7,6 +7,10 @@ public class ProductDetailsPageLocators {
 
 	//Multipacks Sections
 	public static By PDP_TABS = By.xpath("//span[@class='text-sm text-text-tertiary']");
+	public static By PDP_PRODUCT_SETS = By.xpath("//div[@class='grid grid-flow-col']//span");
+	public static By COMPARISON_MODULE = By.xpath("//div[@class='wrapper pr-0 sm:pr-8']");
+	public static By SHOP_LINER_CTA = By.xpath("//a[@class='button-secondary' and contains(text(),'Shop Liner')]");
+	public static By SHOP_NO_SHOW_CTA = By.xpath("//a[@class='button-secondary' and contains(text(),'Shop No Show')]");
 	public static By PDP_TAB1 = By.xpath("(//span[@class='text-sm text-text-tertiary'])[1]");
 	public static By SWATCH_SECTION = By.xpath("(//fieldset[@class='grid max-md:ml-lg max-md:items-center'])[1]");
 	public static By SIZE_SECTION = By.xpath("(//fieldset[@class='grid max-md:ml-lg max-md:items-center'])[2]");
@@ -20,6 +24,8 @@ public class ProductDetailsPageLocators {
 	//changed
 	public static By PRODUCT_TITLE = By.xpath("//h1[@class='mb-0']");
 	public static By REVIEW_SUMMARY = By.xpath("//span[@class='yotpo-star-rating-reviews-summary-text']");
+	public static By READ_ALL_REVIEWS = By.xpath("//span[@class='yotpo-summary-footer-read-all-text']");
+	public static By FIRST_REVIEW = By.xpath("//span[@class='yotpo-reviewer-name unselectable']");
 	public static By WRITE_A_REVIEW_LINK = By.xpath("//div[@class='yotpo-sr-bottom-line-new-review']");
 	public static By REVIEW_SUMMARY_TITLE = By.xpath("//div[@class='yotpo-summary-header-title']");
 	//changed
@@ -98,6 +104,14 @@ public class ProductDetailsPageLocators {
 	public static By SIZEGUIDE_FITRANGE_DROPDOWN= By.cssSelector(".expand-instructions");
 	public static By SIZEGUIDE_FITRANGE_TEXT= By.cssSelector(".instructions-text");
 	public static By SIZEGUIDE_CHART_TABLE= By.xpath("//table[@class='not-prose w-full whitespace-nowrap text-center align-baseline text-body-sm leading-6']");
+	public static By PRODUCT_NAME_IN_SIZECHART= By.xpath("//h2[@class='mb-lg mt-2 pr-14 text-heading-md']");
+	public static By HOW_TO_MEASURE_CTA_IN_SIZECHART= By.xpath("//select[@id='column-select']");
+	public static By BAND_SIZE= By.xpath("//select[@id='column-select']");
+	public static By CUP_VOLUME= By.xpath("//select[@id='row-select']");
+	public static By HOW_TO_MEASURE_SECTION= By.xpath("//div[@class='px-2']");
+	public static By SIZE_RESULT= By.xpath("//span[@class='text-text-accent']");
+	public static By STEPS = By.xpath("//div[@class='flex flex-col-reverse items-start justify-between gap-x-12 sm:flex-row sm:items-center']");
+
 	
 	public static By SIZEGUIDE_TITLE= By.xpath("//h2[@class='mb-lg mt-2 pr-14 text-heading-md']");
 	public static By SIZE_GUIDE_BUTTON = By.cssSelector("[data-tj-qa='size-guide-link'],button.product-info__header-btn.size-guide");

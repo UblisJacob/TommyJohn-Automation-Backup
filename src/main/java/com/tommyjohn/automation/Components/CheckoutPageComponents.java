@@ -24,6 +24,8 @@ import com.tommyjohn.automation.PageLocators.FlyCartPageLocator;
 import com.tommyjohn.automation.PageLocators.HomePageLocators;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
+import static com.tommyjohn.automation.PageLocators.FlyCartPageLocator.CHECKOUT_BUTTON;
+
 public class CheckoutPageComponents extends CheckoutPageLocators {
 
 	public WebDriver driver;
@@ -49,7 +51,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 //		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		Thread.sleep(5000);
-		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
+		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
 		CheckErrorMessageForIncorrectPromoCode();
 
 	}
@@ -62,7 +64,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 //		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		Thread.sleep(5000);
-		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
+		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
 		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
 		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
@@ -89,7 +91,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 //		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		Thread.sleep(5000);
-		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
+		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
 		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
 		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
@@ -122,7 +124,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 //		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		Thread.sleep(5000);
-		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
+		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
 		try {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(INFO_DISCOUNT_3for$48));
 		}
@@ -148,9 +150,43 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		softAssert.assertAll();
 		Reporter.log("3 for $48 functionality works fine in Information page");
 		ExtentReport.extentTest.info("3 for $48 functionality works fine in Information page");
+	}
 
 
+	public void Validate5for$59functionalityinInformationPage() throws Exception {
+		jse = (JavascriptExecutor)driver;
+		SoftAssert softAssert = new SoftAssert();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		driver.findElement(HomePageLocators.CART_ICON).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+//		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+		Thread.sleep(5000);
+		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
+		try {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(INFO_DISCOUNT_5for$59));
+		}
+		catch(Exception e)
+		{
 
+			wait.until(ExpectedConditions.visibilityOfElementLocated(INFO_DISCOUNT_5for$59_1));
+		}
+		try {
+			String[] DISCOUNT_3for$48 = driver.findElement(INFO_DISCOUNT_5for$59).getText().split("\\(");
+			System.out.println(DISCOUNT_3for$48[0]);
+			softAssert.assertEquals(DISCOUNT_3for$48[0], "5 FOR $59 ", "5 for $59 discount is not applied and not displayed in the Information page line item");
+		}
+		catch(Exception e)
+		{
+			String[] DISCOUNT_3for$48 = driver.findElement(INFO_DISCOUNT_5for$59_1).getText().split("\\(");
+			System.out.println(DISCOUNT_3for$48[0]);
+			softAssert.assertEquals(DISCOUNT_3for$48[0], "5 FOR $59 ", "5 for $59 discount is not applied and not displayed in the Information page line item");
+		}
+		String TOTAL = driver.findElement(LINEITEM_TOTAL_5for$59).getText();
+		System.out.println(TOTAL);
+		softAssert.assertEquals(TOTAL,"$11.80","Line Item Total is differ from the 5 for $59 functionality");
+		softAssert.assertAll();
+		Reporter.log("5 for $59 functionality works fine in Information page");
+		ExtentReport.extentTest.info("3 for $48 functionality works fine in Information page");
 	}
 
 	public void Validate3for$48functionalityinShippingPage() throws Exception {
@@ -161,7 +197,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 //		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		Thread.sleep(5000);
-		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
+		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
 		Thread.sleep(5000);
 		try {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(INFO_DISCOUNT_3for$48));
@@ -199,6 +235,55 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 
 	}
 
+
+	public void Validate5for$59functionalityinShippingPage() throws Exception {
+		jse = (JavascriptExecutor)driver;
+		SoftAssert softAssert = new SoftAssert();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		driver.findElement(HomePageLocators.CART_ICON).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+//		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+		Thread.sleep(5000);
+		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
+		Thread.sleep(5000);
+		try {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(INFO_DISCOUNT_5for$59));
+		}
+		catch(Exception e)
+		{
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(INFO_DISCOUNT_5for$59_1));
+		}
+		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
+		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
+		entershippingdetails();
+		WebElement Continue_shipping = driver.findElement(CONTINUE_TO_SHIPPING_BUTTON);
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", Continue_shipping);
+		Reporter.log("User is navigated to select shipping method");
+		ExtentReport.extentTest.info("User is navigated to select shipping method");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SHIPPING_RADIO_BUTTON));
+		try {
+			String[] DISCOUNT_3for$48 = driver.findElement(INFO_DISCOUNT_5for$59).getText().split("\\(");
+			System.out.println(DISCOUNT_3for$48[0]);
+			softAssert.assertEquals(DISCOUNT_3for$48[0], "3 FOR $48 ", "3 for $48 discount is not applied and not displayed in the Information page line item");
+		}
+		catch(Exception e)
+		{
+			String[] DISCOUNT_3for$48 = driver.findElement(INFO_DISCOUNT_5for$59_1).getText().split("\\(");
+			System.out.println(DISCOUNT_3for$48[0]);
+			softAssert.assertEquals(DISCOUNT_3for$48[0], "3 FOR $48 ", "3 for $48 discount is not applied and not displayed in the Information page line item");
+		}
+		String TOTAL = driver.findElement(LINEITEM_TOTAL_5for$59).getText();
+		System.out.println(TOTAL);
+		softAssert.assertEquals(TOTAL,"$16.00","Line Item Total is differ from the 3 for $48 functionality");
+		softAssert.assertAll();
+		Reporter.log("3 for $48 functionality works fine in Shipping page");
+		ExtentReport.extentTest.info("3 for $48 functionality works fine in Shipping page");
+
+	}
+
+
+
 	public void Validate3for$48functionalityinPaymentPage() throws Exception {
 		jse = (JavascriptExecutor)driver;
 		SoftAssert softAssert = new SoftAssert();
@@ -207,7 +292,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 //		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		Thread.sleep(5000);
-		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
+		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
 		try {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(INFO_DISCOUNT_3for$48));
 		}
@@ -264,7 +349,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 //		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		Thread.sleep(5000);
-		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
+		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
 		Reporter.log("Checkout page displayed");
 		ExtentReport.extentTest.info("Checkout page displayed");
 		Thread.sleep(10000);
@@ -283,7 +368,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 //		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		Thread.sleep(5000);
-		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
+		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
 		Reporter.log("Checkout page displayed");
 		ExtentReport.extentTest.info("Checkout page displayed");
 		Thread.sleep(4000);
@@ -313,7 +398,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 //		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		Thread.sleep(5000);
-		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
+		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
 		Reporter.log("Checkout page displayed");
 		ExtentReport.extentTest.info("Checkout page displayed");
 		Thread.sleep(4000);
@@ -353,8 +438,8 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
 		
 		
-		wait.until(ExpectedConditions.elementToBeClickable(FlyCartPageLocator.CHECKOUT_BUTTON));
-		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartPageLocator.CHECKOUT_BUTTON));
+		wait.until(ExpectedConditions.elementToBeClickable(CHECKOUT_BUTTON));
+		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
 		
 
 //		Wait for Checkout page
@@ -489,8 +574,8 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
 		
 		
-		wait.until(ExpectedConditions.elementToBeClickable(FlyCartPageLocator.CHECKOUT_BUTTON));
-		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartPageLocator.CHECKOUT_BUTTON));
+		wait.until(ExpectedConditions.elementToBeClickable(CHECKOUT_BUTTON));
+		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
 		
 		
 //		On Information Page
@@ -547,7 +632,8 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
 		
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
+		Thread.sleep(10000);
+		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
 		//driver.findElement(FlyCartComponents.CHECKOUT_BUTTON).click();
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
@@ -621,8 +707,8 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 //			wait.until(ExpectedConditions.visibilityOfElementLocated(ShoppingCartComponents.CART_TITLE));
 //		}
 
-		
-		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CHECKOUT_BUTTON));
+		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
 		Reporter.log("Checkout page displayed");
 		ExtentReport.extentTest.info("Checkout page displayed");
 		Thread.sleep(4000);
@@ -661,7 +747,8 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		driver.get("https://www.tommyjohn.com/");
 		driver.findElement(HomePageLocators.CART_ICON).click();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CHECKOUT_BUTTON));
+		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
 		Reporter.log("Checkout page displayed");
 		ExtentReport.extentTest.info("Checkout page displayed");
 		Thread.sleep(4000);
@@ -676,7 +763,8 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		new AddToCartComponents(driver).addsingleproductToCart();
 		driver.findElement(HomePageLocators.CART_ICON).click();
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
+		Thread.sleep(5000);
+		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
 		Reporter.log("Checkout page displayed");
 		ExtentReport.extentTest.info("Checkout page displayed");
 		Thread.sleep(5000);
@@ -700,7 +788,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 
 
-		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
+		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
 		Reporter.log("Checkout page displayed");
 		ExtentReport.extentTest.info("Checkout page displayed");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
@@ -746,7 +834,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 
 
-		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
+		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
 		Reporter.log("Checkout page displayed");
 		ExtentReport.extentTest.info("Checkout page displayed");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
@@ -803,6 +891,38 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		ExtentReport.extentTest.info("All the Billing address fields are displayed");
 	}
 
+	public void validateNonFreeShipping() throws Exception {
+		jse = (JavascriptExecutor)driver;
+		SoftAssert softAssert = new SoftAssert();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		new AddToCartComponents(driver).NonFreeShippingAddToCart();
+		wait.until(ExpectedConditions.elementToBeClickable(HomePageLocators.CART_ICON));
+		jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+//		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+		Thread.sleep(5000);
+		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
+		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
+		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
+		entershippingdetails();
+		Reporter.log("Shipping Address Details entered");
+		ExtentReport.extentTest.info("Shipping Address Details entered");
+		// driver.findElement(CONTINUE_TO_SHIPPING_BUTTON).click();
+		WebElement Continue_shipping = driver.findElement(CONTINUE_TO_SHIPPING_BUTTON);
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", Continue_shipping);
+		Reporter.log("User is navigated to select shipping method");
+		ExtentReport.extentTest.info("User is navigated to select shipping method");
+		Thread.sleep(10000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACT_EMAIL));
+		String NonFreeShipping = driver.findElement(NON_FREE_SHIPPING).getText();
+		System.out.println(NonFreeShipping);
+		softAssert.assertEquals(NonFreeShipping,"$7.95","Free Shipping is offered when the Cart contains products with below $75");
+		Reporter.log("Free Shipping is not offered when the Cart contains products with below $75");
+		ExtentReport.extentTest.info("Free Shipping is not offered when the Cart contains products with below $75");
+
+	}
+
 	public void validateFreeShipping() throws Exception {
 		jse = (JavascriptExecutor)driver;
 		SoftAssert softAssert = new SoftAssert();
@@ -813,7 +933,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 //		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		Thread.sleep(5000);
-		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
+		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
 		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
 		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
@@ -844,7 +964,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 //		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 
-		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
+		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
 		Reporter.log("Checkout page displayed");
 		ExtentReport.extentTest.info("Checkout page displayed");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
@@ -965,7 +1085,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 
 		Thread.sleep(2000);
-		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
+		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
 		Reporter.log("Checkout page displayed");
 		ExtentReport.extentTest.info("Checkout page displayed");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
@@ -1030,7 +1150,8 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		
 		driver.findElement(HomePageLocators.CART_ICON).click();
 
-		WebElement checkout_btn = driver.findElement(FlyCartComponents.CHECKOUT_BUTTON);
+		Thread.sleep(5000);
+		WebElement checkout_btn = driver.findElement(CHECKOUT_BUTTON);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", checkout_btn);
 
 		Reporter.log("Checkout page displayed");
@@ -1087,7 +1208,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 
 		
-		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
+		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
 		Reporter.log("Checkout page displayed");
 		ExtentReport.extentTest.info("Checkout page displayed");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
@@ -1304,8 +1425,8 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		driver.findElement(HomePageLocators.CART_ICON).click();
 
 		// Click on Checkout button in inline cart
-		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.CHECKOUT_BUTTON));
-		driver.findElement(FlyCartPageLocator.CHECKOUT_BUTTON).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CHECKOUT_BUTTON));
+		driver.findElement(CHECKOUT_BUTTON).click();
 		Thread.sleep(5000);
 
 		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
@@ -1424,7 +1545,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
 		new CollectionPageComponent(driver).AddproductToCartByQuickShop();
 		driver.findElement(HomePageLocators.CART_ICON).click();
-		driver.findElement(FlyCartComponents.CHECKOUT_BUTTON).click();
+		driver.findElement(CHECKOUT_BUTTON).click();
 	}
 
 	public void completeorder() throws Exception {
@@ -1439,7 +1560,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 //		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 
-		jse.executeScript("arguments[0].click();", driver.findElement(FlyCartComponents.CHECKOUT_BUTTON));
+		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
 		Reporter.log("Checkout page displayed");
 		ExtentReport.extentTest.info("Checkout page displayed");
 		Thread.sleep(5000);

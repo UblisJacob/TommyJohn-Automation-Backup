@@ -26,7 +26,7 @@ public class ValidateGTM {
 
 
     @Test
-    public void ValidateGTMForFredHopper() throws Exception {
+            public void ValidateGTMForFredHopper() throws Exception {
 
         new GTMValidations(driver).validateGTMEventsForFredHopper();
 
@@ -65,6 +65,26 @@ public class ValidateGTM {
 
         new GTMValidations(driver).validateContentSquare();
 
+    }
+
+    @Test
+    public void ValidateClaritas() throws Exception {
+
+        new GTMValidations(driver).validateClaritas();
+
+    }
+
+    @Test
+    public void ValidateArtsai() throws Exception {
+
+        new GTMValidations(driver).validateArtsai();
+    }
+
+
+    @Test
+    public void ValidateBing() throws Exception {
+
+        new GTMValidations(driver).validateBing();
     }
 
 

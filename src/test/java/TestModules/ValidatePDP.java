@@ -58,6 +58,47 @@ public class 	ValidatePDP extends ExtentReport{
 	}
 
 	@Test
+	public void VerifyComparisonModule() throws Exception {
+		new ProductDetailsPage(driver).VerifyComparisonModule();
+	}
+
+	@Test
+	public void ValidateComparisonModule() throws Exception {
+		new ProductDetailsPage(driver).ValidateComparisonModule();
+	}
+
+
+	@Test
+	public void VerifyHowToMeasureSection() throws Exception {
+		new ProductDetailsPage(driver).VerifyHowToMeasureSection();
+
+	}
+
+	@Test
+	public void VerifyProductSets() throws Exception {
+		new ProductDetailsPage(driver).VerifyProductSets();
+
+	}
+
+
+	@Test
+	public void ValidateAppropriateResultForSelectingBandSizeAndCupVolume() throws Exception {
+		new ProductDetailsPage(driver).ValidateAppropriateResultForSelectingBandSizeAndCupVolume();
+	}
+
+	@Test
+	public void ValidateSizeChartDetailsForBrasandBrallets() throws Exception {
+		new ProductDetailsPage(driver).ValidateSizeChartDetailsForBrasandBrallets();
+
+	}
+
+	@Test
+	public void ValidateReadAllReviewsLinkInReviewsSummary() throws Exception {
+		new ProductDetailsPage(driver).ValidateReadAllReviewsLinkInReviewsSummary();
+
+	}
+
+	@Test
 	public void ValidateWriteAReviewLink() throws Exception {
 		new ProductDetailsPage(driver).ValidateWriteAReviewLink();
 
