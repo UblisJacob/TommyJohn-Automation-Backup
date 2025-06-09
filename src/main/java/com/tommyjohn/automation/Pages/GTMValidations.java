@@ -63,7 +63,7 @@ public class GTMValidations extends GTMComponents {
     {
        new GTMComponents(driver).validateGTMClaritasForSiteWide();
        new GTMComponents(driver).validateGTMClaritasForAddToCart();
-      //   new GTMComponents(driver).validateGTMClaritasForCheckout();
+//       new GTMComponents(driver).validateGTMClaritasForCheckout();
 
     }
 

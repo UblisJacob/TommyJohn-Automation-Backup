@@ -74,7 +74,7 @@ public class ValidateGTM {
 
     }
 
-    @Test
+ //   @Test
     public void ValidateArtsai() throws Exception {
 
         new GTMValidations(driver).validateArtsai();

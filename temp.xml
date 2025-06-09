@@ -11,15 +11,13 @@
     <test name="Tests">
         <parameter name="browser" value="chrome"/>
         <classes>
-                    <class name="TestModules.ValidateElevar">
+                    <class name="TestModules.ValidateCreateAccount_Login">
                 <methods>
-                    <include name="ValidateElevarFacebookCheckout"/>
+                    <include name="VerifyAccountLogin"/>
                 </methods>
             </class>
         </classes>
     </test>
-
-
 <!--    <listeners>-->
 <!--        <listener class-name="TestScenario.ADAListenerClass"></listener>-->
 <!--&lt;!&ndash;        <listener class-name="TestScenario.RetryListener"></listener>&ndash;&gt;-->
