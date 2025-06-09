@@ -1075,7 +1075,7 @@ public class GTMComponents {
 
     public void validateGTMArtsaiForContent() throws InterruptedException {
     ChromeOptions options = new ChromeOptions();
-    options.addArguments("--headless=new");
+ //   options.addArguments("--headless=new");
     options.addArguments("--disable-gpu");
     options.addArguments("--window-size=1920,1080");
 
@@ -1101,6 +1101,7 @@ public class GTMComponents {
 
     // Step 1: Navigate to Tommy John page where pixel should fire
     driver.get("https://www.tommyjohn.com/collections/mens-all");
+    driver.findElement(By.xpath("(//a[contains(text(),'Men')])[2]")).click();
 
     // Optional: Wait for pixel scripts to fire
     Thread.sleep(20000);

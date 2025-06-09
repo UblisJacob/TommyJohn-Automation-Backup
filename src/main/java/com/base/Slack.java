@@ -140,7 +140,7 @@ public class Slack {
         //      String payload = "{\"text\":\"*GTM Results*\n*Time:* " + Date + " \n*Passed:* " + 155 + "\n*Failed:* "+ 7 + "\n*Skipped:* " + skipped + "\n*Report Link:* <" + ReportLINK + "|Click> \",\"type\": \"mrkdwn\"}";
 
 
-        URL url = new URL(Test_WEBHOOK_URL);
+        URL url = new URL(TJ_QA_WEBHOOK_URL);
 
         HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
 

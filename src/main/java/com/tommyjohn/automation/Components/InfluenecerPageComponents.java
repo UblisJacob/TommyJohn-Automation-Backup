@@ -77,8 +77,4 @@ public class InfluenecerPageComponents extends InfluencerPageLocators {
 
 
     }
-
-
-
-
 }

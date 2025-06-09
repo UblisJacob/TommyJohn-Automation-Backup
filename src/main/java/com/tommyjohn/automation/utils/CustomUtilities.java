@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
@@ -16,6 +17,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -26,6 +28,7 @@ import org.openqa.selenium.safari.SafariOptions;
 import org.testng.ISuite;
 import org.testng.ITestContext;
 import org.testng.Reporter;
+//import org.openqa.selenium.devtools.v112.emulation.Emulation;
 
 
 public class CustomUtilities {
@@ -69,9 +72,22 @@ public class CustomUtilities {
 
 			// Set other desired capabilities if needed (such as enabling remote d
 //			chromeOptions.setExperimentalOption("useAutomationExtension", false)
-			chromeOptions.addArguments("--disable-gpu");
-			chromeOptions.addArguments("--headless=new");
+//			chromeOptions.addArguments("--disable-gpu");
+			chromeOptions.addArguments("--headless");
 			chromeOptions.addArguments("--window-size=1920,1080");
+			chromeOptions.addArguments("--force-device-scale-factor=1");
+			chromeOptions.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
+//			ChromeDriver driver = new ChromeDriver(options);
+//
+//// Force viewport via DevTools
+//			DevTools devTools = driver.getDevTools();
+//			devTools.createSession();
+//			devTools.send(Emulation.setDeviceMetricsOverride(
+//					1920, 1080, 1.0, false,
+//					Optional.empty(), Optional.empty(), Optional.empty(),
+//					Optional.empty(), Optional.empty(), Optional.empty(),
+//					Optional.empty(), Optional.empty()
+//			));
 			chromeOptions.addArguments("--disable-blink-features=AutomationControlled");
 			chromeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
 			chromeOptions.setExperimentalOption("useAutomationExtension", false);

@@ -346,9 +346,9 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
 		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//span[@class='flex gap-xs items-center leading-none']")));
 		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//legend[contains(text(),'Collection')]")));
-		String AirFilter = driver.findElement(By.xpath("(//span[contains(text(),'Air')])[3]")).getText();
+		String AirFilter = driver.findElement(By.xpath("(//span[@class='font-medium' and contains(text(),'Air')])")).getText();
 		System.out.println(AirFilter);
-		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//span[contains(text(),'Air')])[3]")));
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//span[@class='font-medium' and contains(text(),'Air')])")));
 		Thread.sleep(10000);
 //		int Filtercount = driver.findElements(By.xpath("//span[@class='collection-meta__title']")).size();
 //		System.out.println(Filtercount);

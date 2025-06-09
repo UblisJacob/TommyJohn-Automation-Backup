@@ -784,6 +784,7 @@ public class AddToCartComponents extends AddToCartLocators{
 	public String removesingleproductfromCart() throws Exception {
 
 		int count=0;
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		// call method to navigate to collection page
 		new HomePageComponents(driver).navigateToMensBriefs();
 		jse = (JavascriptExecutor) driver;
@@ -847,13 +848,13 @@ public class AddToCartComponents extends AddToCartLocators{
 //							break;
 //
 //						}
-					if(count==1)
+					if(count==3)
 					{
 						break;
 					}
 
 				}
-				if(count==1)
+				if(count==3)
 				{
 					break;
 				}
@@ -861,14 +862,15 @@ public class AddToCartComponents extends AddToCartLocators{
 
 			driver.get("https://www.tommyjohn.com/");
 			jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@class='button-link text-body-xs text-text-tertiary' and contains(text(),'Remove')]")));
 			RemoveItems = driver.findElements(By.xpath("//button[@class='button-link text-body-xs text-text-tertiary' and contains(text(),'Remove')]"));
 			System.out.println(RemoveItems.size());
 			for(int i=1; i<=RemoveItems.size(); i++) {
-				Thread.sleep(5000);
+				Thread.sleep(10000);
 				jse.executeScript("arguments[0].click();",driver.findElement(By.xpath("(//button[@class='button-link text-body-xs text-text-tertiary' and contains(text(),'Remove')])[1]")));
 				System.out.println(i);
 			}
-			Thread.sleep(5000);
+			Thread.sleep(10000);
 		}
 		return text;
 	}
