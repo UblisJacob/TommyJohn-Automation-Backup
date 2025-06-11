@@ -30,7 +30,7 @@ public class InfluenecerPageComponents extends InfluencerPageLocators {
         this.driver = driver;
 
         wait = new FluentWait<WebDriver>(driver).pollingEvery(Duration.ofMillis(500))
-                .withTimeout(Duration.ofSeconds(30)).ignoring(NoSuchElementException.class);
+                .withTimeout(Duration.ofSeconds(60)).ignoring(NoSuchElementException.class);
 
     }
 
@@ -49,9 +49,10 @@ public class InfluenecerPageComponents extends InfluencerPageLocators {
 
     public void VerifyTrendingThisWeek()
     {
-
+        JavascriptExecutor js = (JavascriptExecutor) driver;
         SoftAssert softAssert = new SoftAssert();
             driver.get("https://www.tommyjohn.com/pages/influencer-lp8-16");
+        js.executeScript("window.scrollBy(0,1500)");
         wait.until(ExpectedConditions.visibilityOfElementLocated(TRENDINGTHISWEEK));
 
         softAssert.assertTrue(driver.findElement(TRENDINGTHISWEEK).isDisplayed(),"Trending this week section is not available");

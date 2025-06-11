@@ -292,7 +292,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 	{
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
-		driver.get("https://www.tommyjohn.com/products/low-cut-liner-sock-3-pack?variant=43269074190381");
+		driver.get("https://www.tommyjohn.com/products/womens-air-bikini-3-pack-8?variant=43427954917421");
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		SoftAssert softAssert = new SoftAssert();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_TITLE));
