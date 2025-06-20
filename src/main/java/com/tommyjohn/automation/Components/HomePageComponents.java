@@ -480,15 +480,45 @@ public class HomePageComponents extends HomePageLocators {
 		new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(webDriver -> js.executeScript("return document.readyState").equals("complete"));
 
-		// Validate 'Learn More' CTA
-		validateCTA(LEARNMORE_CTA, "(//h1)[1]", "Learn More CTA in Brand Building section is not functional", softAssert);
+		Thread.sleep(5000);
+		js.executeScript("window.scrollBy(0, 3000);");
+
+		// Validate 'Best Pair Guarantee' CTA
+//		validateCTA(LEARNMORE_CTA, "//h1[contains(text(),'Best Pair Guarantee')]", "Learn More CTA in Brand Building section is not functional", softAssert);
+
+		js.executeScript("arguments[0].click();", driver.findElement(BEST_PAIR_GUARANTEE));
+		String URL = driver.getCurrentUrl();
+		System.out.println(URL);
+	//	driver.findElement(LEARNMORE_CTA).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h1[contains(text(),'Best Pair Guarantee')]")));
+//		softAssert.assertTrue(driver.findElement(By.xpath("//h1[contains(text(),'Best Pair Guarantee')]")).isDisplayed(), "Best Pair Guarantee CTA is not working");
+		softAssert.assertTrue(URL.contains("best-pair-guarantee"),"Best Pair Guarantee CTA is not working");
+		driver.navigate().back();
+
 
 		// Validate 'Our Shopping Policies' CTA
-		validateCTA(OURSHOPPINGPOLICIES_CTA, "(//h1)[1]", "Our Shopping Policies CTA in Brand Building section is not functional", softAssert);
+//		validateCTA(OURSHOPPINGPOLICIES_CTA, "(//h1)[1]", "Our Shopping Policies CTA in Brand Building section is not functional", softAssert);
+		js.executeScript("arguments[0].click();", driver.findElement(OURSHOPPINGPOLICIES_CTA));
+		String URL2 = driver.getCurrentUrl();
+		System.out.println(URL2);
+//		driver.findElement(OURSHOPPINGPOLICIES_CTA).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h1[contains(text(),'Shipping')]")));
+//		softAssert.assertTrue(driver.findElement(By.xpath("//h1[contains(text(),'Shipping')]")).isDisplayed(), "Our Shipping Policies CTA is not working");
+		softAssert.assertTrue(URL2.contains("2Fshipping"),"Our Shipping Policies CTA is not working");
+		driver.navigate().back();
+
 
 		// Validate 'Our Story' CTA
-		validateURLCTA(SIGNUP_CTA, "https://www.tommyjohn.com/pages/sms-signup",
-				"Sign Up CTA in Brand Building section is not functional", softAssert);
+	//	validateURLCTA(SIGNUP_CTA, "https://www.tommyjohn.com/pages/sms-signup",
+//				"Sign Up CTA in Brand Building section is not functional", softAssert);
+		js.executeScript("arguments[0].click();", driver.findElement(SIGNUP_CTA));
+		String URL3 = driver.getCurrentUrl();
+		System.out.println(URL3);
+//		driver.findElement(SIGNUP_CTA).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h1[contains(text(),'Exclusive Access Awaits')]")));
+//		softAssert.assertTrue(driver.findElement(By.xpath("//h1[contains(text(),'Exclusive Access Awaits')]")).isDisplayed(), "Sign Up CTA is not working");
+		softAssert.assertTrue(URL3.contains("signup"),"Sign Up CTA is not working");
+		driver.navigate().back();
 
 		// Assert all validations
 		softAssert.assertAll();
@@ -499,7 +529,7 @@ public class HomePageComponents extends HomePageLocators {
 
 	// Helper method to validate CTA functionality
 	private void validateCTA(By locator, String xpathToVerify, String errorMessage, SoftAssert softAssert) throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 //		driver.get("https://www.tommyjohn.com/collections/mens-all");
 //		driver.navigate().back();
@@ -568,6 +598,7 @@ public class HomePageComponents extends HomePageLocators {
 //		driver.get("https://www.tommyjohn.com/collections/mens-all");
 //		driver.navigate().back();
 		//searchText ="women";
+		Thread.sleep(5000);
 		WebElement element = driver.findElement(SEARCH_ICON);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", element);

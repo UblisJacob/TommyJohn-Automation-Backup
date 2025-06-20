@@ -580,9 +580,9 @@ public class FooterSectionComponents extends FooterSectionLocators {
 
 		objGeneralMethods.clickButtonByJS(driver, CONTACT_US_LINK);
 
-		wait.until(ExpectedConditions.urlContains("helpdesk"));
+		wait.until(ExpectedConditions.urlContains("help-desk"));
 
-		softassert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase("https://helpdesk.tommyjohn.com/en-US"),
+		softassert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase("https://www.tommyjohn.com/pages/help-desk?hcUrl=%2Fen-US"),
 				"Wrong page opened after Contact Us footer link clicked");
 
 		try{

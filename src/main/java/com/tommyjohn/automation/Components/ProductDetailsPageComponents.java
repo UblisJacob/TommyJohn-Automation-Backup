@@ -184,7 +184,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			throw new Exception("Band Size Drop-Down is not enable.");
 		} else {
 			Select BandSize_DropDown = new Select(driver.findElement(BRA_BAND_SIZE_DROPDOWN));
-			BandSize_DropDown.selectByIndex(1);
+			BandSize_DropDown.selectByIndex(2);
 		}
 		if (!driver.findElement(CUP_VOLUME).isEnabled()) {
 			throw new Exception("Band Size Drop-Down is not enable.");
@@ -2945,7 +2945,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		int count = 0;
 		SoftAssert softAssert = new SoftAssert();
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
-		driver.navigate().to("https://www.tommyjohn.com/collections/mens-underwear");
+		driver.navigate().to("https://www.tommyjohn.com/collections/mens-all");
 		//new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
 
 		//navigate to PDP
@@ -3356,6 +3356,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		js.executeScript("arguments[0].click();", ratingStars);
 
 		// Validate each rating tier meter
+		Thread.sleep(5000);
 		validateRatingTierMeter(FIVESTARTIERMETER, ProductDetailsPageLocators.FIVESTARRATING, "5 Star Ratings are not displayed", softAssert);
 		validateRatingTierMeter(FOURSTARTIERMETER, ProductDetailsPageLocators.FOURSTARRATING, "4 Star Ratings are not displayed", softAssert);
 		validateRatingTierMeter(THREESTARTIERMETER, ProductDetailsPageLocators.THREESTARRATING, "3 Star Ratings are not displayed", softAssert);
