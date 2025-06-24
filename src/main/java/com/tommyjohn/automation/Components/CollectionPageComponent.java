@@ -382,6 +382,27 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		return text;
 	}
 
+	public String navigateToFinalSalePDP() throws Exception {
+		String text = null;
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,250)");
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
+		// get text and click on the first product
+		//text = driver.findElement(FIRST_PRODUCT_IMAGE).getAttribute("alt");
+		text = driver.findElement(FINAL_SALE_PROMO_TEXT).getText();
+		WebElement el = driver.findElement(FINAL_SALE_PROMO_TEXT);
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		executor.executeScript("arguments[0].click();", el);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_TITLE));
+		Reporter.log(driver.getCurrentUrl());
+		ExtentReport.extentTest.info(driver.getCurrentUrl());
+		// text =
+		// driver.findElement(ProductDetailsPageLocators.PRODUCT_TITLE).getText();
+		return text;
+	}
+
+
 	public String navigateToPDP() throws Exception {
 		String text = null;
 		JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -2189,9 +2210,9 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollBy(0,500)");
+		js.executeScript("window.scrollBy(0,200)");
 		objGeneralMethods.waitTillPageLoad(driver);
-		Thread.sleep(9000);
+		Thread.sleep(10000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_INLINE_BANNER));
 		WebElement inlineBanner = driver.findElement(PLP_INLINE_BANNER);
 		System.out.println(driver.getCurrentUrl());

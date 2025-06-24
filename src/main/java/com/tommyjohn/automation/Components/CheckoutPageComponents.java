@@ -78,10 +78,28 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		ExtentReport.extentTest.info("User is navigated to select shipping method");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACT_EMAIL));
 		CheckErrorMessageForIncorrectPromoCode();
-
 	}
 
+	public void ValidatePromoNotAppliedForFinalSaleProducts() throws Exception {
+		jse = (JavascriptExecutor)driver;
+		SoftAssert softAssert = new SoftAssert();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		driver.findElement(HomePageLocators.CART_ICON).click();
 
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+//		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+		Thread.sleep(5000);
+		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
+		Reporter.log("Checkout page displayed");
+		ExtentReport.extentTest.info("Checkout page displayed");
+		Thread.sleep(10000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
+
+		CheckPromoNotAppliedForFinalSaleProducts("FIRST20");
+
+
+
+	}
 
 	public void ValidatePromoCodeErrorScenarioInPaymentPage() throws Exception {
 		jse = (JavascriptExecutor)driver;
@@ -1318,6 +1336,22 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		Thread.sleep(2000);
 		softAssert.assertTrue(driver.findElement(TOTAL).isDisplayed(), "total price is not displayed");
 		softAssert.assertAll();
+
+	}
+
+	public void CheckPromoNotAppliedForFinalSaleProducts(String promocode) throws Exception {
+		softAssert = new SoftAssert();
+		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
+		Thread.sleep(3000);
+		driver.findElement(DISCOUNT_CODE_TEXTBOX).sendKeys(promocode);
+		driver.findElement(APPLY_DISCOUNT_BUTTON).click();
+		// Thread.sleep(3000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PROMO_CODE_ERROR));
+		System.out.println(driver.findElement(PROMO_CODE_ERROR).getText());
+		softAssert.assertEquals(driver.findElement(PROMO_CODE_ERROR).getText(), "FIRST20 discount code isn’t valid for the items in your cart");
+		softAssert.assertAll();
+		Reporter.log("The Coupon code is not applied for Final Sale Products");
+		ExtentReport.extentTest.info("The Coupon code is not applied for Final Sale Products");
 
 	}
 
