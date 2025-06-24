@@ -34,6 +34,14 @@ public class ValidateCheckoutPage extends ExtentReport {
 //	}
 
 	@Test
+	public void ValidatePromoCodeNotAppliedForFinalSaleProducts() throws Exception
+	{
+		new AddToCartComponents(driver).addFinalSaleProducts();
+		new CheckoutPage(driver).ValidatePromoCodeNotAppliedForFinalSaleProducts();
+	}
+
+
+	@Test
 	public void ValidatePromoCodeErrorScenarioInInformationPage() throws Exception
 	{
 		new AddToCartComponents(driver).addsingleproductToCartforFirst20Coupon();

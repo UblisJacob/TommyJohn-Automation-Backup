@@ -1165,7 +1165,7 @@ public class HomePageComponents extends HomePageLocators {
 		SoftAssert softAssert = new SoftAssert();
 		action = new Actions(driver);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(40));
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(60));
 
 		String Search_keyword = "women";
 		driver.findElement(SEARCH_ICON).click();
@@ -2873,6 +2873,13 @@ public class HomePageComponents extends HomePageLocators {
 	}
 	public void navigateToAllUnderwearInMenCategory() throws Exception {
 		driver.get("https://www.tommyjohn.com/collections/underwear-mens-styles-boxer-brief");
+		Thread.sleep(5000);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("window.scrollBy(0,250)");
+	}
+
+	public void navigateToAllSales() throws Exception {
+		driver.get("https://www.tommyjohn.com/collections/sale-mens-womens");
 		Thread.sleep(5000);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		jse.executeScript("window.scrollBy(0,250)");

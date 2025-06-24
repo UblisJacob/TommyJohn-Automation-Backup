@@ -71,6 +71,7 @@ public class CheckoutPageLocators {
 	public static By SUBTOTAL = By.xpath("(//span[contains(text(),'Subtotal')])[2]");
 	public static By SHIPPING = By.xpath("(//span[contains(text(),'Shipping')])[3]");
 	public static By APPLIED_PROMO_CODE = By.xpath("(//span[@class='i8os0m3']//span)[2]");
+	public static By PROMO_CODE_ERROR = By.xpath("(//div[@class='go06b0']//span)[2]");
 	public static By INCORRECT_PROMO_CODE_ERROR_MESSAGE = By.xpath("//p[@id='error-for-ReductionsInput0']");
 	public static By CANCEL_PROMO_CODE = By.xpath("(//button[@aria-label='Remove FIRST20'])[2]");
 	public static By CANCEL_PROMO_CODE1 = By.xpath("(//button[@aria-label='Remove TECHTESTORDER'])[2]");

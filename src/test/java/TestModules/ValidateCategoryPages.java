@@ -48,7 +48,7 @@ public class ValidateCategoryPages {
 	 CollectionPage(driver).validateproductgrid(); }
 
 	@Test
-	public void ValidateMultipacksCheckBox() throws Exception {
+	public void ValidateMultipacksToggle() throws Exception {
 	new CollectionPage(driver).ValidateMultipacksCheckBox(); }
 
 	@Test
