@@ -719,7 +719,7 @@ public class AddToCartComponents extends AddToCartLocators{
 		elementsCount = allElements.size();
 		System.out.println("Color Element count :: " + elementsCount);
 
-		if (elementsCount > 1) {
+		if (elementsCount >= 1) {
 			for (int i = 1; i <= elementsCount; i++) {
 
 				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])[" + i + "]"));

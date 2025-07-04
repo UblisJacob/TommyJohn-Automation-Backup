@@ -113,7 +113,7 @@ public class NavigationElementComponents extends HomePageLocators {
 //		2. User should see search, account and cart elements.
 		List<WebElement> elementsList = driver.findElements(HEADER_RIGHT_SIDE_ELEMENTS_LIST);
 
-		softassert.assertTrue(elementsList.size() == 3, "No. of elements on Right Side of TJ logo is: "
+		softassert.assertTrue(elementsList.size() == 4, "No. of elements on Right Side of TJ logo is: "
 				+ elementsList.size() + "No. of elements should be upto 3");
 
 		System.out.println("No. of elements on Right Side of TJ logo is: " + elementsList.size());

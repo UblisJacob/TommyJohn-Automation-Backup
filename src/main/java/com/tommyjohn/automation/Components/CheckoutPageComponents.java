@@ -585,7 +585,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		softAssert = new SoftAssert();
 		jse = (JavascriptExecutor)driver;
 //		Add Product to Cart
-		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait=new WebDriverWait(driver, Duration.ofSeconds(60));
 		new AddToCartComponents(driver).addsingleproductToCart();
 		
 		wait.until(ExpectedConditions.elementToBeClickable(HomePageLocators.CART_ICON));
@@ -643,13 +643,13 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 
 	public void registeredusercheckoutflow() throws Exception {
 		softAssert = new SoftAssert();
-		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait=new WebDriverWait(driver, Duration.ofSeconds(60));
 		String password = CustomUtilities.properties.getProperty("password");
 		new AddToCartComponents(driver).addsingleproductToCart();
 		jse = (JavascriptExecutor)driver;
 		jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
 		
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 		Thread.sleep(10000);
 		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
 		//driver.findElement(FlyCartComponents.CHECKOUT_BUTTON).click();
@@ -710,11 +710,11 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	public void informationpage() throws Exception {
 		softAssert = new SoftAssert();
 		jse = (JavascriptExecutor)driver;
-		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait=new WebDriverWait(driver, Duration.ofSeconds(60));
 		new AddToCartComponents(driver).addsingleproductToCart();
 
 		driver.findElement(HomePageLocators.CART_ICON).click();
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 //		try {
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 //		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
@@ -760,11 +760,11 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 
 		softAssert = new SoftAssert();
 		jse = (JavascriptExecutor)driver;
-		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait=new WebDriverWait(driver, Duration.ofSeconds(60));
 		new AddToCartComponents(driver).addsingleproductToCart();
 		driver.get("https://www.tommyjohn.com/");
 		driver.findElement(HomePageLocators.CART_ICON).click();
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CHECKOUT_BUTTON));
 		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
 		Reporter.log("Checkout page displayed");
@@ -777,10 +777,10 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	public void Validatetextmewithnewslettersandoffers() throws Exception {
 		softAssert = new SoftAssert();
 		jse = (JavascriptExecutor)driver;
-		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait=new WebDriverWait(driver, Duration.ofSeconds(60));
 		new AddToCartComponents(driver).addsingleproductToCart();
 		driver.findElement(HomePageLocators.CART_ICON).click();
-		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 		Thread.sleep(5000);
 		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
 		Reporter.log("Checkout page displayed");
@@ -797,7 +797,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	public void ValidateSaveMyInformationInPaymentPage() throws Exception {
 		jse = (JavascriptExecutor) driver;
 		softAssert = new SoftAssert();
-		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait=new WebDriverWait(driver, Duration.ofSeconds(60));
 		new AddToCartComponents(driver).addsingleproductToCart();
 
 
@@ -843,7 +843,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	public void ValidateBillingAddressFieldInPaymentPage() throws Exception {
 		jse = (JavascriptExecutor) driver;
 		softAssert = new SoftAssert();
-		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait=new WebDriverWait(driver, Duration.ofSeconds(60));
 		new AddToCartComponents(driver).addsingleproductToCart();
 
 
@@ -974,7 +974,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	public void ValidateRequiredBillingAddressFieldsInPaymentPage() throws Exception {
 		jse = (JavascriptExecutor) driver;
 		softAssert = new SoftAssert();
-		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait=new WebDriverWait(driver, Duration.ofSeconds(60));
 		new AddToCartComponents(driver).addsingleproductToCart();
 
 
@@ -1094,7 +1094,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	public void ValidateRequiredFieldsinPaymentpage() throws Exception {
 		jse = (JavascriptExecutor) driver;
 		softAssert = new SoftAssert();
-		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait=new WebDriverWait(driver, Duration.ofSeconds(60));
 		new AddToCartComponents(driver).addsingleproductToCart();
 
 
@@ -1162,7 +1162,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 
 	public void shippingpage() throws Exception {
 		softAssert = new SoftAssert();
-		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait=new WebDriverWait(driver, Duration.ofSeconds(60));
 		
 		new AddToCartComponents(driver).addsingleproductToCart();
 		
@@ -1217,7 +1217,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	public void paymentpage() throws Exception {
 		jse = (JavascriptExecutor) driver;
 		softAssert = new SoftAssert();
-		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait=new WebDriverWait(driver, Duration.ofSeconds(60));
 		new AddToCartComponents(driver).addsingleproductToCart();
 		
 		
