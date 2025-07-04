@@ -42,14 +42,14 @@ public class GTMListenerClass extends ExtentReport implements ITestListener, IEx
 
     @Override
     public void onStart(ITestContext context) {
-        String ADACheckSuiteName = "ADACheck Test Suite";
+        String GTMSuiteName = "GTM Test Suite";
         SuiteName = context.getSuite().getName().toString();
         System.out.println("SuiteName: " + SuiteName);
         browserName = context.getCurrentXmlTest().getParameter("browser");
         System.out.println("Test execution started using Browser: " + browserName);
-        if(SuiteName.equals(ADACheckSuiteName))
+        if(SuiteName.equals(GTMSuiteName))
         {
-            sparkReporter_AllTests.config().setReportName("ADACheck Test Report");
+            sparkReporter_AllTests.config().setReportName("GTM Test Report");
         }
         else {
 

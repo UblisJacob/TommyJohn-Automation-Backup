@@ -52,8 +52,8 @@ public class ValidateCategoryPages {
 	new CollectionPage(driver).ValidateMultipacksCheckBox(); }
 
 	@Test
-	public void ValidateHammockPouchCheckBox() throws Exception {
-		new CollectionPage(driver).ValidateHammockPouchToggleButton(); }
+		public void ValidateHammockPouchCheckBox() throws Exception {
+			new CollectionPage(driver).ValidateHammockPouchToggleButton(); }
 	 
 	 
 	 @Test
