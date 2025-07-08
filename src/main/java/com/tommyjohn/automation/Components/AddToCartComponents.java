@@ -958,6 +958,7 @@ public class AddToCartComponents extends AddToCartLocators{
 			}
 
 			driver.get("https://www.tommyjohn.com/");
+			Thread.sleep(5000);
 			jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@class='button-link text-body-xs text-text-tertiary' and contains(text(),'Remove')]")));
 			RemoveItems = driver.findElements(By.xpath("//button[@class='button-link text-body-xs text-text-tertiary' and contains(text(),'Remove')]"));

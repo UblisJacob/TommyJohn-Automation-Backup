@@ -188,6 +188,7 @@ public class AccountLoginComponents extends AccountLoginLocators {
 		String text = null;
 		String currentUrl;
 		// driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HomePageLocators.ACCOUNT_NAV_DROPDOWN));
 		WebElement element = driver.findElement(HomePageLocators.ACCOUNT_NAV_DROPDOWN);
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		executor.executeScript("arguments[0].click();", element);
@@ -471,7 +472,7 @@ public class AccountLoginComponents extends AccountLoginLocators {
 			Reporter.log("CAPTCHA detected in new window, skipping and marking as passed.");
 			ExtentReport.extentTest.pass("CAPTCHA detected in new window. Test is marked as passed.");
 
-			driver.close();  // Close CAPTCHA window
+//			driver.close();  // Close CAPTCHA window
 //			driver.switchTo().window(originalWindow);  // Switch back to main window
 			return;
 		}

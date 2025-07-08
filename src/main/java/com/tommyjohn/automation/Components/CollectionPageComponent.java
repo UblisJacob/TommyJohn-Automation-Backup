@@ -1504,7 +1504,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		//Thread.sleep(8000);
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		js.executeScript("window.scrollBy(0,500)");
+		js.executeScript("window.scrollBy(0,700)");
 
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.presenceOfElementLocated(FIRST_PRODUCT_IMAGE));
@@ -1512,7 +1512,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		element = driver.findElement(FIRST_PRODUCT_IMAGE);
 		js.executeScript("arguments[0].scrollIntoView(true);", element);
 		action.moveToElement(element).build().perform();
-		Thread.sleep(3000);
+		Thread.sleep(7000);
 		AddproductToCartByQuickShop();
 	}
 
@@ -1547,8 +1547,9 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		String color_name = driver.findElement(PRODUCT_ITEM_SWATCH_CIRCLE).getAttribute("alt");
 		String amount = driver.findElement(PRODUCT_AMOUNT_ON_Collection).getText();
 		int count = 0;
-		Thread.sleep(3000);
+		Thread.sleep(8000);
 		// If Quick shop ATC is displayed
+//		js.executeScript("window.scrollBy(0,500)");
 		if (driver.findElement(QUICK_SHOP_ATC).isDisplayed()) {
 			Reporter.log("Quick shop ATC button is displayed on hover.");
 			ExtentReport.extentTest.info("Quick shop ATC button is displayed on hover.");

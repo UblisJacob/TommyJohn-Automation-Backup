@@ -74,7 +74,7 @@ public class CustomUtilities {
 			// Set other desired capabilities if needed (such as enabling remote d
 //			chromeOptions.setExperimentalOption("useAutomationExtension", false)
 			chromeOptions.addArguments("--disable-gpu");
-			chromeOptions.addArguments("--headless");
+//			chromeOptions.addArguments("--headless");
 			chromeOptions.addArguments("--window-size=1920,1080");
 			chromeOptions.addArguments("--force-device-scale-factor=1");
 			chromeOptions.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
