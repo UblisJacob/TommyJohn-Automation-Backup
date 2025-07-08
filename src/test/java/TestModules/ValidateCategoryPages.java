@@ -34,7 +34,8 @@ public class ValidateCategoryPages {
 			CollectionPage(driver).ValidateFunctionalityOfCollectionDoorways(); }
 
 
-	 @Test public void ValidateLoadCategoryPage() throws Exception { new
+	 @Test
+	 public void ValidateLoadCategoryPage() throws Exception { new
 	 CollectionPage(driver).validateallplpsareloading(); }
 
 	@Test public void ValidateStarRatingIsFunctional() throws Exception { new

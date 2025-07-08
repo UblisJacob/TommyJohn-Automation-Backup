@@ -11,13 +11,15 @@
     <test name="Tests">
         <parameter name="browser" value="chrome"/>
         <classes>
-                        <class name="TestModules.ValidateInlineCartPage">
+                    <class name="TestModules.ValidateGTM">
                 <methods>
-                    <include name="ValidatePromoCodeFIRST20InInlineCart"/>
+                    <include name="ValidateAppropriateProductIsToCartFromInlineCartSuggestion"/>
                 </methods>
             </class>
         </classes>
     </test>
+
+
 <!--    <listeners>-->
 <!--        <listener class-name="TestScenario.ADAListenerClass"></listener>-->
 <!--&lt;!&ndash;        <listener class-name="TestScenario.RetryListener"></listener>&ndash;&gt;-->

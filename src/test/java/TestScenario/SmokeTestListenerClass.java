@@ -154,7 +154,7 @@ public class SmokeTestListenerClass extends ExtentReport implements ITestListene
         }
         try
         {
-            sendSlackNotificationSmokeTest(String.valueOf(Fpassed),String.valueOf(Ffailed),String.valueOf(Fskipped),reportLink);
+//            sendSlackNotificationSmokeTest(String.valueOf(Fpassed),String.valueOf(Ffailed),String.valueOf(Fskipped),reportLink);
         }
         catch (Exception e) {
             throw new RuntimeException(e);
