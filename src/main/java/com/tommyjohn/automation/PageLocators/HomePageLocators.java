@@ -31,7 +31,7 @@ public class HomePageLocators{
 	public static By COLLECTION_SELECTOR_APOLLO = By.xpath("(//div[@class='mt-3 md:mt-8 space-y-4']//button)[4]");
 	public static By COLLECTION_SELECTOR_AIR = By.xpath("(//div[@class='mt-3 md:mt-8 space-y-4']//button)[5]");
 	public static By OUR_STORY_CTA = By.xpath("//a[@class='button-inverse' and contains(text(),'Our Story')]");
-	public static By LEARNMORE_CTA = By.xpath("(//a[@class='button-secondary mt-lg'])[1]");
+	public static By BEST_PAIR_GUARANTEE = By.xpath("(//a[@class='button-secondary mt-lg'])[1]");
 	public static By OURSHOPPINGPOLICIES_CTA = By.xpath("(//a[@class='button-secondary mt-lg'])[2]");
 	public static By OURSTORY_CTA = By.xpath("(//a[@class='button-secondary mt-lg'])[3]");
 	public static By SIGNUP_CTA = By.xpath("(//a[@class='button-secondary mt-lg'])[3]");

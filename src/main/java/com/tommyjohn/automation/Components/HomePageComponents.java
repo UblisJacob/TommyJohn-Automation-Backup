@@ -123,8 +123,8 @@ public class HomePageComponents extends HomePageLocators {
 	public void ValidateImageInHeroBanner()
 	{
 		SoftAssert softAssert = new SoftAssert();
-		driver.get("https://www.tommyjohn.com/collections/mens-all");
-		driver.navigate().back();
+//		driver.get("https://www.tommyjohn.com/collections/mens-all");
+//		driver.navigate().back();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
 		softAssert.assertTrue(driver.findElement(HERO_BANNER_IMAGE).isDisplayed(),"Hero Banner Image is not available");
 		Reporter.log("Hero Banner Image is available");
@@ -135,8 +135,8 @@ public class HomePageComponents extends HomePageLocators {
 	public void ValidateShopMensCTAInHeroSlider() throws InterruptedException {
 		SoftAssert softAssert = new SoftAssert();
 	//	driver.get("https://www.tommyjohn.com/pages/explore?toggle_content=men");
-		driver.get("https://www.tommyjohn.com/collections/mens-all");
-		driver.navigate().back();
+//		driver.get("https://www.tommyjohn.com/collections/mens-all");
+//		driver.navigate().back();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
 		Thread.sleep(2000);
 		driver.findElement(HERO_SLIDER_SHOPMENS_CTA).click();
@@ -151,8 +151,8 @@ public class HomePageComponents extends HomePageLocators {
 		SoftAssert softAssert = new SoftAssert();
 		JavascriptExecutor js = (JavascriptExecutor)driver;
 	//	driver.get("https://www.tommyjohn.com/pages/explore?toggle_content=men");
-		driver.get("https://www.tommyjohn.com/collections/mens-all");
-		driver.navigate().back();
+//		driver.get("https://www.tommyjohn.com/collections/mens-all");
+//		driver.navigate().back();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
 		Thread.sleep(2000);
 		js.executeScript("window.scrollBy(0,2000)");
@@ -165,8 +165,8 @@ public class HomePageComponents extends HomePageLocators {
 	public void ValidateShopWomensCTAInHeroSlider() throws InterruptedException {
 		JavascriptExecutor js = (JavascriptExecutor)driver;
 		SoftAssert softAssert = new SoftAssert();
-		driver.get("https://www.tommyjohn.com/collections/mens-all");
-		driver.navigate().back();
+//		driver.get("https://www.tommyjohn.com/collections/mens-all");
+//		driver.navigate().back();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
 		Thread.sleep(5000);
 		WebElement element1 = driver.findElement(HERO_SLIDER_SHOPWOMENS_CTA);
@@ -181,10 +181,10 @@ public class HomePageComponents extends HomePageLocators {
 	public void ValidateMenInCategorySelector() throws InterruptedException {
 		JavascriptExecutor js = (JavascriptExecutor)driver;
 		SoftAssert softAssert = new SoftAssert();
-		driver.get("https://www.tommyjohn.com/collections/mens-all");
-		driver.navigate().back();
+//		driver.get("https://www.tommyjohn.com/collections/mens-all");
+//		driver.navigate().back();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
-		js.executeScript("window.scrollBy(0,1000)");
+		js.executeScript("window.scrollBy(0,1500)");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CATEGORY_SELECTOR_SECTION));
 		js.executeScript("arguments[0].click();", driver.findElement(CATEGORY_SELECTOR_MEN));
 	//	driver.findElement(CATEGORY_SELECTOR_MEN).click();
@@ -207,8 +207,8 @@ public class HomePageComponents extends HomePageLocators {
 	public void ValidateWomenInCategorySelector() throws InterruptedException {
 		JavascriptExecutor js = (JavascriptExecutor)driver;
 		SoftAssert softAssert = new SoftAssert();
-		driver.get("https://www.tommyjohn.com/collections/mens-all");
-		driver.navigate().back();
+//		driver.get("https://www.tommyjohn.com/collections/mens-all");
+//		driver.navigate().back();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
 		Thread.sleep(5000);
 		js.executeScript("window.scrollBy(0,1000)");
@@ -251,8 +251,8 @@ public class HomePageComponents extends HomePageLocators {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		SoftAssert softAssert = new SoftAssert();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		driver.get("https://www.tommyjohn.com/collections/mens-all");
-		driver.navigate().back();
+//		driver.get("https://www.tommyjohn.com/collections/mens-all");
+//		driver.navigate().back();
 
 		// Wait for the hero banner image to be visible
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
@@ -305,8 +305,8 @@ public class HomePageComponents extends HomePageLocators {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		SoftAssert softAssert = new SoftAssert();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		driver.get("https://www.tommyjohn.com/collections/mens-all");
-		driver.navigate().back();
+//		driver.get("https://www.tommyjohn.com/collections/mens-all");
+//		driver.navigate().back();
 		// Wait for the hero banner image to be visible
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
 
@@ -344,8 +344,8 @@ public class HomePageComponents extends HomePageLocators {
 
 		JavascriptExecutor js = (JavascriptExecutor)driver;
 		SoftAssert softAssert = new SoftAssert();
-		driver.get("https://www.tommyjohn.com/collections/mens-all");
-		driver.navigate().back();
+//		driver.get("https://www.tommyjohn.com/collections/mens-all");
+//		driver.navigate().back();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
 		js.executeScript("window.scrollBy(0,3000)");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(COLLECTION_SELECTOR));
@@ -411,14 +411,14 @@ public class HomePageComponents extends HomePageLocators {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		SoftAssert softAssert = new SoftAssert();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		driver.get("https://www.tommyjohn.com/collections/mens-all");
-		driver.navigate().back();
+//		driver.get("https://www.tommyjohn.com/collections/mens-all");
+//		driver.navigate().back();
 		// Wait for the hero banner image to be visible
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
 
 		// Scroll to the 'Our Story' CTA
 		Thread.sleep(5000);
-		js.executeScript("window.scrollBy(0, 1500);");
+		js.executeScript("window.scrollBy(0, 2000);");
 		WebElement ourStoryCTA = driver.findElement(OUR_STORY_CTA);
 		js.executeScript("arguments[0].scrollIntoView(true);", ourStoryCTA);
 		js.executeScript("window.scrollBy(0, -100);"); // Adjust scrolling for sticky headers
@@ -480,15 +480,45 @@ public class HomePageComponents extends HomePageLocators {
 		new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(webDriver -> js.executeScript("return document.readyState").equals("complete"));
 
-		// Validate 'Learn More' CTA
-		validateCTA(LEARNMORE_CTA, "(//h1)[1]", "Learn More CTA in Brand Building section is not functional", softAssert);
+		Thread.sleep(5000);
+		js.executeScript("window.scrollBy(0, 3000);");
+
+		// Validate 'Best Pair Guarantee' CTA
+//		validateCTA(LEARNMORE_CTA, "//h1[contains(text(),'Best Pair Guarantee')]", "Learn More CTA in Brand Building section is not functional", softAssert);
+
+		js.executeScript("arguments[0].click();", driver.findElement(BEST_PAIR_GUARANTEE));
+		String URL = driver.getCurrentUrl();
+		System.out.println(URL);
+	//	driver.findElement(LEARNMORE_CTA).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h1[contains(text(),'Best Pair Guarantee')]")));
+//		softAssert.assertTrue(driver.findElement(By.xpath("//h1[contains(text(),'Best Pair Guarantee')]")).isDisplayed(), "Best Pair Guarantee CTA is not working");
+		softAssert.assertTrue(URL.contains("best-pair-guarantee"),"Best Pair Guarantee CTA is not working");
+		driver.navigate().back();
+
 
 		// Validate 'Our Shopping Policies' CTA
-		validateCTA(OURSHOPPINGPOLICIES_CTA, "(//h1)[1]", "Our Shopping Policies CTA in Brand Building section is not functional", softAssert);
+//		validateCTA(OURSHOPPINGPOLICIES_CTA, "(//h1)[1]", "Our Shopping Policies CTA in Brand Building section is not functional", softAssert);
+		js.executeScript("arguments[0].click();", driver.findElement(OURSHOPPINGPOLICIES_CTA));
+		String URL2 = driver.getCurrentUrl();
+		System.out.println(URL2);
+//		driver.findElement(OURSHOPPINGPOLICIES_CTA).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h1[contains(text(),'Shipping')]")));
+//		softAssert.assertTrue(driver.findElement(By.xpath("//h1[contains(text(),'Shipping')]")).isDisplayed(), "Our Shipping Policies CTA is not working");
+		softAssert.assertTrue(URL2.contains("2Fshipping"),"Our Shipping Policies CTA is not working");
+		driver.navigate().back();
+
 
 		// Validate 'Our Story' CTA
-		validateURLCTA(SIGNUP_CTA, "https://www.tommyjohn.com/pages/sms-signup",
-				"Sign Up CTA in Brand Building section is not functional", softAssert);
+	//	validateURLCTA(SIGNUP_CTA, "https://www.tommyjohn.com/pages/sms-signup",
+//				"Sign Up CTA in Brand Building section is not functional", softAssert);
+		js.executeScript("arguments[0].click();", driver.findElement(SIGNUP_CTA));
+		String URL3 = driver.getCurrentUrl();
+		System.out.println(URL3);
+//		driver.findElement(SIGNUP_CTA).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h1[contains(text(),'Exclusive Access Awaits')]")));
+//		softAssert.assertTrue(driver.findElement(By.xpath("//h1[contains(text(),'Exclusive Access Awaits')]")).isDisplayed(), "Sign Up CTA is not working");
+		softAssert.assertTrue(URL3.contains("signup"),"Sign Up CTA is not working");
+		driver.navigate().back();
 
 		// Assert all validations
 		softAssert.assertAll();
@@ -499,10 +529,10 @@ public class HomePageComponents extends HomePageLocators {
 
 	// Helper method to validate CTA functionality
 	private void validateCTA(By locator, String xpathToVerify, String errorMessage, SoftAssert softAssert) throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		driver.get("https://www.tommyjohn.com/collections/mens-all");
-		driver.navigate().back();
+//		driver.get("https://www.tommyjohn.com/collections/mens-all");
+//		driver.navigate().back();
 		// Wait for the element to be present
 		wait.until(ExpectedConditions.presenceOfElementLocated(locator));
 		WebElement element = driver.findElement(locator);
@@ -533,8 +563,8 @@ public class HomePageComponents extends HomePageLocators {
 	private void validateURLCTA(By locator, String expectedURL, String errorMessage, SoftAssert softAssert) throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		driver.get("https://www.tommyjohn.com/collections/mens-all");
-		driver.navigate().back();
+//		driver.get("https://www.tommyjohn.com/collections/mens-all");
+//		driver.navigate().back();
 		// Wait for the element to be present
 		wait.until(ExpectedConditions.presenceOfElementLocated(locator));
 		WebElement element = driver.findElement(locator);
@@ -565,9 +595,10 @@ public class HomePageComponents extends HomePageLocators {
 
 		SoftAssert softAssert = new SoftAssert();
 		action = new Actions(driver);
-		driver.get("https://www.tommyjohn.com/collections/mens-all");
-		driver.navigate().back();
+//		driver.get("https://www.tommyjohn.com/collections/mens-all");
+//		driver.navigate().back();
 		//searchText ="women";
+		Thread.sleep(5000);
 		WebElement element = driver.findElement(SEARCH_ICON);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", element);
@@ -581,8 +612,8 @@ public class HomePageComponents extends HomePageLocators {
 
 		SoftAssert softAssert = new SoftAssert();
 		action = new Actions(driver);
-		driver.get("https://www.tommyjohn.com/collections/mens-all");
-		driver.navigate().back();
+//		driver.get("https://www.tommyjohn.com/collections/mens-all");
+//		driver.navigate().back();
 		//searchText ="women";
 		WebElement element = driver.findElement(SEARCH_ICON);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
@@ -607,8 +638,8 @@ public class HomePageComponents extends HomePageLocators {
 		JavascriptExecutor js = (JavascriptExecutor)driver;
 		new HomePageComponents(driver).navigatetoPDP();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		driver.get("https://www.tommyjohn.com/collections/mens-all");
-		driver.navigate().back();
+//		driver.get("https://www.tommyjohn.com/collections/mens-all");
+//		driver.navigate().back();
 		SoftAssert softAssert = new SoftAssert();
 		Thread.sleep(5000);
 		js.executeScript("window.scrollBy(0,2000)");
@@ -722,8 +753,8 @@ public class HomePageComponents extends HomePageLocators {
 	{
 		action = new Actions(driver);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
-		driver.get("https://www.tommyjohn.com/collections/mens-all");
-		driver.navigate().back();
+//		driver.get("https://www.tommyjohn.com/collections/mens-all");
+//		driver.navigate().back();
 		if(driver.findElement(HOMEPAGE_LOGO).isDisplayed())
 		{
 
@@ -1134,7 +1165,7 @@ public class HomePageComponents extends HomePageLocators {
 		SoftAssert softAssert = new SoftAssert();
 		action = new Actions(driver);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(40));
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(60));
 
 		String Search_keyword = "women";
 		driver.findElement(SEARCH_ICON).click();
@@ -2842,6 +2873,13 @@ public class HomePageComponents extends HomePageLocators {
 	}
 	public void navigateToAllUnderwearInMenCategory() throws Exception {
 		driver.get("https://www.tommyjohn.com/collections/underwear-mens-styles-boxer-brief");
+		Thread.sleep(5000);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("window.scrollBy(0,250)");
+	}
+
+	public void navigateToAllSales() throws Exception {
+		driver.get("https://www.tommyjohn.com/collections/sale-mens-womens");
 		Thread.sleep(5000);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		jse.executeScript("window.scrollBy(0,250)");

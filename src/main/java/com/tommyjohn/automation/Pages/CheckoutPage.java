@@ -25,6 +25,12 @@ public class CheckoutPage extends CheckoutPageComponents {
 
 	}
 
+	public void ValidatePromoCodeNotAppliedForFinalSaleProducts() throws Exception
+	{
+		new CheckoutPageComponents(driver).ValidatePromoNotAppliedForFinalSaleProducts();
+
+	}
+
 	public void validateFreeShipping() throws Exception
 	{
 		new CheckoutPageComponents(driver).validateFreeShipping();
