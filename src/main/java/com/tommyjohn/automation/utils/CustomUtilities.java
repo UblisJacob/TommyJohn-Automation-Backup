@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
@@ -16,6 +17,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -23,14 +25,17 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
+import org.openqa.selenium.devtools.DevTools;
 import org.testng.ISuite;
 import org.testng.ITestContext;
 import org.testng.Reporter;
+import org.openqa.selenium.devtools.v133.emulation.Emulation;
 
 
 public class CustomUtilities {
 
 	public static WebDriver driver;
+//	public static ChromeDriver drivers;
 	public EdgeDriver edgedriver;
 	public static String baseUrl = "https://www.tommyjohn.com/";
 //	public static String baseUrl = "https://www.tommyjohn.com/?_ab=0&_fd=0&_sc=1&preview_theme_id=140061376557";
@@ -54,8 +59,7 @@ public class CustomUtilities {
 		// load properties file
 		loadPropertiesFile();
 		//proxying to blacklist bounceX popup
-		if (browser.equalsIgnoreCase("chrome"))
-		{
+		if (browser.equalsIgnoreCase("chrome")) {
 			// System.setProperty("webdriver.chrome.driver"
 			// ,"src\\main\\resources\\chromedriver.exe");
 			// System.setProperty("webdriver.chrome.driver" ,"/tmp/chromedriver.exe");
@@ -70,8 +74,10 @@ public class CustomUtilities {
 			// Set other desired capabilities if needed (such as enabling remote d
 //			chromeOptions.setExperimentalOption("useAutomationExtension", false)
 			chromeOptions.addArguments("--disable-gpu");
-			chromeOptions.addArguments("--headless=new");
+			chromeOptions.addArguments("--headless");
 			chromeOptions.addArguments("--window-size=1920,1080");
+			chromeOptions.addArguments("--force-device-scale-factor=1");
+			chromeOptions.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
 			chromeOptions.addArguments("--disable-blink-features=AutomationControlled");
 			chromeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
 			chromeOptions.setExperimentalOption("useAutomationExtension", false);
@@ -95,9 +101,19 @@ public class CustomUtilities {
 			chromeOptions.addArguments("--host-resolver-rules=MAP cdn.attn.tv 127.0.0.1");
 			chromeOptions.addArguments("--host-resolver-rules=MAP tommyjohn.attn.tv 127.0.0.1");
 			chromeOptions.addArguments("--host-resolver-rules=MAP creatives.attn.tv 127.0.0.1");
-		//	chromeOptions.addArguments("--host-resolver-rules=MAP tag.bounceexchange.com 127.0.0.1");
+			//	chromeOptions.addArguments("--host-resolver-rules=MAP tag.bounceexchange.com 127.0.0.1");
 
 			driver = new ChromeDriver(chromeOptions);
+			DevTools devTools = ((ChromeDriver)driver).getDevTools();
+			devTools.createSession();
+			devTools.send(Emulation.setDeviceMetricsOverride(
+					1920, 1080, 1.0, false,
+					Optional.empty(), Optional.empty(), Optional.empty(),
+					Optional.empty(), Optional.empty(), Optional.empty(),
+					Optional.empty(), Optional.empty(),Optional.empty(), // Add this one
+					Optional.empty()  // Add this one
+			));
+
 			driver.get(baseUrl);
 			driver.manage().window().maximize();
 
@@ -117,7 +133,7 @@ public class CustomUtilities {
 		{
 			//System.setProperty("webdriver.gecko.driver", properties.getProperty("ffDriverPath"));
 			FirefoxOptions options = new FirefoxOptions();
-		//	options.addArguments("--headless");
+			options.addArguments("--headless=new");
 			options.addArguments("--window-size=1280,800");
 			options.addArguments("--disable-gpu");
 			options.addArguments("--no-sandbox");

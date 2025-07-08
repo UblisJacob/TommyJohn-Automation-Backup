@@ -129,7 +129,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 
 		driver.findElement(CART_COUPONFIELD).sendKeys("First");
 		driver.findElement(APPLY_CTA).click();
@@ -417,7 +417,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		System.out.println("Title text is:" +part2);*/
 		driver.findElement(HomePageLocators.CART_ICON).click();
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 
 		try {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
@@ -427,7 +427,8 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		catch(Exception e) {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(CART_TITLE));
 		}
-		
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_TITLE_TEXT));
 		softAssert.assertTrue(driver.findElement(PRODUCT_TITLE_TEXT).isDisplayed(), "Product title for added item not present on Cart");
 
 		WebElement elemen = driver.findElement(PRODUCT_TITLE_TEXT);

@@ -48,12 +48,12 @@ public class ValidateCategoryPages {
 	 CollectionPage(driver).validateproductgrid(); }
 
 	@Test
-	public void ValidateMultipacksCheckBox() throws Exception {
+	public void ValidateMultipacksToggle() throws Exception {
 	new CollectionPage(driver).ValidateMultipacksCheckBox(); }
 
 	@Test
-	public void ValidateHammockPouchCheckBox() throws Exception {
-		new CollectionPage(driver).ValidateHammockPouchToggleButton(); }
+		public void ValidateHammockPouchCheckBox() throws Exception {
+			new CollectionPage(driver).ValidateHammockPouchToggleButton(); }
 	 
 	 
 	 @Test
