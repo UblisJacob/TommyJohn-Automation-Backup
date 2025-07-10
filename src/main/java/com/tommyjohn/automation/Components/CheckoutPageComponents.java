@@ -47,6 +47,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		jse = (JavascriptExecutor)driver;
 		SoftAssert softAssert = new SoftAssert();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HomePageLocators.CART_ICON));
 		driver.findElement(HomePageLocators.CART_ICON).click();
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 //		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
@@ -1379,7 +1380,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		Thread.sleep(3000);
 		driver.findElement(DISCOUNT_CODE_TEXTBOX).sendKeys("first");
 		driver.findElement(APPLY_DISCOUNT_BUTTON).click();
-		Thread.sleep(5000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(INCORRECT_PROMO_CODE_ERROR_MESSAGE));
 		String Error = driver.findElement(INCORRECT_PROMO_CODE_ERROR_MESSAGE).getText();
 		System.out.println(Error);
 		softAssert.assertTrue(driver.findElement(INCORRECT_PROMO_CODE_ERROR_MESSAGE).isDisplayed(), "Error message is not displayed for Incorrect Promo code");
