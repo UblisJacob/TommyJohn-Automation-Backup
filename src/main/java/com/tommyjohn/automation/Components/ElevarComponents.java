@@ -19,8 +19,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.devtools.DevTools;
-import org.openqa.selenium.devtools.v133.network.Network;
-import org.openqa.selenium.devtools.v133.network.model.Request;
+import org.openqa.selenium.devtools.v138.network.Network;
+import org.openqa.selenium.devtools.v138.network.model.Request;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.logging.LogType;
@@ -81,8 +81,12 @@ public class ElevarComponents {
             // Setup DevTools for original window
             DevTools devTools = driver.getDevTools();
             devTools.createSession();
-            devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
-
+            devTools.send(Network.enable(
+                    Optional.empty(), // maxTotalBufferSize
+                    Optional.empty(), // maxResourceBufferSize
+                    Optional.empty(), // maxPostDataSize
+                    Optional.empty()  // maxPostDataSizeReportingEnabled
+            ));
             List<String> facebookPixelUrls = new ArrayList<>();
 
             devTools.addListener(Network.requestWillBeSent(), request -> {
@@ -112,8 +116,12 @@ public class ElevarComponents {
                     driver.switchTo().window(window);
                     devTools = ((ChromeDriver) driver).getDevTools(); // re-init for new window
                     devTools.createSession();
-                    devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
-
+                    devTools.send(Network.enable(
+                            Optional.empty(), // maxTotalBufferSize
+                            Optional.empty(), // maxResourceBufferSize
+                            Optional.empty(), // maxPostDataSize
+                            Optional.empty()  // maxPostDataSizeReportingEnabled
+                    ));
                     // Re-register listener for new window
                     devTools.addListener(Network.requestWillBeSent(), request -> {
                         String url = request.getRequest().getUrl();

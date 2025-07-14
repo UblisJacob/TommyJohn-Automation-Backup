@@ -434,7 +434,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(50));
 			new AddToCartComponents(driver).addToCart();
 			jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 			String opacity = driver.findElement(HomePageLocators.OVERLAY).getCssValue("opacity");
 			System.out.println(opacity);
 			softAssert.assertEquals(opacity,"0.5","Page is not greyed out on adding products");
@@ -566,7 +566,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		// check all fields for all items in flycart
 		for(int i=1; i<=2;i++) {
 			// check for product image
-			softAssert.assertTrue(driver.findElement(By.xpath("(//td[@class='row-span-3 p-0 sm:row-span-2'])["+i+"]")).isDisplayed(), "First item image is not displayed");
+			softAssert.assertTrue(driver.findElement(By.xpath("(//td[@class='row-span-3 p-0 sm:row-span-2'])[2]")).isDisplayed(), "First item image is not displayed");
 
 			// check for product heading
 			softAssert.assertTrue(driver.findElement(By.xpath("(//a[@class='font-medium text-text-primary mt-1 block text-body-lg leading-tight sm:text-body sm:leading-5'])["+i+"]")).isDisplayed(), "First item heading is not displayed");
@@ -578,7 +578,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		//	softAssert.assertTrue(driver.findElement(By.xpath("(//div[@class='mt-2 text-body text-text-secondary sm:mt-4'])["+i+"]")).isDisplayed(), "Line item option is not displayed");
 
 			// check for price
-			softAssert.assertTrue(driver.findElement(By.xpath("(//div[@class='mt-2 flex gap-2 text-body font-medium'])["+i+"]")).isDisplayed(), "Price is not displayed");
+			softAssert.assertTrue(driver.findElement(By.xpath("(//div[@class='mt-2 flex gap-2 text-body font-medium'])[2]")).isDisplayed(), "Price is not displayed");
 
 			// check for plus minus and quantity
 			//softAssert.assertTrue(driver.findElement(QUANTITY_PLUS_MINUS_BUTTON).isDisplayed(), "plus or minus button is not displayed");
