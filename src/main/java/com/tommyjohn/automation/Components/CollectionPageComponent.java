@@ -49,6 +49,36 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	List<WebElement> CollectionDoorways;
 	int Count;
 
+	public void ValidateDyPlaceholderBannerInPLP()
+	{
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		SoftAssert softAssert = new SoftAssert();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		new HomePageComponents(driver).navigateToMensAll();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(DYPLACEHOLDERBANNER));
+		softAssert.assertTrue(driver.findElement(DYPLACEHOLDERBANNER).isDisplayed(),"DY Placeholder banner is displayed in the PLP");
+		Reporter.log("DY Placeholder banner is displayed in the PLP");
+		ExtentReport.extentTest.info("DY Placeholder banner is displayed in the PLP");
+	}
+
+	public void ValidateShopNowCTAinDyPlaceholderBanner()
+	{
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		SoftAssert softAssert = new SoftAssert();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		new HomePageComponents(driver).navigateToMensAll();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(DYPLACEHOLDERBANNER));
+		softAssert.assertTrue(driver.findElement(DYPLACEHOLDERBANNER).isDisplayed(),"DY Placeholder banner is not displayed in the PLP");
+		Reporter.log("DY Placeholder banner is displayed in the PLP");
+		ExtentReport.extentTest.info("DY Placeholder banner is displayed in the PLP");
+		js.executeScript("arguments[0].click();", driver.findElement(SHOPNOWCTAINDYPLACEHOLDERBANNER));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT));
+		softAssert.assertTrue(driver.findElement(FIRST_PRODUCT).isDisplayed(),"Shop Now CTA in DY Placeholder banner is not functional");
+		Reporter.log("Shop Now CTA in DY Placeholder banner is functional");
+		ExtentReport.extentTest.info("Shop Now CTA in DY Placeholder banner is functional");
+	}
+
+
 	public void ValidateFunctionalityOfCollectionDoorways()
 	{
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
