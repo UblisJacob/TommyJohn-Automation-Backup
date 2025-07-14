@@ -58,7 +58,6 @@ public class HomePageComponents extends HomePageLocators {
 	public HomePageComponents(WebDriver driver) {
 
 		this.driver = driver;
-
 		wait = new FluentWait<WebDriver>(driver).pollingEvery(Duration.ofMillis(500))
 				.withTimeout(Duration.ofSeconds(60)).ignoring(NoSuchElementException.class);
 
@@ -643,10 +642,10 @@ public class HomePageComponents extends HomePageLocators {
 		SoftAssert softAssert = new SoftAssert();
 		Thread.sleep(5000);
 		js.executeScript("window.scrollBy(0,2000)");
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOf(driver.findElement(INSTA_SHOP_ICON)));
 		js.executeScript("arguments[0].click();", driver.findElement(INSTA_SHOP_ICON));
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		js.executeScript("arguments[0].click();", driver.findElement(INSTA_ATC));
 		wait.until(ExpectedConditions.visibilityOf(driver.findElement(INSTA_FIRST_SIZE)));
 		js.executeScript("arguments[0].click();", driver.findElement(INSTA_FIRST_SIZE));
@@ -669,10 +668,10 @@ public class HomePageComponents extends HomePageLocators {
 		SoftAssert softAssert = new SoftAssert();
 		Thread.sleep(5000);
 		js.executeScript("window.scrollBy(0,2000)");
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOf(driver.findElement(INSTA_SHOP_ICON)));
 		js.executeScript("arguments[0].click();", driver.findElement(INSTA_SHOP_ICON));
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		String First_Product_Name = driver.findElement(INSTA_FIRST_PRODUCT_NAME).getText();
 		System.out.println(First_Product_Name);
 		js.executeScript("arguments[0].click();", driver.findElement(INSTA_ATC));
@@ -697,10 +696,10 @@ public class HomePageComponents extends HomePageLocators {
 		SoftAssert softAssert = new SoftAssert();
 		Thread.sleep(5000);
 		js.executeScript("window.scrollBy(0,2000)");
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOf(driver.findElement(INSTA_SHOP_ICON)));
 		js.executeScript("arguments[0].click();", driver.findElement(INSTA_SHOP_ICON));
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		String First_Product_Name = driver.findElement(INSTA_FIRST_PRODUCT_NAME).getText();
 		System.out.println(First_Product_Name);
 		js.executeScript("arguments[0].click();", driver.findElement(INSTA_ATC));
@@ -720,10 +719,10 @@ public class HomePageComponents extends HomePageLocators {
 		SoftAssert softAssert = new SoftAssert();
 		Thread.sleep(5000);
 		js.executeScript("window.scrollBy(0,2000)");
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOf(driver.findElement(INSTA_SHOP_ICON)));
 		js.executeScript("arguments[0].click();", driver.findElement(INSTA_SHOP_ICON));
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		String ColorSwatch = driver.findElement(INSTA_COLOR_SWATCH).getAttribute("title");
 		System.out.println(ColorSwatch);
 
@@ -1602,8 +1601,8 @@ public class HomePageComponents extends HomePageLocators {
 
 	// check Account/Login icon
 	public void validateAccountIcon() throws Exception {
-		driver.get("https://www.tommyjohn.com/collections/mens-all");
-		driver.navigate().back();
+//		driver.get("https://www.tommyjohn.com/collections/mens-all");
+//		driver.navigate().back();
 		if(!driver.findElement(ACCOUNT_NAV_DROPDOWN).isDisplayed())
 			throw new Exception("Account Icon is not present");
 		element=driver.findElement(ACCOUNT_NAV_DROPDOWN);

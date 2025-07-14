@@ -434,7 +434,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(50));
 			new AddToCartComponents(driver).addToCart();
 			jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 			String opacity = driver.findElement(HomePageLocators.OVERLAY).getCssValue("opacity");
 			System.out.println(opacity);
 			softAssert.assertEquals(opacity,"0.5","Page is not greyed out on adding products");
