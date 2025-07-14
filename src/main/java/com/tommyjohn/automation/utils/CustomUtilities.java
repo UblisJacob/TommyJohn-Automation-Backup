@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -29,7 +30,7 @@ import org.openqa.selenium.devtools.DevTools;
 import org.testng.ISuite;
 import org.testng.ITestContext;
 import org.testng.Reporter;
-import org.openqa.selenium.devtools.v133.emulation.Emulation;
+import org.openqa.selenium.devtools.v138.emulation.Emulation;
 
 
 public class CustomUtilities {
@@ -74,9 +75,10 @@ public class CustomUtilities {
 			// Set other desired capabilities if needed (such as enabling remote d
 //			chromeOptions.setExperimentalOption("useAutomationExtension", false)
 			chromeOptions.addArguments("--disable-gpu");
-//			chromeOptions.addArguments("--headless");
+			chromeOptions.addArguments("--headless");
 			chromeOptions.addArguments("--window-size=1920,1080");
 			chromeOptions.addArguments("--force-device-scale-factor=1");
+			chromeOptions.addArguments("--start-maximized");
 			chromeOptions.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
 			chromeOptions.addArguments("--disable-blink-features=AutomationControlled");
 			chromeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
@@ -102,7 +104,8 @@ public class CustomUtilities {
 			chromeOptions.addArguments("--host-resolver-rules=MAP tommyjohn.attn.tv 127.0.0.1");
 			chromeOptions.addArguments("--host-resolver-rules=MAP creatives.attn.tv 127.0.0.1");
 			//	chromeOptions.addArguments("--host-resolver-rules=MAP tag.bounceexchange.com 127.0.0.1");
-
+			//System.out.println(driver);
+//			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver(chromeOptions);
 			DevTools devTools = ((ChromeDriver)driver).getDevTools();
 			devTools.createSession();
@@ -113,7 +116,6 @@ public class CustomUtilities {
 					Optional.empty(), Optional.empty(),Optional.empty(), // Add this one
 					Optional.empty()  // Add this one
 			));
-
 			driver.get(baseUrl);
 			driver.manage().window().maximize();
 
@@ -133,7 +135,8 @@ public class CustomUtilities {
 		{
 			//System.setProperty("webdriver.gecko.driver", properties.getProperty("ffDriverPath"));
 			FirefoxOptions options = new FirefoxOptions();
-			options.addArguments("--headless=new");
+			options.addArguments("--disable-gpu");
+			options.addArguments("--headless");
 			options.addArguments("--window-size=1280,800");
 			options.addArguments("--disable-gpu");
 			options.addArguments("--no-sandbox");

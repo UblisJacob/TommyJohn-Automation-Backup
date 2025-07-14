@@ -27,7 +27,8 @@ public class ValidateHomePage extends ExtentReport {
 	@Test
 	public void ValidateImageInHeroBanner() throws Exception {
 
-		new HomePage(driver).ValidateImageInHeroBanner();
+		HomePageComponents homePage = new HomePageComponents(driver);
+		homePage.ValidateImageInHeroBanner();
 	}
 
 //	@Test

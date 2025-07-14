@@ -650,6 +650,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//legend[@class='mr-auto']")));
 
 		// Click on ascending sort option
+		Thread.sleep(5000);
 		driver.findElement(By.xpath("//label[@for='Filters-Sort-price-asc']")).click();
 
 		Thread.sleep(10000);

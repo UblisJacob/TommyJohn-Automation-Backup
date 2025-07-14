@@ -18,8 +18,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.devtools.DevTools;
-import org.openqa.selenium.devtools.v133.network.Network;
-import org.openqa.selenium.devtools.v133.network.model.Request;
+import org.openqa.selenium.devtools.v138.network.Network;
+import org.openqa.selenium.devtools.v138.network.model.Request;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.logging.LogType;
@@ -29,6 +29,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.testng.Reporter;
+
 
 
 import java.io.File;
@@ -67,7 +68,12 @@ public class GTMComponents {
         devTools.createSession();
 
         // ✅ 2. Enable network monitoring
-        devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
+        devTools.send(Network.enable(
+                Optional.empty(), // maxTotalBufferSize
+                Optional.empty(), // maxResourceBufferSize
+                Optional.empty(), // maxPostDataSize
+                Optional.empty()  // maxPostDataSizeReportingEnabled
+        ));
 
         // ✅ 3. Expected Payload
         String expectedPayload = "[{\"action\":\"click\",\"target\":{\"facet\":\"b2787170-7dc6-41dc-8a60-6fcdd22ba0ce\",\"facet-id\":\"coolcotton\"},\"metadata\":{\"locale\":\"en_US\"},\"user\":{\"identities\":{},\"segments\":[],\"traits\":{}}}]";
@@ -138,8 +144,12 @@ public class GTMComponents {
 
 
         // ✅ 2. Enable network monitoring
-        devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
-
+        devTools.send(Network.enable(
+                Optional.empty(), // maxTotalBufferSize
+                Optional.empty(), // maxResourceBufferSize
+                Optional.empty(), // maxPostDataSize
+                Optional.empty()  // maxPostDataSizeReportingEnabled
+        ));
         // ✅ 3. Expected JSON Payload for Comparison
         String expectedPayload = "[{\"action\":\"view\",\"target\":{\"pathToPage\":\"/collections/mens-all\"},"
                 + "\"sourceId\":\"9d6408ec-5e38-4216-a13d-fe98c7c51017\","
@@ -193,7 +203,12 @@ public class GTMComponents {
         devTools.createSession();
 
         // ✅ Enable network monitoring
-        devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
+        devTools.send(Network.enable(
+                Optional.empty(), // maxTotalBufferSize
+                Optional.empty(), // maxResourceBufferSize
+                Optional.empty(), // maxPostDataSize
+                Optional.empty()  // maxPostDataSizeReportingEnabled
+        ));
 
         // ✅ Expected JSON Payload for Comparison (Ignoring "sourceId" & "sessionid")
         String expectedPayload = "[{\"action\":\"add-to-cart\",\"target\":{\"product\":\"7127171465261\"},"
@@ -246,8 +261,12 @@ public class GTMComponents {
         devTools.createSession();
 
         // ✅ Enable network monitoring
-        devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
-
+        devTools.send(Network.enable(
+                Optional.empty(), // maxTotalBufferSize
+                Optional.empty(), // maxResourceBufferSize
+                Optional.empty(), // maxPostDataSize
+                Optional.empty()  // maxPostDataSizeReportingEnabled
+        ));
         // ✅ Expected JSON Payload for "click" event
         String expectedPayload = "[{\"action\":\"click\",\"target\":{\"product\":\"7127171465261\"},"
                 + "\"metadata\":{\"locale\":\"en_US\"},"
@@ -302,7 +321,12 @@ public class GTMComponents {
         devTools.createSession();
 
         // ✅ Enable network monitoring
-        devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
+        devTools.send(Network.enable(
+                Optional.empty(), // maxTotalBufferSize
+                Optional.empty(), // maxResourceBufferSize
+                Optional.empty(), // maxPostDataSize
+                Optional.empty()  // maxPostDataSizeReportingEnabled
+        ));
 
         // ✅ Expected JSON Payload for "view" product event
         String expectedPayload = "[{\"action\":\"view\",\"target\":{\"product\":\"7127171465261\"},"
@@ -358,7 +382,12 @@ public class GTMComponents {
         devTools.createSession();
 
         // ✅ Enable network monitoring
-        devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
+        devTools.send(Network.enable(
+                Optional.empty(), // maxTotalBufferSize
+                Optional.empty(), // maxResourceBufferSize
+                Optional.empty(), // maxPostDataSize
+                Optional.empty()  // maxPostDataSizeReportingEnabled
+        ));
 
         // ✅ Expected JSON Payload Adjusted to Match Actual Data
         String expectedSearchTerm = "second skin";
@@ -412,7 +441,12 @@ public class GTMComponents {
         devTools.createSession();
 
         // ✅ Enable network monitoring
-        devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
+        devTools.send(Network.enable(
+                Optional.empty(), // maxTotalBufferSize
+                Optional.empty(), // maxResourceBufferSize
+                Optional.empty(), // maxPostDataSize
+                Optional.empty()  // maxPostDataSizeReportingEnabled
+        ));
 
         // ✅ Expected JSON Payload (product ID will be dynamically matched)
         String expectedPayload = "[{\"action\":\"remove-from-cart\",\"target\":{\"product\":\"7884328239149\"},"
@@ -470,7 +504,12 @@ public class GTMComponents {
         devTools.createSession();
 
         // ✅ Enable network monitoring
-        devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
+        devTools.send(Network.enable(
+                Optional.empty(), // maxTotalBufferSize
+                Optional.empty(), // maxResourceBufferSize
+                Optional.empty(), // maxPostDataSize
+                Optional.empty()  // maxPostDataSizeReportingEnabled
+        ));
 
         final boolean[] gtmFound = {false};  // ✅ Flag to check GTM presence
 
@@ -526,7 +565,12 @@ public class GTMComponents {
         devTools.createSession();
 
         // ✅ Enable network monitoring
-        devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
+        devTools.send(Network.enable(
+                Optional.empty(), // maxTotalBufferSize
+                Optional.empty(), // maxResourceBufferSize
+                Optional.empty(), // maxPostDataSize
+                Optional.empty()  // maxPostDataSizeReportingEnabled
+        ));
 
         final boolean[] gtmFound = {false};  // ✅ Flag to check GTM presence
 
@@ -666,8 +710,12 @@ public class GTMComponents {
         DevTools devTools = driver.getDevTools();
         devTools.createSession();
 
-        devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
-
+        devTools.send(Network.enable(
+                Optional.empty(), // maxTotalBufferSize
+                Optional.empty(), // maxResourceBufferSize
+                Optional.empty(), // maxPostDataSize
+                Optional.empty()  // maxPostDataSizeReportingEnabled
+        ));
         final boolean[] isValidPayload = {false};
 
         devTools.addListener(Network.requestWillBeSent(), requestSent -> {
@@ -731,7 +779,12 @@ public class GTMComponents {
         devTools.createSession();
 
         // ✅ Enable network monitoring
-        devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
+        devTools.send(Network.enable(
+                Optional.empty(), // maxTotalBufferSize
+                Optional.empty(), // maxResourceBufferSize
+                Optional.empty(), // maxPostDataSize
+                Optional.empty()  // maxPostDataSizeReportingEnabled
+        ));
 
         final boolean[] propertiesFound = {false};  // ✅ Track if 'properties' were found
 
@@ -821,7 +874,12 @@ public class GTMComponents {
         DevTools devTools = driver.getDevTools();
         devTools.createSession();
 
-        devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
+        devTools.send(Network.enable(
+                Optional.empty(), // maxTotalBufferSize
+                Optional.empty(), // maxResourceBufferSize
+                Optional.empty(), // maxPostDataSize
+                Optional.empty()  // maxPostDataSizeReportingEnabled
+        ));
 
         final boolean[] klaviyoMetricFound = {false};
 
@@ -894,7 +952,12 @@ public class GTMComponents {
         DevTools devTools = driver.getDevTools();
         devTools.createSession();
 
-        devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
+        devTools.send(Network.enable(
+                Optional.empty(), // maxTotalBufferSize
+                Optional.empty(), // maxResourceBufferSize
+                Optional.empty(), // maxPostDataSize
+                Optional.empty()  // maxPostDataSizeReportingEnabled
+        ));
 
         final boolean[] miniCartFound = {false};
 
@@ -950,7 +1013,12 @@ public class GTMComponents {
         devTools.createSession();
 
         // Enable network logging
-        devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
+        devTools.send(Network.enable(
+                Optional.empty(), // maxTotalBufferSize
+                Optional.empty(), // maxResourceBufferSize
+                Optional.empty(), // maxPostDataSize
+                Optional.empty()  // maxPostDataSizeReportingEnabled
+        ));
 
         // Store all matching TRKN URLs
         List<String> trknUrls = new ArrayList<>();
@@ -1000,8 +1068,12 @@ public class GTMComponents {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
         // Enable network monitoring
-        devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
-
+        devTools.send(Network.enable(
+                Optional.empty(), // maxTotalBufferSize
+                Optional.empty(), // maxResourceBufferSize
+                Optional.empty(), // maxPostDataSize
+                Optional.empty()  // maxPostDataSizeReportingEnabled
+        ));
         // Store matching TRKN pixel URLs
         List<String> trknPixelUrls = new ArrayList<>();
 
@@ -1039,8 +1111,12 @@ public class GTMComponents {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
         // Enable network monitoring
-        devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
-
+        devTools.send(Network.enable(
+                Optional.empty(), // maxTotalBufferSize
+                Optional.empty(), // maxResourceBufferSize
+                Optional.empty(), // maxPostDataSize
+                Optional.empty()  // maxPostDataSizeReportingEnabled
+        ));
         // Store matching TRKN pixel URLs
         List<String> trknCheckoutUrls  = new ArrayList<>();
 
@@ -1085,8 +1161,12 @@ public class GTMComponents {
     devTools.createSession();
 
     // Enable network logging
-    devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
-
+        devTools.send(Network.enable(
+                Optional.empty(), // maxTotalBufferSize
+                Optional.empty(), // maxResourceBufferSize
+                Optional.empty(), // maxPostDataSize
+                Optional.empty()  // maxPostDataSizeReportingEnabled
+        ));
     // Store all matching Adxcel URLs
     List<String> adxcelUrls = new ArrayList<>();
 
@@ -1127,8 +1207,12 @@ public class GTMComponents {
         DevTools devTools = driver.getDevTools();
         devTools.createSession();
 
-        devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
-
+        devTools.send(Network.enable(
+                Optional.empty(), // maxTotalBufferSize
+                Optional.empty(), // maxResourceBufferSize
+                Optional.empty(), // maxPostDataSize
+                Optional.empty()  // maxPostDataSizeReportingEnabled
+        ));
         List<String> bingUrls = new ArrayList<>();
 
         devTools.addListener(Network.requestWillBeSent(), request -> {
