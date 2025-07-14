@@ -372,6 +372,14 @@ public class CollectionPage extends CollectionPageComponent{
 		new CollectionPageComponent(driver).ValidateFunctionalityOfCollectionDoorways();
 	}
 
+	public void ValidateShopNowCTAinDyPlaceholderBanner() {
+		new CollectionPageComponent(driver).ValidateShopNowCTAinDyPlaceholderBanner();
+	}
+
+	public void ValidateDyPlaceholderBannerInPLP() {
+		new CollectionPageComponent(driver).ValidateDyPlaceholderBannerInPLP();
+	}
+
 	public void ValidateStarRatingIsFunctional() {
 	new CollectionPageComponent(driver).ValidateStarRatingIsFunctional();
 	}

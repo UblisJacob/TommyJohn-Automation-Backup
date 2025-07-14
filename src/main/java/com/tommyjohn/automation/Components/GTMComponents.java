@@ -541,8 +541,8 @@ public class GTMComponents {
         });
 
         // ✅ Perform the action (Navigate to the target page)
-        driver.get("https://www.tommyjohn.com/");  // Change the URL if needed
-        Thread.sleep(5000);  // Wait for network requests
+        driver.get("https://www.tommyjohn.com/collections/mens-all");  // Change the URL if needed
+        Thread.sleep(10000);  // Wait for network requests
 
         driver.quit();  // ✅ Close the browser
 

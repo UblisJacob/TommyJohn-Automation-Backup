@@ -3,7 +3,10 @@ package com.tommyjohn.automation.PageLocators;
 import org.openqa.selenium.By;
 
 public class CollectionPageLocator {
-	
+
+
+	public static By DYPLACEHOLDERBANNER = By.xpath("//div[@id='20947490-container']");
+	public static By SHOPNOWCTAINDYPLACEHOLDERBANNER = By.xpath("//a[@aria-label='Shop Now']");
 	public static By STYLE_COROSALS = By.cssSelector("div.dyCollection-hero__interactive-inner");
 	public static By TOTAL_NO_OF_COROSALS = By.xpath("//div[@class='interactive-hero-slide asset-type-icons']");
 	public static By FILTER_PILL = By.xpath("//button[@title='Filters']");

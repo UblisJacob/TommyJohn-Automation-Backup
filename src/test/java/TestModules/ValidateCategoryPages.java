@@ -29,6 +29,12 @@ public class ValidateCategoryPages {
 	@Test public void ValidateCollectionDoorways() throws Exception { new
 			CollectionPage(driver).ValidateCollectionDoorways(); }
 
+	@Test public void ValidateDyPlaceholderBannerInPLP() throws Exception { new
+			CollectionPage(driver).ValidateDyPlaceholderBannerInPLP(); }
+
+	@Test public void ValidateShopNowCTAinDyPlaceholderBanner() throws Exception { new
+			CollectionPage(driver).ValidateShopNowCTAinDyPlaceholderBanner(); }
+
 
 	@Test public void ValidateFunctionalityOfCollectionDoorways() throws Exception { new
 			CollectionPage(driver).ValidateFunctionalityOfCollectionDoorways(); }
