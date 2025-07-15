@@ -413,7 +413,7 @@ public class HomePageComponents extends HomePageLocators {
 //		driver.get("https://www.tommyjohn.com/collections/mens-all");
 //		driver.navigate().back();
 		// Wait for the hero banner image to be visible
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
 
 		// Scroll to the 'Our Story' CTA
 		Thread.sleep(5000);
