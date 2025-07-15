@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 public class CollectionPageLocator {
 
 
-	public static By DYPLACEHOLDERBANNER = By.xpath("//div[@id='20947490-container']");
+	public static By DYPLACEHOLDERBANNER = By.xpath("//div[@class='flex overflow-y-hidden items-end scrim max-sm:my-2xs sm:h-[90px]  scrim-medium max-sm:aspect-video']");
 	public static By SHOPNOWCTAINDYPLACEHOLDERBANNER = By.xpath("//a[@aria-label='Shop Now']");
 	public static By STYLE_COROSALS = By.cssSelector("div.dyCollection-hero__interactive-inner");
 	public static By TOTAL_NO_OF_COROSALS = By.xpath("//div[@class='interactive-hero-slide asset-type-icons']");

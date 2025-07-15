@@ -25,7 +25,7 @@ public class CheckoutPageLocators {
 	
 	
 	//Contact info (before logging in)
-	public static By CONTACTINFO_TEXT = By.cssSelector("h2#checkout-main-header");
+	public static By CONTACTINFO_TEXT = By.xpath("//h2[@id='checkout-main-header']");
 	public static By ALREADYHAVEANACCOUNT_TEXT = By.cssSelector(".layout-flex__item > span");
 	public static By LOGIN_LINK = By.xpath("//a[contains(text(),'Log in')]");
 	public static By CHECKOUT_EMAIL = By.xpath("//input[@id='email']");
@@ -95,7 +95,7 @@ public class CheckoutPageLocators {
 	public static By CHANGE_LINK_CONTACT = By.xpath("(//span[contains(text(),'Change')])[2]");
 	public static By CHANGE_LINK_SHIP_TO = By.xpath("(//span[contains(text(),'Change')])[3]");
 	public static By CHANGE_LINK_METHOD = By.xpath("(//span[contains(text(),'Change')])[4]");
-	public static By SHIPPING_TEXT = By.cssSelector("h2#checkout-main-header");
+	public static By SHIPPING_TEXT = By.xpath("//h2[@id='checkout-main-header']");
 	public static By SHIPPING_RADIO_BUTTON = By.xpath("//input[@type='radio']");
 	public static By RETURN_LINK = By.xpath("//span[contains(text(),'Return to information')]");
 	public static By CONTINUE_TO_PAYMENT_BUTTON = By.xpath("//div[@class='MV9Am']//button");
