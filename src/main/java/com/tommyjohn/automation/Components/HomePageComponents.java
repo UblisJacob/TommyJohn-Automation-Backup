@@ -3041,7 +3041,7 @@ public class HomePageComponents extends HomePageLocators {
 
 	// navigate to All Mens Packs in Packs category
 	public void navigateToAllMensPacksInPacksCategory() throws Exception {
-		driver.get("https://www.tommyjohn.com/collections/mens-underwear?filter.pack_size=set%3B3%3B6%3B2%3B5");
+		driver.get("https://www.tommyjohn.com/collections/mens-undershirts");
 	}
 
 
@@ -3094,6 +3094,11 @@ public class HomePageComponents extends HomePageLocators {
 
 	public void navigateToMensUnderwear() throws Exception {
 		driver.get("https://www.tommyjohn.com/collections/mens-underwear");
+		Thread.sleep(5000);
+	}
+
+	public void navigateToCoolCottonBoxerBriefs() throws Exception {
+		driver.get("https://www.tommyjohn.com/collections/underwear-mens-styles-boxer-brief-cool-cotton");
 		Thread.sleep(5000);
 	}
 
