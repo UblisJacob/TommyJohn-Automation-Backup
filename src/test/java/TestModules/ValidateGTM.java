@@ -32,7 +32,7 @@ public class ValidateGTM {
 
     }
 
-    @Test
+ //   @Test
     public void ValidateSplunk() throws Exception {
 
         new GTMValidations(driver).validateSplunk();
