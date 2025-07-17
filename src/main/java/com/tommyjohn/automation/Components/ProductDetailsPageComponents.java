@@ -2810,7 +2810,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 //		JavascriptExecutor executor = (JavascriptExecutor) driver;
 //		executor.executeScript("arguments[0].click();", el);
 
-		driver.get("https://www.tommyjohn.com/products/second-skin-mid-length-boxer-brief-9?variant=43190760996909");
+		driver.get("https://www.tommyjohn.com/products/customized-flex-mid-length-boxer-brief-6?color=cinder");
 
 //		jse = (JavascriptExecutor) driver;
 //		jse.executeScript("window.scrollBy(0,800)");
@@ -2945,7 +2945,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		int count = 0;
 		SoftAssert softAssert = new SoftAssert();
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
-		driver.navigate().to("https://www.tommyjohn.com/collections/mens-all");
+		driver.navigate().to("https://www.tommyjohn.com/collections/underwear-mens-styles-boxer-brief-cool-cotton");
 		//new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
 
 		//navigate to PDP
@@ -3569,7 +3569,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 	public void verifyReviewForm() throws Exception {
 		SoftAssert softAssert = new SoftAssert();
 		// call method to navigate to collection page
-		new HomePageComponents(driver).navigateToMensAllUnderwear();
+		new HomePageComponents(driver).navigateToCoolCottonBoxerBriefs();
 		new CollectionPageComponent(driver).navigateToProductDetailsPage();
 		// call method to check correct PDP opend or not
 		//	checkCorrectProductDetailsPageOpenedOrNot(text);
