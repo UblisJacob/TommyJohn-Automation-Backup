@@ -211,7 +211,7 @@ public class GTMComponents {
         ));
 
         // ✅ Expected JSON Payload for Comparison (Ignoring "sourceId" & "sessionid")
-        String expectedPayload = "[{\"action\":\"add-to-cart\",\"target\":{\"product\":\"7127171465261\"},"
+        String expectedPayload = "[{\"action\":\"add-to-cart\",\"target\":{\"product\":\"8172862799917\"},"
                 + "\"metadata\":{\"locale\":\"en_US\",\"quantity\":1},"
                 + "\"user\":{\"identities\":{},\"segments\":[],\"traits\":{}}}]";
         final boolean[] payloadMatched = {false};
@@ -268,7 +268,7 @@ public class GTMComponents {
                 Optional.empty()  // maxPostDataSizeReportingEnabled
         ));
         // ✅ Expected JSON Payload for "click" event
-        String expectedPayload = "[{\"action\":\"click\",\"target\":{\"product\":\"7127171465261\"},"
+        String expectedPayload = "[{\"action\":\"click\",\"target\":{\"product\":\"8172862799917\"},"
                 + "\"metadata\":{\"locale\":\"en_US\"},"
                 + "\"user\":{\"identities\":{},\"segments\":[],\"traits\":{}}}]";
 
@@ -329,7 +329,7 @@ public class GTMComponents {
         ));
 
         // ✅ Expected JSON Payload for "view" product event
-        String expectedPayload = "[{\"action\":\"view\",\"target\":{\"product\":\"7127171465261\"},"
+        String expectedPayload = "[{\"action\":\"view\",\"target\":{\"product\":\"8172862799917\"},"
                 + "\"metadata\":{\"locale\":\"en_US\"},"
                 + "\"user\":{\"identities\":{},\"segments\":[],\"traits\":{}}}]";
 
@@ -858,7 +858,7 @@ public class GTMComponents {
 
     public void ValidateKlaviyo() throws Exception {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new");
+//        options.addArguments("--headless=new");
         options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36");
         options.addArguments("--disable-gpu");
         options.addArguments("--window-size=1920,1080");
