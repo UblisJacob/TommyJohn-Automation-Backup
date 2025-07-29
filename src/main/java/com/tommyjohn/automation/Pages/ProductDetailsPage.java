@@ -98,6 +98,13 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 
 	}
 
+	public void ValidateReviewsSummaryCTAINReviewsSection() throws Exception {
+
+
+		new ProductDetailsPageComponents(driver).ValidateReviewsSummaryCTAINReviewsSection();
+
+	}
+
 	public void ValidateTabPriceAndAddToCartPrice() throws InterruptedException {
 
 

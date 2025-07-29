@@ -166,6 +166,7 @@ public class ProductDetailsPageLocators {
 	public static By RATING_STARS = By.xpath("//div[@class='yotpo-sr-bottom-line-text yotpo-sr-bottom-line-text--right-panel']");
 	public static By RATING_NUMBER = By.xpath("//div[@class='yotpo-bottom-line-left-panel yotpo-bottom-line-score']");
 	public static By RATING_AND_REVIEWS_BOX = By.xpath("//div[@class='yotpo-header-container']");
+	public static By REVIEWS_SUMMARY_IN_RATINGS_SECTION = By.xpath("//button[@class='yotpo-icon-btn yotpo-color-fill-btn button-padding']");
 	public static By RATING_AND_REVIEWS_FILTER = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div:nth-child(2)>ul>li");
 	public static By RATING_AND_REVIEWS_FILTER_RATING_COUNT = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div:nth-child(2)>ul>li>div>div:nth-child(3)");
 	public static By NO_RATING_TEXT = By.cssSelector("[data-tj-qa='product-fit'],div.multi-pdp-title-wrap.desktop-view > div.product-info__price-wrap > div.yotpo-star-wrapper > div > div > span:nth-child(1)");

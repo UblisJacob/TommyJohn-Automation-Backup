@@ -13,7 +13,7 @@
         <classes>
                     <class name="TestModules.ValidatePDP">
                 <methods>
-                    <include name="ValidatesectionsinPDP"/>
+                    <include name="ValidateReviewsSummaryCTAINReviewsSection"/>
                 </methods>
             </class>
         </classes>
