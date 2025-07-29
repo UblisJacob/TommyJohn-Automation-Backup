@@ -110,6 +110,12 @@ public class 	ValidatePDP extends ExtentReport{
 	}
 
 	@Test
+	public void ValidateReviewsSummaryCTAINReviewsSection() throws Exception {
+		new ProductDetailsPage(driver).ValidateReviewsSummaryCTAINReviewsSection();
+
+	}
+
+	@Test
 	public void ValidateDisabledATC() throws Exception {
 		new ProductDetailsPage(driver).ValidateDisabledATC();
 

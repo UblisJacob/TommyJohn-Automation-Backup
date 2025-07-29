@@ -19,7 +19,7 @@
 		<classes>
 			<class name="TestModules.ValidateInlineCartPage" />
 		</classes>
-	</test>
+	</test>d
 `
 <!--	<test name="GTMTags">-->
 <!--		<parameter name="browser" value="chrome" />-->

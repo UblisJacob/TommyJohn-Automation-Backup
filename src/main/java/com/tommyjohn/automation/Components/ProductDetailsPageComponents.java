@@ -318,6 +318,26 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		ExtentReport.extentTest.info("Review Summary link is functional");
 	}
 
+
+	public void ValidateReviewsSummaryCTAINReviewsSection() throws Exception {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+		new HomePageComponents(driver).navigateToWomensBriefs();
+		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		SoftAssert softAssert = new SoftAssert();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_TITLE));
+		Thread.sleep(5000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(REVIEW_SUMMARY));
+		WebElement ReviewSummary = driver.findElement(REVIEW_SUMMARY);
+		js.executeScript("arguments[0].click();", driver.findElement(RATING_STARS));
+		js.executeScript("window.scrollBy(0,-200)");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(REVIEWS_SUMMARY_IN_RATINGS_SECTION));
+		js.executeScript("arguments[0].click();", driver.findElement(REVIEWS_SUMMARY_IN_RATINGS_SECTION));
+		softAssert.assertTrue(driver.findElement(REVIEW_SUMMARY_TITLE).isDisplayed(),"Review Summary CTA is not functional");
+		Reporter.log("Review Summary CTA is functional");
+		ExtentReport.extentTest.info("Review Summary CTA is functional");
+	}
+
 	public void ValidateDisabledATC() throws Exception {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
