@@ -58,6 +58,8 @@ public class ShoppingCartLocators {
 	//public static By CHECKOUT_BUTTON = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__summary > a");
 	public static By CONTINUE_SHOPPING = By.cssSelector("a[data-tj-qa='cart-continue-shopping'], section > div.cart__content.content > div.cart__outer > div.cart__summary > div.cart__summary-inner-div > a.cart__continue.text-link");
 	public static By GIFT_WRAP_LINK = By.xpath("//button[@class='button-link text-body']");
+	public static By QUANTITY_INPUT = By.xpath("//input[contains(@id, 'CartForm-Quantity')]");
+	public static By QUANTITY_INCREASE = By.xpath("//span[@class='icon size-5 icon-plus']");
 	//public static By CHECKOUT_BUTTON = By.cssSelector(".main-content > .cart.container > div.cart__outer > .cart__summary > div.cart__summary-inner-div>a.cart__checkout-btn");
 	public static By CHECKOUT_BUTTON = By.cssSelector("a[data-tj-qa='cart-checkout-cta'], a.cart__checkout-btn");
 	

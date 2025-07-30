@@ -48,6 +48,15 @@ public class ValidateCartPage extends ExtentReport{
 
 
 	@Test
+	public void Validate_Cart_IncreaseQuantity() throws Exception {
+
+		new AddToCartComponents(driver).addsingleproductToCart();
+		new ShoppingCartPage(driver).ValidateViewCartLink();
+		new ShoppingCartPage(driver).ValidateQuantityIncreaseInCartPage();
+
+	}
+
+	@Test
 		public void ValidateProductCount() throws Exception {
 		new ShoppingCartPage(driver).ValidateProductCountInInlineCartAndCartPages();
 
@@ -144,6 +153,8 @@ public class ValidateCartPage extends ExtentReport{
 
 
 	}
+
+
 
 
 
