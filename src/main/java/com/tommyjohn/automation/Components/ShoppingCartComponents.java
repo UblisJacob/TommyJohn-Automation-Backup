@@ -49,8 +49,46 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 	JavascriptExecutor jse;
 	public ShoppingCartComponents(WebDriver driver) {
 		this.driver = driver;
-		
+
 	}
+
+	public void ValidateQuantityIncreaseInCartPage()
+	{
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		SoftAssert softAssert = new SoftAssert();
+//		WebElement quantityInput = wait.until(ExpectedConditions.visibilityOfElementLocated(QUANTITY_INPUT));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		WebElement quantityInput = wait.until(ExpectedConditions.visibilityOfElementLocated(QUANTITY_INPUT));
+		int initialQty = Integer.parseInt(js.executeScript("return arguments[0].value;", quantityInput).toString().trim());
+
+		// Click the + button until quantity reaches 4
+		for (int i = initialQty; i < 4; i++) {
+			WebElement plusButton = wait.until(ExpectedConditions.elementToBeClickable(QUANTITY_INCREASE));
+			plusButton.click();
+
+			// Fix: create a final variable for lambda
+			final int expectedQty = i + 1;
+
+			wait.until(driver1 -> {
+				WebElement refreshedQtyInput = driver1.findElement(QUANTITY_INPUT);
+				int updated = Integer.parseInt(js.executeScript("return arguments[0].value;", refreshedQtyInput).toString().trim());
+				return updated == expectedQty;
+			});
+		}
+
+		// Final validation
+		WebElement updatedInput = wait.until(ExpectedConditions.visibilityOfElementLocated(QUANTITY_INPUT));
+		int updatedQty = Integer.parseInt(js.executeScript("return arguments[0].value;", updatedInput).toString().trim());
+
+		softAssert.assertEquals(updatedQty, 4, "Quantity did not reach 4 as expected.");
+		System.out.println(" Quantity successfully increased to " + updatedQty);
+
+		softAssert.assertAll();
+		Reporter.log(" Quantity increased to 4 in Cart page");
+		ExtentReport.extentTest.info(" Quantity increased to 4 in Cart page");
+	}
+
 
 	public void ValidatePromoCodeFromPromoBanner() throws Exception {
 		SoftAssert softAssert = new SoftAssert();
