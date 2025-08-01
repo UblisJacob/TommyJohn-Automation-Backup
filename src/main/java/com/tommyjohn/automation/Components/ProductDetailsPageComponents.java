@@ -3024,14 +3024,14 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		new CollectionPageComponent(driver).navigateToProductDetailsPage();
 		Thread.sleep(5000);
 		jse = (JavascriptExecutor) driver;
-		jse.executeScript("window.scrollBy(0,800)");
-		WebElement Stickynav = driver.findElement(By.cssSelector(".product-bar"));
+		jse.executeScript("window.scrollBy(0,1200)");
+		WebElement Stickynav = driver.findElement(By.xpath("//div[contains(@class, 'sticky bottom')]"));
 		SoftAssert softassert = new SoftAssert();
 		softassert.assertTrue(Stickynav.isDisplayed(), "Sticky nav is not displayed on PDP");
-		WebElement SelectASize = driver.findElement(By.xpath("(//button[@title='Select a Size if not selected and Add to Cart'])[1]"));
+		WebElement SelectASize = driver.findElement(By.xpath("(//button[@class='button-secondary grow'])[2]"));
 		jse.executeScript("arguments[0].click();", SelectASize);
-		WebElement ProductTitle = driver.findElement(By.xpath("(//h1[@class='product-info__title'])[2]"));
-		softassert.assertTrue(ProductTitle.isDisplayed(), "Sticky Select a Size is not Clickable on PDP");
+		WebElement SelectSizeSection = driver.findElement(By.xpath("//div[@class='space-y-lg']"));
+		softassert.assertTrue(SelectSizeSection.isDisplayed(), "Sticky Select a Size is not Clickable on PDP");
 		Reporter.log("Scrolling CTA Select a Size is displayed :: Clickable");
 		ExtentReport.extentTest.info("Scrolling CTA Select a Size is displayed :: Clickable");
 

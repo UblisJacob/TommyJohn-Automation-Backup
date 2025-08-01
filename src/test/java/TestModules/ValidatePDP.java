@@ -186,7 +186,7 @@ public class 	ValidatePDP extends ExtentReport{
 		new ProductDetailsPage(driver).verifyStickyATC();
 	}
 
-//	@Test
+	@Test
 	public void VerifyStickySelectASize() throws Exception {
 		new ProductDetailsPage(driver).verifyStickySelectASize();
 	}

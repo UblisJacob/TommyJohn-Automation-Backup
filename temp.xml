@@ -11,9 +11,9 @@
     <test name="Tests">
         <parameter name="browser" value="chrome"/>
         <classes>
-                    <class name="TestModules.ValidateCartPage">
+                    <class name="TestModules.ValidatePDP">
                 <methods>
-                    <include name="Validate_Cart_IncreaseQuantity"/>
+                    <include name="VerifyStickySelectASize"/>
                 </methods>
             </class>
         </classes>
