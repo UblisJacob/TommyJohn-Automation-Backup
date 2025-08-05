@@ -33,6 +33,12 @@ public class ValidateGiftCardFunctionality extends ExtentReport{
 	}
 
 	@Test
+	public void ValidateFraudDisclosureInGCPDP() throws Exception
+	{
+		new GiftCardPage(driver).ValidateFraudDisclosureInGCPDP();
+	}
+
+	@Test
 	public void ValidateFieldForGiftCard() throws Exception
 	{
 		new GiftCardPage(driver).verifyfieldsforGCPage();

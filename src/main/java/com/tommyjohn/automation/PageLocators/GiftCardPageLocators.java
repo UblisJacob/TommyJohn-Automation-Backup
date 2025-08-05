@@ -14,7 +14,7 @@ public class GiftCardPageLocators {
 	public static By PRICE_DROPDOWN = By.cssSelector(".select.select--options.js-option-select.option-dropdown__option.desktop-view >a");
 	public static By PRICE_OPTIONS = By.xpath("//input[@name='option[Amount]']");
 	public static By PRICE_100 = By.cssSelector(".select--options__list >li:nth-child(3)");
- 
+	public static By FRAUD_DISCLOSURE = By.xpath("//div[@class='font-light [&_a]:font-light']");
 	//Form
 	public static By RECIPIENT_MAIL_LABEL = By.cssSelector("[data-tj-qa='gc-product-email-text'],#gift-card-section >div:nth-child(1)"); 
 	public static By RECIPIENT_MAIL_TEXTBOX = By.cssSelector("[data-tj-qa='gc-product-email-input'],#recipient_email");

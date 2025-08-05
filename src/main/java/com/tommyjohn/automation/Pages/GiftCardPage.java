@@ -15,6 +15,11 @@ public class GiftCardPage extends GiftCardPageComponents {
 		new GiftCardPageComponents(driver).GoToOnGiftCardPage();
 	}
 
+	public void ValidateFraudDisclosureInGCPDP() throws Exception {
+		new GiftCardPageComponents(driver).ValidateFraudDisclosureInGCPDP();
+	}
+
+
 	public void verifyfieldsforGCPage() throws Exception{
 		new GiftCardPageComponents(driver).verifyFieldsforGC();
 	}
