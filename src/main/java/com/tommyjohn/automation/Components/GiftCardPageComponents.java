@@ -195,11 +195,28 @@ public class GiftCardPageComponents extends GiftCardPageLocators {
 //		ExtentReport.extentTest.info("Delivery date on inline cart is Displayed :: Correct");
 		softAssert.assertAll();
 	}
-	
-	
-	
-	
-	public void verifyPGCard() throws Exception {
+
+	public void ValidateFraudDisclosureInGCPDP() throws Exception {
+
+		action = new Actions(driver);
+		jse = (JavascriptExecutor) driver;
+		String GC_price = null;
+		SoftAssert soft = new SoftAssert();
+		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		//navigate to Gift card PDP
+		new HomePageComponents(driver).navigateToGiftCard();
+
+		Thread.sleep(3000);
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(GiftCardPageLocators.FRAUD_DISCLOSURE));
+		soft.assertTrue(driver.findElement(FRAUD_DISCLOSURE).isDisplayed(), "Fraud Disclosure is not displayed in GC PDP");
+
+		Reporter.log("Fraud Disclosure is displayed in GC PDP");
+		ExtentReport.extentTest.info("Fraud Disclosure is displayed in GC PDP");
+	}
+
+
+		public void verifyPGCard() throws Exception {
 		action = new Actions(driver);
 		jse=(JavascriptExecutor)driver;
 		String GC_price =null;
