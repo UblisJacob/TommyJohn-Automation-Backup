@@ -104,6 +104,12 @@ public class 	ValidatePDP extends ExtentReport{
 	}
 
 	@Test
+	public void VerifyShopPay() throws Exception {
+		new ProductDetailsPage(driver).VerifyShopPayIsDisplayed();
+
+	}
+
+	@Test
 	public void ValidateReviewSummaryLink() throws Exception {
 		new ProductDetailsPage(driver).ValidateReviewSummaryLink();
 

@@ -40,6 +40,13 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 
 	}
 
+	public void VerifyShopPayIsDisplayed()  {
+
+
+		new ProductDetailsPageComponents(driver).VerifyShopPayIsDisplayed();
+
+	}
+
 	public void ValidateReadAllReviewsLinkInReviewsSummary() throws Exception {
 
 
