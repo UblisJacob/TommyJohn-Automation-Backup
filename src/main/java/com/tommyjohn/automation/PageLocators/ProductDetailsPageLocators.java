@@ -27,6 +27,7 @@ public class ProductDetailsPageLocators {
 	public static By READ_ALL_REVIEWS = By.xpath("//span[@class='yotpo-summary-footer-read-all-text']");
 	public static By FIRST_REVIEW = By.xpath("//span[@class='yotpo-reviewer-name unselectable']");
 	public static By WRITE_A_REVIEW_LINK = By.xpath("//button[@class='yotpo-new-review-btn yotpo-btn-s']");
+	public static By SHOP_PAY = By.xpath("//div[@id='shopify-section-shop-installments']");
 	public static By REVIEW_SUMMARY_TITLE = By.xpath("//div[@class='yotpo-summary-header-title']");
 	//changed
 	public static By PRODUCT_TITLE_1 = By.xpath("//h1[@class='mb-0']");//changed

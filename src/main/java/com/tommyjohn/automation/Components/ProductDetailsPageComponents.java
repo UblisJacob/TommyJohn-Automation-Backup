@@ -287,6 +287,19 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		ExtentReport.extentTest.info("Read All Review link is not functional");
 
 	}
+	public void VerifyShopPayIsDisplayed()
+	{
+
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+		driver.get("https://www.tommyjohn.com/products/360-movement-medium-impact-sports-bra?color=black");
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		SoftAssert softAssert = new SoftAssert();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_TITLE));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SHOP_PAY));
+		softAssert.assertTrue(driver.findElement(SHOP_PAY).isDisplayed(),"Shop Pay is not available");
+		Reporter.log("Shop Pay is available");
+		ExtentReport.extentTest.info("Shop Pay is available");
+	}
 
 	public void ValidateWriteAReviewLink()
 	{
