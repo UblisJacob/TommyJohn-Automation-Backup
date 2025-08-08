@@ -409,7 +409,7 @@ public class BundlePDPComponent extends BundlePDPLocators{
 				jse.executeScript("arguments[0].click();", elem);
 
 
-				String sizename = driver.findElement(By.xpath("(//label[@class='pills not-prose peer-focus-visible:ring-2 peer-focus-visible:ring-offset-1']//span)["+i+"]")).getText();
+				String sizename = driver.findElement(By.xpath("(//label[@for='ProductForm-sizeOption-xs-0-2']//span)["+i+"]")).getText();
 				System.out.println(sizename);
 				String sizevalue = driver.findElement(SIZE_VALUE).getText();
 				System.out.println(sizevalue);

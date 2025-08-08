@@ -43,7 +43,7 @@ public class ValidateCategoryPages {
 
 
 	 @Test
-	 public void ValidateLoadCategoryPage() throws Exception { new
+		 public void ValidateLoadCategoryPage() throws Exception { new
 	 CollectionPage(driver).validateallplpsareloading(); }
 
 	@Test public void ValidateStarRatingIsFunctional() throws Exception { new
