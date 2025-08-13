@@ -602,8 +602,8 @@ public class AddToCartComponents extends AddToCartLocators{
 
 		}
 		return text;
-
 	}
+
 	public String addFinalSaleProducts() throws Exception {
 
 		int count =0;
@@ -700,6 +700,83 @@ public class AddToCartComponents extends AddToCartLocators{
 		}
 		return text;
 
+	}
+
+	public String addGCToCart() throws Exception {
+		int count=0;
+		// call method to navigate to collection page
+		new HomePageComponents(driver).navigateToGiftCard();
+		jse = (JavascriptExecutor) driver;
+//		jse.executeScript("window.scrollBy(0,250)");
+//		// call method to navigate product details page
+//		text = new CollectionPageComponent(driver).navigateToPDP();
+		Thread.sleep(2000);
+
+		allElements = driver.findElements(ProductDetailsPageComponents.GC_VARIANT);
+
+		elementsCount = allElements.size();
+		System.out.println("Color Element count :: " + elementsCount);
+
+		if (elementsCount >= 1) {
+			for (int i = 1; i <= elementsCount; i++) {
+
+				WebElement elemen = driver.findElement(By.xpath("(//input[@name='option[Amount]'])[" + i + "]"));
+				String Amount = driver.findElement(By.xpath("(//input[@name='option[Amount]'])[" + i + "]")).getAttribute("value");
+				jse = (JavascriptExecutor) driver;
+				jse.executeScript("arguments[0].click();", elemen);
+				Thread.sleep(3000);
+
+					try {
+						String[] AddtoBag;
+						AddtoBag = (driver.findElement(By.xpath("//button[@class='button grow']")).getText()).split(" -");
+						String text1 = AddtoBag[0];
+						System.out.println(text1);
+
+						//	WebElement elem = driver.findElement(By.cssSelector(".multiPdp__atc-container>button"));
+
+
+						if (driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON).getText().contains(text1)) {
+
+							System.out.println(Amount +  "is added to Cart");
+							Thread.sleep(5000);
+							jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_CART_BUTTON));
+							Thread.sleep(3000);
+							driver.findElement(INLINE_CART_TITLE);
+							jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
+
+							Thread.sleep(1000);
+							System.out.println("=============================");
+							count++;
+
+						}
+
+					}
+					catch(Exception ex)
+					{
+						System.out.println("Product is OOS");
+					}
+//						if(driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON).getText().contains("Add to Cart")) {
+//
+//							System.out.println(elemen.getText() + elements.getText() + "Product is added to Cart");
+//							jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_CART_BUTTON));
+//							Thread.sleep(2000);
+//							jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
+//							break;
+//
+//						}
+
+
+	//			}
+				if(count==1)
+				{
+					break;
+				}
+			}
+
+			driver.get("https://www.tommyjohn.com/");
+
+		}
+		return text;
 	}
 
 	public String addsingleproductToCart() throws Exception {

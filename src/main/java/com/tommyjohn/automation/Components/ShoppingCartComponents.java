@@ -52,7 +52,24 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 
 	}
 
-	public void ValidateQuantityIncreaseInCartPage()
+	public void VerifyShopPay() throws Exception {
+		SoftAssert softAssert = new SoftAssert();
+		new AddToCartComponents(driver).addToCart();
+		driver.findElement(HomePageLocators.CART_ICON).click();
+
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CART_TITLE));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SHOP_PAY));
+		softAssert.assertTrue(driver.findElement(SHOP_PAY).isDisplayed(),"Shop Pay is not available");
+		Reporter.log("Shop Pay is available");
+		ExtentReport.extentTest.info("Shop Pay is available");
+	}
+
+
+		public void ValidateQuantityIncreaseInCartPage()
 	{
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));

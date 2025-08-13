@@ -39,6 +39,8 @@ public class ProductDetailsPageLocators {
 
 	public static By COLOR_VARIANT = By.xpath("//div[@class='space-y-lg']//span[@class='sr-only']");
 
+	public static By GC_VARIANT = By.xpath("//input[@name='option[Amount]']");
+
 	public static By SIZE_VARIANT = By.xpath("//div[@class='space-y-lg']//span[@class='sr-only']");
 	
 	//first product on PDP
