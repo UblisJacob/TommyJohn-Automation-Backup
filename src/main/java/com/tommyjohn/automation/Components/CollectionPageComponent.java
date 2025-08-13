@@ -1418,7 +1418,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	}
 
 	public void validateallurls() throws Exception {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 
 		//	try {
 		//File src = new File("src/main/resources/AllCollectionPages.xlsx");

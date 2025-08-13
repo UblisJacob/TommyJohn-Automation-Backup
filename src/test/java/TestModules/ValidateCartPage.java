@@ -62,6 +62,12 @@ public class ValidateCartPage extends ExtentReport{
 
 	}
 
+	@Test
+	public void VerifyShopPayInCartPage() throws Exception {
+		new ShoppingCartPage(driver).VerifyShopPay();
+
+	}
+
 
 	@Test
 	public void ValidatePromoCodeErrorScenario() throws Exception {

@@ -103,7 +103,7 @@ public class ShoppingCartLocators {
 	public static By PAYPAL_BUTTON = By.cssSelector("div[aria-label='PayPal']");
 	public static By GPAY_BUTTON = By.xpath("//div[@data-testid = 'GooglePay-button']");
 	public static By AMZ_PAY = By.xpath("//form[@action = 'https://payments.amazon.com/checkout/signin'] /button" );
-	public static By SHOP_PAY = By.xpath("//div[@data-testid='ShopifyPay-button']" );
+	public static By SHOP_PAY = By.xpath("//div[@class='grid gap-3 text-center text-body text-text-secondary']" );
 	
 	
 	public static By CANCEL_PROMO_CODE = By.cssSelector(".tag__wrapper>button");
