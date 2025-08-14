@@ -371,7 +371,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 		SoftAssert softAssert = new SoftAssert();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//a[contains(text(),'Men')]")));
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//a[contains(text(),'Men')])[3]")));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
 		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//span[@class='flex gap-xs items-center leading-none']")));
@@ -456,7 +456,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	public String navigateToProductDetailsPage() throws Exception {
 		String text = null;
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollBy(0,250)");
+		js.executeScript("window.scrollBy(0,800)");
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
 		// get text and click on the first product
