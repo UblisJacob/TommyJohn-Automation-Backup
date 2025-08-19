@@ -74,6 +74,33 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		ExtentReport.extentTest.info("Gift Certificate Fraud Disclosure Is Displayed in Information Page");
 	}
 
+	public void VerifyGiftCardFraudDisclosureInShippingPage() throws Exception {
+		jse = (JavascriptExecutor)driver;
+		SoftAssert softAssert = new SoftAssert();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		driver.findElement(HomePageLocators.CART_ICON).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+//		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+		Thread.sleep(5000);
+		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
+		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
+		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
+		entershippingdetails();
+		Reporter.log("Shipping Address Details entered");
+		ExtentReport.extentTest.info("Shipping Address Details entered");
+		// driver.findElement(CONTINUE_TO_SHIPPING_BUTTON).click();
+		WebElement Continue_shipping = driver.findElement(CONTINUE_TO_SHIPPING_BUTTON);
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", Continue_shipping);
+		Reporter.log("User is navigated to select shipping method");
+		ExtentReport.extentTest.info("User is navigated to select shipping method");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACT_EMAIL));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(GC_FRAUDDISCLOSURE));
+		softAssert.assertTrue(driver.findElement(GC_FRAUDDISCLOSURE).isDisplayed(),"Gift Certificate Fraud Disclosure Is Not Displayed in Shipping Page");
+		Reporter.log("Gift Certificate Fraud Disclosure Is Displayed in Shipping Page");
+		ExtentReport.extentTest.info("Gift Certificate Fraud Disclosure Is Displayed in Shipping Page");
+	}
+
 	public void ValidatePromoCodeErrorScenarioInShippingPage() throws Exception {
 		jse = (JavascriptExecutor)driver;
 		SoftAssert softAssert = new SoftAssert();
