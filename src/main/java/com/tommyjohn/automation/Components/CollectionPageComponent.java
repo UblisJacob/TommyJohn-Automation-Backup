@@ -2056,7 +2056,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PLP_PRODUCTS)));
-		Thread.sleep(10000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(MULTIPACKS_CHECKBOX));
 		driver.findElement(MULTIPACKS_CHECKBOX).click();
 		Thread.sleep(10000);
 		List<WebElement> Packs = driver.findElements(By.xpath("//a[@data-cy='productTileLink']"));
@@ -2221,14 +2221,14 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		Assert.assertTrue(sectionHeader.isDisplayed(), "The Category page section header is displayed");
 
 		for (int i = 1; i < sectionHeaders.size(); i++) {
-			if (driver.findElement(By.xpath("(//p[@class='mb-md font-serif text-body-lg text-text-accent'])["+i+"]")).isDisplayed()) {
+			if (driver.findElement(By.xpath("(//h2[@class='mb-md font-serif text-body-lg text-text-accent'])["+i+"]")).isDisplayed()) {
 
 				Reporter.log("The Category page header "
-						+ driver.findElement(By.xpath("(//p[@class='mb-md font-serif text-body-lg text-text-accent'])["+i+"]")).getText() + " is displayed");
+						+ driver.findElement(By.xpath("(//h2[@class='mb-md font-serif text-body-lg text-text-accent'])["+i+"]")).getText() + " is displayed");
 				ExtentReport.extentTest.info("The Category page header "
-						+ driver.findElement(By.xpath("(//p[@class='mb-md font-serif text-body-lg text-text-accent'])["+i+"]")).getText() + " is displayed");
+						+ driver.findElement(By.xpath("(//h2[@class='mb-md font-serif text-body-lg text-text-accent'])["+i+"]")).getText() + " is displayed");
 				System.out.println("Section Header - "
-						+ driver.findElement(By.xpath("(//p[@class='mb-md font-serif text-body-lg text-text-accent'])["+i+"]")).getText());
+						+ driver.findElement(By.xpath("(//h2[@class='mb-md font-serif text-body-lg text-text-accent'])["+i+"]")).getText());
 
 			} else {
 				ExtentReport.extentTest.info("Section Header is not displayed");

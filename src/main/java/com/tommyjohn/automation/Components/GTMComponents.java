@@ -211,7 +211,7 @@ public class GTMComponents {
         ));
 
         // ✅ Expected JSON Payload for Comparison (Ignoring "sourceId" & "sessionid")
-        String expectedPayload = "[{\"action\":\"add-to-cart\",\"target\":{\"product\":\"5290360471597\"},"
+        String expectedPayload = "[{\"action\":\"add-to-cart\",\"target\":{\"product\":\"7381045739565\"},"
                 + "\"metadata\":{\"locale\":\"en_US\",\"quantity\":1},"
                 + "\"user\":{\"identities\":{},\"segments\":[],\"traits\":{}}}]";
         final boolean[] payloadMatched = {false};
@@ -268,7 +268,7 @@ public class GTMComponents {
                 Optional.empty()  // maxPostDataSizeReportingEnabled
         ));
         // ✅ Expected JSON Payload for "click" event
-        String expectedPayload = "[{\"action\":\"click\",\"target\":{\"product\":\"5290360471597\"},"
+        String expectedPayload = "[{\"action\":\"click\",\"target\":{\"product\":\"7381045739565\"},"
                 + "\"metadata\":{\"locale\":\"en_US\"},"
                 + "\"user\":{\"identities\":{},\"segments\":[],\"traits\":{}}}]";
 
@@ -329,7 +329,7 @@ public class GTMComponents {
         ));
 
         // ✅ Expected JSON Payload for "view" product event
-        String expectedPayload = "[{\"action\":\"view\",\"target\":{\"product\":\"5290360471597\"},"
+        String expectedPayload = "[{\"action\":\"view\",\"target\":{\"product\":\"7381045739565\"},"
                 + "\"metadata\":{\"locale\":\"en_US\"},"
                 + "\"user\":{\"identities\":{},\"segments\":[],\"traits\":{}}}]";
 
@@ -807,7 +807,7 @@ public class GTMComponents {
                             JSONObject properties = jsonPayload.getJSONObject("properties");
 
                             // ✅ Extract values
-                            String productId = properties.optString("product_id", "5290360471597");
+                            String productId = properties.optString("product_id", "7381045739565");
                             String activeVariantSku = properties.optString("active_variant_sku", "3636:S");
                             String defaultSwatchVariantSku = properties.optString("default_swatch_variant_sku", "3636:S");
 
