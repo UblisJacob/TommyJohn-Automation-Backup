@@ -31,6 +31,12 @@ public class CheckoutPage extends CheckoutPageComponents {
 
 	}
 
+	public void VerifyGCFraudDisclosureInPaymentPage() throws Exception
+	{
+		new CheckoutPageComponents(driver).VerifyGiftCardFraudDisclosureInPaymentPage();
+
+	}
+
 	public void ValidatePromoCodeErrorScenarioInInformationPage() throws Exception
 	{
 		new CheckoutPageComponents(driver).ValidatePromoCodeErrorScenarioInInformationPage();
