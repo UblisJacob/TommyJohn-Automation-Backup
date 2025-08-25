@@ -55,6 +55,14 @@ public class ValidateCheckoutPage extends ExtentReport {
 		new CheckoutPage(driver).VerifyGCFraudDisclosureInShippingPage();
 	}
 
+	@Test
+	public void VerifyGCFraudDisclosureInPaymentPage() throws Exception
+	{
+		new AddToCartComponents(driver).addGCToCart();
+		new AddToCartComponents(driver).addsingleproductToCart();
+		new CheckoutPage(driver).VerifyGCFraudDisclosureInPaymentPage();
+	}
+
 
 	@Test
 	public void ValidatePromoCodeErrorScenarioInInformationPage() throws Exception
