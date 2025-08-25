@@ -268,7 +268,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 	public void ValidateReadAllReviewsLinkInReviewsSummary() throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
-		new HomePageComponents(driver).navigateToWomensBriefs();
+		new HomePageComponents(driver).navigateToBraInWomenCategory();
 		new CollectionPageComponent(driver).navigateToProductDetailsPage();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		SoftAssert softAssert = new SoftAssert();
@@ -2843,7 +2843,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 //		JavascriptExecutor executor = (JavascriptExecutor) driver;
 //		executor.executeScript("arguments[0].click();", el);
 
-		driver.get("https://www.tommyjohn.com/products/customized-flex-mid-length-boxer-brief-6?color=cinder");
+		driver.get("https://www.tommyjohn.com/products/cool-cotton-mid-length-boxer-brief-6?color=null");
 
 //		jse = (JavascriptExecutor) driver;
 //		jse.executeScript("window.scrollBy(0,800)");
