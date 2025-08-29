@@ -7,42 +7,42 @@
     </listeners>
 
    <test name="CollectionPageADACheck">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.CollectionPageADACheck" />
         </classes>
     </test>
 
    <test name="HomePageADACheck">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.HomePageADACheck" />
         </classes>
     </test>
 
     <test name="PDPPageADACheck">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.PDPPageADACheck" />
         </classes>
     </test>
 
     <test name="LoginPageADACheck">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.LoginPageADACheck" />
         </classes>
     </test>
 
     <test name="CreateAccountPageADACheck">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.CreateAccountPageADACheck" />
         </classes>
     </test>
 
     <test name="MyAccountPageADACheck">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.MyAccountPageADACheck" />
         </classes>
@@ -63,7 +63,7 @@
 <!--    </test>-->
 
     <test name="MensAllADACheck">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Mens_All_ADACheck" />
         </classes>
@@ -71,448 +71,448 @@
 
     <test name="MensApparelADACheck">
         1
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Mens_Apparel_ADACheck" />
         </classes>
     </test>
 
     <test name="MensBaseLayersADACheck">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Mens_BaseLayers_ADACheck" />
         </classes>
     </test>
 
     <test name="MensBestSellersADACheck">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Mens_BestSellers_ADACheck" />
         </classes>
     </test>
 
     <test name="MensBottomsADACheck">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Mens_Bottoms_ADACheck" />
         </classes>
     </test>
 
     <test name="MensMultipacksADACheck">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Mens_Multipacks_ADACheck" />
         </classes>
     </test>
 
     <test name="MensNewArrivals">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Mens_NewArrivals_ADACheck" />
         </classes>
     </test>
 
     <test name="MensPajamansAndLounge">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Mens_Pajamas_Lounge_ADACHeck" />
         </classes>
     </test>
 
     <test name="MensSales">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Mens_Sales_ADACheck" />
         </classes>
     </test>
 
     <test name="MensSets">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Mens_Sets_ADACheck" />
         </classes>
     </test>
 
     <test name="MensTopsADACheck">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Mens_Tops_ADACheck" />
         </classes>
     </test>
 
     <test name="MensUnderShirtsADACheck">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Mens_Undershirts_ADACheck" />
         </classes>
     </test>
 
     <test name="MensUnderwearADACheck">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Mens_Underwear_ADACheck" />
         </classes>
     </test>
 
     <test name="MensUnderwearQuizADACheck">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Mens_Underwear_Quiz_ADACHeck" />
         </classes>
     </test>
 
     <test name="MensandWomensSalesADACheck">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Mens_Womens_Sales_ADACheck" />
         </classes>
     </test>
 
     <test name="WomensAllADACheck">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Womens_All_ADACheck" />
         </classes>
     </test>
 
     <test name="WomensApparelADACheck">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Womens_Apparel_ADACheck" />
         </classes>
     </test>
 
     <test name="WomensBestSellersADACheck">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Womens_BestSellers_ADACheck" />
         </classes>
     </test>
 
     <test name="WomensBottomsADACheck">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Womens_Bottoms_ADACheck" />
         </classes>
     </test>
 
     <test name="WomensBraQuizADACheck">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Womens_BraQuiz_ADACheck" />
         </classes>
     </test>
 
     <test name="WomensBrasBralletsADACheck">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Womens_Bras_Bralettes_ADACheck" />
         </classes>
     </test>
 
     <test name="WomensIntimatesADACheck">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Womens_Intimates_ADACheck" />
         </classes>
     </test>
 
     <test name="WomensMultipacksADACheck">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Womens_Multipacks_ADACheck" />
         </classes>
     </test>
 
     <test name="WomensNewArivalsADACheck">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Womens_NewArrivals_ADACheck" />
         </classes>
     </test>
 
     <test name="WomensSalesADACheck">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Womens_Sales_ADACheck" />
         </classes>
     </test>
 
     <test name="WomensSetsADACheck">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Womens_Sets_ADACheck" />
         </classes>
     </test>
 
     <test name="WomensSleepLoungeADACheck">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Womens_Sleep_Lounge_ADACheck" />
         </classes>
     </test>
 
     <test name="WomensTopsADACheck">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Womens_Tops_ADACheck" />
         </classes>
     </test>
 
     <test name="WomensUnderwearQuizADACheck">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Womens_UNderwearQuiz_ADACheck" />
         </classes>
     </test>
 
     <test name="FooterShopGiftCards">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Footer_Shop_GiftCards_ADACheck" />
         </classes>
     </test>
 
     <test name="FooterPromotionsSiteWide">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Footer_Promotions_SiteWidePromotion_ADACheck" />
         </classes>
     </test>
 
     <test name="FooterPromotionsReferral">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Footer_Promotions_Referral_ADACheck" />
         </classes>
     </test>
 
     <test name="FooterAccountCatalogRequest">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Footer_Account_CatalogRequest_ADACheck" />
         </classes>
     </test>
 
     <test name="FooterSupportContactUs">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Footer_Support_ContactUs_ADACheck" />
         </classes>
     </test>
 
     <test name="FooterSupportReturnsExchange">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Footer_Support_ReturnExchange_ADACheck" />
         </classes>
     </test>
 
     <test name="FooterSupportShippingReturnPolicy">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Footer_Support_ShippingReturnPolicy_ADACheck" />
         </classes>
     </test>
 
     <test name="FooterSupportTJStores">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Footer_Support_TJStores_ADACheck" />
         </classes>
     </test>
 
     <test name="FooterSupportStoreLocator">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Footer_Support_StoreLocator_ADACheck" />
         </classes>
     </test>
 
     <test name="FooterSupportRetailers">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Footer_Support_Retailers_ADACheck" />
         </classes>
     </test>
 
     <test name="FooterSupportAffiliates">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Footer_Support_Affiliates_ADACheck" />
         </classes>
     </test>
 
     <test name="FooterCompanyAbout">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Footer_Company_About_ADACheck" />
         </classes>
     </test>
 
     <test name="FooterCompanyCareers">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Footer_Company_Careers_ADACheck" />
         </classes>
     </test>
 
     <test name="FooterCompanyPress">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Footer_Company_Press_ADACheck" />
         </classes>
     </test>
 
     <test name="FooterCompanyBlog">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="ADACheckModules.Footer_Company_Blog_ADACheck" />
         </classes>
     </test>
 
     <test name="FooterCompanyReviews">
-        <parameter name="browser" value="firefox"/>
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="ADACheckModules.Footer_Company_Reviews_ADACheck" />
         </classes>
     </test>
 
     <test name="ExploreMens">
-        <parameter name="browser" value="firefox"/>
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="ADACheckModules.Explore_Mens_ADACheck" />
         </classes>
     </test>
 
     <test name="ExploreWomens">
-        <parameter name="browser" value="firefox"/>
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="ADACheckModules.Explore_Womens_ADACheck" />
         </classes>
     </test>
 
     <test name="FabricGuide">
-        <parameter name="browser" value="firefox"/>
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="ADACheckModules.FabricGuide_ADACheck" />
         </classes>
     </test>
 
     <test name="FooterCaliforniaSupplyChainsAct">
-        <parameter name="browser" value="firefox"/>
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="ADACheckModules.Footer_California_Supply_ChainsAct_ADACheck" />
         </classes>
     </test>
 
     <test name="FooterDNSMI">
-        <parameter name="browser" value="firefox"/>
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="ADACheckModules.Footer_DNSMI_ADACheck" />
         </classes>
     </test>
 
     <test name="PrivacyPolicy">
-        <parameter name="browser" value="firefox"/>
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="ADACheckModules.Footer_PrivacyPolicy_ADACheck" />
         </classes>
     </test>
 
     <test name="FooterTermsAndConditions">
-        <parameter name="browser" value="firefox"/>
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="ADACheckModules.Footer_TermsAndConditions_ADACheck" />
         </classes>
     </test>
 
     <test name="HammockPouch">
-        <parameter name="browser" value="firefox"/>
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="ADACheckModules.HammockPouch_ADACheck" />
         </classes>
     </test>
 
     <test name="Mens360Sport">
-        <parameter name="browser" value="firefox"/>
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="ADACheckModules.Mens360Sport_ADACheck" />
         </classes>
     </test>
 
     <test name="MensAir">
-        <parameter name="browser" value="firefox"/>
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="ADACheckModules.Mens_Air_ADACheck" />
         </classes>
     </test>
 
     <test name="MensApollo">
-        <parameter name="browser" value="firefox"/>
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="ADACheckModules.Mens_Apollo_ADACheck" />
         </classes>
     </test>
 
     <test name="MensCoolCotton">
-        <parameter name="browser" value="firefox"/>
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="ADACheckModules.Mens_CoolCotton_ADACheck" />
         </classes>
     </test>
 
     <test name="MensSecondSkin">
-        <parameter name="browser" value="firefox"/>
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="ADACheckModules.Mens_SecondSkin_ADACheck" />
         </classes>
     </test>
 
     <test name="ResetPassword">
-        <parameter name="browser" value="firefox"/>
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="ADACheckModules.ResetPassword_ADACheck" />
         </classes>
     </test>
 
     <test name="WomensAir">
-        <parameter name="browser" value="firefox"/>
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="ADACheckModules.Womens_Air_ADACheck" />
         </classes>
     </test>
 
     <test name="WomensCoolCotton">
-        <parameter name="browser" value="firefox"/>
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="ADACheckModules.Womens_CoolCotton_ADACheck" />
         </classes>
     </test>
 
     <test name="WomensDownTIme">
-        <parameter name="browser" value="firefox"/>
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="ADACheckModules.Womens_DownTime_ADACheck" />
         </classes>
     </test>
 
     <test name="WomensFrenchTerry">
-        <parameter name="browser" value="firefox"/>
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="ADACheckModules.Womens_FrenchTerry_ADACheck" />
         </classes>
     </test>
 
     <test name="WomensPowerNap">
-        <parameter name="browser" value="firefox"/>
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="ADACheckModules.Womens_PowerNap_ADACheck" />
         </classes>
     </test>
 
     <test name="WomensSecondSkin">
-        <parameter name="browser" value="firefox"/>
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="ADACheckModules.Womens_SecondSkin_ADACheck" />
         </classes>
