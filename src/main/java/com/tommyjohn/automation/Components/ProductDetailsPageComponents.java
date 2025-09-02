@@ -3430,6 +3430,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		new HomePageComponents(driver).navigateToMensAll();
 		new CollectionPageComponent(driver).navigateToProductDetailsPage();
 		new HomePageComponents(driver).navigateToAirTriangleBralette();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.RATING_STARS));
 		WebElement ratingstars = driver.findElement(RATING_STARS);
 		jse = (JavascriptExecutor) driver;
 		jse.executeScript("arguments[0].click();", ratingstars);
