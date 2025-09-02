@@ -103,8 +103,9 @@ public class GTMComponents {
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
         // ✅ 6. Expand filters
-        By ALL_FILTERS = By.xpath("//span[@class='icon icon-filters']");
-        wait.until(ExpectedConditions.elementToBeClickable(ALL_FILTERS)).click();
+//        By ALL_FILTERS = By.xpath("//span[@class='icon icon-filters']");
+//        wait.until(ExpectedConditions.elementToBeClickable(ALL_FILTERS)).click();
+        js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//span[@class='icon icon-filters']")));
         Thread.sleep(2000);  // allow panel to expand
 
         // ✅ 7. Expand "Collection" filter
