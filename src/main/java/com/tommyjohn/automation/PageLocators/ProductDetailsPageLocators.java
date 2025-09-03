@@ -9,6 +9,7 @@ public class ProductDetailsPageLocators {
 	public static By PDP_TABS = By.xpath("//span[@class='text-sm text-text-tertiary']");
 	public static By PDP_PRODUCT_SETS = By.xpath("//div[@class='grid grid-flow-col']//span");
 	public static By COMPARISON_MODULE = By.xpath("//div[@class='wrapper pr-0 sm:pr-8']");
+	public static By PRODUCT_ADD_ON = By.xpath("//span[@class='mr-auto']");
 	public static By SHOP_LINER_CTA = By.xpath("//a[@class='button-secondary' and contains(text(),'Shop Liner')]");
 	public static By SHOP_NO_SHOW_CTA = By.xpath("//a[@class='button-secondary' and contains(text(),'Shop No Show')]");
 	public static By PDP_TAB1 = By.xpath("(//span[@class='text-sm text-text-tertiary'])[1]");
