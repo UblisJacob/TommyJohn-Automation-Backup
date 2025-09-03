@@ -71,6 +71,21 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		this.driver = driver;
 	}
 
+	public void VerifyProductAddOn()
+	{
+
+		JavascriptExecutor js1 = (JavascriptExecutor) driver;;
+		SoftAssert softAssert = new SoftAssert();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+//		new HomePageComponents(driver).navigateToBraInWomenCategory();
+//		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		driver.get("https://www.tommyjohn.com/products/second-skin-mid-length-boxer-brief-6-3-pack");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_TITLE));
+		softAssert.assertTrue(driver.findElement(PRODUCT_ADD_ON).isDisplayed(),"Product AddOn is not available");
+		Reporter.log("Product AddOn is available");
+		ExtentReport.extentTest.info("Product AddOn is available");
+	}
+
 	public void ValidateComparisonModule() throws InterruptedException {
 		JavascriptExecutor js1 = (JavascriptExecutor) driver;;
 		SoftAssert softAssert = new SoftAssert();

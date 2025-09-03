@@ -63,6 +63,11 @@ public class 	ValidatePDP extends ExtentReport{
 	}
 
 	@Test
+	public void VerifyProductAddOnIsDispalyed() throws Exception {
+		new ProductDetailsPage(driver).VerifyProductAddOn();
+	}
+
+	@Test
 	public void ValidateComparisonModule() throws Exception {
 		new ProductDetailsPage(driver).ValidateComparisonModule();
 	}

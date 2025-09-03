@@ -82,6 +82,13 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 
 	}
 
+	public void VerifyProductAddOn()  {
+
+
+		new ProductDetailsPageComponents(driver).VerifyProductAddOn();
+
+	}
+
 	public void ValidateComparisonModule() throws InterruptedException {
 
 
