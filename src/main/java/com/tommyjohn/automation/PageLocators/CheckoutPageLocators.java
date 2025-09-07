@@ -29,7 +29,7 @@ public class CheckoutPageLocators {
 	public static By ALREADYHAVEANACCOUNT_TEXT = By.cssSelector(".layout-flex__item > span");
 	public static By LOGIN_LINK = By.xpath("//a[contains(text(),'Log in')]");
 	public static By CHECKOUT_EMAIL = By.xpath("//input[@id='email']");
-	public static By GC_FRAUDDISCLOSURE = By.xpath("(//span[contains(text(),'Avoid Gift Card Scams')]//following::span[contains(text(),'Never use a gift card to pay a debt, and never give gift card information to someone you don’t know. Report a scam or learn more: ')])[2]");
+	public static By GC_FRAUDDISCLOSURE = By.xpath("//span[contains(text(),'Avoid Gift Card Scams')]//following::span[contains(text(),'Never use a gift card to pay a debt, and never give gift card information to someone you don’t know. Report a scam or learn more: ')]");
 	
 	//Contact info (after logging in)
 	public static By LOGGED_IN_EMAIL = By.cssSelector(".logged-in-customer-information__paragraph span:nth-child(2)");
@@ -69,7 +69,7 @@ public class CheckoutPageLocators {
 	public static By DISCOUNT_CODE_TEXTBOX = By.xpath("//input[@name='reductions']"); ////input[@name='reductions']
 	//public static By APPLY_DISCOUNT_BUTTON = By.cssSelector(".field__input-btn");
 	public static By APPLY_DISCOUNT_BUTTON = By.xpath("(//button[@type='submit'])[4]"); //(//button[@type='submit'])[4]
-	public static By SUBTOTAL = By.xpath("(//span[contains(text(),'Subtotal')])[2]");
+	public static By SUBTOTAL = By.xpath("//span[contains(text(),'Subtotal')]");
 	public static By SHIPPING = By.xpath("(//span[contains(text(),'Shipping')])[2]"); //(//span[contains(text(),'Shipping')])[2]
 	public static By APPLIED_PROMO_CODE = By.xpath("(//span[@class='i8os0m3']//span)[2]");
 	public static By PROMO_CODE_ERROR = By.xpath("//div[@class='go06b0']//span"); ////div[@class='go06b0']//span
@@ -100,7 +100,7 @@ public class CheckoutPageLocators {
 	public static By SHIPPING_RADIO_BUTTON = By.xpath("//input[@type='radio']");
 	public static By RETURN_LINK = By.xpath("//span[contains(text(),'Return to information')]");
 	public static By CONTINUE_TO_PAYMENT_BUTTON = By.xpath("//div[@class='MV9Am']//button");
-	public static By FREE_SHIPPING = By.xpath("(//span[contains(text(),'Free')])[2]");
+	public static By FREE_SHIPPING = By.xpath("//span[contains(text(),'Free')]");
 	public static By NON_FREE_SHIPPING = By.xpath("(//span[contains(text(),'$7.95')])"); //(//span[contains(text(),'$7.95')])
 
 
