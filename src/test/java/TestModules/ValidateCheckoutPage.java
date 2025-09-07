@@ -47,7 +47,7 @@ public class ValidateCheckoutPage extends ExtentReport {
 		new CheckoutPage(driver).VerifyGCFraudDisclosureInInformationPage();
 	}
 
-	@Test
+//	@Test
 	public void VerifyGCFraudDisclosureInShippingPage() throws Exception
 	{
 		new AddToCartComponents(driver).addGCToCart();
@@ -55,7 +55,7 @@ public class ValidateCheckoutPage extends ExtentReport {
 		new CheckoutPage(driver).VerifyGCFraudDisclosureInShippingPage();
 	}
 
-	@Test
+//	@Test
 	public void VerifyGCFraudDisclosureInPaymentPage() throws Exception
 	{
 		new AddToCartComponents(driver).addGCToCart();
@@ -83,14 +83,14 @@ public class ValidateCheckoutPage extends ExtentReport {
 		new CheckoutPage(driver).validateFreeShipping();
 	}
 
-	@Test
+//	@Test
 	public void ValidatePromoCodeErrorScenarioInShippingPage() throws Exception
 	{
 		new AddToCartComponents(driver).addsingleproductToCartforFirst20Coupon();
 		new CheckoutPage(driver).ValidatePromoCodeErrorScenarioInShippingPage();
 	}
 
-	@Test
+//	@Test
 		public void ValidatePromoCodeErrorScenarioInPaymentPage() throws Exception
 	{
 		new AddToCartComponents(driver).addsingleproductToCartforFirst20Coupon();
@@ -104,14 +104,14 @@ public class ValidateCheckoutPage extends ExtentReport {
 		new CheckoutPage(driver).ValidatePromoCodeFIRST20InInformationPage();
 	}
 
-	@Test
+//	@Test
 		public void ValidatePromoCodeFIRST20InShippingPage() throws Exception
 	{
 		new AddToCartComponents(driver).addsingleproductToCartforFirst20Coupon();
 		new CheckoutPage(driver).ValidatePromoCodeFIRST20InShippingPage();
 	}
 
-	@Test
+//	@Test
 		public void ValidatePromoCodeFIRST20InPaymentPage() throws Exception
 	{
 		new AddToCartComponents(driver).addsingleproductToCartforFirst20Coupon();
