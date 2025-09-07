@@ -1295,7 +1295,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 
 	public void paymentpage() throws Exception {
 		jse = (JavascriptExecutor) driver;
-		softAssert = new SoftAssert();
+		SoftAssert softAssert = new SoftAssert();
 		wait=new WebDriverWait(driver, Duration.ofSeconds(60));
 		new AddToCartComponents(driver).addsingleproductToCart();
 		
@@ -1424,7 +1424,9 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
 		Thread.sleep(3000);
 		driver.findElement(DISCOUNT_CODE_TEXTBOX).sendKeys(promocode);
-		driver.findElement(APPLY_DISCOUNT_BUTTON).click();
+		WebElement element = driver.findElement(APPLY_DISCOUNT_BUTTON);
+		jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", element);
 		// Thread.sleep(3000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PROMO_CODE_ERROR));
 		System.out.println(driver.findElement(PROMO_CODE_ERROR).getText());
