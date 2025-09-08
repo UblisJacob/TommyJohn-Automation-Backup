@@ -132,7 +132,7 @@ public class 	ValidatePDP extends ExtentReport{
 
 	}
 
-//	@Test
+	@Test
 	public void ValidatesectionsinPDP() throws Exception {
 		new ProductDetailsPage(driver).ValidatesectionsinPDP();
 
