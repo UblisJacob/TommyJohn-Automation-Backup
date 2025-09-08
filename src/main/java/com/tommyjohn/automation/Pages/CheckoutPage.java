@@ -19,9 +19,8 @@ public class CheckoutPage extends CheckoutPageComponents {
 	}
 
 
-	public void VerifyGCFraudDisclosureInInformationPage() throws Exception
-	{
-		new CheckoutPageComponents(driver).VerifyGiftCardFraudDisclosureInInformationPage();
+	public void VerifyGCFraudDisclosureInCheckoutPage() throws InterruptedException {
+		new CheckoutPageComponents(driver).VerifyGCFraudDisclosureInCheckoutPage();
 
 	}
 
@@ -37,9 +36,9 @@ public class CheckoutPage extends CheckoutPageComponents {
 
 	}
 
-	public void ValidatePromoCodeErrorScenarioInInformationPage() throws Exception
+	public void ValidatePromoCodeErrorScenarioInCheckoutPage() throws Exception
 	{
-		new CheckoutPageComponents(driver).ValidatePromoCodeErrorScenarioInInformationPage();
+		new CheckoutPageComponents(driver).ValidatePromoCodeErrorScenarioInCheckoutPage();
 
 	}
 
@@ -75,9 +74,9 @@ public class CheckoutPage extends CheckoutPageComponents {
 	}
 
 
-	public void ValidatePromoCodeFIRST20InInformationPage() throws Exception
+	public void ValidatePromoCodeFIRST20InCheckoutPage() throws Exception
 	{
-		new CheckoutPageComponents(driver).ValidatePromoCodeFIRST20InInformationPage();
+		new CheckoutPageComponents(driver).ValidatePromoCodeFIRST20InCheckoutPage();
 
 	}
 
@@ -120,33 +119,33 @@ public class CheckoutPage extends CheckoutPageComponents {
 		new CheckoutPageComponents(driver).registeredusercheckoutflow();
 		
 	}
-	public void Validateinformationpage() throws Exception
+	public void ValidateContactSectionOfCheckout() throws Exception
 	{
-		new CheckoutPageComponents(driver).informationpage();
+		new CheckoutPageComponents(driver).ValidateContactSectionOfCheckout();
 
 	}
 
-	public void ValidateFieldsinInformationPage() throws Exception
+	public void ValidateFieldsinCheckout() throws Exception
 	{
-		new CheckoutPageComponents(driver).ValidateRequiredFieldsinInformationpage();
+		new CheckoutPageComponents(driver).ValidateFieldsinCheckout();
 
 	}
 
-	public void Validateshippingpage() throws Exception
+	public void ValidateshippingSection() throws Exception
 	{
-		new CheckoutPageComponents(driver).shippingpage();
+		new CheckoutPageComponents(driver).ValidateshippingSection();
 		
 	}
 	
-	public void Validatepaymentpage() throws Exception
+	public void Validatepaymentsection() throws Exception
 	{
-		new CheckoutPageComponents(driver).paymentpage();
+		new CheckoutPageComponents(driver).Validatepaymentsection();
 		
 	}
 
-	public void ValidateFieldsinIPaymentPage() throws Exception
+	public void ValidateFieldsinIPaymentSection() throws Exception
 	{
-		new CheckoutPageComponents(driver).ValidateRequiredFieldsinPaymentpage();
+		new CheckoutPageComponents(driver).ValidateFieldsinIPaymentSection();
 
 	}
 
@@ -156,21 +155,21 @@ public class CheckoutPage extends CheckoutPageComponents {
 
 	}
 
-	public void ValidateSaveMyInformationInPaymentPage() throws Exception
+	public void ValidateSaveMyInformationInPaymentSection() throws Exception
 	{
-		new CheckoutPageComponents(driver).ValidateSaveMyInformationInPaymentPage();
+		new CheckoutPageComponents(driver).ValidateSaveMyInformationInPaymentSection();
 
 	}
 
-	public void ValidateBillingAddressFieldInPaymentPage() throws Exception
+	public void ValidateBillingAddressFieldInPaymentSection() throws Exception
 	{
-		new CheckoutPageComponents(driver).ValidateBillingAddressFieldInPaymentPage();
+		new CheckoutPageComponents(driver).ValidateBillingAddressFieldInPaymentSection();
 
 	}
 
-	public void ValidateRequiredBillingAddressFieldsInPaymentPage() throws Exception
+	public void ValidateRequiredBillingAddressFieldsInPaymentSection() throws Exception
 	{
-		new CheckoutPageComponents(driver).ValidateRequiredBillingAddressFieldsInPaymentPage();
+		new CheckoutPageComponents(driver).ValidateRequiredBillingAddressFieldsInPaymentSection();
 
 	}
 
