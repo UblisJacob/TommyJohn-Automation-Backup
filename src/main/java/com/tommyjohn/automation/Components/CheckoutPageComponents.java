@@ -43,7 +43,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		this.driver = driver;
 	}
 
-	public void ValidatePromoCodeErrorScenarioInInformationPage() throws Exception {
+	public void ValidatePromoCodeErrorScenarioInCheckoutPage() throws Exception {
 		jse = (JavascriptExecutor)driver;
 		SoftAssert softAssert = new SoftAssert();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -57,7 +57,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 
 	}
 
-	public void VerifyGiftCardFraudDisclosureInInformationPage() throws InterruptedException {
+	public void VerifyGCFraudDisclosureInCheckoutPage() throws InterruptedException {
 
 		jse = (JavascriptExecutor)driver;
 		SoftAssert softAssert = new SoftAssert();
@@ -436,7 +436,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		ExtentReport.extentTest.info("3 for $48 functionality works fine in Payment page");
 	}
 
-	public void ValidatePromoCodeFIRST20InInformationPage() throws Exception {
+	public void ValidatePromoCodeFIRST20InCheckoutPage() throws Exception {
 		WebElement element;
 		SoftAssert softAssert = new SoftAssert();
 		jse = (JavascriptExecutor)driver;
@@ -787,7 +787,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		softAssert.assertAll();
 	}
 
-	public void informationpage() throws Exception {
+	public void ValidateContactSectionOfCheckout() throws Exception {
 		softAssert = new SoftAssert();
 		jse = (JavascriptExecutor)driver;
 		wait=new WebDriverWait(driver, Duration.ofSeconds(60));
@@ -836,7 +836,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 
 	}
 
-	public void ValidateRequiredFieldsinInformationpage() throws Exception {
+	public void ValidateFieldsinCheckout() throws Exception {
 
 		softAssert = new SoftAssert();
 		jse = (JavascriptExecutor)driver;
@@ -874,7 +874,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		ExtentReport.extentTest.info("Phone Number Field is displayed");
 	}
 
-	public void ValidateSaveMyInformationInPaymentPage() throws Exception {
+	public void ValidateSaveMyInformationInPaymentSection() throws Exception {
 		jse = (JavascriptExecutor) driver;
 		softAssert = new SoftAssert();
 		wait=new WebDriverWait(driver, Duration.ofSeconds(60));
@@ -920,7 +920,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 
 	}
 
-	public void ValidateBillingAddressFieldInPaymentPage() throws Exception {
+	public void ValidateBillingAddressFieldInPaymentSection() throws Exception {
 		jse = (JavascriptExecutor) driver;
 		softAssert = new SoftAssert();
 		wait=new WebDriverWait(driver, Duration.ofSeconds(60));
@@ -1045,13 +1045,14 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 //		ExtentReport.extentTest.info("User is navigated to select shipping method");
 //		Thread.sleep(10000);
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACT_EMAIL));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FREE_SHIPPING));
 		softAssert.assertTrue(driver.findElement(FREE_SHIPPING).isDisplayed(),"Free Shipping is not redeemable when the Cart contains products with more than $75");
 		Reporter.log("Free Shipping is redeemable when the Product Cart contains products with more than $75");
 		ExtentReport.extentTest.info("Free Shipping is redeemable when the Product Cart contains products with more than $75");
 
 	}
 
-	public void ValidateRequiredBillingAddressFieldsInPaymentPage() throws Exception {
+	public void ValidateRequiredBillingAddressFieldsInPaymentSection() throws Exception {
 		jse = (JavascriptExecutor) driver;
 		softAssert = new SoftAssert();
 		wait=new WebDriverWait(driver, Duration.ofSeconds(60));
@@ -1171,7 +1172,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 				ExtentReport.extentTest.info("Error Message displayed for all the required fields");
 	}
 
-	public void ValidateRequiredFieldsinPaymentpage() throws Exception {
+	public void ValidateFieldsinIPaymentSection() throws Exception {
 		jse = (JavascriptExecutor) driver;
 		softAssert = new SoftAssert();
 		wait=new WebDriverWait(driver, Duration.ofSeconds(60));
@@ -1239,7 +1240,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 
 	}
 
-	public void shippingpage() throws Exception {
+	public void ValidateshippingSection() throws Exception {
 		softAssert = new SoftAssert();
 		wait=new WebDriverWait(driver, Duration.ofSeconds(60));
 		
@@ -1256,7 +1257,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		Thread.sleep(5000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
 		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
-		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
+		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Delivery", "Delivery Title is not displayed");
 		entershippingdetails();
 		Reporter.log("Shipping Address Details entered");
 		ExtentReport.extentTest.info("Shipping Address Details entered");
@@ -1275,17 +1276,16 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 //		softAssert.assertTrue(driver.findElement(CHANGE_LINK_CONTACT).isDisplayed(), "Contact change link is not present to chnage ");
 //		softAssert.assertTrue(driver.findElement(CHANGE_LINK_SHIP_TO).isDisplayed(), "Ship To change link is not present to chnage ");
 		softAssert.assertTrue(driver.findElement(SHIPPING_TEXT).isDisplayed(), "Shipping text is not present");
-		
-		wait.until(ExpectedConditions.elementToBeClickable(CONTINUE_TO_PAYMENT_BUTTON));
-		softAssert.assertTrue(driver.findElement(CONTINUE_TO_PAYMENT_BUTTON).isDisplayed(), "Continue to paymnet method button is not present");
-//		softAssert.assertTrue(driver.findElement(RETURN_LINK).isDisplayed(), "return link is not present");
-		
-		List<WebElement> shipmethods = driver.findElements(By.xpath("//div[@class='sqcDF']//p"));
-		for (WebElement method : shipmethods) {
-			wait.until(ExpectedConditions.textToBePresentInElement(method, "Ground"));
-			System.out.println(method.getText());
+		softAssert.assertTrue(driver.findElement(SHIPPING_TEXT).isDisplayed(), "Shipping text is not present");
+//		wait.until(ExpectedConditions.elementToBeClickable(CONTINUE_TO_PAYMENT_BUTTON));
+//		softAssert.assertTrue(driver.findElement(CONTINUE_TO_PAYMENT_BUTTON).isDisplayed(), "Continue to paymnet method button is not present");
+		List<WebElement> shipmethods = driver.findElements(By.xpath("//div[@class='sqcDF']//strong"));
+		for (int i = 0; i < shipmethods.size(); i++) {
+			System.out.println(shipmethods.get(i).getText());
 		}
-		
+
+
+
 //		sidebar();
 //
 //		CheckPromoCodeApplication("TECHTESTORDER");
@@ -1293,9 +1293,9 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		softAssert.assertAll();
 	}
 
-	public void paymentpage() throws Exception {
+	public void Validatepaymentsection() throws Exception {
 		jse = (JavascriptExecutor) driver;
-		SoftAssert softAssert = new SoftAssert();
+		softAssert = new SoftAssert();
 		wait=new WebDriverWait(driver, Duration.ofSeconds(60));
 		new AddToCartComponents(driver).addsingleproductToCart();
 		
@@ -1311,7 +1311,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
 		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
 
-		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
+		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Delivery", "Delivery title Is not present");
 		Thread.sleep(5000);
 		entershippingdetails();
 		Reporter.log("Shipping Address Details entered");
@@ -1376,8 +1376,6 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 
 	public void entershippingdetails() throws Exception {
 		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
-		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
 		wait.until(ExpectedConditions.presenceOfElementLocated(FIRSTNAME_TEXTBOX));
 		Thread.sleep(2000);
 		driver.findElement(FIRSTNAME_TEXTBOX).clear();
@@ -1427,6 +1425,10 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		WebElement element = driver.findElement(APPLY_DISCOUNT_BUTTON);
 		jse = (JavascriptExecutor) driver;
 		jse.executeScript("arguments[0].click();", element);
+		driver.findElement(DISCOUNT_CODE_TEXTBOX).sendKeys(promocode);
+		WebElement element1 = driver.findElement(APPLY_DISCOUNT_BUTTON);
+		jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", element1);
 		// Thread.sleep(3000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PROMO_CODE_ERROR));
 		System.out.println(driver.findElement(PROMO_CODE_ERROR).getText());
@@ -1446,6 +1448,10 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		jse = (JavascriptExecutor) driver;
 		jse.executeScript("arguments[0].click();", element);
 		// Thread.sleep(3000);
+		driver.findElement(DISCOUNT_CODE_TEXTBOX).sendKeys("FIRST20");
+		WebElement element1 = driver.findElement(APPLY_DISCOUNT_BUTTON);
+		jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", element1);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(APPLIED_PROMO_CODE));
 		System.out.println(driver.findElement(APPLIED_PROMO_CODE).getText());
 		softAssert.assertEquals(driver.findElement(APPLIED_PROMO_CODE).getText(), promocode, "The Coupon code FIRST20 is not getting applied in Information page");

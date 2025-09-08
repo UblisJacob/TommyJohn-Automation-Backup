@@ -41,10 +41,10 @@ public class ValidateCheckoutPage extends ExtentReport {
 	}
 
 	@Test
-	public void VerifyGCFraudDisclosureInInformationPage() throws Exception
+	public void VerifyGCFraudDisclosureInCheckoutPage() throws Exception
 	{
 		new AddToCartComponents(driver).addGCToCart();
-		new CheckoutPage(driver).VerifyGCFraudDisclosureInInformationPage();
+		new CheckoutPage(driver).VerifyGCFraudDisclosureInCheckoutPage();
 	}
 
 //	@Test
@@ -68,7 +68,7 @@ public class ValidateCheckoutPage extends ExtentReport {
 	public void ValidatePromoCodeErrorScenario() throws Exception
 	{
 		new AddToCartComponents(driver).addsingleproductToCartforFirst20Coupon();
-		new CheckoutPage(driver).ValidatePromoCodeErrorScenarioInInformationPage();
+		new CheckoutPage(driver).ValidatePromoCodeErrorScenarioInCheckoutPage();
 	}
 
 	@Test
@@ -101,7 +101,7 @@ public class ValidateCheckoutPage extends ExtentReport {
 	public void ValidatePromoCodeFIRST20() throws Exception
 	{
 		new AddToCartComponents(driver).addsingleproductToCartforFirst20Coupon();
-		new CheckoutPage(driver).ValidatePromoCodeFIRST20InInformationPage();
+		new CheckoutPage(driver).ValidatePromoCodeFIRST20InCheckoutPage();
 	}
 
 //	@Test
@@ -154,33 +154,31 @@ public class ValidateCheckoutPage extends ExtentReport {
 	@Test
 	public void ValidateContactSectionOfCheckout() throws Exception
 	{
-		new CheckoutPage(driver).Validateinformationpage();
+		new CheckoutPage(driver).ValidateContactSectionOfCheckout();
 	}
 
 	@Test
 	public void ValidateFieldsInContactSectionOfCheckout() throws Exception
 	{
-		new CheckoutPage(driver).ValidateFieldsinInformationPage();
+		new CheckoutPage(driver).ValidateFieldsinCheckout();
 	}
 
-
-	
 	@Test
 	public void ValidateShippingSectionOfCheckout() throws Exception
 	{
-		new CheckoutPage(driver).Validateshippingpage();
+		new CheckoutPage(driver).ValidateshippingSection();
 	}
 	
 	@Test
 	public void ValidatePaymentSectionOfCheckout() throws Exception
 	{
-		new CheckoutPage(driver).Validatepaymentpage();
+		new CheckoutPage(driver).Validatepaymentsection();
 	}
 
 	@Test
 	public void ValidateFieldsInPaymentSectionOfCheckout() throws Exception
 	{
-		new CheckoutPage(driver).ValidateFieldsinIPaymentPage();
+		new CheckoutPage(driver).ValidateFieldsinIPaymentSection();
 	}
 
 	@Test
@@ -192,20 +190,20 @@ public class ValidateCheckoutPage extends ExtentReport {
 	@Test
 	public void ValidateSaveMyInformationSection() throws Exception
 	{
-		new CheckoutPage(driver).ValidateSaveMyInformationInPaymentPage();
+		new CheckoutPage(driver).ValidateSaveMyInformationInPaymentSection();
 	}
 
 	@Test
 	public void ValidateBillingAddressField() throws Exception
 	{
-		new CheckoutPage(driver).ValidateBillingAddressFieldInPaymentPage();
+		new CheckoutPage(driver).ValidateBillingAddressFieldInPaymentSection();
 	}
 
 
 	@Test
 	public void ValidateRequiredBillingAddressFields() throws Exception
 	{
-		new CheckoutPage(driver).ValidateRequiredBillingAddressFieldsInPaymentPage();
+		new CheckoutPage(driver).ValidateRequiredBillingAddressFieldsInPaymentSection();
 	}
 
 	@AfterMethod(alwaysRun = true)
