@@ -27,7 +27,7 @@ public class CheckoutPageLocators {
 	//Contact info (before logging in)
 	public static By CONTACTINFO_TEXT = By.xpath("//h2[@id='contact']"); ////h2[@id='contact']
 	public static By ALREADYHAVEANACCOUNT_TEXT = By.cssSelector(".layout-flex__item > span");
-	public static By LOGIN_LINK = By.xpath("//a[contains(text(),'Log in')]");
+	public static By LOGIN_LINK = By.xpath("//a[contains(text(),'Sign in')]");
 	public static By CHECKOUT_EMAIL = By.xpath("//input[@id='email']");
 	public static By GC_FRAUDDISCLOSURE = By.xpath("//span[contains(text(),'Avoid Gift Card Scams')]//following::span[contains(text(),'Never use a gift card to pay a debt, and never give gift card information to someone you don’t know. Report a scam or learn more: ')]");
 	
@@ -71,7 +71,7 @@ public class CheckoutPageLocators {
 	public static By APPLY_DISCOUNT_BUTTON = By.xpath("(//button[@type='submit'])[4]"); //(//button[@type='submit'])[4]
 	public static By SUBTOTAL = By.xpath("//span[contains(text(),'Subtotal')]");
 	public static By SHIPPING = By.xpath("(//span[contains(text(),'Shipping')])[2]"); //(//span[contains(text(),'Shipping')])[2]
-	public static By APPLIED_PROMO_CODE = By.xpath("//span[@class='i8os0m3']//span");
+	public static By APPLIED_PROMO_CODE = By.xpath("(//span[@class='_14brw3']//span)[2]");
 	public static By PROMO_CODE_ERROR = By.xpath("//div[@class='go06b0']//span"); ////div[@class='go06b0']//span
 	public static By INCORRECT_PROMO_CODE_ERROR_MESSAGE = By.xpath("//p[@id='error-for-ReductionsInput0']");
 	public static By CANCEL_PROMO_CODE = By.xpath("//button[@aria-label='Remove FIRST20']");

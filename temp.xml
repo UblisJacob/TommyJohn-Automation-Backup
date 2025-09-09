@@ -11,9 +11,9 @@
     <test name="Tests">
         <parameter name="browser" value="chrome"/>
         <classes>
-                    <class name="TestModules.ValidateGTM">
+                    <class name="TestModules.ValidateSearchPages">
                 <methods>
-                    <include name="ValidateGTMForFredHopper"/>
+                    <include name="VerifySearchSearchFieldInNavigation"/>
                 </methods>
             </class>
         </classes>
