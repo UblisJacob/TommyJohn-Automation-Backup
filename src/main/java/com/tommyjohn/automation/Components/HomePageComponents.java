@@ -136,14 +136,21 @@ public class HomePageComponents extends HomePageLocators {
 	//	driver.get("https://www.tommyjohn.com/pages/explore?toggle_content=men");
 //		driver.get("https://www.tommyjohn.com/collections/mens-all");
 //		driver.navigate().back();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
-		Thread.sleep(2000);
-		driver.findElement(HERO_SLIDER_SHOPMENS_CTA).click();
-		Thread.sleep(3000);
-		element = driver.findElement(PAGEHEADER);
-		softAssert.assertTrue(element.isDisplayed(),"Shop Men's CTA is not functional in Hero Slider");
-		Reporter.log("Shop Men's CTA is functional in Hero Slider");
-		ExtentReport.extentTest.info("Shop Men's CTA is functional in Hero Slider");
+		if(driver.findElement(TOGGLE_BUTTON).isDisplayed())
+		{
+			System.out.println("Toggle option is displayed");
+
+		}
+		else {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
+			Thread.sleep(2000);
+			driver.findElement(HERO_SLIDER_SHOPMENS_CTA).click();
+			Thread.sleep(3000);
+			element = driver.findElement(PAGEHEADER);
+			softAssert.assertTrue(element.isDisplayed(), "Shop Men's CTA is not functional in Hero Slider");
+			Reporter.log("Shop Men's CTA is functional in Hero Slider");
+			ExtentReport.extentTest.info("Shop Men's CTA is functional in Hero Slider");
+		}
 	}
 
 	public void ValidateBrandTicker() throws InterruptedException {
@@ -183,24 +190,30 @@ public class HomePageComponents extends HomePageLocators {
 //		driver.get("https://www.tommyjohn.com/collections/mens-all");
 //		driver.navigate().back();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
-		js.executeScript("window.scrollBy(0,1500)");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(CATEGORY_SELECTOR_SECTION));
-		js.executeScript("arguments[0].click();", driver.findElement(CATEGORY_SELECTOR_MEN));
-	//	driver.findElement(CATEGORY_SELECTOR_MEN).click();
-		list = driver.findElements(MEN_CATEGORIES);
-		for(int i=1;i<list.size();i++)
+		if(driver.findElement(TOGGLE_BUTTON).isDisplayed())
 		{
-			Thread.sleep(10000);
-			js.executeScript("arguments[0].click();", driver.findElement(By.xpath("((//ul[@class='mt-6 md:mt-8'])[1]//li//a)["+i+"]")));
-//			driver.findElement(By.xpath("((//ul[@class='mt-6 md:mt-8'])[1]//li)["+i+"]")).click();
-			softAssert.assertTrue(driver.findElement(PAGEHEADER).isDisplayed(),"Categories in Men is not functional");
-			driver.navigate().back();
-			js.executeScript("window.scrollBy(0,1000)");
+			System.out.println("Toggle option is displayed");
 
 		}
-		softAssert.assertAll();
-		Reporter.log("Categories in Men Category Selector section are functional");
-		ExtentReport.extentTest.info("Categories in Men Category Selector section are functional");
+		else {
+			js.executeScript("window.scrollBy(0,1500)");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(CATEGORY_SELECTOR_SECTION));
+			js.executeScript("arguments[0].click();", driver.findElement(CATEGORY_SELECTOR_MEN));
+			//	driver.findElement(CATEGORY_SELECTOR_MEN).click();
+			list = driver.findElements(MEN_CATEGORIES);
+			for (int i = 1; i < list.size(); i++) {
+				Thread.sleep(10000);
+				js.executeScript("arguments[0].click();", driver.findElement(By.xpath("((//ul[@class='mt-6 md:mt-8'])[1]//li//a)[" + i + "]")));
+//			driver.findElement(By.xpath("((//ul[@class='mt-6 md:mt-8'])[1]//li)["+i+"]")).click();
+				softAssert.assertTrue(driver.findElement(PAGEHEADER).isDisplayed(), "Categories in Men is not functional");
+				driver.navigate().back();
+				js.executeScript("window.scrollBy(0,1000)");
+
+			}
+			softAssert.assertAll();
+			Reporter.log("Categories in Men Category Selector section are functional");
+			ExtentReport.extentTest.info("Categories in Men Category Selector section are functional");
+		}
 	}
 
 	public void ValidateWomenInCategorySelector() throws InterruptedException {
@@ -209,27 +222,33 @@ public class HomePageComponents extends HomePageLocators {
 //		driver.get("https://www.tommyjohn.com/collections/mens-all");
 //		driver.navigate().back();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
-		Thread.sleep(5000);
-		js.executeScript("window.scrollBy(0,1000)");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(CATEGORY_SELECTOR_SECTION));
-		js.executeScript("arguments[0].click();", driver.findElement(CATEGORY_SELECTOR_WOMEN));
-//		driver.findElement(CATEGORY_SELECTOR_WOMEN).click();
-		list = driver.findElements(WOMEN_CATEGORIES);
-		for(int i=1;i<list.size();i++)
+		if(driver.findElement(TOGGLE_BUTTON).isDisplayed())
 		{
-			Thread.sleep(10000);
-			js.executeScript("arguments[0].click();", driver.findElement(By.xpath("((//ul[@class='mt-6 md:mt-8'])[2]//li//a)["+i+"]")));
-			softAssert.assertTrue(driver.findElement(PAGEHEADER).isDisplayed(),"Categories in Men is not functional");
-			driver.navigate().back();
-			js.executeScript("window.scrollBy(0,1000)");
-		//	driver.findElement(CATEGORY_SELECTOR_WOMEN).click();
-			js.executeScript("arguments[0].click();", driver.findElement(CATEGORY_SELECTOR_WOMEN));
-
+			System.out.println("Toggle option is displayed");
 
 		}
-		softAssert.assertAll();
-		Reporter.log("Categories in Men Category Selector section are functional");
-		ExtentReport.extentTest.info("Categories in Men Category Selector section are functional");
+		else {
+			Thread.sleep(5000);
+			js.executeScript("window.scrollBy(0,1000)");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(CATEGORY_SELECTOR_SECTION));
+			js.executeScript("arguments[0].click();", driver.findElement(CATEGORY_SELECTOR_WOMEN));
+//		driver.findElement(CATEGORY_SELECTOR_WOMEN).click();
+			list = driver.findElements(WOMEN_CATEGORIES);
+			for (int i = 1; i < list.size(); i++) {
+				Thread.sleep(10000);
+				js.executeScript("arguments[0].click();", driver.findElement(By.xpath("((//ul[@class='mt-6 md:mt-8'])[2]//li//a)[" + i + "]")));
+				softAssert.assertTrue(driver.findElement(PAGEHEADER).isDisplayed(), "Categories in Men is not functional");
+				driver.navigate().back();
+				js.executeScript("window.scrollBy(0,1000)");
+				//	driver.findElement(CATEGORY_SELECTOR_WOMEN).click();
+				js.executeScript("arguments[0].click();", driver.findElement(CATEGORY_SELECTOR_WOMEN));
+
+
+			}
+			softAssert.assertAll();
+			Reporter.log("Categories in Men Category Selector section are functional");
+			ExtentReport.extentTest.info("Categories in Men Category Selector section are functional");
+		}
 	}
 
 //	public void ValidateShopMensInHeroBanner() throws InterruptedException {
@@ -415,36 +434,45 @@ public class HomePageComponents extends HomePageLocators {
 		// Wait for the hero banner image to be visible
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
 
-		// Scroll to the 'Our Story' CTA
-		Thread.sleep(5000);
-		js.executeScript("window.scrollBy(0, 2000);");
-		WebElement ourStoryCTA = driver.findElement(OUR_STORY_CTA);
-		js.executeScript("arguments[0].scrollIntoView(true);", ourStoryCTA);
-		js.executeScript("window.scrollBy(0, -100);"); // Adjust scrolling for sticky headers
-		Thread.sleep(500); // Optional: Add a delay for smoother scrolling
 
-		try {
-			// Attempt to click the 'Our Story' CTA
-			wait.until(ExpectedConditions.elementToBeClickable(OUR_STORY_CTA)).click();
-		} catch (WebDriverException e) {
-			// Fallback to JavaScript click if standard click fails
-			js.executeScript("arguments[0].click();", ourStoryCTA);
+		if(driver.findElement(TOGGLE_BUTTON).isDisplayed())
+		{
+			System.out.println("Toggle option is displayed");
+
 		}
+		else {
 
-		// Validate the URL after clicking
-		String currentURL = driver.getCurrentUrl();
-		softAssert.assertEquals(
-				currentURL,
-				"https://www.tommyjohn.com/pages/about-us",
-				"User is not directed to About Us page on clicking Our Story CTA"
-		);
+			// Scroll to the 'Our Story' CTA
+			Thread.sleep(5000);
+			js.executeScript("window.scrollBy(0, 2000);");
+			WebElement ourStoryCTA = driver.findElement(OUR_STORY_CTA);
+			js.executeScript("arguments[0].scrollIntoView(true);", ourStoryCTA);
+			js.executeScript("window.scrollBy(0, -100);"); // Adjust scrolling for sticky headers
+			Thread.sleep(500); // Optional: Add a delay for smoother scrolling
 
-		// Log results
-		Reporter.log("User is directed to About Us page on clicking Our Story CTA");
-		ExtentReport.extentTest.info("User is directed to About Us page on clicking Our Story CTA");
+			try {
+				// Attempt to click the 'Our Story' CTA
+				wait.until(ExpectedConditions.elementToBeClickable(OUR_STORY_CTA)).click();
+			} catch (WebDriverException e) {
+				// Fallback to JavaScript click if standard click fails
+				js.executeScript("arguments[0].click();", ourStoryCTA);
+			}
 
-		// Assert all validations
-		softAssert.assertAll();
+			// Validate the URL after clicking
+			String currentURL = driver.getCurrentUrl();
+			softAssert.assertEquals(
+					currentURL,
+					"https://www.tommyjohn.com/pages/about-us",
+					"User is not directed to About Us page on clicking Our Story CTA"
+			);
+
+			// Log results
+			Reporter.log("User is directed to About Us page on clicking Our Story CTA");
+			ExtentReport.extentTest.info("User is directed to About Us page on clicking Our Story CTA");
+
+			// Assert all validations
+			softAssert.assertAll();
+		}
 	}
 
 

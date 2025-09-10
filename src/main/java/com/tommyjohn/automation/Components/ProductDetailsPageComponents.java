@@ -3667,7 +3667,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 		SoftAssert softAssert = new SoftAssert();
 		// call method to navigate to collection page
-		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
+		new HomePageComponents(driver).navigateToMensAll();
 		jse = (JavascriptExecutor) driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		new CollectionPageComponent(driver).navigateToProductDetailsPage();
