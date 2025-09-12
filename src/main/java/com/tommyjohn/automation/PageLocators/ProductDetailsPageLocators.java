@@ -130,6 +130,13 @@ public class ProductDetailsPageLocators {
 	public static By BEST_PAIR_GUARANTEE = By.cssSelector("[data-tj-qa='mobile-footer-accordion-best-pair-guarantee'],.product-details-container>div> ul > li:nth-child(2) > div:nth-child(1) > a");
 	public static By FREE_RETURNS = By.cssSelector("[data-tj-qa='mobile-footer-accordion-free-returns'],.product-details-container>div> ul > li:nth-child(3) > div:nth-child(1) > a");
 	public static By FIT_MATERIAL = By.xpath("//button[@aria-controls='product-fit-materials']");
+	public static By FIT_MATERIAL_MODEL_DETAIL = By.xpath("(//div[@class='flex gap-sm items-center justify-start py-sm'])[1]");
+	public static By FIT_MATERIAL_MACHINEWASH = By.xpath("(//div[@class='flex gap-sm items-center justify-start py-sm'])[2]");
+	public static By FIT_MATERIAL_TUMBLEDRY = By.xpath("(//div[@class='flex gap-sm items-center justify-start py-sm'])[3]");
+	public static By FIT_MATERIAL_REVIEW_SIZE = By.xpath("//div[@class='my-sm']");
+	public static By FIT_MATERIAL_CLOTH_DETAIL1 = By.xpath("(//div[@class='grid grid-cols-[1fr_3fr] gap-x-4 py-5'])[1]");
+	public static By FIT_MATERIAL_CLOTH_DETAIL2 = By.xpath("(//div[@class='grid grid-cols-[1fr_3fr] gap-x-4 py-5'])[2]");
+
 	public static By CHECKOUT_BUTTON = By.cssSelector("[data-tj-qa='inline-cart-checkout'],.inline-cart__action-btns > a");
 	//public static By COLOR_AND_SIZE = By.cssSelector("div.product-info__variant-select > div:nth-child(1) > div.product-info__header.hide > span");
     public static By LOW_INVENTORY_MSG = By.xpath("//p[@class='my-2 px-lg md:px-0']");

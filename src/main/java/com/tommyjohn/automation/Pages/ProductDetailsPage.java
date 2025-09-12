@@ -10,6 +10,7 @@ import com.tommyjohn.automation.Components.HomePageComponents;
 import com.tommyjohn.automation.Components.ProductDetailsPageComponents;
 //import com.tommyjohn.automation.Components.SizeGuideComponents;
 import com.tommyjohn.automation.Components.SizeGuideComponents;
+import org.testng.annotations.Test;
 
 public class ProductDetailsPage extends ProductDetailsPageComponents{
 	WebDriver driver;
@@ -367,9 +368,18 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 	public void verifyProductNamePrice() throws Exception  {
 		new ProductDetailsPageComponents(driver).verifyProductNamePrice();
 	}
-	public void verifyAccordions() throws Exception  {
-		new ProductDetailsPageComponents(driver).verifyAccordions();
+	@Test
+	public void VerifyAccordions() throws Exception {
+		new ProductDetailsPage(driver).verifyAccordions();
 	}
+
+
+	@Test
+	public void VerifyDetailsInFitMaterialAccordion() throws Exception {
+		new ProductDetailsPage(driver).verifyDetailsInFitMaterialAccordion();
+	}
+
+
 	public void verifyLowStockInventory() throws Exception  {
 		new ProductDetailsPageComponents(driver).verifyLowStockInventory();
 	}
