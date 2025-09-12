@@ -14,7 +14,7 @@ import com.tommyjohn.automation.Pages.ProductDetailsPage;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
 public class 	ValidatePDP extends ExtentReport{
-	
+
 	WebDriver driver;
  	
 	@BeforeMethod(alwaysRun = true)
@@ -214,6 +214,13 @@ public class 	ValidatePDP extends ExtentReport{
 	public void VerifyAccordions() throws Exception {
 		new ProductDetailsPage(driver).verifyAccordions();
 	}
+
+	@Test
+	public void VerifyDetailsInFitMaterialAccordion() throws Exception {
+		new ProductDetailsPage(driver).VerifyDetailsInFitMaterialAccordion();
+	}
+
+
 	@Test
 	public void VerifyLowStockInventory() throws Exception {
 		new ProductDetailsPage(driver).verifyLowStockInventory();

@@ -163,9 +163,6 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		}
 		softAssert.assertAll();
 
-
-
-
 	}
 
 	public void ValidateAppropriateResultForSelectingBandSizeAndCupVolume() throws Exception {
@@ -3256,6 +3253,38 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 //		}
 		Reporter.log("PRODUCT ACCORDIONS ARE DISPLAYED");
 		ExtentReport.extentTest.info("PRODUCT ACCORDIONS ARE DISPLAYED");
+	}
+
+	public void verifyDetailsInFitMaterialAccordion() throws Exception {
+		SoftAssert softAssert = new SoftAssert();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
+		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		jse = (JavascriptExecutor) driver;
+		jse.executeScript("window.scrollBy(0,800)");
+		flag = false;
+		Exception except = null;
+		if (driver.findElement(FIT_MATERIAL).isDisplayed()) {
+			element = driver.findElement(FIT_MATERIAL);
+			jse = (JavascriptExecutor) driver;
+			jse.executeScript("arguments[0].click();", element);
+			Thread.sleep(3000);
+			//element.click();
+		}
+		else{
+			System.out.println("Fit+Material Accordion Is Not Available");
+		}
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.FIT_MATERIAL_SECTION));
+		softAssert.assertTrue(driver.findElement(FIT_MATERIAL_MODEL_DETAIL).isDisplayed(),"Model details is not displayed");
+		softAssert.assertTrue(driver.findElement(FIT_MATERIAL_MACHINEWASH).isDisplayed(),"Machine wash detail is not displayed");
+		softAssert.assertTrue(driver.findElement(FIT_MATERIAL_TUMBLEDRY).isDisplayed(),"Tumble dry detail  displayed");
+		softAssert.assertTrue(driver.findElement(FIT_MATERIAL_REVIEW_SIZE).isDisplayed(),"Review size bar is not displayed");
+		softAssert.assertTrue(driver.findElement(FIT_MATERIAL_CLOTH_DETAIL1).isDisplayed(),"Cloth detail1 is not displayed");
+		softAssert.assertTrue(driver.findElement(FIT_MATERIAL_CLOTH_DETAIL2).isDisplayed(),"Cloth detail2 not displayed");
+		softAssert.assertAll();
+		Reporter.log("Details in the Fit+Material accordion is displayed appropriately");
+		ExtentReport.extentTest.info("Details in the Fit+Material accordion is displayed appropriately");
+
 	}
 
 
