@@ -63,6 +63,17 @@ public class HomePageComponents extends HomePageLocators {
 
 	}
 
+	public void VerifyProductReviewModule() throws InterruptedException {
+		SoftAssert softAssert = new SoftAssert();
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
+		Thread.sleep(2000);
+		js.executeScript("window.scrollBy(0,200)");
+		softAssert.assertTrue(driver.findElement(PRODUCT_REVIEW_MODULE).isDisplayed(),"Toggle Button is not available");
+		Reporter.log("Toggle Button is available");
+		ExtentReport.extentTest.info("Toggle Button is available");
+	}
+
 	public void VerifyToggleButton() throws InterruptedException {
 		SoftAssert softAssert = new SoftAssert();
 		JavascriptExecutor js = (JavascriptExecutor)driver;

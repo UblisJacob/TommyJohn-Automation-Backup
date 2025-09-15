@@ -31,6 +31,13 @@ public class ValidateHomePage extends ExtentReport {
 		homePage.ValidateImageInHeroBanner();
 	}
 
+	@Test
+	public void VerifyProductReviewModule() throws Exception {
+
+		HomePageComponents homePage = new HomePageComponents(driver);
+		homePage.VerifyProductReviewModule();
+	}
+
 //	@Test
 	public void VerifyToggleButton() throws Exception {
 

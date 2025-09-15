@@ -291,7 +291,7 @@ public class SanityModuleComponents extends SanityModuleLocators{
 
 						System.out.println(dim2);
 						int width2=	dim2.width;
-						System.out.println("Width of Image 1: " +width2);
+						System.out.println("Width of Image 2: " +width2);
 
 						//margin validations
 						if(width1==580)  {
