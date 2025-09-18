@@ -326,7 +326,7 @@ public class HomePageLocators{
 	public static By CART_HEADING_TEXT = By.cssSelector(".inline-cart__col1 > h3");
 	public static By MINICART_HEADING = By.xpath("//h2[contains(text(),'Your Cart')]");
 	public static By COUNT_IN_CART = By.xpath("//h1[contains(text(),'Your Cart')]//span");
-
+	public static By PRODUCT_NAME = By.xpath("//a[@class='font-medium text-text-primary mt-2 text-body sm:text-heading-sm']");
 	public static By ABOUT_LINK = By.cssSelector("a[data-tj-qa='footer-about']");
 	public static By CAREERS_LINK = By.cssSelector("a[data-tj-qa='footer-careers']");
 	public static By PRESS_LINK = By.cssSelector("a[data-tj-qa='footer-press']");
