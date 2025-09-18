@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 public class CheckoutPageLocators {
 
 	//	                                       INFO
+	public static By CHECKOUTPAGE_CART_ICON = By.xpath("//div[@class='_197l2ofx _1fragemp7 _1fragemns _1fragem3c _1fragemn2']//following::a[@id='cart-link']");
 	public static By LIST_OF_ITEM_IN_PAYMENT_PAGE = By.cssSelector(".product-table>tbody>tr.product");
 	public static By CART_LINK = By.cssSelector(".breadcrumb > li > a");
 	public static By EXPRESS_CHECKOUT_TEXT = By.xpath("//h2[@class='aHlIb']");

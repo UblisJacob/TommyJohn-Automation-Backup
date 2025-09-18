@@ -25,6 +25,7 @@ import com.tommyjohn.automation.PageLocators.HomePageLocators;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
 import static com.tommyjohn.automation.PageLocators.FlyCartPageLocator.CHECKOUT_BUTTON;
+import static com.tommyjohn.automation.PageLocators.HomePageLocators.PRODUCT_NAME;
 
 public class CheckoutPageComponents extends CheckoutPageLocators {
 
@@ -42,6 +43,31 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	public CheckoutPageComponents(WebDriver driver) {
 		this.driver = driver;
 	}
+
+	public void ValidateCartIconInCheckoutPage() throws InterruptedException {
+
+		jse = (JavascriptExecutor)driver;
+		SoftAssert softAssert = new SoftAssert();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		driver.findElement(HomePageLocators.CART_ICON).click();
+
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+//		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+		Thread.sleep(5000);
+		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
+		Reporter.log("Checkout page displayed");
+		ExtentReport.extentTest.info("Checkout page displayed");
+		Thread.sleep(10000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
+		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUTPAGE_CART_ICON));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_NAME));
+		softAssert.assertTrue(driver.findElement(PRODUCT_NAME).isDisplayed(),"Cart Icon In Checkout Page is not functional");
+		Reporter.log("Cart Icon In Checkout Page is functional");
+		ExtentReport.extentTest.info("Cart Icon In Checkout Page is functional");
+	}
+
+
+
 
 	public void ValidatePromoCodeErrorScenarioInCheckoutPage() throws Exception {
 		jse = (JavascriptExecutor)driver;

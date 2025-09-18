@@ -98,6 +98,14 @@ public class ValidateCheckoutPage extends ExtentReport {
 	}
 
 	@Test
+	public void ValidateCartIconInCheckoutPage() throws Exception
+	{
+		new AddToCartComponents(driver).addsingleproductToCartforFirst20Coupon();
+		new CheckoutPage(driver).ValidateCartIconInCheckoutPage();
+	}
+
+
+	@Test
 	public void ValidatePromoCodeFIRST20() throws Exception
 	{
 		new AddToCartComponents(driver).addsingleproductToCartforFirst20Coupon();

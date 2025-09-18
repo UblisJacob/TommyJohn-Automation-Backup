@@ -80,6 +80,11 @@ public class CheckoutPage extends CheckoutPageComponents {
 
 	}
 
+	public void ValidateCartIconInCheckoutPage() throws InterruptedException {
+		new CheckoutPageComponents(driver).ValidateCartIconInCheckoutPage();
+
+	}
+
 	public void ValidatePromoCodeFIRST20InShippingPage() throws Exception
 	{
 		new CheckoutPageComponents(driver).ValidatePromoCodeFIRST20InShippingPage();
