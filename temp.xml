@@ -13,7 +13,7 @@
         <classes>
                     <class name="TestModules.ValidateCheckoutPage">
                 <methods>
-                    <include name="ValidateCartIconInCheckoutPage"/>
+                    <include name="VerifyCartIconInCheckoutPage"/>
                 </methods>
             </class>
         </classes>
