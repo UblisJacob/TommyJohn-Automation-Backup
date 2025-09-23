@@ -2855,7 +2855,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 //		JavascriptExecutor executor = (JavascriptExecutor) driver;
 //		executor.executeScript("arguments[0].click();", el);
 
-		driver.get("https://www.tommyjohn.com/products/cool-cotton-mid-length-boxer-brief-6?color=null");
+		driver.get("https://www.tommyjohn.com/products/womens-second-skin-thong-3-pack-20?color=black-ashes-of-roses-lotus-camo-wb");
 
 //		jse = (JavascriptExecutor) driver;
 //		jse.executeScript("window.scrollBy(0,800)");

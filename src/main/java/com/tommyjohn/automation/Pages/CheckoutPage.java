@@ -80,6 +80,11 @@ public class CheckoutPage extends CheckoutPageComponents {
 
 	}
 
+	public void VerifyCartIconInCheckoutPage() throws InterruptedException {
+		new CheckoutPageComponents(driver).VerifyCartIconInCheckoutPage();
+
+	}
+
 	public void ValidateCartIconInCheckoutPage() throws InterruptedException {
 		new CheckoutPageComponents(driver).ValidateCartIconInCheckoutPage();
 
