@@ -99,7 +99,7 @@ public class AddToCartComponents extends AddToCartLocators{
 			for(int i=1;i<=4;i++)
 			{
 
-				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])["+i+"]"));
+				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//input[@class='sr-only peer'])[" + i + "]"));
 				jse = (JavascriptExecutor) driver;
 				jse.executeScript("arguments[0].click();", elemen);
 				Thread.sleep(3000);
@@ -187,7 +187,7 @@ public class AddToCartComponents extends AddToCartLocators{
 		int count = 0;
 
 		// call method to navigate to collection page
-		new HomePageComponents(driver).navigateToMensAllUnderwear();
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 		jse=(JavascriptExecutor)driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		// call method to navigate product details page
@@ -205,7 +205,7 @@ public class AddToCartComponents extends AddToCartLocators{
 			for(int i=1;i<=4;i++)
 			{
 
-				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])["+i+"]"));
+				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//input[@class='sr-only peer'])["+i+"]"));
 				jse = (JavascriptExecutor) driver;
 				jse.executeScript("arguments[0].click();", elemen);
 				Thread.sleep(3000);
@@ -535,7 +535,7 @@ public class AddToCartComponents extends AddToCartLocators{
 		if (elementsCount > 1) {
 			for (int i = 1; i <= elementsCount; i++) {
 
-				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])[" + i + "]"));
+				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//input[@class='sr-only peer'])[" + i + "]"));
 				jse = (JavascriptExecutor) driver;
 				jse.executeScript("arguments[0].click();", elemen);
 				Thread.sleep(3000);
@@ -632,7 +632,7 @@ public class AddToCartComponents extends AddToCartLocators{
 		if (elementsCount > 1) {
 			for (int i = 1; i <= elementsCount; i++) {
 
-				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])[" + i + "]"));
+				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//input[@class='sr-only peer'])[" + i + "]"));
 				jse = (JavascriptExecutor) driver;
 				jse.executeScript("arguments[0].click();", elemen);
 				Thread.sleep(3000);
@@ -799,7 +799,7 @@ public class AddToCartComponents extends AddToCartLocators{
 		if (elementsCount >= 1) {
 			for (int i = 1; i <= elementsCount; i++) {
 
-				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])[" + i + "]"));
+				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//input[@class='sr-only peer'])[" + i + "]"));
 				jse = (JavascriptExecutor) driver;
 				jse.executeScript("arguments[0].click();", elemen);
 				Thread.sleep(3000);
@@ -886,7 +886,7 @@ public class AddToCartComponents extends AddToCartLocators{
 		if (elementsCount > 1) {
 			for (int i = 1; i <= elementsCount; i++) {
 
-				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])[" + i + "]"));
+				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//input[@class='sr-only peer'])[" + i + "]"));
 				jse = (JavascriptExecutor) driver;
 				jse.executeScript("arguments[0].click();", elemen);
 				Thread.sleep(3000);
@@ -976,7 +976,7 @@ public class AddToCartComponents extends AddToCartLocators{
 		if (elementsCount > 1) {
 			for (int i = 1; i <= elementsCount; i++) {
 
-				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])[" + i + "]"));
+				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//input[@class='sr-only peer'])[" + i + "]"));
 				jse = (JavascriptExecutor) driver;
 				jse.executeScript("arguments[0].click();", elemen);
 				Thread.sleep(3000);
@@ -1074,7 +1074,7 @@ public class AddToCartComponents extends AddToCartLocators{
 		if (elementsCount > 1) {
 			for (int i = 1; i <= elementsCount; i++) {
 
-				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])[" + i + "]"));
+				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//input[@class='sr-only peer'])[" + i + "]"));
 				jse = (JavascriptExecutor) driver;
 				jse.executeScript("arguments[0].click();", elemen);
 				Thread.sleep(3000);

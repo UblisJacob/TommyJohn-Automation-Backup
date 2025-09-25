@@ -38,7 +38,7 @@ public class ProductDetailsPageLocators {
 	// image carousels
 	public static By IMG_CAROUSEL = By.xpath("//div[@class='hidden md:block w-full']//div");
 
-	public static By COLOR_VARIANT = By.xpath("//div[@class='space-y-lg']//span[@class='sr-only']");
+	public static By COLOR_VARIANT = By.xpath("//div[@class='space-y-lg']//input[@class='sr-only peer']");
 
 	public static By GC_VARIANT = By.xpath("//input[@name='option[Amount]']");
 

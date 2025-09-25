@@ -3010,7 +3010,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		if (elementsCount > 1) {
 			for (int i = 1; i <= 3; i++) {
 
-				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])["+i+"]"));
+				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//input[@class='sr-only peer'])[" + i + "]"));
 
 				jse.executeScript("arguments[0].click();", elemen);
 
@@ -3755,7 +3755,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		if (elementsCount > 1)
 
 			for (int i = 1; i <= 3; i++) {
-				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])["+i+"]"));
+				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//input[@class='sr-only peer'])[" + i + "]"));
 				jse = (JavascriptExecutor) driver;
 				jse.executeScript("arguments[0].click();", elemen);
 				Thread.sleep(3000);
@@ -4094,7 +4094,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 			for (int i = 1; i <= 2; i++) {
 
-				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])["+i+"]"));
+				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//input[@class='sr-only peer'])[" + i + "]"));
 				jse = (JavascriptExecutor) driver;
 				jse.executeScript("arguments[0].click();", elemen);
 				Thread.sleep(3000);
