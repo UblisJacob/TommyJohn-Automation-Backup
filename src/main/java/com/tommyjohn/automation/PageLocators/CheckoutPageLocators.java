@@ -72,10 +72,10 @@ public class CheckoutPageLocators {
 	public static By APPLY_DISCOUNT_BUTTON = By.xpath("(//button[@type='submit'])[4]"); //(//button[@type='submit'])[4]
 	public static By SUBTOTAL = By.xpath("//span[contains(text(),'Subtotal')]");
 	public static By SHIPPING = By.xpath("(//span[contains(text(),'Shipping')])[2]"); //(//span[contains(text(),'Shipping')])[2]
-	public static By APPLIED_PROMO_CODE = By.xpath("//span[@class='i8os0m3']//span");
+	public static By APPLIED_PROMO_CODE = By.xpath("(//span[@class='_14brw3']//span)[2]");
 	public static By PROMO_CODE_ERROR = By.xpath("//div[@class='go06b0']//span"); ////div[@class='go06b0']//span
 	public static By INCORRECT_PROMO_CODE_ERROR_MESSAGE = By.xpath("//p[@id='error-for-ReductionsInput0']");
-	public static By CANCEL_PROMO_CODE = By.xpath("//button[@aria-label='Remove FIRST20']");
+	public static By CANCEL_PROMO_CODE = By.xpath("//button[@aria-label='Remove item']");
 	public static By CANCEL_PROMO_CODE1 = By.xpath("(//button[@aria-label='Remove TECHTESTORDER'])[2]");
 //	public static By CANCEL_PROMO_CODE = By.cssSelector("button.tag__button use");
 	public static By TOTAL = By.xpath("(//strong[contains(text(),'Total')])[1]"); //(//strong[contains(text(),'Total')])[1]
