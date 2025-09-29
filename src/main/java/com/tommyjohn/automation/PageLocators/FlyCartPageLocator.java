@@ -59,6 +59,8 @@ public class FlyCartPageLocator {
 	public static By COUPON_SUCCESS_MESSAGE = By.xpath("//p[@class='mt-4 text-text-secondary']");
 	public static By ERROR_COUPON = By.xpath("//p[@class='mt-4 text-functional-error']");
 	public static By INLINE_CART_APPLIED_COUPON = By.xpath("//div[@class='mt-2 text-body font-medium text-functional-sale']");
+	public static By MINICART_QUANTITY_INPUT = By.xpath("//input[contains(@id, 'CartFormMini-Quantity')]");
+	public static By MINICART_QUANTITY_INCREASE = By.xpath("//span[@class='icon size-5 icon-plus']");
 
 	//3for$48
 	public static By DISCOUNT_3for$48 = By.xpath("//div[@class='mt-2 text-body font-medium text-functional-sale']");

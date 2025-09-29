@@ -74,6 +74,17 @@ public class HomePageComponents extends HomePageLocators {
 		ExtentReport.extentTest.info("Toggle Button is available");
 	}
 
+	public void VerifyUGCModule() throws InterruptedException {
+		SoftAssert softAssert = new SoftAssert();
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		js.executeScript("window.scrollBy(0,5000)");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(UGC_MODULE));
+		Thread.sleep(2000);
+		softAssert.assertTrue(driver.findElement(UGC_MODULE).isDisplayed(),"UGC_MODULE is not available");
+		Reporter.log("UGC_MODULE is available");
+		ExtentReport.extentTest.info("UGC_MODULE is available");
+	}
+
 	public void VerifyToggleButton() throws InterruptedException {
 		SoftAssert softAssert = new SoftAssert();
 		JavascriptExecutor js = (JavascriptExecutor)driver;

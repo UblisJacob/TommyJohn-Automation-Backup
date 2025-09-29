@@ -2828,7 +2828,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			for (int i = 1; i <= elementsCount; i++) {
 	//			thumbnail = driver.findElement(By.cssSelector(".pdpVerticalSlides>.slick-list.draggable>div>div:nth-child(" + i + ")")).getAttribute("data-slide-id");
 
-				WebElement img = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])["+i+"]"));
+				WebElement img = driver.findElement(By.xpath("(//div[@class='space-y-lg']//input[@class='sr-only peer'])["+i+"]"));
 				executor.executeScript("arguments[0].click();", img);
 
 				Thread.sleep(3000);
@@ -2937,7 +2937,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		if (elementsCount > 1) {
 			for (int i = 1; i < elementsCount; i++) {
 				String imagecolor = null;
-				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])["+i+"]"));
+				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//input[@class='sr-only peer'])["+i+"]"));
 				jse = (JavascriptExecutor) driver;
 				jse.executeScript("arguments[0].click();", elemen);
 //				driver.findElement(COLOR_VARIANT).getText();

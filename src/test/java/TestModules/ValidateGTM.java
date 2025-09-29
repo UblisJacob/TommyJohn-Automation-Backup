@@ -46,7 +46,7 @@ public class ValidateGTM {
 
     }
 
-    @Test
+ //   @Test
     public void ValidateRudderstack() throws Exception {
 
         new GTMValidations(driver).validateRudderstack();

@@ -38,6 +38,13 @@ public class ValidateHomePage extends ExtentReport {
 		homePage.VerifyProductReviewModule();
 	}
 
+	@Test
+	public void VerifyUGCModule() throws Exception {
+
+		HomePageComponents homePage = new HomePageComponents(driver);
+		homePage.VerifyUGCModule();
+	}
+
 //	@Test
 	public void VerifyToggleButton() throws Exception {
 
