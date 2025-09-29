@@ -752,7 +752,7 @@ public class BundlePDPComponent extends BundlePDPLocators{
 
 				for (int i = 1; i <= 2; i++) {
 					count++;
-					WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])["+i+"]"));
+					WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//input[@class='sr-only peer'])["+i+"]"));
 					jse = (JavascriptExecutor) driver;
 					jse.executeScript("arguments[0].click();", elemen);
 					Thread.sleep(3000);

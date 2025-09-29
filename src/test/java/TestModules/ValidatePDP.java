@@ -207,7 +207,7 @@ public class 	ValidatePDP extends ExtentReport{
 		new ProductDetailsPage(driver).verifyReviewRecommendations();
 	}
 	@Test
-	public void VerifyProductNamePrice() throws Exception {
+		public void VerifyProductNamePrice() throws Exception {
 		new ProductDetailsPage(driver).verifyProductNamePrice();
 	}
 	@Test

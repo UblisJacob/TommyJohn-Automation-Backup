@@ -29,6 +29,14 @@ public class ValidateInlineCartPage extends ExtentReport {
 	}
 
 	@Test
+	public void Validate_InlineCart_IncreaseQuantity() throws Exception {
+
+		new AddToCartComponents(driver).addsingleproductToCart();
+		new FlyCartPage(driver).ValidateQuantityIncreaseInInLineCartPage();
+
+	}
+
+	@Test
 	public void ValidatePromoCodeFIRST20InInlineCart() throws Exception {
 		new AddToCartComponents(driver).addsingleproductToCartforFirst20Coupon();
 		new FlyCartPage(driver).ValidatePromoCodeFIRST20InInlineCart();
