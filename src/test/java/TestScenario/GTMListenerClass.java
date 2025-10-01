@@ -144,7 +144,7 @@ public class GTMListenerClass extends ExtentReport implements ITestListener, IEx
         generateExtentReports();
 
         try {
-            reportLink = com.base.GDrivePOST.UploadADAReport();
+            reportLink = com.base.GDrivePOST.UploadGTMReport();
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (GeneralSecurityException e) {
