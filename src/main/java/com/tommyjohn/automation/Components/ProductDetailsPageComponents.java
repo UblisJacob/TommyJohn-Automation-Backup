@@ -2951,7 +2951,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 
 					colornew = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='font-medium text-text-primary'])[1]")).getText();
-					imagecolor = driver.findElement(By.xpath("(//div[@class='space-y-lg']//span[@class='sr-only'])["+i+"]")).getText();
+					imagecolor = driver.findElement(By.xpath("(//div[@class='space-y-lg']//input[@class='sr-only peer'])["+i+"]")).getText();
 
 					System.out.println("For Color Swatch: " + colornew);
 

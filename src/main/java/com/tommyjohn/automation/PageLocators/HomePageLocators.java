@@ -12,7 +12,7 @@ public class HomePageLocators{
 	public static By MENS_SHOP_NOW_CTA = By.xpath("(//a[@class='button-inverse'])[1]");
 	public static By PRODUCT_TITLE = By.xpath("//h1[@class='mb-0']");
 	public static By HERO_BANNER_IMAGE = By.xpath("(//div[@class='shopify-section relative'])[1]");
-	public static By UGC_MODULE = By.xpath("//div[@id='foursixty-template--18904087625773__foursixty_ugc_x3deir']");
+	public static By UGC_MODULE = By.xpath("//div[@id='foursixty-template--18925910687789__foursixty_ugc_x3deir']");
 	public static By PRODUCT_REVIEW_MODULE = By.xpath("(//div[@class='wrapper pr-0 md:pr-xl'])[1]");
 	public static By NEW_MARKDOWNS_SECTIONS = By.xpath("//swiper-container[@class='-mx-lg flex px-lg [grid-area:slides]']");
 	public static By PROMO_BANNER_CODE = By.xpath("//span[@class='flex items-center gap-xs']");
