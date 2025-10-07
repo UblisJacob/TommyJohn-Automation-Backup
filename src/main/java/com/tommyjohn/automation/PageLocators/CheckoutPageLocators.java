@@ -102,7 +102,7 @@ public class CheckoutPageLocators {
 	public static By RETURN_LINK = By.xpath("//span[contains(text(),'Return to information')]");
 	public static By CONTINUE_TO_PAYMENT_BUTTON = By.xpath("//div[@class='MV9Am']//button");
 	public static By FREE_SHIPPING = By.xpath("//span[contains(text(),'Free')]");
-	public static By NON_FREE_SHIPPING = By.xpath("(//span[contains(text(),'$7.95')])"); //(//span[contains(text(),'$7.95')])
+	public static By NON_FREE_SHIPPING = By.xpath("(//span[contains(text(),'$8.95')])"); //(//span[contains(text(),'$7.95')])
 
 
 	//                                           payment
