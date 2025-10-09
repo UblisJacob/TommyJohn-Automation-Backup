@@ -30,7 +30,7 @@ import org.openqa.selenium.devtools.DevTools;
 import org.testng.ISuite;
 import org.testng.ITestContext;
 import org.testng.Reporter;
-import org.openqa.selenium.devtools.v138.emulation.Emulation;
+import org.openqa.selenium.devtools.v140.emulation.Emulation;
 
 
 public class CustomUtilities {

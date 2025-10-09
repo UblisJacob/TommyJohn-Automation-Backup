@@ -194,6 +194,9 @@
 			<version>4.8.2</version>
 		</dependency>
 
+
+
+
 		<!--		<dependency>-->
 		<!--			<groupId>org.seleniumhq.selenium</groupId>-->
 		<!--			<artifactId>selenium-java</artifactId>-->
@@ -201,25 +204,28 @@
 		<!--		</dependency>-->
 
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
-			<version>4.34.0</version>
+			<version>4.36.0</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-devtools-v130 -->
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-devtools-v138 -->
+		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-devtools-v140 -->
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-devtools-v138</artifactId>
-			<version>4.34.0</version>
+			<artifactId>selenium-devtools-v140</artifactId>
+			<version>4.36.0</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-chrome-driver -->
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-chrome-driver -->
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-chrome-driver</artifactId>
-			<version>4.34.0</version>
+			<version>4.36.0</version>
 		</dependency>
 
 		<dependency>
@@ -321,11 +327,37 @@
 			<artifactId>ExcelUtils</artifactId>
 			<version>1.4.2</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-devtools-v138 -->
+
+
 		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-devtools-v116</artifactId>
-			<version>4.13.0</version>
+			<groupId>net.lightbody.bmp</groupId>
+			<artifactId>browsermob-core</artifactId>
+			<version>2.1.5</version>
+			<exclusions>
+				<!-- 🚫 Exclude old Selenium HTML5 modules -->
+				<exclusion>
+					<groupId>org.seleniumhq.selenium</groupId>
+					<artifactId>selenium-htmlunit-driver</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.seleniumhq.selenium</groupId>
+					<artifactId>htmlunit</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	</dependencies>
