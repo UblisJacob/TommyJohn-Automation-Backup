@@ -54,7 +54,7 @@ public class ProductDetailsPageLocators {
 	//image badging
 //	public static By IMAGE_BADGING = By.cssSelector(".productImage-item__badge");
 
-	public static By IMAGE_BADGING = By.xpath("//span[contains(text(),'New Colors')]");
+	public static By IMAGE_BADGING = By.xpath("//span[contains(text(),'Support Collection')]");
 	
 	//Secondary Badging
 	public static By SECONDARY_BADGING = By.xpath("//p[@class='m-0 inline-block text-body-xs leading-none text-[color:var(--text-color)]']");
@@ -195,7 +195,7 @@ public class ProductDetailsPageLocators {
 	public static By RATING_COUNT_IN_SECOND_BOX = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div:nth-child(2) > ul.yotpo-revew-bottomline-list > li:nth-child(5) > .yotpo-review-bottomline-individual-ratings > .yotpo-review-bottomline-individual-ratings__count");
 	
 	public static By THIRD_BOX_IN_RATING_AND_REVIEWS = By.xpath("//div[@class='yotpo-new-review-btn-wrapper']");
-	public static By FIT_RANGE = By.xpath("(//div[contains(text(),'fit')])[1]");
+	public static By FIT_RANGE = By.xpath("(//div[@class='yotpo-smart-topic-filter smart-topic-wrapper' and contains(text(),'fit')])[1]");
 	public static By FIT_GRAPH_IN_THIRD_BOX = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div > div.yotpo-review-bottomline-customer-say-container > .size-guide-yatpo-fit-graph > ul > li.selected");
 	public static By FIT_STATUS_IN_THIRD_BOX = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div > div.yotpo-review-bottomline-customer-say-container > .yotpo-review-bottomline-customer-say > .yotpo-review-bottomline-fit");
 	public static By POSTED_REVIEWS_SECTION = By.cssSelector(".yotpo-review-box");
@@ -218,7 +218,7 @@ public class ProductDetailsPageLocators {
 	
 
 	
-	public static By WRITE_REVIEW_BUTTON = By.xpath("//button[@class='yotpo-new-review-btn yotpo-btn-s']");
+	public static By WRITE_REVIEW_BUTTON = By.xpath("//button[@id='yotpo-main-widget-btn']");
 	public static By WRITE_REVIEW_HEADING = By.cssSelector("#pdpReviews > div > div > form > div");
 	public static By WRITE_REVIEW_HEADING1 = By.cssSelector(".y-label.yotpo-header-title");
 	public static By REVIEW_STARS_IN_RATING_AND_REVIEWS = By.cssSelector(".yotpo-bottomline-box-1 > span:nth-child(1)");

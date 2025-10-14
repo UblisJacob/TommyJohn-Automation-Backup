@@ -14,6 +14,7 @@ public class CheckoutPageLocators {
 	public static By GPAY_BUTTON = By.xpath("//div[@data-testid = 'GooglePay-button']");
 	public static By AMZ_PAY = By.xpath("//form[@action = 'https://payments.amazon.com/checkout/signin'] /button" );
 	public static By SHOP_PAY = By.xpath("//div[@data-testid='ShopifyPay-button']" );
+	public static By ORDER_PROTECTION = By.xpath("//img[@alt='Order Protection']" );
 	public static By BREADCRUMB_LINK_CART = By.xpath("//a[contains(text(),'Cart')]");
 	public static By ShipAndPaymentPage_BREADCRUMB_LINK_INFORMATION = By.xpath("(//nav[@class='_1fragem1y _1fragemlo']//div)[2]");
 	public static By BREADCRUMB_LINK_INFORMATION = By.xpath("(//nav[@aria-label='Breadcrumb']//div)[3]");

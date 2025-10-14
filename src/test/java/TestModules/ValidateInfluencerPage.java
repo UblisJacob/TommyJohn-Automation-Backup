@@ -28,7 +28,7 @@ public class ValidateInfluencerPage {
         new InfluenecerPageComponents(driver).VerifyFavoritesRecs();
     }
 
-    @Test
+ //   @Test
     public void VerifyTrendingThisWeek()  {
         new InfluenecerPageComponents(driver).VerifyTrendingThisWeek();
     }

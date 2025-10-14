@@ -49,7 +49,7 @@ public class CustomUtilities {
 
 	/**
 	 * Method to set up the drivers.
-	 * 
+	 *
 	 * @throws Exception
 	 */
 
@@ -136,7 +136,7 @@ public class CustomUtilities {
 			//System.setProperty("webdriver.gecko.driver", properties.getProperty("ffDriverPath"));
 			FirefoxOptions options = new FirefoxOptions();
 			options.addArguments("--disable-gpu");
-			options.addArguments("--headless");
+//			options.addArguments("--headless");
 			options.addArguments("--window-size=1280,800");
 			options.addArguments("--disable-gpu");
 			options.addArguments("--no-sandbox");
@@ -261,7 +261,7 @@ public class CustomUtilities {
 		}
 
 	}
-	
+
 
 	public static void takessiffailed(String mname) throws Exception
 	{
@@ -275,7 +275,7 @@ public class CustomUtilities {
 		}
 
 	}
-	
+
 	/**
 	 * Provide only file name without file extension, Date and time are appended to file name
 	 * @paramname
@@ -300,7 +300,7 @@ public class CustomUtilities {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MMM_YYYY_HH_mm_ss");
 		LocalDateTime now = LocalDateTime.now();
 		String dateAndTime = dtf.format(now);
-//		System.out.println(dtf.format(now));  
+//		System.out.println(dtf.format(now));
 
 		String filePath = screenShotsFolder + name + dateAndTime + ".jpg";
 
