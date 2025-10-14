@@ -1436,7 +1436,10 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 		if (driver.findElement(By.xpath("//h2[@class='mb-lg mt-2 pr-14 text-heading-md']")).isDisplayed()) {
 			Reporter.log("Bundle product's First size guide link is Displayed :: Clickable");
-			driver.findElement(By.xpath("//button[@aria-label='Close modal']")).click();
+			WebElement elem = driver.findElement(By.xpath("//button[@aria-label='Close modal']"));
+			JavascriptExecutor executor1 = (JavascriptExecutor) driver;
+			executor1.executeScript("arguments[0].click();", elem);
+			//driver.findElement(By.xpath("//button[@aria-label='Close modal']")).click();
 		}
 
 		//Close first size guide window
@@ -3526,8 +3529,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		jse.executeScript("arguments[0].click();", ratingstars);
 		//ratingstars.click();
 		Thread.sleep(4000);
-		jse.executeScript("window.scrollBy(0, 800)");
-		Thread.sleep(4000);
+//		jse.executeScript("window.scrollBy(0, 400)");
+//		Thread.sleep(4000);
 		String avgrating = driver.findElement(AVG_RATING_IN_FIRST_BOX).getText();
 		System.out.println("Average Rating: " + avgrating);
 		String totalreviews = driver.findElement(TOTAL_REVIEWS_IN_FIRST_BOX).getText();
@@ -3647,7 +3650,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 	public void verifyReviewForm() throws Exception {
 		SoftAssert softAssert = new SoftAssert();
 		// call method to navigate to collection page
-		new HomePageComponents(driver).navigateToCoolCottonBoxerBriefs();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		new HomePageComponents(driver).NavigateToAllSaleInSaleCategory();
 		new CollectionPageComponent(driver).navigateToProductDetailsPage();
 		// call method to check correct PDP opend or not
 		//	checkCorrectProductDetailsPageOpenedOrNot(text);
@@ -3658,6 +3662,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		// wait for scroll it down
 		Thread.sleep(3000);
 		executore.executeScript("window.scrollBy(0, 650)");
+		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(WRITE_REVIEW_BUTTON));
 		WebElement writereview = driver.findElement(WRITE_REVIEW_BUTTON);
 		executore.executeScript("arguments[0].click();", writereview);
 

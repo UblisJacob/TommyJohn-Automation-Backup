@@ -11,6 +11,6 @@
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="TestModules.ValidateGTM" />
-		</classes>	
+		</classes>
 	</test>
 </suite>

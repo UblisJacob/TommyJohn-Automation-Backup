@@ -806,7 +806,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	@SuppressWarnings("static-access")
 	public void validateProductReviewStarsOnCollectionPage() throws Exception {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		driver.navigate().to("https://www.tommyjohn.com/collections/sale-mens-womens");
+		driver.navigate().to("https://www.tommyjohn.com/collections/mens-underwear");
 
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 

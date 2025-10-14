@@ -89,6 +89,27 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		ExtentReport.extentTest.info("Cart Icon In Checkout Page is functional");
 	}
 
+	public void ValidateOrderProtectionInCheckoutPage() throws InterruptedException {
+
+		jse = (JavascriptExecutor)driver;
+		SoftAssert softAssert = new SoftAssert();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		driver.findElement(HomePageLocators.CART_ICON).click();
+
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+//		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+		Thread.sleep(5000);
+		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
+		Reporter.log("Checkout page displayed");
+		ExtentReport.extentTest.info("Checkout page displayed");
+		Thread.sleep(10000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ORDER_PROTECTION));
+		softAssert.assertTrue(driver.findElement(ORDER_PROTECTION).isDisplayed(),"Order Protection Is Not Added In Checkout Page");
+		Reporter.log("Order Protection Is Added In Checkout Page");
+		ExtentReport.extentTest.info("Order Protection Is Added In Checkout Page");
+	}
+
 
 
 

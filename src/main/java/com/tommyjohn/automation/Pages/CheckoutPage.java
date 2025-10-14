@@ -67,6 +67,11 @@ public class CheckoutPage extends CheckoutPageComponents {
 
 	}
 
+	public void ValidateOrderProtectionInCheckoutPage() throws InterruptedException {
+		new CheckoutPageComponents(driver).ValidateOrderProtectionInCheckoutPage();
+
+	}
+
 	public void ValidatePromoCodeErrorScenarioInPaymentPage() throws Exception
 	{
 		new CheckoutPageComponents(driver).ValidatePromoCodeErrorScenarioInPaymentPage();

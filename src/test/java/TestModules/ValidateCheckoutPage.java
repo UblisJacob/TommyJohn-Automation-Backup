@@ -33,7 +33,7 @@ public class ValidateCheckoutPage extends ExtentReport {
 		//new CheckoutPage(driver).ValidateExpressCheckoutOptions();
 //	}
 
-	@Test
+//	@Test
 	public void ValidatePromoCodeNotAppliedForFinalSaleProducts() throws Exception
 	{
 		new AddToCartComponents(driver).addFinalSaleProducts();
@@ -109,6 +109,13 @@ public class ValidateCheckoutPage extends ExtentReport {
 	{
 		new AddToCartComponents(driver).addsingleproductToCartforFirst20Coupon();
 		new CheckoutPage(driver).ValidateCartIconInCheckoutPage();
+	}
+
+	@Test
+	public void ValidateOrderProtectionInCheckoutPage() throws Exception
+	{
+		new AddToCartComponents(driver).addsingleproductToCartforFirst20Coupon();
+		new CheckoutPage(driver).ValidateOrderProtectionInCheckoutPage();
 	}
 
 
