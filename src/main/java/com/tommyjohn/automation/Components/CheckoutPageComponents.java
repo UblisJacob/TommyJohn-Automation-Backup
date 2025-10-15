@@ -126,6 +126,22 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		CheckErrorMessageForIncorrectPromoCode();
 
 	}
+	public void VerifySplitBundleProduct() throws InterruptedException {
+
+		jse = (JavascriptExecutor)driver;
+		SoftAssert softAssert = new SoftAssert();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		driver.findElement(HomePageLocators.CART_ICON).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+//		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+		Thread.sleep(5000);
+		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SPLIT_BUNDLE));
+		softAssert.assertTrue(driver.findElement(SPLIT_BUNDLE).isDisplayed(),"Bundle Product Is Not Splitting");
+		Reporter.log("Bundle Product Is Splitting");
+		ExtentReport.extentTest.info("Bundle Product Is Splitting");
+	}
 
 	public void VerifyGCFraudDisclosureInCheckoutPage() throws InterruptedException {
 

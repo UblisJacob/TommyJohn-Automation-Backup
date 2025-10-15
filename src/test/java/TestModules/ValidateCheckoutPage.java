@@ -47,6 +47,13 @@ public class ValidateCheckoutPage extends ExtentReport {
 		new CheckoutPage(driver).VerifyGCFraudDisclosureInCheckoutPage();
 	}
 
+	@Test
+	public void VerifySplitBundleProduct() throws Exception
+	{
+		new AddToCartComponents(driver).addmultipackbundleproduct();
+		new CheckoutPage(driver).VerifSplitBundleProduct();
+	}
+
 //	@Test
 	public void VerifyGCFraudDisclosureInShippingPage() throws Exception
 	{

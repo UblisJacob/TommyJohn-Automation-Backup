@@ -67,6 +67,7 @@ public class CheckoutPageLocators {
 
 	//SideBar
 	public static By ORDER_SUMMARY_SECTION = By.xpath("//div[@class='_4QenE']");
+	public static By SPLIT_BUNDLE = By.xpath("//div[@id='collapsed-components']");
 	//public static By DISCOUNT_CODE_TEXTBOX = By.cssSelector("#checkout_reduction_code");
 	public static By DISCOUNT_CODE_TEXTBOX = By.xpath("//input[@name='reductions']"); ////input[@name='reductions']
 	//public static By APPLY_DISCOUNT_BUTTON = By.cssSelector(".field__input-btn");

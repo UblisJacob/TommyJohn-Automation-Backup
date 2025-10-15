@@ -2926,6 +2926,12 @@ public class HomePageComponents extends HomePageLocators {
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		jse.executeScript("window.scrollBy(0,250)");
 	}
+	public void navigateToMultipackBundleProduct() throws Exception {
+		driver.get("https://www.tommyjohn.com/products/second-skin-trunk-4-3-pack-49");
+		Thread.sleep(5000);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("window.scrollBy(0,250)");
+	}
 
 	public void navigateToAllSales() throws Exception {
 		driver.get("https://www.tommyjohn.com/collections/sale-mens-womens");
