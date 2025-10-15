@@ -24,6 +24,11 @@ public class CheckoutPage extends CheckoutPageComponents {
 
 	}
 
+	public void VerifSplitBundleProduct() throws InterruptedException {
+		new CheckoutPageComponents(driver).VerifySplitBundleProduct();
+
+	}
+
 	public void VerifyGCFraudDisclosureInShippingPage() throws Exception
 	{
 		new CheckoutPageComponents(driver).VerifyGiftCardFraudDisclosureInShippingPage();
