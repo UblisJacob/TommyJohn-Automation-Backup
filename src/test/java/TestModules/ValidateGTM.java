@@ -26,13 +26,13 @@ public class ValidateGTM {
 
 
     @Test
-            public void ValidateGTMForFredHopper() throws Exception {
+    public void ValidateGTMForFredHopper() throws Exception {
 
         new GTMValidations(driver).validateGTMEventsForFredHopper();
 
     }
 
- //   @Test
+    //   @Test
     public void ValidateSplunk() throws Exception {
 
         new GTMValidations(driver).validateSplunk();
@@ -46,7 +46,7 @@ public class ValidateGTM {
 
     }
 
- //   @Test
+    //   @Test
     public void ValidateRudderstack() throws Exception {
 
         new GTMValidations(driver).validateRudderstack();
@@ -74,7 +74,7 @@ public class ValidateGTM {
 
     }
 
- //   @Test
+    //   @Test
     public void ValidateArtsai() throws Exception {
 
         new GTMValidations(driver).validateArtsai();
@@ -93,7 +93,6 @@ public class ValidateGTM {
     void teardown() {
 
         driver.close();
-//		driver.quit();
+//     driver.quit();
     }
 }
-

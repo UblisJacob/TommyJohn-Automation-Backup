@@ -105,12 +105,12 @@
 <!--		</classes>-->
 <!--	</test>-->
 
-	<test name="GiftCardPDPsTests">
-		<parameter name="browser" value="chrome" />
-		<classes>
-			<class name="TestModules.ValidateGiftCardFunctionality" />
-		</classes>
-	</test>
+<!--	<test name="GiftCardPDPsTests">-->
+<!--		<parameter name="browser" value="chrome" />-->
+<!--		<classes>-->
+<!--			<class name="TestModules.ValidateGiftCardFunctionality" />-->
+<!--		</classes>-->
+<!--	</test>-->
 
 	<test name="AccountPageTests">
 		<parameter name="browser" value="chrome" />

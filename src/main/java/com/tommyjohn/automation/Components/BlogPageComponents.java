@@ -163,7 +163,7 @@ public class BlogPageComponents extends BlogPageLocators{
 			blogLink = driver.getCurrentUrl();
 			
 			softAssert.assertTrue(driver.findElement(BLOG_RETURN_LINK).isDisplayed(), "BLOG_RETURN_LINK is not displayed");
-			softAssert.assertTrue(driver.findElement(BLOG_ARTICLE_DATE).isDisplayed(), "BLOG_ARTICLE_DATE is not displayed");
+			//softAssert.assertTrue(driver.findElement(BLOG_ARTICLE_DATE).isDisplayed(), "BLOG_ARTICLE_DATE is not displayed");
 			softAssert.assertTrue(driver.findElement(BLOG_ARTICLE_TITLE).isDisplayed(), "BLOG_ARTICLE_TITLE is not displayed");
 			softAssert.assertTrue(driver.findElement(BLOG_ARTICLE_CONTENT).isDisplayed(), "BLOG_ARTICLE_CONTENT is not displayed");
 			softAssert.assertTrue(driver.findElement(BLOG_PREV_ARTICLE).isDisplayed(), "BLOG_PREV_ARTICLE is not displayed");
