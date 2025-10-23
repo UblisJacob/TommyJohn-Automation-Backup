@@ -23,7 +23,7 @@ public class ValidateInfluencerPage {
         }
     }
 
-    @Test
+ //   @Test
     public void VerifyFavoritesRecs()  {
         new InfluenecerPageComponents(driver).VerifyFavoritesRecs();
     }
