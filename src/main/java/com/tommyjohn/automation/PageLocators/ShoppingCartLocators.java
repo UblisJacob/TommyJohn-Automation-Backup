@@ -90,8 +90,8 @@ public class ShoppingCartLocators {
 	
 	//Tiered-meter
 	public static By TIERED_METER_TITLE = By.xpath("//p[@class='text-body']");
-	public static By TIERED_METER = By.xpath("//div[@class='relative h-0.5 bg-surface-secondary']");
-	public static By TIERED_METER_TIER= By.xpath("//div[@class='h-full bg-surface-hover']");
+	public static By TIERED_METER = By.xpath("//div[@class='relative h-0.5 rounded-sm']");
+	public static By TIERED_METER_TIER= By.xpath("//div[@class='h-full rounded-sm bg-surface-hover']");
 	//OOS
 	public static By OOS_TAG = By.xpath("//div[@class='cart__content content']//span[@data-tj-qa='inline-cart-line-item-oos-message']");
 	public static By OOS_TAG_FLYCART= By.xpath(".inline-cart.active span[data-tj-qa='inline-cart-line-item-oos-message'], .inline-cart.active span[data-tj-qa='inline-cart-line-item-oos-message']");

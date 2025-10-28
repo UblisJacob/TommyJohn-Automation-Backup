@@ -11,9 +11,9 @@
     <test name="Tests">
         <parameter name="browser" value="chrome"/>
         <classes>
-                    <class name="TestModules.ValidateCreateAccount_Login">
+                    <class name="TestModules.ValidateInlineCartPage">
                 <methods>
-                    <include name="ValidateFieldOnRecoverPasswordPage"/>
+                    <include name="VerifyTieredMeter"/>
                 </methods>
             </class>
         </classes>

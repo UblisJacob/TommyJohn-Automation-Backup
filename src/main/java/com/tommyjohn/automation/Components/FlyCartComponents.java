@@ -622,7 +622,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		//	softAssert.assertTrue(driver.findElement(By.xpath("(//div[@class='mt-2 text-body text-text-secondary sm:mt-4'])["+i+"]")).isDisplayed(), "Line item option is not displayed");
 
 			// check for price
-			softAssert.assertTrue(driver.findElement(By.xpath("(//div[@class='mt-2 flex gap-2 text-body font-medium'])[2]")).isDisplayed(), "Price is not displayed");
+			softAssert.assertTrue(driver.findElement(By.xpath("(//div[@class='mt-2 flex gap-2 text-body-sm font-medium'])[2]")).isDisplayed(), "Price is not displayed");
 
 			// check for plus minus and quantity
 			//softAssert.assertTrue(driver.findElement(QUANTITY_PLUS_MINUS_BUTTON).isDisplayed(), "plus or minus button is not displayed");
