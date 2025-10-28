@@ -380,9 +380,9 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			System.out.println(SelectASize_CTA);
 
 			js.executeScript("arguments[0].click();", driver.findElement(RATING_STARS));
+			Thread.sleep(5000);
 			Sticky_SelectASize_CTA = driver.findElement(By.xpath("(//button[@class='button-secondary grow'])[2]")).getText();
 			System.out.println(Sticky_SelectASize_CTA);
-
 			softAssert.assertEquals(SelectASize_CTA,Sticky_SelectASize_CTA,"ATC CTA is not disabled in Sticky and Regular CTAs when the User doesn't select any size");
 			Reporter.log("ATC CTA is disabled in Sticky and Regular CTAs when the User doesn't select any size");
 			ExtentReport.extentTest.info("ATC CTA is disabled in Sticky and Regular CTAs when the User doesn't select any size");

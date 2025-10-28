@@ -945,46 +945,44 @@ Thread.sleep(4000);
 	}
 
 
-	
-	
-	public void tieredMeterFunctionality() throws Exception
-	{
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-		
-		String wid="width: 100%;";
-		
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(TIERED_METER));
-		Thread.sleep(5000);
-		if(driver.findElement(TIERED_METER).isDisplayed()) 
-		{	
-		String widthvalue=	driver.findElement(TIERED_METER_TIER).getCssValue("width");
-			System.out.println(widthvalue);
-		String text=driver.findElement(TIERED_METER_TIER).getAttribute("style");	
-		System.out.println(text);
-		if(!text.equals(wid))
-		{
-			System.out.println("New Exception");
-			throw new Exception("Tiered meter not filling in correctly.");
 
-        }
-		Reporter.log("Tiered Meter is filling in");
-		ExtentReport.extentTest.info("Tiered Meter is filling in");
-		String[] widthper = text.split(": ");
-		System.out.println(widthper[1]);
-		if(!widthper[1].equals("100%;"))
-		{
-			System.out.println("Tiered meter not filling in correctly.");
-			throw new Exception("Tiered meter not filling in correctly.");
+
+	public void tieredMeterFunctionality() throws Exception {
+		// Set implicit wait
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+
+		// Short pause to ensure Tier Meter loads
+		Thread.sleep(5000);
+
+		// Verify Tier Meter visibility
+		if (driver.findElements(TIERED_METER).size() > 0 && driver.findElement(TIERED_METER).isDisplayed()) {
+			// Get style and CSS width values
+			String styleValue = driver.findElement(TIERED_METER_TIER).getAttribute("style");
+			String cssWidthValue = driver.findElement(TIERED_METER_TIER).getCssValue("width");
+
+			System.out.println("Tiered Meter CSS Width: " + cssWidthValue);
+			System.out.println("Tiered Meter Style Attribute: " + styleValue);
+
+			// Validate if Tier Meter width indicates full progress
+			if (styleValue == null || !styleValue.replace(" ", "").contains("width:100%")) {
+				System.out.println("Tiered meter not filling in correctly.");
+				Reporter.log("Tiered meter not filling in correctly.");
+				ExtentReport.extentTest.fail("Tiered meter not filling in correctly.");
+				throw new Exception("Tiered meter not filling in correctly.");
+			}
+
+			// If validation passes
+			System.out.println("Tiered Meter is filling correctly (100%).");
+			Reporter.log("Tiered Meter is filling correctly (100%).");
+			ExtentReport.extentTest.info("Tiered Meter is filling correctly (100%).");
+
+		} else {
+			// Handle case where Tiered Meter is missing
+			System.out.println("Tiered Meter is not displayed on Cart page.");
+			Reporter.log("Tiered Meter is not displayed on Cart page.");
+			ExtentReport.extentTest.info("Tiered Meter is not displayed on Cart page.");
+			throw new Exception("Tiered Meter is not displayed on Cart page.");
 		}
-		Reporter.log("Tiered Meter is filling in");
-		ExtentReport.extentTest.info("Tiered Meter is filling in");
-		}
-		else {
-			System.out.println("Tiered Meter is not displayed on cart page");
-			Reporter.log("Tiered Meter is not displayed on cart page");
-			ExtentReport.extentTest.info("Tiered Meter is not displayed on cart page");
-		}
-		
-		
 	}
+
 }
