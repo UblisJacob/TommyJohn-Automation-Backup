@@ -413,9 +413,9 @@ public class FlyCartComponents extends FlyCartPageLocator{
 //			System.out.println(First_Product_Name);
 			//	jse.executeScript("arguments[0].click();", driver.findElement(SUGGESTION_FIRST_PRODUCT_SIZE));
 
-			for (int k = 1; k <= 3; k++) {
+			for (int k = 1; k <= 1; k++) {
 
-				WebElement elements = driver.findElement(By.xpath("(//form[@data-cy='productForm']//input[@name='option[Size]'])[" + k + "]"));
+				WebElement elements = driver.findElement(By.xpath("(//input[@name='option[Size]'])[" + k + "]"));
 				jse.executeScript("arguments[0].click();", elements);
 				Thread.sleep(5000);
 
@@ -433,8 +433,8 @@ public class FlyCartComponents extends FlyCartPageLocator{
 					Reporter.log("Selected Color Is Added To Cart");
 					ExtentReport.extentTest.info("Selected Color Is Added To Cart");
 					count++;
-
-				} catch (Exception ex) {
+				}
+				catch (Exception ex) {
 					System.out.println("Product is OOS");
 				}
 

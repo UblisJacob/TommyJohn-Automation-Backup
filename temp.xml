@@ -11,9 +11,9 @@
     <test name="Tests">
         <parameter name="browser" value="chrome"/>
         <classes>
-                    <class name="TestModules.ValidateInlineCartPage">
+                    <class name="TestModules.ValidateSearchPages">
                 <methods>
-                    <include name="VerifyTieredMeter"/>
+                    <include name="VerifySearchViewOnImageAndSecondaryBadging"/>
                 </methods>
             </class>
         </classes>
