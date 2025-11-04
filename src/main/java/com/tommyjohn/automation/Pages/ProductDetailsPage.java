@@ -83,6 +83,20 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 
 	}
 
+	public void VerifyAddToWishlist() throws Exception {
+
+
+		new ProductDetailsPageComponents(driver).VerifyAddToWishlist();
+
+	}
+
+	public void ValidateGuestUserAddToWishlist() throws Exception {
+
+
+		new ProductDetailsPageComponents(driver).ValidateGuestUserAddToWishlist();
+
+	}
+
 	public void VerifyProductAddOn()  {
 
 

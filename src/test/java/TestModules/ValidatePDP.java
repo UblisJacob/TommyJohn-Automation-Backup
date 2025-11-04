@@ -63,6 +63,16 @@ public class 	ValidatePDP extends ExtentReport{
 	}
 
 	@Test
+	public void VerifyAddToWishlist() throws Exception {
+		new ProductDetailsPage(driver).VerifyAddToWishlist();
+	}
+
+	@Test
+	public void ValidateGuestUserAddToWishlist() throws Exception {
+		new ProductDetailsPage(driver).VerifyAddToWishlist();
+	}
+
+	@Test
 	public void VerifyProductAddOnIsDispalyed() throws Exception {
 		new ProductDetailsPage(driver).VerifyProductAddOn();
 	}
