@@ -11,9 +11,9 @@
     <test name="Tests">
         <parameter name="browser" value="chrome"/>
         <classes>
-                    <class name="TestModules.ValidateSearchPages">
+                    <class name="TestModules.ValidatePDP">
                 <methods>
-                    <include name="VerifySearchViewOnImageAndSecondaryBadging"/>
+                    <include name="ValidateGuestUserAddToWishlist"/>
                 </methods>
             </class>
         </classes>

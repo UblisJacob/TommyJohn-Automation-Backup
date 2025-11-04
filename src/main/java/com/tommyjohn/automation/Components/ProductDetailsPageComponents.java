@@ -71,6 +71,47 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		this.driver = driver;
 	}
 
+
+
+	public void VerifyAddToWishlist() throws Exception {
+		String text = null;
+		JavascriptExecutor js1 = (JavascriptExecutor) driver;;
+		SoftAssert softAssert = new SoftAssert();
+		new HomePageComponents(driver).navigateToMensAll();
+		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+//		driver.get("https://www.tommyjohn.com/products/womens-air-bra-pack-2-pack?variant=43216573464621");
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(ADD_TO_WISHLIST));
+		softAssert.assertTrue(driver.findElement(ADD_TO_WISHLIST).isDisplayed(),"Add to Wishlist is not available in PDP");
+		String Add_to_Wishlist = driver.findElement(ADD_TO_WISHLIST).getText();
+		System.out.println("Add to Wishlist text is:"+ Add_to_Wishlist);
+		Reporter.log("Add to Wishlist is available in PDP");
+		ExtentReport.extentTest.info("Add to Wishlist is available in PDP");
+
+	}
+
+	public void ValidateGuestUserAddToWishlist() throws Exception {
+		JavascriptExecutor js1 = (JavascriptExecutor) driver;;
+		SoftAssert softAssert = new SoftAssert();
+		new HomePageComponents(driver).navigateToAllWomensCollectionInWomensCategory();
+		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(ADD_TO_WISHLIST));
+		softAssert.assertTrue(driver.findElement(ADD_TO_WISHLIST).isDisplayed(),"Add to Wishlist is not available in PDP");
+		String Add_to_Wishlist = driver.findElement(ADD_TO_WISHLIST).getText();
+		System.out.println("Add to Wishlist text is:"+ Add_to_Wishlist);
+		Reporter.log("Add to Wishlist is available in PDP");
+		ExtentReport.extentTest.info("Add to Wishlist is available in PDP");
+		WebElement elem = driver.findElement(ADD_TO_WISHLIST);
+		js1.executeScript("arguments[0].click();", elem);
+		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(LOGIN_DRAWER));
+		softAssert.assertTrue(driver.findElement(LOGIN_DRAWER).isDisplayed(),"Login Drawer Is not Displayed for the Guest user");
+		Reporter.log("Login Drawer Is Displayed for the Guest user when the User tries to Add the Product to Wishlist");
+		ExtentReport.extentTest.info("Login Drawer Is Displayed for the Guest user when the User tries to Add the Product to Wishlist");
+
+
+	}
+
 	public void VerifyProductAddOn()
 	{
 
