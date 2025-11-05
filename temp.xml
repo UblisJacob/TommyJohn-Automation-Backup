@@ -11,14 +11,13 @@
     <test name="Tests">
         <parameter name="browser" value="chrome"/>
         <classes>
-                    <class name="TestModules.ValidatePDP">
+                    <class name="TestModules.ValidateCategoryPages">
                 <methods>
-                    <include name="ValidateGuestUserAddToWishlist"/>
+                    <include name="VerifyFilterPill"/>
                 </methods>
             </class>
         </classes>
     </test>
-
 
 <!--    <listeners>-->
 <!--        <listener class-name="TestScenario.ADAListenerClass"></listener>-->

@@ -7,6 +7,7 @@ public class CollectionPageLocator {
 
 	public static By DYPLACEHOLDERBANNER = By.xpath("//div[@class='flex overflow-y-hidden items-end scrim max-sm:my-2xs sm:h-[90px]  scrim-none max-sm:aspect-video']");
 	public static By SHOPNOWCTAINDYPLACEHOLDERBANNER = By.xpath("//a[@aria-label='Shop Now']");
+	public static By FILTER_PILLS = By.xpath("//div[@class='flex-1 min-w-0 h-10 relative z-10 my-md']");
 	public static By STYLE_COROSALS = By.cssSelector("div.dyCollection-hero__interactive-inner");
 	public static By TOTAL_NO_OF_COROSALS = By.xpath("//div[@class='interactive-hero-slide asset-type-icons']");
 	public static By FILTER_PILL = By.xpath("//button[@title='Filters']");

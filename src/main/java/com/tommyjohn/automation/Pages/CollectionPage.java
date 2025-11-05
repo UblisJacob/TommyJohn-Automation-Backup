@@ -368,6 +368,10 @@ public class CollectionPage extends CollectionPageComponent{
 		new CollectionPageComponent(driver).ValidateCollectionDoorways();
 	}
 
+	public void VerifyFilterPill() {
+		new CollectionPageComponent(driver).VerifyFilterPill();
+	}
+
 	public void ValidateFunctionalityOfCollectionDoorways() {
 		new CollectionPageComponent(driver).ValidateFunctionalityOfCollectionDoorways();
 	}
