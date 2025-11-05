@@ -61,6 +61,18 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		ExtentReport.extentTest.info("DY Placeholder banner is displayed in the PLP");
 	}
 
+	public void VerifyFilterPill()
+	{
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		SoftAssert softAssert = new SoftAssert();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		new HomePageComponents(driver).navigateToMensAll();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FILTER_PILLS));
+		softAssert.assertTrue(driver.findElement(FILTER_PILLS).isDisplayed(),"Filter Pills are not displayed");
+		Reporter.log("Filter Pills are displayed");
+		ExtentReport.extentTest.info("Filter Pills are displayed");
+	}
+
 	public void ValidateShopNowCTAinDyPlaceholderBanner()
 	{
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
