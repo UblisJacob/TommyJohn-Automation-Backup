@@ -205,27 +205,30 @@
 
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
-			<version>4.36.0</version>
+			<version>4.38.0</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-devtools-v130 -->
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-devtools-v138 -->
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-devtools-v140 -->
+		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-devtools-v142 -->
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-devtools-v140</artifactId>
-			<version>4.36.0</version>
+			<artifactId>selenium-devtools-v142</artifactId>
+			<version>4.38.0</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-chrome-driver -->
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-chrome-driver -->
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-chrome-driver -->
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-chrome-driver</artifactId>
-			<version>4.36.0</version>
+			<version>4.38.0</version>
 		</dependency>
 
 		<dependency>
