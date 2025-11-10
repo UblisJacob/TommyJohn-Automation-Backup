@@ -7,7 +7,7 @@
 		<listener class-name="TestScenario.RetryListener"></listener>
 	</listeners>
 
-	<test name="HomepageTests">
+    <test name="HomepageTests">
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="TestModules.ValidateHomePage" />
