@@ -231,10 +231,11 @@
 			<version>4.38.0</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
 		<dependency>
 			<groupId>io.github.bonigarcia</groupId>
 			<artifactId>webdrivermanager</artifactId>
-			<version>5.7.0</version> <!-- Use the latest stable -->
+			<version>6.3.3</version>
 		</dependency>
 
 
@@ -392,8 +393,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${maven-compiler-plugin.version}</version>
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
+					<source>15</source>
+					<target>15</target>
 				</configuration>
 			</plugin>
 
