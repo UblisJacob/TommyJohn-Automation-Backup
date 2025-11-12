@@ -36,10 +36,10 @@ import org.openqa.selenium.devtools.v140.emulation.Emulation;
 public class CustomUtilities {
 
 	public static WebDriver driver;
-//	public static ChromeDriver drivers;
+	//	public static ChromeDriver drivers;
 	public EdgeDriver edgedriver;
 	public static String baseUrl = "https://www.tommyjohn.com/";
-//	public static String baseUrl = "https://www.tommyjohn.com/?_ab=0&_fd=0&_sc=1&preview_theme_id=140061376557";
+	//	public static String baseUrl = "https://www.tommyjohn.com/?_ab=0&_fd=0&_sc=1&preview_theme_id=140061376557";
 	public static BufferedReader reader;
 	public static Properties properties;
 	public static final String propertiesFilePath = "src/main/resources/configuration.properties";
@@ -74,8 +74,14 @@ public class CustomUtilities {
 
 			// Set other desired capabilities if needed (such as enabling remote d
 //			chromeOptions.setExperimentalOption("useAutomationExtension", false)
+			chromeOptions.addArguments("--use-fake-ui-for-media-stream");
+			chromeOptions.addArguments("--use-fake-device-for-media-stream");
+			chromeOptions.addArguments("--unsafely-treat-insecure-origin-as-secure=http://192.168.5.229");
+			chromeOptions.addArguments("--disable-web-security");
+			chromeOptions.addArguments("--ignore-certificate-errors");
+		//	chromeOptions.addArguments("--start-maximized");
 			chromeOptions.addArguments("--disable-gpu");
-//			chromeOptions.addArguments("--headless");
+			chromeOptions.addArguments("--headless");
 			chromeOptions.addArguments("--window-size=1920,1080");
 			chromeOptions.addArguments("--force-device-scale-factor=1");
 			chromeOptions.addArguments("--start-maximized");
@@ -290,10 +296,10 @@ public class CustomUtilities {
 	}
 	public static String takeScreenShot(String name)  {
 
-     	String rootDir = System.getProperty("user.dir");
+		String rootDir = System.getProperty("user.dir");
 		String screenShotsFolder = rootDir+"/test-output/Screenshots/";
 
- //		String UploadscreenShotsFolder = com.base.GDrivePOST.UploadScreenShot();
+		//		String UploadscreenShotsFolder = com.base.GDrivePOST.UploadScreenShot();
 
 //		System.out.println(rootDir);
 
@@ -311,7 +317,7 @@ public class CustomUtilities {
 
 		try {
 			FileUtils.copyFile(file, new File(filePath));
-	//		screenshot = com.base.GDrivePOST.UploadScreenShot();
+			//		screenshot = com.base.GDrivePOST.UploadScreenShot();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
