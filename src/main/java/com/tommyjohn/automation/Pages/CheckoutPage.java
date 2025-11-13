@@ -112,6 +112,11 @@ public class CheckoutPage extends CheckoutPageComponents {
 
 	}
 
+	public void Validate5for$65functionalityinCheckoutPage() throws Exception {
+		new CheckoutPageComponents(driver).Validate5for$65functionalityinCheckoutPage();
+
+	}
+
 
 	public void Validate3for$48functionalityinInformationPage() throws Exception {
 		new CheckoutPageComponents(driver).Validate3for$48functionalityinInformationPage();

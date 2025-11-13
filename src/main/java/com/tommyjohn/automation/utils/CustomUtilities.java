@@ -81,7 +81,7 @@ public class CustomUtilities {
 			chromeOptions.addArguments("--ignore-certificate-errors");
 		//	chromeOptions.addArguments("--start-maximized");
 			chromeOptions.addArguments("--disable-gpu");
-			chromeOptions.addArguments("--headless");
+//			chromeOptions.addArguments("--headless");
 			chromeOptions.addArguments("--window-size=1920,1080");
 			chromeOptions.addArguments("--force-device-scale-factor=1");
 			chromeOptions.addArguments("--start-maximized");
