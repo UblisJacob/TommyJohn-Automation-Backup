@@ -27,6 +27,14 @@
         </classes>
     </test>
 
+    <test name="GiftPageCheck">
+        <parameter name="browser" value="chrome" />
+        <classes>
+            <class name="ADACheckModules.GiftPageADACheck" />
+        </classes>
+    </test>
+
+
     <test name="LoginPageADACheck">
         <parameter name="browser" value="chrome" />
         <classes>
