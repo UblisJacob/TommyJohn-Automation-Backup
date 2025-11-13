@@ -76,7 +76,7 @@ public class CustomUtilities {
 //			chromeOptions.setExperimentalOption("useAutomationExtension", false)
 			chromeOptions.addArguments("--use-fake-ui-for-media-stream");
 			chromeOptions.addArguments("--use-fake-device-for-media-stream");
-			chromeOptions.addArguments("--unsafely-treat-insecure-origin-as-secure=http://192.168.5.229");
+			chromeOptions.addArguments("--unsafely-treat-insecure-origin-as-secure=http://192.168.7.43");
 			chromeOptions.addArguments("--disable-web-security");
 			chromeOptions.addArguments("--ignore-certificate-errors");
 		//	chromeOptions.addArguments("--start-maximized");
