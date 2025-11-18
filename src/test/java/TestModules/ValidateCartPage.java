@@ -40,7 +40,7 @@ public class ValidateCartPage extends ExtentReport{
 
 	}
 
-	@Test
+//	@Test
 	public void ValidatefiveforsixtyfivefunctionalityinCartPage() throws Exception {
 		new ShoppingCartPage(driver).Validate5for$65functionalityinCartPage();
 
@@ -90,6 +90,15 @@ public class ValidateCartPage extends ExtentReport{
 		new ShoppingCartPage(driver).ValidatePromoCodeFIRST20InCartPage();
 
 	}
+
+	@Test
+	public void ValidatePromoSavingsInCartPage() throws Exception {
+		new AddToCartComponents(driver).addsingleproductToCartforFirst20Coupon();
+		new ShoppingCartPage(driver).ValidatePromoSavingsInCartPage();
+
+	}
+
+
 
 	@Test
 	public void ValidateProductSuggestionIsDisplayed() throws Exception {

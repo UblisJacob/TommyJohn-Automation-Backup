@@ -56,7 +56,7 @@
 		</classes>
 	</test>
 
-	<test name="FooterPageTests">
+	<test name="FooterPageTests">d
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="TestModules.ValidateFooterSection" />
