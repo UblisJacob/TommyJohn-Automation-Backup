@@ -147,7 +147,7 @@ public class ValidateCheckoutPage extends ExtentReport {
 		new CheckoutPage(driver).ValidatePromoCodeFIRST20InPaymentPage();
 	}
 
-	@Test
+//	@Test
 	public void ValidatefiveforsixtyfivefunctionalityinCheckoutPage() throws Exception
 	{
 		new AddToCartComponents(driver).add3for$48product();

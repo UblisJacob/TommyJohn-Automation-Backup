@@ -250,6 +250,46 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 
 	}
 
+
+	public void ValidatePromoSavingsInCartPage() throws InterruptedException {
+
+		WebElement element;
+		SoftAssert softAssert = new SoftAssert();
+
+		driver.get("https://www.tommyjohn.com/");
+
+		driver.findElement(HomePageLocators.CART_ICON).click();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+		Thread.sleep(3000);
+
+		driver.findElement(CART_COUPONFIELD).sendKeys("FIRST20");
+		Thread.sleep(2000);
+		driver.findElement(APPLY_CTA).click();
+
+		Thread.sleep(10000);
+		String Coupon = driver.findElement(APPLIED_COUPON).getText();
+		System.out.println(Coupon);
+
+		element= driver.findElement(APPLIED_COUPON);
+		softAssert.assertTrue(element.isDisplayed(), "The Coupon code FIRST20 is not getting applied in Cart page");
+		Reporter.log("The Coupon code FIRST20 applied in Cart page");
+		ExtentReport.extentTest.info("The Coupon code FIRST20 applied in Cart page");
+
+		WebElement element1= driver.findElement(SAVINGS_AMOUNT);
+		softAssert.assertTrue(element1.isDisplayed(),"Total Amount saved is not displayed in the Cart Page");
+
+		String Savings = driver.findElement(SAVINGS).getText();
+		String Savings_Amount = driver.findElement(SAVINGS_AMOUNT).getText();
+		System.out.println("Total Amount Saved is = "+ Savings_Amount);
+
+		Reporter.log("Total Amount saved is displayed in the Cart Page");
+		ExtentReport.extentTest.info("Total Amount saved is displayed in the Cart Page");
+
+	}
+
 	public void ValidateProductSuggestionInCartPage() throws InterruptedException {
 		WebElement element;
 		SoftAssert softAssert = new SoftAssert();

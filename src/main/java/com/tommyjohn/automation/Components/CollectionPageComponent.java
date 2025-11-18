@@ -45,7 +45,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	String Selected_size1;
 	String Selected_size2;
 	int count = 0;
-	int PLPs = 55;
+	int PLPs = 56;
 	List<WebElement> CollectionDoorways;
 	int Count;
 
