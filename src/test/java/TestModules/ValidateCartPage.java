@@ -183,8 +183,12 @@ public class ValidateCartPage extends ExtentReport{
 	@AfterMethod(alwaysRun = true)
 	void teardown() {
 
-		 driver.close();
+//		 driver.close();
 //		driver.quit();
+		if(driver != null)
+		{
+			driver.quit();
+		}
 	}
 
 }

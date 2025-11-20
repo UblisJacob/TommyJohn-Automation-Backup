@@ -35,7 +35,7 @@ import org.openqa.selenium.devtools.v140.emulation.Emulation;
 
 public class CustomUtilities {
 
-	public static WebDriver driver;
+	public WebDriver driver;
 	//	public static ChromeDriver drivers;
 	public EdgeDriver edgedriver;
 	public static String baseUrl = "https://www.tommyjohn.com/";
@@ -76,12 +76,12 @@ public class CustomUtilities {
 //			chromeOptions.setExperimentalOption("useAutomationExtension", false)
 			chromeOptions.addArguments("--use-fake-ui-for-media-stream");
 			chromeOptions.addArguments("--use-fake-device-for-media-stream");
-			chromeOptions.addArguments("--unsafely-treat-insecure-origin-as-secure=http://192.168.5.229");
+			chromeOptions.addArguments("--unsafely-treat-insecure-origin-as-secure=http://192.168.7.43");
 			chromeOptions.addArguments("--disable-web-security");
 			chromeOptions.addArguments("--ignore-certificate-errors");
 		//	chromeOptions.addArguments("--start-maximized");
 			chromeOptions.addArguments("--disable-gpu");
-//			chromeOptions.addArguments("--headless");
+			chromeOptions.addArguments("--headless");
 			chromeOptions.addArguments("--window-size=1920,1080");
 			chromeOptions.addArguments("--force-device-scale-factor=1");
 			chromeOptions.addArguments("--start-maximized");
@@ -269,7 +269,7 @@ public class CustomUtilities {
 	}
 
 
-	public static void takessiffailed(String mname) throws Exception
+	public static void takessiffailed(String mname, WebDriver driver) throws Exception
 	{
 
 		String testname =  mname;
@@ -294,7 +294,7 @@ public class CustomUtilities {
 		System.out.println("Suite: " + Suitname);
 
 	}
-	public static String takeScreenShot(String name)  {
+	public static String takeScreenShot(String name, WebDriver driver)  {
 
 		String rootDir = System.getProperty("user.dir");
 		String screenShotsFolder = rootDir+"/test-output/Screenshots/";
@@ -330,7 +330,7 @@ public class CustomUtilities {
 
 	}
 
-	public static String screenshot()
+	public static String screenshot(WebDriver driver)
 	{
 
 

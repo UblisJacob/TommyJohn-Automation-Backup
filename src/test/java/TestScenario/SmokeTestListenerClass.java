@@ -92,7 +92,7 @@ public class SmokeTestListenerClass extends ExtentReport implements ITestListene
     @Override
     public void onTestFailure(ITestResult result) {
 
-        String screenShotPath = CustomUtilities.screenshot();
+        String screenShotPath = CustomUtilities.screenshot(driver);
 
         if (count < Retry.maxRetryCount) {
             shouldPrint = false;
