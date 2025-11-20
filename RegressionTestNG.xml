@@ -4,7 +4,7 @@
 
 	<listeners>
 		<listener class-name="TestScenario.ListenerClass"></listener>
-		<listener class-name="TestScenario.RetryListener"></listener>
+<!--		<listener class-name="TestScenario.RetryListener"></listener>-->
 	</listeners>
 
     <test name="HomepageTests">

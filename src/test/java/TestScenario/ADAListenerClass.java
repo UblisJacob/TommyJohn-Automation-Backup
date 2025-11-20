@@ -92,7 +92,7 @@ public class ADAListenerClass extends ExtentReport implements ITestListener, IEx
     @Override
     public void onTestFailure(ITestResult result) {
 
-        String screenShotPath = CustomUtilities.screenshot();
+        String screenShotPath = CustomUtilities.screenshot(driver);
 
         if (count < Retry.maxRetryCount) {
             shouldPrint = false;

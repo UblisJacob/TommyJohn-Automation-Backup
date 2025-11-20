@@ -11,24 +11,13 @@
     <test name="Tests">
         <parameter name="browser" value="chrome"/>
         <classes>
-                    <class name="TestModules.ValidatePDP">
+                    <class name="TestModules.ValidateHomePage">
                 <methods>
-                    <include name="ValidatePromoSavingsInCartPage"/>
+                    <include name="ValidateImageInHeroBanner"/>
                 </methods>
             </class>
         </classes>
     </test>
 
-<!--    <listeners>-->
-<!--        <listener class-name="TestScenario.ADAListenerClass"></listener>-->
-<!--&lt;!&ndash;        <listener class-name="TestScenario.RetryListener"></listener>&ndash;&gt;-->
-<!--    </listeners>-->
-
-<!--    <test name="ADA Check">-->
-<!--        <parameter name="browser" value="chrome" />-->
-<!--        <classes>-->
-<!--            <class name="ADACheckModules.PDPPageADACheck" />-->
-<!--        </classes>-->
-<!--    </test>-->
 
 </suite>
