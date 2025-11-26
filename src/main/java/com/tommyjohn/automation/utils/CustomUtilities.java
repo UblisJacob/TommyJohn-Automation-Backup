@@ -74,8 +74,14 @@ public class CustomUtilities {
 
 			// Set other desired capabilities if needed (such as enabling remote d
 //			chromeOptions.setExperimentalOption("useAutomationExtension", false)
+			chromeOptions.addArguments("--use-fake-ui-for-media-stream");
+			chromeOptions.addArguments("--use-fake-device-for-media-stream");
+			chromeOptions.addArguments("--unsafely-treat-insecure-origin-as-secure=http://192.168.6.99");
+			chromeOptions.addArguments("--disable-web-security");
+			chromeOptions.addArguments("--ignore-certificate-errors");
+			//	chromeOptions.addArguments("--start-maximized");
 			chromeOptions.addArguments("--disable-gpu");
-//			chromeOptions.addArguments("--headless");
+			chromeOptions.addArguments("--headless");
 			chromeOptions.addArguments("--window-size=1920,1080");
 			chromeOptions.addArguments("--force-device-scale-factor=1");
 			chromeOptions.addArguments("--start-maximized");

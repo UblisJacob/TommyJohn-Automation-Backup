@@ -7,7 +7,7 @@
 		<listener class-name="TestScenario.RetryListener"></listener>
 	</listeners>
 
-    <test name="HomepageTests">
+	<test name="HomepageTests">
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="TestModules.ValidateHomePage" />
@@ -20,13 +20,13 @@
 			<class name="TestModules.ValidateInlineCartPage" />
 		</classes>
 	</test>d
-`
-<!--	<test name="GTMTags">-->
-<!--		<parameter name="browser" value="chrome" />-->
-<!--		<classes>-->
-<!--			<class name="TestModules.ValidateGTM" />-->
-<!--		</classes>-->
-<!--	</test>-->
+	`
+	<!--    <test name="GTMTags">-->
+	<!--       <parameter name="browser" value="chrome" />-->
+	<!--       <classes>-->
+	<!--          <class name="TestModules.ValidateGTM" />-->
+	<!--       </classes>-->
+	<!--    </test>-->
 
 	<test name="NavigationAndHomepageTests">
 		<parameter name="browser" value="chrome" />
@@ -56,7 +56,7 @@
 		</classes>
 	</test>
 
-	<test name="FooterPageTests">
+	<test name="FooterPageTests">d
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="TestModules.ValidateFooterSection" />
@@ -77,18 +77,18 @@
 		</classes>
 	</test>
 
-<!--	<test name="AllQuizTests">-->
-<!--		<parameter name="browser" value="chrome" />-->
-<!--		<classes>-->
-<!--			<class name="TestModules.ValidateQuiz" />-->
-<!--		</classes>-->
-<!--	</test>-->
+	<!--    <test name="AllQuizTests">-->
+	<!--       <parameter name="browser" value="chrome" />-->
+	<!--       <classes>-->
+	<!--          <class name="TestModules.ValidateQuiz" />-->
+	<!--       </classes>-->
+	<!--    </test>-->
 
 	<test name="CreateAccountAndLoginTests">
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="TestModules.ValidateCreateAccount_Login" />
-		</classes>	
+		</classes>
 	</test>
 
 	<test name="CheckoutPageTests">
@@ -98,12 +98,12 @@
 		</classes>
 	</test>
 
-<!--	<test name="GiftCardBalancePageTests">-->
-<!--		<parameter name="browser" value="chrome" />-->
-<!--		<classes>-->
-<!--			<class name="TestModules.ValidateGiftCardBalance" />-->
-<!--		</classes>-->
-<!--	</test>-->
+	<!--    <test name="GiftCardBalancePageTests">-->
+	<!--       <parameter name="browser" value="chrome" />-->
+	<!--       <classes>-->
+	<!--          <class name="TestModules.ValidateGiftCardBalance" />-->
+	<!--       </classes>-->
+	<!--    </test>-->
 
 	<test name="GiftCardPDPsTests">
 		<parameter name="browser" value="chrome" />
@@ -119,12 +119,12 @@
 		</classes>
 	</test>
 
-<!--	<test name="StoreDirectoryTests">-->
-<!--		<parameter name="browser" value="chrome" />-->
-<!--		<classes>-->
-<!--			<class name="TestModules.ValidateTJStoresPage" />-->
-<!--		</classes>-->
-<!--	</test>-->
+	<!--    <test name="StoreDirectoryTests">-->
+	<!--       <parameter name="browser" value="chrome" />-->
+	<!--       <classes>-->
+	<!--          <class name="TestModules.ValidateTJStoresPage" />-->
+	<!--       </classes>-->
+	<!--    </test>-->
 
 	<test name="CartPageTests">
 		<parameter name="browser" value="chrome" />
@@ -156,41 +156,41 @@
 		</classes>
 	</test>
 
-<!--	<test name="ReOrderPageTests">-->
-<!--		<parameter name="browser" value="chrome" />-->
-<!--		<classes>-->
-<!--			<class name="TestModules.ValidateReorderPage" />-->
-<!--		</classes>-->
-<!--	</test>-->
+	<!--    <test name="ReOrderPageTests">-->
+	<!--       <parameter name="browser" value="chrome" />-->
+	<!--       <classes>-->
+	<!--          <class name="TestModules.ValidateReorderPage" />-->
+	<!--       </classes>-->
+	<!--    </test>-->
 
-<!--	<test name="ContactUsPageTests">-->
-<!--		<parameter name="browser" value="chrome" />-->
-<!--		<classes>-->
-<!--			<class name="TestModules.ValidateContactUsPage" />-->
-<!--		</classes>-->
-<!--	</test>-->
+	<!--    <test name="ContactUsPageTests">-->
+	<!--       <parameter name="browser" value="chrome" />-->
+	<!--       <classes>-->
+	<!--          <class name="TestModules.ValidateContactUsPage" />-->
+	<!--       </classes>-->
+	<!--    </test>-->
 
-<!--	<test name="ReviewsPage">-->
-<!--		<parameter name="browser" value="chrome" />-->
-<!--		<classes>-->
-<!--			<class name="TestModules.ValidateReviewsPage" />-->
-<!--		</classes>-->
-<!--	</test>-->
-
-
-
-<!--		<test name="OrderPlacementTests">-->
-<!--		<parameter name="browser" value="chrome" />-->
-<!--			<classes>-->
-<!--				<class name="TestModules.ValidateOrderPlacement" />-->
-<!--			</classes>-->
-<!--		</test>-->
+	<!--    <test name="ReviewsPage">-->
+	<!--       <parameter name="browser" value="chrome" />-->
+	<!--       <classes>-->
+	<!--          <class name="TestModules.ValidateReviewsPage" />-->
+	<!--       </classes>-->
+	<!--    </test>-->
 
 
-<!--			<test name="AfterPayTests">-->
-<!--					<parameter name="browser" value="chrome" />-->
-<!--					<classes>-->
-<!--						<class name="TestModules.ValidateAfterPay" />-->
-<!--					</classes>-->
-<!--				</test>-->
+
+	<!--       <test name="OrderPlacementTests">-->
+	<!--       <parameter name="browser" value="chrome" />-->
+	<!--          <classes>-->
+	<!--             <class name="TestModules.ValidateOrderPlacement" />-->
+	<!--          </classes>-->
+	<!--       </test>-->
+
+
+	<!--          <test name="AfterPayTests">-->
+	<!--                <parameter name="browser" value="chrome" />-->
+	<!--                <classes>-->
+	<!--                   <class name="TestModules.ValidateAfterPay" />-->
+	<!--                </classes>-->
+	<!--             </test>-->
 </suite>
