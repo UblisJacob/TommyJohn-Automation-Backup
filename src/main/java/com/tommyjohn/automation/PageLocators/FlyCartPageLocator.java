@@ -58,6 +58,8 @@ public class FlyCartPageLocator {
 	public static By APPLIED_PROMO_COUPON = By.xpath("(//div[@class='mt-2 text-body font-medium text-functional-sale'])[1]");
 	public static By COUPON_SUCCESS_MESSAGE = By.xpath("//p[@class='mt-4 text-text-secondary']");
 	public static By ERROR_COUPON = By.xpath("//p[@class='mt-4 text-functional-error']");
+	public static By SAVINGS = By.xpath("(//div[@class='flex justify-between gap-4 text-functional-sale']//span)[1]");
+	public static By SAVINGS_AMOUNT = By.xpath("(//div[@class='flex justify-between gap-4 text-functional-sale']//span)[2]");
 	public static By INLINE_CART_APPLIED_COUPON = By.xpath("//div[@class='mt-2 text-body font-medium text-functional-sale']");
 	public static By MINICART_QUANTITY_INPUT = By.xpath("//input[contains(@id, 'CartFormMini-Quantity')]");
 	public static By MINICART_QUANTITY_INCREASE = By.xpath("//span[@class='icon size-5 icon-plus']");

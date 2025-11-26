@@ -76,6 +76,12 @@ public class ValidateCartPage extends ExtentReport{
 
 	}
 
+	@Test
+	public void ValidatePromoSavingsInCartPage() throws Exception {
+		new AddToCartComponents(driver).addsingleproductToCartforFirst20Coupon();
+		new ShoppingCartPage(driver).ValidatePromoSavingsInCartPage();
+	}
+
 
 
 	@Test
@@ -84,6 +90,8 @@ public class ValidateCartPage extends ExtentReport{
 		new ShoppingCartPage(driver).ValidatePromoCodeFIRST20InCartPage();
 
 	}
+
+
 
 	@Test
 	public void ValidateProductSuggestionIsDisplayed() throws Exception {
