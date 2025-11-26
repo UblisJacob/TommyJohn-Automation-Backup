@@ -336,7 +336,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	}
 
 
-	public void Validate5for$59functionalityinInformationPage() throws Exception {
+	public void Validate5for$65functionalityinCheckoutPage() throws Exception {
 		jse = (JavascriptExecutor)driver;
 		SoftAssert softAssert = new SoftAssert();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -346,30 +346,30 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		Thread.sleep(5000);
 		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
 		try {
-			wait.until(ExpectedConditions.visibilityOfElementLocated(INFO_DISCOUNT_5for$59));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(INFO_DISCOUNT_5for$65));
 		}
 		catch(Exception e)
 		{
 
-			wait.until(ExpectedConditions.visibilityOfElementLocated(INFO_DISCOUNT_5for$59_1));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(INFO_DISCOUNT_5for$65_1));
 		}
 		try {
-			String[] DISCOUNT_3for$48 = driver.findElement(INFO_DISCOUNT_5for$59).getText().split("\\(");
-			System.out.println(DISCOUNT_3for$48[0]);
-			softAssert.assertEquals(DISCOUNT_3for$48[0], "5 FOR $59 ", "5 for $59 discount is not applied and not displayed in the Information page line item");
+			String[] DISCOUNT_5for$65 = driver.findElement(INFO_DISCOUNT_5for$65).getText().split("\\(");
+			System.out.println(DISCOUNT_5for$65[0]);
+			softAssert.assertEquals(DISCOUNT_5for$65[0], "5 FOR $65 ", "5 for $59 discount is not applied and not displayed in the Information page line item");
 		}
 		catch(Exception e)
 		{
-			String[] DISCOUNT_3for$48 = driver.findElement(INFO_DISCOUNT_5for$59_1).getText().split("\\(");
-			System.out.println(DISCOUNT_3for$48[0]);
-			softAssert.assertEquals(DISCOUNT_3for$48[0], "5 FOR $59 ", "5 for $59 discount is not applied and not displayed in the Information page line item");
+			String[] DISCOUNT_5for$65 = driver.findElement(INFO_DISCOUNT_5for$65_1).getText().split("\\(");
+			System.out.println(DISCOUNT_5for$65[0]);
+			softAssert.assertEquals(DISCOUNT_5for$65[0], "5 FOR $65 ", "5 for $65 discount is not applied and not displayed in the Information page line item");
 		}
-		String TOTAL = driver.findElement(LINEITEM_TOTAL_5for$59).getText();
+		String TOTAL = driver.findElement(LINEITEM_TOTAL_5for$65).getText();
 		System.out.println(TOTAL);
-		softAssert.assertEquals(TOTAL,"$11.80","Line Item Total is differ from the 5 for $59 functionality");
+		softAssert.assertEquals(TOTAL,"$13.00","Line Item Total is differ from the 5 for $65 functionality");
 		softAssert.assertAll();
-		Reporter.log("5 for $59 functionality works fine in Information page");
-		ExtentReport.extentTest.info("3 for $48 functionality works fine in Information page");
+		Reporter.log("5 for $65 functionality works fine in Information page");
+		ExtentReport.extentTest.info("5 for $65 functionality works fine in Information page");
 	}
 
 	public void Validate3for$48functionalityinShippingPage() throws Exception {
@@ -419,51 +419,51 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	}
 
 
-	public void Validate5for$59functionalityinShippingPage() throws Exception {
-		jse = (JavascriptExecutor)driver;
-		SoftAssert softAssert = new SoftAssert();
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		driver.findElement(HomePageLocators.CART_ICON).click();
-//		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
-//		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
-		Thread.sleep(5000);
-		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
-		Thread.sleep(5000);
-		try {
-			wait.until(ExpectedConditions.visibilityOfElementLocated(INFO_DISCOUNT_5for$59));
-		}
-		catch(Exception e)
-		{
-
-			wait.until(ExpectedConditions.visibilityOfElementLocated(INFO_DISCOUNT_5for$59_1));
-		}
-		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
-		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
-		entershippingdetails();
-		WebElement Continue_shipping = driver.findElement(CONTINUE_TO_SHIPPING_BUTTON);
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();", Continue_shipping);
-		Reporter.log("User is navigated to select shipping method");
-		ExtentReport.extentTest.info("User is navigated to select shipping method");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(SHIPPING_RADIO_BUTTON));
-		try {
-			String[] DISCOUNT_3for$48 = driver.findElement(INFO_DISCOUNT_5for$59).getText().split("\\(");
-			System.out.println(DISCOUNT_3for$48[0]);
-			softAssert.assertEquals(DISCOUNT_3for$48[0], "3 FOR $48 ", "3 for $48 discount is not applied and not displayed in the Information page line item");
-		}
-		catch(Exception e)
-		{
-			String[] DISCOUNT_3for$48 = driver.findElement(INFO_DISCOUNT_5for$59_1).getText().split("\\(");
-			System.out.println(DISCOUNT_3for$48[0]);
-			softAssert.assertEquals(DISCOUNT_3for$48[0], "3 FOR $48 ", "3 for $48 discount is not applied and not displayed in the Information page line item");
-		}
-		String TOTAL = driver.findElement(LINEITEM_TOTAL_5for$59).getText();
-		System.out.println(TOTAL);
-		softAssert.assertEquals(TOTAL,"$16.00","Line Item Total is differ from the 3 for $48 functionality");
-		softAssert.assertAll();
-		Reporter.log("3 for $48 functionality works fine in Shipping page");
-		ExtentReport.extentTest.info("3 for $48 functionality works fine in Shipping page");
-
-	}
+//	public void Validate5for$59functionalityinShippingPage() throws Exception {
+//		jse = (JavascriptExecutor)driver;
+//		SoftAssert softAssert = new SoftAssert();
+//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+//		driver.findElement(HomePageLocators.CART_ICON).click();
+////		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+////		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+//		Thread.sleep(5000);
+//		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
+//		Thread.sleep(5000);
+//		try {
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(INFO_DISCOUNT_5for$59));
+//		}
+//		catch(Exception e)
+//		{
+//
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(INFO_DISCOUNT_5for$59_1));
+//		}
+//		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
+//		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
+//		entershippingdetails();
+//		WebElement Continue_shipping = driver.findElement(CONTINUE_TO_SHIPPING_BUTTON);
+//		((JavascriptExecutor) driver).executeScript("arguments[0].click();", Continue_shipping);
+//		Reporter.log("User is navigated to select shipping method");
+//		ExtentReport.extentTest.info("User is navigated to select shipping method");
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(SHIPPING_RADIO_BUTTON));
+//		try {
+//			String[] DISCOUNT_3for$48 = driver.findElement(INFO_DISCOUNT_5for$59).getText().split("\\(");
+//			System.out.println(DISCOUNT_3for$48[0]);
+//			softAssert.assertEquals(DISCOUNT_3for$48[0], "3 FOR $48 ", "3 for $48 discount is not applied and not displayed in the Information page line item");
+//		}
+//		catch(Exception e)
+//		{
+//			String[] DISCOUNT_3for$48 = driver.findElement(INFO_DISCOUNT_5for$59_1).getText().split("\\(");
+//			System.out.println(DISCOUNT_3for$48[0]);
+//			softAssert.assertEquals(DISCOUNT_3for$48[0], "3 FOR $48 ", "3 for $48 discount is not applied and not displayed in the Information page line item");
+//		}
+//		String TOTAL = driver.findElement(LINEITEM_TOTAL_5for$59).getText();
+//		System.out.println(TOTAL);
+//		softAssert.assertEquals(TOTAL,"$16.00","Line Item Total is differ from the 3 for $48 functionality");
+//		softAssert.assertAll();
+//		Reporter.log("3 for $48 functionality works fine in Shipping page");
+//		ExtentReport.extentTest.info("3 for $48 functionality works fine in Shipping page");
+//
+//	}
 
 
 

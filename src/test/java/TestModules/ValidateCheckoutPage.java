@@ -148,6 +148,13 @@ public class ValidateCheckoutPage extends ExtentReport {
 	}
 
 //	@Test
+	public void ValidatefiveforsixtyfivefunctionalityinCheckoutPage() throws Exception
+	{
+		new AddToCartComponents(driver).add3for$48product();
+		new CheckoutPage(driver).Validate5for$65functionalityinCheckoutPage();
+	}
+
+//	@Test
 	public void ValidatethreeforfourtyeightfunctionalityinInformationPage() throws Exception
 	{
 		new AddToCartComponents(driver).add3for$48product();
@@ -238,9 +245,12 @@ public class ValidateCheckoutPage extends ExtentReport {
 	@AfterMethod(alwaysRun = true)
 	void tearDown() {
 
-		this.driver.close();
+//		this.driver.close();
 //		this.driver.quit();
-
+		if(driver != null)
+		{
+			driver.quit();
+		}
 	}
 
 }

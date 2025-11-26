@@ -93,7 +93,7 @@ public class GTMListenerClass extends ExtentReport implements ITestListener, IEx
     @Override
     public void onTestFailure(ITestResult result) {
 
-        String screenShotPath = CustomUtilities.screenshot();
+        String screenShotPath = CustomUtilities.screenshot(driver);
 
         if (count < Retry.maxRetryCount) {
             shouldPrint = false;
@@ -152,7 +152,7 @@ public class GTMListenerClass extends ExtentReport implements ITestListener, IEx
         }
 
         try {
-//		  sendSlackNotificationGTM(String.valueOf(Fpassed),String.valueOf(Ffailed),String.valueOf(Fskipped),reportLink);
+		  sendSlackNotificationGTM(String.valueOf(Fpassed),String.valueOf(Ffailed),String.valueOf(Fskipped),reportLink);
         } catch (Exception e)
         {
             throw new RuntimeException(e);

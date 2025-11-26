@@ -4,6 +4,8 @@ import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.base.ExtentReport;
 import com.tommyjohn.automation.utils.CustomUtilities;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.*;
 
@@ -93,39 +95,41 @@ public class ListenerClass extends ExtentReport implements ITestListener, IExecu
 	@Override
 	public void onTestFailure(ITestResult result) {
 
-		String screenShotPath = CustomUtilities.screenshot();
+		// ----- 1. Safely fetch WebDriver from the test instance -----
+		WebDriver driver = null;
 
-		if (count < Retry.maxRetryCount) {
-			shouldPrint = false;
-
-
-		} else {
-			shouldPrint = true;
-
+		try {
+			Object testClass = result.getInstance();
+			driver = (WebDriver) testClass.getClass().getField("driver").get(testClass);
+		}
+		catch (Exception e) {
+			System.out.println("⚠️ Could not fetch driver from test instance");
+			e.printStackTrace();
 		}
 
-		String testName = result.getName();
+		if (driver == null) {
+			System.out.println("❌ Driver is NULL in listener, cannot take screenshot");
+			return;
+		}
 
-		String fileName = result.getMethod().getMethodName().replaceAll(" ", "_");
+		// ----- 2. Capture screenshot -----
+		String screenshotBase64 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
 
-		//       String screenShotPath = CustomUtilities.screenshot();
-		//extentTest.addScreenCaptureFromPath(screenShotPath);
+		// ----- 3. Attach screenshot -----
+		extentTest.fail("Screenshot",
+				MediaEntityBuilder.createScreenCaptureFromBase64String(screenshotBase64).build());
 
-		extentTest.info("Screenshot",
-				MediaEntityBuilder.createScreenCaptureFromBase64String(screenShotPath).build());
-		extentTest.info(result.getThrowable());
-		extentTest.fail(testName + " got failed");
+		// ----- 4. Log exception -----
+		extentTest.fail(result.getThrowable());
 
+		// ----- 5. Reset retry counter -----
 		if (count == Retry.maxRetryCount) {
-			//         extentTest.addScreenCaptureFromPath(screenShotPath);
 			count = 1;
-		}
-		else
-		{
+		} else {
 			count++;
 		}
-
 	}
+
 
 	@Override
 	public void onTestSkipped(ITestResult result) {
@@ -155,7 +159,7 @@ public class ListenerClass extends ExtentReport implements ITestListener, IExecu
 		}
 		try
 		{
-		//sendSlackNotificationReg(String.valueOf(Fpassed),String.valueOf(Ffailed),String.valueOf(Fskipped),reportLink);
+		sendSlackNotificationReg(String.valueOf(Fpassed),String.valueOf(Ffailed),String.valueOf(Fskipped),reportLink);
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);

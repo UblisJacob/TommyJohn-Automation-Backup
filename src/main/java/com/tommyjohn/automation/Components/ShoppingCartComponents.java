@@ -175,6 +175,26 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
     }
 
 
+	public void Validate5for$65functionalityinCartPage() throws Exception {
+		SoftAssert softAssert = new SoftAssert();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		new AddToCartComponents(driver).add3for$48product();
+		driver.findElement(HomePageLocators.CART_ICON).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+		Thread.sleep(3000);
+		String[] DISCOUNT_5for$65 = driver.findElement(FlyCartPageLocator.DISCOUNT_5for$65).getText().split(":");
+		System.out.println(DISCOUNT_5for$65[1]);
+		softAssert.assertEquals(DISCOUNT_5for$65[1],"5 For $65","5 for $65 discount is not applied and not displayed in the Cart line item");
+		String TOTAL = driver.findElement(FlyCartPageLocator.TOTAL).getText();
+		System.out.println(TOTAL);
+		softAssert.assertEquals(TOTAL,"$48.00","Cart Total is differ from the 5 for $65 functionality");
+		Reporter.log("5 for $65 functionality works fine in Cart page");
+		ExtentReport.extentTest.info("5 for $65 functionality works fine in Cart page");
+
+	}
+
+
 	public void ValidatePromoCodeErrorScenario() throws InterruptedException {
 		WebElement element;
 		SoftAssert softAssert = new SoftAssert();
@@ -266,6 +286,46 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		softAssert.assertTrue(element.isDisplayed(), "The Coupon code FIRST20 is not getting applied in Cart page");
 		Reporter.log("The Coupon code FIRST20 applied in Cart page");
 		ExtentReport.extentTest.info("The Coupon code FIRST20 applied in Cart page");
+
+	}
+
+
+	public void ValidatePromoSavingsInCartPage() throws InterruptedException {
+
+		WebElement element;
+		SoftAssert softAssert = new SoftAssert();
+
+		driver.get("https://www.tommyjohn.com/");
+
+		driver.findElement(HomePageLocators.CART_ICON).click();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+		Thread.sleep(3000);
+
+		driver.findElement(CART_COUPONFIELD).sendKeys("FIRST20");
+		Thread.sleep(2000);
+		driver.findElement(APPLY_CTA).click();
+
+		Thread.sleep(10000);
+		String Coupon = driver.findElement(APPLIED_COUPON).getText();
+		System.out.println(Coupon);
+
+		element= driver.findElement(APPLIED_COUPON);
+		softAssert.assertTrue(element.isDisplayed(), "The Coupon code FIRST20 is not getting applied in Cart page");
+		Reporter.log("The Coupon code FIRST20 applied in Cart page");
+		ExtentReport.extentTest.info("The Coupon code FIRST20 applied in Cart page");
+
+		WebElement element1= driver.findElement(SAVINGS_AMOUNT);
+		softAssert.assertTrue(element1.isDisplayed(),"Total Amount saved is not displayed in the Cart Page");
+
+		String Savings = driver.findElement(SAVINGS).getText();
+		String Savings_Amount = driver.findElement(SAVINGS_AMOUNT).getText();
+		System.out.println("Total Amount Saved is = "+ Savings_Amount);
+
+		Reporter.log("Total Amount saved is displayed in the Cart Page");
+		ExtentReport.extentTest.info("Total Amount saved is displayed in the Cart Page");
 
 	}
 
