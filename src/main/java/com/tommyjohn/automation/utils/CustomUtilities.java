@@ -6,11 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
-import io.github.bonigarcia.wdm.WebDriverManager;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -26,125 +23,90 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
-import org.openqa.selenium.devtools.DevTools;
-import org.testng.ISuite;
+import org.openqa.selenium.devtools.v140.emulation.Emulation;
 import org.testng.ITestContext;
 import org.testng.Reporter;
-import org.openqa.selenium.devtools.v140.emulation.Emulation;
-
 
 public class CustomUtilities {
 
-	public static WebDriver driver;
-	//	public static ChromeDriver drivers;
+	// Remove static WebDriver - use DriverManager below (ThreadLocal)
 	public EdgeDriver edgedriver;
 	public static String baseUrl = "https://www.tommyjohn.com/";
-	//	public static String baseUrl = "https://www.tommyjohn.com/?_ab=0&_fd=0&_sc=1&preview_theme_id=140061376557";
 	public static BufferedReader reader;
 	public static Properties properties;
 	public static final String propertiesFilePath = "src/main/resources/configuration.properties";
 	public static String Suitname = null;
 
-	//	public static ATUTestRecorder recorder;
-
 	/**
-	 * Method to set up the drivers.
-	 *
-	 * @throws Exception
+	 * Launch browser and set ThreadLocal driver
 	 */
-
-	// @BeforeSuite
-	@SuppressWarnings({ })
+	@SuppressWarnings({})
 	public WebDriver launchtj(String browser) throws Exception {
 
 		// load properties file
 		loadPropertiesFile();
-		//proxying to blacklist bounceX popup
-		if (browser.equalsIgnoreCase("chrome")) {
-			// System.setProperty("webdriver.chrome.driver"
-			// ,"src\\main\\resources\\chromedriver.exe");
-			// System.setProperty("webdriver.chrome.driver" ,"/tmp/chromedriver.exe");
-			//System.setProperty("webdriver.chrome.driver", properties.getProperty("chromeDriverPath"));
-			ChromeOptions chromeOptions = new ChromeOptions();
-//			Map<String, String> mobileEmulation = new HashMap<>();
-//			mobileEmulation.put("deviceName", "Nexus 5");
-//
-//			// Add mobile emulation to Chrome options
-//			chromeOptions.setExperimentalOption("mobileEmulation", mobileEmulation);
 
-			// Set other desired capabilities if needed (such as enabling remote d
-//			chromeOptions.setExperimentalOption("useAutomationExtension", false)
+		WebDriver localDriver = null;
+
+		if (browser.equalsIgnoreCase("chrome")) {
+			ChromeOptions chromeOptions = new ChromeOptions();
 			chromeOptions.addArguments("--use-fake-ui-for-media-stream");
 			chromeOptions.addArguments("--use-fake-device-for-media-stream");
-			chromeOptions.addArguments("--unsafely-treat-insecure-origin-as-secure=http://192.168.6.99");
+			chromeOptions.addArguments("--unsafely-treat-insecure-origin-as-secure=http://192.168.7.43");
 			chromeOptions.addArguments("--disable-web-security");
 			chromeOptions.addArguments("--ignore-certificate-errors");
-			//	chromeOptions.addArguments("--start-maximized");
 			chromeOptions.addArguments("--disable-gpu");
+			// remove headless if you need visual debugging; keep if CI
 			chromeOptions.addArguments("--headless");
 			chromeOptions.addArguments("--window-size=1920,1080");
 			chromeOptions.addArguments("--force-device-scale-factor=1");
 			chromeOptions.addArguments("--start-maximized");
 			chromeOptions.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
 			chromeOptions.addArguments("--disable-blink-features=AutomationControlled");
-			chromeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+			chromeOptions.setExperimentalOption("excludeSwitches", new String[] { "enable-automation" });
 			chromeOptions.setExperimentalOption("useAutomationExtension", false);
 			chromeOptions.addArguments("--no-sandbox");
 			chromeOptions.addArguments("--disable-dev-shm-usage");
 			chromeOptions.addArguments("--aggressive-cache-discard");
 			chromeOptions.addArguments("--disable-cache");
 			chromeOptions.addArguments("--disable-application-cache");
-			chromeOptions.addArguments("--ignore-certificate-errors");
 			chromeOptions.addArguments("--no-default-browser-check");
 			chromeOptions.addArguments("--disable-popup-blocking");
 			chromeOptions.addArguments("--remote-allow-origins=*");
-			chromeOptions.addArguments("--disable-popup-blocking");
 			chromeOptions.setAcceptInsecureCerts(true);
-
-
 			chromeOptions.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
-			//chromeOptions.setCapability(CapabilityType.PROXY, selproxy);
 
-			//	new
+			// host resolver rules (as before)
 			chromeOptions.addArguments("--host-resolver-rules=MAP cdn.attn.tv 127.0.0.1");
 			chromeOptions.addArguments("--host-resolver-rules=MAP tommyjohn.attn.tv 127.0.0.1");
 			chromeOptions.addArguments("--host-resolver-rules=MAP creatives.attn.tv 127.0.0.1");
-			//	chromeOptions.addArguments("--host-resolver-rules=MAP tag.bounceexchange.com 127.0.0.1");
-			//System.out.println(driver);
-//			WebDriverManager.chromedriver().setup();
-			driver = new ChromeDriver(chromeOptions);
-			DevTools devTools = ((ChromeDriver)driver).getDevTools();
-			devTools.createSession();
-			devTools.send(Emulation.setDeviceMetricsOverride(
-					1920, 1080, 1.0, false,
-					Optional.empty(), Optional.empty(), Optional.empty(),
-					Optional.empty(), Optional.empty(), Optional.empty(),
-					Optional.empty(), Optional.empty(),Optional.empty(), // Add this one
-					Optional.empty()  // Add this one
-			));
-			driver.get(baseUrl);
-			driver.manage().window().maximize();
 
-			//		chromeOptions.addArguments("--proxy-server={0}".format(proxyStr,proxyStr));
-			//		chromeOptions.addArguments("--proxy-auto-detect");
-			//chromeOptions.addArguments("--proxy-bypass-list=*");
-			// chromeOptions.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR ,
-			// UnexpectedAlertBehaviour.DISMISS);
-			// chromeOptions.addArguments("--disable-blink-features=AutomationControlled");
-			// chromeOptions.addArguments("--auto-open-devtools-for-tabs");
+			// instantiate driver
+			localDriver = new ChromeDriver(chromeOptions);
 
-			// chromeOptions.setExperimentalOption("excludeSwitches", new
-			// String[]{"enable-automation"});
+			// optional: use CDP to set device metrics (keeps your previous behavior)
+			try {
+				DevTools devTools = ((ChromeDriver) localDriver).getDevTools();
+				devTools.createSession();
+				devTools.send(Emulation.setDeviceMetricsOverride(
+						1920, 1080, 1.0, false,
+						Optional.empty(), Optional.empty(), Optional.empty(),
+						Optional.empty(), Optional.empty(), Optional.empty(),
+						Optional.empty(), Optional.empty(), Optional.empty(),
+						Optional.empty()
+				));
+			} catch (Exception e) {
+				// CDP may fail on some driver versions/environments — ignore safely
+				System.out.println("DevTools session/setup failed: " + e.getMessage());
+			}
 
-		}
-		else if (browser.equalsIgnoreCase("firefox"))
-		{
-			//System.setProperty("webdriver.gecko.driver", properties.getProperty("ffDriverPath"));
+			localDriver.get(baseUrl);
+			localDriver.manage().window().maximize();
+
+		} else if (browser.equalsIgnoreCase("firefox")) {
 			FirefoxOptions options = new FirefoxOptions();
 			options.addArguments("--disable-gpu");
-//			options.addArguments("--headless");
 			options.addArguments("--window-size=1280,800");
-			options.addArguments("--disable-gpu");
 			options.addArguments("--no-sandbox");
 			options.addArguments("--disable-dev-shm-usage");
 			options.addArguments("--aggressive-cache-discard");
@@ -155,104 +117,60 @@ public class CustomUtilities {
 			options.addArguments("--disable-popup-blocking");
 
 			options.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
-			//options.setCapability(CapabilityType.PROXY, selproxy);
 
-			options.addArguments("--host-resolver-rules=MAP events.bouncex.net 127.0.0.1");
-			options.addArguments("--host-resolver-rules=MAP assets.bounceexchange.com 127.0.0.1");
-			options.addArguments("--host-resolver-rules=MAP api.bounceexchange.com 127.0.0.1");
-			options.addArguments("--host-resolver-rules=MAP tag.bounceexchange.com 127.0.0.1");
+			localDriver = new FirefoxDriver(options);
+			localDriver.get(baseUrl);
+			localDriver.manage().window().maximize();
 
-
-			driver = new FirefoxDriver(options);
-			driver.get(baseUrl);
-			driver.manage().window().maximize();
-		}
-		else if (browser.equalsIgnoreCase("edge"))
-		{
-//			System.setProperty("webdriver.edge.driver", properties.getProperty("edgeDriverPath"));
+		} else if (browser.equalsIgnoreCase("edge")) {
 			EdgeOptions options = new EdgeOptions();
-//			options.addArguments("inprivate","headless");
-//			options.setCapability("--window-size=1280,800",true);
-//			options.setCapability("--disable-gpu",true);
-//			options.setCapability("--no-sandbox",true);
-//			options.setCapability("--disable-dev-shm-usage",true);
-//			options.setCapability("--aggressive-cache-discard",true);
-//			options.setCapability("--disable-cache",true);
-//			options.setCapability("--disable-application-cache",true);
-//			options.setCapability("--ignore-certificate-errors",true);
-//			options.setCapability("--no-default-browser-check",true);
-//			options.setCapability("--disable-popup-blocking",true);
-//
-//			options.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
-//			options.setCapability(CapabilityType.PROXY, selproxy);
-//
-//			options.setCapability("--host-resolver-rules=MAP events.bouncex.net 127.0.0.1",true);
-//			options.setCapability("--host-resolver-rules=MAP assets.bounceexchange.com 127.0.0.1",true);
-//			options.setCapability("--host-resolver-rules=MAP api.bounceexchange.com 127.0.0.1",true);
-//			options.setCapability("--host-resolver-rules=MAP tag.bounceexchange.com 127.0.0.1",true);
-
 			edgedriver = new EdgeDriver(options);
 			edgedriver.get(baseUrl);
 			edgedriver.manage().window().maximize();
-			driver=edgedriver;
+			localDriver = edgedriver;
 
-		}
-
-		else if (browser.equalsIgnoreCase("safari"))
-		{
+		} else if (browser.equalsIgnoreCase("safari")) {
 			System.setProperty("webdriver.edge.driver", properties.getProperty("safariPath"));
 			SafariOptions options = new SafariOptions();
-			options.setCapability("--headless",true);
-			options.setCapability("--window-size=1280,800",true);
-			options.setCapability("--disable-gpu",true);
-			options.setCapability("--no-sandbox",true);
-			options.setCapability("--disable-dev-shm-usage",true);
-			options.setCapability("--aggressive-cache-discard",true);
-			options.setCapability("--disable-cache",true);
-			options.setCapability("--disable-application-cache",true);
-			options.setCapability("--ignore-certificate-errors",true);
-			options.setCapability("--no-default-browser-check",true);
-			options.setCapability("--disable-popup-blocking",true);
+			options.setCapability("--headless", true);
+			options.setCapability("--window-size=1280,800", true);
+			options.setCapability("--disable-gpu", true);
+			options.setCapability("--no-sandbox", true);
+			options.setCapability("--disable-dev-shm-usage", true);
+			options.setCapability("--aggressive-cache-discard", true);
+			options.setCapability("--disable-cache", true);
+			options.setCapability("--disable-application-cache", true);
+			options.setCapability("--ignore-certificate-errors", true);
+			options.setCapability("--no-default-browser-check", true);
+			options.setCapability("--disable-popup-blocking", true);
 
 			options.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 
-
-
-			driver = new SafariDriver(options);
-			driver.get(baseUrl);
-			driver.manage().window().maximize();
+			localDriver = new SafariDriver(options);
+			localDriver.get(baseUrl);
+			localDriver.manage().window().maximize();
 		}
 
+		// set the ThreadLocal driver so other classes/listeners can fetch it
+		if (localDriver != null) {
+			DriverManager.setDriver(localDriver);
+		}
 
-		// chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
-
-
-
-
-		//		recorder = new ATUTestRecorder(properties.getProperty("executionvideospath"), "Recording1" , false) ;
-		//		recorder.start();
-
-
-
-		//		  WebDriverWait wait = new WebDriverWait(driver, 30); try {
-		//		  wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.id(
-		//		  "bcx_local_storage_frame")));
-		//		  wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(
-		//		  ".bx-close-xsvg")));
-		//		  driver.findElement(By.cssSelector(".bx-close-xsvg")).click();
-		//		  driver.switchTo().defaultContent(); } catch (ElementNotVisibleException e) {
-		//		  System.out.println("Overlay not displayed"); } finally {
-		//		   return driver;
-		//		  driver.get(baseUrl);  }
-
-		return driver;
-
+		return localDriver;
 	}
 
-	// @AfterSuite
+	// safe teardown: quits and unloads ThreadLocal driver
 	public void teardown() {
-		if (driver != null)
-			driver.quit();
+		WebDriver d = DriverManager.getDriver();
+		if (d != null) {
+			try {
+				d.quit();
+			} catch (Exception e) {
+				System.out.println("Error during driver.quit(): " + e.getMessage());
+			} finally {
+				DriverManager.unload();
+			}
+		}
 	}
 
 	// method to load properties file
@@ -265,95 +183,99 @@ public class CustomUtilities {
 			Reporter.log("Properties file not loaded or empty..!");
 			System.exit(0);
 		}
-
-	}
-
-
-	public static void takessiffailed(String mname) throws Exception
-	{
-
-		String testname =  mname;
-		File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-		try {
-			FileUtils.copyFile(file, new File("/test-output/Screenshot_"+testname+".jpg"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
 	}
 
 	/**
-	 * Provide only file name without file extension, Date and time are appended to file name
-	 * @paramname
-	 * @return
+	 * Take screenshot and save as file (returns file path). Accepts a WebDriver — if null, uses ThreadLocal.
 	 */
+	public static String takeScreenShot(String name, WebDriver driverParam) {
 
-	public static void GetSuiteName(ITestContext context) {
+		WebDriver d = driverParam != null ? driverParam : DriverManager.getDriver();
 
-		Suitname = context.getCurrentXmlTest().getSuite().getName();
-		System.out.println("Suite: " + Suitname);
-
-	}
-	public static String takeScreenShot(String name)  {
-
-		String rootDir = System.getProperty("user.dir");
-		String screenShotsFolder = rootDir+"/test-output/Screenshots/";
-
-		//		String UploadscreenShotsFolder = com.base.GDrivePOST.UploadScreenShot();
-
-//		System.out.println(rootDir);
-
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MMM_YYYY_HH_mm_ss");
-		LocalDateTime now = LocalDateTime.now();
-		String dateAndTime = dtf.format(now);
-//		System.out.println(dtf.format(now));
-
-		String filePath = screenShotsFolder + name + dateAndTime + ".jpg";
-
-		System.out.println(filePath);
-
-		File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-
-
-		try {
-			FileUtils.copyFile(file, new File(filePath));
-			//		screenshot = com.base.GDrivePOST.UploadScreenShot();
-		} catch (IOException e) {
-			e.printStackTrace();
+		if (d == null) {
+			System.out.println("❌ takeScreenShot skipped: driver is null");
+			return "";
 		}
 
+		String rootDir = System.getProperty("user.dir");
+		String screenShotsFolder = rootDir + "/test-output/Screenshots/";
 
-		System.out.println("ScreenShot is taken");
+		File folder = new File(screenShotsFolder);
+		if (!folder.exists()) {
+			folder.mkdirs();
+		}
 
-		return filePath;
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MMM_yyyy_HH_mm_ss");
+		LocalDateTime now = LocalDateTime.now();
+		String dateAndTime = dtf.format(now);
 
+		String filePath = screenShotsFolder + name + "_" + dateAndTime + ".jpg";
 
+		try {
+			File file = ((TakesScreenshot) d).getScreenshotAs(OutputType.FILE);
+			FileUtils.copyFile(file, new File(filePath));
+			System.out.println("✔ Screenshot is taken: " + filePath);
+			return filePath;
+		} catch (Exception e) {
+			System.out.println("⚠ Failed to save screenshot: " + e.getMessage());
+			return "";
+		}
 	}
 
-	public static String screenshot()
-	{
-
-
-		String screenshotBase64 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
-
-		// Embed screenshot into the report
-//		try {
-//			screenshotBase64 = ("Sample step", MediaEntityBuilder.createScreenCaptureFromBase64String(screenshotBase64).build());
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-
-
-		return screenshotBase64;
+	/**
+	 * Legacy-named method kept for compatibility (uses ThreadLocal driver)
+	 */
+	public static String takessiffailed(String mname) {
+		return takessiffailed(mname, DriverManager.getDriver());
 	}
 
-//	public static String screenshot(){
-//
-//		String screenshotBase64 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
-//
-//		return screenshotBase64;
-//
-//	}
+	public static String takessiffailed(String mname, WebDriver driverParam) {
+		String name = mname != null ? mname : "screenshot";
+		return takeScreenShot(name, driverParam);
+	}
 
+	/**
+	 * Returns screenshot as Base64 string (for embedding into reports). Accepts param or uses ThreadLocal.
+	 */
+	public static String screenshot(WebDriver driverParam) {
+		WebDriver d = driverParam != null ? driverParam : DriverManager.getDriver();
+		if (d == null) {
+			System.out.println("❌ screenshot skipped: driver is null");
+			return "";
+		}
+		try {
+			return ((TakesScreenshot) d).getScreenshotAs(OutputType.BASE64);
+		} catch (Exception e) {
+			System.out.println("⚠ Failed to capture screenshot as base64: " + e.getMessage());
+			return "";
+		}
+	}
 
+	// Helper that keeps old no-arg call working but uses ThreadLocal
+	public static String screenshot() {
+		return screenshot(DriverManager.getDriver());
+	}
+
+	public static void GetSuiteName(ITestContext context) {
+		Suitname = context.getCurrentXmlTest().getSuite().getName();
+		System.out.println("Suite: " + Suitname);
+	}
+
+	// ============== Thread-safe DriverManager (static nested class) ==============
+	public static class DriverManager {
+
+		private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+
+		public static void setDriver(WebDriver driverInstance) {
+			driver.set(driverInstance);
+		}
+
+		public static WebDriver getDriver() {
+			return driver.get();
+		}
+
+		public static void unload() {
+			driver.remove();
+		}
+	}
 }

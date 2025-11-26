@@ -4,7 +4,7 @@
 
 	<listeners>
 		<listener class-name="TestScenario.ListenerClass"></listener>
-<!--		<listener class-name="TestScenario.RetryListener"></listener>-->
+		<listener class-name="TestScenario.RetryListener"></listener>
 	</listeners>
 
 	<test name="HomepageTests">
@@ -13,7 +13,6 @@
 			<class name="TestModules.ValidateHomePage" />
 		</classes>..
 	</test>
-
 	<test name="InlineCartTests">
 		<parameter name="browser" value="chrome" />
 		<classes>

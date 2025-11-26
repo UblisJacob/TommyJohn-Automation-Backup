@@ -92,38 +92,49 @@ public class ADAListenerClass extends ExtentReport implements ITestListener, IEx
     @Override
     public void onTestFailure(ITestResult result) {
 
-        String screenShotPath = CustomUtilities.screenshot(driver);
+        WebDriver driver = (WebDriver) result.getTestContext().getAttribute("driver");
+        String screenshotBase64 = "";
 
+        // ========= RETRY PRINT LOGIC (your requirement) =========
         if (count < Retry.maxRetryCount) {
             shouldPrint = false;
-
-
         } else {
             shouldPrint = true;
-
         }
+        // ========================================================
+
+        // ========= SAFELY CAPTURE SCREENSHOT =========
+        if (driver != null) {
+            try {
+                screenshotBase64 = CustomUtilities.screenshot(driver);
+            } catch (Exception e) {
+                screenshotBase64 = "";
+                System.out.println("⚠ Screenshot could not be taken (driver session dead).");
+            }
+        } else {
+            System.out.println("⚠ Driver is NULL. Skipping screenshot.");
+        }
+        // ==============================================
 
         String testName = result.getName();
 
-        String fileName = result.getMethod().getMethodName().replaceAll(" ", "_");
-
- //       String screenShotPath = CustomUtilities.screenshot();
-        //extentTest.addScreenCaptureFromPath(screenShotPath);
-
-        extentTest.info("Screenshot",
-                MediaEntityBuilder.createScreenCaptureFromBase64String(screenShotPath).build());
-        extentTest.info(result.getThrowable());
-        extentTest.fail(testName + " got failed");
-
-        if (count == Retry.maxRetryCount) {
- //         extentTest.addScreenCaptureFromPath(screenShotPath);
-            count = 1;
+        // ===== Attach screenshot if available =====
+        if (!screenshotBase64.isEmpty()) {
+            extentTest.info("Screenshot",
+                    MediaEntityBuilder.createScreenCaptureFromBase64String(screenshotBase64).build());
+        } else {
+            extentTest.info("⚠ No screenshot captured (driver null or closed)");
         }
-        else
-        {
+
+        extentTest.info(result.getThrowable());
+        extentTest.fail(testName + " failed");
+
+        // ===== Retry counter =====
+        if (count == Retry.maxRetryCount) {
+            count = 1;
+        } else {
             count++;
         }
-
     }
 
     @Override
