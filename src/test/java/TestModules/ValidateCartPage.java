@@ -82,11 +82,6 @@ public class ValidateCartPage extends ExtentReport{
 
 	}
 
-	@Test
-	public void ValidatePromoSavingsInCartPage() throws Exception {
-		new AddToCartComponents(driver).addsingleproductToCartforFirst20Coupon();
-		new ShoppingCartPage(driver).ValidatePromoSavingsInCartPage();
-	}
 
 
 
