@@ -4,8 +4,6 @@ import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.base.ExtentReport;
 import com.tommyjohn.automation.utils.CustomUtilities;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.*;
 
@@ -95,51 +93,39 @@ public class GTMListenerClass extends ExtentReport implements ITestListener, IEx
     @Override
     public void onTestFailure(ITestResult result) {
 
-        WebDriver driver = (WebDriver) result.getTestContext().getAttribute("driver");
-        String screenshotBase64 = "";
+        String screenShotPath = CustomUtilities.screenshot();
 
-        // ========= RETRY PRINT LOGIC (your requirement) =========
         if (count < Retry.maxRetryCount) {
             shouldPrint = false;
+
+
         } else {
             shouldPrint = true;
-        }
-        // ========================================================
 
-        // ========= SAFELY CAPTURE SCREENSHOT =========
-        if (driver != null) {
-            try {
-                screenshotBase64 = CustomUtilities.screenshot(driver);
-            } catch (Exception e) {
-                screenshotBase64 = "";
-                System.out.println("⚠ Screenshot could not be taken (driver session dead).");
-            }
-        } else {
-            System.out.println("⚠ Driver is NULL. Skipping screenshot.");
         }
-        // ==============================================
 
         String testName = result.getName();
 
-        // ===== Attach screenshot if available =====
-        if (!screenshotBase64.isEmpty()) {
-            extentTest.info("Screenshot",
-                    MediaEntityBuilder.createScreenCaptureFromBase64String(screenshotBase64).build());
-        } else {
-            extentTest.info("⚠ No screenshot captured (driver null or closed)");
-        }
+        String fileName = result.getMethod().getMethodName().replaceAll(" ", "_");
 
+        //       String screenShotPath = CustomUtilities.screenshot();
+        //extentTest.addScreenCaptureFromPath(screenShotPath);
+
+        extentTest.info("Screenshot",
+                MediaEntityBuilder.createScreenCaptureFromBase64String(screenShotPath).build());
         extentTest.info(result.getThrowable());
-        extentTest.fail(testName + " failed");
+        extentTest.fail(testName + " got failed");
 
-        // ===== Retry counter =====
         if (count == Retry.maxRetryCount) {
+            //         extentTest.addScreenCaptureFromPath(screenShotPath);
             count = 1;
-        } else {
+        }
+        else
+        {
             count++;
         }
-    }
 
+    }
 
     @Override
     public void onTestSkipped(ITestResult result) {
@@ -166,7 +152,7 @@ public class GTMListenerClass extends ExtentReport implements ITestListener, IEx
         }
 
         try {
-		  sendSlackNotificationGTM(String.valueOf(Fpassed),String.valueOf(Ffailed),String.valueOf(Fskipped),reportLink);
+            sendSlackNotificationGTM(String.valueOf(Fpassed),String.valueOf(Ffailed),String.valueOf(Fskipped),reportLink);
         } catch (Exception e)
         {
             throw new RuntimeException(e);

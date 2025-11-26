@@ -1,8 +1,11 @@
 package TestModules;
 
+import TestScenario.Retry;
 import com.tommyjohn.automation.Components.HomePageComponents;
 import com.tommyjohn.automation.Components.ImagesComponents;
 import org.openqa.selenium.WebDriver;
+import org.testng.ITestContext;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
@@ -26,9 +29,10 @@ public class ValidateImages extends ExtentReport{
 
     @BeforeMethod(alwaysRun = true)
     @Parameters("browser")
-    public void setup(String browser) {
+    public void setup(String browser, ITestContext context) {
         try {
             driver = new CustomUtilities().launchtj(browser);
+            context.setAttribute("driver", driver);
 
         } catch (Exception e1) {
             e1.printStackTrace();
@@ -37,21 +41,13 @@ public class ValidateImages extends ExtentReport{
 
     @Test
     public void ValidateImageInHomePage() throws Exception {
-
         ImagesComponents Image = new ImagesComponents(driver);
         Image.VerifyAltText();
     }
 
-
-
-
     @AfterMethod(alwaysRun = true)
-    void teardown() {
-
-//		 driver.close();
-//		driver.quit();
-        if(driver != null)
-        {
+    public void teardown(ITestResult result) {
+        if (driver != null) {
             driver.quit();
         }
     }
