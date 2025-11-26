@@ -20,7 +20,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.v140.network.Network;
-import org.openqa.selenium.devtools.v142.network.model.Request;
+import org.openqa.selenium.devtools.v140.network.model.Request;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.logging.LogType;

@@ -56,8 +56,11 @@ public class ValidateFooterSection {
 
 	@AfterMethod(alwaysRun = true)
 	void tearDown() {
-		driver.close();
+//		driver.close();
 //		driver.quit();
-
+		if(driver != null)
+		{
+			driver.quit();
+		}
 	}
 }

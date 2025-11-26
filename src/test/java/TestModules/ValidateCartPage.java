@@ -41,6 +41,12 @@ public class ValidateCartPage extends ExtentReport{
 	}
 
 //	@Test
+	public void ValidatefiveforsixtyfivefunctionalityinCartPage() throws Exception {
+		new ShoppingCartPage(driver).Validate5for$65functionalityinCartPage();
+
+	}
+
+//	@Test
 	public void ValidatePromoCodeFromPromoBanner() throws Exception {
 		new ShoppingCartPage(driver).ValidatePromoCodeFromPromoBanner();
 
@@ -88,6 +94,15 @@ public class ValidateCartPage extends ExtentReport{
 	public void ValidatePromoCodeFIRST20InCartPage() throws Exception {
 		new AddToCartComponents(driver).addsingleproductToCartforFirst20Coupon();
 		new ShoppingCartPage(driver).ValidatePromoCodeFIRST20InCartPage();
+
+	}
+
+
+
+	@Test
+	public void ValidatePromoSavingsInCartPage() throws Exception {
+		new AddToCartComponents(driver).addsingleproductToCartforFirst20Coupon();
+		new ShoppingCartPage(driver).ValidatePromoSavingsInCartPage();
 
 	}
 
@@ -176,8 +191,12 @@ public class ValidateCartPage extends ExtentReport{
 	@AfterMethod(alwaysRun = true)
 	void teardown() {
 
-		 driver.close();
+//		 driver.close();
 //		driver.quit();
+		if(driver != null)
+		{
+			driver.quit();
+		}
 	}
 
 }
