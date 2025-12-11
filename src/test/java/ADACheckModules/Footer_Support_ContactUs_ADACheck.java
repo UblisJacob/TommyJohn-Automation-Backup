@@ -26,7 +26,7 @@ public class Footer_Support_ContactUs_ADACheck {
     @Test
     public void ADACheck_Footer_Support_ContactUs_Page() throws Exception {
 
-        driver.get("https://help.tommyjohn.com/hc/en-us");
+        driver.get("https://www.tommyjohn.com/pages/help-desk?hcUrl=%2Fen-US");
         ADACheckMethods.ADACheck(driver, "Footer_Support_ContactUs_ADACheck");
     }
 
