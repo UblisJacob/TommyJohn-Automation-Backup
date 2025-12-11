@@ -25,7 +25,7 @@ public class Footer_Support_ReturnExchange_ADACheck {
     @Test
     public void ADACheck_Footer_Support_ReturnExchange_Page() throws Exception {
 
-        driver.get("https://help.tommyjohn.com/hc/en-us/sections/360000065123-Returns-Exchanges");
+        driver.get("https://www.tommyjohn.com/pages/help-desk?hcUrl=%2Fen-US%2Farticles%2Freturns-and-exchanges-269482");
         ADACheckMethods.ADACheck(driver, "Footer_Support_ReturnExchange_ADACheck");
     }
 
@@ -35,13 +35,4 @@ public class Footer_Support_ReturnExchange_ADACheck {
         driver.close();
         driver.quit();
     }
-
-
-
-
-
-
-
-
-
 }

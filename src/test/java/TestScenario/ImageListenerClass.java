@@ -11,8 +11,7 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.Set;
 
-import static com.base.Slack.sendSlackNotificationADA;
-import static com.base.Slack.sendSlackNotificationReg;
+import static com.base.Slack.*;
 
 public class ImageListenerClass extends ExtentReport implements ITestListener, IExecutionListener {
 
@@ -42,14 +41,14 @@ public class ImageListenerClass extends ExtentReport implements ITestListener, I
 
     @Override
     public void onStart(ITestContext context) {
-        String ADACheckSuiteName = "Image Test Suite";
+        String ImageCheckSuiteName = "Image Test Suite";
         SuiteName = context.getSuite().getName().toString();
         System.out.println("SuiteName: " + SuiteName);
         browserName = context.getCurrentXmlTest().getParameter("browser");
         System.out.println("Test execution started using Browser: " + browserName);
-        if(SuiteName.equals(ADACheckSuiteName))
+        if(SuiteName.equals(ImageCheckSuiteName))
         {
-            sparkReporter_AllTests.config().setReportName("Image Test Report");
+            sparkReporter_AllTests.config().setReportName("Images Missing Alt Text");
         }
         else {
 
@@ -149,7 +148,7 @@ public class ImageListenerClass extends ExtentReport implements ITestListener, I
         generateExtentReports();
 
         try {
-            reportLink = com.base.GDrivePOST.UploadReport();
+            reportLink = com.base.GDrivePOST.UploadImageReport();
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (GeneralSecurityException e) {
@@ -157,7 +156,7 @@ public class ImageListenerClass extends ExtentReport implements ITestListener, I
         }
         try
         {
-//            sendSlackNotificationReg(String.valueOf(Fpassed),String.valueOf(Ffailed),String.valueOf(Fskipped),reportLink);
+            sendSlackNotificationImage(String.valueOf(Fpassed),String.valueOf(Ffailed),String.valueOf(Fskipped),reportLink);
         }
         catch (Exception e) {
             throw new RuntimeException(e);

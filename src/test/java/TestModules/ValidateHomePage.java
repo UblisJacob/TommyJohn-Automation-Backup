@@ -40,7 +40,6 @@ public class ValidateHomePage extends ExtentReport {
 
 	@Test
 	public void VerifyUGCModule() throws Exception {
-
 		HomePageComponents homePage = new HomePageComponents(driver);
 		homePage.VerifyUGCModule();
 	}

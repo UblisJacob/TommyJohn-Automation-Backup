@@ -236,7 +236,43 @@ public class GDrivePOST {
     }
 
 
+    public static String UploadImageReport() throws IOException, GeneralSecurityException {
+//        public static void main(String args[]) throws IOException, GeneralSecurityException {
+        // Build a new authorized API client service.
+        Drive service = new Drive.Builder(GoogleNetHttpTransport.newTrustedTransport(), JSON_FACTORY, getCredentials())
+                .setApplicationName(APPLICATION_NAME)
+                .build();
 
+
+        // Upload file
+        String filepath = "Report/index.html";
+        File fileMetadata = new File();
+        fileMetadata.setName("Image Report");
+
+//        fileMetadata.setParents(Collections.singletonList(folderId));  // Set the parent folder
+
+        java.io.File filePath = new java.io.File(filepath);
+        FileContent mediaContent = new FileContent("text/html", filePath);
+
+
+
+        File file = service.files().create(fileMetadata, mediaContent)
+                .setFields("id, webContentLink")
+                .execute();
+
+        Permission permission = new Permission();
+        permission.setType("anyone");
+        permission.setRole("reader");
+
+        service.permissions().create(file.getId(), permission).execute();
+
+        moveFile(service, file.getId(), "1AubNi7muTDJdsmkNa5ZA8qCgEcw_WOrh");
+
+        System.out.println("File ID: " + file.getId());
+        System.out.println("WebContent Link: " + file.getWebContentLink());
+
+        return file.getWebContentLink();
+    }
 
 
 
