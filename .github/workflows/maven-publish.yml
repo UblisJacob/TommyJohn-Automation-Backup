@@ -31,7 +31,7 @@ jobs:
           docker-compose -f docker-compose-hubNode.yml down
 
       - name: archive artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: TestNG Report
           path: ./target/surefire-reports/emailable-report.html
