@@ -1,81 +1,57 @@
-name: CI-Docker-Selenium
+name: Selenium Grid Tests
 
 on:
-  push:
-    branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
-  tests:
+  docker-selenium-tests:
     runs-on: ubuntu-latest
 
-    services:
-      docker:
-        image: docker:dind
-        privileged: true
-        options: --dns 8.8.8.8
-
     steps:
-      # -------------------------
-      # Install Docker + Compose
-      # -------------------------
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install Docker client & docker-compose
+      # Docker is already installed on GitHub runners.
+      # But we must ensure the daemon is running.
+      - name: Start Docker daemon
         run: |
-          apk add --no-cache docker-cli docker-compose curl jq
+          sudo systemctl start docker
+          docker --version
 
-      # -------------------------
-      # Start Selenium Grid via docker-compose
-      # -------------------------
+      - name: Install docker-compose
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker-compose
+
       - name: Start Selenium Grid
         run: |
           docker-compose -f docker-compose-hubNode.yml up -d
           docker ps
 
-      # -------------------------
-      # Wait for Selenium Hub to be ready
-      # -------------------------
       - name: Wait for Selenium Hub
         run: |
-          echo "Waiting for Selenium Grid..."
+          echo "Waiting for Selenium Hub..."
           for i in {1..30}; do
-            if curl -s http://localhost:4444/status | jq '.value.ready' | grep true; then
-              echo "Selenium Grid Ready!"
+            if curl -s http://localhost:4444/status | grep '"ready":true'; then
+              echo "Hub Ready!"
               exit 0
             fi
-            echo "Still starting ($i/30)..."
+            echo "Still starting... $i/30"
             sleep 2
           done
-          echo "Selenium Grid failed to start."
           exit 1
 
-      # -------------------------
-      # Install Maven
-      # -------------------------
-      - name: Install Maven
+      - name: Build & Run Maven tests
         run: |
-          apk add --no-cache maven
+          sudo apt-get install -y maven
+          mvn test -Dmaven.test.failure.ignore=true
 
-      # -------------------------
-      # Run tests
-      # -------------------------
-      - name: Run Maven tests
-        run: mvn test -Dmaven.test.failure.ignore=true
-
-      # -------------------------
-      # Shut down Docker Compose
-      # -------------------------
       - name: Stop Selenium Grid
         if: always()
         run: docker-compose -f docker-compose-hubNode.yml down
 
-      # -------------------------
-      # Upload TestNG report artifact
-      # -------------------------
-      - name: Upload TestNG report
+      - name: Upload Test Reports
         uses: actions/upload-artifact@v4
         with:
-          name: TestNG Report
-          path: target/surefire-reports/emailable-report.html
+          name: TestNG-report
+          path: target/surefire-reports/
