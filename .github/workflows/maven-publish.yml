@@ -1,57 +1,37 @@
-name: Selenium Grid Tests
+name: CI-Docker
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
-  docker-selenium-tests:
+  build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
 
-      # Docker is already installed on GitHub runners.
-      # But we must ensure the daemon is running.
-      - name: Start Docker daemon
-        run: |
-          sudo systemctl start docker
-          docker --version
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v1
 
-      - name: Install docker-compose
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y docker-compose
-
-      - name: Start Selenium Grid
+      - name: Build and start Docker Compose services
         run: |
           docker-compose -f docker-compose-hubNode.yml up -d
-          docker ps
+      - name: Wait for services to start
+        run: sleep 10
 
-      - name: Wait for Selenium Hub
+      - name: Run Maven tests
+        run: mvn test
+
+      - name: Stop Docker Compose services
         run: |
-          echo "Waiting for Selenium Hub..."
-          for i in {1..30}; do
-            if curl -s http://localhost:4444/status | grep '"ready":true'; then
-              echo "Hub Ready!"
-              exit 0
-            fi
-            echo "Still starting... $i/30"
-            sleep 2
-          done
-          exit 1
+          docker-compose -f docker-compose-hubNode.yml down
 
-      - name: Build & Run Maven tests
-        run: |
-          sudo apt-get install -y maven
-          mvn test -Dmaven.test.failure.ignore=true
-
-      - name: Stop Selenium Grid
-        if: always()
-        run: docker-compose -f docker-compose-hubNode.yml down
-
-      - name: Upload Test Reports
-        uses: actions/upload-artifact@v4
+      - name: archive artifacts
+        uses: actions/upload-artifact@v3
         with:
-          name: TestNG-report
-          path: target/surefire-reports/
+          name: TestNG Report
+          path: ./target/surefire-reports/emailable-report.html
