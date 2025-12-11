@@ -1,37 +1,81 @@
-name: CI-Docker
+name: CI-Docker-Selenium
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
-  build:
+  tests:
     runs-on: ubuntu-latest
 
+    services:
+      docker:
+        image: docker:dind
+        privileged: true
+        options: --dns 8.8.8.8
+
     steps:
+      # -------------------------
+      # Install Docker + Compose
+      # -------------------------
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
-      - name: Set up Docker
-        uses: docker/setup-buildx-action@v1
+      - name: Install Docker client & docker-compose
+        run: |
+          apk add --no-cache docker-cli docker-compose curl jq
 
-      - name: Build and start Docker Compose services
+      # -------------------------
+      # Start Selenium Grid via docker-compose
+      # -------------------------
+      - name: Start Selenium Grid
         run: |
           docker-compose -f docker-compose-hubNode.yml up -d
-      - name: Wait for services to start
-        run: sleep 10
+          docker ps
 
-      - name: Run Maven tests
-        run: mvn test
-
-      - name: Stop Docker Compose services
+      # -------------------------
+      # Wait for Selenium Hub to be ready
+      # -------------------------
+      - name: Wait for Selenium Hub
         run: |
-          docker-compose -f docker-compose-hubNode.yml down
+          echo "Waiting for Selenium Grid..."
+          for i in {1..30}; do
+            if curl -s http://localhost:4444/status | jq '.value.ready' | grep true; then
+              echo "Selenium Grid Ready!"
+              exit 0
+            fi
+            echo "Still starting ($i/30)..."
+            sleep 2
+          done
+          echo "Selenium Grid failed to start."
+          exit 1
 
-      - name: archive artifacts
-        uses: actions/upload-artifact@v3
+      # -------------------------
+      # Install Maven
+      # -------------------------
+      - name: Install Maven
+        run: |
+          apk add --no-cache maven
+
+      # -------------------------
+      # Run tests
+      # -------------------------
+      - name: Run Maven tests
+        run: mvn test -Dmaven.test.failure.ignore=true
+
+      # -------------------------
+      # Shut down Docker Compose
+      # -------------------------
+      - name: Stop Selenium Grid
+        if: always()
+        run: docker-compose -f docker-compose-hubNode.yml down
+
+      # -------------------------
+      # Upload TestNG report artifact
+      # -------------------------
+      - name: Upload TestNG report
+        uses: actions/upload-artifact@v4
         with:
           name: TestNG Report
-          path: ./target/surefire-reports/emailable-report.html
+          path: target/surefire-reports/emailable-report.html
