@@ -1,41 +1,49 @@
-name: CI-Docker
+name: Run TestNG Suite in Docker
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
-  test:
+  run-tests:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Start Selenium Grid
+      - name: Start Selenium Grid (Hub + Chrome/Firefox/Edge)
         run: docker compose -f docker-compose-hubNode.yml up -d
 
-      - name: Wait for Selenium Hub to become ready
+      - name: Wait for Selenium Grid to be ready
         run: |
-          echo "Waiting for Selenium Hub..."
-          for i in {1..30}; do
+          echo "Waiting for Selenium Hub to be ready..."
+          for i in {1..40}; do
             if curl -s http://localhost:4444/status | grep -q "\"ready\": true"; then
-              echo "Hub is ready!"
+              echo "Selenium Hub is ready!"
               break
             fi
             echo "Still waiting..."
             sleep 2
           done
 
-      - name: Run Maven tests
-        run: mvn -B test
+      - name: Run Maven TestNG Suite
+        run: mvn -B -DsuiteXmlFile=testng.xml test
 
       - name: Stop Selenium Grid
+        if: always()
         run: docker compose -f docker-compose-hubNode.yml down
 
-      - name: Upload TestNG report
+      - name: Upload TestNG HTML report
         uses: actions/upload-artifact@v3
         with:
-          name: TestNG Report
+          name: TestNG Summary Report
           path: target/surefire-reports/emailable-report.html
+
+      - name: Upload full surefire report
+        uses: actions/upload-artifact@v3
+        with:
+          name: All Surefire Reports
+          path: target/surefire-reports
