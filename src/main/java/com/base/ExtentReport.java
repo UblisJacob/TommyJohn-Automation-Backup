@@ -55,12 +55,14 @@ public class ExtentReport{
 //		To automatically open reports after execution is complete
 		try {
 			Desktop.getDesktop().browse(
+				 if (System.getenv("CI") == null) {
 					new File("Report/Index.html")
 							.toURI());
 		} catch (IOException e) {
 			System.out.println("Reports file not found");
 			e.printStackTrace();
 		}
+	}
 
 	}
 
