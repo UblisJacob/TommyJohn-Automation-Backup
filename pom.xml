@@ -319,7 +319,7 @@
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore>
                     <suiteXmlFiles>
-                        <suiteXmlFile>RegressionTestNG.xml</suiteXmlFile>
+                        <suiteXmlFile>temp.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
@@ -344,3 +344,4 @@
         </plugins>
     </build>
 </project>
+
