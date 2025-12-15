@@ -2,6 +2,9 @@ package com.tommyjohn.automation.Components;
 
 import com.base.ExtentReport;
 import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
+import java.io.File;
+import java.io.FileWriter;
 import com.tommyjohn.automation.PageLocators.HomePageLocators;
 import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
 import com.tommyjohn.automation.Pages.AccountLoginPage;
@@ -63,85 +66,53 @@ public class ImagesComponents {
 
     public void VerifyAltText() {
 
+        String csvPath = "D:\\IdeaProject\\CSV\\homepage_report.csv";
+        CSVWriter writer = null;
+        try {
+            File file = new File(csvPath);
+            boolean fileExists = file.exists();
+            writer = new CSVWriter(new FileWriter(file, true)); // append mode
+            if (!fileExists) {
+                writer.writeNext(new String[]{"ALT Status", "ALT Text", "SRC", "HREF"});
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Unable to create CSV file", e);
+        }
+
         List<WebElement> images = driver.findElements(By.tagName("img"));
         int errorImageCount = 0;
-
-        System.out.println("Total images: " + images.size());
-        ExtentReport.extentTest.info("Total images found: " + images.size());
-
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
 
         for (WebElement img : images) {
-
-            // Scroll into view
-            try {
-                ((JavascriptExecutor) driver)
-                        .executeScript("arguments[0].scrollIntoView({block:'center'});", img);
-                Thread.sleep(150);
-            } catch (Exception ignored) {}
+            try { ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", img); Thread.sleep(150); } catch (Exception ignored) {}
 
             String src = img.getAttribute("src");
-
-            // Get HREF (if exists)
             String href = "No HREF Found";
-            try {
-                WebElement parent = img.findElement(By.xpath("./ancestor::a[1]"));
-                href = parent.getAttribute("href");
-            } catch (Exception ignored) {}
-
-            // Wait a moment for lazy-loaded ALT
-            try {
-                wait.until(driver1 -> img.getAttribute("alt") != null);
-            } catch (Exception ignored) {}
-
-            // Fetch ALT
+            try { href = img.findElement(By.xpath("./ancestor::a[1]")).getAttribute("href"); } catch (Exception ignored) {}
+            try { wait.until(driver1 -> img.getAttribute("alt") != null); } catch (Exception ignored) {}
             String alt = img.getAttribute("alt");
 
-            // ===============================
-            // VALIDATION + HIGHLIGHTING
-            // ===============================
-
+            String status;
             if (alt == null) {
-
-                // -----------------------------------------
-                // ❌ CASE 1 — ALT ATTRIBUTE NOT PRESENT
-                // -----------------------------------------
                 highlightElement(img, "3px solid red");
-
-                String message = "❌ ALT ATTRIBUTE NOT PRESENT | SRC: " + src + " | HREF: " + href;
-                System.out.println(message);
-                Reporter.log(message);
-                ExtentReport.extentTest.info(message);
-
+                status = "ALT Missing (No ALT attribute)";
                 errorImageCount++;
-
             } else if (alt.trim().isEmpty()) {
-
-                // -----------------------------------------
-                // ❌ CASE 2 — ALT="" EMPTY
-                // -----------------------------------------
                 highlightElement(img, "3px solid yellow");
-
-                String message = "❌ ALT EMPTY | ALT=\"\" | SRC: " + src + " | HREF: " + href;
-                System.out.println(message);
-                Reporter.log(message);
-                ExtentReport.extentTest.info(message);
-
+                status = "❌ALT Empty";
                 errorImageCount++;
-
             } else {
-
-                // -----------------------------------------
-                // ✅ CASE 3 — VALID ALT
-                // -----------------------------------------
-                String message = "✅ ALT: \"" + alt + "\" | SRC: " + src + " | HREF: " + href;
-                System.out.println(message);
-                Reporter.log(message);
-                ExtentReport.extentTest.info(message);
+                status = "✅Valid ALT";
             }
+
+            // Log to console, Extent, CSV
+            System.out.println(status + " | ALT: " + (alt==null?"null":alt) + " | SRC: " + src + " | HREF: " + href);
+            ExtentReport.extentTest.info(status + " | ALT: " + (alt==null?"null":alt) + " | SRC: " + src + " | HREF: " + href);
+            writer.writeNext(new String[]{status, (alt==null?"null":alt), src, href});
         }
 
-        // FINAL SUMMARY
+        try { writer.close(); } catch (Exception ignored) {}
+
         System.out.println("Total images with ALT issues: " + errorImageCount);
         ExtentReport.extentTest.info("Total images with ALT issues: " + errorImageCount);
 
@@ -149,6 +120,7 @@ public class ImagesComponents {
             Assert.fail(errorImageCount + " image(s) are missing valid ALT attributes.");
         }
     }
+
 
     public void highlightElement(WebElement element, String style) {
         try {
@@ -160,34 +132,37 @@ public class ImagesComponents {
 
     public void Validateallurls() throws Exception {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+        String csvPath = "D:\\IdeaProject\\CSV\\PLP_report.csv";
+        CSVWriter writer = null;
+        try {
+            File file = new File(csvPath);
+            boolean fileExists = file.exists();
+            writer = new CSVWriter(new FileWriter(file, true)); // append mode
+            if (!fileExists) {
+                writer.writeNext(new String[]{"ALT Status", "ALT Text", "SRC", "HREF"});
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Unable to create CSV file", e);
+        }
 
-        String csv_path = "src/main/resources/PLPs.csv";
-        CSVReader CSVReader = new CSVReader(new FileReader(csv_path));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+        CSVReader CSVReader = new CSVReader(new FileReader("src/main/resources/PLPs.csv"));
         List<String[]> list = CSVReader.readAll();
 
-        int missingAltTotal = 0;
-        int missingHrefTotal = 0;
+        int missingAltTotal = 0, missingHrefTotal = 0;
 
         for (String[] data : list) {
             for (String path : data) {
-
                 String url = "https://www.tommyjohn.com" + path;
-
                 Reporter.log("🔍 Starting validation for URL: " + url);
                 ExtentReport.extentTest.info("🔍 Starting validation for URL: " + url);
-
                 driver.get(url);
 
                 try {
                     wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT));
-
                     count++;
                     Reporter.log(url + " loads fine and products are displayed");
                     ExtentReport.extentTest.info(url + " loads fine and products are displayed");
-
-                    int missingAlt = 0;
-                    int missingHref = 0;
 
                     scrollUntilAllProductsLoad();
 
@@ -195,101 +170,43 @@ public class ImagesComponents {
                             "//a[contains(@class,'block') and contains(@class,'scroll-mt-4xl') and contains(@class,'leading-none')]"
                     ));
 
-                    ExtentReport.extentTest.info("🔢 Total products found: " + productLinks.size());
-
                     for (WebElement card : productLinks) {
+                        try { ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", card); Thread.sleep(250); } catch (Exception ignored) {}
 
-                        try {
-                            ((JavascriptExecutor) driver)
-                                    .executeScript("arguments[0].scrollIntoView({block:'center'});", card);
-                            Thread.sleep(250);
-                        } catch (Exception ignored) {}
-
-                        // ============================
-                        // ⚠️ Skip cards with color=undefined
-                        // ============================
                         String href = card.getAttribute("href");
+                        if (href != null && href.contains("color=undefined")) continue;
 
-                        if (href != null && href.contains("color=undefined")) {
-                            continue;  // 🚫 Skip entire product card
-                        }
-
-                        // ============================
-                        // HREF VALIDATION
-                        // ============================
                         String hrefFinal = (href == null || href.trim().isEmpty()) ? "Missing" : href;
-
-                        if (hrefFinal.equals("Missing")) {
-                            missingHref++;
-                        }
-
-                        // ============================
-                        // Extract IMG
-                        // ============================
                         WebElement img = null;
-
-                        try {
-                            img = card.findElement(By.cssSelector("img.object-cover"));
-                        } catch (Exception ignore) {}
-
+                        try { img = card.findElement(By.cssSelector("img.object-cover")); } catch (Exception ignore) {}
                         if (img == null) {
                             List<WebElement> imgs = card.findElements(By.xpath(".//img"));
-                            for (WebElement i : imgs) {
-                                if (i.isDisplayed()) {
-                                    img = i;
-                                    break;
-                                }
-                            }
+                            for (WebElement i : imgs) { if (i.isDisplayed()) { img = i; break; } }
                         }
 
-                        // IMG NOT FOUND
-                        if (img == null) {
-                            String msg =
-                                    "❌ ALT: Missing (no IMG found)\n" +
-                                            "HREF: " + hrefFinal + "\n" +
-                                            "SRC: Missing";
+                        String altFinal = "Missing", srcFinal = "Missing";
+                        if (img != null) {
+                            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", img); Thread.sleep(200);
+                            String alt = img.getAttribute("alt");
+                            String src = img.getAttribute("src");
+                            String dataSrc = img.getAttribute("data-src");
+                            String srcset = img.getAttribute("srcset");
 
-                            Reporter.log(msg);
-                            ExtentReport.extentTest.info(msg);
-
-                            missingAlt++;
-                            continue;
+                            srcFinal = (src != null && !src.isBlank()) ? src :
+                                    (dataSrc != null && !dataSrc.isBlank()) ? dataSrc :
+                                            (srcset != null && !srcset.isBlank()) ? srcset : "Missing";
+                            altFinal = (alt == null || alt.trim().isEmpty()) ? "Missing" : alt;
                         }
 
-                        ((JavascriptExecutor) driver)
-                                .executeScript("arguments[0].scrollIntoView({block:'center'});", img);
-                        Thread.sleep(200);
+                        String status = altFinal.equals("Missing") ? "ALT Missing" : "Valid ALT";
 
-                        // Extract alt & src
-                        String alt = img.getAttribute("alt");
-                        String src = img.getAttribute("src");
-                        String dataSrc = img.getAttribute("data-src");
-                        String srcset = img.getAttribute("srcset");
+                        System.out.println(status + " | ALT: " + altFinal + " | SRC: " + srcFinal + " | HREF: " + hrefFinal);
+                        ExtentReport.extentTest.info(status + " | ALT: " + altFinal + " | SRC: " + srcFinal + " | HREF: " + hrefFinal);
+                        writer.writeNext(new String[]{status, altFinal, srcFinal, hrefFinal});
 
-                        String srcFinal =
-                                (src != null && !src.isBlank()) ? src :
-                                        (dataSrc != null && !dataSrc.isBlank()) ? dataSrc :
-                                                (srcset != null && !srcset.isBlank()) ? srcset :
-                                                        "Missing";
-
-                        String altFinal = (alt == null || alt.trim().isEmpty()) ? "Missing" : alt;
-
-                        // ============================
-                        // REPORT PRODUCT CARD
-                        // ============================
-                        String msg =
-                                (altFinal.equals("Missing") ? "❌ ALT: Missing" : "✅ ALT: " + altFinal) + "\n" +
-                                        "HREF: " + hrefFinal + "\n" +
-                                        "SRC: " + srcFinal;
-
-                        Reporter.log(msg);
-                        ExtentReport.extentTest.info(msg);
-
-                        if (altFinal.equals("Missing")) missingAlt++;
+                        if (altFinal.equals("Missing")) missingAltTotal++;
+                        if (hrefFinal.equals("Missing")) missingHrefTotal++;
                     }
-
-                    missingAltTotal += missingAlt;
-                    missingHrefTotal += missingHref;
 
                 } catch (Exception ex) {
                     Reporter.log("❌ Page is not loading → " + url);
@@ -298,9 +215,8 @@ public class ImagesComponents {
             }
         }
 
-        // ============================
-        // FINAL SUMMARY
-        // ============================
+        try { writer.close(); } catch (Exception ignored) {}
+
         ExtentReport.extentTest.info("===== 🔴 FINAL SUMMARY 🔴 =====");
         ExtentReport.extentTest.info("Total PLPs passed: " + count);
         ExtentReport.extentTest.info("Total missing ALT (Product Cards): " + missingAltTotal);
@@ -313,6 +229,7 @@ public class ImagesComponents {
         softAssert.assertEquals(count, PLPs, "Some URLs are not loading properly");
         softAssert.assertAll();
     }
+
 
     public void scrollUntilAllProductsLoad() throws InterruptedException {
         long lastHeight = (long) ((JavascriptExecutor) driver).executeScript("return document.body.scrollHeight");

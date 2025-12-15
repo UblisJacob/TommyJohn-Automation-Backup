@@ -21,7 +21,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.security.GeneralSecurityException;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GDrivePOST {
 
@@ -273,6 +275,77 @@ public class GDrivePOST {
 
         return file.getWebContentLink();
     }
+
+
+    public static Map<String, String> UploadImageReportAndCSV() throws IOException, GeneralSecurityException {
+
+        Drive service = new Drive.Builder(
+                GoogleNetHttpTransport.newTrustedTransport(),
+                JSON_FACTORY,
+                getCredentials()
+        )
+                .setApplicationName(APPLICATION_NAME)
+                .build();
+
+
+        String folderId = "1AubNi7muTDJdsmkNa5ZA8qCgEcw_WOrh";
+
+        Map<String, String> uploadedLinks = new HashMap<>();
+
+
+        String reportPath = "Report/index.html";
+        File reportMetadata = new File();
+        reportMetadata.setName("Image Report");
+
+        java.io.File reportFile = new java.io.File(reportPath);
+        FileContent reportContent = new FileContent("text/html", reportFile);
+
+        File uploadedReport = service.files()
+                .create(reportMetadata, reportContent)
+                .setFields("id, webContentLink")
+                .execute();
+
+        // Make public
+        Permission permission = new Permission();
+        permission.setType("anyone");
+        permission.setRole("reader");
+        service.permissions().create(uploadedReport.getId(), permission).execute();
+
+        // Move to folder
+        moveFile(service, uploadedReport.getId(), folderId);
+
+        uploadedLinks.put("reportLink", uploadedReport.getWebContentLink());
+
+        System.out.println("GTM Report Uploaded → " + uploadedReport.getWebContentLink());
+
+
+
+        String csvPath = "CSV/homepage_report.csv";
+        File csvMetadata = new File();
+        csvMetadata.setName("homepage_report.csv");
+
+        java.io.File csvFile = new java.io.File(csvPath);
+        FileContent csvContent = new FileContent("text/csv", csvFile);
+
+        File uploadedCSV = service.files()
+                .create(csvMetadata, csvContent)
+                .setFields("id, webContentLink")
+                .execute();
+
+        // Make public
+        service.permissions().create(uploadedCSV.getId(), permission).execute();
+
+        // Move to folder
+        moveFile(service, uploadedCSV.getId(), folderId);
+
+        uploadedLinks.put("csvLink", uploadedCSV.getWebContentLink());
+
+        System.out.println("CSV Uploaded → " + uploadedCSV.getWebContentLink());
+
+        return uploadedLinks;
+    }
+
+
 
 
 

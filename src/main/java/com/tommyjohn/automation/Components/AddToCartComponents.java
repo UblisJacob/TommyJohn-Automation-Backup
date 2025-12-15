@@ -535,47 +535,50 @@ public class AddToCartComponents extends AddToCartLocators{
 		if (elementsCount > 1) {
 			for (int i = 1; i <= elementsCount; i++) {
 
-				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//input[@class='sr-only peer'])[" + i + "]"));
-				jse = (JavascriptExecutor) driver;
-				jse.executeScript("arguments[0].click();", elemen);
-				Thread.sleep(3000);
+                WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//input[@class='sr-only peer'])[" + i + "]"));
+                jse = (JavascriptExecutor) driver;
+                jse.executeScript("arguments[0].click();", elemen);
+                Thread.sleep(3000);
 
-				for (int j = 2; j <= 5; j++) {
+                for (int j = 1; j <= 5; j++) {
 
-					WebElement elements = driver.findElement(By.xpath("(//input[@name='option[Size]'])[" + j + "]"));
-					jse.executeScript("arguments[0].click();", elements);
-					Thread.sleep(1000);
+                    WebElement elements = driver.findElement(By.xpath("(//input[@name='option[Top Size]'])[" + j + "]"));
+                    jse.executeScript("arguments[0].click();", elements);
+                    Thread.sleep(1000);
 
-					try {
-						String[] AddtoBag;
-						AddtoBag = (driver.findElement(By.xpath("//button[@class='button grow']")).getText()).split(" -");
-						String text1 = AddtoBag[0];
-						System.out.println(text1);
+                    for (int k = 1; k <= 5; k++) {
+                        WebElement elements1 = driver.findElement(By.xpath("(//input[@name='option[Bottom Size]'])[" + k + "]"));
+                        jse.executeScript("arguments[0].click();", elements1);
+                        Thread.sleep(1000);
 
-						//	WebElement elem = driver.findElement(By.cssSelector(".multiPdp__atc-container>button"));
+                        try {
+                            String[] AddtoBag;
+                            AddtoBag = (driver.findElement(By.xpath("//button[@class='button grow']")).getText()).split(" -");
+                            String text1 = AddtoBag[0];
+                            System.out.println(text1);
 
-
-						if (driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON).getText().contains(text1)) {
-
-							System.out.println(elemen.getText() + elements.getText() + "Product is added to Cart");
-							Thread.sleep(5000);
-							jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_CART_BUTTON));
-							Thread.sleep(3000);
-							driver.findElement(INLINE_CART_TITLE);
-							jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
-
-							Thread.sleep(1000);
-							System.out.println("=============================");
-							count++;
+                            //	WebElement elem = driver.findElement(By.cssSelector(".multiPdp__atc-container>button"));
 
 
-						}
+                            if (driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON).getText().contains(text1)) {
 
-					}
-					catch(Exception ex)
-					{
-						System.out.println("Product is OOS");
-					}
+                                System.out.println(elemen.getText() + elements.getText() + "Product is added to Cart");
+                                Thread.sleep(5000);
+                                jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_CART_BUTTON));
+                                Thread.sleep(3000);
+                                driver.findElement(INLINE_CART_TITLE);
+                                jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
+
+                                Thread.sleep(1000);
+                                System.out.println("=============================");
+                                count++;
+
+
+                            }
+
+                        } catch (Exception ex) {
+                            System.out.println("Product is OOS");
+                        }
 //						if(driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON).getText().contains("Add to Cart")) {
 //
 //							System.out.println(elemen.getText() + elements.getText() + "Product is added to Cart");
@@ -586,17 +589,22 @@ public class AddToCartComponents extends AddToCartLocators{
 //
 //						}
 
-					if(count==1)
-					{
-						break;
-					}
+                        if (count == 1) {
+                            break;
+                        }
 
-				}
-				if(count==1)
-				{
-					break;
-				}
-			}
+                    }
+                    if (count == 1) {
+                        break;
+                    }
+
+                }
+
+                if (count == 1) {
+                    break;
+                }
+
+            }
 
 			driver.get("https://www.tommyjohn.com/");
 
