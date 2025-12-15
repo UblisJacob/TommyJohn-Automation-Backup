@@ -53,17 +53,16 @@ public class ExtentReport{
 	public static void generateExtentReports() {
 		extentReport.flush();
 //		To automatically open reports after execution is complete
-		try {
-			Desktop.getDesktop().browse(
-				 if (System.getenv("CI") == null) {
-					new File("Report/Index.html")
-							.toURI());
-		} catch (IOException e) {
-			System.out.println("Reports file not found");
-			e.printStackTrace();
-		}
-	}
-
+        if (System.getenv("CI") == null) {
+            try {
+                Desktop.getDesktop().browse(
+                        new File("Report/Index.html")
+                                .toURI());
+            } catch (IOException e) {
+                System.out.println("Reports file not found");
+                e.printStackTrace();
+            }
+        }
 	}
 
 }
