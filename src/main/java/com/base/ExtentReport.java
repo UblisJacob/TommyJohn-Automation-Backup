@@ -2,67 +2,49 @@ package com.base;
 
 import java.awt.Desktop;
 import java.io.File;
-import java.io.IOException;
-
-
-import org.openqa.selenium.WebDriver;
-import org.testng.ITestContext;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Listeners;
-import org.testng.annotations.Parameters;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
+public class ExtentReport {
 
-public class ExtentReport{
-	
-	public WebDriver driver;
+    public static ExtentTest extentTest;
+    public static ExtentReports extentReport;
+    public static ExtentSparkReporter sparkReporter_AllTests;
 
-	public static ExtentTest extentTest;
-	public static ExtentReports extentReport;
-	public static ExtentSparkReporter sparkReporter_AllTests;
-//	public static String browserName = context.getCurrentXmlTest().getParameter("browser");
-	
+    public static void initializeExtentReports() {
 
-	// @BeforeSuite
+        extentReport = new ExtentReports();
 
-	public static void initializeExtentReports() {
+        File reportDir = new File("Report");
+        if (!reportDir.exists()) {
+            reportDir.mkdirs();
+        }
 
-		extentReport = new ExtentReports();
+        sparkReporter_AllTests = new ExtentSparkReporter(reportDir);
+        sparkReporter_AllTests.config().setTheme(Theme.DARK);
 
-		File erfile = new File( "Report");
+        extentReport.attachReporter(sparkReporter_AllTests);
+    }
 
-		sparkReporter_AllTests = new ExtentSparkReporter(erfile);
+    public static void generateExtentReports() {
 
-		sparkReporter_AllTests.config().setTheme(Theme.DARK);
+        if (extentReport != null) {
+            extentReport.flush();
+        }
 
-	//	sparkReporter_AllTests.config().setReportName("Regression Test Report: ");
-
-		extentReport.attachReporter(sparkReporter_AllTests);
-
-			// return extentReport;
-	}
-
-
-	// @AfterSuite
-	public static void generateExtentReports() {
-		extentReport.flush();
-//		To automatically open reports after execution is complete
+        // Local execution only
         if (System.getenv("CI") == null) {
             try {
-                Desktop.getDesktop().browse(
-                        new File("Report/Index.html")
-                                .toURI());
-            } catch (IOException e) {
-                System.out.println("Reports file not found");
+                File reportFile = new File("Report/index.html");
+                if (reportFile.exists()) {
+                    Desktop.getDesktop().browse(reportFile.toURI());
+                }
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-	}
-
+    }
 }
