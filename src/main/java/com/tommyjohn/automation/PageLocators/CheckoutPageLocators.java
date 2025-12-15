@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 public class CheckoutPageLocators {
 
 	//	                                       INFO
-	public static By CHECKOUTPAGE_CART_ICON = By.xpath("//div[@class='_197l2ofx _1fragemp7 _1fragemns _1fragem3c _1fragemn2']//following::a[@id='cart-link']");
+	public static By CHECKOUTPAGE_CART_ICON = By.xpath("//div[@class='zoe6iwx _1fragemp7 _1fragemns _1fragem3c _1fragemn2']//following::a[@id='cart-link']");
 	public static By LIST_OF_ITEM_IN_PAYMENT_PAGE = By.cssSelector(".product-table>tbody>tr.product");
 	public static By CART_LINK = By.cssSelector(".breadcrumb > li > a");
 	public static By EXPRESS_CHECKOUT_TEXT = By.xpath("//h2[@class='aHlIb']");
@@ -99,7 +99,7 @@ public class CheckoutPageLocators {
 	public static By CHANGE_LINK_CONTACT = By.xpath("(//span[contains(text(),'Change')])[2]");
 	public static By CHANGE_LINK_SHIP_TO = By.xpath("(//span[contains(text(),'Change')])[3]");
 	public static By CHANGE_LINK_METHOD = By.xpath("(//span[contains(text(),'Change')])[4]");
-	public static By SHIPPING_TEXT = By.xpath("//h3[@id='shippingMethod']"); ////h3[@id='shippingMethod']
+	public static By SHIPPING_TEXT = By.xpath("//h2[@id='shippingMethod']"); ////h3[@id='shippingMethod']
 	public static By SHIPPING_RADIO_BUTTON = By.xpath("//input[@type='radio']");
 	public static By RETURN_LINK = By.xpath("//span[contains(text(),'Return to information')]");
 	public static By CONTINUE_TO_PAYMENT_BUTTON = By.xpath("//div[@class='MV9Am']//button");
@@ -114,7 +114,7 @@ public class CheckoutPageLocators {
 	public static By CREDITCARD_OPTION = By.xpath("//span[contains(text(),'Credit card')]");
 	public static By PAYPAL_OPTION = By.xpath("//span[contains(text(),'PayPal')]");
 
-	public static By USEDIFFERENTBILLINGADDRESS = By.xpath("//input[@id='billingAddress']"); ////input[@id='billingAddress']
+	public static By USEDIFFERENTBILLINGADDRESS = By.xpath("//input[@id='billingAddressCheckbox']"); ////input[@id='billingAddress']
 
 	public static By COUNTRYREGIONFIELD = By.xpath("(//select[@name='countryCode'])[2]"); //(//select[@name='countryCode'])[2]
 	public static By FIRSTNAME = By.xpath("(//input[@name='firstName'])[3]"); //(//input[@name='firstName'])[3]

@@ -9,6 +9,7 @@ import org.testng.*;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
+import java.util.Map;
 import java.util.Set;
 
 import static com.base.Slack.*;
@@ -147,18 +148,25 @@ public class ImageListenerClass extends ExtentReport implements ITestListener, I
 
         generateExtentReports();
 
+        Map<String, String> links;
         try {
-            reportLink = com.base.GDrivePOST.UploadImageReport();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (GeneralSecurityException e) {
+            links = com.base.GDrivePOST.UploadImageReportAndCSV();
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        try
-        {
-            sendSlackNotificationImage(String.valueOf(Fpassed),String.valueOf(Ffailed),String.valueOf(Fskipped),reportLink);
-        }
-        catch (Exception e) {
+
+        String reportLink = links.get("reportLink");
+        String csvLink = links.get("csvLink");
+
+        try {
+            sendSlackNotificationImageCSV(
+                    String.valueOf(Fpassed),
+                    String.valueOf(Ffailed),
+                    String.valueOf(Fskipped),
+                    reportLink,
+                    csvLink
+            );
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

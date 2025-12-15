@@ -2899,7 +2899,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 //		JavascriptExecutor executor = (JavascriptExecutor) driver;
 //		executor.executeScript("arguments[0].click();", el);
 
-		driver.get("https://www.tommyjohn.com/products/womens-second-skin-thong-3-pack-20?color=black-ashes-of-roses-lotus-camo-wb");
+		driver.get("https://www.tommyjohn.com/products/second-skin-mid-length-boxer-brief-6-6-pack-1?color=null");
 
 //		jse = (JavascriptExecutor) driver;
 //		jse.executeScript("window.scrollBy(0,800)");

@@ -131,6 +131,42 @@ public class Slack {
 
     }
 
+    public static void sendSlackNotificationImageCSV(String passed, String failed, String skipped,
+                                                  String reportLink, String csvLink) throws Exception {
+
+        String Date = setCurrentDatetDate();
+
+        System.out.println(passed + "\n" + failed + "\n" + skipped + "\n" + reportLink + "\n" + csvLink);
+
+        // Slack message with two links
+        String payload =
+                "{ \"text\": \"*Images Missing Alt Text*" +
+                        "\\n*Time:* " + Date +
+                        "\\n*Passed:* " + passed +
+                        "\\n*Failed:* " + failed +
+                        "\\n*Skipped:* " + skipped +
+                        "\\n*Report Link:* <" + reportLink + "|Click Here>" +
+                        "\\n*CSV Link:* <" + csvLink + "|Click Here>" +
+                        "\", \"type\": \"mrkdwn\" }";
+
+        URL url = new URL(Test_Automation_WEBHOOK_URL);
+        HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
+
+        httpConn.setDoOutput(true);
+        httpConn.setRequestMethod("POST");
+        httpConn.setRequestProperty("Content-Type", "application/json");
+        httpConn.setRequestProperty("Accept", "application/json");
+
+        try (OutputStream os = httpConn.getOutputStream()) {
+            byte[] file = payload.getBytes("utf-8");
+            os.write(file, 0, file.length);
+        }
+
+        int responseCode = httpConn.getResponseCode();
+        System.out.println("Response Code: " + responseCode);
+    }
+
+
     public static void sendSlackNotificationADA(String passed, String failed, String skipped, String reportLink ) throws Exception {
 
         // Create JSON payload
