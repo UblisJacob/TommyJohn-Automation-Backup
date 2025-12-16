@@ -126,6 +126,41 @@ public class Slack {
         System.out.println("Response Code: " + responseCode);
 
     }
+      public static void sendSlackNotificationSmokeTest(String passed, String failed, String skipped, String reportLink ) throws Exception {
+
+        // Create JSON payload
+        String Date = setCurrentDatetDate();
+
+        System.out.println(passed+"\n"+failed+"\n"+skipped+"\n"+reportLink+"\n"/*+JSonLink*/);
+
+        String payload = "{\"text\":\"*Smoke Test results*\n*Time:* " + Date + " \n*Passed:* " + passed + "\n*Failed:* "+ failed + "\n*Skipped:* " + skipped + "\n*Report Link:* <" + reportLink + "|Click> \",\"type\": \"mrkdwn\"}";
+
+        URL url = new URL(TJ_QA_WEBHOOK_URL);
+
+        HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
+
+        httpConn.setDoOutput(true);
+
+        httpConn.setRequestMethod("POST");
+
+        httpConn.setRequestProperty("Content-Type", "application/json");
+
+        httpConn.setRequestProperty("Accept", "application/json");
+
+        try (OutputStream os = httpConn.getOutputStream()) {
+
+            byte[] file = payload.getBytes("utf-8");
+            //             byte[] input = payload.getBytes("utf-8");
+
+            os.write(file, 0, file.length);
+
+
+        }
+        int responseCode = httpConn.getResponseCode();
+
+        System.out.println("Response Code: " + responseCode);
+
+    }
 
     public static void sendSlackNotificationGTM(String passed, String failed, String skipped, String reportLink ) throws Exception {
 
