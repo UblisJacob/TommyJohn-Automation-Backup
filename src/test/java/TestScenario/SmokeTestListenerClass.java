@@ -146,7 +146,7 @@ public class SmokeTestListenerClass extends ExtentReport implements ITestListene
         generateExtentReports();
 
         try {
-            reportLink = com.base.GDrivePOST.UploadReport();
+            reportLink = com.base.GDrivePOST.UploadSmokeReport();
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (GeneralSecurityException e) {
