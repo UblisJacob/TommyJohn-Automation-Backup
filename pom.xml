@@ -319,7 +319,7 @@
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore>
                     <suiteXmlFiles>
-                        <suiteXmlFile>temp.xml</suiteXmlFile>
+                        <suiteXmlFile>SmokeTestNG.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
@@ -344,4 +344,5 @@
         </plugins>
     </build>
 </project>
+
 
