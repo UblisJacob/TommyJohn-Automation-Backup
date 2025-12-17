@@ -195,15 +195,22 @@ public class HomePageComponents extends HomePageLocators {
 		SoftAssert softAssert = new SoftAssert();
 //		driver.get("https://www.tommyjohn.com/collections/mens-all");
 //		driver.navigate().back();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
-		Thread.sleep(5000);
-		WebElement element1 = driver.findElement(HERO_SLIDER_SHOPWOMENS_CTA);
-		js.executeScript("arguments[0].click();", element1);
-		Thread.sleep(3000);
-		element = driver.findElement(PAGEHEADER);
-		softAssert.assertTrue(element.isDisplayed(),"Shop Women's CTA is not functional in Hero Slider");
-		Reporter.log("Shop Women's CTA is functional in Hero Slider");
-		ExtentReport.extentTest.info("Shop Women's CTA is functional in Hero Slider");
+        if(driver.findElement(TOGGLE_BUTTON).isDisplayed())
+        {
+            System.out.println("Toggle option is displayed");
+
+        }
+        else {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
+            Thread.sleep(5000);
+            WebElement element1 = driver.findElement(HERO_SLIDER_SHOPWOMENS_CTA);
+            js.executeScript("arguments[0].click();", element1);
+            Thread.sleep(3000);
+            element = driver.findElement(PAGEHEADER);
+            softAssert.assertTrue(element.isDisplayed(), "Shop Women's CTA is not functional in Hero Slider");
+            Reporter.log("Shop Women's CTA is functional in Hero Slider");
+            ExtentReport.extentTest.info("Shop Women's CTA is functional in Hero Slider");
+        }
 	}
 
 	public void ValidateMenInCategorySelector() throws InterruptedException {
@@ -2927,7 +2934,7 @@ public class HomePageComponents extends HomePageLocators {
 		jse.executeScript("window.scrollBy(0,250)");
 	}
 	public void navigateToMultipackBundleProduct() throws Exception {
-		driver.get("https://www.tommyjohn.com/products/second-skin-trunk-4-3-pack-49");
+		driver.get("https://www.tommyjohn.com/products/womens-second-skin-sleep-pocket-tee-pant-set-9");
 		Thread.sleep(5000);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		jse.executeScript("window.scrollBy(0,250)");

@@ -205,5 +205,6 @@ public class ValidateCategoryPages {
 		{
 			driver.quit();
 		}
+        CustomUtilities.DriverManager.setDriver(null);
 	}
 }

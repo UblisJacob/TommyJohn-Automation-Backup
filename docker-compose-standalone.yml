@@ -10,13 +10,13 @@ services:
     privileged: true
     hostname: chrome
     ports:
-       - "4441:4444"
-       - "7900:7900"
+      - "4441:4444"
+      - "7900:7900"
   firefox:
     image: selenium/standalone-firefox
     shm_size: 2gb
     privileged: true
     hostname: firefox
     ports:
-       - "4442:4444"
-       - "7901:7900"
+      - "4442:4444"
+      - "7901:7900"
