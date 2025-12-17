@@ -37,16 +37,16 @@ public class ValidateInlineCartPage extends ExtentReport {
 	}
 
 	@Test
-	public void ValidatePromoCodeFIRST20InInlineCart() throws Exception {
-		new AddToCartComponents(driver).addsingleproductToCartforFirst20Coupon();
-		new FlyCartPage(driver).ValidatePromoCodeFIRST20InInlineCart();
-	}
-
-	@Test
 	public void ValidateEmptyFlyCart() throws Exception
 	{
-		new FlyCartPage(driver).verifyAllFields(); 
+		new FlyCartPage(driver).verifyAllFields();
 	}
+
+    @Test
+    public void ValidatePromoCodeFIRST20InInlineCart() throws Exception {
+        new AddToCartComponents(driver).addsingleproductToCartforFirst20Coupon();
+        new FlyCartPage(driver).ValidatePromoCodeFIRST20InInlineCart();
+    }
 
 	@Test 
 	public void ValidateTextAndLinksonFlyCart() throws Exception

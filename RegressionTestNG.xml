@@ -18,7 +18,7 @@
 		<classes>
 			<class name="TestModules.ValidateInlineCartPage" />
 		</classes>
-	</test>d
+	</test>
 	`
 	<!--    <test name="GTMTags">-->
 	<!--       <parameter name="browser" value="chrome" />-->
@@ -55,7 +55,7 @@
 		</classes>
 	</test>
 
-	<test name="FooterPageTests">d
+	<test name="FooterPageTests">
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="TestModules.ValidateFooterSection" />

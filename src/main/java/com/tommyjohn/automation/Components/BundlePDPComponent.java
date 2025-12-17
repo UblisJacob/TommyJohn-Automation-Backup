@@ -211,7 +211,7 @@ public class BundlePDPComponent extends BundlePDPLocators{
 	public void verifySecondaryBadging() throws Exception {
 		
 		SoftAssert softAssert = new SoftAssert();
-		new ProductDetailsPage(driver).navigateToExploreWomensCategory();
+		new ProductDetailsPage(driver).NavigateToAllSaleInSaleCategory();
 		
 		//navigate to PDP
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));

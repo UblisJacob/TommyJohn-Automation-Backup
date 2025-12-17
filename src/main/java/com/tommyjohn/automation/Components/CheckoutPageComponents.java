@@ -1011,13 +1011,10 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		softAssert = new SoftAssert();
 		wait=new WebDriverWait(driver, Duration.ofSeconds(60));
 		new AddToCartComponents(driver).addsingleproductToCart();
-
-
 		jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
 //		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.PRODUCTS));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
-
-
 		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
 		Reporter.log("Checkout page displayed");
 		ExtentReport.extentTest.info("Checkout page displayed");

@@ -39,10 +39,17 @@ public class ValidateImages extends ExtentReport{
         }
     }
 
+
     @Test
     public void ValidateImageInHomePage() throws Exception {
         ImagesComponents Image = new ImagesComponents(driver);
         Image.VerifyAltText();
+    }
+
+    @Test
+    public void ValidateImageInPLPs() throws Exception {
+        ImagesComponents Image = new ImagesComponents(driver);
+        Image.Validateallurls();
     }
 
     @AfterMethod(alwaysRun = true)
