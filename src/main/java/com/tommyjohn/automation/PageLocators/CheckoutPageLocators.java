@@ -52,7 +52,7 @@ public class CheckoutPageLocators {
 	public static By REMEMBERME_CHCKBOX = By.cssSelector("#checkout_remember_me");
 	public static By RETURN_TO_CART_LINK = By.xpath("//span[contains(text(),'Return to cart')]");
 	public static By CONTINUE_TO_SHIPPING_BUTTON = By.xpath("(//button[@type='submit'])[3]");
-	public static By TEXTMEWITHNEWSLETTERSANDOFFERSCHECKBOX = By.xpath("//input[@name='sms_marketing_opt_in']");
+	public static By TEXTMEWITHNEWSLETTERSANDOFFERSCHECKBOX = By.xpath("//input[@name='marketing_opt_in']");
 	public static By PHONENUMBERFIELD = By.xpath("//input[@name='RememberMe']"); ////input[@name='RememberMe']
 	public static By ADDRESS_SUGGESTIONS = By.xpath("(//span[@class='a8x1wu2 a8x1wu1 _1fragemod _1fragem1t _1fragemkk _1fragemka a8x1wu9 a8x1wuj a8x1wuh _1fragem1y a8x1wun a8x1wul a8x1wuy'])[5]");
 
