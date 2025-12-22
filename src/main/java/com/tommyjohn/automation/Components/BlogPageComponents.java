@@ -93,7 +93,7 @@ public class BlogPageComponents extends BlogPageLocators{
 			System.out.println("READ MORE link is displayed on Blog Page");
 			Reporter.log("READ MORE link is displayed on Blog Page");
 			ExtentReport.extentTest.info("READ MORE link is displayed on Blog Page");
-			readMore = "https://www.tommyjohn.com/blogs/news/underwear-size-chart";
+			readMore = "https://www.tommyjohn.com/blogs/news/a-gift-from-the-hart-turning-a-holiday-campaign-into-real-impact";
 			jse.executeScript("arguments[0].click();", driver.findElement(READ_MORE_ARTICLE));
 			Thread.sleep(3000);
 			if(driver.getCurrentUrl().contains(readMore))
@@ -145,7 +145,7 @@ public class BlogPageComponents extends BlogPageLocators{
 			System.out.println("READ MORE blog card link is displayed");
 			Reporter.log("READ MORE blog card link is displayed");
 			ExtentReport.extentTest.info("READ MORE blog card link is displayed");
-			readMore = "https://www.tommyjohn.com/blogs/news/summer-pajamas-for-women";
+			readMore = "https://www.tommyjohn.com/blogs/news/underwear-size-chart";
 			jse.executeScript("arguments[0].click();", driver.findElement(READ_MORE_BLOG_CARD));
 			Thread.sleep(3000);
 			if(driver.getCurrentUrl().contains(readMore))
