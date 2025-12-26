@@ -13,7 +13,7 @@ import com.tommyjohn.automation.Pages.AddToCartPage;
 import com.tommyjohn.automation.Pages.ProductDetailsPage;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
-public class 	ValidatePDP extends ExtentReport{
+public class ValidatePDP extends ExtentReport{
 
 	WebDriver driver;
  	

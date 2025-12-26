@@ -101,7 +101,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		System.out.println("***Validating Shop Men Footer***");
 
 		driver.navigate().back();
-		wait.until(ExpectedConditions.titleIs("Tommy John | Gift From the Hart"));
+		wait.until(ExpectedConditions.titleIs("Tommy John | The Most Comfortable Underwear On The Planet"));
 
 		text = driver.findElement(SHOP_MEN).getText();
 		softassert.assertTrue(text.equals("Shop Men"), "Shop Men link text is changed");
@@ -156,7 +156,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		System.out.println("***Validating Sale Footer***");
 
 		driver.navigate().back();
-		wait.until(ExpectedConditions.titleIs("Tommy John | Gift From the Hart"));
+		wait.until(ExpectedConditions.titleIs("Tommy John | The Most Comfortable Underwear On The Planet"));
 
 		text = driver.findElement(SALE).getText();
 		softassert.assertTrue(text.equals("Sale"), "Sale link text is changed");
@@ -184,7 +184,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		System.out.println("***Validating Gift Cards Footer***");
 
 		driver.navigate().back();
-		wait.until(ExpectedConditions.titleIs("Tommy John | Gift From the Hart"));
+		wait.until(ExpectedConditions.titleIs("Tommy John | The Most Comfortable Underwear On The Planet"));
 
 		text = driver.findElement(GIFT_CARD_LINK).getText();
 		softassert.assertTrue(text.equals("Gift Cards"), "Gift Cards link text is changed");
@@ -262,7 +262,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		System.out.println("***Validating Military Discount Footer***");
 //		Go back to Homepage and wait for load
 		driver.navigate().back();
-		wait.until(ExpectedConditions.titleIs("Tommy John | Gift From the Hart"));
+		wait.until(ExpectedConditions.titleIs("Tommy John | The Most Comfortable Underwear On The Planet"));
 
 		String originalWindow = driver.getWindowHandle();
 
@@ -521,7 +521,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		System.out.println("***Validating Order History Footer***");
 
 		driver.navigate().back();
-		wait.until(ExpectedConditions.titleIs("Tommy John | Gift From the Hart"));
+		wait.until(ExpectedConditions.titleIs("Tommy John | The Most Comfortable Underwear On The Planet"));
 
 		linkText = driver.findElement(ORDER_HISTORY).getText();
 		System.out.println("Order History Link Text is : " + linkText);
@@ -705,7 +705,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 //		Check Store Locator
 		System.out.println("***Validating Store Locator Footer***");
 		driver.navigate().back();
-		wait.until(ExpectedConditions.titleIs("Tommy John | Gift From the Hart"));
+		wait.until(ExpectedConditions.titleIs("Tommy John | The Most Comfortable Underwear On The Planet"));
 
 		linkText = driver.findElement(STORE_LOCATOR_LINK).getText();
 		softassert.assertTrue(linkText.equals("Store Locator"), "Store Locator link text is changed");
@@ -732,7 +732,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 //		Check Retailers Footer
 		System.out.println("***Validating Retailers Footer***");
 		driver.navigate().back();
-		wait.until(ExpectedConditions.titleIs("Tommy John | Gift From the Hart"));
+		wait.until(ExpectedConditions.titleIs("Tommy John | The Most Comfortable Underwear On The Planet"));
 
 		linkText = driver.findElement(RETAILERS_LINK).getText();
 		softassert.assertTrue(linkText.equals("Retailers"), "Retailers link text is changed");
@@ -758,7 +758,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 //		Check Affiliates Footer
 		System.out.println("***Validating Affiliates Footer***");
 		driver.navigate().back();
-		wait.until(ExpectedConditions.titleIs("Tommy John | Gift From the Hart"));
+		wait.until(ExpectedConditions.titleIs("Tommy John | The Most Comfortable Underwear On The Planet"));
 
 		linkText = driver.findElement(AFFILIATES_LINK).getText();
 		softassert.assertTrue(linkText.equals("Affiliates"), "Affiliates link text is changed");
@@ -838,7 +838,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		System.out.println("***Validating Careers Footer***");
 
 		driver.navigate().back();
-		wait.until(ExpectedConditions.titleIs("Tommy John | Gift From the Hart"));
+		wait.until(ExpectedConditions.titleIs("Tommy John | The Most Comfortable Underwear On The Planet"));
 
 		linkText = driver.findElement(CAREERS_LINK).getText();
 
@@ -896,7 +896,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		System.out.println("***Validating Blog Footer***");
 
 		driver.navigate().back();
-		wait.until(ExpectedConditions.titleIs("Tommy John | Gift From the Hart"));
+		wait.until(ExpectedConditions.titleIs("Tommy John | The Most Comfortable Underwear On The Planet"));
 
 		linkText = driver.findElement(BLOG_LINK).getText();
 

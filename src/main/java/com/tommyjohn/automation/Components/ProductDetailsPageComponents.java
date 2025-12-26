@@ -2899,7 +2899,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 //		JavascriptExecutor executor = (JavascriptExecutor) driver;
 //		executor.executeScript("arguments[0].click();", el);
 
-		driver.get("https://www.tommyjohn.com/products/second-skin-mid-length-boxer-brief-6-6-pack-1?color=null");
+		driver.get("https://www.tommyjohn.com/products/second-skin-luxe-rib-square-cut-2-3-pack?color=black-dress-blues-ash");
 
 //		jse = (JavascriptExecutor) driver;
 //		jse.executeScript("window.scrollBy(0,800)");
