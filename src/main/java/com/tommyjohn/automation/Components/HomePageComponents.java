@@ -2947,6 +2947,13 @@ public class HomePageComponents extends HomePageLocators {
 		jse.executeScript("window.scrollBy(0,250)");
 	}
 
+    public void navigateToNewArrivals() throws Exception {
+        driver.get("https://www.tommyjohn.com/collections/new-arrivals");
+        Thread.sleep(5000);
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        jse.executeScript("window.scrollBy(0,250)");
+    }
+
 	public void navigateToMensAllUnderwear() throws Exception {
 		driver.get("https://www.tommyjohn.com/collections/mens-underwear");
 		Thread.sleep(5000);
