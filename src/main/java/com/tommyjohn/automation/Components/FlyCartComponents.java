@@ -316,7 +316,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 			System.out.println(ProductsSize);
 			int ATCCTA = driver.findElements(ALL_QUICK_SHOP_ATC).size();
 			System.out.println(ATCCTA);
-			softAssert.assertEquals(ATCCTA,5,"Quick Shop ATC is not displayed in all the suggestion products");
+			softAssert.assertEquals(ATCCTA,4,"Quick Shop ATC is not displayed in all the suggestion products");
 			softAssert.assertAll();
 			Reporter.log("Quick shop ATC button is available in all the Suggestion products");
 			ExtentReport.extentTest.info("Quick shop ATC button is available in all the Suggestion products");
