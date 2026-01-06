@@ -372,6 +372,14 @@ public class CollectionPage extends CollectionPageComponent{
 		new CollectionPageComponent(driver).VerifyFilterPill();
 	}
 
+    public void ValidateCollectionFromFilterPill() throws InterruptedException {
+        new CollectionPageComponent(driver).ValidateCollectionFilterInFilterPill();
+    }
+
+    public void ValidateStyleFromFilterPill() throws InterruptedException {
+        new CollectionPageComponent(driver).ValidateStyleFilterInFilterPill();
+    }
+
 	public void ValidateFunctionalityOfCollectionDoorways() {
 		new CollectionPageComponent(driver).ValidateFunctionalityOfCollectionDoorways();
 	}

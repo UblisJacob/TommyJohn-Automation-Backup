@@ -49,6 +49,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	List<WebElement> CollectionDoorways;
 	int Count;
 
+
 	public void ValidateDyPlaceholderBannerInPLP()
 	{
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -72,6 +73,59 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		Reporter.log("Filter Pills are displayed");
 		ExtentReport.extentTest.info("Filter Pills are displayed");
 	}
+
+    public void ValidateCollectionFilterInFilterPill() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        SoftAssert softAssert = new SoftAssert();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        new HomePageComponents(driver).navigateToMensAll();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(FILTER_PILLS));
+        softAssert.assertTrue(driver.findElement(FILTER_PILLS).isDisplayed(),"Filter Pills are not displayed");
+        Reporter.log("Filter Pills are displayed");
+        ExtentReport.extentTest.info("Filter Pills are displayed");
+        js.executeScript("arguments[0].click();", driver.findElement(COLLECTION_FILTER_PILL));
+        String AirFilter = driver.findElement(By.xpath("(//span[@class='font-medium' and contains(text(),'Air')])")).getText();
+        System.out.println(AirFilter);
+        js.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//span[@class='font-medium' and contains(text(),'Air')])")));
+        Thread.sleep(10000);
+        String FilterAir = driver.findElement(By.xpath("(//a[contains(text(),'Air Trunk 4')])[1]")).getText();
+        String[] Filter = FilterAir.split(" Trunk");
+        String text = Filter[0];
+        System.out.println(text);
+        softAssert.assertEquals(AirFilter, text, "Appropriate Product is not displayed while from filter pill");
+        Reporter.log("Appropriate Product is displayed while from filter pill");
+        ExtentReport.extentTest.info("Appropriate Product is displayed while from filter pill");
+    }
+
+    public void ValidateStyleFilterInFilterPill() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        SoftAssert softAssert = new SoftAssert();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        new HomePageComponents(driver).navigateToMensAll();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(FILTER_PILLS));
+        softAssert.assertTrue(driver.findElement(FILTER_PILLS).isDisplayed(),"Filter Pills are not displayed");
+        Reporter.log("Filter Pills are displayed");
+        ExtentReport.extentTest.info("Filter Pills are displayed");
+        js.executeScript("arguments[0].click();", driver.findElement(STYLE_FILTER_PILL));
+        String BriefFilter = driver.findElement(By.xpath("(//span[@class='font-medium' and contains(text(),'Boxer Briefs')])[2]")).getText();
+        System.out.println(BriefFilter);
+        js.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//span[@class='font-medium' and contains(text(),'Boxer Briefs')])[2]")));
+        Thread.sleep(10000);
+        String FilterBrief = driver.findElement(By.xpath("//a[contains(text(),'Second Skin Boxer Brief 8\" (3-Pack)')]")).getText();
+//        String[] Filter = FilterBrief.split(" Boxer Brief");
+//        String text = Filter[1];
+        System.out.println(FilterBrief);
+//        softAssert.assertEquals(BriefFilter, text, "Appropriate Product is not displayed while from filter pill");
+        softAssert.assertTrue(
+                FilterBrief.contains("Boxer Brief"),
+                "Appropriate Product is not displayed while selecting Boxer Briefs filter"
+        );
+        softAssert.assertAll();
+        Reporter.log("Appropriate Product is displayed while from filter pill");
+        ExtentReport.extentTest.info("Appropriate Product is displayed while from filter pill");
+    }
+
+
 
 	public void ValidateShopNowCTAinDyPlaceholderBanner()
 	{
@@ -1879,7 +1933,10 @@ public class CollectionPageComponent extends CollectionPageLocator {
 						//softAssert.assertEquals(Img_colortext, colornew, "Color not changing");
 						
 						i--;
-					} else {
+					}
+
+                    else
+                    {
 						ExtentReport.extentTest.info("Color not changing");
 						throw new Exception("Color not changing");
 					}
@@ -2271,10 +2328,8 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	}
 
 	public void ValidateOnClickingTheInLineBanner() throws InterruptedException {
-
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollBy(0,500)");
 		objGeneralMethods.waitTillPageLoad(driver);
@@ -2305,7 +2360,6 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 
 	public void validateOnImageAndSecondaryBadges() throws Exception {
-
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
