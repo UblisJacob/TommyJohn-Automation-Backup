@@ -155,21 +155,20 @@ public class ImageListenerClass extends ExtentReport implements ITestListener, I
             throw new RuntimeException(e);
         }
 
-        String reportLink = links.get("reportLink");
-        String csvLink = links.get("csvLink");
-
         try {
             sendSlackNotificationImageCSV(
                     String.valueOf(Fpassed),
                     String.valueOf(Ffailed),
                     String.valueOf(Fskipped),
-                    reportLink,
-                    csvLink
+                    links.get("reportLink"),
+                    links.get("homepageCsvLink"),
+                    links.get("altCsvLink")
             );
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
+
 
     @Override
     public void onFinish(ITestContext context) {
