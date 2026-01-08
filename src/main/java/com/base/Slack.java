@@ -131,12 +131,27 @@ public class Slack {
 
     }
 
-    public static void sendSlackNotificationImageCSV(String passed, String failed, String skipped,
-                                                  String reportLink, String csvLink) throws Exception {
+    public static void sendSlackNotificationImageCSV(
+            String passed,
+            String failed,
+            String skipped,
+            String reportLink,
+            String homepageCsvLink,
+            String altCsvLink
+    ) throws Exception {
+
 
         String Date = setCurrentDatetDate();
 
-        System.out.println(passed + "\n" + failed + "\n" + skipped + "\n" + reportLink + "\n" + csvLink);
+        System.out.println(
+                "Passed: " + passed + "\n" +
+                        "Failed: " + failed + "\n" +
+                        "Skipped: " + skipped + "\n" +
+                        "Report Link: " + reportLink + "\n" +
+                        "Homepage CSV Link: " + homepageCsvLink + "\n" +
+                        "PLP CSV Link: " + altCsvLink
+        );
+
 
         // Slack message with two links
         String payload =
@@ -145,9 +160,11 @@ public class Slack {
                         "\\n*Passed:* " + passed +
                         "\\n*Failed:* " + failed +
                         "\\n*Skipped:* " + skipped +
-                        "\\n*Report Link:* <" + reportLink + "|Click Here>" +
-                        "\\n*CSV Link:* <" + csvLink + "|Click Here>" +
+                        "\\n*Report Link:* <" + reportLink + "|View Report>" +
+                        "\\n*Homepage CSV:* <" + homepageCsvLink + "|Download>" +
+                        "\\n*PLP CSV:* <" + altCsvLink + "|Download>" +
                         "\", \"type\": \"mrkdwn\" }";
+
 
         URL url = new URL(Test_Automation_WEBHOOK_URL);
         HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();

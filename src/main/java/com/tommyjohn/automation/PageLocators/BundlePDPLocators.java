@@ -30,7 +30,6 @@ public class BundlePDPLocators {
 	
 	//image color
 	public static By IMAGE_COLOR = By.cssSelector(".pdpImageSlidesWrapper>div>div>.slick-track>.product_image.slick-slide.slick-current.slick-active");
-	
 	public static By TOTAL_SIZES = By.cssSelector(".option-swatch__option>li>label>span");
 	public static By ALL_SIZE_LIST = By.xpath("//input[@name='option[Size]']");
 	public static By INACTIVE_SIZES = By.cssSelector(".option-swatch__option>li>.option-swatch__input.unavailable.email-when-in-stock");
