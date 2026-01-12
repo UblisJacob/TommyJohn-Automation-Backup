@@ -174,8 +174,6 @@ public class ValidateCartPage extends ExtentReport{
 		new AddToCartComponents(driver).addToCart();
 		new ShoppingCartPage(driver).ValidateViewCartLink();
 		new ShoppingCartPage(driver).tieredMeterFunctionality();
-
-
 	}
 
 

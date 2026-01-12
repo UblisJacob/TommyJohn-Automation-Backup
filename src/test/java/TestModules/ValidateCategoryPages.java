@@ -58,7 +58,7 @@ public class ValidateCategoryPages {
 	@Test public void ValidateStarRatingIsFunctional() throws Exception { new
 			CollectionPage(driver).ValidateStarRatingIsFunctional(); }
 
-	//@Test
+	@Test
 	public void ValidateRecsInPLP() throws Exception { new
 			CollectionPage(driver).ValidateRecsInPLP(); }
 	 

@@ -209,6 +209,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		js.executeScript("window.scrollBy(0,50)");
 		Thread.sleep(5000);
 		js.executeScript("scroll(0,-80);");
+        js.executeScript("window.scrollBy(0,20000)");
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_RECS));
 		softAssert.assertTrue(driver.findElement(PLP_RECS).isDisplayed(),"Recs are not available in the PLP");
