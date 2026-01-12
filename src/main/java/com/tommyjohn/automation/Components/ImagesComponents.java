@@ -60,7 +60,7 @@ public class ImagesComponents {
     public WebDriver driver;
     String searchText = "";
     int count = 0;
-    int PLPs = 2;
+    int PLPs = 55;
     SoftAssert softAssert = new SoftAssert();
 
 
