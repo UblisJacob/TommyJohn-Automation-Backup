@@ -47,6 +47,7 @@ import java.util.logging.Level;
 
 import static com.tommyjohn.automation.PageLocators.CollectionPageLocator.*;
 import static com.tommyjohn.automation.PageLocators.FlyCartPageLocator.CHECKOUT_BUTTON;
+import static org.testng.Reporter.log;
 
 
 public class ImagesComponents {
@@ -59,22 +60,25 @@ public class ImagesComponents {
 
     public WebDriver driver;
     String searchText = "";
-    int count = 0;
-    int PLPs = 55;
-    SoftAssert softAssert = new SoftAssert();
+//    int count = 0;
+//    int PLPs = 55;
+ //   SoftAssert softAssert = new SoftAssert();
 
 
     public void VerifyAltText() {
+
         String csvPath = "D:\\IdeaProject\\CSV\\homepage_report.csv";
         CSVWriter writer;
+
+        boolean hasFailures = false;
 
         try {
             File file = new File(csvPath);
 
-            // Overwrite the file on every run
+            // Overwrite file every run
             writer = new CSVWriter(new FileWriter(file, false));
 
-            // Always write header when overwriting
+            // Always write header
             writer.writeNext(new String[]{"ALT Status", "ALT Text", "SRC", "URL"});
 
         } catch (Exception e) {
@@ -82,6 +86,7 @@ public class ImagesComponents {
         }
 
         List<WebElement> images = driver.findElements(By.tagName("img"));
+
         int missingAltTotal = 0;
         int missingUrlTotal = 0;
 
@@ -97,22 +102,23 @@ public class ImagesComponents {
 
             String src = img.getAttribute("src");
 
-            String urlFinal = "Missing AltText_Homepage";
+            String urlFinal = "Missing";
             try {
                 urlFinal = img.findElement(By.xpath("./ancestor::a[1]")).getAttribute("href");
                 if (urlFinal == null || urlFinal.trim().isEmpty()) {
-                    urlFinal = "Missing AltText_Homepage";
+                    urlFinal = "Missing";
                 }
             } catch (Exception ignored) {}
 
             try {
-                wait.until(driver1 -> img.getAttribute("alt") != null);
+                wait.until(d -> img.getAttribute("alt") != null);
             } catch (Exception ignored) {}
 
             String alt = img.getAttribute("alt");
-            String altFinal = (alt == null || alt.trim().isEmpty()) ? "Missing AltText_Homepage" : alt;
+            String altFinal = (alt == null || alt.trim().isEmpty())
+                    ? "Missing AltText_Homepage"
+                    : alt;
 
-            // ✅ FINAL STATUS LOGIC
             String status;
             if (altFinal.equals("Missing AltText_Homepage")) {
                 highlightElement(img, "3px solid red");
@@ -125,35 +131,40 @@ public class ImagesComponents {
                 status = "Valid ALT";
             }
 
-            // ✅ Logging
-            System.out.println(
-                    status + " | ALT: " + altFinal +
-                            " | SRC: " + src +
-                            " | URL: " + urlFinal
-            );
-
+            // ✅ Console + Report (ALL DATA)
+            System.out.println(status + " | ALT: " + altFinal + " | SRC: " + src + " | URL: " + urlFinal);
             ExtentReport.extentTest.info(
-                    status + " | ALT: " + altFinal +
-                            " | SRC: " + src +
-                            " | URL: " + urlFinal
+                    status + " | ALT: " + altFinal + " | SRC: " + src + " | URL: " + urlFinal
             );
 
-            writer.writeNext(new String[]{status, altFinal, src, urlFinal});
+            // ✅ CSV → ONLY FAILURES
+            if (!status.equals("Valid ALT")) {
+                writer.writeNext(new String[]{status, altFinal, src, urlFinal});
+                hasFailures = true;
+            }
         }
 
-        try {
-            writer.close();
-        } catch (Exception ignored) {}
+        // ✅ Write success row if no failures
+        if (!hasFailures) {
+            writer.writeNext(new String[]{
+                    "All images contain ALT text as expected", "-", "-", "-"
+            });
+        }
 
-        // ✅ SUMMARY
+        try { writer.close(); } catch (Exception ignored) {}
+
+        // ✅ FINAL SUMMARY
         ExtentReport.extentTest.info("===== 🔴 FINAL SUMMARY 🔴 =====");
-        ExtentReport.extentTest.info("Total images with missing ALT: " + missingAltTotal);
-        ExtentReport.extentTest.info("Total images with missing URL: " + missingUrlTotal);
+        ExtentReport.extentTest.info("Missing ALT count: " + missingAltTotal);
+        ExtentReport.extentTest.info("Missing URL count: " + missingUrlTotal);
 
         if (missingAltTotal > 0 || missingUrlTotal > 0) {
             Assert.fail("Homepage ALT / URL validation failed");
         }
     }
+
+
+
 
 
 
@@ -167,22 +178,20 @@ public class ImagesComponents {
 
     public void Validateallurls() throws Exception {
 
-        String csvPath = "D:\\IdeaProject\\CSV\\PLP_report.csv";
-        CSVWriter writer = null;
+        SoftAssert softAssert = new SoftAssert();
 
+        String csvPath = "D:\\IdeaProject\\CSV\\PLP_report.csv";
+        CSVWriter writer;
+        boolean hasFailures = false;
+
+        // ================= CSV SETUP =================
         try {
             File file = new File(csvPath);
-
-            // Overwrite file every run
             writer = new CSVWriter(new FileWriter(file, false));
-
-            // Always write header when overwriting
             writer.writeNext(new String[]{"ALT Status", "ALT Text", "SRC", "URL"});
-
         } catch (Exception e) {
             throw new RuntimeException("Unable to create CSV file", e);
         }
-
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
         CSVReader csvReader = new CSVReader(new FileReader("src/main/resources/PLPs.csv"));
@@ -191,131 +200,145 @@ public class ImagesComponents {
         int missingAltTotal = 0;
         int missingUrlTotal = 0;
 
+        // ================= EXPECTED PLP COUNT =================
+        int PLPs = 55;
+        int loadedPLPs = 0;
+
+        // ================= MAIN LOOP =================
         for (String[] data : list) {
             for (String path : data) {
 
                 String url = "https://www.tommyjohn.com" + path;
                 Reporter.log("🔍 Starting validation for URL: " + url);
+                System.out.println("🔍 Starting validation for URL: " + url);
                 ExtentReport.extentTest.info("🔍 Starting validation for URL: " + url);
+                log("🔍 Validating URL: " + url);
+
                 driver.get(url);
 
                 try {
                     wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT));
-                    count++;
-
-                    Reporter.log(url + " loads fine and products are displayed");
-                    ExtentReport.extentTest.info(url + " loads fine and products are displayed");
+                    loadedPLPs++;
 
                     scrollUntilAllProductsLoad();
 
                     List<WebElement> productLinks = driver.findElements(By.xpath(
-                            "//a[contains(@class,'block') and contains(@class,'scroll-mt-4xl') and contains(@class,'leading-none')]"
+                            "//a[contains(@class,'block') and contains(@class,'scroll-mt-4xl')]"
                     ));
 
                     for (WebElement card : productLinks) {
 
-                        try {
-                            ((JavascriptExecutor) driver)
-                                    .executeScript("arguments[0].scrollIntoView({block:'center'});", card);
-                            Thread.sleep(250);
-                        } catch (Exception ignored) {}
-
                         String href = card.getAttribute("href");
+
                         if (href != null && href.contains("color=undefined")) {
+                            log("⚠️ Skipped product with invalid color param");
                             continue;
                         }
 
-                        String hrefFinal = (href == null || href.trim().isEmpty()) ? "Missing" : href;
+                        String hrefFinal =
+                                (href == null || href.trim().isEmpty()) ? "Missing" : href;
 
-                        WebElement img = null;
+                        WebElement img;
                         try {
-                            img = card.findElement(By.cssSelector("img.object-cover"));
-                        } catch (Exception ignored) {}
-
-                        if (img == null) {
-                            List<WebElement> imgs = card.findElements(By.xpath(".//img"));
-                            for (WebElement i : imgs) {
-                                if (i.isDisplayed()) {
-                                    img = i;
-                                    break;
-                                }
-                            }
+                            img = card.findElement(By.tagName("img"));
+                        } catch (Exception e) {
+                            log("⚠️ No <img> found inside product card | URL: " + hrefFinal);
+                            continue;
                         }
 
-                        String altFinal = "Missing";
-                        String srcFinal = "Missing";
+                        // ================= SRC HANDLING =================
+                        String src = img.getAttribute("src");
+                        String dataSrc = img.getAttribute("data-src");
 
-                        if (img != null) {
-                            try {
-                                ((JavascriptExecutor) driver)
-                                        .executeScript("arguments[0].scrollIntoView({block:'center'});", img);
-                                Thread.sleep(200);
-                            } catch (Exception ignored) {}
+                        String srcFinal =
+                                (src != null && !src.isBlank()) ? src :
+                                        (dataSrc != null && !dataSrc.isBlank()) ? dataSrc : "Missing";
 
-                            String alt = img.getAttribute("alt");
-                            String src = img.getAttribute("src");
-                            String dataSrc = img.getAttribute("data-src");
-                            String srcset = img.getAttribute("srcset");
+                        // ================= ALT (SAFE) =================
+                        String altFinal = getAltTextSafe(img);
 
-                            srcFinal = (src != null && !src.isBlank()) ? src :
-                                    (dataSrc != null && !dataSrc.isBlank()) ? dataSrc :
-                                            (srcset != null && !srcset.isBlank()) ? srcset : "Missing";
-
-                            altFinal = (alt == null || alt.trim().isEmpty()) ? "Missing" : alt;
-                        }
-
-                        // ✅ FINAL STATUS LOGIC
+                        // ================= STATUS =================
                         String status;
-                        if (altFinal.equals("Missing")) {
-                            status = "Missing AltText_PLPs";
+                        if ("Missing".equals(altFinal)) {
+                            status = "❌ Missing AltText_PLPs";
                             missingAltTotal++;
-                        } else if (hrefFinal.equals("Missing")) {
-                            status = "Missing URL";
+                        } else if ("Missing".equals(hrefFinal)) {
+                            status = "❌ Missing URL";
                             missingUrlTotal++;
                         } else {
-                            status = "Valid ALT";
+                            status = "✅ Valid ALT";
                         }
 
-                        // ✅ Logging
-                        System.out.println(
+                        // ================= ALWAYS LOG =================
+                        String logMessage =
                                 status + " | ALT: " + altFinal +
                                         " | SRC: " + srcFinal +
-                                        " | URL: " + hrefFinal
-                        );
+                                        " | URL: " + hrefFinal;
 
-                        ExtentReport.extentTest.info(
-                                status + " | ALT: " + altFinal +
-                                        " | SRC: " + srcFinal +
-                                        " | URL: " + hrefFinal
-                        );
+                        log(logMessage);
+                        System.out.println(logMessage);
+                        ExtentReport.extentTest.info(logMessage);
 
-                        writer.writeNext(new String[]{status, altFinal, srcFinal, hrefFinal});
+                        // ================= CSV → FAILURES ONLY =================
+                        if (!status.contains("Valid")) {
+                            writer.writeNext(new String[]{
+                                    status, altFinal, srcFinal, hrefFinal
+                            });
+                            hasFailures = true;
+                        }
                     }
 
-                } catch (Exception ex) {
-                    Reporter.log("❌ Page is not loading → " + url);
-                    ExtentReport.extentTest.info("❌ Page is not loading → " + url);
+                } catch (Exception e) {
+                    log("❌ Page not loading or products not visible: " + url);
+                    String errorMsg = "❌ Page not loading: " + url; Reporter.log(errorMsg);
+                    ExtentReport.extentTest.info(errorMsg);
+                    System.out.println(errorMsg);
                 }
             }
         }
 
-        try {
-            writer.close();
-        } catch (Exception ignored) {}
-
-        // ✅ FINAL SUMMARY
-        ExtentReport.extentTest.info("===== 🔴 FINAL SUMMARY 🔴 =====");
-        ExtentReport.extentTest.info("Total PLPs passed: " + count);
-        ExtentReport.extentTest.info("Total missing ALT (Product Cards): " + missingAltTotal);
-        ExtentReport.extentTest.info("Total missing URL (Product Cards): " + missingUrlTotal);
-
-        if (missingAltTotal > 0 || missingUrlTotal > 0) {
-            softAssert.fail("ALT / URL validation failed");
+        // ================= CSV SUCCESS ROW =================
+        if (!hasFailures) {
+            writer.writeNext(new String[]{
+                    "All images contain ALT text as expected", "-", "-", "-"
+            });
         }
 
-        softAssert.assertEquals(count, PLPs, "Some URLs are not loading properly");
+        try { writer.close(); } catch (Exception ignored) {}
+
+        // ================= FINAL SUMMARY =================
+
+        ExtentReport.extentTest.info("===== 🔴 FINAL SUMMARY 🔴 ====="); ExtentReport.extentTest.info("Missing ALT count: " + missingAltTotal); ExtentReport.extentTest.info("Missing URL count: " + missingUrlTotal); ExtentReport.extentTest.info( "Expected PLPs: " + PLPs + " | Successfully loaded PLPs: " + loadedPLPs );
+
+        System.out.println("===== FINAL SUMMARY ====="); System.out.println("Missing ALT count: " + missingAltTotal); System.out.println("Missing URL count: " + missingUrlTotal); System.out.println("Expected PLPs: " + PLPs + " | Loaded PLPs: " + loadedPLPs);
+
+        log("===== FINAL SUMMARY =====");
+        log("Missing ALT count: " + missingAltTotal);
+        log("Missing URL count: " + missingUrlTotal);
+        log("Expected PLPs: " + PLPs + " | Loaded PLPs: " + loadedPLPs);
+
+
+        // ================= ASSERTIONS =================
+        if (missingAltTotal > 0 || missingUrlTotal > 0) {
+            softAssert.assertTrue(
+                    false,
+                    "PLP ALT / URL validation failed → Missing ALT: "
+                            + missingAltTotal + ", Missing URL: " + missingUrlTotal
+            );
+        }
+
+        softAssert.assertEquals(
+                loadedPLPs,
+                PLPs,
+                "PLP count mismatch → Expected: " + PLPs + ", Loaded: " + loadedPLPs
+        );
+
         softAssert.assertAll();
     }
+
+
+
+
 
     public void scrollUntilAllProductsLoad() throws InterruptedException {
         long lastHeight = (long) ((JavascriptExecutor) driver).executeScript("return document.body.scrollHeight");
@@ -333,4 +356,31 @@ public class ImagesComponents {
             lastHeight = newHeight;
         }
     }
+
+    private String getAltTextSafe(WebElement img) {
+        try {
+            // 1️⃣ Try normal Selenium ALT
+            String alt = img.getAttribute("alt");
+            if (alt != null && !alt.trim().isEmpty()) {
+                return alt.trim();
+            }
+
+            // 2️⃣ Try JS (handles Shadow DOM)
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            Object result = js.executeScript(
+                    "return arguments[0].getAttribute('alt');", img
+            );
+
+            if (result != null && !result.toString().trim().isEmpty()) {
+                return result.toString().trim();
+            }
+
+        } catch (Exception ignored) {}
+
+        return "Missing";
+    }
+
+
+
+
 }
