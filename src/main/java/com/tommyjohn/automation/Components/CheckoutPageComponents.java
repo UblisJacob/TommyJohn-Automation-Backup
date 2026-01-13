@@ -998,8 +998,8 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 //		Reporter.log("User is navigated to payment page");
 //		ExtentReport.extentTest.info("User is navigated to payment page");
 		Thread.sleep(10000);
-		jse.executeScript("arguments[0].click();", driver.findElement(SAVE_MY_INFORMATION));
-		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+//		jse.executeScript("arguments[0].click();", driver.findElement(SAVE_MY_INFORMATION));
+//		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		softAssert.assertTrue(driver.findElement(PHONENUMBERFIELD).isDisplayed(), "Phone Number Field is not displayed");
 		Reporter.log("Phone Number Field is displayed");
 		ExtentReport.extentTest.info("Phone Number Field is displayed");
