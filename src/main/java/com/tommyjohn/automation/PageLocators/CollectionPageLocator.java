@@ -43,7 +43,7 @@ public class CollectionPageLocator {
 	public static By FIRST_PRODUCT_STAR_RATING = By.xpath("(//a[@class='my-xs font-normal text-body-xs'])[1]");
 	public static By FIRST_PRODUCT_TEXT = By.xpath("(//span[@class='product-meta__title'])[1]");
 	public static By FILTER = By.xpath("//span[@class='collection-meta__title']");
-	public static By PLP_RECS = By.xpath("//h2[contains(text(),'You May Also Like')]//following::div[@class='relative aspect-tile']");
+	public static By PLP_RECS = By.xpath("(//h2[contains(text(),'30% Off Multipacks')]//following::swiper-container)[1]");
 	public static By REVIEWS = By.xpath("//div[@class='ugc-storefront-widgets-tabs-container__tab selected']");
 	public static By FIRST_PRODUCT_REVIEW_STARS = By.xpath("(//a[@class='my-xs font-normal text-body-xs'])[1]");
 	public static By FIRST_PRODUCT_URL = By.cssSelector(".product-meta");
@@ -71,7 +71,7 @@ public class CollectionPageLocator {
 	//Quick shop
 		public static By QUICK_SHOP_LEARN_MORE = By.xpath("//button[@type='button' and contains(text(),'Learn more')]");
 		public static By HAMMOCK_POUCH_CTA = By.xpath("//label[@aria-label='Hammock']");
-		public static By QUICK_SHOP_ATC = By.xpath("//span[@class='font-normal']");
+		public static By QUICK_SHOP_ATC = By.xpath("(//span[@class='font-normal'])[1]");
 		public static By ADD_TO_BAG_QUICKSHOP = By.xpath("//button[@class='button grow']");
 		public static By QUICK_SHOP_SIZE_OVERLAY = By.xpath("//div[@class='mt-0 sm:space-y-lg max-sm:grid max-sm:gap-y-8']");
 		public static By QUICK_SHOP_SIZE_OVERLAY_CLOSE = By.xpath("(//span[@class='icon size-5 icon-x'])[1]");

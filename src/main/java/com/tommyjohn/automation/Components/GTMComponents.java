@@ -212,7 +212,7 @@ public class GTMComponents {
         ));
 
         // ✅ Expected JSON Payload for Comparison (Ignoring "sourceId" & "sessionid")
-        String expectedPayload = "[{\"action\":\"add-to-cart\",\"target\":{\"product\":\"614639763501\"},"
+        String expectedPayload = "[{\"action\":\"add-to-cart\",\"target\":{\"product\":\"4931429924909\"},"
                 + "\"metadata\":{\"locale\":\"en_US\",\"quantity\":1},"
                 + "\"user\":{\"identities\":{},\"segments\":[],\"traits\":{}}}]";
         final boolean[] payloadMatched = {false};
@@ -269,7 +269,7 @@ public class GTMComponents {
                 Optional.empty()  // maxPostDataSizeReportingEnabled
         ));
         // ✅ Expected JSON Payload for "click" event
-        String expectedPayload = "[{\"action\":\"click\",\"target\":{\"product\":\"614639763501\"},"
+        String expectedPayload = "[{\"action\":\"click\",\"target\":{\"product\":\"4931429924909\"},"
                 + "\"metadata\":{\"locale\":\"en_US\"},"
                 + "\"user\":{\"identities\":{},\"segments\":[],\"traits\":{}}}]";
 
@@ -330,7 +330,7 @@ public class GTMComponents {
         ));
 
         // ✅ Expected JSON Payload for "view" product event
-        String expectedPayload = "[{\"action\":\"view\",\"target\":{\"product\":\"614639763501\"},"
+        String expectedPayload = "[{\"action\":\"view\",\"target\":{\"product\":\"4931429924909\"},"
                 + "\"metadata\":{\"locale\":\"en_US\"},"
                 + "\"user\":{\"identities\":{},\"segments\":[],\"traits\":{}}}]";
 
