@@ -359,26 +359,27 @@ public class ImagesComponents {
 
     private String getAltTextSafe(WebElement img) {
         try {
-            // 1️⃣ Try normal Selenium ALT
-            String alt = img.getAttribute("alt");
-            if (alt != null && !alt.trim().isEmpty()) {
-                return alt.trim();
-            }
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", img);
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+            wait.until(driver -> {
+                String alt = img.getAttribute("alt");
+                String src = img.getAttribute("src");
+                String dataSrc = img.getAttribute("data-src");
+                return (alt != null && !alt.isEmpty()) && (src != null || dataSrc != null);
+            });
 
-            // 2️⃣ Try JS (handles Shadow DOM)
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-            Object result = js.executeScript(
+            String alt = img.getAttribute("alt");
+            if (alt != null && !alt.trim().isEmpty()) return alt.trim();
+
+            Object jsAlt = ((JavascriptExecutor) driver).executeScript(
                     "return arguments[0].getAttribute('alt');", img
             );
-
-            if (result != null && !result.toString().trim().isEmpty()) {
-                return result.toString().trim();
-            }
+            if (jsAlt != null && !jsAlt.toString().trim().isEmpty()) return jsAlt.toString().trim();
 
         } catch (Exception ignored) {}
-
         return "Missing";
     }
+
 
 
 
