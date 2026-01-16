@@ -948,21 +948,21 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		new HomePageComponents(driver).navigateToMensAll();
 		Thread.sleep(8000);
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		js.executeScript("window.scrollBy(0,800)");
+		js.executeScript("window.scrollBy(0,450)");
 		int count = 0;
-
 		wait.until(ExpectedConditions.presenceOfElementLocated(CollectionPageLocator.FIRST_PRODUCT_IMAGE));
 		element = driver.findElement(CollectionPageLocator.FIRST_PRODUCT_IMAGE);
 	//	js.executeScript("arguments[0].scrollIntoView(true);", element);
-		Thread.sleep(5000);
+		Thread.sleep(15000);
 		action.moveToElement(element).build().perform();
-		Thread.sleep(10000);
+		Thread.sleep(15000);
 		if(driver.findElement(CollectionPageLocator.QUICK_SHOP_ATC).isDisplayed())
 		{
+            Thread.sleep(10000);
 			element = driver.findElement(CollectionPageLocator.QUICK_SHOP_ATC);
 			js.executeScript("arguments[0].click();", element);
 		//	driver.findElement(CollectionPageLocator.QUICK_SHOP_ATC).click();
-			Thread.sleep(3000);
+			Thread.sleep(5000);
 			//select sizes from quick shop size overlay
 			List<WebElement> allElements;
 			String classtext;
@@ -970,18 +970,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 			System.out.println("All sizes list :: "+ allElements.size());
 			for(int i=1;i<allElements.size();i++)
 			{
-//				classtext=allElements.get(i).getAttribute("class");
-//				System.out.println(classtext);
-//				if (!classtext.contains("peer sr-only"))
-//				{
-//					element= driver.findElement(By.xpath("(//input[@name='option[Size]'])["+i+"]"));
-//					js.executeScript("arguments[0].click();", element);
-//					Thread.sleep(2000);
-//					js.executeScript("arguments[0].click();", driver.findElement(ADD_TO_BAG_QUICKSHOP));
-//					Thread.sleep(5000);
-//					break;
-//				}
-
+                Thread.sleep(5000);
 				element = driver.findElement(By.xpath("(//input[@name='option[Size]'])[" + i + "]"));
 				js.executeScript("arguments[0].click();", element);
 				String[] AddtoBag;
@@ -1006,6 +995,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 					break;
 				}
 			}
+            wait.until(ExpectedConditions.visibilityOfElementLocated(INLINE_CART_TITLE));
 			softAssert.assertTrue(driver.findElement(INLINE_CART_TITLE).isDisplayed(), "Flyout cart is not opened with QuickShop");
 			Reporter.log("Validated Flyout cart opens with Quickshop");
 			ExtentReport.extentTest.info("Validated Flyout cart opens with Quickshop");

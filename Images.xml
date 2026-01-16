@@ -10,7 +10,7 @@
     <test name="ImageTest">
         <parameter name="browser" value="chrome" />
         <classes>
-            <class name= "TestModules.ValidateImages"/>
+            <class name= "TestModules.ValidatePDP"/>
         </classes>
     </test>
 </suite>
