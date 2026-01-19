@@ -16,7 +16,10 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 import java.util.TimeZone;
+import java.util.stream.Collectors;
 
 
 public class Slack {
@@ -137,34 +140,40 @@ public class Slack {
             String skipped,
             String reportLink,
             String homepageCsvLink,
-            String altCsvLink
+            String altCsvLink,
+            Set<String> passedTests,
+            Set<String> failedTests,
+            Set<String> skippedTests
     ) throws Exception {
-
 
         String Date = setCurrentDatetDate();
 
-        System.out.println(
-                "Passed: " + passed + "\n" +
-                        "Failed: " + failed + "\n" +
-                        "Skipped: " + skipped + "\n" +
-                        "Report Link: " + reportLink + "\n" +
-                        "Homepage CSV Link: " + homepageCsvLink + "\n" +
-                        "PLP CSV Link: " + altCsvLink
-        );
+        String passedTestNames = passedTests.isEmpty()
+                ? "None"
+                : passedTests.stream().collect(Collectors.joining(", "));
+
+        String failedTestNames = failedTests.isEmpty()
+                ? "None"
+                : failedTests.stream().collect(Collectors.joining(", "));
+
+        String skippedTestNames = skippedTests.isEmpty()
+                ? "None"
+                : skippedTests.stream().collect(Collectors.joining(", "));
 
 
-        // Slack message with two links
         String payload =
                 "{ \"text\": \"*Images Missing Alt Text*" +
                         "\\n*Time:* " + Date +
                         "\\n*Passed:* " + passed +
                         "\\n*Failed:* " + failed +
                         "\\n*Skipped:* " + skipped +
-                        "\\n*Report Link:* <" + reportLink + "|View Report>" +
+                        "\\n\\n✅ *Passed Tests:* " + passedTestNames +
+                        "\\n❌ *Failed Tests:* " + failedTestNames +
+                        "\\n⏭ *Skipped Tests:* " + skippedTestNames +
+                        "\\n\\n*Report Link:* <" + reportLink + "|View Report>" +
                         "\\n*Homepage CSV:* <" + homepageCsvLink + "|Download>" +
                         "\\n*PLP CSV:* <" + altCsvLink + "|Download>" +
                         "\", \"type\": \"mrkdwn\" }";
-
 
         URL url = new URL(Test_Automation_WEBHOOK_URL);
         HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
@@ -175,14 +184,11 @@ public class Slack {
         httpConn.setRequestProperty("Accept", "application/json");
 
         try (OutputStream os = httpConn.getOutputStream()) {
-            byte[] file = payload.getBytes("utf-8");
-            os.write(file, 0, file.length);
+            os.write(payload.getBytes("utf-8"));
         }
 
-        int responseCode = httpConn.getResponseCode();
-        System.out.println("Response Code: " + responseCode);
+        System.out.println("Slack Response Code: " + httpConn.getResponseCode());
     }
-
 
     public static void sendSlackNotificationADA(String passed, String failed, String skipped, String reportLink ) throws Exception {
 

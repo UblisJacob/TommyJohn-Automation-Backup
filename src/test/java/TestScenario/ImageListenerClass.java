@@ -9,8 +9,7 @@ import org.testng.*;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import static com.base.Slack.*;
 
@@ -25,11 +24,13 @@ public class ImageListenerClass extends ExtentReport implements ITestListener, I
 
     public String SuiteName = null;
 
-    public int Fpassed = 0;
-    public int Ffailed = 0;
-    public int Fskipped = 0;
+//    public int Fpassed = 0;
+//    public int Ffailed = 0;
+//    public int Fskipped = 0;
 
-
+    static Set<String> passedTests = new HashSet<>();
+    static Set<String> failedTests = new HashSet<>();
+    static Set<String> skippedTests = new HashSet<>();
 
     @Override
 
@@ -81,61 +82,61 @@ public class ImageListenerClass extends ExtentReport implements ITestListener, I
     @Override
     public void onTestSuccess(ITestResult result) {
 
-        count=1;
-        shouldPrint=true;
-        String testName = result.getName();
-        extentTest.pass(testName + " got executed successfully");
-        extentTest.log(Status.PASS, "Test Passed");
-        System.out.println(testName + " got executed successfully");
+        String testName = result.getMethod().getMethodName();
 
+        // ✅ FINAL RESULT → PASS
+        failedTests.remove(testName);
+        skippedTests.remove(testName);
+        passedTests.add(testName);
+
+        count = 1;
+        shouldPrint = true;
+
+        extentTest.pass(testName + " executed successfully");
+        extentTest.log(Status.PASS, "Test Passed");
+
+        System.out.println(testName + " executed successfully");
     }
+
 
     @Override
     public void onTestFailure(ITestResult result) {
 
+        String testName = result.getMethod().getMethodName();
         String screenShotPath = CustomUtilities.screenshot();
-
-        if (count < Retry.maxRetryCount) {
-            shouldPrint = false;
-
-
-        } else {
-            shouldPrint = true;
-
-        }
-
-        String testName = result.getName();
-
-        String fileName = result.getMethod().getMethodName().replaceAll(" ", "_");
-
-        //       String screenShotPath = CustomUtilities.screenshot();
-        //extentTest.addScreenCaptureFromPath(screenShotPath);
 
         extentTest.info("Screenshot",
                 MediaEntityBuilder.createScreenCaptureFromBase64String(screenShotPath).build());
         extentTest.info(result.getThrowable());
-        extentTest.fail(testName + " got failed");
+        extentTest.fail(testName + " failed");
 
-        if (count == Retry.maxRetryCount) {
-            //         extentTest.addScreenCaptureFromPath(screenShotPath);
-            count = 1;
-        }
-        else
-        {
+        // Retry handling
+        if (count < Retry.maxRetryCount) {
+            shouldPrint = false;
             count++;
+        } else {
+            // ❗ Final failure only
+            shouldPrint = true;
+            count = 1;
+            failedTests.add(testName);
+            passedTests.remove(testName);
         }
-
     }
 
 
 
     @Override
     public void onTestSkipped(ITestResult result) {
-        String testName = result.getName();
-        extentTest.log(Status.INFO, result.getThrowable());
-        extentTest.log(Status.SKIP, testName + " got failed");
 
+        String testName = result.getMethod().getMethodName();
+
+        skippedTests.add(testName);
+        passedTests.remove(testName);
+        failedTests.remove(testName);
+
+        extentTest.log(Status.SKIP, testName + " skipped");
     }
+
 
     @Override
     public void onTestFailedButWithinSuccessPercentage(ITestResult result)
@@ -148,6 +149,10 @@ public class ImageListenerClass extends ExtentReport implements ITestListener, I
 
         generateExtentReports();
 
+        int finalPassed  = passedTests.size();
+        int finalFailed  = failedTests.size();
+        int finalSkipped = skippedTests.size();
+
         Map<String, String> links;
         try {
             links = com.base.GDrivePOST.UploadImageReportAndCSV();
@@ -157,12 +162,15 @@ public class ImageListenerClass extends ExtentReport implements ITestListener, I
 
         try {
             sendSlackNotificationImageCSV(
-                    String.valueOf(Fpassed),
-                    String.valueOf(Ffailed),
-                    String.valueOf(Fskipped),
+                    String.valueOf(finalPassed),
+                    String.valueOf(finalFailed),
+                    String.valueOf(finalSkipped),
                     links.get("reportLink"),
                     links.get("homepageCsvLink"),
-                    links.get("altCsvLink")
+                    links.get("altCsvLink"),
+                    passedTests,
+                    failedTests,
+                    skippedTests
             );
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -170,36 +178,13 @@ public class ImageListenerClass extends ExtentReport implements ITestListener, I
     }
 
 
+
     @Override
     public void onFinish(ITestContext context) {
-
-        Set<ITestResult> failedTests = context.getFailedTests().getAllResults();
-        Set<ITestResult> skippedTests = context.getSkippedTests().getAllResults();
-        for (ITestResult temp : failedTests) {
-            ITestNGMethod method = temp.getMethod();
-//			System.out.println(context.getFailedTests().size());
-//			System.out.println(context.getPassedTests().size());
-            if (context.getFailedTests().getResults(method).size() > 1) {
-                failedTests.remove(temp);
-            } else {
-                if (context.getPassedTests().getResults(method).size() > 0) {
-                    failedTests.remove(temp);
-                }
-            }
-        }
-        for (ITestResult temp : skippedTests) {
-            ITestNGMethod method = temp.getMethod();
-            if (context.getSkippedTests().getResults(method).size() > 0) {
-                skippedTests.remove(temp);
-            } else {
-                if (context.getPassedTests().getResults(method).size() > 0) {
-                    skippedTests.remove(temp);
-                }
-            }
-        }
-
-        Fpassed = Fpassed + (context.getPassedTests().size());
-        Ffailed = Ffailed + (context.getFailedTests().size());
-        Fskipped = Fskipped + (context.getSkippedTests().size());
+        // ❌ DO NOTHING HERE
+        // Avoid retry-inflated TestNG counts
     }
+
 }
+
+
