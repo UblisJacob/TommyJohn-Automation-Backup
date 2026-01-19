@@ -28,6 +28,14 @@ public class ValidateInlineCartPage extends ExtentReport {
 		}
 	}
 
+
+
+    @Test
+    public void ValidatefiveforsixtyfivefunctionalityinInLineCartPage() throws Exception {
+        new FlyCartPage(driver).ValidateFiveFor65InInLineCart();
+    }
+
+
 	@Test
 	public void Validate_InlineCart_IncreaseQuantity() throws Exception {
 
