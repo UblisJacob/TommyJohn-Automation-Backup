@@ -162,18 +162,15 @@ public class Slack {
 
 
         String payload =
-                "{ \"text\": \"*Images Missing Alt Text*" +
-                        "\\n*Time:* " + Date +
-                        "\\n*Passed:* " + passed +
-                        "\\n*Failed:* " + failed +
-                        "\\n*Skipped:* " + skipped +
-                        "\\n\\n✅ *Passed Tests:* " + passedTestNames +
-                        "\\n❌ *Failed Tests:* " + failedTestNames +
-                        "\\n⏭ *Skipped Tests:* " + skippedTestNames +
-                        "\\n\\n*Report Link:* <" + reportLink + "|View Report>" +
-                        "\\n*Homepage CSV:* <" + homepageCsvLink + "|Download>" +
-                        "\\n*PLP CSV:* <" + altCsvLink + "|Download>" +
-                        "\", \"type\": \"mrkdwn\" }";
+                "{ \"text\": \"*Images missing \\\"Alt Text\\\"*"
+                        + "\\n*Time:* " + Date
+                        + "\\n\\n✅ *Passed Tests:* " + passedTestNames
+                        + "\\n❌ *Failed Tests:* " + failedTestNames
+                        + "\\n⏭ *Skipped Tests:* " + skippedTestNames
+                        + "\\n\\n*Report Link:* <" + reportLink + "|View Report>"
+                        + "\\n*Homepage CSV:* <" + homepageCsvLink + "|Download>"
+                        + "\\n*PLP CSV:* <" + altCsvLink + "|Download>"
+                        + "\" }";
 
         URL url = new URL(Test_Automation_WEBHOOK_URL);
         HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();

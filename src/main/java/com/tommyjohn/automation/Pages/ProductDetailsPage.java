@@ -83,6 +83,13 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 
 	}
 
+    public void VerifyPDPSectionRecs() throws Exception {
+
+
+        new ProductDetailsPageComponents(driver).VerifyPDPSectionRecs();
+
+    }
+
 	public void VerifyAddToWishlist() throws Exception {
 
 
