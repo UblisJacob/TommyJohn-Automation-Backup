@@ -103,6 +103,8 @@ public class ProductDetailsPageLocators {
 
 	public static By ALL_COLOR_LIST = By.xpath("//div[@class='max-md:w-20 max-md:mr-2xs relative shrink-0 grow-0 text-center max-md:flex']");
 	public static By PRODUCT_DETAILS = By.xpath("//button[@aria-controls='product-details']");
+    public static By PDP_SECTION_RECS = By.xpath("(//h2[contains(text(),'Bought Together')]//following::div[@class='relative aspect-tile'])[1]");
+    public static By LIST_PDP_SECTION_RECS = By.xpath("//h2[contains(text(),'Bought Together')]//following::div[@class='relative aspect-tile']");
 	public static By ADD_TO_WISHLIST = By.xpath("//span[@class='wk-text']");
 	public static By LOGIN_DRAWER = By.xpath("//section[@class='flex flex-col justify-between h-full']");
 	public static By SIZEGUIDE = By.xpath("//button[@class='button-link text-body-sm text-text-tertiary mr-6 md:mr-0']");
