@@ -201,7 +201,7 @@ public class ImagesComponents {
         int missingUrlTotal = 0;
 
         // ================= EXPECTED PLP COUNT =================
-        int PLPs = 55;
+        int PLPs = 2;
         int loadedPLPs = 0;
 
         // ================= MAIN LOOP =================

@@ -72,6 +72,24 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 	}
 
 
+    public void VerifyPDPSectionRecs() throws Exception {
+        JavascriptExecutor js1 = (JavascriptExecutor) driver;;
+        SoftAssert softAssert = new SoftAssert();
+        new HomePageComponents(driver).navigateToMensAll();
+//        new CollectionPageComponent(driver).navigateToProductDetailsPage();
+         driver.get("https://www.tommyjohn.com/products/womens-second-skin-brief-5-pack-1?color=null");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        js1.executeScript("window.scrollBy(0,500)");
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(PDP_SECTION_RECS));
+        softAssert.assertTrue(driver.findElement(PDP_SECTION_RECS).isDisplayed(),"PDP Section Recs are not available in PDP");
+        List<WebElement> Recs_Products = driver.findElements(LIST_PDP_SECTION_RECS);
+        System.out.println(Recs_Products.size());
+        softAssert.assertEquals(Recs_Products.size(), 4, "Recs does not contain 4 products");
+       softAssert.assertAll();
+        Reporter.log("PDP Section contains Recs");
+        ExtentReport.extentTest.info("PDP Section contains Recs");
+    }
+
 
 	public void VerifyAddToWishlist() throws Exception {
 		String text = null;
