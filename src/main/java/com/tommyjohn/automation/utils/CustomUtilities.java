@@ -52,13 +52,13 @@ public class CustomUtilities {
             ChromeOptions chromeOptions = new ChromeOptions();
             chromeOptions.addArguments("--use-fake-ui-for-media-stream");
             chromeOptions.addArguments("--use-fake-device-for-media-stream");
-            chromeOptions.addArguments("--unsafely-treat-insecure-origin-as-secure=http://192.168.5.229");
+            chromeOptions.addArguments("--unsafely-treat-insecure-origin-as-secure=http://192.168.7.43");
 //            chromeOptions.addArguments("--unsafely-treat-insecure-origin-as-secure=http://192.168.7.207");
             chromeOptions.addArguments("--disable-web-security");
             chromeOptions.addArguments("--ignore-certificate-errors");
             chromeOptions.addArguments("--disable-gpu");
             // remove headless if you need visual debugging; keep if CI
-//            chromeOptions.addArguments("--headless");
+            chromeOptions.addArguments("--headless");
             chromeOptions.addArguments("--window-size=1920,1080");
             chromeOptions.addArguments("--force-device-scale-factor=1");
             chromeOptions.addArguments("--start-maximized");

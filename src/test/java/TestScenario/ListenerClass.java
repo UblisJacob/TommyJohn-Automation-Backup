@@ -14,7 +14,7 @@ import java.util.Set;
 import static com.base.Slack.sendSlackNotificationADA;
 import static com.base.Slack.sendSlackNotificationReg;
 
-public class    ListenerClass extends ExtentReport implements ITestListener, IExecutionListener {
+public class   ListenerClass extends ExtentReport implements ITestListener, IExecutionListener {
 
 	WebDriver driver;
 	static int count = 1;
