@@ -13,7 +13,7 @@
         <classes>
                     <class name="TestModules.ValidatePDP">
                 <methods>
-                    <include name="VerifyPDPSectionRecs"/>
+                    <include name="VerifyPromoBannerIsAvailableinPDP"/>
                 </methods>
             </class>
         </classes>
