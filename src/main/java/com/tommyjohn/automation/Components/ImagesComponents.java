@@ -201,7 +201,7 @@ public class ImagesComponents {
         int missingUrlTotal = 0;
 
         // ================= EXPECTED PLP COUNT =================
-        int PLPs = 2;
+        int PLPs = 55;
         int loadedPLPs = 0;
 
         // ================= MAIN LOOP =================
@@ -336,10 +336,6 @@ public class ImagesComponents {
         softAssert.assertAll();
     }
 
-
-
-
-
     public void scrollUntilAllProductsLoad() throws InterruptedException {
         long lastHeight = (long) ((JavascriptExecutor) driver).executeScript("return document.body.scrollHeight");
 
@@ -379,9 +375,4 @@ public class ImagesComponents {
         } catch (Exception ignored) {}
         return "Missing";
     }
-
-
-
-
-
 }
