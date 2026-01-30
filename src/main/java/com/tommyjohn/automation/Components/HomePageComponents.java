@@ -63,6 +63,19 @@ public class HomePageComponents extends HomePageLocators {
 
 	}
 
+    public void VerifyScrollCTA() throws InterruptedException {
+        SoftAssert softAssert = new SoftAssert();
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
+        Thread.sleep(2000);
+        js.executeScript("window.scrollBy(0,500)");
+        softAssert.assertTrue(driver.findElement(SCROLL_CTA).isDisplayed(),"Scroll Button is not available");
+        Reporter.log("Scroll Button is available");
+        ExtentReport.extentTest.info("Scroll Button is available");
+
+
+    }
+
 	public void VerifyProductReviewModule() throws InterruptedException {
 		SoftAssert softAssert = new SoftAssert();
 		JavascriptExecutor js = (JavascriptExecutor)driver;
