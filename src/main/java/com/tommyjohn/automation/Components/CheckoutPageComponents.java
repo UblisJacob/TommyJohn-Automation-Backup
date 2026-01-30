@@ -1101,7 +1101,6 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		softAssert.assertEquals(NonFreeShipping,"$7.95","Free Shipping is offered when the Cart contains products with below $75");
 		Reporter.log("Free Shipping is not offered when the Cart contains products with below $75");
 		ExtentReport.extentTest.info("Free Shipping is not offered when the Cart contains products with below $75");
-
 	}
 
 	public void validateFreeShipping() throws Exception {
