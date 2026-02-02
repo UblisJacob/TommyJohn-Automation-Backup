@@ -13,7 +13,7 @@
         <classes>
                     <class name="TestModules.ValidateHomePage">
                 <methods>
-                    <include name="VerifyProductReviewModule"/>
+                    <include name="VerifyUGCModule"/>
                 </methods>
             </class>
         </classes>
