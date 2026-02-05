@@ -13,7 +13,7 @@
         <classes>
                     <class name="TestModules.ValidateHomePage">
                 <methods>
-                    <include name="ValidateClickingTheUGCModule"/>
+                    <include name="ValidateClickingOnShopNowCTAInInfluencerProductPopUp"/>
                 </methods>
             </class>
         </classes>
