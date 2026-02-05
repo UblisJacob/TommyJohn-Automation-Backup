@@ -64,6 +64,12 @@ public class ValidateHomePage extends ExtentReport {
         homePage.ValidateClickingTheUGCModule();
     }
 
+    @Test
+    public void ValidateClickingOnShopNowCTAInInfluencerProductPopUp() throws Exception {
+        HomePageComponents homePage = new HomePageComponents(driver);
+        homePage.ValidateClickingOnShopNowCTAInInfluencerProductPopUp();
+    }
+
 //	@Test
 	public void VerifyToggleButton() throws Exception {
 
