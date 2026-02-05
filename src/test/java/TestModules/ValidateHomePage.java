@@ -58,6 +58,12 @@ public class ValidateHomePage extends ExtentReport {
 		homePage.VerifyUGCModule();
 	}
 
+    @Test
+    public void ValidateClickingTheUGCModule() throws Exception {
+        HomePageComponents homePage = new HomePageComponents(driver);
+        homePage.ValidateClickingTheUGCModule();
+    }
+
 //	@Test
 	public void VerifyToggleButton() throws Exception {
 
