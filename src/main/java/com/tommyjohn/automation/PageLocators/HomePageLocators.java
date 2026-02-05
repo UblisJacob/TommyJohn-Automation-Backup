@@ -16,6 +16,8 @@ public class HomePageLocators{
     public static By FIRST_UGC_MODULE = By.xpath("(//div[@class='fs-text-container'])[1]");
     public static By SHOP_NOW_LINK = By.xpath("//div[@class='fs-has-links']");
     public static By INFLUENCER_FAVOURITE_PRODUCT_POPUP = By.xpath("//div[@class='fs-detail-container ']");
+    public static By SHOP_NOW_CTA_IN_POPUP = By.xpath("//span[@class='fs-product-name']");
+    public static By PRODUCT_NAME_PDP = By.xpath("//h1[@class='mb-0']");
 	public static By PRODUCT_REVIEW_MODULE = By.xpath("(//div[@class='wrapper pr-0 md:pr-xl'])[1]");
     public static By SCROLL_CTA = By.xpath("//button[@id='scroll-to-top-button']");
 	public static By NEW_MARKDOWNS_SECTIONS = By.xpath("//swiper-container[@class='-mx-lg flex px-lg [grid-area:slides]']");

@@ -115,11 +115,11 @@ public class HomePageComponents extends HomePageLocators {
     public void ValidateClickingTheUGCModule() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Actions action = new Actions(driver);
-        JavascriptExecutor js = (JavascriptExecutor)driver;
+        JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,5000)");
         wait.until(ExpectedConditions.visibilityOfElementLocated(UGC_MODULE));
         Thread.sleep(2000);
-        softAssert.assertTrue(driver.findElement(UGC_MODULE).isDisplayed(),"UGC_MODULE is not available");
+        softAssert.assertTrue(driver.findElement(UGC_MODULE).isDisplayed(), "UGC_MODULE is not available");
         Reporter.log("UGC_MODULE is available");
         ExtentReport.extentTest.info("UGC_MODULE is available");
         wait.until(ExpectedConditions.presenceOfElementLocated(FIRST_UGC_MODULE));
@@ -141,9 +141,44 @@ public class HomePageComponents extends HomePageLocators {
             ExtentReport.extentTest.info("When the User clicks Shop Now link in the UGC Module, the Influencer Favourite Product Popup is displayed");
 
         }
-
-
     }
+        public void ValidateClickingOnShopNowCTAInInfluencerProductPopUp() throws InterruptedException {
+            SoftAssert softAssert = new SoftAssert();
+            Actions action = new Actions(driver);
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.scrollBy(0,5000)");
+            wait.until(ExpectedConditions.visibilityOfElementLocated(UGC_MODULE));
+            Thread.sleep(2000);
+            softAssert.assertTrue(driver.findElement(UGC_MODULE).isDisplayed(), "UGC_MODULE is not available");
+            Reporter.log("UGC_MODULE is available");
+            ExtentReport.extentTest.info("UGC_MODULE is available");
+            wait.until(ExpectedConditions.presenceOfElementLocated(FIRST_UGC_MODULE));
+            // Hover On product image on collection page
+            element = driver.findElement(FIRST_UGC_MODULE);
+            js.executeScript("arguments[0].scrollIntoView(true);", element);
+            action.moveToElement(element).build().perform();
+            if (driver.findElement(SHOP_NOW_LINK).isDisplayed()) {
+                Reporter.log("Shop Now Link is displayed on hover.");
+                ExtentReport.extentTest.info("Shop Now Link is displayed on hover.");
+                driver.findElement(SHOP_NOW_LINK).click();
+                Thread.sleep(3000);
+                Reporter.log("Shop Now Link is validated :: Clickable.");
+                ExtentReport.extentTest.info("Shop Now Link is validated :: Clickable.");
+                // size overlay Field validation
+                softAssert.assertTrue(driver.findElement(INFLUENCER_FAVOURITE_PRODUCT_POPUP).isDisplayed(),
+                        "When the User clicks Shop Now link in the UGC Module, the Influencer Favourite Product Popup is not displayed");
+                Reporter.log("When the User clicks Shop Now link in the UGC Module, the Influencer Favourite Product Popup is displayed");
+                ExtentReport.extentTest.info("When the User clicks Shop Now link in the UGC Module, the Influencer Favourite Product Popup is displayed");
+                driver.findElement(SHOP_NOW_CTA_IN_POPUP).click();
+                wait.until(ExpectedConditions.urlContains("tommyjohn.com"));
+                wait.until(ExpectedConditions.presenceOfElementLocated(PRODUCT_NAME_PDP));
+                softAssert.assertTrue(driver.findElement(PRODUCT_NAME_PDP).isDisplayed(),
+                        "When the User clicks Shop Now link in the Popup Module, the User is not directed to the PDP");
+                Reporter.log("When the User clicks Shop Now link in the Popup Module, the User is directed to the PDP");
+                ExtentReport.extentTest.info("When the User clicks Shop Now link in the Popup Module, the User is directed to the PDP");
+            }
+        }
+
 
 	public void VerifyToggleButton() throws InterruptedException {
 		SoftAssert softAssert = new SoftAssert();
