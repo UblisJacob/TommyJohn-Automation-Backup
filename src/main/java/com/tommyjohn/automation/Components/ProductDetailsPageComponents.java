@@ -72,6 +72,29 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 	}
 
 
+
+
+
+	public void VerifyProgressBarInUpsideDownPDP()
+	{
+
+		String text = null;
+		JavascriptExecutor js1 = (JavascriptExecutor) driver;;
+		SoftAssert softAssert = new SoftAssert();
+//        new HomePageComponents(driver).navigateToMensAll();
+//        new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		driver.get("https://www.tommyjohn.com/products/second-skin-deep-v-neck-stay-tucked-undershirt-3-pack?color=white&view=upsidedown");
+		js1.executeScript("window.scrollBy(0,500)");
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(UPSIDE_DOWN_PROGRESS_BAR));
+		softAssert.assertTrue(driver.findElement(UPSIDE_DOWN_PROGRESS_BAR).isDisplayed(),"Progress Bar is not available in PDP");
+		Reporter.log("Progress Bar is available in PDP");
+		ExtentReport.extentTest.info("Progress Bar is available in PDP");
+
+
+	}
+
+
     public void VerifyPDPSectionRecs() throws Exception {
         JavascriptExecutor js1 = (JavascriptExecutor) driver;;
         SoftAssert softAssert = new SoftAssert();
