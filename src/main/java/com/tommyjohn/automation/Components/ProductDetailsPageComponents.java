@@ -150,8 +150,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		softAssert.assertTrue(driver.findElement(LOGIN_DRAWER).isDisplayed(),"Login Drawer Is not Displayed for the Guest user");
 		Reporter.log("Login Drawer Is Displayed for the Guest user when the User tries to Add the Product to Wishlist");
 		ExtentReport.extentTest.info("Login Drawer Is Displayed for the Guest user when the User tries to Add the Product to Wishlist");
-
-
+		
 	}
 
 	public void VerifyProductAddOn()
