@@ -183,59 +183,60 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 
 
 		new ProductDetailsPageComponents(driver).verifyWriteReview();
-	
+
 	}
 	public void verifyReviewsFieldErrorOnPDP() throws Exception {
 
 		new ProductDetailsPageComponents(driver).verifyWriteReviewErrorMsgs();
-	
+
 	}
 	public void verifyBundlePDP() throws Exception {
 		new SizeGuideComponents(driver).navigateToBundlePDP();
 		new ProductDetailsPageComponents(driver).verifybundlepages();
-	
+
 	}
-	
+
 	public void verifyjointhewaitlist() throws Exception {
 
 		new ProductDetailsPageComponents(driver).VerifyJoinTheWaitlist();
-	
+
 	}
 
 	public void verifyrecommendedforyou() throws Exception {
-		
+
 		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 		new CollectionPageComponent(driver).navigateToProductDetailsPage();
 		Thread.sleep(5000);
 		new ProductDetailsPageComponents(driver).verifyRecommendedForU();
-		
+
 	}
-	
+
 	public void verifymysterypack() throws Exception {
-		
+
 		new ProductDetailsPageComponents(driver).verifyMysteryPacks();
-		
+
 	}
-	
+
 	public void VerifyATC_ScrollingCTA() throws Exception
 	{
 		new ProductDetailsPageComponents(driver).ATC_Scrolling_CTA();
 	}
-	
+
+
 	public void VerifySortByReviews() throws Exception
 	{
 		new ProductDetailsPageComponents(driver).Sort_By_Reviews();
 	}
-	
+
 	public void VerifyAskAQuestion() throws Exception {
 		new ProductDetailsPageComponents(driver).Check_Ask_Question();
 	}
-	
+
 	public void VerifySelectedSwatchFromPLP() throws Exception
 	{
 		new ProductDetailsPageComponents(driver).Check_Selected_Swatch();
 	}
-	
+
 	public void verifyQuicShopforDYRecsOnPDP() throws Exception {
 
 		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
@@ -298,17 +299,17 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 		public void verifyImageGallery() throws Exception {
 		new ProductDetailsPageComponents(driver).verifyImageGallery();
 	}
-		
+
 	public void navigateToBraCategory() throws Exception {
 
 		new HomePageComponents(driver).navigateToBraCategory();
-	
+
 	}
-	
+
 	public void navigateToAllUnderwearInMenCategory() throws Exception {
 
 		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
-	
+
 	}
 
 	public void navigateToMensAll() throws Exception {
@@ -324,16 +325,16 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 		new HomePageComponents(driver).navigateToSecondSkinSleepCrewNeckPocket();
 
 	}
-	
+
 	public void navigateToNewArrivalsInWomenCategory() throws Exception {
 
 		new HomePageComponents(driver).navigateToNewArrivalsInWomenCategory();
-	
+
 	}
 	public void navigateToAllMensPacksInPacksCategory() throws Exception {
 
 		new HomePageComponents(driver).navigateToAllMensPacksInPacksCategory();
-	
+
 	}
 
 	public void navigateToEveryDayEssentials() throws Exception {
@@ -363,19 +364,19 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 	public void ValidateRecs() throws Exception {
 		new ProductDetailsPageComponents(driver).ValidateRecs();
 	}
-		
+
 	public void viewImageGallery() throws Exception {
 		new ProductDetailsPageComponents(driver).viewImageGallery();
 	}
-	
+
 	public void verifyOnImageBadging() throws Exception {
 		new ProductDetailsPageComponents(driver).verifyOnImageBadging();
 	}
-	
+
 	public void verifySecondaryBadging() throws Exception {
 		new ProductDetailsPageComponents(driver).verifySecondaryBadging();
 	}
-		
+
 	public void verifySelectedColorSwatch() throws Exception {
 		new ProductDetailsPageComponents(driver).verifySelectedColorSwatch();
 	}
@@ -389,7 +390,7 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 	public void verifyStickySelectASize() throws Exception {
 		new ProductDetailsPageComponents(driver).verifyStickySelectASize();
 	}
-	
+
 	public void verifyReviewRecommendations() throws Exception  {
 		new ProductDetailsPageComponents(driver).verifyReviewRecommendations();
 	}
@@ -458,5 +459,5 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 
 
 
-	
+
 	}
