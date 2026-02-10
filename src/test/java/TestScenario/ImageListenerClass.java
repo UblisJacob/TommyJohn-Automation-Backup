@@ -167,7 +167,8 @@ public class ImageListenerClass extends ExtentReport implements ITestListener, I
                     String.valueOf(finalSkipped),
                     links.get("reportLink"),
                     links.get("homepageCsvLink"),
-                    links.get("altCsvLink"),
+                    links.get("plpCsvLink"),     // ✅ PLP
+                    links.get("pdpCsvLink"),     // ✅ PDP (NEW)
                     passedTests,
                     failedTests,
                     skippedTests

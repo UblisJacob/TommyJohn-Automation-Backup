@@ -379,7 +379,24 @@ public class GDrivePOST {
         service.permissions().create(uploadedAltCSV.getId(), permission).execute();
         moveFile(service, uploadedAltCSV.getId(), folderId);
 
-        uploadedLinks.put("altCsvLink", uploadedAltCSV.getWebContentLink());
+        uploadedLinks.put("plpCsvLink", uploadedAltCSV.getWebContentLink());
+
+        // ===================== Upload PDP CSV =====================
+        File pdpCsvMetadata = new File();
+        pdpCsvMetadata.setName("PDP_report.csv");
+
+        FileContent pdpCsvContent =
+                new FileContent("text/csv", new java.io.File("CSV/PDP_report.csv"));
+
+        File uploadedPdpCSV = service.files()
+                .create(pdpCsvMetadata, pdpCsvContent)
+                .setFields("id, webContentLink")
+                .execute();
+
+        service.permissions().create(uploadedPdpCSV.getId(), permission).execute();
+        moveFile(service, uploadedPdpCSV.getId(), folderId);
+
+        uploadedLinks.put("pdpCsvLink", uploadedPdpCSV.getWebContentLink());
 
         return uploadedLinks;
     }
