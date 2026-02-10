@@ -140,7 +140,8 @@ public class Slack {
             String skipped,
             String reportLink,
             String homepageCsvLink,
-            String altCsvLink,
+            String plpCsvLink,
+            String pdpCsvLink,          // ✅ NEW
             Set<String> passedTests,
             Set<String> failedTests,
             Set<String> skippedTests
@@ -160,7 +161,6 @@ public class Slack {
                 ? "None"
                 : skippedTests.stream().collect(Collectors.joining(", "));
 
-
         String payload =
                 "{ \"text\": \"*Images missing \\\"Alt Text\\\"*"
                         + "\\n*Time:* " + Date
@@ -169,7 +169,8 @@ public class Slack {
                         + "\\n⏭ *Skipped Tests:* " + skippedTestNames
                         + "\\n\\n*Report Link:* <" + reportLink + "|View Report>"
                         + "\\n*Homepage CSV:* <" + homepageCsvLink + "|Download>"
-                        + "\\n*PLP CSV:* <" + altCsvLink + "|Download>"
+                        + "\\n*PLP CSV:* <" + plpCsvLink + "|Download>"
+                        + "\\n*PDP CSV:* <" + pdpCsvLink + "|Download>"
                         + "\" }";
 
         URL url = new URL(Test_Automation_WEBHOOK_URL);
@@ -186,6 +187,7 @@ public class Slack {
 
         System.out.println("Slack Response Code: " + httpConn.getResponseCode());
     }
+
 
     public static void sendSlackNotificationADA(String passed, String failed, String skipped, String reportLink ) throws Exception {
 

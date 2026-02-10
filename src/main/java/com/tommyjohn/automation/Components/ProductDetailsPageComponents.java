@@ -95,6 +95,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 	}
 
 
+
     public void VerifyPDPSectionRecs() throws Exception {
         JavascriptExecutor js1 = (JavascriptExecutor) driver;;
         SoftAssert softAssert = new SoftAssert();
@@ -630,7 +631,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		}
 
 	}
-	
+
 	public void ValidateAddingProductToCartFromInstagramWidget() throws Exception {
 
 		action = new Actions(driver);
@@ -891,7 +892,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		//To avoid bounceX pop-up
 		WebElement p_title = driver.findElement(PRODUCT_TITLE);
 		executor.executeScript("arguments[0].click();", p_title);
-		// check for Size Guide button 
+		// check for Size Guide button
 		WebElement ele = driver.findElement(SIZEGUIDE);
 		executor.executeScript("arguments[0].click();", ele);
 		//	driver.findElement(SIZEGUIDE).click();
@@ -990,7 +991,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 //			if(driver.findElement(By.cssSelector("div.radios-wrapper")).isDisplayed())
 //			{
 //
-//				//radio			
+//				//radio
 //				for(int i=3;i<=elementsCount;i=i+2) {
 //					flag = false;
 //					element = driver.findElement(By.cssSelector("div.radios-wrapper > div.radio-options-container > div > label:nth-child("+i+")"));
@@ -1015,7 +1016,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 //								flag = true;
 //
 //							}
-//							else 
+//							else
 //							{
 //
 //								WebElement el = driver.findElement(By.cssSelector("div.radios-wrapper > div.radio-options-container > div > label:nth-child("+i+")"));
@@ -1038,7 +1039,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 //							//break;
 //						}
 //					}
-//					else 
+//					else
 //					{
 //						jse = (JavascriptExecutor)driver;
 //						jse.executeScript("arguments[0].click();" , element);
@@ -1049,7 +1050,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 //					if(i==elementsCount) {
 //						Reporter.log("No any size available");
 //						break;
-//					}	
+//					}
 //
 //					if(flag == true)
 //						continue;
@@ -1105,7 +1106,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 //							flag = true;
 //
 //						}
-//						else 
+//						else
 //						{
 //
 //							WebElement el = driver.findElement(By.cssSelector(".select--options__list> li:nth-child("+i+")"));
@@ -1128,7 +1129,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 //						}
 //						//break;
 //					}
-//					else 
+//					else
 //					{
 //						jse = (JavascriptExecutor)driver;
 //						jse.executeScript("arguments[0].click();" , element);
@@ -1138,7 +1139,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 //				if(i==elementsCount) {
 //					Reporter.log("No any size available");
 //					break;
-//				}			
+//				}
 //				if(flag == true)
 //					continue;
 //				else {
@@ -1166,8 +1167,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 //					//	driver.findElement(PLUS_BUTTON).click();
 //					Thread.sleep(3000);
 //					String quantity1 = driver.findElement(QUANTITY).getAttribute("data-add-qty");
-//					// check quantity added by 1 or not 
-//					if(Integer.parseInt(quantity1)!=Integer.parseInt(quantity)+1) 
+//					// check quantity added by 1 or not
+//					if(Integer.parseInt(quantity1)!=Integer.parseInt(quantity)+1)
 //						throw new Exception("Quantity not increased by 1");
 //					Reporter.log("Quantity increased by 1");
 //
@@ -1218,8 +1219,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 //						jse = (JavascriptExecutor)driver;
 //						jse.executeScript("arguments[0].click();", element);
 //						//driver.findElement(SHIPING_AND_RETURNS).click();
-//					}		
-//					else throw new Exception("SHIPING_AND_RETURNS accordion not present or not clikable");	
+//					}
+//					else throw new Exception("SHIPING_AND_RETURNS accordion not present or not clikable");
 //				}
 //				//Buywithcode
 //
@@ -1314,7 +1315,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 			installment = Float.parseFloat(price2) / 4;
 			String inst = String.format("%.2f", installment);
-			//	String expectedmessage = "or 4 installments of $" + inst + " by ?"; 
+			//	String expectedmessage = "or 4 installments of $" + inst + " by ?";
 			String expectedmessage = inst + " ";
 			System.out.println("expected message is: " + expectedmessage);
 			String actual = afterpaymessaging.getText();
@@ -1525,7 +1526,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		}
 
 		//Close first size guide window
-		
+
 
 		/*if(!driver.findElement(SizeGuideLocators.BUNDLE_SECOND_SIZE_GUIDE_BUTTON).isEnabled())
 			throw new Exception("In bundle product Second Size Guide button is not present");
@@ -1825,7 +1826,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 		if (driver.findElement(By.cssSelector("div.radio-options-container")).isDisplayed()) {
 
-			//radio			
+			//radio
 			for (int i = 3; i <= elementsCount; i = i + 2) {
 				flag = false;
 				element = driver.findElement(By.cssSelector("div.radios-wrapper > div.radio-options-container > div > label:nth-child(" + i + ")"));
@@ -2146,7 +2147,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			//	driver.findElement(PLUS_BUTTON).click();
 			Thread.sleep(3000);
 			String quantity1 = driver.findElement(QUANTITY).getAttribute("data-add-qty");
-			// check quantity added by 1 or not 
+			// check quantity added by 1 or not
 			if (Integer.parseInt(quantity1) != Integer.parseInt(quantity) + 1)
 				throw new Exception("Quantity not increased by 1");
 
@@ -3043,7 +3044,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 //							System.out.println(colortext.toLowerCase());
 //							System.out.println(colornew);
-//							System.out.println(imagecolor);						
+//							System.out.println(imagecolor);
 
 					Thread.sleep(1000);
 
@@ -3890,7 +3891,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 //								System.out.println(elemen.getText()+ elements.getText() +"Product is Out of Stock and Join The waitlist is  :: Clickable");
 //								jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_CART_BUTTON));
 //								if(driver.findElement(EMAIL_WHEN_IN_STOCK_BUTTON).isDisplayed()) {
-//									
+//
 //									System.out.println("JOIN THE WAITLIST BUTTON IS WORKING FINE");
 //									Thread.sleep(2000);
 //									jse.executeScript("arguments[0].click();", driver.findElement(JOINTHEWAITLIST_EMAILTEXTBOX));
@@ -4234,5 +4235,5 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 
 
-	
-	
+
+

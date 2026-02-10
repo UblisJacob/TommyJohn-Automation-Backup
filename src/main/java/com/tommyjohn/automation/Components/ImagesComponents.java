@@ -47,6 +47,11 @@ import java.util.logging.Level;
 
 import static com.tommyjohn.automation.PageLocators.CollectionPageLocator.*;
 import static com.tommyjohn.automation.PageLocators.FlyCartPageLocator.CHECKOUT_BUTTON;
+import static com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators.PDP_TABS;
+import static com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators.PRODUCT_TITLE;
+import static com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators.QUANTITY_ATC_SECTION;
+import static com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators.SIZE_SECTION;
+import static com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators.SWATCH_SECTION;
 import static org.testng.Reporter.log;
 
 
@@ -63,11 +68,13 @@ public class ImagesComponents {
 //    int count = 0;
 //    int PLPs = 55;
  //   SoftAssert softAssert = new SoftAssert();
-
+    private int missingAltTotal = 0;
+    private int missingUrlTotal = 0;
+    private boolean hasFailures = false;
 
     public void VerifyAltText() {
 
-        String csvPath = "D:\\IdeaProject\\CSV\\homepage_report.csv";
+        String csvPath = "C:\\IdeaProject\\CSV\\homepage_report.csv";
         CSVWriter writer;
 
         boolean hasFailures = false;
@@ -180,7 +187,7 @@ public class ImagesComponents {
 
         SoftAssert softAssert = new SoftAssert();
 
-        String csvPath = "D:\\IdeaProject\\CSV\\PLP_report.csv";
+        String csvPath = "C:\\IdeaProject\\CSV\\PLP_report.csv";
         CSVWriter writer;
         boolean hasFailures = false;
 
@@ -336,6 +343,8 @@ public class ImagesComponents {
         softAssert.assertAll();
     }
 
+
+
     public void scrollUntilAllProductsLoad() throws InterruptedException {
         long lastHeight = (long) ((JavascriptExecutor) driver).executeScript("return document.body.scrollHeight");
 
@@ -352,6 +361,200 @@ public class ImagesComponents {
             lastHeight = newHeight;
         }
     }
+
+
+
+    public void ValidateallPDPs() throws Exception {
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        String pdpCsvPath = "src/main/resources/PDP.csv";
+        String reportCsvPath = "C:\\IdeaProject\\CSV\\PDP_report.csv";
+
+        CSVWriter writer = new CSVWriter(new FileWriter(reportCsvPath, false));
+        writer.writeNext(new String[]{"Status", "ALT Text", "SRC", "URL"});
+        writer.flush();
+
+        missingAltTotal = 0;
+        int missingUrlTotal = 0;
+        int loadedPDPs = 0;
+
+        CSVReader csvReader = new CSVReader(new FileReader(pdpCsvPath));
+        List<String[]> list = csvReader.readAll();
+
+        for (String[] data : list) {
+
+            if (data[0].startsWith("#")) continue;
+
+            for (String path : data) {
+
+                String url = "https://www.tommyjohn.com" + path;
+                System.out.println("🔍 Validating PDP: " + url);
+                ExtentReport.extentTest.info("Validating PDP: " + url);
+
+                try {
+                    driver.get(url);
+                    wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_TITLE));
+                    loadedPDPs++;
+
+                    // ================= MAIN PAGE =================
+                    validateImagesForAlt(url, writer);
+
+                    // ================= TABS =================
+                    List<WebElement> tabs = driver.findElements(PDP_TABS);
+
+                    for (int i = 1; i <= tabs.size(); i++) {
+                        try {
+                            WebElement tab =
+                                    driver.findElement(By.xpath("(//span[@class='text-sm text-text-tertiary'])[" + i + "]"));
+                            js.executeScript("arguments[0].click();", tab);
+                            Thread.sleep(2000);
+
+                            validateImagesForAlt(url, writer);
+
+                        } catch (Exception ignored) {}
+                    }
+
+                } catch (Exception e) {
+                    missingUrlTotal++;
+                    System.out.println("❌ PDP not loading: " + url);
+                    ExtentReport.extentTest.info("PDP not loading: " + url);
+                }
+            }
+        }
+
+        // ================= CSV SUCCESS =================
+        if (missingAltTotal == 0) {
+            writer.writeNext(new String[]{"All images contain ALT text as expected", "-", "-", "-"});
+        }
+
+        writer.close();
+
+        // ================= SUMMARY =================
+        ExtentReport.extentTest.info("===== 🔴 PDP FINAL SUMMARY 🔴 =====");
+        ExtentReport.extentTest.info("Missing ALT count: " + missingAltTotal);
+        ExtentReport.extentTest.info("Missing URL count: " + missingUrlTotal);
+        ExtentReport.extentTest.info("Loaded PDPs: " + loadedPDPs);
+
+        System.out.println("===== PDP FINAL SUMMARY =====");
+        System.out.println("Missing ALT count: " + missingAltTotal);
+        System.out.println("Missing URL count: " + missingUrlTotal);
+        System.out.println("Loaded PDPs: " + loadedPDPs);
+
+        // ================= HARD FAIL =================
+        if (missingAltTotal > 0) {
+            Assert.fail("❌ PDP ALT TEXT VALIDATION FAILED | Missing ALT count: " + missingAltTotal);
+        }
+    }
+
+
+
+
+    // ================= Helper: Validate images ALT text =================
+
+
+    private void validateImagesForAlt(String url, CSVWriter writer) throws IOException {
+
+        List<WebElement> images = driver.findElements(By.tagName("img"));
+
+        // Deduplicate across Main + all Tabs for this PDP
+        Set<String> seenImages = new HashSet<>();
+
+        for (WebElement img : images) {
+
+            // ---------- FULL SRC ----------
+            String fullSrc = img.getAttribute("src");
+            if (fullSrc == null || fullSrc.isBlank()) {
+                fullSrc = img.getAttribute("data-src");
+            }
+            if (fullSrc == null || fullSrc.isBlank()) {
+                fullSrc = "Missing";
+            }
+
+            // ---------- Dedup key ----------
+            String dedupKey = normalizeForDedup(fullSrc);
+            if (!seenImages.add(dedupKey)) {
+                continue; // ignore duplicate image
+            }
+
+            // ---------- ALT ----------
+            String altText = img.getAttribute("alt");
+
+            if (altText == null || altText.trim().isEmpty()) {
+
+                // ❌ FAIL
+                missingAltTotal++;
+
+                String failMsg =
+                        "❌ Missing ALT | SRC: " + fullSrc +
+                                " | URL: " + url;
+
+                // Console
+                System.out.println(failMsg);
+
+                // Extent
+                ExtentReport.extentTest.info(failMsg);
+
+                // TestNG
+                Reporter.log(failMsg);
+
+                // CSV → FAILURES ONLY
+                writer.writeNext(new String[]{
+                        "❌ Missing AltText_PDPs",
+                        "",
+                        fullSrc,
+                        url
+                });
+                writer.flush();
+
+            } else {
+
+                // ✅ PASS (NO CSV)
+                String passMsg =
+                        "✅ Valid ALT | ALT: " + altText +
+                                " | SRC: " + fullSrc +
+                                " | URL: " + url;
+
+                System.out.println(passMsg);
+                ExtentReport.extentTest.info(passMsg);
+                Reporter.log(passMsg);
+            }
+        }
+    }
+
+
+    private String normalizeForDedup(String src) {
+
+        if (src == null || src.isBlank()) {
+            return "Missing-" + UUID.randomUUID();
+        }
+
+        // Strip query params
+        String clean = src.split("\\?")[0];
+
+        // Use filename only for dedup
+        return clean.substring(clean.lastIndexOf("/") + 1);
+    }
+
+
+
+    // ================= Helper: Validate sections =================
+    private void validateSection(By locator, String sectionName, String url) {
+        try {
+            if (driver.findElement(locator).isDisplayed()) {
+                System.out.println(sectionName + " section displayed");
+            }
+        } catch (Exception ex) {
+            System.out.println("❌ " + sectionName + " section NOT displayed for URL: " + url);
+            Reporter.log(sectionName + " section NOT displayed for URL: " + url);
+            ExtentReport.extentTest.info(sectionName + " section NOT displayed for URL: " + url);
+        }
+    }
+
+
+
+
 
     private String getAltTextSafe(WebElement img) {
         try {

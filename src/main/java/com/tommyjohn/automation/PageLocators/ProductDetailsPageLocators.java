@@ -9,7 +9,7 @@ public class ProductDetailsPageLocators {
 	public static By PDP_TABS = By.xpath("//span[@class='text-sm text-text-tertiary']");
 	public static By PDP_PRODUCT_SETS = By.xpath("//div[@class='grid grid-flow-col']//span");
 	public static By COMPARISON_MODULE = By.xpath("//div[@class='wrapper pr-0 sm:pr-8']");
-	public static By UPSIDE_DOWN_PROGRESS_BAR = By.xpath("//div[@class='flex flex-col gap-1']");
+//	public static By UPSIDE_DOWN_PROGRESS_BAR = By.xpath("//div[@class='flex flex-col gap-1']");
 	public static By PRODUCT_ADD_ON = By.xpath("//span[@class='mr-auto']");
 	public static By SHOP_LINER_CTA = By.xpath("//a[@class='button-secondary' and contains(text(),'Shop Liner')]");
 	public static By SHOP_NO_SHOW_CTA = By.xpath("//a[@class='button-secondary' and contains(text(),'Shop No Show')]");
@@ -107,6 +107,7 @@ public class ProductDetailsPageLocators {
     public static By PDP_SECTION_RECS = By.xpath("(//h2[contains(text(),'Bought Together')]//following::div[@class='relative aspect-tile'])[1]");
     public static By LIST_PDP_SECTION_RECS = By.xpath("//h2[contains(text(),'Bought Together')]//following::div[@class='relative aspect-tile']");
 	public static By ADD_TO_WISHLIST = By.xpath("//span[@class='wk-text']");
+    public static By UPSIDE_DOWN_PROGRESS_BAR = By.xpath("//div[@class='flex flex-col gap-1']");
 	public static By LOGIN_DRAWER = By.xpath("//section[@class='flex flex-col justify-between h-full']");
 	public static By SIZEGUIDE = By.xpath("//button[@class='button-link text-body-sm text-text-tertiary mr-6 md:mr-0']");
 	public static By SIZEGUIDE_FITRANGE = By.xpath("//ul[@data-tj-qa='size-guide-fit-range-graph']//li");

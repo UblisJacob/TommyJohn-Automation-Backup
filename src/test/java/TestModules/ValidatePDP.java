@@ -62,10 +62,10 @@ public class ValidatePDP extends ExtentReport{
         new ProductDetailsPage(driver).VerifyPDPSectionRecs();
     }
 
-	@Test
-	public void VerifyProgressBarInUpsideDownPDP() throws Exception {
-		new ProductDetailsPage(driver).VerifyProgressBarInUpsideDownPDP();
-	}
+    @Test
+    public void VerifyProgressBarInUpsideDownPDP() throws Exception {
+        new ProductDetailsPage(driver).VerifyProgressBarInUpsideDownPDP();
+    }
 
 	@Test
 	public void VerifyComparisonModule() throws Exception {
@@ -232,7 +232,7 @@ public class ValidatePDP extends ExtentReport{
 	}
 	@Test
 	public void VerifyAccordions() throws Exception {
-		new ProductDetailsPage(driver).verifyAccordions();
+		new ProductDetailsPage(driver).VerifyAccordions();
 	}
 
 	@Test
