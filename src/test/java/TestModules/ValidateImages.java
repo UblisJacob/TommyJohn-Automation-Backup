@@ -52,6 +52,13 @@ public class ValidateImages extends ExtentReport{
         Image.Validateallurls();
     }
 
+    @Test
+    public void ValidateImageInPDPs() throws Exception {
+        ImagesComponents Image = new ImagesComponents(driver);
+        Image.ValidateallPDPs();
+    }
+
+
     @AfterMethod(alwaysRun = true)
     public void teardown(ITestResult result) {
         if (driver != null) {
