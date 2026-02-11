@@ -369,7 +369,7 @@ public class ImagesComponents {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
-        String pdpCsvPath = "src/main/resources/PDP.csv";
+        String pdpCsvPath = "src/main/resources/ImagePDP.csv";
         String reportCsvPath = "C:\\IdeaProject\\CSV\\PDP_report.csv";
 
         CSVWriter writer = new CSVWriter(new FileWriter(reportCsvPath, false));
