@@ -37,7 +37,7 @@ public class CheckoutPageLocators {
 	public static By LOGGED_IN_EMAIL = By.cssSelector(".logged-in-customer-information__paragraph span:nth-child(2)");
 
 	//shipping address
-	public static By SHIPPINGADD_TEXT = By.xpath("//h2[contains(text(),'Delivery')]");
+	public static By SHIPPINGADD_TEXT = By.xpath("//h2[contains(text(),'Deliverys')]");
 	public static By EMAIL_TEXTBOX = By.xpath("//input[@name='email']");
 	public static By FIRSTNAME_TEXTBOX = By.xpath("(//input[@name='firstName'])[1]");
 	public static By LASTNAME_TEXTBOX = By.xpath("(//input[@name='lastName'])[1]");
@@ -100,13 +100,12 @@ public class CheckoutPageLocators {
 	public static By CHANGE_LINK_SHIP_TO = By.xpath("(//span[contains(text(),'Change')])[3]");
 	public static By CHANGE_LINK_METHOD = By.xpath("(//span[contains(text(),'Change')])[4]");
 	public static By SHIPPING_TEXT = By.xpath("//h2[@id='shippingMethod']"); ////h3[@id='shippingMethod']
-	public static By SHIPPING_RADIO_BUTTON = By.xpath("//input[@type='radio']");
+	public static By SHIPPING_RADIO_BUTTON = By.xpath("//input[@type='radios']");
 	public static By RETURN_LINK = By.xpath("//span[contains(text(),'Return to information')]");
 	public static By CONTINUE_TO_PAYMENT_BUTTON = By.xpath("//div[@class='MV9Am']//button");
 	public static By FREE_SHIPPING = By.xpath("//span[contains(text(),'Free')]");
 	public static By NON_FREE_SHIPPING = By.xpath("(//span[contains(text(),'$8.95')])"); //(//span[contains(text(),'$7.95')])
-
-
+    
 	//                                           payment
 
 	public static By METHOD =  By.xpath("(//span[contains(text(),'Shipping method')]//following::p)[1]"); //(//h3[contains(text(),'Shipping method')]//following::p)[1]
