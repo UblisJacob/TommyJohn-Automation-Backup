@@ -106,6 +106,7 @@ public class ProductDetailsPageLocators {
 	public static By PRODUCT_DETAILS = By.xpath("//button[@aria-controls='product-details']");
     public static By PDP_SECTION_RECS = By.xpath("(//h2[contains(text(),'Bought Together')]//following::div[@class='relative aspect-tile'])[1]");
     public static By LIST_PDP_SECTION_RECS = By.xpath("//h2[contains(text(),'Bought Together')]//following::div[@class='relative aspect-tile']");
+    public static By UPSIDEDOWN_SECTIONS = By.xpath("//div[@class='relative w-full px-lg md:mt-14 md:max-w-content lg:mt-28']");
 	public static By ADD_TO_WISHLIST = By.xpath("//span[@class='wk-text']");
     public static By UPSIDE_DOWN_PROGRESS_BAR = By.xpath("//div[@class='flex flex-col gap-1']");
 	public static By LOGIN_DRAWER = By.xpath("//section[@class='flex flex-col justify-between h-full']");
