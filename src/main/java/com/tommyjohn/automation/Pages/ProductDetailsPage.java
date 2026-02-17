@@ -20,6 +20,13 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 		this.driver = driver;
 	}
 
+    public void VerifySectionsInUpsideDownPDP()  {
+
+
+        new ProductDetailsPageComponents(driver).VerifySectionsInUpsideDownPDP();
+
+    }
+
 	public void VerifyProgressBarInUpsideDownPDP()  {
 
 
