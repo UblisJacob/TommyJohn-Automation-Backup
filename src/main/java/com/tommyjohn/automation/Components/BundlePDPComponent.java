@@ -735,7 +735,7 @@ public class BundlePDPComponent extends BundlePDPLocators{
 //			text = new CollectionPageComponent(driver).navigateToProductDetailsPage();
 			// call method to check correct PDP opend or not
 		//	checkCorrectProductDetailsPageOpenedOrNot(text);
-			driver.get("https://www.tommyjohn.com/products/second-skin-v-neck-tee-3-pack-4?variant=43082790764589");
+			driver.get("https://www.tommyjohn.com/products/second-skin-crew-neck-stay-tucked-undershirt-1-3-pack?color=white");
 			Thread.sleep(2000);
 
 
