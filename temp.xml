@@ -11,9 +11,9 @@
     <test name="Tests">
         <parameter name="browser" value="chrome"/>
         <classes>
-                    <class name="TestModules.ValidatePDP">
+                    <class name="TestModules.ValidateHomePage">
                 <methods>
-                    <include name="VerifySectionsInUpsideDownPDP"/>
+                    <include name="ValidateClickingTheUGCModule"/>
                 </methods>
             </class>
         </classes>
