@@ -62,6 +62,11 @@ public class ValidatePDP extends ExtentReport{
         new ProductDetailsPage(driver).VerifyPDPSectionRecs();
     }
 
+	@Test
+	public void ValidateCollectionSection() throws Exception {
+		new ProductDetailsPage(driver).ValidateCollectionSection();
+	}
+
     @Test
     public void VerifyProgressBarInUpsideDownPDP() throws Exception {
         new ProductDetailsPage(driver).VerifyProgressBarInUpsideDownPDP();
