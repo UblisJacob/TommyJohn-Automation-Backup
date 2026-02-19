@@ -71,6 +71,34 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		this.driver = driver;
 	}
 
+	public void ValidateCollectionSection()
+	{
+		String text = null;
+		JavascriptExecutor js1 = (JavascriptExecutor) driver;;
+		SoftAssert softAssert = new SoftAssert();
+//        new HomePageComponents(driver).navigateToMensAll();
+//        new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		driver.get("https://www.tommyjohn.com/products/second-skin-deep-v-neck-stay-tucked-undershirt-3-pack?color=white&view=upsidedown");
+		js1.executeScript("window.scrollBy(0,500)");
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		WebElement ele = driver.findElement(SECONDSKIN_COLLECTION_CTA);
+		js1.executeScript("arguments[0].click();", ele);
+		js1.executeScript("window.scrollBy(0,300)");
+		String Product_title = driver.findElement(PRODUCT_TITLE).getText();
+		System.out.println(Product_title);
+		softAssert.assertTrue(Product_title.contains("Second Skin"),
+				"Product title does not contain 'Second Skin'");
+		WebElement elem = driver.findElement(COOL_COTTON_COLLECTION_CTA);
+		js1.executeScript("arguments[0].click();", elem);
+		js1.executeScript("window.scrollBy(0,300)");
+		String Product_title1 = driver.findElement(PRODUCT_TITLE).getText();
+		System.out.println(Product_title1);
+		softAssert.assertTrue(Product_title1.contains("Cool Cotton"),
+				"Product title does not contain 'Cool Cotton'");
+		softAssert.assertAll();
+		Reporter.log("Appropriate Product is displayed when the User selects the Collection Category");
+		ExtentReport.extentTest.info("Appropriate Product is displayed when the User selects the Collection Category");
+	}
 
 
     public void VerifySectionsInUpsideDownPDP()
