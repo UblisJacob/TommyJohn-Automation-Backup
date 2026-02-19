@@ -27,6 +27,13 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 
     }
 
+	public void ValidateCollectionSection()  {
+
+
+		new ProductDetailsPageComponents(driver).ValidateCollectionSection();
+
+	}
+
 	public void VerifyProgressBarInUpsideDownPDP()  {
 
 
