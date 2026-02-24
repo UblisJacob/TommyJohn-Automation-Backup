@@ -11,10 +11,10 @@
     <test name="Tests">
         <parameter name="browser" value="chrome"/>
         <classes>
-                    <class name="TestModules.ValidatePDP">
+                    <class name="TestModules.ValidateCheckoutPage">
                 <methods>
-                    <include name="ValidateStyleSection"/>
-                </methods>
+                    <include name="VerifySplitBundleProduct"/>
+                </methods>?
             </class>
         </classes>
     </test>

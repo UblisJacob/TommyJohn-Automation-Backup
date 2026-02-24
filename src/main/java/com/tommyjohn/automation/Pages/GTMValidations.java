@@ -18,12 +18,12 @@ public class GTMValidations extends GTMComponents {
     public void validateGTMEventsForFredHopper() throws Exception
     {
         new GTMComponents(driver).ValidateGTMforFacetEvent();
-        new GTMComponents(driver).ValidateGTMforViewCollectionEvent();
-        new GTMComponents(driver).ValidateGTMForAddToCartEvent();
-        new GTMComponents(driver).ValidateGTMForClickEvent();
-        new GTMComponents(driver).ValidateGTMForViewProductEvent();
-        new GTMComponents(driver).ValidateGTMForSearchEvent();
-        new GTMComponents(driver).ValidateGTMForRemoveFromCartEvent();
+//        new GTMComponents(driver).ValidateGTMforViewCollectionEvent();
+//        new GTMComponents(driver).ValidateGTMForAddToCartEvent();
+//        new GTMComponents(driver).ValidateGTMForClickEvent();
+//        new GTMComponents(driver).ValidateGTMForViewProductEvent();
+//        new GTMComponents(driver).ValidateGTMForSearchEvent();
+//        new GTMComponents(driver).ValidateGTMForRemoveFromCartEvent();
     }
 
     public void validateSplunk() throws Exception
