@@ -27,6 +27,13 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 
     }
 
+    public void ValidateStyleSection()  {
+
+
+        new ProductDetailsPageComponents(driver).ValidateStyleSection();
+
+    }
+
 	public void ValidateCollectionSection()  {
 
 

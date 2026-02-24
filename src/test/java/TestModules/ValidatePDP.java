@@ -68,6 +68,11 @@ public class ValidatePDP extends ExtentReport{
 	}
 
     @Test
+    public void ValidateStyleSection() throws Exception {
+        new ProductDetailsPage(driver).ValidateStyleSection();
+    }
+
+    @Test
     public void VerifyProgressBarInUpsideDownPDP() throws Exception {
         new ProductDetailsPage(driver).VerifyProgressBarInUpsideDownPDP();
     }
