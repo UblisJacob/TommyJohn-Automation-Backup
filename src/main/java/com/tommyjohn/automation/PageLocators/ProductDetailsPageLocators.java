@@ -10,6 +10,7 @@ public class ProductDetailsPageLocators {
 	public static By PDP_PRODUCT_SETS = By.xpath("//div[@class='grid grid-flow-col']//span");
 	public static By COMPARISON_MODULE = By.xpath("//div[@class='wrapper pr-0 sm:pr-8']");
 //	public static By UPSIDE_DOWN_PROGRESS_BAR = By.xpath("//div[@class='flex flex-col gap-1']");
+    public static By STAY_TUCKED_STYLE_CTA = By.xpath("//button[contains(text(),'Stay-Tucked')]");
 	public static By SECONDSKIN_COLLECTION_CTA = By.xpath("//button[contains(text(),'Second Skin')]");
 	public static By COOL_COTTON_COLLECTION_CTA = By.xpath("//button[contains(text(),'Cool Cotton')]");
 	public static By PRODUCT_ADD_ON = By.xpath("//span[@class='mr-auto']");
