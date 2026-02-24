@@ -17,8 +17,8 @@ import static com.base.Slack.sendSlackNotificationGTM;
 public class GTMListenerClass extends ExtentReport implements ITestListener, IExecutionListener {
 
     WebDriver driver;
-    static int count = 1;
-    static boolean shouldPrint = true;
+//    static int count = 1;
+//    static boolean shouldPrint = true;
     static String browserName = null;
 
     public String reportLink = null;
@@ -30,6 +30,8 @@ public class GTMListenerClass extends ExtentReport implements ITestListener, IEx
     public int Fskipped = 0;
 
 
+    private static ThreadLocal<String> currentTestName = new ThreadLocal<>();
+    private static ThreadLocal<Integer> retryCount = ThreadLocal.withInitial(() -> 1);
 
     @Override
 
@@ -61,33 +63,37 @@ public class GTMListenerClass extends ExtentReport implements ITestListener, IEx
 
     @Override
     public void onTestStart(ITestResult result) {
-        String testName = result.getName();
 
-        if(shouldPrint)
-        {
-//			then create test
+        String testName = result.getMethod().getMethodName();
+
+        // 🔥 NEW TEST → RESET RETRY COUNT
+        if (!testName.equals(currentTestName.get())) {
+            retryCount.set(1);
+            currentTestName.set(testName);
+        }
+
+        if (retryCount.get() == 1) {
             extentTest = extentReport.createTest(testName);
-            System.out.println("Executing " + testName + " Attempt Number: " + count);
-            extentTest.info("Executing " + testName + " Attempt Number: " + count);
-        }
-        else
-        {
-            System.out.println("Re-Executing " + testName + " Attempt Number: " + count);
-            extentTest.info("Re-Executing " + testName + " Attempt Number: " + count);
+            extentTest.info("Executing " + testName + " | Attempt 1");
+        } else {
+            extentTest.info("Re-executing " + testName +
+                    " | Attempt " + retryCount.get());
         }
 
+        System.out.println("Executing " + testName +
+                " | Attempt " + retryCount.get());
     }
+
 
     @Override
     public void onTestSuccess(ITestResult result) {
 
-        count=1;
-        shouldPrint=true;
-        String testName = result.getName();
-        extentTest.pass(testName + " got executed successfully");
-        extentTest.log(Status.PASS, "Test Passed");
-        System.out.println(testName + " got executed successfully");
+        extentTest.pass(result.getName() + " got executed successfully");
 
+        // ✅ CLEANUP
+        retryCount.set(1);
+        currentTestName.remove();
+        extentTest = null;
     }
 
     @Override
@@ -95,43 +101,22 @@ public class GTMListenerClass extends ExtentReport implements ITestListener, IEx
 
         String screenShotPath = CustomUtilities.screenshot();
 
-        if (count < Retry.maxRetryCount) {
-            shouldPrint = false;
-
-
-        } else {
-            shouldPrint = true;
-
-        }
-
-        String testName = result.getName();
-
-        String fileName = result.getMethod().getMethodName().replaceAll(" ", "_");
-
-        //       String screenShotPath = CustomUtilities.screenshot();
-        //extentTest.addScreenCaptureFromPath(screenShotPath);
-
         extentTest.info("Screenshot",
                 MediaEntityBuilder.createScreenCaptureFromBase64String(screenShotPath).build());
-        extentTest.info(result.getThrowable());
-        extentTest.fail(testName + " got failed");
+        extentTest.fail(result.getThrowable());
 
-        if (count == Retry.maxRetryCount) {
-            //         extentTest.addScreenCaptureFromPath(screenShotPath);
-            count = 1;
-        }
-        else
-        {
-            count++;
-        }
-
+        retryCount.set(retryCount.get() + 1);
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
-        String testName = result.getName();
-        extentTest.log(Status.INFO, result.getThrowable());
-        extentTest.log(Status.SKIP, testName + " got failed");
+
+        extentTest.skip(result.getThrowable());
+
+        // ✅ CLEANUP
+        retryCount.set(1);
+        currentTestName.remove();
+        extentTest = null;
     }
 
     @Override
@@ -152,7 +137,7 @@ public class GTMListenerClass extends ExtentReport implements ITestListener, IEx
         }
 
         try {
-            sendSlackNotificationGTM(String.valueOf(Fpassed),String.valueOf(Ffailed),String.valueOf(Fskipped),reportLink);
+//            sendSlackNotificationGTM(String.valueOf(Fpassed),String.valueOf(Ffailed),String.valueOf(Fskipped),reportLink);
         } catch (Exception e)
         {
             throw new RuntimeException(e);
