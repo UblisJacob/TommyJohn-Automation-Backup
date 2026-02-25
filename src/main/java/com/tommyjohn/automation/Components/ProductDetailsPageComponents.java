@@ -71,6 +71,49 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		this.driver = driver;
 	}
 
+    public void ValidateNeckLineSection()
+    {
+        String text = null;
+        JavascriptExecutor js1 = (JavascriptExecutor) driver;;
+        SoftAssert softAssert = new SoftAssert();
+//        new HomePageComponents(driver).navigateToMensAll();
+//        new CollectionPageComponent(driver).navigateToProductDetailsPage();
+        driver.get("https://www.tommyjohn.com/products/second-skin-deep-v-neck-stay-tucked-undershirt-3-pack?color=white&view=upsidedown");
+        js1.executeScript("window.scrollBy(0,700)");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        WebElement ele = driver.findElement(CREW_NECK_CTA);
+        js1.executeScript("arguments[0].click();", ele);
+        js1.executeScript("window.scrollBy(0,300)");
+        String Product_title = driver.findElement(PRODUCT_TITLE).getText();
+        System.out.println(Product_title);
+        softAssert.assertTrue(Product_title.contains("Crew Neck"),
+                "Product title does not contain 'Crew Neck'");
+        WebElement elem = driver.findElement(DEEP_V_NECK_CTA);
+        js1.executeScript("arguments[0].click();", elem);
+        js1.executeScript("window.scrollBy(0,300)");
+        String Product_title1 = driver.findElement(PRODUCT_TITLE).getText();
+        System.out.println(Product_title1);
+        softAssert.assertTrue(Product_title1.contains("Deep V-Neck"),
+                "Product title does not contain 'Deep V-Neck'");
+        WebElement elemt = driver.findElement(HIGH_V_NECK_CTA);
+        js1.executeScript("arguments[0].click();", elemt);
+        js1.executeScript("window.scrollBy(0,300)");
+        String Product_title2 = driver.findElement(PRODUCT_TITLE).getText();
+        System.out.println(Product_title2);
+        softAssert.assertTrue(Product_title2.contains("High V-Neck"),
+                "Product title does not contain 'High V-Neck'");
+        WebElement element = driver.findElement(TANK_CTA);
+        js1.executeScript("arguments[0].click();", element);
+        js1.executeScript("window.scrollBy(0,300)");
+        String Product_title3 = driver.findElement(PRODUCT_TITLE).getText();
+        System.out.println(Product_title3);
+        softAssert.assertTrue(Product_title3.contains("Tank"),
+                "Product title does not contain 'Tank'");
+        softAssert.assertAll();
+        Reporter.log("Appropriate Product is displayed when the User selects the Collection Category");
+        ExtentReport.extentTest.info("Appropriate Product is displayed when the User selects the Neckline Category");
+    }
+
     public void ValidateStyleSection()
     {
         String text = null;
@@ -92,9 +135,6 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
         Reporter.log("Appropriate Product is displayed when the User selects the Style Category");
         ExtentReport.extentTest.info("Appropriate Product is displayed when the User selects the Style Category");
     }
-
-
-
 
 	public void ValidateCollectionSection()
 	{
