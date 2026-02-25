@@ -34,6 +34,13 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 
     }
 
+    public void ValidateNeckLineSection()  {
+
+
+        new ProductDetailsPageComponents(driver).ValidateNeckLineSection();
+
+    }
+
 	public void ValidateCollectionSection()  {
 
 

@@ -73,6 +73,11 @@ public class ValidatePDP extends ExtentReport{
     }
 
     @Test
+    public void ValidateNeckLineSectionInUpsideDown() throws Exception {
+        new ProductDetailsPage(driver).ValidateNeckLineSection();
+    }
+
+    @Test
     public void VerifyProgressBarInUpsideDownPDP() throws Exception {
         new ProductDetailsPage(driver).VerifyProgressBarInUpsideDownPDP();
     }
