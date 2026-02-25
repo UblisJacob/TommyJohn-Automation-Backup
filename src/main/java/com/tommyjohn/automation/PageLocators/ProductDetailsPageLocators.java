@@ -10,6 +10,10 @@ public class ProductDetailsPageLocators {
 	public static By PDP_PRODUCT_SETS = By.xpath("//div[@class='grid grid-flow-col']//span");
 	public static By COMPARISON_MODULE = By.xpath("//div[@class='wrapper pr-0 sm:pr-8']");
 //	public static By UPSIDE_DOWN_PROGRESS_BAR = By.xpath("//div[@class='flex flex-col gap-1']");
+    public static By CREW_NECK_CTA = By.xpath("//button[contains(text(),'Crew Neck')]");
+    public static By DEEP_V_NECK_CTA = By.xpath("//button[contains(text(),'Deep V-Neck')]");
+    public static By HIGH_V_NECK_CTA = By.xpath("//button[contains(text(),'High V-Neck')]");
+    public static By TANK_CTA = By.xpath("//button[contains(text(),'Tank')]");
     public static By STAY_TUCKED_STYLE_CTA = By.xpath("//button[contains(text(),'Stay-Tucked')]");
 	public static By SECONDSKIN_COLLECTION_CTA = By.xpath("//button[contains(text(),'Second Skin')]");
 	public static By COOL_COTTON_COLLECTION_CTA = By.xpath("//button[contains(text(),'Cool Cotton')]");
