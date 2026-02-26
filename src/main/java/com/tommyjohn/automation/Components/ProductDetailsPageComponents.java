@@ -3051,7 +3051,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 //		JavascriptExecutor executor = (JavascriptExecutor) driver;
 //		executor.executeScript("arguments[0].click();", el);
 
-		driver.get("https://www.tommyjohn.com/products/second-skin-luxe-rib-square-cut-2-3-pack?color=black-dress-blues-ash");
+		driver.get("https://www.tommyjohn.com/products/second-skin-trunk-4-3-pack-49?variant=44120067735597");
 
 //		jse = (JavascriptExecutor) driver;
 //		jse.executeScript("window.scrollBy(0,800)");
