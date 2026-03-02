@@ -29,14 +29,15 @@ public class GDrivePOST {
 
     private static final String APPLICATION_NAME = "Tommy John";
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
-    private static final String TOKENS_DIRECTORY_PATH = "Tokens";
+    private static final String TOKENS_DIRECTORY_PATH =
+            System.getProperty("user.home") + "/.tj-drive-tokens";
 
     /**
      * Global instance of the scopes required by this quickstart.
      * If modifying these scopes, delete your previously saved tokens/ folder.
      */
     private static final List<String> SCOPES = Collections.singletonList(DriveScopes.DRIVE);
-    private static final String CREDENTIALS_FILE_PATH = "src/main/java/com/base/client_secret_968650974052-jge0d9f8s1kqsncl0k1qhojpnf6c60sh.apps.googleusercontent.com.json";
+    private static final String CREDENTIALS_FILE_PATH = "src/main/java/com/base/client_secret_485693069449-nuh5mpr6lgqimvi8r1mcgmcngevqgj4v.apps.googleusercontent.com.json";
 
     /**
      * Creates an authorized Credential object.
@@ -59,69 +60,30 @@ public class GDrivePOST {
     }
 
 
-    public static void moveFile(Drive service, String fileID, String folderID) throws IOException {
+    public static void moveFile(Drive service, String fileId, String folderId) throws IOException {
 
-        String query = "mimeType = 'application/vnd.google-apps.folder' and sharedWithMe";
-        FileList result = service.files().list()
-                .setQ(query)
-                .setSpaces("drive")
-                .setFields("nextPageToken, files(id, name)")
-                .execute();
-
-//        for (File file : result.getFiles()) {
-//            System.out.printf("Found shared folder: %s (%s)\n", file.getName(), file.getId());
-//        }
-
-        // Now, assuming you know the shared folder ID, list nested folders inside it
-        String sharedFolderId = "14h5xRVL6L--iDvaucRBz1_W0xuI2d_2e"; // Replace with your shared folder ID
-        query = String.format("'%s' in parents and mimeType = 'application/vnd.google-apps.folder'", sharedFolderId);
-        FileList nestedResult = service.files().list()
-                .setQ(query)
-                .setSpaces("drive")
-                .setFields("nextPageToken, files(id, name)")
-                .execute();
-
-//        for (File nestedFile : nestedResult.getFiles()) {
-//            System.out.printf("Found nested folder: %s (%s)\n", nestedFile.getName(), nestedFile.getId());
-//        }
-
-        File file = service.files().get(fileID)
+        // Get current parents
+        File file = service.files()
+                .get(fileId)
                 .setFields("parents")
+                .setSupportsAllDrives(true)
                 .execute();
-        StringBuilder previousParents = new StringBuilder();
-        for (String parent : file.getParents()) {
-            previousParents.append(parent);
-            previousParents.append(',');
-        }
 
-        // Move the file to the nested shared folder
+        String previousParents = String.join(",", file.getParents());
 
-        file = service.files().update(fileID, null)
-                .setAddParents(folderID)
-                .setRemoveParents(previousParents.toString())
+        // Move file
+        service.files()
+                .update(fileId, null)
+                .setAddParents(folderId)
+                .setRemoveParents(previousParents)
+                .setSupportsAllDrives(true)   // 🔥 CRITICAL FIX
                 .setFields("id, parents")
                 .execute();
 
-                // Retrieve the existing parents to remove
-//        File file = service.files().get(fileID)
-//                .setFields("parents")
-//                .execute();
-//        StringBuilder previousParents = new StringBuilder();
-//        for (String parent : file.getParents()) {
-//            previousParents.append(parent);
-//            previousParents.append(',');
-//        }
-//
-//        // Move the file to the new folder
-//        file = service.files().update(fileID, null)
-//                .setAddParents(folderID)
-//                .setRemoveParents(previousParents.toString())
-//                .setFields("id, parents")
-//                .execute();
-//
-//        System.out.println("File moved to folder: " + folderID);
-
+        System.out.println("File moved to folder: " + folderId);
     }
+
+
 //public static void main(String args[]) throws IOException, GeneralSecurityException{
    public static String UploadReport() throws IOException, GeneralSecurityException {
 //        public static void main(String args[]) throws IOException, GeneralSecurityException {
@@ -153,7 +115,7 @@ public class GDrivePOST {
 
         service.permissions().create(file.getId(), permission).execute();
 
-        moveFile(service, file.getId(), "1AubNi7muTDJdsmkNa5ZA8qCgEcw_WOrh");
+        moveFile(service, file.getId(), "1qox4LPt_dQhZfE79Utf3n3VY43x6pwQ1");
 
         System.out.println("File ID: " + file.getId());
         System.out.println("WebContent Link: " + file.getWebContentLink());
