@@ -26,3 +26,8 @@ nbdist/
 .nb-gradle/
 target/
 Execution\ Videos/
+
+
+client_secret*.json
+*.credentials.json
+*.oauth.json

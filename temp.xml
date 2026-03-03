@@ -13,7 +13,7 @@
         <classes>
                     <class name="TestModules.ValidateCategoryPages">
                 <methods>
-                    <include name="ValidateCollectionFromFilterPill"/>
+                    <include name="ValidateRequiredBillingAddressFields"/>
                 </methods>?
             </class>
         </classes>
