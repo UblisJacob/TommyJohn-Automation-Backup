@@ -57,12 +57,12 @@ public class CheckoutPageLocators {
 	public static By ADDRESS_SUGGESTIONS = By.xpath("(//span[@class='a8x1wu2 a8x1wu1 _1fragemod _1fragem1t _1fragemkk _1fragemka a8x1wu9 a8x1wuj a8x1wuh _1fragem1y a8x1wun a8x1wul a8x1wuy'])[5]");
 
 	//Error Messages in InformationPage
-	public static By EMAIL_ERROR = By.xpath("//p[@id='error-for-email']");
-		public static By FIRSTNAME_ERROR = By.xpath("//p[contains(text(),'Enter a first name')]");
-	public static By LASTNAME_ERROR = By.xpath("//p[contains(text(),'Enter a last name')]");
-	public static By ADDRESS_ERROR = By.xpath("//p[contains(text(),'Enter an address')]");
-	public static By CITY_ERROR  = By.xpath("//p[contains(text(),'Enter a city')]");
-	public static By ZIPCODE_ERROR  = By.xpath("//p[contains(text(),'Enter a ZIP / postal code')]");
+	public static By EMAIL_ERROR = By.xpath("//div[@id='error-for-email']");
+		public static By FIRSTNAME_ERROR = By.xpath("//div[contains(text(),'Enter a first name')]");
+	public static By LASTNAME_ERROR = By.xpath("//div[contains(text(),'Enter a last name')]");
+	public static By ADDRESS_ERROR = By.xpath("//div[contains(text(),'Enter an address')]");
+	public static By CITY_ERROR  = By.xpath("//div[contains(text(),'Enter a city')]");
+	public static By ZIPCODE_ERROR  = By.xpath("//div[contains(text(),'Enter a ZIP / postal code')]");
 
 
 	//SideBar
@@ -76,7 +76,7 @@ public class CheckoutPageLocators {
 	public static By SHIPPING = By.xpath("(//span[contains(text(),'Shipping')])[2]"); //(//span[contains(text(),'Shipping')])[2]
 	public static By APPLIED_PROMO_CODE = By.xpath("(//span[@class='_14brw3']//span)[2]");
 	public static By PROMO_CODE_ERROR = By.xpath("//div[@class='go06b0']//span"); ////div[@class='go06b0']//span
-	public static By INCORRECT_PROMO_CODE_ERROR_MESSAGE = By.xpath("//p[@id='error-for-ReductionsInput0']");
+	public static By INCORRECT_PROMO_CODE_ERROR_MESSAGE = By.xpath("//div[@id='error-for-ReductionsInput0']");
 	public static By CANCEL_PROMO_CODE = By.xpath("//button[@aria-label='Remove item']");
 	public static By CANCEL_PROMO_CODE1 = By.xpath("(//button[@aria-label='Remove TECHTESTORDER'])[2]");
 //	public static By CANCEL_PROMO_CODE = By.cssSelector("button.tag__button use");
