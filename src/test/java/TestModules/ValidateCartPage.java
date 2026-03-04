@@ -46,6 +46,12 @@ public class ValidateCartPage extends ExtentReport{
 
 	}
 
+    @Test
+    public void ValidateBundleTierinCartPage() throws Exception {
+        new ShoppingCartPage(driver).ValidateBundleTierinCartPage();
+
+    }
+
 //	@Test
 	public void ValidatePromoCodeFromPromoBanner() throws Exception {
 		new ShoppingCartPage(driver).ValidatePromoCodeFromPromoBanner();

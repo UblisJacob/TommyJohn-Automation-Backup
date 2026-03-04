@@ -40,6 +40,22 @@ public class FlyCartComponents extends FlyCartPageLocator{
 
 	}
 
+    public void ValidateBundleTierinInLineCartPage() throws Exception {
+        SoftAssert softAssert = new SoftAssert();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        new AddToCartComponents(driver).add3for$48product();
+        driver.findElement(HomePageLocators.CART_ICON).click();
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+//        driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.BUNDLE_TIER_TITLE));
+        String BUNDLE_TIER_TITLE = driver.findElement(FlyCartPageLocator.BUNDLE_TIER_TITLE).getText();
+        System.out.println(BUNDLE_TIER_TITLE);
+        softAssert.assertEquals(BUNDLE_TIER_TITLE,"Women's 5 for $65","The Bundle Tier Meter Is Not Displayed");
+        Reporter.log("Bundle Tier functionality works fine in InLineCart page");
+        softAssert.assertAll();
+        ExtentReport.extentTest.info("Bundle Tier functionality works fine in InLineCart page");
+    }
+
     public void ValidateFiveFor65InInLineCart() throws Exception {
         SoftAssert softAssert = new SoftAssert();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
