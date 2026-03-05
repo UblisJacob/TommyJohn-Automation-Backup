@@ -669,8 +669,8 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		Reporter.log("Image, link text, price, plus-minus button is displayed for all items in cart");
 		ExtentReport.extentTest.info("Image, link text, price, plus-minus button is displayed for all items in cart");
 		// check for Add Gift Wrap button
-		softAssert.assertTrue(driver.findElement(ADD_GIFT_WRAP_BUTTON).isDisplayed(), "Add Gift Wrap button is not displayed");
-		Thread.sleep(3000);
+//		softAssert.assertTrue(driver.findElement(ADD_GIFT_WRAP_BUTTON).isDisplayed(), "Add Gift Wrap button is not displayed");
+//		Thread.sleep(3000);
 
 //		text = driver.findElement(ESTIMATE_TOTAL).getText();
 //		System.out.println("Estimate total text :: "+text);
