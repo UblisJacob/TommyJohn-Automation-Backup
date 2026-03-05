@@ -142,10 +142,10 @@ public class CheckoutPageLocators {
 
 
 	//CardFieldErrors
-	public static By CARDNUMBER_ERROR = By.xpath("//p[@id='error-for-number']");
-	public static By CARDNAME_ERROR = By.xpath("//p[@id='error-for-name']");
-	public static By EXPIRY_ERROR = By.xpath("//p[@id='error-for-expiry']");
-	public static By SECURITYCODE_ERROR = By.xpath("//p[@id='error-for-verification_value']");
+	public static By CARDNUMBER_ERROR = By.xpath("//div[@id='error-for-number']");
+	public static By CARDNAME_ERROR = By.xpath("//div[@id='error-for-name']");
+	public static By EXPIRY_ERROR = By.xpath("//div[@id='error-for-expiry']");
+	public static By SECURITYCODE_ERROR = By.xpath("//div[@id='error-for-verification_value']");
 
 
 
