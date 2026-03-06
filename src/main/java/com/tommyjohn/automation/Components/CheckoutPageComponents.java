@@ -121,7 +121,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		driver.findElement(HomePageLocators.CART_ICON).click();
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 //		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
-		Thread.sleep(5000);
+		Thread.sleep(10000);
 		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
 		CheckErrorMessageForIncorrectPromoCode();
 
