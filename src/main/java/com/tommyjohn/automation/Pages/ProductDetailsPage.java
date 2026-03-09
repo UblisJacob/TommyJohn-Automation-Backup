@@ -76,6 +76,13 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 
 	}
 
+	public void VerifyShareIconPDP() throws Exception {
+
+
+		new ProductDetailsPageComponents(driver).VerifyShareIconPDP();
+
+	}
+
 	public void VerifyShopPayIsDisplayed()  {
 
 

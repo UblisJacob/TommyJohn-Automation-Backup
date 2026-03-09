@@ -63,6 +63,11 @@ public class ValidatePDP extends ExtentReport{
     }
 
 	@Test
+	public void VerifyShareIconPDP() throws Exception {
+		new ProductDetailsPage(driver).VerifyShareIconPDP();
+	}
+
+	@Test
 	public void ValidateCollectionSectionInUpsideDown() throws Exception {
 		new ProductDetailsPage(driver).ValidateCollectionSection();
 	}
