@@ -71,6 +71,27 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		this.driver = driver;
 	}
 
+
+	public void VerifyShareIconPDP() throws Exception {
+
+		String text = null;
+		JavascriptExecutor js1 = (JavascriptExecutor) driver;;
+		SoftAssert softAssert = new SoftAssert();
+        new HomePageComponents(driver).navigateToMensAll();
+        new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		//driver.get("https://www.tommyjohn.com/products/second-skin-deep-v-neck-stay-tucked-undershirt-3-pack?color=white&view=upsidedown");
+		js1.executeScript("window.scrollBy(0,500)");
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(SHARE_ICON));
+		softAssert.assertTrue(driver.findElement(SHARE_ICON).isDisplayed(),"Share Icon is not available in PDP");
+		Reporter.log("Share Icon is available in PDP");
+		ExtentReport.extentTest.info("Share Icon is available in PDP");
+	}
+
+
+
+
+
     public void ValidateNeckLineSection()
     {
         String text = null;
