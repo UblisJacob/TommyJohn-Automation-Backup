@@ -163,12 +163,12 @@
 	<!--       </classes>-->
 	<!--    </test>-->
 
-	<!--    <test name="ContactUsPageTests">-->
-	<!--       <parameter name="browser" value="chrome" />-->
-	<!--       <classes>-->
-	<!--          <class name="TestModules.ValidateContactUsPage" />-->
-	<!--       </classes>-->
-	<!--    </test>-->
+	    <test name="ContactUsPageTests">
+	       <parameter name="browser" value="chrome" />
+	       <classes>
+	          <class name="TestModules.ValidateContactUsPage" />
+	       </classes>
+	    </test>
 
 	<!--    <test name="ReviewsPage">-->
 	<!--       <parameter name="browser" value="chrome" />-->
