@@ -3361,27 +3361,27 @@ public class HomePageComponents extends HomePageLocators {
 	// navigate to Contact Us Page
 	public void navigateToHelpPage() throws Exception {
 
-		driver.get(("https://help.tommyjohn.com/hc/en-us"));
-//		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
-//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-//		JavascriptExecutor jse = (JavascriptExecutor)driver;
-//		text = driver.findElement(CONTACT_US_LINK).getText();
-//		if(!text.contains("Contact & FAQ"))
-//			throw new Exception("Contact Us link text is changed");
-//		jse.executeScript("arguments[0].click();", driver.findElement(CONTACT_US_LINK));
+		driver.get(("https://www.tommyjohn.com/pages/help-desk"));
+//     driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+//     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+//     JavascriptExecutor jse = (JavascriptExecutor)driver;
+//     text = driver.findElement(CONTACT_US_LINK).getText();
+//     if(!text.contains("Contact & FAQ"))
+//        throw new Exception("Contact Us link text is changed");
+//     jse.executeScript("arguments[0].click();", driver.findElement(CONTACT_US_LINK));
 		Thread.sleep(5000);
-					if(driver.getCurrentUrl().contains("https://help.tommyjohn.com/hc/en-us"))
-					{
-						System.out.println("Help Us page opened correctly");
-						Reporter.log("Help Us page opened correctly");
-						ExtentReport.extentTest.info("Help Us page opened correctly");
-					}
-					
-					else {
-						System.out.println("Help Us page didn't open correctly");			
-						ExtentReport.extentTest.info("Help Us page didn't open correctly");
-						throw new Exception("Help Us page didn't open correctly");
-				}
+		if(driver.getCurrentUrl().contains("https://www.tommyjohn.com/pages/help-desk"))
+		{
+			System.out.println("Help Us page opened correctly");
+			Reporter.log("Help Us page opened correctly");
+			ExtentReport.extentTest.info("Help Us page opened correctly");
+		}
+
+		else {
+			System.out.println("Help Us page didn't open correctly");
+			ExtentReport.extentTest.info("Help Us page didn't open correctly");
+			throw new Exception("Help Us page didn't open correctly");
+		}
 
 
 	}

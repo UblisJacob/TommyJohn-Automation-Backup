@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 
 public class ContactUsPageLocators 
 {
-	public static By HELP_PAGETITLE = By.xpath("//h1[@class='help_text']//a");
+	public static By HELP_PAGETITLE = By.xpath("(//div[contains(@class,'ghc-main-content-container')]//h2)[1]");
 	public static By HELP_QUERY = By.cssSelector("#query");
 	public static By HELP_QUICK_SEARCH_TOPICS = By.cssSelector(".quick-search");
 
