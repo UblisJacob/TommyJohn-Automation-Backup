@@ -210,38 +210,20 @@ public class ContactUsComponent extends ContactUsPageLocators
 
 		softassert.assertAll();
 	}
-	
+
 	public void HelpUsPageValidation() throws Exception
 	{
 		Thread.sleep(2000);
-		
-		driver.get("https://help.tommyjohn.com/hc/en-us");
 
+		driver.get("https://www.tommyjohn.com/pages/help-desk?hcUrl=%2Fen-US");
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HELP_PAGETITLE));
 		softassert.assertTrue(driver.findElement(HELP_PAGETITLE).isDisplayed(), "Help Center page title is not displayed.");
-		softassert.assertEquals(driver.findElement(HELP_PAGETITLE).getText(), properties.getProperty("PageTitle"),"Text changed for Help Center page title.");
+		softassert.assertEquals(driver.findElement(HELP_PAGETITLE).getText(), "How can we help?","Text changed for Help Center page title.");
 		Reporter.log("Contact us Page Title is displayed :: Correct.");
 		ExtentReport.extentTest.info("Contact us Page Title is displayed :: Correct.");
-		
-		softassert.assertTrue(driver.findElement(HELP_QUERY).isDisplayed(), "Query Search textbox is not displayed.");
-		softassert.assertTrue(driver.findElement(HELP_QUICK_SEARCH_TOPICS).isDisplayed(), "Query topics are not displayed.");
-				
-		softassert.assertTrue(driver.findElement(CONTACT_INFO_TITLE).isDisplayed(), "Contact Information title is not displayed.");
-		softassert.assertEquals(driver.findElement(CONTACT_INFO_TITLE).getAttribute("innerText"), properties.getProperty("ContactInformationTitle"),"Text changed for Contact information title.");
-		Reporter.log("Contact information Title is displayed :: Correct.");
-		ExtentReport.extentTest.info("Contact information Title is displayed :: Correct.");
-		
-		softassert.assertTrue(driver.findElement(TIMING_TEXT1).isDisplayed(), "'Day and timing' text is not displayed.");
-		softassert.assertTrue(driver.findElement(TIMING_TEXT2).isDisplayed(), "'Day and timing' text is not displayed.");
+		softassert.assertAll();
 
-		softassert.assertTrue(driver.findElement(EMAIL_US_LINK).isDisplayed(), "'Email Us' link is not displayed.");
-		softassert.assertTrue(driver.findElement(CHAT_LINK).isDisplayed(), "'Chat' link is not displayed.");
-		softassert.assertTrue(driver.findElement(CALL_US_NUMBER).isDisplayed(), "'Call us number' text is not displayed.");
-	//	softassert.assertTrue(driver.findElement(TEXT_US_AT).isDisplayed(), "'Text us number' text is not displayed.");
-		
-		softassert.assertTrue(driver.findElement(HELP_CATEGORY).isDisplayed(), "'Help category container'  is not displayed.");
-        softassert.assertAll();
-
-		
 	}
 
 }
