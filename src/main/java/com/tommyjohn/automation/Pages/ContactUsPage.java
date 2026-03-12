@@ -24,7 +24,7 @@ public class ContactUsPage  {
 	public void HelpFieldValidation_page() throws Exception
 	{
 		new HomePageComponents(driver).navigateToHelpPage();
-	//	new ContactUsComponent(driver).HelpUsPageValidation();
+		new ContactUsComponent(driver).HelpUsPageValidation();
 
 	}
 }

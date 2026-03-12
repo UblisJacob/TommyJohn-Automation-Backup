@@ -84,12 +84,12 @@ public class CollectionPageComponent extends CollectionPageLocator {
         Reporter.log("Filter Pills are displayed");
         ExtentReport.extentTest.info("Filter Pills are displayed");
         js.executeScript("arguments[0].click();", driver.findElement(COLLECTION_FILTER_PILL));
-        String AirFilter = driver.findElement(By.xpath("(//span[@class='font-medium' and contains(text(),'Air')])")).getText();
+        String AirFilter = driver.findElement(By.xpath("(//span[@class='font-medium' and contains(text(),'Airs')])")).getText();
         System.out.println(AirFilter);
         js.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//span[@class='font-medium' and contains(text(),'Air')])")));
         Thread.sleep(10000);
         String FilterAir = driver.findElement(By.xpath("(//a[contains(text(),'Air Trunk 4')])[1]")).getText();
-        String[] Filter = FilterAir.split(" Trunk");
+        String[] Filter = FilterAir.split(" Trunks");
         String text = Filter[0];
         System.out.println(text);
         softAssert.assertEquals(AirFilter, text, "Appropriate Product is not displayed while from filter pill");
