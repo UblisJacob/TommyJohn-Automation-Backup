@@ -494,7 +494,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 	public void ValidateReadAllReviewsLinkInReviewsSummary() throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
-		new HomePageComponents(driver).navigateToBraInWomenCategory();
+		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
 		new CollectionPageComponent(driver).navigateToProductDetailsPage();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		SoftAssert softAssert = new SoftAssert();
