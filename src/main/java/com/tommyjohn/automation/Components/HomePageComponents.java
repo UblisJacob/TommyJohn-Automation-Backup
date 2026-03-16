@@ -1318,7 +1318,7 @@ public class HomePageComponents extends HomePageLocators {
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(60));
 
-		String Search_keyword = "women";
+		String Search_keyword = "Air";
 		driver.findElement(SEARCH_ICON).click();
 		Thread.sleep(2000);
 		if(!driver.findElement(SEARCH_TEXTBOX).isDisplayed())
@@ -1364,7 +1364,7 @@ public class HomePageComponents extends HomePageLocators {
 		driver.get("https://www.tommyjohn.com/");
 		driver.findElement(SEARCH_ICON).click();
 		driver.findElement(SEARCH_TEXTBOX).click();
-		driver.findElement(SEARCH_TEXTBOX).sendKeys("women");
+		driver.findElement(SEARCH_TEXTBOX).sendKeys("Air");
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(AUTO_SUGGESTED_PRODUCT_IMG_TITLE));
 		WebElement FIRST_SUGGESTED_PRODUCT_TILE_TITLE = driver.findElement(AUTO_SUGGESTED_PRODUCT_IMG_TITLE);
