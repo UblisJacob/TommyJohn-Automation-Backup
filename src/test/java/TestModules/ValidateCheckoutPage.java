@@ -90,6 +90,12 @@ public class ValidateCheckoutPage extends ExtentReport {
 		new CheckoutPage(driver).validateFreeShipping();
 	}
 
+    @Test
+    public void ValidateShippingMethod() throws Exception
+    {
+        new CheckoutPage(driver).ValidateShippingMethod();
+    }
+
 //	@Test
 	public void ValidatePromoCodeErrorScenarioInShippingPage() throws Exception
 	{

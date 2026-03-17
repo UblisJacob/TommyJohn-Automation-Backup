@@ -1134,6 +1134,38 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 
 	}
 
+    public void validateShippingMethod() throws Exception {
+        jse = (JavascriptExecutor)driver;
+        SoftAssert softAssert = new SoftAssert();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        new AddToCartComponents(driver).addToCart();
+        wait.until(ExpectedConditions.elementToBeClickable(HomePageLocators.CART_ICON));
+        jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
+        Thread.sleep(5000);
+        jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
+        driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
+        softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
+        entershippingdetails();
+        Reporter.log("Shipping Address Details entered");
+        ExtentReport.extentTest.info("Shipping Address Details entered");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(FREE_SHIPPING));
+        softAssert.assertTrue(driver.findElement(FREE_SHIPPING).isDisplayed(),"Free Shipping is not redeemable when the Cart contains products with more than $75");
+        Reporter.log("Free Shipping is redeemable when the Product Cart contains products with more than $75");
+        ExtentReport.extentTest.info("Free Shipping is redeemable when the Product Cart contains products with more than $75");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(SHIPPING_RADIO_BUTTON));
+        jse.executeScript("arguments[0].click();", driver.findElement(EXPEDITED_SHIPPING_PRICE));
+        String EXPEDITED_SHIPPING = driver.findElement(EXPEDITED_SHIPPING_PRICE).getText();
+        System.out.println(EXPEDITED_SHIPPING);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(SHIPPING_PRICE));
+        String Shipping = driver.findElement(SHIPPING_PRICE).getText();
+        System.out.println(Shipping);
+        softAssert.assertEquals(EXPEDITED_SHIPPING,Shipping,"Shipping price is not displayed as expected");
+//        softAssert.assertAll();
+        Reporter.log("Shipping price is displayed as expected");
+        ExtentReport.extentTest.info("Shipping price is displayed as expected");
+    }
+
 	public void ValidateRequiredBillingAddressFieldsInPaymentSection() throws Exception {
 		jse = (JavascriptExecutor) driver;
 		softAssert = new SoftAssert();
