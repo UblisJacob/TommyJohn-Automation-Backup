@@ -59,6 +59,12 @@ public class CheckoutPage extends CheckoutPageComponents {
 
 	}
 
+    public void ValidateShippingMethod() throws Exception
+    {
+        new CheckoutPageComponents(driver).validateShippingMethod();
+
+    }
+
 	public void validateNonFreeShipping() throws Exception
 	{
 		new CheckoutPageComponents(driver).validateNonFreeShipping();
