@@ -13,7 +13,7 @@
         <classes>
                     <class name="TestModules.ValidateCheckoutPage">
                 <methods>
-                    <include name="ValidateShippingMethod"/>
+                    <include name="ValidatefiveforsixtyfivefunctionalityinCheckoutPage"/>
                 </methods>?
             </class>
         </classes>
