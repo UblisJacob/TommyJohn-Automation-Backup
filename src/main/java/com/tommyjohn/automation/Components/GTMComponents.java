@@ -59,8 +59,8 @@ public class GTMComponents {
     public void ValidateGTMforFacetEvent() throws InterruptedException {
         // ✅ 1. Setup Chrome with DevTools
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new");
-        options.addArguments("--disable-gpu");
+//        options.addArguments("--headless");
+//        options.addArguments("--disable-gpu");
         options.addArguments("--window-size=1920,1080");
 
         ChromeDriver driver = new ChromeDriver(options);
@@ -138,7 +138,7 @@ public class GTMComponents {
     public void ValidateGTMforViewCollectionEvent() throws InterruptedException {
         // ✅ 1. Setup Chrome with DevTools
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new");
+//         options.addArguments("--headless");
         ChromeDriver driver = new ChromeDriver(options);
         DevTools devTools = driver.getDevTools();
         devTools.createSession();
@@ -195,8 +195,8 @@ public class GTMComponents {
 
     public void ValidateGTMForAddToCartEvent() throws Exception {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new");  // ✅ Run in headless mode
-        options.addArguments("--disable-gpu");
+//        options.addArguments("--headless");  // ✅ Run in headless mode
+//        options.addArguments("--disable-gpu");
         options.addArguments("--window-size=1920,1080");
 
         ChromeDriver driver = new ChromeDriver(options);
@@ -253,8 +253,8 @@ public class GTMComponents {
 
     public void ValidateGTMForClickEvent() throws Exception {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new");  // ✅ Run in headless mode
-        options.addArguments("--disable-gpu");
+//        options.addArguments("--headless"); // ✅ Run in headless mode
+//        options.addArguments("--disable-gpu");
         options.addArguments("--window-size=1920,1080");
 
         ChromeDriver driver = new ChromeDriver(options);
@@ -313,8 +313,8 @@ public class GTMComponents {
 
     public void ValidateGTMForViewProductEvent() throws Exception {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new");  // ✅ Run in headless mode
-        options.addArguments("--disable-gpu");
+//         options.addArguments("--headless");  // ✅ Run in headless mode
+//        options.addArguments("--disable-gpu");
         options.addArguments("--window-size=1920,1080");
 
         ChromeDriver driver = new ChromeDriver(options);
@@ -374,8 +374,8 @@ public class GTMComponents {
 
     public void ValidateGTMForSearchEvent() throws Exception {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new");  // ✅ Run in headless mode (uncomment after debugging)
-        options.addArguments("--disable-gpu");
+//        options.addArguments("--headless");  // ✅ Run in headless mode (uncomment after debugging)
+//        options.addArguments("--disable-gpu");
         options.addArguments("--window-size=1920,1080");
 
         ChromeDriver driver = new ChromeDriver(options);
@@ -433,8 +433,8 @@ public class GTMComponents {
 
     public void ValidateGTMForRemoveFromCartEvent() throws Exception {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new");
-        options.addArguments("--disable-gpu");
+//        options.addArguments("--headless");
+//        options.addArguments("--disable-gpu");
         options.addArguments("--window-size=1920,1080");
 
         ChromeDriver driver = new ChromeDriver(options);
@@ -557,8 +557,8 @@ public class GTMComponents {
 
     public void ValidatePowerfront() throws Exception {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new");  // ✅ Run in headless mode
-        options.addArguments("--disable-gpu");
+//        options.addArguments("--headless"); // ✅ Run in headless mode
+//        options.addArguments("--disable-gpu");
         options.addArguments("--window-size=1920,1080");
 
         ChromeDriver driver = new ChromeDriver(options);
@@ -703,8 +703,8 @@ public class GTMComponents {
 
     public void ValidateRudderstackForPLP() throws InterruptedException {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new");
-        options.addArguments("--disable-gpu");
+//        options.addArguments("--headless=new");
+//        options.addArguments("--disable-gpu");
         options.addArguments("--window-size=1920,1080");
 
         ChromeDriver driver = new ChromeDriver(options);
@@ -859,9 +859,9 @@ public class GTMComponents {
 
     public void ValidateKlaviyo() throws Exception {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new");
+//         options.addArguments("--headless");
         options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36");
-        options.addArguments("--disable-gpu");
+//        options.addArguments("--disable-gpu");
         options.addArguments("--window-size=1920,1080");
         options.addArguments("--disable-blink-features=AutomationControlled");
         options.setExperimentalOption("excludeSwitches", Arrays.asList("enable-automation"));
@@ -945,8 +945,8 @@ public class GTMComponents {
 
     public void ValidateContentSquare() throws Exception {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new");
-        options.addArguments("--disable-gpu");
+//        options.addArguments("--headless");
+//        options.addArguments("--disable-gpu");
         options.addArguments("--window-size=1920,1080");
 
         ChromeDriver driver = new ChromeDriver(options);
@@ -1004,8 +1004,8 @@ public class GTMComponents {
     public void validateGTMClaritasForSiteWide() throws Exception {
         // Setup Chrome options
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new");
-        options.addArguments("--disable-gpu");
+//        options.addArguments("--headless");
+//        options.addArguments("--disable-gpu");
         options.addArguments("--window-size=1920,1080");
 
         // Launch ChromeDriver
@@ -1058,8 +1058,8 @@ public class GTMComponents {
 
     public void validateGTMClaritasForAddToCart() throws Exception {
         ChromeOptions options = new ChromeOptions();
-         options.addArguments("--headless=new"); // Enable for headless mode
-        options.addArguments("--disable-gpu");
+//        options.addArguments("--headless"); // Enable for headless mode
+//        options.addArguments("--disable-gpu");
         options.addArguments("--window-size=1920,1080");
 
         ChromeDriver driver = new ChromeDriver(options);
@@ -1198,10 +1198,10 @@ public class GTMComponents {
     driver.quit();
 }
 
-    public void validateGTMBingEvent() {
+    public void validateGTMBingEvent() throws InterruptedException {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new");
-        options.addArguments("--disable-gpu");
+//        options.addArguments("--headless");
+//        options.addArguments("--disable-gpu");
         options.addArguments("--window-size=1920,1080");
 
         ChromeDriver driver = new ChromeDriver(options);
@@ -1225,6 +1225,9 @@ public class GTMComponents {
         });
 
         driver.get("https://www.tommyjohn.com/collections/mens-all");
+
+
+        Thread.sleep(10000);
 
         // Wait up to 20 seconds for the Bing URL to appear in the list
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
