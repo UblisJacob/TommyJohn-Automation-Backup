@@ -136,6 +136,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 
 
 	public void ValidateProductCountInInlineCartAndCartPages() throws Exception {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
 		SoftAssert softAssert = new SoftAssert();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		new AddToCartComponents(driver).addToCart();
@@ -144,7 +145,8 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		System.out.println(COUNT_IN_INLINECART);
 		driver.findElement(HomePageLocators.CART_ICON).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
-		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+		js.executeScript("arguments[0].click();", driver.findElement(VIEW_CART_LINK));
+//		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		Thread.sleep(3000);
 		String COUNT_IN_CART = driver.findElement(HomePageLocators.COUNT_IN_CART).getText();
 		System.out.println(COUNT_IN_CART);
