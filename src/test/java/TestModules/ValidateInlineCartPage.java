@@ -30,12 +30,12 @@ public class ValidateInlineCartPage extends ExtentReport {
 
 
 
-  //  @Test
+    @Test
     public void ValidatefiveforsixtyfivefunctionalityinInLineCartPage() throws Exception {
         new FlyCartPage(driver).ValidateFiveFor65InInLineCart();
     }
 
-//    @Test
+    @Test
     public void ValidateBundleTierinInLineCartPage() throws Exception {
         new FlyCartPage(driver).ValidateBundleTierinInLineCartPage();
     }
