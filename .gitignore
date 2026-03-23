@@ -24,8 +24,9 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
-target/
 Execution\ Videos/
+Report/
+ADACheckResults/
 
 
 client_secret*.json

@@ -5,16 +5,16 @@
 
     <listeners>
         <listener class-name="TestScenario.ListenerClass"/>
-<!--        <listener class-name="TestScenario.RetryListener"/>-->
+        <!-- <listener class-name="TestScenario.RetryListener"/> -->
     </listeners>
 
     <test name="Tests">
         <parameter name="browser" value="chrome"/>
         <classes>
-                    <class name="TestModules.ValidateCheckoutPage">
+            <class name="TestModules.ValidateCartPage">
                 <methods>
-                    <include name="ValidatefiveforsixtyfivefunctionalityinCheckoutPage"/>
-                </methods>?
+                    <include name="ValidatefiveforsixtyfivefunctionalityinCartPage"/>
+                </methods>
             </class>
         </classes>
     </test>
