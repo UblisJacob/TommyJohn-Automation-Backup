@@ -62,6 +62,36 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		ExtentReport.extentTest.info("DY Placeholder banner is displayed in the PLP");
 	}
 
+	public void ValidateRatingCountInPLPandPDP()
+	{
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		SoftAssert softAssert = new SoftAssert();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		new HomePageComponents(driver).navigateToMensAll();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
+		String RatingCountPLP = driver.findElement(
+				By.xpath("(//span[@class='ml-2xs mt-[2px]'])[1]")).getText();
+	//	System.out.println(RatingCountPLP);
+		String normalizedText = RatingCountPLP.replace("\n", " ");
+		String reviewCount = normalizedText.replaceAll(".*\\(([^\\s]+).*", "$1");
+		System.out.println(reviewCount);
+		String reviewCountWithoutComma = reviewCount.replace(",", "");
+		System.out.println(reviewCountWithoutComma);
+		text = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT).getText();
+		WebElement el = driver.findElement(FIRST_PRODUCT_HEAD_LINE_TEXT);
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		executor.executeScript("arguments[0].click();", el);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_TITLE));
+		String RatingCountPDP = driver.findElement(By.xpath("//div[@class='yotpo-sr-bottom-line-text yotpo-sr-bottom-line-text--right-panel']")).getText();
+		System.out.println(RatingCountPDP);
+		String RatingCountPDPWithoutParens = RatingCountPDP.replaceAll("[()]", "");
+		System.out.println(RatingCountPDPWithoutParens);
+		softAssert.assertEquals(reviewCountWithoutComma,RatingCountPDPWithoutParens,"Rating count mismatch");
+		softAssert.assertAll();
+		Reporter.log("Rating Count is same in PLP and PDP");
+		ExtentReport.extentTest.info("Rating Count is same in PLP and PDP");
+	}
+
 	public void VerifyFilterPill()
 	{
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
