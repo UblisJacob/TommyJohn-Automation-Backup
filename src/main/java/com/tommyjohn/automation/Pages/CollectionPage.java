@@ -376,6 +376,10 @@ public class CollectionPage extends CollectionPageComponent{
         new CollectionPageComponent(driver).ValidateCollectionFilterInFilterPill();
     }
 
+	public void ValidateRatingCountInPLPandPDP()  {
+		new CollectionPageComponent(driver).ValidateRatingCountInPLPandPDP();
+	}
+
     public void ValidateStyleFromFilterPill() throws InterruptedException {
         new CollectionPageComponent(driver).ValidateStyleFilterInFilterPill();
     }

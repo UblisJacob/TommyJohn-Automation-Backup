@@ -35,6 +35,9 @@ public class ValidateCategoryPages {
     @Test public void ValidateCollectionFromFilterPill() throws Exception { new
             CollectionPage(driver).ValidateCollectionFromFilterPill(); }
 
+	@Test public void ValidateRatingCountInPLPandPDP() throws Exception { new
+			CollectionPage(driver).ValidateRatingCountInPLPandPDP(); }
+
     @Test public void ValidateStyleFromFilterPill() throws Exception { new
             CollectionPage(driver).ValidateStyleFromFilterPill(); }
 
