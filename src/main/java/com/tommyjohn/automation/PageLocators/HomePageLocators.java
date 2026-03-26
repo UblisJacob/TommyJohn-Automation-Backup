@@ -11,6 +11,8 @@ public class HomePageLocators{
 	public static By MENS_RECS = By.xpath("(//swiper-container[@class=\"-mx-lg flex px-lg [grid-area:slides]\"])[1]");
 	public static By MENS_SHOP_NOW_CTA = By.xpath("(//a[@class='button-inverse'])[1]");
 	public static By PRODUCT_TITLE = By.xpath("//h1[@class='mb-0']");
+	public static By PLP_HEADING = By.xpath("//span[@class='font-serif text-text-accent']");
+	public static By SHOP_NOW_LINKS = By.xpath("//a[@class='button-link-inverse mx-xs inline-block text-body-sm hocus:!decoration-current']");
 	public static By HERO_BANNER_IMAGE = By.xpath("(//div[@class='shopify-section relative'])[1]");
 	public static By UGC_MODULE = By.xpath("//div[@class='shopify-section']//div[@class='fs-wide-timeline  fs-desktop fs-wrapper fs-sizes_v2_5']");
     public static By FIRST_UGC_MODULE = By.xpath("(//div[@class='fs-text-container'])[1]");

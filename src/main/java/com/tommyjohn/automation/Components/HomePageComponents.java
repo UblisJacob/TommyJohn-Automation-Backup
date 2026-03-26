@@ -3,6 +3,7 @@ package com.tommyjohn.automation.Components;
 
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -62,6 +63,39 @@ public class HomePageComponents extends HomePageLocators {
 				.withTimeout(Duration.ofSeconds(60)).ignoring(NoSuchElementException.class);
 
 	}
+
+	public void ValidateShopNowCTAInTopBanner() throws InterruptedException {
+		SoftAssert softAssert = new SoftAssert();
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
+		Thread.sleep(2000);
+
+		List<String> list = new ArrayList<>();
+
+		for(WebElement a : driver.findElements(SHOP_NOW_LINKS))
+		{
+			String  b = a.getAttribute("href");
+
+			list.add(b);
+
+		}
+
+		System.out.println(list);
+
+		for(String c : list)
+		{
+
+			driver.get(c);
+
+
+			softAssert.assertTrue(driver.findElement(PLP_HEADING).isDisplayed(),"Shop Now links are not working as expected");
+
+	}
+		Reporter.log("Shop Now links are not working as expected");
+		ExtentReport.extentTest.info("Shop Now links are not working as expectede");
+	}
+
+
 
     public void VerifyScrollCTA() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
