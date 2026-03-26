@@ -3,6 +3,7 @@ package com.tommyjohn.automation.utils;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
@@ -15,19 +16,20 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.devtools.DevTools;
-import org.openqa.selenium.devtools.v140.emulation.Emulation;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
-import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.devtools.v140.emulation.Emulation;
 import org.testng.ITestContext;
 import org.testng.Reporter;
 
 public class CustomUtilities {
 
+    // Remove static WebDriver - use DriverManager below (ThreadLocal)
     public EdgeDriver edgedriver;
     public static String baseUrl = "https://www.tommyjohn.com/";
     public static BufferedReader reader;
@@ -37,10 +39,11 @@ public class CustomUtilities {
 
     /**
      * Launch browser and set ThreadLocal driver
-     * @param browser Chrome, Firefox, Edge, Safari
-     * @param headless true to run Chrome in headless mode, false otherwise
      */
-    public WebDriver launchtj(String browser, boolean headless) throws Exception {
+    @SuppressWarnings({})
+    public WebDriver launchtj(String browser) throws Exception {
+
+        // load properties file
         loadPropertiesFile();
 
         WebDriver localDriver = null;
@@ -50,9 +53,12 @@ public class CustomUtilities {
             chromeOptions.addArguments("--use-fake-ui-for-media-stream");
             chromeOptions.addArguments("--use-fake-device-for-media-stream");
             chromeOptions.addArguments("--unsafely-treat-insecure-origin-as-secure=http://192.168.5.184");
+//            chromeOptions.addArguments("--unsafely-treat-insecure-origin-as-secure=http://192.168.7.207");
             chromeOptions.addArguments("--disable-web-security");
             chromeOptions.addArguments("--ignore-certificate-errors");
             chromeOptions.addArguments("--disable-gpu");
+            // remove headless if you need visual debugging; keep if CI
+            chromeOptions.addArguments("--headless");
             chromeOptions.addArguments("--window-size=1920,1080");
             chromeOptions.addArguments("--force-device-scale-factor=1");
             chromeOptions.addArguments("--start-maximized");
@@ -70,15 +76,16 @@ public class CustomUtilities {
             chromeOptions.addArguments("--remote-allow-origins=*");
             chromeOptions.setAcceptInsecureCerts(true);
             chromeOptions.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
+
+            // host resolver rules (as before)
             chromeOptions.addArguments("--host-resolver-rules=MAP cdn.attn.tv 127.0.0.1");
             chromeOptions.addArguments("--host-resolver-rules=MAP tommyjohn.attn.tv 127.0.0.1");
             chromeOptions.addArguments("--host-resolver-rules=MAP creatives.attn.tv 127.0.0.1");
 
-            // apply headless if requested
-            if (headless) chromeOptions.addArguments("--headless=new");
-
+            // instantiate driver
             localDriver = new ChromeDriver(chromeOptions);
 
+            // optional: use CDP to set device metrics (keeps your previous behavior)
             try {
                 DevTools devTools = ((ChromeDriver) localDriver).getDevTools();
                 devTools.createSession();
@@ -90,6 +97,7 @@ public class CustomUtilities {
                         Optional.empty()
                 ));
             } catch (Exception e) {
+                // CDP may fail on some driver versions/environments — ignore safely
                 System.out.println("DevTools session/setup failed: " + e.getMessage());
             }
 
@@ -108,6 +116,7 @@ public class CustomUtilities {
             options.addArguments("--ignore-certificate-errors");
             options.addArguments("--no-default-browser-check");
             options.addArguments("--disable-popup-blocking");
+
             options.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 
             localDriver = new FirefoxDriver(options);
@@ -135,6 +144,7 @@ public class CustomUtilities {
             options.setCapability("--ignore-certificate-errors", true);
             options.setCapability("--no-default-browser-check", true);
             options.setCapability("--disable-popup-blocking", true);
+
             options.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 
             localDriver = new SafariDriver(options);
@@ -142,6 +152,7 @@ public class CustomUtilities {
             localDriver.manage().window().maximize();
         }
 
+        // set the ThreadLocal driver so other classes/listeners can fetch it
         if (localDriver != null) {
             DriverManager.setDriver(localDriver);
         }
@@ -149,6 +160,7 @@ public class CustomUtilities {
         return localDriver;
     }
 
+    // safe teardown: quits and unloads ThreadLocal driver
     public void teardown() {
         WebDriver d = DriverManager.getDriver();
         if (d != null) {
@@ -162,6 +174,7 @@ public class CustomUtilities {
         }
     }
 
+    // method to load properties file
     public static void loadPropertiesFile() throws Exception {
         reader = new BufferedReader(new FileReader(propertiesFilePath));
         properties = new Properties();
@@ -173,8 +186,13 @@ public class CustomUtilities {
         }
     }
 
+    /**
+     * Take screenshot and save as file (returns file path). Accepts a WebDriver — if null, uses ThreadLocal.
+     */
     public static String takeScreenShot(String name, WebDriver driverParam) {
+
         WebDriver d = driverParam != null ? driverParam : DriverManager.getDriver();
+
         if (d == null) {
             System.out.println("❌ takeScreenShot skipped: driver is null");
             return "";
@@ -182,11 +200,16 @@ public class CustomUtilities {
 
         String rootDir = System.getProperty("user.dir");
         String screenShotsFolder = rootDir + "/test-output/Screenshots/";
+
         File folder = new File(screenShotsFolder);
-        if (!folder.exists()) folder.mkdirs();
+        if (!folder.exists()) {
+            folder.mkdirs();
+        }
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MMM_yyyy_HH_mm_ss");
-        String dateAndTime = dtf.format(LocalDateTime.now());
+        LocalDateTime now = LocalDateTime.now();
+        String dateAndTime = dtf.format(now);
+
         String filePath = screenShotsFolder + name + "_" + dateAndTime + ".jpg";
 
         try {
@@ -200,14 +223,21 @@ public class CustomUtilities {
         }
     }
 
+    /**
+     * Legacy-named method kept for compatibility (uses ThreadLocal driver)
+     */
     public static String takessiffailed(String mname) {
         return takessiffailed(mname, DriverManager.getDriver());
     }
 
     public static String takessiffailed(String mname, WebDriver driverParam) {
-        return takeScreenShot(mname != null ? mname : "screenshot", driverParam);
+        String name = mname != null ? mname : "screenshot";
+        return takeScreenShot(name, driverParam);
     }
 
+    /**
+     * Returns screenshot as Base64 string (for embedding into reports). Accepts param or uses ThreadLocal.
+     */
     public static String screenshot(WebDriver driverParam) {
         WebDriver d = driverParam != null ? driverParam : DriverManager.getDriver();
         if (d == null) {
@@ -222,6 +252,7 @@ public class CustomUtilities {
         }
     }
 
+    // Helper that keeps old no-arg call working but uses ThreadLocal
     public static String screenshot() {
         return screenshot(DriverManager.getDriver());
     }
@@ -231,11 +262,21 @@ public class CustomUtilities {
         System.out.println("Suite: " + Suitname);
     }
 
+    // ============== Thread-safe DriverManager (static nested class) ==============
     public static class DriverManager {
+
         private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-        public static void setDriver(WebDriver driverInstance) { driver.set(driverInstance); }
-        public static WebDriver getDriver() { return driver.get(); }
-        public static void unload() { driver.remove(); }
+        public static void setDriver(WebDriver driverInstance) {
+            driver.set(driverInstance);
+        }
+
+        public static WebDriver getDriver() {
+            return driver.get();
+        }
+
+        public static void unload() {
+            driver.remove();
+        }
     }
 }
