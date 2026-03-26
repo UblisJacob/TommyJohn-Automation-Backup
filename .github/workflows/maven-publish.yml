@@ -9,6 +9,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Debug client payload
+        run: |
+          echo "Full client payload:"
+          echo "${{ toJson(github.event.client_payload) }}"
+          TAG_NAME="${{ github.event.client_payload.tag }}"
+          echo "Triggered by tag: $TAG_NAME"
+          echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
+
       - name: Checkout automation repo
         uses: actions/checkout@v3
 
@@ -27,18 +35,11 @@ jobs:
       - name: Wait for Grid to load
         run: sleep 20
 
-      - name: Run tests
-        run: mvn test
+      - name: Run tests with tag info
+        run: mvn test -Drelease.tag="$TAG_NAME"
 
       - name: Stop Selenium Grid
         run: docker compose -f docker-compose-hubNode.yml down
-
-      - name: Upload TestNG report
-        uses: actions/upload-artifact@v4
-        with:
-          name: TestNG-Report
-          path:  Report/
-
 
       - name: Upload TestNG report
         uses: actions/upload-artifact@v4
