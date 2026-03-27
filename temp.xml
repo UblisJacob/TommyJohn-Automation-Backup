@@ -13,7 +13,7 @@
         <classes>
             <class name="TestModules.ValidateHomePage">
                 <methods>
-                    <include name="ValidateShopNowCTAInTopBanner"/>
+                    <include name="VerifyToggleButton"/>
                 </methods>
             </class>
         </classes>
