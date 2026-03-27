@@ -76,7 +76,7 @@ public class ValidateHomePage extends ExtentReport {
         homePage.ValidateClickingOnShopNowCTAInInfluencerProductPopUp();
     }
 
-//	@Test
+	@Test
 	public void VerifyToggleButton() throws Exception {
 
 		new HomePage(driver).VerifyToggleButton();
