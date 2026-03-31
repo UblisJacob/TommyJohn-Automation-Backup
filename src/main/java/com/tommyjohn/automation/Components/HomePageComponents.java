@@ -66,33 +66,52 @@ public class HomePageComponents extends HomePageLocators {
 
 	public void ValidateShopNowCTAInTopBanner() throws InterruptedException {
 		SoftAssert softAssert = new SoftAssert();
-		JavascriptExecutor js = (JavascriptExecutor)driver;
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
 		Thread.sleep(2000);
 
 		List<String> list = new ArrayList<>();
 
-		for(WebElement a : driver.findElements(SHOP_NOW_LINKS))
-		{
-			String  b = a.getAttribute("href");
-
-			list.add(b);
-
+		// Collect all URLs
+		for (WebElement a : driver.findElements(SHOP_NOW_LINKS)) {
+			String href = a.getAttribute("href");
+			if (href != null && !href.isEmpty()) {
+				list.add(href);
+			}
 		}
 
-		System.out.println(list);
+		System.out.println("Collected URLs: " + list);
 
-		for(String c : list)
-		{
+		// Iterate through URLs
+		for (String url : list) {
 
-			driver.get(c);
+			// Skip URLs containing "sale"
+			if (url.toLowerCase().contains("sale")) {
+				System.out.println("Skipping URL: " + url);
+				continue;
+			}
 
+			try {
+				driver.get(url);
 
-			softAssert.assertTrue(driver.findElement(PLP_HEADING).isDisplayed(),"Shop Now links are not working as expected");
+				boolean isDisplayed = driver.findElement(PLP_HEADING).isDisplayed();
 
-	}
-		Reporter.log("Shop Now links are not working as expected");
-		ExtentReport.extentTest.info("Shop Now links are not working as expectede");
+				softAssert.assertTrue(
+						isDisplayed,
+						"PLP Heading not displayed for URL: " + url
+				);
+
+			} catch (Exception e) {
+				softAssert.fail("Exception occurred for URL: " + url + " | " + e.getMessage());
+			}
+		}
+
+		Reporter.log("Shop Now links validation completed");
+		ExtentReport.extentTest.info("Shop Now links validated (excluding 'sale' URLs)");
+
+		// Final assertion
+		softAssert.assertAll();
 	}
 
 

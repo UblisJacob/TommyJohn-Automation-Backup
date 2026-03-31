@@ -82,7 +82,7 @@ public class ValidateHomePage extends ExtentReport {
 		new HomePage(driver).VerifyToggleButton();
 	}
 
-//	@Test
+	@Test
 	public void VerifyRecsInMensToggle() throws Exception {
 
 		new HomePage(driver).VerifyRecsInMensToggle();
