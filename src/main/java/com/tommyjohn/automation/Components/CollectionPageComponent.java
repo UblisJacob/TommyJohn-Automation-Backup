@@ -468,7 +468,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 		SoftAssert softAssert = new SoftAssert();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//a[contains(text(),'Men')])[3]")));
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//a[contains(text(),'Men')])[1]")));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_PRODUCT_HEAD_LINE_TEXT));
 		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//span[@class='flex gap-xs items-center leading-none']")));
