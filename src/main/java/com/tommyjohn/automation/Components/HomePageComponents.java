@@ -264,6 +264,7 @@ public class HomePageComponents extends HomePageLocators {
 		Thread.sleep(2000);
 		js.executeScript("window.scrollBy(0,500)");
 		driver.findElement(MENS_TOGGLE).click();
+		js.executeScript("window.scrollBy(0,500)");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(MENS_SHOP_NOW_CTA));
 		driver.findElement(MENS_SHOP_NOW_CTA).click();
 		softAssert.assertTrue(driver.findElement(PRODUCT_TITLE).isDisplayed(),"Shop Now CTA is not functional");
@@ -538,8 +539,8 @@ public class HomePageComponents extends HomePageLocators {
 
 		JavascriptExecutor js = (JavascriptExecutor)driver;
 		SoftAssert softAssert = new SoftAssert();
-//		driver.get("https://www.tommyjohn.com/collections/mens-all");
-//		driver.navigate().back();
+		driver.get("https://www.tommyjohn.com/collections/mens-all");
+		driver.navigate().back();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
 		js.executeScript("window.scrollBy(0,3000)");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(COLLECTION_SELECTOR));

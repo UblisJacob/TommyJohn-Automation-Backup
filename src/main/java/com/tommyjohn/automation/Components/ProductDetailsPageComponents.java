@@ -92,6 +92,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 
 
+
     public void ValidateNeckLineSection()
     {
         String text = null;
@@ -156,6 +157,41 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
         Reporter.log("Appropriate Product is displayed when the User selects the Style Category");
         ExtentReport.extentTest.info("Appropriate Product is displayed when the User selects the Style Category");
     }
+
+
+	public void ValidateDisabledATCInUpsideDownPDP() throws Exception {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+//		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
+//		new CollectionPageComponent(driver).navigateToProductDetailsPage();
+		driver.get("https://www.tommyjohn.com/products/second-skin-deep-v-neck-stay-tucked-undershirt-3-pack?color=white&view=upsidedown");
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		SoftAssert softAssert = new SoftAssert();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_TITLE));
+		Thread.sleep(5000);
+		Tabs = driver.findElements(PDP_TABS);
+		Tabs_Count = Tabs.size();
+		System.out.println(Tabs_Count);
+		for (int i = 1; i <= Tabs_Count; i++) {
+			js.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//span[@class='text-sm text-text-tertiary'])[" + i + "]")));
+			SelectASize_CTA = driver.findElement(By.xpath("(//button[@class='button-secondary grow'])[1]")).getText();
+			System.out.println(SelectASize_CTA);
+
+			js.executeScript("arguments[0].click();", driver.findElement(RATING_STARS));
+			Thread.sleep(5000);
+			Sticky_SelectASize_CTA = driver.findElement(By.xpath("(//button[@class='button-secondary grow'])[2]")).getText();
+			System.out.println(Sticky_SelectASize_CTA);
+			softAssert.assertEquals(SelectASize_CTA,Sticky_SelectASize_CTA,"ATC CTA is not disabled in Sticky and Regular CTAs when the User doesn't select any size");
+			Reporter.log("ATC CTA is disabled in Sticky and Regular CTAs when the User doesn't select any size");
+			ExtentReport.extentTest.info("ATC CTA is disabled in Sticky and Regular CTAs when the User doesn't select any size");
+		}
+
+	}
+
+
+
+
+
+
 
 	public void ValidateCollectionSection()
 	{
