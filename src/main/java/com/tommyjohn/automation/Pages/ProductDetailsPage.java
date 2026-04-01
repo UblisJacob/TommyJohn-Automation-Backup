@@ -62,6 +62,13 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 
 	}
 
+	public void ValidateDisabledATCInUpsideDownPDP() throws Exception {
+
+
+		new ProductDetailsPageComponents(driver).ValidateDisabledATCInUpsideDownPDP();
+
+	}
+
 	public void ValidateDisabledATC() throws Exception {
 
 

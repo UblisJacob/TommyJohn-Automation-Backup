@@ -63,6 +63,11 @@ public class ValidatePDP extends ExtentReport{
     }
 
 	@Test
+	public void ValidateDisabledATCInUpsideDownPDP() throws Exception {
+		new ProductDetailsPage(driver).ValidateDisabledATCInUpsideDownPDP();
+	}
+
+	@Test
 	public void VerifyShareIconPDP() throws Exception {
 		new ProductDetailsPage(driver).VerifyShareIconPDP();
 	}
