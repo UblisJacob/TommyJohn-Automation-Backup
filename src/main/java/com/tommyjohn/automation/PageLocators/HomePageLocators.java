@@ -288,7 +288,7 @@ public class HomePageLocators{
 		public static By SEARCHPAGE_PRODUCT_IMAGE = By.xpath("(//div[@class='relative aspect-tile'])[1]");
 	public static By SEARCHPAGE_PRODUCT_SWATCHES = By.xpath("(//div[@class='flex items-center'])[1]");
 	public static By SEARCHPAGE_PRODUCT_NAME = By.xpath("(//h2[@class='my-2xs text-body-md']//a)[1]");
-	public static By SEARCHPAGE_PRODUCT_REVIEWS = By.xpath("(//a[@class='my-xs font-normal text-body-xs'])[1]");
+	public static By SEARCHPAGE_PRODUCT_REVIEWS = By.xpath("(//a[@class='my-xs font-normal text-body-xs'])[2]");
 	public static By SEARCHPAGE_PRODUCT_PRICE = By.xpath("(//span[@data-cy='priceFinal'])[1]");
 	public static By SEARCHPAGE_PRODUCT_BADGE = By.cssSelector(".product-item__badge");	
 	public static By RECENT_SEARCHES_TITLE = By.xpath("//h2[@id='PredictiveSearch-QUERIES']");
