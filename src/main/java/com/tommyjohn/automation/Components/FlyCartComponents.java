@@ -50,7 +50,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
         wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.BUNDLE_TIER_TITLE));
         String BUNDLE_TIER_TITLE = driver.findElement(FlyCartPageLocator.BUNDLE_TIER_TITLE).getText();
         System.out.println(BUNDLE_TIER_TITLE);
-        softAssert.assertEquals(BUNDLE_TIER_TITLE,"Women's 5 for $65","The Bundle Tier Meter Is Not Displayed");
+        softAssert.assertEquals(BUNDLE_TIER_TITLE,"Women's 5 for $50","The Bundle Tier Meter Is Not Displayed");
         Reporter.log("Bundle Tier functionality works fine in InLineCart page");
         softAssert.assertAll();
         ExtentReport.extentTest.info("Bundle Tier functionality works fine in InLineCart page");

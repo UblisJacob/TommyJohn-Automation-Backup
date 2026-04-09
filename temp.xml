@@ -13,7 +13,7 @@
         <classes>
             <class name="TestModules.ValidateCartPage">
                 <methods>
-                    <include name="Validate_Cart_InteractWithEmptyCart"/>
+                    <include name="ValidateBundleTierinCartPage"/>
                 </methods>
             </class>
         </classes>
