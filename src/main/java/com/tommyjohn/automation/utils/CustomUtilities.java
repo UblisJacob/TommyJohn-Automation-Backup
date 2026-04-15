@@ -10,6 +10,7 @@ import java.util.Optional;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -23,7 +24,7 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
-import org.openqa.selenium.devtools.v140.emulation.Emulation;
+import org.openqa.selenium.devtools.v147.emulation.Emulation;
 import org.testng.ITestContext;
 import org.testng.Reporter;
 
@@ -58,8 +59,11 @@ public class CustomUtilities {
             chromeOptions.addArguments("--ignore-certificate-errors");
             chromeOptions.addArguments("--disable-gpu");
             // remove headless if you need visual debugging; keep if CI
-            chromeOptions.addArguments("--headless");
+//            chromeOptions.addArguments("--headless=new");
             chromeOptions.addArguments("--window-size=1920,1080");
+            chromeOptions.addArguments("--disable-touch-events");
+            chromeOptions.addArguments("--force-device-scale-factor=1");
+            chromeOptions.addArguments("--disable-features=TouchpadAndWheelScrollLatching");
             chromeOptions.addArguments("--force-device-scale-factor=1");
             chromeOptions.addArguments("--start-maximized");
             chromeOptions.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
@@ -86,23 +90,24 @@ public class CustomUtilities {
             localDriver = new ChromeDriver(chromeOptions);
 
             // optional: use CDP to set device metrics (keeps your previous behavior)
-            try {
-                DevTools devTools = ((ChromeDriver) localDriver).getDevTools();
-                devTools.createSession();
-                devTools.send(Emulation.setDeviceMetricsOverride(
-                        1920, 1080, 1.0, false,
-                        Optional.empty(), Optional.empty(), Optional.empty(),
-                        Optional.empty(), Optional.empty(), Optional.empty(),
-                        Optional.empty(), Optional.empty(), Optional.empty(),
-                        Optional.empty()
-                ));
-            } catch (Exception e) {
-                // CDP may fail on some driver versions/environments — ignore safely
-                System.out.println("DevTools session/setup failed: " + e.getMessage());
-            }
+//            try {
+//                DevTools devTools = ((ChromeDriver) localDriver).getDevTools();
+//                devTools.createSession();
+//                devTools.send(Emulation.setDeviceMetricsOverride(
+//                        1920, 1080, 1.0, false,
+//                        Optional.empty(), Optional.empty(), Optional.empty(),
+//                        Optional.empty(), Optional.empty(), Optional.empty(),
+//                        Optional.empty(), Optional.empty(), Optional.empty(),
+//                        Optional.empty()
+//                ));
+//            } catch (Exception e) {
+//                // CDP may fail on some driver versions/environments — ignore safely
+//                System.out.println("DevTools session/setup failed: " + e.getMessage());
+//            }
 
+
+            localDriver.manage().window().setSize(new Dimension(1920, 1080));
             localDriver.get(baseUrl);
-            localDriver.manage().window().maximize();
 
         } else if (browser.equalsIgnoreCase("firefox")) {
             FirefoxOptions options = new FirefoxOptions();

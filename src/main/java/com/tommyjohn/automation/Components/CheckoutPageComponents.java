@@ -1137,7 +1137,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
     public void validateShippingMethod() throws Exception {
         jse = (JavascriptExecutor)driver;
         SoftAssert softAssert = new SoftAssert();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
         new AddToCartComponents(driver).addToCart();
         wait.until(ExpectedConditions.elementToBeClickable(HomePageLocators.CART_ICON));
         jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
