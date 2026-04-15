@@ -206,7 +206,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
         driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
         String BUNDLE_TIER_TITLE = driver.findElement(FlyCartPageLocator.BUNDLE_TIER_TITLE).getText();
         System.out.println(BUNDLE_TIER_TITLE);
-        softAssert.assertEquals(BUNDLE_TIER_TITLE,"Women's 5 for $50","The Bundle Tier Meter Is Not Displayed");
+        softAssert.assertEquals(BUNDLE_TIER_TITLE,"Women's 5 for $65","The Bundle Tier Meter Is Not Displayed");
         Reporter.log("Bundle Tier functionality works fine in Cart page");
         softAssert.assertAll();
         ExtentReport.extentTest.info("Bundle Tier functionality works fine in Cart page");

@@ -18,8 +18,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.devtools.DevTools;
-import org.openqa.selenium.devtools.v140.network.Network;
-import org.openqa.selenium.devtools.v140.network.model.Request;
+import org.openqa.selenium.devtools.v147.network.Network;
+import org.openqa.selenium.devtools.v147.network.model.Request;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.logging.LogType;
@@ -72,7 +72,8 @@ public class GTMComponents {
                 Optional.empty(), // maxTotalBufferSize
                 Optional.empty(), // maxResourceBufferSize
                 Optional.empty(), // maxPostDataSize
-                Optional.empty()  // maxPostDataSizeReportingEnabled
+                Optional.empty(), // reportDirectSocketTraffic
+                Optional.empty()  // enableDurableMessages
         ));
 
         // ✅ 3. Expected Payload
@@ -149,7 +150,8 @@ public class GTMComponents {
                 Optional.empty(), // maxTotalBufferSize
                 Optional.empty(), // maxResourceBufferSize
                 Optional.empty(), // maxPostDataSize
-                Optional.empty()  // maxPostDataSizeReportingEnabled
+                Optional.empty(), // reportDirectSocketTraffic
+                Optional.empty()  // enableDurableMessages
         ));
         // ✅ 3. Expected JSON Payload for Comparison
         String expectedPayload = "[{\"action\":\"view\",\"target\":{\"pathToPage\":\"/collections/mens-all\"},"
@@ -208,7 +210,8 @@ public class GTMComponents {
                 Optional.empty(), // maxTotalBufferSize
                 Optional.empty(), // maxResourceBufferSize
                 Optional.empty(), // maxPostDataSize
-                Optional.empty()  // maxPostDataSizeReportingEnabled
+                Optional.empty(), // reportDirectSocketTraffic
+                Optional.empty()  // enableDurableMessages
         ));
 
         // ✅ Expected JSON Payload for Comparison (Ignoring "sourceId" & "sessionid")
@@ -266,7 +269,8 @@ public class GTMComponents {
                 Optional.empty(), // maxTotalBufferSize
                 Optional.empty(), // maxResourceBufferSize
                 Optional.empty(), // maxPostDataSize
-                Optional.empty()  // maxPostDataSizeReportingEnabled
+                Optional.empty(), // reportDirectSocketTraffic
+                Optional.empty()  // enableDurableMessages
         ));
         // ✅ Expected JSON Payload for "click" event
         String expectedPayload = "[{\"action\":\"click\",\"target\":{\"product\":\"8413404921901\"},"
@@ -322,12 +326,13 @@ public class GTMComponents {
         devTools.createSession();
 
         // ✅ Enable network monitoring
-        devTools.send(Network.enable(
-                Optional.empty(), // maxTotalBufferSize
-                Optional.empty(), // maxResourceBufferSize
-                Optional.empty(), // maxPostDataSize
-                Optional.empty()  // maxPostDataSizeReportingEnabled
-        ));
+       devTools.send(Network.enable(
+        Optional.empty(), // maxTotalBufferSize
+        Optional.empty(), // maxResourceBufferSize
+        Optional.empty(), // maxPostDataSize
+        Optional.empty(), // reportDirectSocketTraffic
+        Optional.empty()  // enableDurableMessages
+));
 
         // ✅ Expected JSON Payload for "view" product event
         String expectedPayload = "[{\"action\":\"view\",\"target\":{\"product\":\"8413404921901\"},"
@@ -383,12 +388,13 @@ public class GTMComponents {
         devTools.createSession();
 
         // ✅ Enable network monitoring
-        devTools.send(Network.enable(
-                Optional.empty(), // maxTotalBufferSize
-                Optional.empty(), // maxResourceBufferSize
-                Optional.empty(), // maxPostDataSize
-                Optional.empty()  // maxPostDataSizeReportingEnabled
-        ));
+       devTools.send(Network.enable(
+        Optional.empty(), // maxTotalBufferSize
+        Optional.empty(), // maxResourceBufferSize
+        Optional.empty(), // maxPostDataSize
+        Optional.empty(), // reportDirectSocketTraffic
+        Optional.empty()  // enableDurableMessages
+));
 
         // ✅ Expected JSON Payload Adjusted to Match Actual Data
         String expectedSearchTerm = "second skin";
@@ -442,12 +448,13 @@ public class GTMComponents {
         devTools.createSession();
 
         // ✅ Enable network monitoring
-        devTools.send(Network.enable(
-                Optional.empty(), // maxTotalBufferSize
-                Optional.empty(), // maxResourceBufferSize
-                Optional.empty(), // maxPostDataSize
-                Optional.empty()  // maxPostDataSizeReportingEnabled
-        ));
+       devTools.send(Network.enable(
+        Optional.empty(), // maxTotalBufferSize
+        Optional.empty(), // maxResourceBufferSize
+        Optional.empty(), // maxPostDataSize
+        Optional.empty(), // reportDirectSocketTraffic
+        Optional.empty()  // enableDurableMessages
+));
 
         // ✅ Expected JSON Payload (product ID will be dynamically matched)
         String expectedPayload = "[{\"action\":\"remove-from-cart\",\"target\":{\"product\":\"7884372607021\"},"
@@ -505,12 +512,13 @@ public class GTMComponents {
         devTools.createSession();
 
         // ✅ Enable network monitoring
-        devTools.send(Network.enable(
-                Optional.empty(), // maxTotalBufferSize
-                Optional.empty(), // maxResourceBufferSize
-                Optional.empty(), // maxPostDataSize
-                Optional.empty()  // maxPostDataSizeReportingEnabled
-        ));
+       devTools.send(Network.enable(
+        Optional.empty(), // maxTotalBufferSize
+        Optional.empty(), // maxResourceBufferSize
+        Optional.empty(), // maxPostDataSize
+        Optional.empty(), // reportDirectSocketTraffic
+        Optional.empty()  // enableDurableMessages
+));
 
         final boolean[] gtmFound = {false};  // ✅ Flag to check GTM presence
 
@@ -566,12 +574,13 @@ public class GTMComponents {
         devTools.createSession();
 
         // ✅ Enable network monitoring
-        devTools.send(Network.enable(
-                Optional.empty(), // maxTotalBufferSize
-                Optional.empty(), // maxResourceBufferSize
-                Optional.empty(), // maxPostDataSize
-                Optional.empty()  // maxPostDataSizeReportingEnabled
-        ));
+       devTools.send(Network.enable(
+        Optional.empty(), // maxTotalBufferSize
+        Optional.empty(), // maxResourceBufferSize
+        Optional.empty(), // maxPostDataSize
+        Optional.empty(), // reportDirectSocketTraffic
+        Optional.empty()  // enableDurableMessages
+));
 
         final boolean[] gtmFound = {false};  // ✅ Flag to check GTM presence
 
@@ -711,12 +720,13 @@ public class GTMComponents {
         DevTools devTools = driver.getDevTools();
         devTools.createSession();
 
-        devTools.send(Network.enable(
-                Optional.empty(), // maxTotalBufferSize
-                Optional.empty(), // maxResourceBufferSize
-                Optional.empty(), // maxPostDataSize
-                Optional.empty()  // maxPostDataSizeReportingEnabled
-        ));
+       devTools.send(Network.enable(
+        Optional.empty(), // maxTotalBufferSize
+        Optional.empty(), // maxResourceBufferSize
+        Optional.empty(), // maxPostDataSize
+        Optional.empty(), // reportDirectSocketTraffic
+        Optional.empty()  // enableDurableMessages
+));
         final boolean[] isValidPayload = {false};
 
         devTools.addListener(Network.requestWillBeSent(), requestSent -> {
@@ -780,12 +790,13 @@ public class GTMComponents {
         devTools.createSession();
 
         // ✅ Enable network monitoring
-        devTools.send(Network.enable(
-                Optional.empty(), // maxTotalBufferSize
-                Optional.empty(), // maxResourceBufferSize
-                Optional.empty(), // maxPostDataSize
-                Optional.empty()  // maxPostDataSizeReportingEnabled
-        ));
+       devTools.send(Network.enable(
+        Optional.empty(), // maxTotalBufferSize
+        Optional.empty(), // maxResourceBufferSize
+        Optional.empty(), // maxPostDataSize
+        Optional.empty(), // reportDirectSocketTraffic
+        Optional.empty()  // enableDurableMessages
+));
 
         final boolean[] propertiesFound = {false};  // ✅ Track if 'properties' were found
 
@@ -875,12 +886,13 @@ public class GTMComponents {
         DevTools devTools = driver.getDevTools();
         devTools.createSession();
 
-        devTools.send(Network.enable(
-                Optional.empty(), // maxTotalBufferSize
-                Optional.empty(), // maxResourceBufferSize
-                Optional.empty(), // maxPostDataSize
-                Optional.empty()  // maxPostDataSizeReportingEnabled
-        ));
+       devTools.send(Network.enable(
+        Optional.empty(), // maxTotalBufferSize
+        Optional.empty(), // maxResourceBufferSize
+        Optional.empty(), // maxPostDataSize
+        Optional.empty(), // reportDirectSocketTraffic
+        Optional.empty()  // enableDurableMessages
+));
 
         final boolean[] klaviyoMetricFound = {false};
 
@@ -953,12 +965,13 @@ public class GTMComponents {
         DevTools devTools = driver.getDevTools();
         devTools.createSession();
 
-        devTools.send(Network.enable(
-                Optional.empty(), // maxTotalBufferSize
-                Optional.empty(), // maxResourceBufferSize
-                Optional.empty(), // maxPostDataSize
-                Optional.empty()  // maxPostDataSizeReportingEnabled
-        ));
+       devTools.send(Network.enable(
+        Optional.empty(), // maxTotalBufferSize
+        Optional.empty(), // maxResourceBufferSize
+        Optional.empty(), // maxPostDataSize
+        Optional.empty(), // reportDirectSocketTraffic
+        Optional.empty()  // enableDurableMessages
+));
 
         final boolean[] miniCartFound = {false};
 
@@ -1014,12 +1027,13 @@ public class GTMComponents {
         devTools.createSession();
 
         // Enable network logging
-        devTools.send(Network.enable(
-                Optional.empty(), // maxTotalBufferSize
-                Optional.empty(), // maxResourceBufferSize
-                Optional.empty(), // maxPostDataSize
-                Optional.empty()  // maxPostDataSizeReportingEnabled
-        ));
+       devTools.send(Network.enable(
+        Optional.empty(), // maxTotalBufferSize
+        Optional.empty(), // maxResourceBufferSize
+        Optional.empty(), // maxPostDataSize
+        Optional.empty(), // reportDirectSocketTraffic
+        Optional.empty()  // enableDurableMessages
+));
 
         // Store all matching TRKN URLs
         List<String> trknUrls = new ArrayList<>();
@@ -1069,12 +1083,13 @@ public class GTMComponents {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
         // Enable network monitoring
-        devTools.send(Network.enable(
-                Optional.empty(), // maxTotalBufferSize
-                Optional.empty(), // maxResourceBufferSize
-                Optional.empty(), // maxPostDataSize
-                Optional.empty()  // maxPostDataSizeReportingEnabled
-        ));
+       devTools.send(Network.enable(
+        Optional.empty(), // maxTotalBufferSize
+        Optional.empty(), // maxResourceBufferSize
+        Optional.empty(), // maxPostDataSize
+        Optional.empty(), // reportDirectSocketTraffic
+        Optional.empty()  // enableDurableMessages
+));
         // Store matching TRKN pixel URLs
         List<String> trknPixelUrls = new ArrayList<>();
 
@@ -1112,12 +1127,13 @@ public class GTMComponents {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
         // Enable network monitoring
-        devTools.send(Network.enable(
-                Optional.empty(), // maxTotalBufferSize
-                Optional.empty(), // maxResourceBufferSize
-                Optional.empty(), // maxPostDataSize
-                Optional.empty()  // maxPostDataSizeReportingEnabled
-        ));
+       devTools.send(Network.enable(
+        Optional.empty(), // maxTotalBufferSize
+        Optional.empty(), // maxResourceBufferSize
+        Optional.empty(), // maxPostDataSize
+        Optional.empty(), // reportDirectSocketTraffic
+        Optional.empty()  // enableDurableMessages
+));
         // Store matching TRKN pixel URLs
         List<String> trknCheckoutUrls  = new ArrayList<>();
 
@@ -1162,12 +1178,13 @@ public class GTMComponents {
     devTools.createSession();
 
     // Enable network logging
-        devTools.send(Network.enable(
-                Optional.empty(), // maxTotalBufferSize
-                Optional.empty(), // maxResourceBufferSize
-                Optional.empty(), // maxPostDataSize
-                Optional.empty()  // maxPostDataSizeReportingEnabled
-        ));
+       devTools.send(Network.enable(
+        Optional.empty(), // maxTotalBufferSize
+        Optional.empty(), // maxResourceBufferSize
+        Optional.empty(), // maxPostDataSize
+        Optional.empty(), // reportDirectSocketTraffic
+        Optional.empty()  // enableDurableMessages
+));
     // Store all matching Adxcel URLs
     List<String> adxcelUrls = new ArrayList<>();
 
@@ -1208,12 +1225,13 @@ public class GTMComponents {
         DevTools devTools = driver.getDevTools();
         devTools.createSession();
 
-        devTools.send(Network.enable(
-                Optional.empty(), // maxTotalBufferSize
-                Optional.empty(), // maxResourceBufferSize
-                Optional.empty(), // maxPostDataSize
-                Optional.empty()  // maxPostDataSizeReportingEnabled
-        ));
+       devTools.send(Network.enable(
+        Optional.empty(), // maxTotalBufferSize
+        Optional.empty(), // maxResourceBufferSize
+        Optional.empty(), // maxPostDataSize
+        Optional.empty(), // reportDirectSocketTraffic
+        Optional.empty()  // enableDurableMessages
+));
         List<String> bingUrls = new ArrayList<>();
 
         devTools.addListener(Network.requestWillBeSent(), request -> {

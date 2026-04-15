@@ -187,7 +187,7 @@ public class AddToCartComponents extends AddToCartLocators{
 		int count = 0;
 
 		// call method to navigate to collection page
-		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
+		new HomePageComponents(driver).navigateToMensAll();
 		jse=(JavascriptExecutor)driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		// call method to navigate product details page
@@ -202,7 +202,7 @@ public class AddToCartComponents extends AddToCartLocators{
 
 		if(elementsCount > 1)
 		{
-			for(int i=1;i<=4;i++)
+			for(int i=1;i<=5;i++)
 			{
 
 				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//input[@class='sr-only peer'])["+i+"]"));
@@ -210,7 +210,7 @@ public class AddToCartComponents extends AddToCartLocators{
 				jse.executeScript("arguments[0].click();", elemen);
 				Thread.sleep(3000);
 
-					for(int k=1;k<=4;k++)
+					for(int k=1;k<=5;k++)
 					{
 						WebElement elements = driver.findElement(By.xpath("(//input[@name='option[Size]'])["+k+"]"));
 						jse.executeScript("arguments[0].click();", elements);

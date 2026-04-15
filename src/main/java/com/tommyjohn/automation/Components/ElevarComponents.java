@@ -19,8 +19,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.devtools.DevTools;
-import org.openqa.selenium.devtools.v140.network.Network;
-import org.openqa.selenium.devtools.v140.network.model.Request;
+import org.openqa.selenium.devtools.v147.network.Network;
+import org.openqa.selenium.devtools.v147.network.model.Request;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.logging.LogType;
@@ -85,7 +85,8 @@ public class ElevarComponents {
                     Optional.empty(), // maxTotalBufferSize
                     Optional.empty(), // maxResourceBufferSize
                     Optional.empty(), // maxPostDataSize
-                    Optional.empty()  // maxPostDataSizeReportingEnabled
+                    Optional.empty(), // reportDirectSocketTraffic
+                    Optional.empty()  // enableDurableMessages
             ));
             List<String> facebookPixelUrls = new ArrayList<>();
 
@@ -120,7 +121,8 @@ public class ElevarComponents {
                             Optional.empty(), // maxTotalBufferSize
                             Optional.empty(), // maxResourceBufferSize
                             Optional.empty(), // maxPostDataSize
-                            Optional.empty()  // maxPostDataSizeReportingEnabled
+                            Optional.empty(), // reportDirectSocketTraffic
+                            Optional.empty()  // enableDurableMessages
                     ));
                     // Re-register listener for new window
                     devTools.addListener(Network.requestWillBeSent(), request -> {
