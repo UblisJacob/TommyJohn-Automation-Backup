@@ -533,7 +533,7 @@ public class AddToCartComponents extends AddToCartLocators{
 		System.out.println("Color Element count :: " + elementsCount);
 
 		if (elementsCount > 1) {
-			for (int i = 2; i <= elementsCount; i++) {
+			for (int i = 4; i <= elementsCount; i++) {
 
                 WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//input[@class='sr-only peer'])[" + i + "]"));
                 jse = (JavascriptExecutor) driver;
@@ -882,7 +882,7 @@ public class AddToCartComponents extends AddToCartLocators{
 
 		int count=0;
 		// call method to navigate to collection page
-		new HomePageComponents(driver).navigateToMensAll();
+		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
 		jse = (JavascriptExecutor) driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		// call method to navigate product details page
