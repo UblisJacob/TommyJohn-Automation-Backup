@@ -1081,7 +1081,7 @@ public class HomePageComponents extends HomePageLocators {
 				throw new Exception("Women category is not displayed");
 			element = driver.findElement(WOMEN_CATEGORY);
 			action.moveToElement(element).perform();
-			Thread.sleep(3000);
+			Thread.sleep(8000);
 			try {
 				if (!driver.findElement(WOMENS_FIRST_lEVEL1_CATEGORY).isDisplayed())
 					throw new Exception("Women Category is not hoverable");
@@ -3082,7 +3082,7 @@ public class HomePageComponents extends HomePageLocators {
 		jse.executeScript("window.scrollBy(0,250)");
 	}
 	public void navigateToMultipackBundleProduct() throws Exception {
-		driver.get("https://www.tommyjohn.com/products/womens-second-skin-sleep-pocket-tee-pant-set-9?srsltid=AfmBOoqmPKgtSvn_KcjLzMVbkMPNdoEM7jVxkqtCgiN5OKzosJhy5_e-&color=Black");
+		driver.get("https://www.tommyjohn.com/products/womens-second-skin-sleep-pocket-tee-pant-set-9?variant=41210547503149");
 		Thread.sleep(5000);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		jse.executeScript("window.scrollBy(0,250)");

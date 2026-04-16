@@ -13,7 +13,7 @@
         <classes>
             <class name="TestModules.ValidateCheckoutPage">
                 <methods>
-                    <include name="ValidatePaymentSectionOfCheckout"/>
+                    <include name="VerifySplitBundleProduct"/>
                 </methods>
             </class>
         </classes>

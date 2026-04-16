@@ -215,7 +215,7 @@ public class GTMComponents {
         ));
 
         // ✅ Expected JSON Payload for Comparison (Ignoring "sourceId" & "sessionid")
-        String expectedPayload = "[{\"action\":\"add-to-cart\",\"target\":{\"product\":\"8413404921901\"},"
+        String expectedPayload = "[{\"action\":\"add-to-cart\",\"target\":{\"product\":\"4931239444525\"},"
                 + "\"metadata\":{\"locale\":\"en_US\",\"quantity\":1},"
                 + "\"user\":{\"identities\":{},\"segments\":[],\"traits\":{}}}]";
         final boolean[] payloadMatched = {false};
@@ -273,7 +273,7 @@ public class GTMComponents {
                 Optional.empty()  // enableDurableMessages
         ));
         // ✅ Expected JSON Payload for "click" event
-        String expectedPayload = "[{\"action\":\"click\",\"target\":{\"product\":\"8413404921901\"},"
+        String expectedPayload = "[{\"action\":\"click\",\"target\":{\"product\":\"4931239444525\"},"
                 + "\"metadata\":{\"locale\":\"en_US\"},"
                 + "\"user\":{\"identities\":{},\"segments\":[],\"traits\":{}}}]";
 
@@ -335,7 +335,7 @@ public class GTMComponents {
 ));
 
         // ✅ Expected JSON Payload for "view" product event
-        String expectedPayload = "[{\"action\":\"view\",\"target\":{\"product\":\"8413404921901\"},"
+        String expectedPayload = "[{\"action\":\"view\",\"target\":{\"product\":\"4931239444525\"},"
                 + "\"metadata\":{\"locale\":\"en_US\"},"
                 + "\"user\":{\"identities\":{},\"segments\":[],\"traits\":{}}}]";
 
@@ -830,7 +830,7 @@ public class GTMComponents {
                             System.out.println("    • default_swatch_variant_sku: " + defaultSwatchVariantSku);
 
                             // ✅ Mark properties as found if values exist
-                            if (!productId.equals("8413404921901") || !activeVariantSku.equals("3636:S") || !defaultSwatchVariantSku.equals("3636:S")) {
+                            if (!productId.equals("4931239444525") || !activeVariantSku.equals("3636:S") || !defaultSwatchVariantSku.equals("3636:S")) {
                                 propertiesFound[0] = true;
                             }
                         } else {
