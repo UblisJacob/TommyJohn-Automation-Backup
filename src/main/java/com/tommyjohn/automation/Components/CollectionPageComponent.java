@@ -232,8 +232,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	public void ValidateRecsInPLP() throws InterruptedException {
 		SoftAssert softAssert = new SoftAssert();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-
-		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//a[contains(text(),'Women')])[2]")));
+		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//a[contains(text(),'Women')])[1]")));
 		js.executeScript("window.scrollBy(0,10600)");
 		Thread.sleep(5000);
 		js.executeScript("window.scrollBy(0,50)");
@@ -245,7 +244,6 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		softAssert.assertTrue(driver.findElement(PLP_RECS).isDisplayed(),"Recs are not available in the PLP");
 		Reporter.log("Recs are not available in the PLP");
 		ExtentReport.extentTest.info("Recs are not available in the PLP");
-
 	}
 
 	public void ValidateCollectionFiltersCountInAllFiltersDropdownAndInCollectionDropdown() {
