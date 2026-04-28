@@ -114,7 +114,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
         Reporter.log("Filter Pills are displayed");
         ExtentReport.extentTest.info("Filter Pills are displayed");
         js.executeScript("arguments[0].click();", driver.findElement(COLLECTION_FILTER_PILL));
-        String AirFilter = driver.findElement(By.xpath("(//span[@class='font-medium' and contains(text(),'Airs')])")).getText();
+        String AirFilter = driver.findElement(By.xpath("(//span[@class='font-medium' and contains(text(),'Air')])")).getText();
         System.out.println(AirFilter);
         js.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//span[@class='font-medium' and contains(text(),'Air')])")));
         Thread.sleep(10000);

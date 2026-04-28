@@ -146,6 +146,13 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 
 	}
 
+	public void VerifyAddToWishlistInUpsideDownPDP() throws Exception {
+
+
+		new ProductDetailsPageComponents(driver).VerifyAddToWishlistInUpsideDownPDP();
+
+	}
+
 	public void ValidateGuestUserAddToWishlist() throws Exception {
 
 
