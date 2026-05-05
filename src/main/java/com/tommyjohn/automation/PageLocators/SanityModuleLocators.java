@@ -29,8 +29,8 @@ public class SanityModuleLocators {
 	public static By GPTW_FIXED_BANNER_LINK = By.cssSelector("a[data-tj-qa='fixed-banner-cta']");
 	
 	public static By SIDE_BY_SIDE = By.xpath("(//div[@class='shopify-section'])[5]");
-	public static By SIDE_BY_SIDE_IMG1 = By.xpath("//div[@class='mb-lg max-md:-mx-lg max-md:px-2xs']//img");
-	public static By SIDE_BY_SIDE_IMG2 = By.xpath("(//a[@class='relative block size-full md:scrim-top-left md:scrim-dark']//img)[1]");
+	public static By SIDE_BY_SIDE_IMG1 = By.xpath("//div[@class='[grid-area:doorways] flex flex-col md:flex-row gap-2xs my-2xs']//img");
+	public static By SIDE_BY_SIDE_IMG2 = By.xpath("(//a[contains(@class,'scrim-medium')]//img)[1]");
 	public static By SIDE_BY_SIDE_CTA = By.xpath("//a[@class='max-md:button-secondary md:button w-max']");
 	public static By SIDE_BY_SIDE_TEXT = By.xpath("//span[@class='md:absolute md:-translate-x-full md:l-0']");
 	
