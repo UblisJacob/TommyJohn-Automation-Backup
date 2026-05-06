@@ -15,9 +15,11 @@ public class GiftCardPageLocators {
 	public static By PRICE_OPTIONS = By.xpath("//input[@name='option[Amount]']");
 	public static By PRICE_100 = By.cssSelector(".select--options__list >li:nth-child(3)");
 	public static By FRAUD_DISCLOSURE = By.xpath("//div[@class='font-light [&_a]:font-light']");
+	public static By IWANTTOSENDTHISASAGIFTLABEL = By.xpath("//label[@for='ProductForm-GiftCardSchedule']");
+	public static By IWANTTOSENDTHISASAGIFTRADIOBUTTON = By.xpath("//input[@id='ProductForm-GiftCardSchedule']");
 	//Form
 	public static By RECIPIENT_MAIL_LABEL = By.cssSelector("[data-tj-qa='gc-product-email-text'],#gift-card-section >div:nth-child(1)"); 
-	public static By RECIPIENT_MAIL_TEXTBOX = By.cssSelector("[data-tj-qa='gc-product-email-input'],#recipient_email");
+	public static By RECIPIENT_MAIL_TEXTBOX = By.xpath("//div[@class='mb-4']//label[contains(text(),'Recipient email')]");
 	public static By CONFIRM_MAIL_LABEL = By.cssSelector("[data-tj-qa='gc-product-confirm-email-text'],#gift-card-section >div:nth-child(4)");
 	public static By CONFIRM_MAIL_TEXTBOX = By.cssSelector("[data-tj-qa='gc-product-confirm-email-input'],#confirm_recipient_email");
 	public static By DELIVERY_DATE_LABEL = By.cssSelector("[data-tj-qa='gc-product-delivery-date'],#gift-card-section > div:nth-child(8)");

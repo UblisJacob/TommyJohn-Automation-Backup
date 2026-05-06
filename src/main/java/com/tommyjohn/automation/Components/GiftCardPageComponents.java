@@ -50,6 +50,20 @@ public class GiftCardPageComponents extends GiftCardPageLocators {
 	public GiftCardPageComponents(WebDriver driver) {
 		this.driver = driver;
 	}
+
+	public void ValidateIwantToSendThisAsAGiftRadioButton() throws Exception {
+		jse=(JavascriptExecutor)driver;
+		new HomePageComponents(driver).navigateToGiftCard();
+		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(GiftCardPageLocators.IWANTTOSENDTHISASAGIFTLABEL));
+
+		jse.executeScript("arguments[0].click();", driver.findElement(IWANTTOSENDTHISASAGIFTRADIOBUTTON));
+		softAssert.assertTrue(driver.findElement(RECIPIENT_MAIL_TEXTBOX).isDisplayed(), " Radio Button Is Not Functional");
+		Reporter.log("I want to send this as a gift checkbox is functional");
+		ExtentReport.extentTest.info("I want to send this as a gift checkbox is functional");
+		softAssert.assertAll();
+	}
 	
 	public void AddGiftCardTocart() throws Exception
 	{
@@ -108,43 +122,6 @@ public class GiftCardPageComponents extends GiftCardPageLocators {
 		Reporter.log("Gift Cart amount is displayed :: Clickable");
 		ExtentReport.extentTest.info("Gift Cart amount is displayed :: Clickable");
 
-//		// Enter valid Recipient’s and Confirm Recipient’s Email  
-//		Rec_mail=driver.findElement(RECIPIENT_MAIL_TEXTBOX);
-//		Rec_mail.sendKeys(properties.getProperty("checkoutemail"));
-//		System.out.println("Entered recipient mail id is: "+Rec_mail.getAttribute("value"));
-//		Thread.sleep(1000);
-//		driver.findElement(CONFIRM_MAIL_TEXTBOX).sendKeys(properties.getProperty("checkoutemail"));
-		
-
-
-		//Select Today's Delivery date
-				
-//		//softAssert.assertTrue(driver.findElement(DATE_TIME_PICKER_INPUT).isDisplayed(), "Date time picker input is not displayed.");
-//		WebElement calender = driver.findElement(DATE_TIME_PICKER_INPUT);
-//		action.moveToElement(calender).perform();
-//		action.click().perform();
-//		//jse.executeScript("arguments[0].click();", calender );
-//		Thread.sleep(1000);
-//		action.moveToElement(driver.findElement(TODAY)).perform();
-//		action.click().perform();
-//		//jse.executeScript("arguments[0].click();", driver.findElement(TODAY));
-//		Thread.sleep(1000);
-//		Delivery_date = driver.findElement(DATE_TIME_PICKER_INPUT).getAttribute("value");
-//		System.out.println("Selected delivery date is: "+Delivery_date);
-//
-//		DateTimeFormatter formatter = new DateTimeFormatterBuilder().appendPattern("MMMM d, yyyy").toFormatter();
-//		LocalDate parseDate = LocalDate.parse(Delivery_date, formatter);
-//		DateTimeFormatter formatter2= DateTimeFormatter.ofPattern("MM/dd/yyyy");
-//		newDelivery_Date = parseDate.format(formatter2);
-//		System.out.println("Converted date is: "+newDelivery_Date);
-//		Reporter.log("User is able to select date from date picker :: Clickable");
-//		ExtentReport.extentTest.info("User is able to select date from date picker :: Clickable");
-//		
-//		
-//		// Message TextBox
-//		driver.findElement(GIFT_CARD_MESSAGE_TEXTBOX).sendKeys("For You! Enjoy!");
-//		Thread.sleep(3000);
-//
 		GC_Price_PDP =driver.findElement(GiftCard_PageComponents.GIFT_CARD_PRICE).getText();
 		System.out.println(GC_Price_PDP);
 		
@@ -173,26 +150,6 @@ public class GiftCardPageComponents extends GiftCardPageLocators {
 		softAssert.assertEquals(Pricetext,GC_Price_PDP, "Wrong Gift card price is displayed on inline cart");
 		Reporter.log("Gift Card price on inline cart is Displayed :: Correct");
 		ExtentReport.extentTest.info("Gift Card price on inline cart is Displayed :: Correct");
-
-		//Check Recipient email on inline cart
-//		softAssert.assertTrue(driver.findElement(RECIPIENT_MAIL_INLINE_CART).isDisplayed(), " Gift card recipient mail on Inline cart is not displayed");
-//		text = driver.findElement(RECIPIENT_MAIL_INLINE_CART).getText();
-//		System.out.println("Recipient mail id on inline cart is :: "+text);
-//		Expected_text ="Recipient Email: " +Rec_mail.getAttribute("value");
-//		System.out.println("Expected Recipient mail id is: "+Expected_text);
-//		softAssert.assertEquals(text, Expected_text,"Wrong Recipient Email is displayed on inline cart.");
-//		Reporter.log("Recipient mail on inline cart is Displayed :: Correct");
-//		ExtentReport.extentTest.info("Recipient mail on inline cart is Displayed :: Correct");
-//
-//		//Check Delivery date on inline cart
-//		softAssert.assertTrue(driver.findElement(DELIVERY_DATE_INLINE_CART).isDisplayed(), " Gift card delivery date on Inline cart is not displayed");
-//		text = driver.findElement(DELIVERY_DATE_INLINE_CART).getText();
-//		System.out.println("Delivery date on inline cart is :: "+text);
-//		Expected_text ="Delivery Date: " +newDelivery_Date;
-//		System.out.println("Expected Recipient mail id is: "+Expected_text);
-//		softAssert.assertEquals(text,Expected_text,"Wrong Delivery date is displayed on inline cart");
-//		Reporter.log("Delivery date on inline cart is Displayed :: Correct");
-//		ExtentReport.extentTest.info("Delivery date on inline cart is Displayed :: Correct");
 		softAssert.assertAll();
 	}
 

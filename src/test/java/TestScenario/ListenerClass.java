@@ -75,7 +75,6 @@ public class   ListenerClass extends ExtentReport implements ITestListener, IExe
 			System.out.println("Re-Executing " + testName + " Attempt Number: " + count);
 			extentTest.info("Re-Executing " + testName + " Attempt Number: " + count);
 		}
-
 	}
 
 	@Override

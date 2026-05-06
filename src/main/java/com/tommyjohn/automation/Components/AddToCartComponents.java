@@ -22,6 +22,7 @@ import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
 import static com.tommyjohn.automation.ADACheck.ADACheckMethods.softAssert;
+import static com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators.CART_ICON;
 import static com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators.PDP_TABS;
 
 public class AddToCartComponents extends AddToCartLocators{
@@ -960,6 +961,8 @@ public class AddToCartComponents extends AddToCartLocators{
 			}
 
 			driver.get("https://www.tommyjohn.com/");
+			jse.executeScript("arguments[0].click();", driver.findElement(CART_ICON));
+
 
 		}
 		return text;
