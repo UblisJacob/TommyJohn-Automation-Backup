@@ -159,7 +159,7 @@ public class ProductDetailsPageLocators {
     public static By BEST_PAIR_GUARANTEE_SECTION = By.cssSelector("div.product-info_low-inventory-message");
     public static By FREE_RETURNS_SECTION = By.cssSelector("div.product-info_low-inventory-message");
 	public static By FIT_MATERIAL_SECTION = By.xpath("//div[@id='product-fit-materials']");
-	public static By CART_ICON= By.xpath("//button[@data-tj-qa='header-cart-icon']");
+	public static By CART_ICON= By.xpath("//span[@class='icon block icon-cart']");
 	public static By OVERLAY= By.xpath("//div[@class='overlay active']");
 
 	

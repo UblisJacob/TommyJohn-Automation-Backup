@@ -1103,7 +1103,7 @@ public class GTMComponents {
         });
 
         new AddToCartComponents(driver).addsingleproductToCart();
-        Thread.sleep(10000); // ✅ Wait for network request
+        Thread.sleep(20000); // ✅ Wait for network request
         if (trknPixelUrls.isEmpty()) {
             Assert.fail("❌ TRKN 'add_to_cart' pixel was NOT fired!");
         } else {

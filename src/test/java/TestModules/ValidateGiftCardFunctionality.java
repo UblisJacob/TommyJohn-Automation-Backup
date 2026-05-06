@@ -33,6 +33,12 @@ public class ValidateGiftCardFunctionality extends ExtentReport{
 	}
 
 	@Test
+	public void ValidateIwantToSendThisAsAGiftRadioButton() throws Exception
+	{
+		new GiftCardPage(driver).ValidateIwantToSendThisAsAGiftRadioButton();
+	}
+
+	@Test
 	public void ValidateFraudDisclosureInGCPDP() throws Exception
 	{
 		new GiftCardPage(driver).ValidateFraudDisclosureInGCPDP();
