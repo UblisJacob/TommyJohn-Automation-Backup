@@ -3109,6 +3109,13 @@ public class HomePageComponents extends HomePageLocators {
 		jse.executeScript("window.scrollBy(0,250)");
 	}
 
+	public void navigateToMensUnderwearAll() throws Exception {
+		driver.get("https://www.tommyjohn.com/collections/mens-all");
+		Thread.sleep(5000);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("window.scrollBy(0,250)");
+	}
+
 	public void navigateToBraInWomenCategory()  {
 		driver.get("https://www.tommyjohn.com/collections/bras-bralettes");
 		

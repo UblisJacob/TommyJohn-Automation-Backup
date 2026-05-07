@@ -20,6 +20,7 @@ import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
 import static com.tommyjohn.automation.PageLocators.CollectionPageLocator.ADD_TO_BAG_QUICKSHOP;
+import static com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators.CART_ICON;
 
 public class FlyCartComponents extends FlyCartPageLocator{
 
@@ -76,22 +77,25 @@ public class FlyCartComponents extends FlyCartPageLocator{
     }
 
 	public void ValidateQuantityIncreaseInInLineCartPage() throws InterruptedException {
-
+		JavascriptExecutor js = (JavascriptExecutor) driver;
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HomePageLocators.CART_ICON));
 		Thread.sleep(2000);
-		driver.findElement(HomePageLocators.CART_ICON).click();
+//		js.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
+//		js.executeScript("arguments[0].click();", driver.findElement(CART_ICON));
+		//driver.findElement(HomePageLocators.CART_ICON).click();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		SoftAssert softAssert = new SoftAssert();
 //		WebElement quantityInput = wait.until(ExpectedConditions.visibilityOfElementLocated(QUANTITY_INPUT));
-		JavascriptExecutor js = (JavascriptExecutor) driver;
+	//	JavascriptExecutor js = (JavascriptExecutor) driver;
 		WebElement quantityInput = wait.until(ExpectedConditions.visibilityOfElementLocated(MINICART_QUANTITY_INPUT));
 		int initialQty = Integer.parseInt(js.executeScript("return arguments[0].value;", quantityInput).toString().trim());
 
 		// Click the + button until quantity reaches 4
 		for (int i = initialQty; i < 4; i++) {
 			WebElement plusButton = wait.until(ExpectedConditions.elementToBeClickable(MINICART_QUANTITY_INCREASE));
-			plusButton.click();
+			js.executeScript("arguments[0].click();", plusButton);
+			//plusButton.click();
 
 			// Fix: create a final variable for lambda
 			final int expectedQty = i + 1;

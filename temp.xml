@@ -11,9 +11,9 @@
     <test name="Tests">
         <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="TestModules.ValidateGiftCardFunctionality">
+            <class name="TestModules.ValidateSanityModules">
                 <methods>
-                    <include name="ValidateIwantToSendThisAsAGiftRadioButton"/>
+                    <include name="VerifyThreeTileModule"/>
                 </methods>
             </class>
         </classes>

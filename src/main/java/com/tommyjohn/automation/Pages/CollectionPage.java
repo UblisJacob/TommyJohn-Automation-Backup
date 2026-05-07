@@ -510,7 +510,7 @@ public class CollectionPage extends CollectionPageComponent{
 
 	public void validateLearnMoreInQuickshop() throws Exception {
 		// TODO Auto-generated method stub
-		new HomePageComponents(driver).navigateToMensAllUnderwear();
+		new HomePageComponents(driver).navigateToMensUnderwearAll();
 		LearnMoreLinkinQuickShop();
 
 
