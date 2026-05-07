@@ -217,7 +217,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		WebElement element;
 		SoftAssert softAssert = new SoftAssert();
 
-		driver.findElement(HomePageLocators.CART_ICON).click();
+	//	driver.findElement(HomePageLocators.CART_ICON).click();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
@@ -317,7 +317,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 
 		//new AddToCartComponents(driver).addToCart();
-		driver.findElement(HomePageLocators.CART_ICON).click();
+	//	driver.findElement(HomePageLocators.CART_ICON).click();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
 			wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
@@ -384,7 +384,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HomePageLocators.CART_ICON));
 		Thread.sleep(2000);
-		driver.findElement(HomePageLocators.CART_ICON).click();
+//		driver.findElement(HomePageLocators.CART_ICON).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		Reporter.log("Clicked on View cart link in inline cart");
