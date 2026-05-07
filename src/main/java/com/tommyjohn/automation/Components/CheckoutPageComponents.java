@@ -753,8 +753,8 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		wait=new WebDriverWait(driver, Duration.ofSeconds(60));
 		new AddToCartComponents(driver).addsingleproductToCart();
 		
-		wait.until(ExpectedConditions.elementToBeClickable(HomePageLocators.CART_ICON));
-		jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
+//		wait.until(ExpectedConditions.elementToBeClickable(HomePageLocators.CART_ICON));
+//		jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
 		
 		
 		wait.until(ExpectedConditions.elementToBeClickable(CHECKOUT_BUTTON));
@@ -813,7 +813,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		String password = CustomUtilities.properties.getProperty("password");
 		new AddToCartComponents(driver).addsingleproductToCart();
 		jse = (JavascriptExecutor)driver;
-		jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
+	//	jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
 		
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 		Thread.sleep(10000);
@@ -879,7 +879,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		wait=new WebDriverWait(driver, Duration.ofSeconds(60));
 		new AddToCartComponents(driver).addsingleproductToCart();
 
-		driver.findElement(HomePageLocators.CART_ICON).click();
+//	driver.findElement(HomePageLocators.CART_ICON).click();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 //		try {
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
@@ -928,8 +928,8 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		jse = (JavascriptExecutor)driver;
 		wait=new WebDriverWait(driver, Duration.ofSeconds(60));
 		new AddToCartComponents(driver).addsingleproductToCart();
-		driver.get("https://www.tommyjohn.com/");
-		driver.findElement(HomePageLocators.CART_ICON).click();
+//		driver.get("https://www.tommyjohn.com/");
+//		driver.findElement(HomePageLocators.CART_ICON).click();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CHECKOUT_BUTTON));
 		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
@@ -945,7 +945,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		jse = (JavascriptExecutor)driver;
 		wait=new WebDriverWait(driver, Duration.ofSeconds(60));
 		new AddToCartComponents(driver).addsingleproductToCart();
-		driver.findElement(HomePageLocators.CART_ICON).click();
+//		driver.findElement(HomePageLocators.CART_ICON).click();
 		wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 		Thread.sleep(5000);
 		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
@@ -967,7 +967,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		new AddToCartComponents(driver).addsingleproductToCart();
 
 
-		jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
+//		jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
 //		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 
@@ -1011,7 +1011,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		softAssert = new SoftAssert();
 		wait=new WebDriverWait(driver, Duration.ofSeconds(60));
 		new AddToCartComponents(driver).addsingleproductToCart();
-		jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
+//		jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
 //		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.PRODUCTS));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
@@ -1173,8 +1173,8 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		new AddToCartComponents(driver).addsingleproductToCart();
 
 
-		jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
-//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+//		jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
+////		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 
 		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
@@ -1293,7 +1293,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		new AddToCartComponents(driver).addsingleproductToCart();
 
 
-		jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
+//		jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
 //		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 
@@ -1360,7 +1360,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		
 		new AddToCartComponents(driver).addsingleproductToCart();
 		
-		driver.findElement(HomePageLocators.CART_ICON).click();
+//		driver.findElement(HomePageLocators.CART_ICON).click();
 
 		Thread.sleep(5000);
 		WebElement checkout_btn = driver.findElement(CHECKOUT_BUTTON);
@@ -1414,8 +1414,8 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		new AddToCartComponents(driver).addsingleproductToCart();
 		
 		
-		jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
-//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+//		jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
+////		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 
 		
