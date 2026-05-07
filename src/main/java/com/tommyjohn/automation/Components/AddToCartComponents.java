@@ -963,7 +963,6 @@ public class AddToCartComponents extends AddToCartLocators{
 			driver.get("https://www.tommyjohn.com/");
 			jse.executeScript("arguments[0].click();", driver.findElement(CART_ICON));
 
-
 		}
 		return text;
     }

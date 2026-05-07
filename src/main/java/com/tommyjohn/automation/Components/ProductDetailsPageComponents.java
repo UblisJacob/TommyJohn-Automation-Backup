@@ -3262,7 +3262,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		int count = 0;
 		SoftAssert softAssert = new SoftAssert();
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
-		driver.navigate().to("https://www.tommyjohn.com/collections/mens-underwear");
+		driver.navigate().to("https://www.tommyjohn.com/collections/mens-all");
 		//new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();
 
 		//navigate to PDP
