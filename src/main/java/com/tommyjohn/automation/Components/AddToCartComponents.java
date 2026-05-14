@@ -1061,7 +1061,7 @@ public class AddToCartComponents extends AddToCartLocators{
 		int count=0;
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		// call method to navigate to collection page
-		new HomePageComponents(driver).navigateToMensBriefs();
+		new HomePageComponents(driver).navigateToMensAll();
 		jse = (JavascriptExecutor) driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		// call method to navigate product details page
@@ -1136,7 +1136,7 @@ public class AddToCartComponents extends AddToCartLocators{
 			}
 
 			driver.get("https://www.tommyjohn.com/");
-			Thread.sleep(5000);
+			Thread.sleep(10000);
 			jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@class='button-link text-body-xs text-text-tertiary' and contains(text(),'Remove')]")));
 			RemoveItems = driver.findElements(By.xpath("//button[@class='button-link text-body-xs text-text-tertiary' and contains(text(),'Remove')]"));
