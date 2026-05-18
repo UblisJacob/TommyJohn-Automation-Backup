@@ -13,7 +13,7 @@
         <classes>
             <class name="TestModules.ValidateCartPage">
                 <methods>
-                    <include name="Validate_Cart_InteractWithTieredMeter"/>
+                    <include name="Validate_Cart_InteractWithGiftWrap"/>
                 </methods>
             </class>
         </classes>
