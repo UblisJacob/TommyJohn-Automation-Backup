@@ -11,9 +11,9 @@
     <test name="Tests">
         <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="TestModules.ValidateStoreLocator">
+            <class name="TestModules.ValidateGiftCardFunctionality">
                 <methods>
-                    <include name="VerifyStoreLocatorLayout"/>
+                    <include name="ValidateMailIsAdded"/>
                 </methods>
             </class>
         </classes>

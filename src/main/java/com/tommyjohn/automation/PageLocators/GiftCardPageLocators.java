@@ -19,7 +19,7 @@ public class GiftCardPageLocators {
 	public static By IWANTTOSENDTHISASAGIFTRADIOBUTTON = By.xpath("//input[@id='ProductForm-GiftCardSchedule']");
 	//Form
 	public static By RECIPIENT_MAIL_LABEL = By.cssSelector("[data-tj-qa='gc-product-email-text'],#gift-card-section >div:nth-child(1)"); 
-	public static By RECIPIENT_MAIL_TEXTBOX = By.xpath("//div[@class='mb-4']//label[contains(text(),'Recipient email')]");
+	public static By RECIPIENT_MAIL_TEXTBOX = By.xpath("//input[@id='ProductForm-RecipientEmail']");
 	public static By CONFIRM_MAIL_LABEL = By.cssSelector("[data-tj-qa='gc-product-confirm-email-text'],#gift-card-section >div:nth-child(4)");
 	public static By CONFIRM_MAIL_TEXTBOX = By.cssSelector("[data-tj-qa='gc-product-confirm-email-input'],#confirm_recipient_email");
 	public static By DELIVERY_DATE_LABEL = By.cssSelector("[data-tj-qa='gc-product-delivery-date'],#gift-card-section > div:nth-child(8)");
@@ -33,6 +33,7 @@ public class GiftCardPageLocators {
 	public static By GIFT_CARD_MESSAGE_TEXTBOX = By.cssSelector("[data-tj-qa='gc-product-message-input'],#gift-card-section >textarea");
 	public static By GIFT_CARD_MESSAGE_LIMIT = By.cssSelector("[data-tj-qa='gc-product-message-notification'],.limit-label");
 	public static By ATC_BUTTON = By.xpath("//button[@class='button grow']");
+	public static By RECIPIENT_MAIL_INLINECART = By.xpath("//ul[@class='mt-2 text-body leading-[18px] text-text-secondary sm:mt-2']");
 
 	public static By PRODUCT_DETAILS = By.cssSelector("[data-tj-qa='mobile-footer-accordion-product-details'],div.product-accordion.container> ul > li:nth-child(1) > div:nth-child(1) > a");
 	public static By SHIPING_AND_RETURNS = By.cssSelector("[data-tj-qa='mobile-footer-accordion-free-returns'],div.product-accordion.container> ul > li:nth-child(2) > div:nth-child(1) > a");
