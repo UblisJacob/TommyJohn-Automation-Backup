@@ -112,8 +112,8 @@ public class CheckoutPageLocators {
 
 	public static By METHOD =  By.xpath("(//span[contains(text(),'Shipping method')]//following::p)[1]"); //(//h3[contains(text(),'Shipping method')]//following::p)[1]
 	public static By PAYMENT_TEXT = By.cssSelector("#main-header");
-	public static By CREDITCARD_OPTION = By.xpath("//span[contains(text(),'Credit card')]");
-	public static By PAYPAL_OPTION = By.xpath("//span[contains(text(),'PayPal')]");
+	public static By CREDITCARD_OPTION = By.xpath("//strong[contains(text(),'Credit card')]");
+	public static By PAYPAL_OPTION = By.xpath("//strong[contains(text(),'PayPal')]");
 
 	public static By USEDIFFERENTBILLINGADDRESS = By.xpath("//input[@id='billingAddressCheckbox']"); ////input[@id='billingAddress']
 
