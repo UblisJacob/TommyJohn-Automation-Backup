@@ -64,6 +64,30 @@ public class GiftCardPageComponents extends GiftCardPageLocators {
 		ExtentReport.extentTest.info("I want to send this as a gift checkbox is functional");
 		softAssert.assertAll();
 	}
+
+
+	public void ValidateMailIsAdded() throws Exception {
+		jse=(JavascriptExecutor)driver;
+		new HomePageComponents(driver).navigateToGiftCard();
+		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(GiftCardPageLocators.IWANTTOSENDTHISASAGIFTLABEL));
+		jse.executeScript("arguments[0].click();", driver.findElement(IWANTTOSENDTHISASAGIFTRADIOBUTTON));
+		softAssert.assertTrue(driver.findElement(RECIPIENT_MAIL_TEXTBOX).isDisplayed(), " Radio Button Is Not Functional");
+		Reporter.log("I want to send this as a gift checkbox is functional");
+		ExtentReport.extentTest.info("I want to send this as a gift checkbox is functional");
+		driver.findElement(RECIPIENT_MAIL_TEXTBOX).sendKeys("testaccount00001@gmail.com");
+		Thread.sleep(3000);
+		jse.executeScript("arguments[0].click();", driver.findElement(ATC_BUTTON));
+		Thread.sleep(4000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(GiftCardPageLocators.RECIPIENT_MAIL_INLINECART));
+		softAssert.assertTrue(driver.findElement(RECIPIENT_MAIL_INLINECART).isDisplayed(), " Mail Is Not Added");
+		Reporter.log("Mail Is Added");
+		ExtentReport.extentTest.info("Mail Is Added");
+		softAssert.assertAll();
+	}
+
+
 	
 	public void AddGiftCardTocart() throws Exception
 	{

@@ -1109,7 +1109,6 @@ public class GTMComponents {
         } else {
             System.out.println("✅ TRKN 'add_to_cart' pixel fired successfully.");
         }
-
         driver.quit();
     }
 
