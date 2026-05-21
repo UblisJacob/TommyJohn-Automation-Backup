@@ -1583,6 +1583,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		driver.findElement(DISCOUNT_CODE_TEXTBOX).sendKeys("first");
 		WebElement element = driver.findElement(APPLY_DISCOUNT_BUTTON);
 		jse = (JavascriptExecutor) driver;
+		Thread.sleep(10000);
 		jse.executeScript("arguments[0].click();", element);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(INCORRECT_PROMO_CODE_ERROR_MESSAGE));
 		String Error = driver.findElement(INCORRECT_PROMO_CODE_ERROR_MESSAGE).getText();
