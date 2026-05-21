@@ -2374,8 +2374,8 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		Assert.assertTrue(inlineBanner.isEnabled(), "Inline banner is clickable");
 		ExtentReport.extentTest.info("Inline banner is clickable");
 		js.executeScript("arguments[0].scrollIntoView(true);", inlineBanner);
-		//Actions action = new Actions(driver);
-		//action.moveToElement(inlineBanner).click().perform();
+		Actions action = new Actions(driver);
+		action.moveToElement(inlineBanner).click().perform();
 		js.executeScript("arguments[0].click();", inlineBanner);
 //		String[] PageHeader;
 //		PageHeader = (driver.findElement(PAGEHEADER).getText().split("Underwear "));
