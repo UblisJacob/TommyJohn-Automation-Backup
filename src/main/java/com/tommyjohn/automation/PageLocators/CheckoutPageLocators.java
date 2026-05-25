@@ -67,7 +67,7 @@ public class CheckoutPageLocators {
 
 	//SideBar
 	public static By ORDER_SUMMARY_SECTION = By.xpath("//div[@class='_4QenE']");
-	public static By SPLIT_BUNDLE = By.xpath("//div[@id='collapsed-components']");
+	public static By SPLIT_BUNDLE = By.xpath("(//div[contains(@id, 'Details')])[3]");
 	//public static By DISCOUNT_CODE_TEXTBOX = By.cssSelector("#checkout_reduction_code");
 	public static By DISCOUNT_CODE_TEXTBOX = By.xpath("//input[@name='reductions']"); ////input[@name='reductions']
 	//public static By APPLY_DISCOUNT_BUTTON = By.cssSelector(".field__input-btn");
@@ -112,8 +112,8 @@ public class CheckoutPageLocators {
 
 	public static By METHOD =  By.xpath("(//span[contains(text(),'Shipping method')]//following::p)[1]"); //(//h3[contains(text(),'Shipping method')]//following::p)[1]
 	public static By PAYMENT_TEXT = By.cssSelector("#main-header");
-	public static By CREDITCARD_OPTION = By.xpath("//strong[contains(text(),'Credit card')]");
-	public static By PAYPAL_OPTION = By.xpath("//strong[contains(text(),'PayPal')]");
+	public static By CREDITCARD_OPTION = By.xpath("//span[contains(text(),'Credit card')]");
+	public static By PAYPAL_OPTION = By.xpath("//span[contains(text(),'PayPal')]");
 
 	public static By USEDIFFERENTBILLINGADDRESS = By.xpath("//input[@id='billingAddressCheckbox']"); ////input[@id='billingAddress']
 

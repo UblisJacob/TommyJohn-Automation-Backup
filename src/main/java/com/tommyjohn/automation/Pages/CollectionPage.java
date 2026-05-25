@@ -447,7 +447,7 @@ public class CollectionPage extends CollectionPageComponent{
 	}
 
 	public void ValidateOnClickingTheInLineBanner() throws InterruptedException {// TODO Auto-generated method stub
-		new HomePageComponents(driver).navigateToWomensAll();
+		new HomePageComponents(driver).navigateToMensAll();
 		new CollectionPageComponent(driver).ValidateOnClickingTheInLineBanner();
 	}
 	
@@ -510,7 +510,7 @@ public class CollectionPage extends CollectionPageComponent{
 
 	public void validateLearnMoreInQuickshop() throws Exception {
 		// TODO Auto-generated method stub
-		new HomePageComponents(driver).navigateToMensUnderwearAll();
+		new HomePageComponents(driver).navigateToMensAll();
 		LearnMoreLinkinQuickShop();
 
 
