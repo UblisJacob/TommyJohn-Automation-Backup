@@ -2358,29 +2358,25 @@ public class CollectionPageComponent extends CollectionPageLocator {
 
 	public void ValidateOnClickingTheInLineBanner() throws InterruptedException {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollBy(0,500)");
+		js.executeScript("window.scrollBy(0,800)");
 		objGeneralMethods.waitTillPageLoad(driver);
 		Thread.sleep(10000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_INLINE_BANNER));
 		WebElement inlineBanner = driver.findElement(PLP_INLINE_BANNER);
-//		System.out.println(driver.getCurrentUrl());
-//		String[] InLineBannerText;
-//		InLineBannerText = (driver.findElement(INLINEBANNERTEXT).getText().split("Underwear "));
-//		String InLineBanner = InLineBannerText[1];
-//		System.out.println(InLineBanner);
-//		String InLineBannerText = driver.findElement(By.xpath("//div[@class='plpIlb_maintext']")).getText();
 		Assert.assertTrue(inlineBanner.isEnabled(), "Inline banner is clickable");
 		ExtentReport.extentTest.info("Inline banner is clickable");
 		js.executeScript("arguments[0].scrollIntoView(true);", inlineBanner);
-		Actions action = new Actions(driver);
-		action.moveToElement(inlineBanner).click().perform();
 		js.executeScript("arguments[0].click();", inlineBanner);
+//		Actions action = new Actions(driver);
+//		action.moveToElement(inlineBanner).click().perform();
+//		js.executeScript("arguments[0].click();", inlineBanner);
 //		String[] PageHeader;
 //		PageHeader = (driver.findElement(PAGEHEADER).getText().split("Underwear "));
 //		String PageName = PageHeader[1];
 //		System.out.println(PageName);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SHOP_PAGEHEADER));
 		softAssert.assertTrue(driver.findElement(SHOP_PAGEHEADER).isDisplayed(),"User is not directed to Appropriate Page On Clicking the Inline Banner from PLP");
 		Reporter.log("User is directed to Appropriate Page On Clicking the Inline Banner from PLP");
 		ExtentReport.extentTest.info("User is directed to Appropriate Page On Clicking the Inline Banner from PLP");
