@@ -249,7 +249,8 @@ public class HomePageComponents extends HomePageLocators {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
 		Thread.sleep(2000);
 		js.executeScript("window.scrollBy(0,500)");
-		driver.findElement(MENS_TOGGLE).click();
+		js.executeScript("arguments[0].click();", MENS_TOGGLE);
+//		driver.findElement(MENS_TOGGLE).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(MENS_RECS));
 		softAssert.assertTrue(driver.findElement(MENS_RECS).isDisplayed(),"Recs are not available in the Mens Toggle");
 		Reporter.log("Recs are available in the Mens Toggle");

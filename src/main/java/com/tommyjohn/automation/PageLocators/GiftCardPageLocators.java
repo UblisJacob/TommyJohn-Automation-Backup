@@ -34,6 +34,7 @@ public class GiftCardPageLocators {
 	public static By GIFT_CARD_MESSAGE_LIMIT = By.cssSelector("[data-tj-qa='gc-product-message-notification'],.limit-label");
 	public static By ATC_BUTTON = By.xpath("//button[@class='button grow']");
 	public static By RECIPIENT_MAIL_INLINECART = By.xpath("//ul[@class='mt-2 text-body leading-[18px] text-text-secondary sm:mt-2']");
+	public static By RECIPIENT_MAIL_CART = By.xpath("(//ul[@class='mt-2 text-body leading-[18px] text-text-secondary sm:mt-2']//span)[2]");
 
 	public static By PRODUCT_DETAILS = By.cssSelector("[data-tj-qa='mobile-footer-accordion-product-details'],div.product-accordion.container> ul > li:nth-child(1) > div:nth-child(1) > a");
 	public static By SHIPING_AND_RETURNS = By.cssSelector("[data-tj-qa='mobile-footer-accordion-free-returns'],div.product-accordion.container> ul > li:nth-child(2) > div:nth-child(1) > a");

@@ -11,9 +11,9 @@
     <test name="Tests">
         <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="TestModules.ValidateGTM">
+            <class name="TestModules.ValidateGiftCardFunctionality">
                 <methods>
-                    <include name="ValidateGTMForFredHopper"/>
+                    <include name="ValidateGiftDetailsInCartPage"/>
                 </methods>
             </class>
         </classes>

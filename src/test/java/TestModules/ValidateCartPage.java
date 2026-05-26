@@ -178,7 +178,7 @@ public class ValidateCartPage extends ExtentReport{
 	public void Validate_Cart_InteractWithTieredMeter() throws Exception {
 
 		new AddToCartComponents(driver).addToCart();
-		new ShoppingCartPage(driver).ValidateViewCartLink();
+		new ShoppingCartPage(driver).clickViewCartLink();
 		new ShoppingCartPage(driver).tieredMeterFunctionality();
 	}
 

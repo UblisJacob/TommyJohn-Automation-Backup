@@ -24,6 +24,10 @@ public class GiftCardPage extends GiftCardPageComponents {
 		new GiftCardPageComponents(driver).ValidateIwantToSendThisAsAGiftRadioButton();
 	}
 
+	public void ValidateGiftDetailsInCartPage() throws Exception {
+		new GiftCardPageComponents(driver).ValidateGiftDetailsInCartPage();
+	}
+
 	public void ValidateFraudDisclosureInGCPDP() throws Exception {
 		new GiftCardPageComponents(driver).ValidateFraudDisclosureInGCPDP();
 	}
