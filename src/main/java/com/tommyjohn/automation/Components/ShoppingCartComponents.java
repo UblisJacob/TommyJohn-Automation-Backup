@@ -384,13 +384,29 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(HomePageLocators.CART_ICON));
 //		Thread.sleep(2000);
-		driver.findElement(HomePageLocators.CART_ICON).click();
+//		driver.findElement(HomePageLocators.CART_ICON).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		Reporter.log("Clicked on View cart link in inline cart");
 		ExtentReport.extentTest.info("Clicked on View cart link in inline cart");
 		softAssert.assertAll();
 		
+	}
+
+	public void clickViewCartLink() throws Exception
+	{
+		SoftAssert softAssert = new SoftAssert();
+
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(HomePageLocators.CART_ICON));
+//		Thread.sleep(2000);
+		driver.findElement(HomePageLocators.CART_ICON).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+		Reporter.log("Clicked on View cart link in inline cart");
+		ExtentReport.extentTest.info("Clicked on View cart link in inline cart");
+		softAssert.assertAll();
+
 	}
 	
 	public void validatePromotionalMessage() throws Exception
