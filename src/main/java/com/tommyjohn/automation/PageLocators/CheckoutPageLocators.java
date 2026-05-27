@@ -31,6 +31,7 @@ public class CheckoutPageLocators {
 	public static By ALREADYHAVEANACCOUNT_TEXT = By.cssSelector(".layout-flex__item > span");
 	public static By LOGIN_LINK = By.xpath("//a[contains(text(),'Sign in')]");
 	public static By CHECKOUT_EMAIL = By.xpath("//input[@id='email']");
+	public static By GC_EMAIL = By.xpath("//span[@class='_19gi7yt0 _19gi7ytn _19gi7ytg _1fragemvp _19gi7yt18 _19gi7yt1h _19gi7yt1n _1fragem3h']");
 	public static By GC_FRAUDDISCLOSURE = By.xpath("//span[contains(text(),'Avoid Gift Card Scams')]//following::span[contains(text(),'Never use a gift card to pay a debt, and never give gift card information to someone you don’t know. Report a scam or learn more: ')]");
 	
 	//Contact info (after logging in)

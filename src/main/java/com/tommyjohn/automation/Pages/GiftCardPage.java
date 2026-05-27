@@ -28,6 +28,10 @@ public class GiftCardPage extends GiftCardPageComponents {
 		new GiftCardPageComponents(driver).ValidateGiftDetailsInCartPage();
 	}
 
+	public void ValidateGiftDetailsInCheckoutPage() throws Exception {
+		new GiftCardPageComponents(driver).ValidateGiftDetailsInCheckoutPage();
+	}
+
 	public void ValidateFraudDisclosureInGCPDP() throws Exception {
 		new GiftCardPageComponents(driver).ValidateFraudDisclosureInGCPDP();
 	}

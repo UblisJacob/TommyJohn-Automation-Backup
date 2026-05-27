@@ -24,6 +24,8 @@ import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
 import com.tommyjohn.automation.PageLocators.ShoppingCartLocators;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
+import static com.tommyjohn.automation.PageLocators.CheckoutPageLocators.*;
+import static com.tommyjohn.automation.PageLocators.FlyCartPageLocator.CHECKOUT_BUTTON;
 import static com.tommyjohn.automation.PageLocators.FlyCartPageLocator.VIEW_CART_LINK;
 
 public class GiftCardPageComponents extends GiftCardPageLocators {
@@ -87,6 +89,36 @@ public class GiftCardPageComponents extends GiftCardPageLocators {
 		String Mail = driver.findElement(RECIPIENT_MAIL_CART).getText();
 		System.out.println(Mail);
 		softAssert.assertTrue(driver.findElement(RECIPIENT_MAIL_CART).isDisplayed(), " Mail Is Not Added");
+		Reporter.log("Mail Is Added");
+		ExtentReport.extentTest.info("Mail Is Added");
+		softAssert.assertAll();
+	}
+
+	public void ValidateGiftDetailsInCheckoutPage() throws Exception {
+		jse=(JavascriptExecutor)driver;
+		new HomePageComponents(driver).navigateToGiftCard();
+		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(GiftCardPageLocators.IWANTTOSENDTHISASAGIFTLABEL));
+		jse.executeScript("arguments[0].click();", driver.findElement(IWANTTOSENDTHISASAGIFTRADIOBUTTON));
+		softAssert.assertTrue(driver.findElement(RECIPIENT_MAIL_TEXTBOX).isDisplayed(), " Radio Button Is Not Functional");
+		Reporter.log("I want to send this as a gift checkbox is functional");
+		ExtentReport.extentTest.info("I want to send this as a gift checkbox is functional");
+		driver.findElement(RECIPIENT_MAIL_TEXTBOX).sendKeys("testaccount00001@gmail.com");
+		Thread.sleep(3000);
+		jse.executeScript("arguments[0].click();", driver.findElement(ATC_BUTTON));
+		Thread.sleep(4000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(VIEW_CART_LINK));
+		jse.executeScript("arguments[0].click();", driver.findElement(VIEW_CART_LINK));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(GiftCardPageLocators.RECIPIENT_MAIL_CART));
+		String Mail = driver.findElement(RECIPIENT_MAIL_CART).getText();
+		System.out.println(Mail);
+		softAssert.assertTrue(driver.findElement(RECIPIENT_MAIL_CART).isDisplayed(), " Mail Is Not Added");
+		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(GC_EMAIL));
+		String GC_Mail = driver.findElement(GC_EMAIL).getText();
+		System.out.println(GC_Mail);
+		softAssert.assertTrue(driver.findElement(GC_EMAIL).isDisplayed(),"Gift Certificate Email is Not Added In Checkout Page");
 		Reporter.log("Mail Is Added");
 		ExtentReport.extentTest.info("Mail Is Added");
 		softAssert.assertAll();
