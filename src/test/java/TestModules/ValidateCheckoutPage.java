@@ -50,7 +50,7 @@ public class ValidateCheckoutPage extends ExtentReport {
 	@Test
 	public void VerifySplitBundleProduct() throws Exception
 	{
-		new AddToCartComponents(driver).addmultipackbundleproduct();
+		new AddToCartComponents(driver).addSingleSplitproduct();
 		new CheckoutPage(driver).VerifSplitBundleProduct();
 	}
 

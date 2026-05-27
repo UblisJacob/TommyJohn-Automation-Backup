@@ -249,8 +249,9 @@ public class HomePageComponents extends HomePageLocators {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
 		Thread.sleep(2000);
 		js.executeScript("window.scrollBy(0,500)");
-		js.executeScript("arguments[0].click();", MENS_TOGGLE);
-//		driver.findElement(MENS_TOGGLE).click();
+		Thread.sleep(2000);
+		driver.findElement(MENS_TOGGLE).click();
+		js.executeScript("window.scrollBy(0,300)");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(MENS_RECS));
 		softAssert.assertTrue(driver.findElement(MENS_RECS).isDisplayed(),"Recs are not available in the Mens Toggle");
 		Reporter.log("Recs are available in the Mens Toggle");
@@ -3083,7 +3084,7 @@ public class HomePageComponents extends HomePageLocators {
 		jse.executeScript("window.scrollBy(0,250)");
 	}
 	public void navigateToMultipackBundleProduct() throws Exception {
-		driver.get("https://www.tommyjohn.com/products/womens-second-skin-sleep-pocket-tee-pant-set-9?variant=41210547503149");
+		driver.get("https://www.tommyjohn.com/products/second-skin-trunk-4-3-pack-49?variant=33953798258733");
 		Thread.sleep(5000);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		jse.executeScript("window.scrollBy(0,250)");
