@@ -26,6 +26,17 @@ public class ValidateCheckoutPage extends ExtentReport {
 			e1.printStackTrace();
 		}
 	}
+
+
+
+		@Test
+	public void ValidateNonFreeShippingWithUnderwearOffer() throws Exception
+	{
+		new AddToCartComponents(driver).add3for$48product();
+		new CheckoutPage(driver).ValidateNonFreeShippingWithUnderwearOffer();
+	}
+
+
 	
 	//@Test
 //	public void ValidateExpressCheckoutoptionsAreFunctional() throws Exception

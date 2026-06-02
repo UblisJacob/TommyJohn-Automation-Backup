@@ -44,6 +44,45 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		this.driver = driver;
 	}
 
+	public void NonFreeShippingWithUnderwearOffer() throws Exception {
+		jse = (JavascriptExecutor)driver;
+		String FreeShipping = "8.95";
+		SoftAssert softAssert1 = new SoftAssert();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+//		new AddToCartComponents(driver).NonFreeShippingAddToCart();
+		wait.until(ExpectedConditions.elementToBeClickable(HomePageLocators.CART_ICON));
+		jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+//		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+		Thread.sleep(5000);
+		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
+		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
+		softAssert1.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
+		entershippingdetails();
+		Reporter.log("Shipping Address Details entered");
+		ExtentReport.extentTest.info("Shipping Address Details entered");
+		// driver.findElement(CONTINUE_TO_SHIPPING_BUTTON).click();
+		WebElement Continue_shipping = driver.findElement(CONTINUE_TO_SHIPPING_BUTTON);
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", Continue_shipping);
+		Reporter.log("User is navigated to select shipping method");
+		ExtentReport.extentTest.info("User is navigated to select shipping method");
+		Thread.sleep(10000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACT_EMAIL));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(NON_FREE_SHIPPING));
+		String NonFreeShipping = driver.findElement(NON_FREE_SHIPPING).getText();
+		System.out.println(NonFreeShipping);
+		softAssert1.assertEquals(NonFreeShipping,"$8.95","Free Shipping is offered when the Cart contains products with below $75");
+	//	softAssert1.assertAll();
+		Reporter.log("Free Shipping is not offered when the Cart contains products with below $75");
+		ExtentReport.extentTest.info("Free Shipping is not offered when the Cart contains products with below $75");
+	}
+
+
+
+
+
+
 	public void VerifyCartIconInCheckoutPage() throws InterruptedException {
 
 		jse = (JavascriptExecutor)driver;

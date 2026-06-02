@@ -53,6 +53,13 @@ public class CheckoutPage extends CheckoutPageComponents {
 
 	}
 
+
+	public void ValidateNonFreeShippingWithUnderwearOffer() throws Exception
+	{
+		new CheckoutPageComponents(driver).NonFreeShippingWithUnderwearOffer();
+
+	}
+
 	public void validateFreeShipping() throws Exception
 	{
 		new CheckoutPageComponents(driver).validateFreeShipping();
