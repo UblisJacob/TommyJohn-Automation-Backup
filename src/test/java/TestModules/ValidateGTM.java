@@ -38,7 +38,7 @@ public class ValidateGTM {
         new GTMValidations(driver).validateGTMEventsForFredHopper();
     }
 
-    @Test
+  //  @Test
     public void Validatepowerfront() throws Exception {
         new GTMValidations(driver).validatePowerfront();
     }

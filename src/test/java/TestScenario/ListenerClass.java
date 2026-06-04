@@ -3,25 +3,24 @@ package TestScenario;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.base.ExtentReport;
+import com.base.GDrivePOST;
 import com.tommyjohn.automation.utils.CustomUtilities;
 import org.openqa.selenium.WebDriver;
 import org.testng.*;
 
-import java.io.IOException;
-import java.security.GeneralSecurityException;
 import java.util.Set;
 
-import static com.base.Slack.sendSlackNotificationADA;
 import static com.base.Slack.sendSlackNotificationReg;
 
-public class   ListenerClass extends ExtentReport implements ITestListener, IExecutionListener {
+public class ListenerClass extends ExtentReport
+		implements ITestListener, IExecutionListener {
 
 	WebDriver driver;
 	static int count = 1;
 	static boolean shouldPrint = true;
 	static String browserName = null;
 
-	public String reportLink = null;
+	public static String reportLink = "Report upload failed"; // 🔧 CHANGE
 
 	public String SuiteName = null;
 
@@ -29,168 +28,125 @@ public class   ListenerClass extends ExtentReport implements ITestListener, IExe
 	public int Ffailed = 0;
 	public int Fskipped = 0;
 
-
-
+	// ================= EXECUTION START =================
 	@Override
-
 	public void onExecutionStart() {
 		initializeExtentReports();
 		System.out.println("Tests started executing");
-
 	}
 
-
+	// ================= SUITE START =================
 	@Override
 	public void onStart(ITestContext context) {
+
 		String ADACheckSuiteName = "ADACheck Test Suite";
-		SuiteName = context.getSuite().getName().toString();
-		System.out.println("SuiteName: " + SuiteName);
+		SuiteName = context.getSuite().getName();
 		browserName = context.getCurrentXmlTest().getParameter("browser");
-		System.out.println("Test execution started using Browser: " + browserName);
-		if(SuiteName.equals(ADACheckSuiteName))
-		{
-			sparkReporter_AllTests.config().setReportName("ADACheck Test Report");
-		}
-		else {
 
-			sparkReporter_AllTests.config().setReportName("Regression Test Report");
-		}
+		System.out.println("SuiteName: " + SuiteName);
+		System.out.println("Browser: " + browserName);
 
+		if (SuiteName.equals(ADACheckSuiteName)) {
+			sparkReporter_AllTests.config()
+					.setReportName("ADACheck Test Report");
+		} else {
+			sparkReporter_AllTests.config()
+					.setReportName("Regression Test Report");
+		}
 	}
 
-
+	// ================= TEST START =================
 	@Override
 	public void onTestStart(ITestResult result) {
+
 		String testName = result.getName();
 
-		if(shouldPrint)
-		{
-//			then create test
+		if (shouldPrint) {
 			extentTest = extentReport.createTest(testName);
-			System.out.println("Executing " + testName + " Attempt Number: " + count);
-			extentTest.info("Executing " + testName + " Attempt Number: " + count);
-		}
-		else
-		{
-			System.out.println("Re-Executing " + testName + " Attempt Number: " + count);
-			extentTest.info("Re-Executing " + testName + " Attempt Number: " + count);
+			extentTest.info("Executing " + testName + " Attempt: " + count);
+		} else {
+			extentTest.info("Re-Executing " + testName + " Attempt: " + count);
 		}
 	}
 
+	// ================= SUCCESS =================
 	@Override
 	public void onTestSuccess(ITestResult result) {
 
-		count=1;
-		shouldPrint=true;
-		String testName = result.getName();
-		extentTest.pass(testName + " got executed successfully");
-		extentTest.log(Status.PASS, "Test Passed");
-		System.out.println(testName + " got executed successfully");
+		count = 1;
+		shouldPrint = true;
 
+		extentTest.log(Status.PASS,
+				result.getName() + " executed successfully");
 	}
 
+	// ================= FAILURE =================
 	@Override
 	public void onTestFailure(ITestResult result) {
 
-		String screenShotPath = CustomUtilities.screenshot();
+		String screenshotBase64 = CustomUtilities.screenshot();
+
+		extentTest.info("Screenshot",
+				MediaEntityBuilder.createScreenCaptureFromBase64String(
+						screenshotBase64).build());
+
+		extentTest.fail(result.getThrowable());
 
 		if (count < Retry.maxRetryCount) {
 			shouldPrint = false;
-
-
+			count++;
 		} else {
 			shouldPrint = true;
-
-		}
-
-		String testName = result.getName();
-
-		String fileName = result.getMethod().getMethodName().replaceAll(" ", "_");
-
-		//       String screenShotPath = CustomUtilities.screenshot();
-		//extentTest.addScreenCaptureFromPath(screenShotPath);
-
-		extentTest.info("Screenshot",
-				MediaEntityBuilder.createScreenCaptureFromBase64String(screenShotPath).build());
-		extentTest.info(result.getThrowable());
-		extentTest.fail(testName + " got failed");
-
-		if (count == Retry.maxRetryCount) {
-			//         extentTest.addScreenCaptureFromPath(screenShotPath);
 			count = 1;
 		}
-		else
-		{
-			count++;
-		}
-
 	}
 
+	// ================= SKIPPED =================
 	@Override
 	public void onTestSkipped(ITestResult result) {
-		String testName = result.getName();
-		extentTest.log(Status.INFO, result.getThrowable());
-		extentTest.log(Status.SKIP, testName + " got failed");
-
+		extentTest.log(Status.SKIP, result.getThrowable());
 	}
 
 	@Override
-	public void onTestFailedButWithinSuccessPercentage(ITestResult result)
-	{
+	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {}
 
-	}
-
+	// ================= EXECUTION FINISH =================
 	@Override
 	public void onExecutionFinish() {
 
 		generateExtentReports();
 
 		try {
-			reportLink = com.base.GDrivePOST.UploadReport();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		} catch (GeneralSecurityException e) {
-			throw new RuntimeException(e);
+			// 🔧 CHANGE: Service Account Drive upload
+			reportLink = GDrivePOST.UploadReport();
+			System.out.println("Report uploaded to Drive: " + reportLink);
+
+		} catch (Exception e) {
+			System.err.println("Drive upload failed");
+			e.printStackTrace();
 		}
-		try
-		{
-//			sendSlackNotificationReg(String.valueOf(Fpassed),String.valueOf(Ffailed),String.valueOf(Fskipped),reportLink);
-		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
+
+		try {
+			// 🔧 CHANGE: Send Slack ONLY if link is valid
+			if (!reportLink.contains("failed")) {
+				sendSlackNotificationReg(
+						String.valueOf(Fpassed),
+						String.valueOf(Ffailed),
+						String.valueOf(Fskipped),
+						reportLink
+				);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
+	// ================= SUITE FINISH =================
 	@Override
 	public void onFinish(ITestContext context) {
 
-		Set<ITestResult> failedTests = context.getFailedTests().getAllResults();
-		Set<ITestResult> skippedTests = context.getSkippedTests().getAllResults();
-		for (ITestResult temp : failedTests) {
-			ITestNGMethod method = temp.getMethod();
-//			System.out.println(context.getFailedTests().size());
-//			System.out.println(context.getPassedTests().size());
-			if (context.getFailedTests().getResults(method).size() > 1) {
-				failedTests.remove(temp);
-			} else {
-				if (context.getPassedTests().getResults(method).size() > 0) {
-					failedTests.remove(temp);
-				}
-			}
-		}
-		for (ITestResult temp : skippedTests) {
-			ITestNGMethod method = temp.getMethod();
-			if (context.getSkippedTests().getResults(method).size() > 0) {
-				skippedTests.remove(temp);
-			} else {
-				if (context.getPassedTests().getResults(method).size() > 0) {
-					skippedTests.remove(temp);
-				}
-			}
-		}
-
-		Fpassed = Fpassed + (context.getPassedTests().size());
-		Ffailed = Ffailed + (context.getFailedTests().size());
-		Fskipped = Fskipped + (context.getSkippedTests().size());
+		Fpassed += context.getPassedTests().size();
+		Ffailed += context.getFailedTests().size();
+		Fskipped += context.getSkippedTests().size();
 	}
 }

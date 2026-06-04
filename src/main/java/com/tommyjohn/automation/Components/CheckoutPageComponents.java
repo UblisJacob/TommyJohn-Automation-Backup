@@ -29,6 +29,12 @@ import static com.tommyjohn.automation.PageLocators.HomePageLocators.PRODUCT_NAM
 
 public class CheckoutPageComponents extends CheckoutPageLocators {
 
+	//String Promo_Code = "TJHUSTLE";
+
+	public CheckoutPageComponents(WebDriver driver) {
+		this.driver = driver;
+	}
+
 	public WebDriver driver;
 	public JavascriptExecutor jse;
 	Wait<WebDriver> wait;
@@ -37,17 +43,10 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	double installment;
 	String price;
 	String text;
-	SoftAssert softAssert;
-	//String Promo_Code = "TJHUSTLE";
-
-	public CheckoutPageComponents(WebDriver driver) {
-		this.driver = driver;
-	}
+	SoftAssert softAssert = new SoftAssert();
 
 	public void NonFreeShippingWithUnderwearOffer() throws Exception {
 		jse = (JavascriptExecutor)driver;
-		String FreeShipping = "8.95";
-		SoftAssert softAssert1 = new SoftAssert();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 //		new AddToCartComponents(driver).NonFreeShippingAddToCart();
 		wait.until(ExpectedConditions.elementToBeClickable(HomePageLocators.CART_ICON));
@@ -58,7 +57,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
 		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
-		softAssert1.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
+		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Delivery", "Shipping address title is not displayed");
 		entershippingdetails();
 		Reporter.log("Shipping Address Details entered");
 		ExtentReport.extentTest.info("Shipping Address Details entered");
@@ -72,15 +71,11 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(NON_FREE_SHIPPING));
 		String NonFreeShipping = driver.findElement(NON_FREE_SHIPPING).getText();
 		System.out.println(NonFreeShipping);
-		softAssert1.assertEquals(NonFreeShipping,"$8.95","Free Shipping is offered when the Cart contains products with below $75");
-	//	softAssert1.assertAll();
+		softAssert.assertEquals(NonFreeShipping,"$8.95","Free Shipping is offered when the Cart contains products with below $75");
+		softAssert.assertAll();
 		Reporter.log("Free Shipping is not offered when the Cart contains products with below $75");
 		ExtentReport.extentTest.info("Free Shipping is not offered when the Cart contains products with below $75");
 	}
-
-
-
-
 
 
 	public void VerifyCartIconInCheckoutPage() throws InterruptedException {
@@ -210,7 +205,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
 		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
-		//softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
+		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Delivery", "Shipping address title is not displayed");
 		entershippingdetails();
 		Reporter.log("Shipping Address Details entered");
 		ExtentReport.extentTest.info("Shipping Address Details entered");
@@ -237,7 +232,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
 		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
-		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
+		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Delivery", "Shipping address title is not displayed");
 		entershippingdetails();
 		Reporter.log("Shipping Address Details entered");
 		ExtentReport.extentTest.info("Shipping Address Details entered");
@@ -271,7 +266,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
 		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
-		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
+		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Delivery", "Shipping address title is not displayed");
 		entershippingdetails();
 		Reporter.log("Shipping Address Details entered");
 		ExtentReport.extentTest.info("Shipping Address Details entered");
@@ -316,7 +311,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
 		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
-		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
+		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Delivery", "Shipping address title is not displayed");
 		entershippingdetails();
 		Reporter.log("Shipping Address Details entered");
 		ExtentReport.extentTest.info("Shipping Address Details entered");
@@ -430,7 +425,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(INFO_DISCOUNT_3for$48_1));
 		}
 		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
-		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
+		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Delivery", "Shipping address title is not displayed");
 		entershippingdetails();
 		WebElement Continue_shipping = driver.findElement(CONTINUE_TO_SHIPPING_BUTTON);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", Continue_shipping);
@@ -524,7 +519,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(INFO_DISCOUNT_3for$48_1));
 		}
 		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
-		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
+		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Delivery", "Shipping address title is not displayed");
 		entershippingdetails();
 		Reporter.log("Shipping Address Details entered");
 		ExtentReport.extentTest.info("Shipping Address Details entered");
@@ -596,7 +591,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		Thread.sleep(4000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
 		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
-		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
+		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Delivery", "Shipping address title is not displayed");
 		entershippingdetails();
 		Reporter.log("Shipping Address Details entered");
 		ExtentReport.extentTest.info("Shipping Address Details entered");
@@ -626,7 +621,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		Thread.sleep(4000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
 		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
-		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
+		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Delivery", "Shipping address title is not displayed");
 		entershippingdetails();
 		Reporter.log("Shipping Address Details entered");
 		ExtentReport.extentTest.info("Shipping Address Details entered");
@@ -1016,7 +1011,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
 		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
 
-		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
+		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Delivery", "Shipping address title is not displayed");
 		Thread.sleep(5000);
 		entershippingdetails();
 		Reporter.log("Shipping Address Details entered");
@@ -1059,7 +1054,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
 		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
 
-		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
+		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Delivery", "Shipping address title is not displayed");
 		Thread.sleep(5000);
 		entershippingdetails();
 		Reporter.log("Shipping Address Details entered");
@@ -1105,7 +1100,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		softAssert.assertTrue(driver.findElement(PHONE).isDisplayed(), "Phone number Field is not displayed");
 		Reporter.log("Phone number Field is displayed");
 		ExtentReport.extentTest.info("Phone number Field is displayed");
-//		softAssert.assertAll();
+		softAssert.assertAll();
 		Reporter.log("All the Billing address fields are displayed");
 		ExtentReport.extentTest.info("All the Billing address fields are displayed");
 	}
@@ -1123,7 +1118,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
 		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
-		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
+		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Delivery", "Shipping address title is not displayed");
 		entershippingdetails();
 		Reporter.log("Shipping Address Details entered");
 		ExtentReport.extentTest.info("Shipping Address Details entered");
@@ -1154,7 +1149,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
 		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
-		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
+		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Delivery", "Shipping address title is not displayed");
 		entershippingdetails();
 		Reporter.log("Shipping Address Details entered");
 		ExtentReport.extentTest.info("Shipping Address Details entered");
@@ -1183,7 +1178,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
         jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
         wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
         driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
-        softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
+		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Delivery", "Shipping address title is not displayed");
         entershippingdetails();
         Reporter.log("Shipping Address Details entered");
         ExtentReport.extentTest.info("Shipping Address Details entered");
@@ -1199,7 +1194,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
         String Shipping = driver.findElement(SHIPPING_PRICE).getText();
         System.out.println(Shipping);
         softAssert.assertEquals(EXPEDITED_SHIPPING,Shipping,"Shipping price is not displayed as expected");
-//        softAssert.assertAll();
+        softAssert.assertAll();
         Reporter.log("Shipping price is displayed as expected");
         ExtentReport.extentTest.info("Shipping price is displayed as expected");
     }
@@ -1221,7 +1216,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
 		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
 
-		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
+		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Delivery", "Shipping address title is not displayed");
 		Thread.sleep(5000);
 		entershippingdetails();
 		Reporter.log("Shipping Address Details entered");
@@ -1274,7 +1269,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		Reporter.log("Error Message displayed for City field");
 		ExtentReport.extentTest.info("Error Message displayed for City field");
 
-	//	softAssert.assertAll();
+		softAssert.assertAll();
 		Reporter.log("Error Message displayed for all the required fields");
 		ExtentReport.extentTest.info("Error Message displayed for all the required fields");
 
@@ -1342,7 +1337,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
 		driver.findElement(CHECKOUT_EMAIL).sendKeys(CustomUtilities.properties.getProperty("checkoutemail"));
 
-		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Shipping address");
+		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Delivery", "Shipping address title is not displayed");
 		Thread.sleep(5000);
 		entershippingdetails();
 		Reporter.log("Shipping Address Details entered");
