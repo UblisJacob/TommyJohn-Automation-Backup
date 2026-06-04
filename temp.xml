@@ -13,7 +13,7 @@
         <classes>
             <class name="TestModules.ValidateHomePage">
                 <methods>
-                    <include name="ValidatePromoCodeErrorScenario"/>
+                    <include name="ValidateImageInHeroBanner"/>
                 </methods>
             </class>
         </classes>

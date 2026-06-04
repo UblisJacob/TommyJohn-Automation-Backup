@@ -3,25 +3,24 @@ package TestScenario;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.base.ExtentReport;
+import com.base.GDrivePOST;
 import com.tommyjohn.automation.utils.CustomUtilities;
 import org.openqa.selenium.WebDriver;
 import org.testng.*;
 
-import java.io.IOException;
-import java.security.GeneralSecurityException;
 import java.util.Set;
 
-import static com.base.Slack.sendSlackNotificationADA;
 import static com.base.Slack.sendSlackNotificationReg;
 
-public class   ListenerClass extends ExtentReport implements ITestListener, IExecutionListener {
+public class ListenerClass extends ExtentReport
+		implements ITestListener, IExecutionListener {
 
 	WebDriver driver;
 	static int count = 1;
 	static boolean shouldPrint = true;
 	static String browserName = null;
 
-	public String reportLink = null;
+	public static String reportLink = "Report upload failed"; // 🔧 CHANGE
 
 	public String SuiteName = null;
 
@@ -29,8 +28,7 @@ public class   ListenerClass extends ExtentReport implements ITestListener, IExe
 	public int Ffailed = 0;
 	public int Fskipped = 0;
 
-
-
+	// ================= EXECUTION START =================
 	@Override
 
 	public void onExecutionStart() {
@@ -140,27 +138,38 @@ public class   ListenerClass extends ExtentReport implements ITestListener, IExe
 
 	}
 
+	// ================= EXECUTION FINISH =================
 	@Override
 	public void onExecutionFinish() {
 
 		generateExtentReports();
 
 		try {
-			reportLink = com.base.GDrivePOST.UploadReport();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		} catch (GeneralSecurityException e) {
-			throw new RuntimeException(e);
+			// 🔧 CHANGE: Service Account Drive upload
+			reportLink = GDrivePOST.UploadReport();
+			System.out.println("Report uploaded to Drive: " + reportLink);
+
+		} catch (Exception e) {
+			System.err.println("Drive upload failed");
+			e.printStackTrace();
 		}
-		try
-		{
-//			sendSlackNotificationReg(String.valueOf(Fpassed),String.valueOf(Ffailed),String.valueOf(Fskipped),reportLink);
-		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
+
+		try {
+			// 🔧 CHANGE: Send Slack ONLY if link is valid
+			if (!reportLink.contains("failed")) {
+				sendSlackNotificationReg(
+						String.valueOf(Fpassed),
+						String.valueOf(Ffailed),
+						String.valueOf(Fskipped),
+						reportLink
+				);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
+	// ================= SUITE FINISH =================
 	@Override
 	public void onFinish(ITestContext context) {
 
@@ -193,4 +202,6 @@ public class   ListenerClass extends ExtentReport implements ITestListener, IExe
 		Ffailed = Ffailed + (context.getFailedTests().size());
 		Fskipped = Fskipped + (context.getSkippedTests().size());
 	}
+
+
 }

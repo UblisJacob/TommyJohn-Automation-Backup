@@ -7,20 +7,20 @@ import com.tommyjohn.automation.utils.CustomUtilities;
 import org.openqa.selenium.WebDriver;
 import org.testng.*;
 
-import java.io.IOException;
-import java.security.GeneralSecurityException;
 import java.util.Set;
 
 import static com.base.Slack.sendSlackNotificationADA;
 
-public class ADAListenerClass extends ExtentReport implements ITestListener, IExecutionListener {
+public class ADAListenerClass extends ExtentReport
+        implements ITestListener, IExecutionListener {
 
     WebDriver driver;
     static int count = 1;
     static boolean shouldPrint = true;
     static String browserName = null;
 
-    public String reportLink = null;
+    // ✅ SAFE DEFAULT
+    public static String reportLink = "ADA report upload failed";
 
     public String SuiteName = null;
 
@@ -28,8 +28,7 @@ public class ADAListenerClass extends ExtentReport implements ITestListener, IEx
     public int Ffailed = 0;
     public int Fskipped = 0;
 
-
-
+    // ================= EXECUTION START =================
     @Override
 
     public void onExecutionStart() {
@@ -137,26 +136,39 @@ public class ADAListenerClass extends ExtentReport implements ITestListener, IEx
     public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
     }
 
+
+    // ================= EXECUTION FINISH =================
     @Override
     public void onExecutionFinish() {
 
         generateExtentReports();
 
         try {
+            // ✅ Service Account upload
             reportLink = com.base.GDrivePOST.UploadADAReport();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (GeneralSecurityException e) {
-            throw new RuntimeException(e);
+            System.out.println("ADA Report uploaded: " + reportLink);
+
+        } catch (Exception e) {
+            System.err.println("ADA report upload failed");
+            e.printStackTrace();
         }
 
         try {
-            sendSlackNotificationADA(String.valueOf(Fpassed),String.valueOf(Ffailed),String.valueOf(Fskipped),reportLink);
+            // ✅ Slack only if upload succeeded
+            if (!reportLink.contains("failed")) {
+                sendSlackNotificationADA(
+                        String.valueOf(Fpassed),
+                        String.valueOf(Ffailed),
+                        String.valueOf(Fskipped),
+                        reportLink
+                );
+            }
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
+    // ================= SUITE FINISH =================
     @Override
     public void onFinish(ITestContext context) {
 
@@ -190,4 +202,5 @@ public class ADAListenerClass extends ExtentReport implements ITestListener, IEx
         Fskipped = Fskipped + (context.getSkippedTests().size());
 
     }
+
 }
