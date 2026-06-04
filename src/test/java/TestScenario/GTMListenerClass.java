@@ -31,6 +31,7 @@ public class GTMListenerClass extends ExtentReport
             ThreadLocal.withInitial(() -> 1);
 
     // ================= EXECUTION START =================
+    // ================= EXECUTION START =================
     @Override
     public void onExecutionStart() {
         initializeExtentReports();
@@ -122,6 +123,7 @@ public class GTMListenerClass extends ExtentReport
     @Override
     public void onTestFailedButWithinSuccessPercentage(ITestResult result) {}
 
+
     // ================= EXECUTION FINISH =================
     @Override
     public void onExecutionFinish() {
@@ -157,8 +159,35 @@ public class GTMListenerClass extends ExtentReport
     @Override
     public void onFinish(ITestContext context) {
 
-        Fpassed += context.getPassedTests().size();
-        Ffailed += context.getFailedTests().size();
-        Fskipped += context.getSkippedTests().size();
+        Set<ITestResult> failedTests = context.getFailedTests().getAllResults();
+        Set<ITestResult> skippedTests = context.getSkippedTests().getAllResults();
+        for (ITestResult temp : failedTests) {
+            ITestNGMethod method = temp.getMethod();
+//			System.out.println(context.getFailedTests().size());
+//			System.out.println(context.getPassedTests().size());
+            if (context.getFailedTests().getResults(method).size() > 1) {
+                failedTests.remove(temp);
+            } else {
+                if (context.getPassedTests().getResults(method).size() > 0) {
+                    failedTests.remove(temp);
+                }
+            }
+        }
+        for (ITestResult temp : skippedTests) {
+            ITestNGMethod method = temp.getMethod();
+            if (context.getSkippedTests().getResults(method).size() > 0) {
+                skippedTests.remove(temp);
+            } else {
+                if (context.getPassedTests().getResults(method).size() > 0) {
+                    skippedTests.remove(temp);
+                }
+            }
+        }
+
+        Fpassed = Fpassed + (context.getPassedTests().size());
+        Ffailed = Ffailed + (context.getFailedTests().size());
+        Fskipped = Fskipped + (context.getSkippedTests().size());
+
     }
+
 }
