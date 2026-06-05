@@ -1277,9 +1277,10 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 
 	public void checkmandatoryfields() throws InterruptedException {
 
-
+				wait=new WebDriverWait(driver, Duration.ofSeconds(60));
 				jse.executeScript("window.scrollBy(0,500)");
 
+				wait.until(ExpectedConditions.visibilityOfElementLocated(COMPLETE_ORDER_BUTTON));
 				driver.findElement(COMPLETE_ORDER_BUTTON).click();
 			//	((JavascriptExecutor) driver).executeScript("arguments[0].click();", Continue_shipping);
 
