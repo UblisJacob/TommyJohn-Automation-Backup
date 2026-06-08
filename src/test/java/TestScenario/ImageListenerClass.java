@@ -13,7 +13,7 @@ import java.util.*;
 
 import static com.base.Slack.*;
 
-public class ImageListenerClass extends ExtentReport implements ITestListener, IExecutionListener {
+public class  ImageListenerClass extends ExtentReport implements ITestListener, IExecutionListener {
 
     WebDriver driver;
     static int count = 1;

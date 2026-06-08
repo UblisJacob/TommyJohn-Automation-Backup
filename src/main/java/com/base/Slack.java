@@ -58,7 +58,7 @@ public class Slack {
 
     public static void sendSlackNotificationReg(String passed, String failed, String skipped, String reportLink /*, String JSonLink*/) throws Exception {
 
-//                String ReportLINK = "https://drive.google.com/uc?export=download&id=15udrnuKuBj3zKWTVVQKaiGss1Gkact77";
+//                String ReportLINK = "https://drive.google.com/uc?export=download&id=12LGREcXsq0Iii5JaTJF0R3YUOX41wdDQ";
             // Create JSON payload
                 String Date = setCurrentDatetDate();
 
@@ -66,7 +66,7 @@ public class Slack {
 
                String payload = "{\"text\":\"*Regression Results*\n*Time:* " + Date + " \n*Passed:* " + passed + "\n*Failed:* "+ failed + "\n*Skipped:* " + skipped + "\n*Report Link:* <" + reportLink + "|Click> \",\"type\": \"mrkdwn\"}";
 
-//              String payload = "{\"text\":\"*Regression Results*\n*Time:* " + Date + " \n*Passed:* " + 169 + "\n*Failed:* "+ 7 + "\n*Skipped:* " + skipped + "\n*Report Link:* <" + ReportLINK + "|Click> \",\"type\": \"mrkdwn\"}";
+//              String payload = "{\"text\":\"*Regression Results*\n*Time:* " + Date + " \n*Passed:* " + 188 + "\n*Failed:* "+ 10 + "\n*Skipped:* " + skipped + "\n*Report Link:* <" + ReportLINK + "|Click> \",\"type\": \"mrkdwn\"}";
 
             URL url = new URL(TJ_QA_WEBHOOK_URL);
 
