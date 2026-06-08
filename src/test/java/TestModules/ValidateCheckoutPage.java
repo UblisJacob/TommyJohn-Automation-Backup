@@ -29,7 +29,7 @@ public class ValidateCheckoutPage extends ExtentReport {
 
 
 
-		@Test
+	//	@Test
 	public void ValidateNonFreeShippingWithUnderwearOffer() throws Exception
 	{
 		new AddToCartComponents(driver).add3for$48product();

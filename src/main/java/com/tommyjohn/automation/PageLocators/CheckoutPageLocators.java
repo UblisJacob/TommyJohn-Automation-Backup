@@ -106,8 +106,8 @@ public class CheckoutPageLocators {
 	public static By CONTINUE_TO_PAYMENT_BUTTON = By.xpath("//div[@class='MV9Am']//button");
 	public static By FREE_SHIPPING = By.xpath("//span[contains(text(),'Free')]");
 	public static By NON_FREE_SHIPPING = By.xpath("(//span[contains(text(),'$8.95')])"); //(//span[contains(text(),'$7.95')])
-    public static By EXPEDITED_SHIPPING_PRICE = By.xpath("(//strong[@class='_19gi7yt0 _19gi7yt18 _19gi7yt1g _19gi7yt1s _19gi7yt1k _1fragemw0 _1fragem3m'])[3]");
-    public static By SHIPPING_PRICE = By.xpath("//span[@class='_19gi7yt0 _19gi7ytb _19gi7yt18 _19gi7yt1g _19gi7yt1n _1fragem3h notranslate']");
+    public static By EXPEDITED_SHIPPING_PRICE = By.xpath("//strong[@class='_19gi7yt0 _19gi7yt8 _19gi7yt18 _19gi7yt1g _19gi7yt1s _19gi7yt1k _1fragemw0 _1fragem3m']");
+    public static By SHIPPING_PRICE = By.xpath("//span[@class='_19gi7yt0 _19gi7yt8 _19gi7yt18 _19gi7yt1g _19gi7yt1n _1fragem3m notranslate']");
     
 	//                                           payment
 
