@@ -76,6 +76,26 @@ public class FlyCartComponents extends FlyCartPageLocator{
         ExtentReport.extentTest.info("5 for $65 functionality works fine in Cart page");
     }
 
+	public void ValidateSevenFor35InInLineCart() throws Exception {
+		SoftAssert softAssert = new SoftAssert();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		new AddToCartComponents(driver).add7for$35products();
+		driver.findElement(HomePageLocators.CART_ICON).click();
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+//        driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+		Thread.sleep(3000);
+		String DISCOUNT_7for$35 = driver.findElement(FlyCartPageLocator.DISCOUNT_7for$35).getText().split(":")[1].trim();
+		System.out.println(DISCOUNT_7for$35);
+		softAssert.assertEquals(DISCOUNT_7for$35,"7 For $35","7 for $35 discount is not applied and not displayed in the Cart line item");
+		String TOTAL = driver.findElement(FlyCartPageLocator.MINI_CART_TOTAL_7_For_$35).getText();
+		System.out.println(TOTAL);
+		softAssert.assertEquals(TOTAL,"$35.00","Cart Total is differ from the 7 for $35 functionality");
+		softAssert.assertAll();
+		Reporter.log("7 for $35 functionality works fine in Cart page");
+		ExtentReport.extentTest.info("7 for 35 functionality works fine in Cart page");
+	}
+
+
 	public void ValidateQuantityIncreaseInInLineCartPage() throws InterruptedException {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));

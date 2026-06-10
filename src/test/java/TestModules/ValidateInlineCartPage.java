@@ -41,6 +41,11 @@ public class ValidateInlineCartPage extends ExtentReport {
     }
 
 	@Test
+	public void ValidateSevenforthirtyfivefunctionalityinInLineCartPage() throws Exception {
+		new FlyCartPage(driver).ValidateSevenFor35InInLineCart();
+	}
+
+	@Test
 	public void Validate_InlineCart_IncreaseQuantity() throws Exception {
 
 		new AddToCartComponents(driver).addsingleproductToCart();
