@@ -71,8 +71,11 @@ public class FlyCartPageLocator {
 	//3for$48
 	public static By DISCOUNT_3for$48 = By.xpath("//div[@class='mt-2 text-body font-medium text-functional-sale']");
 	public static By DISCOUNT_5for$65 = By.xpath("//div[@class='mt-2 text-body font-medium text-functional-sale']");
+	public static By DISCOUNT_7for$35 = By.xpath("//div[@class='mt-2 text-body font-medium text-functional-sale']");
 	public static By TOTAL = By.xpath("(//span[contains(text(),'$65.00')])[2]");
     public static By MINI_CART_TOTAL = By.xpath("//span[contains(text(),'$65.00')]");
+
+	public static By MINI_CART_TOTAL_7_For_$35 = By.xpath("//span[contains(text(),'$35.00')]");
 
 
 

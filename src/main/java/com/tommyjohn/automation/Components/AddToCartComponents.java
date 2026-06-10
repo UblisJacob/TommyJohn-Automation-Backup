@@ -1244,6 +1244,183 @@ public class AddToCartComponents extends AddToCartLocators{
 		return text;
 	}
 
+	public String add7for$35products() throws Exception {
+
+		int count = 0;
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+
+		driver.get("https://www.tommyjohn.com/products/womens-second-skin-brief-13?variant=44729634914349");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_TITLE));
+
+		Reporter.log(driver.getCurrentUrl());
+		ExtentReport.extentTest.info(driver.getCurrentUrl());
+
+		Thread.sleep(2000);
+
+		// Get all color variants
+		List<WebElement> colorVariants = driver.findElements(ProductDetailsPageComponents.COLOR_VARIANT);
+		System.out.println("Color Element count :: " + colorVariants.size());
+
+		if (colorVariants.size() > 0) {
+
+			for (int i = 0; i < colorVariants.size(); i++) {
+
+				// Re-fetch color elements to avoid stale element
+				colorVariants = driver.findElements(ProductDetailsPageComponents.COLOR_VARIANT);
+				WebElement color = colorVariants.get(i);
+
+				jse.executeScript("arguments[0].click();", color);
+				Thread.sleep(2000);
+
+				// Fetch all size options for selected color
+				List<WebElement> sizeOptions =
+						driver.findElements(By.xpath("//input[@name='option[Size]']"));
+
+				System.out.println("Size count :: " + sizeOptions.size());
+
+				for (int j = 0; j < sizeOptions.size(); j++) {
+
+					if (count == 7) {
+						break;
+					}
+
+					try {
+						// Re-fetch sizes to avoid stale
+						sizeOptions =
+								driver.findElements(By.xpath("//input[@name='option[Size]']"));
+						WebElement size = sizeOptions.get(j);
+
+						wait.until(ExpectedConditions.elementToBeClickable(size));
+						jse.executeScript("arguments[0].click();", size);
+						Thread.sleep(1000);
+
+						String buttonText =
+								driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON).getText();
+
+						if (buttonText.contains("Add")) {
+
+							System.out.println(
+									"Added product → Color index: " + i + ", Size index: " + j);
+
+							jse.executeScript(
+									"arguments[0].click();",
+									driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON)
+							);
+
+							Thread.sleep(3000);
+
+							wait.until(ExpectedConditions.visibilityOfElementLocated(INLINE_CART_TITLE));
+							jse.executeScript("arguments[0].click();",
+									driver.findElement(INLINE_CART_CLOSE));
+
+							count++;
+							System.out.println("Total added so far: " + count);
+							Thread.sleep(1000);
+						}
+
+					} catch (Exception ex) {
+						System.out.println("Product is OOS for Color index: " + i + ", Size index: " + j);
+					}
+				}
+
+				if (count == 7) {
+					break;
+				}
+			}
+		}
+
+		driver.get("https://www.tommyjohn.com/");
+		return "Total products added: " + count;
+	}
+
+	public String add7for$35product() throws Exception {
+
+		int count = 0;
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		driver.get("https://www.tommyjohn.com/products/womens-second-skin-brief-13?variant=44729634914349");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_TITLE));
+		Reporter.log(driver.getCurrentUrl());
+		ExtentReport.extentTest.info(driver.getCurrentUrl());
+		Thread.sleep(2000);
+
+		allElements = driver.findElements(ProductDetailsPageComponents.COLOR_VARIANT);
+
+		elementsCount = allElements.size();
+		System.out.println("Color Element count :: " + elementsCount);
+
+		if (elementsCount > 1) {
+			for (int i = 1; i <= 8; i++) {
+
+				WebElement elemen = driver.findElement(By.xpath("(//div[@class='space-y-lg']//input[@class='sr-only peer'])[" + i + "]"));
+				jse = (JavascriptExecutor) driver;
+				jse.executeScript("arguments[0].click();", elemen);
+				Thread.sleep(3000);
+
+				for (int j = 1; j <= 8; j++) {
+
+					WebElement elements = driver.findElement(By.xpath("(//input[@name='option[Size]'])[" + j + "]"));
+					jse.executeScript("arguments[0].click();", elements);
+					Thread.sleep(1000);
+
+					try{
+						String[] AddtoBag;
+						AddtoBag = (driver.findElement(By.xpath("//button[@class='button grow']")).getText()).split(" -");
+						String text1 = AddtoBag[0];
+						System.out.println(text1);
+
+						// WebElement elem = driver.findElement(By.cssSelector(".multiPdp__atc-container>button"));
+
+
+						if (driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON).getText().contains(text1)) {
+
+							System.out.println(elemen.getText() + elements.getText() + "Product is added to Cart");
+							Thread.sleep(5000);
+							jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_CART_BUTTON));
+							Thread.sleep(3000);
+							driver.findElement(INLINE_CART_TITLE);
+							jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
+
+							Thread.sleep(1000);
+							System.out.println("=============================");
+							count++;
+
+//              break;
+						}
+
+					}
+					catch (Exception ex)
+					{
+
+						System.out.println("Product Is OOS");
+					}
+
+
+//                 if(driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON).getText().contains("Add to Cart")) {
+//
+//                    System.out.println(elemen.getText() + elements.getText() + "Product is added to Cart");
+//                    jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_CART_BUTTON));
+//                    Thread.sleep(2000);
+//                    jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
+//                    break;
+//
+					if (count == 8){
+						break; }
+				}
+
+				if(count == 8){
+					break;
+				}
+
+			}
+
+			driver.get("https://www.tommyjohn.com/");
+
+		}
+		return text;
+
+	}
+
 	public String add3for$48product() throws Exception {
 
 		int count = 0;
