@@ -457,7 +457,7 @@ public class GTMComponents {
 ));
 
         // ✅ Expected JSON Payload (product ID will be dynamically matched)
-        String expectedPayload = "[{\"action\":\"remove-from-cart\",\"target\":{\"product\":\"4931429924909\"},"
+        String expectedPayload = "[{\"action\":\"remove-from-cart\",\"target\":{\"product\":\"4932098785325\"},"
                 + "\"metadata\":{\"locale\":\"en_US\"},"
                 + "\"user\":{\"identities\":{},\"segments\":[],\"traits\":{}}}]";
 

@@ -57,7 +57,8 @@ public class FlyCartComponents extends FlyCartPageLocator{
         ExtentReport.extentTest.info("Bundle Tier functionality works fine in InLineCart page");
     }
 
-    public void ValidateFiveFor65InInLineCart() throws Exception {
+
+	public void ValidateFiveFor65InInLineCart() throws Exception {
         SoftAssert softAssert = new SoftAssert();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         new AddToCartComponents(driver).add3for$48product();

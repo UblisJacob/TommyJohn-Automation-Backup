@@ -35,6 +35,7 @@ public class ValidateInlineCartPage extends ExtentReport {
         new FlyCartPage(driver).ValidateFiveFor65InInLineCart();
     }
 
+
  //   @Test
     public void ValidateBundleTierinInLineCartPage() throws Exception {
         new FlyCartPage(driver).ValidateBundleTierinInLineCartPage();
