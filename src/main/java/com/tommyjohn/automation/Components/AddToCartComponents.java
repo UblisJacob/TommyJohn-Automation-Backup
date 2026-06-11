@@ -188,7 +188,7 @@ public class AddToCartComponents extends AddToCartLocators{
 		int count = 0;
 
 		// call method to navigate to collection page
-		new HomePageComponents(driver).navigateToMensUnderwear();
+		new HomePageComponents(driver).navigateToMensAll();
 		jse=(JavascriptExecutor)driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		// call method to navigate product details page
@@ -1513,6 +1513,10 @@ public class AddToCartComponents extends AddToCartLocators{
 		return text;
 
 	}
+
+
+
+
 
 
 
