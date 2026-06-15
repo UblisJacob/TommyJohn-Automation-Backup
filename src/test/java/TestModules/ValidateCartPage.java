@@ -62,7 +62,7 @@ public class ValidateCartPage extends ExtentReport{
 	@Test
 	public void Validate_Cart_IncreaseQuantity() throws Exception {
 
-		new AddToCartComponents(driver).addsingleproductToCart();
+		new AddToCartComponents(driver).addproductToCartforIncreasingQuantity();
 		new ShoppingCartPage(driver).ValidateViewCartLink();
 		new ShoppingCartPage(driver).ValidateQuantityIncreaseInCartPage();
 
