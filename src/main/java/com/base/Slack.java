@@ -268,7 +268,7 @@ public class Slack {
 
         System.out.println(passed+"\n"+failed+"\n"+skipped+"\n"+reportLink+"\n"/*+JSonLink*/);
 
-        String payload = "{\"text\":\"*GTM Result*\n*Time:* " + Date + " \n*Passed:* " + passed + "\n*Failed:* "+ failed + "\n*Skipped:* " + skipped + "\n*Report Link:* <" + reportLink + "|Click> \",\"type\": \"mrkdwn\"}";
+        String payload = "{\"text\":\"*GTM Results*\n*Time:* " + Date + " \n*Passed:* " + passed + "\n*Failed:* "+ failed + "\n*Skipped:* " + skipped + "\n*Report Link:* <" + reportLink + "|Click> \",\"type\": \"mrkdwn\"}";
 
          //     String payload = "{\"text\":\"*GTM Results*\n*Time:* " + Date + " \n*Passed:* " + 8 + "\n*Failed:* "+ 0 + "\n*Skipped:* " + skipped + "\n*Report Link:* <" + ReportLINK + "|Click> \",\"type\": \"mrkdwn\"}";
 
