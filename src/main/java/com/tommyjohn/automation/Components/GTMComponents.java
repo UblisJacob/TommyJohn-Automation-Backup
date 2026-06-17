@@ -1001,7 +1001,7 @@ public class GTMComponents {
 
         // ✅ Your actions that trigger mini-cart
         driver.get("https://www.tommyjohn.com/");
-        new AccountLoginPage(driver).loginAccount("testuserQA1@gmail.com", "Test@123");
+  //      new AccountLoginPage(driver).loginAccount("testuserQA1@gmail.com", "Test@123");
         new AddToCartComponents(driver).addsingleproductToCart();
         Thread.sleep(15000);
 

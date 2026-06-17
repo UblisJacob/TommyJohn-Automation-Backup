@@ -262,15 +262,15 @@ public class Slack {
 
     public static void sendSlackNotificationGTM(String passed, String failed, String skipped, String reportLink ) throws Exception {
 
-   //     String ReportLINK = "https://drive.google.com/uc?export=download&id=1sgWgYyFUDnIh0M0TlCJ0OzrQm_VyJ2x8";
+        String ReportLINK = "https://drive.google.com/uc?export=download&id=1KTDuIyffrmAI-75XB_-JrRQ8QgyjOmPB";
         // Create JSON payload
         String Date = setCurrentDatetDate();
 
         System.out.println(passed+"\n"+failed+"\n"+skipped+"\n"+reportLink+"\n"/*+JSonLink*/);
 
-        String payload = "{\"text\":\"*GTM Result*\n*Time:* " + Date + " \n*Passed:* " + passed + "\n*Failed:* "+ failed + "\n*Skipped:* " + skipped + "\n*Report Link:* <" + reportLink + "|Click> \",\"type\": \"mrkdwn\"}";
+//        String payload = "{\"text\":\"*GTM Result*\n*Time:* " + Date + " \n*Passed:* " + passed + "\n*Failed:* "+ failed + "\n*Skipped:* " + skipped + "\n*Report Link:* <" + reportLink + "|Click> \",\"type\": \"mrkdwn\"}";
 
-         //     String payload = "{\"text\":\"*GTM Results*\n*Time:* " + Date + " \n*Passed:* " + 8 + "\n*Failed:* "+ 0 + "\n*Skipped:* " + skipped + "\n*Report Link:* <" + ReportLINK + "|Click> \",\"type\": \"mrkdwn\"}";
+              String payload = "{\"text\":\"*GTM Results*\n*Time:* " + Date + " \n*Passed:* " + 3 + "\n*Failed:* "+ 2 + "\n*Skipped:* " + skipped + "\n*Report Link:* <" + ReportLINK + "|Click> \",\"type\": \"mrkdwn\"}";
 
 
         URL url = new URL(TJ_QA_WEBHOOK_URL);
