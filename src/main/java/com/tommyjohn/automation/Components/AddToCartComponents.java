@@ -1055,6 +1055,9 @@ public class AddToCartComponents extends AddToCartLocators{
 			driver.get("https://www.tommyjohn.com/");
 			Thread.sleep(20000);
 			jse.executeScript("arguments[0].click();", driver.findElement(CART_ICON));
+			driver.get("https://www.tommyjohn.com/");
+			Thread.sleep(20000);
+			jse.executeScript("arguments[0].click();", driver.findElement(CART_ICON));
 
 		}
 		return text;
