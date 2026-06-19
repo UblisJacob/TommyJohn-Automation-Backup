@@ -13,25 +13,25 @@ public class ValidateGTM {
 
     WebDriver driver;
 
-//    @BeforeMethod(alwaysRun = true)
-//    @Parameters({"browser", "seleniumGridURL"})
-//    public void setup(@Optional("chrome") String browser,
-//                      @Optional("") String seleniumGridURL) {
-//        try {
-//            if (seleniumGridURL != null && !seleniumGridURL.isEmpty()) {
-//                DesiredCapabilities caps = new DesiredCapabilities();
-//                caps.setBrowserName(browser);
-//
-//                driver = new RemoteWebDriver(new URL(seleniumGridURL), caps);
-//                driver.get("https://www.tommyjohn.com");
-//                driver.manage().window().maximize();
-//            } else {
-//                driver = new CustomUtilities().launchtj(browser);
-//            }
-//        } catch (Exception e1) {
-//            e1.printStackTrace();
-//        }
-//    }
+    @BeforeMethod(alwaysRun = true)
+    @Parameters({"browser", "seleniumGridURL"})
+    public void setup(@Optional("chrome") String browser,
+                      @Optional("") String seleniumGridURL) {
+        try {
+            if (seleniumGridURL != null && !seleniumGridURL.isEmpty()) {
+                DesiredCapabilities caps = new DesiredCapabilities();
+                caps.setBrowserName(browser);
+
+                driver = new RemoteWebDriver(new URL(seleniumGridURL), caps);
+                driver.get("https://www.tommyjohn.com");
+                driver.manage().window().maximize();
+            } else {
+                driver = new CustomUtilities().launchtj(browser);
+            }
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+    }
 
     @Test
     public void ValidateGTMForFredHopper() throws Exception {

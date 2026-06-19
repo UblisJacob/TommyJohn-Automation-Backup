@@ -154,19 +154,19 @@ public class ListenerClass extends ExtentReport
 			e.printStackTrace();
 		}
 
-//		try {
-//			// 🔧 CHANGE: Send Slack ONLY if link is valid
-//			if (!reportLink.contains("failed")) {
-//				sendSlackNotificationReg(
-//						String.valueOf(Fpassed),
-//						String.valueOf(Ffailed),
-//						String.valueOf(Fskipped),
-//						reportLink
-//				);
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
+		try {
+			// 🔧 CHANGE: Send Slack ONLY if link is valid
+			if (!reportLink.contains("failed")) {
+				sendSlackNotificationReg(
+						String.valueOf(Fpassed),
+						String.valueOf(Ffailed),
+						String.valueOf(Fskipped),
+						reportLink
+				);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	// ================= SUITE FINISH =================

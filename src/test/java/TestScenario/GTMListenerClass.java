@@ -97,12 +97,25 @@ public class GTMListenerClass extends ExtentReport
     @Override
     public void onTestFailure(ITestResult result) {
 
-        String screenshotBase64 = CustomUtilities.screenshot();
+        try {
 
-        extentTest.info("Screenshot",
-                MediaEntityBuilder
-                        .createScreenCaptureFromBase64String(screenshotBase64)
-                        .build());
+            String screenshotBase64 = CustomUtilities.screenshot();
+
+            if (screenshotBase64 != null && !screenshotBase64.trim().isEmpty()) {
+
+                extentTest.info(
+                        "Screenshot",
+                        MediaEntityBuilder
+                                .createScreenCaptureFromBase64String(screenshotBase64)
+                                .build()
+                );
+            } else {
+                extentTest.warning("Screenshot could not be captured.");
+            }
+
+        } catch (Exception e) {
+            extentTest.warning("Screenshot attachment failed: " + e.getMessage());
+        }
 
         extentTest.fail(result.getThrowable());
 
@@ -128,7 +141,11 @@ public class GTMListenerClass extends ExtentReport
     @Override
     public void onExecutionFinish() {
 
-        generateExtentReports();
+        try {
+            generateExtentReports();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         try {
             // ✅ Service Account upload
