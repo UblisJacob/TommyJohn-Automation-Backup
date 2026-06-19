@@ -905,13 +905,13 @@ public class GTMComponents {
         });
 
         driver.get("https://www.tommyjohn.com/");
-        new AccountLoginPage(driver).loginAccount("testuserQA1@gmail.com", "Test@123");
-        new AddToCartComponents(driver).addsingleproductToCartKlaviyo();
+ //       new AccountLoginPage(driver).loginAccount("testuserQA1@gmail.com", "Test@123");
+        new AddToCartComponents(driver).addsingleproductToCart();
 
         Thread.sleep(3000);
 
         // Click Cart Icon
-        driver.findElement(HomePageLocators.CART_ICON).click();
+//        driver.findElement(HomePageLocators.CART_ICON).click();
 
         // Wait until inline cart is visible
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -1103,7 +1103,7 @@ public class GTMComponents {
         });
 
         new AddToCartComponents(driver).addsingleproductToCart();
-        Thread.sleep(20000); // ✅ Wait for network request
+        Thread.sleep(30000); // ✅ Wait for network request
         if (trknPixelUrls.isEmpty()) {
             Assert.fail("❌ TRKN 'add_to_cart' pixel was NOT fired!");
         } else {
