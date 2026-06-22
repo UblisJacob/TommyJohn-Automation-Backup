@@ -269,7 +269,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
         SoftAssert softAssert = new SoftAssert();
         new HomePageComponents(driver).navigateToMensAll();
 //        new CollectionPageComponent(driver).navigateToProductDetailsPage();
-         driver.get("https://www.tommyjohn.com/products/womens-second-skin-boyshort?color=cantaloupel");
+         driver.get("https://www.tommyjohn.com/products/womens-second-skin-luxe-rib-boyshort?color=lilac-chiffon-luxe");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         js1.executeScript("window.scrollBy(0,500)");
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(PDP_SECTION_RECS));

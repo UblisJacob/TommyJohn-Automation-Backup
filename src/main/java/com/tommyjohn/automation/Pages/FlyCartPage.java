@@ -65,6 +65,11 @@ public class FlyCartPage extends FlyCartComponents {
 
 	}
 
+	public void ValidateProductRatingIsFunctional() throws Exception {
+		new FlyCartComponents(driver).ValidateProductRatingIsFunctional();
+
+	}
+
 	public void ValidateAppropriateIsProductIsToCartFromInlineCartSuggestion() throws Exception {
 		new FlyCartComponents(driver).ValidateAppropriateProductIsAddedToCartFromInLineCartSuggestion();
 
