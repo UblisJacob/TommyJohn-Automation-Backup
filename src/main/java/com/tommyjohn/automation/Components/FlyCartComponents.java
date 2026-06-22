@@ -20,6 +20,7 @@ import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
 import static com.tommyjohn.automation.PageLocators.CollectionPageLocator.ADD_TO_BAG_QUICKSHOP;
+import static com.tommyjohn.automation.PageLocators.CollectionPageLocator.REVIEWS;
 import static com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators.CART_ICON;
 
 public class FlyCartComponents extends FlyCartPageLocator{
@@ -186,6 +187,70 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		ExtentReport.extentTest.info("The Coupon code FIRST20 is displayed in Cart page");
 
 	}
+
+	public void ValidateProductRatingIsFunctional() throws Exception {
+		int count = 0;
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		SoftAssert softAssert = new SoftAssert();
+		jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_ICON));
+		jse.executeScript("window.scrollBy(0,500)");
+		Thread.sleep(10000);
+		wait.until(ExpectedConditions.visibilityOf(driver.findElement(SUGGESTION_FIRST_PRODUCT)));
+//		element = driver.findElement(SUGGESTION_FIRST_PRODUCT);
+//		js.executeScript("arguments[0].scrollIntoView(true);", element);
+//		action.moveToElement(element).build().perform();
+
+
+		if (driver.findElement(QUICK_SHOP_ATC).isDisplayed()) {
+			Reporter.log("Quick shop ATC button is displayed");
+			ExtentReport.extentTest.info("Quick shop ATC button is displayed");
+//			System.out.println("Quick shop ATC text is: " + driver.findElement(QUICK_SHOP_ATC).getText());
+//			softAssert.assertEquals(driver.findElement(QUICK_SHOP_ATC).getText(), "Add To Cart +",
+//					"Text changed for Quick shop ATC button.");
+			driver.findElement(QUICK_SHOP_ATC).click();
+			Thread.sleep(3000);
+			Reporter.log("Quick shop ATC button is validated :: Clickable.");
+			ExtentReport.extentTest.info("Quick shop ATC button is validated :: Clickable.");
+
+			softAssert.assertTrue(driver.findElement(QUICK_SHOP_SIZE_OVERLAY).isDisplayed(),
+					"On InLine Cart Quick shop select size overlay is not displayed after click on ATC button.");
+
+			Reporter.log("Quick shop size overlay is displayed.");
+			ExtentReport.extentTest.info("Quick shop size overlay is displayed.");
+			softAssert.assertTrue(driver.findElement(QUICK_SHOP_SIZE_OVERLAY_CLOSE).isDisplayed(),
+					"Quick shop select size overlay close btn is not displayed after click on ATC button.");
+			Reporter.log("Quick shop size overlay is close button is displayed.");
+			ExtentReport.extentTest.info("Quick shop size overlay is close button is displayed.");
+			softAssert.assertTrue(driver.findElement(QUICK_SHOP_SIZE_OVERLAY_HEADING).isDisplayed(),
+					"Quick shop select size overlay's heading is not displayed.");
+			//	softAssert.assertEquals(driver.findElement(QUICK_SHOP_SIZE_OVERLAY_HEADING).getText(), "Choose Your Size",
+			//			"Text changed for Quick shop Size overlay heading.");
+			Reporter.log("Quick shop size overlay heading is displayed ::Correct.");
+			ExtentReport.extentTest.info("Quick shop size overlay heading is displayed ::Correct.");
+			softAssert.assertTrue(driver.findElement(QUICK_SHOP_SIZE_LABEL).isDisplayed(),
+					"Quick shop size labels are not displayed.");
+			Reporter.log("Quick shop size labels are displayed.");
+			ExtentReport.extentTest.info("Quick shop size labels are displayed.");
+			softAssert.assertTrue(driver.findElement(QUICK_SHOP_REVIEW).isDisplayed(),
+					"Quick shop review are not displayed.");
+			Reporter.log("Quick shop review are not displayed.");
+			ExtentReport.extentTest.info("Quick shop size labels are displayed.");
+			driver.findElement(QUICK_SHOP_REVIEW).click();
+			Thread.sleep(3000);
+			Reporter.log("Quick shop Review is validated :: Clickable.");
+			ExtentReport.extentTest.info("Quick shop Review is validated :: Clickable.");
+			wait.until(ExpectedConditions.visibilityOf(driver.findElement(REVIEWS)));
+			softAssert.assertTrue(driver.findElement(REVIEWS).isDisplayed(),
+					"Reviews are not functional");
+			Reporter.log("Reviews are functional");
+			softAssert.assertAll();
+			ExtentReport.extentTest.info("Reviews are functional");
+
+		}
+	}
+
+
 
 	public void ValidateAddingProductToCartFromInlineCartSuggestions() throws Exception {
 		int count = 0;

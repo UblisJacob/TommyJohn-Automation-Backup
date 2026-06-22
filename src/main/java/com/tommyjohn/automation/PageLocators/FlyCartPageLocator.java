@@ -126,6 +126,7 @@ public class FlyCartPageLocator {
 	public static By QUICK_SHOP_SIZE_LIST_1 = By.cssSelector("[data-tj-qa='plp-quickshop-instock'],.quickshop-open>.inline-quick-shop>ul:nth-child(4)>li");
 	public static By QUICK_SHOP_SIZE_LIST_2 = By.cssSelector(".quickshop-open>.inline-quick-shop>ul:nth-child(6)>li");
 	public static By QUICK_SHOP_SIZE_LABEL = By.xpath("(//span[@class='pr-2xs text-text-tertiary'])[2]");
+	public static By QUICK_SHOP_REVIEW = By.xpath("//div[@class='mb-xs block text-body-md text-text-secondary']//following-sibling::a");
 	public static By QUICK_SHOP_SIZE_OVERLAY_ATC = By.cssSelector(".inline-quick-shop>.inline-quick-shop__button");
 	public static By PRODUCT_TITLE_ON_COLLECTION = By.xpath("(//a[@data-cy='productTileLink'])");
 	public static By PRODUCT_ITEM_SWATCH_CIRCLE = By.cssSelector("[data-tj-qa='product-swatch'],.product-item__swatch-wrapper>div");
