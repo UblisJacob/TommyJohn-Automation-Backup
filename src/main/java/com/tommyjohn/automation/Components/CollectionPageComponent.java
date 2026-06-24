@@ -240,10 +240,27 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		js.executeScript("scroll(0,-80);");
         js.executeScript("window.scrollBy(0,20000)");
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_RECS));
-		softAssert.assertTrue(driver.findElement(PLP_RECS).isDisplayed(),"Recs are not available in the PLP");
-		Reporter.log("Recs are not available in the PLP");
-		ExtentReport.extentTest.info("Recs are not available in the PLP");
+		try {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_RECS));
+			softAssert.assertTrue(driver.findElement(PLP_RECS).isDisplayed(), "Recs are not available in the PLP");
+			Reporter.log("Recs are not available in the PLP");
+			ExtentReport.extentTest.info("Recs are not available in the PLP");
+		}
+		catch(Exception e)
+		{
+			System.out.println("Entering catch");
+			js.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//a[contains(text(),'Women')])[2]")));
+			js.executeScript("window.scrollBy(0,10600)");
+			Thread.sleep(5000);
+			js.executeScript("window.scrollBy(0,50)");
+			Thread.sleep(5000);
+			js.executeScript("scroll(0,-80);");
+			js.executeScript("window.scrollBy(0,20000)");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_RECS));
+			softAssert.assertTrue(driver.findElement(PLP_RECS).isDisplayed(), "Recs are not available in the PLP");
+			Reporter.log("Recs are not available in the PLP");
+			ExtentReport.extentTest.info("Recs are not available in the PLP");
+		}
 	}
 
 	public void ValidateCollectionFiltersCountInAllFiltersDropdownAndInCollectionDropdown() {

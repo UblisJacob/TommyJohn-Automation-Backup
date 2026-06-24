@@ -627,6 +627,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		js.executeScript("window.scrollBy(0,-200)");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(REVIEWS_SUMMARY_IN_RATINGS_SECTION));
 		js.executeScript("arguments[0].click();", driver.findElement(REVIEWS_SUMMARY_IN_RATINGS_SECTION));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(REVIEW_SUMMARY_TITLE));
 		softAssert.assertTrue(driver.findElement(REVIEW_SUMMARY_TITLE).isDisplayed(),"Review Summary CTA is not functional");
 		Reporter.log("Review Summary CTA is functional");
 		ExtentReport.extentTest.info("Review Summary CTA is functional");

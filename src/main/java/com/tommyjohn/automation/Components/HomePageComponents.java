@@ -146,6 +146,7 @@ public class HomePageComponents extends HomePageLocators {
 		SoftAssert softAssert = new SoftAssert();
 		JavascriptExecutor js = (JavascriptExecutor)driver;
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
+		driver.get("https://www.tommyjohn.com/pages/explore?toggle_content=men");
 		Thread.sleep(2000);
 		js.executeScript("window.scrollBy(0,200)");
 		softAssert.assertTrue(driver.findElement(PRODUCT_REVIEW_MODULE).isDisplayed(),"Toggle Button is not available");
@@ -247,6 +248,7 @@ public class HomePageComponents extends HomePageLocators {
 		SoftAssert softAssert = new SoftAssert();
 		JavascriptExecutor js = (JavascriptExecutor)driver;
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
+		driver.get("https://www.tommyjohn.com/pages/explore?toggle_content=men");
 		Thread.sleep(2000);
 		js.executeScript("window.scrollBy(0,500)");
 		Thread.sleep(2000);
