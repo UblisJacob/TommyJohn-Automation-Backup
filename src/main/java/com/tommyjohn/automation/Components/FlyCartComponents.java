@@ -363,7 +363,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 
 				Reporter.log("Quick shop size overlay is displayed.");
 				ExtentReport.extentTest.info("Quick shop size overlay is displayed.");
-				Thread.sleep(5000);
+				wait.until(ExpectedConditions.visibilityOf(driver.findElement(QUICK_SHOP_SIZE_OVERLAY_CLOSE)));
 				softAssert.assertTrue(driver.findElement(QUICK_SHOP_SIZE_OVERLAY_CLOSE).isDisplayed(),
 						"Quick shop select size overlay close btn is not displayed after click on ATC button.");
 				Reporter.log("Quick shop size overlay is close button is displayed.");
