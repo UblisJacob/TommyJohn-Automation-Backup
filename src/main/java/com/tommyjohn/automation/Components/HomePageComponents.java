@@ -250,10 +250,10 @@ public class HomePageComponents extends HomePageLocators {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HERO_BANNER_IMAGE));
 		driver.get("https://www.tommyjohn.com/pages/explore?toggle_content=men");
 		Thread.sleep(2000);
-		js.executeScript("window.scrollBy(0,500)");
+		js.executeScript("window.scrollBy(0,800)");
 		Thread.sleep(2000);
 		driver.findElement(MENS_TOGGLE).click();
-		js.executeScript("window.scrollBy(0,300)");
+		js.executeScript("window.scrollBy(0,500)");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(MENS_RECS));
 		softAssert.assertTrue(driver.findElement(MENS_RECS).isDisplayed(),"Recs are not available in the Mens Toggle");
 		Reporter.log("Recs are available in the Mens Toggle");
@@ -1440,7 +1440,8 @@ public class HomePageComponents extends HomePageLocators {
 		driver.findElement(SEARCH_ICON_INPUT).click();
 		driver.findElement(SEARCH_ICON_INPUT).sendKeys(Search_keyword + Keys.ENTER);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SEARCHPAGE_PRODUCT_IMAGE));
-		executor.executeScript("window.scrollBy(0,100)");
+		executor.executeScript("window.scrollBy(0,500)");
+		Thread.sleep(3000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SEARCHPAGE_PRODUCT_REVIEWS));
 		softAssert.assertTrue(driver.findElement(SEARCHPAGE_TITLE).isDisplayed(), "Search Page title is not displayed on search page");
 		String[] list = driver.findElement(SEARCHPAGE_TITLE).getText().split("for ");

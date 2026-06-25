@@ -218,6 +218,8 @@ public class FlyCartComponents extends FlyCartPageLocator{
 
 			Reporter.log("Quick shop size overlay is displayed.");
 			ExtentReport.extentTest.info("Quick shop size overlay is displayed.");
+			wait.until(ExpectedConditions.visibilityOf(driver.findElement(QUICK_SHOP_SIZE_OVERLAY_CLOSE)));
+			Thread.sleep(10000);
 			softAssert.assertTrue(driver.findElement(QUICK_SHOP_SIZE_OVERLAY_CLOSE).isDisplayed(),
 					"Quick shop select size overlay close btn is not displayed after click on ATC button.");
 			Reporter.log("Quick shop size overlay is close button is displayed.");
@@ -282,6 +284,8 @@ public class FlyCartComponents extends FlyCartPageLocator{
 
 			Reporter.log("Quick shop size overlay is displayed.");
 			ExtentReport.extentTest.info("Quick shop size overlay is displayed.");
+			wait.until(ExpectedConditions.visibilityOf(driver.findElement(QUICK_SHOP_SIZE_OVERLAY_CLOSE)));
+			Thread.sleep(10000);
 			softAssert.assertTrue(driver.findElement(QUICK_SHOP_SIZE_OVERLAY_CLOSE).isDisplayed(),
 					"Quick shop select size overlay close btn is not displayed after click on ATC button.");
 			Reporter.log("Quick shop size overlay is close button is displayed.");
@@ -364,6 +368,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 				Reporter.log("Quick shop size overlay is displayed.");
 				ExtentReport.extentTest.info("Quick shop size overlay is displayed.");
 				wait.until(ExpectedConditions.visibilityOf(driver.findElement(QUICK_SHOP_SIZE_OVERLAY_CLOSE)));
+				Thread.sleep(10000);
 				softAssert.assertTrue(driver.findElement(QUICK_SHOP_SIZE_OVERLAY_CLOSE).isDisplayed(),
 						"Quick shop select size overlay close btn is not displayed after click on ATC button.");
 				Reporter.log("Quick shop size overlay is close button is displayed.");
