@@ -2394,6 +2394,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 //		String PageName = PageHeader[1];
 //		System.out.println(PageName);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SHOP_PAGEHEADER));
+		Thread.sleep(5000);
 		softAssert.assertTrue(driver.findElement(SHOP_PAGEHEADER).isDisplayed(),"User is not directed to Appropriate Page On Clicking the Inline Banner from PLP");
 		Reporter.log("User is directed to Appropriate Page On Clicking the Inline Banner from PLP");
 		ExtentReport.extentTest.info("User is directed to Appropriate Page On Clicking the Inline Banner from PLP");
