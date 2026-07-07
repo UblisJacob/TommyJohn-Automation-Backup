@@ -603,20 +603,42 @@ public class FlyCartComponents extends FlyCartPageLocator{
 
         }
 
-		public void ValidatePageGreyedOutOnAddingProducts() throws Exception {
-			softAssert = new SoftAssert();
-			jse = (JavascriptExecutor) driver;
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(50));
-			new AddToCartComponents(driver).addToCart();
-			jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-			String opacity = driver.findElement(HomePageLocators.OVERLAY).getCssValue("opacity");
-			System.out.println(opacity);
-			softAssert.assertEquals(opacity,"0.5","Page is not greyed out on adding products");
-			Reporter.log("Page is greyed out on adding products");
-			ExtentReport.extentTest.info("Page is greyed out on adding products");
+	public void ValidatePageGreyedOutOnAddingProducts() throws Exception {
 
-		}
+		softAssert = new SoftAssert();
+		jse = (JavascriptExecutor) driver;
+
+		new AddToCartComponents(driver).addToCart();
+
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+
+		// Click cart icon
+//		WebElement cartIcon = wait.until(
+//				ExpectedConditions.elementToBeClickable(HomePageLocators.CART_ICON)
+//		);
+//
+//	//	jse.executeScript("arguments[0].click();", cartIcon);
+
+		// Wait until overlay appears
+		WebElement overlay = wait.until(
+				ExpectedConditions.visibilityOfElementLocated(HomePageLocators.OVERLAY)
+		);
+
+		String opacity = overlay.getCssValue("opacity");
+
+		System.out.println("Overlay opacity: " + opacity);
+
+		softAssert.assertEquals(
+				opacity,
+				"0.5",
+				"Page is not greyed out on adding products"
+		);
+
+		Reporter.log("Page is greyed out on adding products");
+		ExtentReport.extentTest.info("Page is greyed out on adding products");
+
+		softAssert.assertAll();
+	}
 
 
 	public void verifyAllTextsAndFieldsOnEmptyFlyCart() throws Exception {

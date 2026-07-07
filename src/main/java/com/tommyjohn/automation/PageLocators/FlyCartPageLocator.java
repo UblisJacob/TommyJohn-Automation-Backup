@@ -121,7 +121,7 @@ public class FlyCartPageLocator {
 
 
 
-	public static By QUICK_SHOP_SIZE_OVERLAY_CLOSE = By.xpath("(//span[@class='icon size-5 icon-x'])[3]");
+	public static By QUICK_SHOP_SIZE_OVERLAY_CLOSE = By.xpath("//button[contains(@class,'absolute right-lg top-lg')]");
 	public static By QUICK_SHOP_SIZE_OVERLAY_HEADING = By.xpath("//div[@class='mb-xs block text-body-md text-text-secondary']");
 	public static By QUICK_SHOP_SIZE_LIST_1 = By.cssSelector("[data-tj-qa='plp-quickshop-instock'],.quickshop-open>.inline-quick-shop>ul:nth-child(4)>li");
 	public static By QUICK_SHOP_SIZE_LIST_2 = By.cssSelector(".quickshop-open>.inline-quick-shop>ul:nth-child(6)>li");

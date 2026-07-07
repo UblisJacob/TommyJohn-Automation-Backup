@@ -231,7 +231,7 @@ public class AddToCartComponents extends AddToCartLocators{
 								jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_CART_BUTTON));
 								Thread.sleep(3000);
 								driver.findElement(INLINE_CART_TITLE);
-								jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
+							//	jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
 
 								Thread.sleep(1000);
 								System.out.println("=============================");
@@ -245,31 +245,7 @@ public class AddToCartComponents extends AddToCartLocators{
 
 						}
 
-//
-//						WebElement elem = driver.findElement(By.cssSelector(".multiPdp__atc-container>button"));
-//i
-//						if(driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON).getText().contains("Add to Cart")) {
-//
-//							System.out.println(elemen.getText() + elements.getText() + "Product is added to Cart");
-//							jse.executeScript("arguments[0].click();", driver.findElement(ProductDetailsPageComponents.ADD_TO_CART_BUTTON));
-//							Thread.sleep(2000);
-//							try{
-//								jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
-//							}catch (Exception e) {
-//								Thread.sleep(2000);
-//								jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
-//							}
-//							break;
-//						}
-
-//						if(elem.getText().contentEquals("Join the Waitlist")) {
-//							System.out.println(elemen.getText()+ elements.getText() +"Product is Out of Stock and Join The waitlist is  :: Clickable");
-//							jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_CART_BUTTON));
-//							Thread.sleep(2000);
-//							jse.executeScript("arguments[0].click();", driver.findElement(EMAIL_WHEN_IN_STOCK_BUTTON_CLOSE));
-//
-//							}
-						if(count==3)
+						if(count==1)
 						{
 							break;
 						}
@@ -277,7 +253,7 @@ public class AddToCartComponents extends AddToCartLocators{
 					}
 
 
-					if(count==3)
+					if(count==1)
 					{
 						break;
 					}
