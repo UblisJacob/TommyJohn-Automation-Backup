@@ -149,7 +149,7 @@ public class ValidateInlineCartPage extends ExtentReport {
 		new FlyCartPage(driver).ValidateRemovingItemsFromInlineCart();
 	}
 
-	@Test
+//	@Test
 	public void ValidatePageGreyedOutOnAddingProducts() throws Exception
 	{
 

@@ -26,7 +26,7 @@ public class GiftPageADACheck {
     @Test
     public void ADACheck_GiftGuidePage() throws Exception {
 
-        driver.get("https://www.tommyjohn.com/pages/gift-guide");
+        driver.get("https://www.tommyjohn.com/collections/gifts");
         ADACheckMethods.ADACheck(driver, "GiftGuidePageADACheck");
     }
 
