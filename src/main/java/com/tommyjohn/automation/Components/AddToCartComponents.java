@@ -231,7 +231,7 @@ public class AddToCartComponents extends AddToCartLocators{
 								jse.executeScript("arguments[0].click();", driver.findElement(ADD_TO_CART_BUTTON));
 								Thread.sleep(3000);
 								driver.findElement(INLINE_CART_TITLE);
-							//	jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
+								jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
 
 								Thread.sleep(1000);
 								System.out.println("=============================");
@@ -245,7 +245,7 @@ public class AddToCartComponents extends AddToCartLocators{
 
 						}
 
-						if(count==1)
+						if(count==3)
 						{
 							break;
 						}
@@ -253,7 +253,7 @@ public class AddToCartComponents extends AddToCartLocators{
 					}
 
 
-					if(count==1)
+					if(count==3)
 					{
 						break;
 					}
