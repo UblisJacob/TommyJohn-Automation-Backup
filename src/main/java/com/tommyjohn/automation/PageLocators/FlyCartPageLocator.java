@@ -55,7 +55,7 @@ public class FlyCartPageLocator {
 
 	//COUPONCODE
 	public static By CART_COUPONFIELD = By.xpath("//input[@id='Discount-Code']");
-	public static By APPLY_CTA = By.xpath("//button[@class='button button-lg px-8']");
+	public static By APPLY_CTA = By.xpath("//button[@class='button button-lg gap-2 px-8']");
 	public static By APPLIED_COUPON = By.xpath("//span[@class='sr-only' and contains(text(),'Discount:')]");
 	public static By SAVINGS = By.xpath("(//div[@class='flex justify-between gap-4 text-functional-sale']//span)[1]");
 	public static By SAVINGS_AMOUNT = By.xpath("(//div[@class='flex justify-between gap-4 text-functional-sale']//span)[2]");
