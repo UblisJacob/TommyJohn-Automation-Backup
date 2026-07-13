@@ -7,7 +7,7 @@ public class FlyCartPageLocator {
 	public static By INLINE_CART_ICON = By.xpath("//span[@class='icon block icon-cart']");
 	public static By INLINE_CART_CLOSE_BUTTON = By.xpath("//span[@class='icon block size-5 icon-arrow-left']");
 	public static By VIEW_CART_LINK = By.xpath("//a[@class='button-link text-body sm:text-body-sm']");
-    public static By BUNDLE_TIER_TITLE = By.xpath("//div[@class='flex items-center justify-between text-body-md sm:text-body-sm']//span");
+    public static By BUNDLE_TIER_TITLE = By.xpath("//div[@class='flex items-center justify-between text-body']//span");
     public static By PRODUCTS = By.xpath("//div[@class='mt-2 text-body-sm leading-[18px] text-text-secondary']");
 	public static By INLINE_CART_TITLE = By.xpath("//h2[contains(text(),'Your Cart')]");
 	public static By SHIPING_MESSAGE_TEXT = By.xpath("//p[contains(text(),'Your cart is currently empty.')]");
@@ -71,8 +71,9 @@ public class FlyCartPageLocator {
 	//3for$48
 	public static By DISCOUNT_3for$48 = By.xpath("//div[@class='mt-2 text-body font-medium text-functional-sale']");
 	public static By DISCOUNT_5for$65 = By.xpath("//div[@class='mt-2 text-body font-medium text-functional-sale']");
+	public static By DISCOUNT_5for$50 = By.xpath("//div[@class='mt-2 text-body font-medium text-functional-sale']");
 	public static By DISCOUNT_7for$35 = By.xpath("//div[@class='mt-2 text-body font-medium text-functional-sale']");
-	public static By TOTAL = By.xpath("(//span[contains(text(),'$65.00')])[2]");
+	public static By TOTAL = By.xpath("(//span[contains(text(),'$50.00')])[2]");
     public static By MINI_CART_TOTAL = By.xpath("//span[contains(text(),'$65.00')]");
 
 	public static By MINI_CART_TOTAL_7_For_$35 = By.xpath("//span[contains(text(),'$35.00')]");

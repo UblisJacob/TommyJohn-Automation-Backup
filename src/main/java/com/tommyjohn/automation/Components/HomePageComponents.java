@@ -966,13 +966,15 @@ public class HomePageComponents extends HomePageLocators {
 		if(driver.findElement(HOMEPAGE_LOGO).isDisplayed())
 		{
 
-			currentUrl1 = driver.getCurrentUrl();
+			currentUrl1 = "https://www.tommyjohn.com/?toggle_content=men";
 			WebElement element = driver.findElement(HOMEPAGE_LOGO);
 
 			executor.executeScript("arguments[0].click();", element);	
 			Thread.sleep(3000);
 
+			System.out.println(currentUrl1);
 			String currentUrl2 = driver.getCurrentUrl();
+			System.out.println(currentUrl2);
 			if(!currentUrl1.contains(currentUrl2))
 				throw new Exception("HomePage logo not working correctly");
 			Reporter.log("TommyJohnLogo is displayed and clickable :: home page opens on clicking logo");
