@@ -1499,7 +1499,7 @@ public class AddToCartComponents extends AddToCartLocators{
 //		jse.executeScript("window.scrollBy(0,250)");
 //		// call method to navigate product details page
 //		text = new CollectionPageComponent(driver).navigateTo3FOR$48PDP();
-		driver.get("https://www.tommyjohn.com/products/womens-air-brief-1?variant=43190791372845");
+		driver.get("https://www.tommyjohn.com/products/womens-air-brief-1?variant=44929145798701");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_TITLE));
 		Reporter.log(driver.getCurrentUrl());
 		ExtentReport.extentTest.info(driver.getCurrentUrl());

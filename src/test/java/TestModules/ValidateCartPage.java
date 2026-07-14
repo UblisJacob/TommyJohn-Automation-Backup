@@ -46,7 +46,13 @@ public class ValidateCartPage extends ExtentReport{
 
 	}
 
- //   @Test
+	@Test
+	public void ValidatefiveforfiftyfunctionalityinCartPage() throws Exception {
+		new ShoppingCartPage(driver).Validate5for$50functionalityinCartPage();
+
+	}
+
+    @Test
     public void ValidateBundleTierinCartPage() throws Exception {
         new ShoppingCartPage(driver).ValidateBundleTierinCartPage();
 

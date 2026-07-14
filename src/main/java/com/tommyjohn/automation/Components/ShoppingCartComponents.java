@@ -197,6 +197,25 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 
 	}
 
+	public void Validate5for$50functionalityinCartPage() throws Exception {
+		SoftAssert softAssert = new SoftAssert();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		new AddToCartComponents(driver).add3for$48product();
+		driver.findElement(HomePageLocators.CART_ICON).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+		Thread.sleep(3000);
+		String DISCOUNT_5for$50 = driver.findElement(FlyCartPageLocator.DISCOUNT_5for$50).getText().split(":")[1].trim();
+		System.out.println(DISCOUNT_5for$50);
+		softAssert.assertEquals(DISCOUNT_5for$50,"5 For $50","5 for $50 discount is not applied and not displayed in the Cart line item");
+		String TOTAL = driver.findElement(FlyCartPageLocator.TOTAL).getText();
+		System.out.println(TOTAL);
+		softAssert.assertEquals(TOTAL,"$50.00","Cart Total is differ from the 5 for $65 functionality");
+		softAssert.assertAll();
+		Reporter.log("5 for $50 functionality works fine in Cart page");
+		ExtentReport.extentTest.info("5 for $50 functionality works fine in Cart page");
+	}
+
     public void ValidateBundleTierinCartPage() throws Exception {
         SoftAssert softAssert = new SoftAssert();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -206,7 +225,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
         driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
         String BUNDLE_TIER_TITLE = driver.findElement(FlyCartPageLocator.BUNDLE_TIER_TITLE).getText();
         System.out.println(BUNDLE_TIER_TITLE);
-        softAssert.assertEquals(BUNDLE_TIER_TITLE,"Women's 5 for $65","The Bundle Tier Meter Is Not Displayed");
+        softAssert.assertEquals(BUNDLE_TIER_TITLE,"Women's Underwear","The Bundle Tier Meter Is Not Displayed");
         Reporter.log("Bundle Tier functionality works fine in Cart page");
         softAssert.assertAll();
         ExtentReport.extentTest.info("Bundle Tier functionality works fine in Cart page");
