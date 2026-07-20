@@ -103,7 +103,7 @@ public class HomePageLocators{
 
 	public static By MEN_CATEGORY = By.xpath("(//a[contains(text(),'Men')])[2]");
 	public static By MEN_CATEGORY_COPY = By.xpath("(//a[contains(text(),'Men')])[1]");
-	public static By WOMEN_CATEGORY = By.xpath("(//a[contains(text(),'Women')])[2]");
+	public static By WOMEN_CATEGORY = By.xpath("(//a[contains(text(),'Women')])[1]");
 	public static By WOMEN_CATEGORY_COPY = By.xpath("(//a[contains(text(),'Women')])[3]");
 	public static By FINAL_SALE = By.cssSelector(".level-zero-list>.level-zero-container:nth-child(3)> .level-zero-item >a");
 
