@@ -204,13 +204,13 @@ public class ProductDetailsPageLocators {
 	public static By AVG_RATING_IN_FIRST_BOX = By.xpath("//div[@class='yotpo-bottom-line-left-panel yotpo-bottom-line-score']");
 	public static By TOTAL_REVIEWS_IN_FIRST_BOX = By.xpath("//div[@class='yotpo-bottom-line-basic-text']");
 
-	public static By SECOND_BOX_IN_RATING_AND_REVIEWS = By.xpath("//div[@class='yotpo-star-distribution']");
+	public static By SECOND_BOX_IN_RATING_AND_REVIEWS = By.xpath("//ul[@class='yotpo-star-distribution']");
 	public static By RATING_LABEL_IN_SECOND_BOX = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div:nth-child(2) > ul.yotpo-revew-bottomline-list > li > .yotpo-review-bottomline-individual-ratings > .yotpo-review-bottomline-ratings-label");
 	public static By RATING_METER_IN_SECOND_BOX = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div:nth-child(2) > ul.yotpo-revew-bottomline-list > li:nth-child(3) > .yotpo-review-bottomline-individual-ratings > .yotpo-review-bottomline-individual-ratings__meter");
 	public static By RATING_COUNT_IN_SECOND_BOX = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div:nth-child(2) > ul.yotpo-revew-bottomline-list > li:nth-child(5) > .yotpo-review-bottomline-individual-ratings > .yotpo-review-bottomline-individual-ratings__count");
 	
 	public static By THIRD_BOX_IN_RATING_AND_REVIEWS = By.xpath("//div[@class='yotpo-new-review-btn-wrapper']");
-	public static By FIT_RANGE = By.xpath("(//div[@class='yotpo-smart-topic-filter smart-topic-wrapper' and contains(text(),'fit')])[1]");
+	public static By FIT_RANGE = By.xpath("(//button[@class='yotpo-smart-topic-filter' and contains(text(),'fit')])[1]");
 	public static By FIT_GRAPH_IN_THIRD_BOX = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div > div.yotpo-review-bottomline-customer-say-container > .size-guide-yatpo-fit-graph > ul > li.selected");
 	public static By FIT_STATUS_IN_THIRD_BOX = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div > div.yotpo-review-bottomline-customer-say-container > .yotpo-review-bottomline-customer-say > .yotpo-review-bottomline-fit");
 	public static By POSTED_REVIEWS_SECTION = By.cssSelector(".yotpo-review-box");
@@ -220,12 +220,12 @@ public class ProductDetailsPageLocators {
 	
 	public static By STAR_RATINGS = By.cssSelector(".yotpo-stars-and-sum-reviews > span > span.sr-only");
 	//filter ratings
-	public static By FILTER_RATINGS = By.xpath("//input[@class='yotpo-filter-select']");
+	public static By FILTER_RATINGS = By.xpath("//input[@class='yotpo-search-input']");
 	public static By FILTER_FIT = By.cssSelector("[data-tj-qa='pdp-fit-dropdown'],.yotpo-reviews-qa-header.filters>div:nth-child(3)");
 	public static By FILTER_SORTBY = By.xpath("(//div[@class='yotpo-selected-value'])[2]");
 	public static By FILTER_SORTBY_SECTION = By.xpath("//span[@class='yotpo-dropdown-option']");
 	
-	public static By QUESTION_TAB = By.xpath("//div[@class='ugc-storefront-widgets-tabs-container__tab']");
+	public static By QUESTION_TAB = By.xpath("//button[@class='ugc-storefront-widgets-tabs-container__tab']");
 	public static By QUESTION_FIRST = By.xpath("(//span[@class='yotpo-shopper-name'])[1]");
 	public static By ASK_QUESTION = By.cssSelector(".yotpo-ctas>div:nth-child(1)");
 	public static By RESPONSE_FROM_TOMMYJOHN_LIST = By.cssSelector("[data-tj-qa='pdp-customer-review'],.yotpo.yotpo-reviews-container.yotpo-reviews-widget>ul>li");
@@ -335,13 +335,13 @@ public class ProductDetailsPageLocators {
         
         //Ratings
 		public static By FIVESTARTIERMETER = By.xpath("(//div[@class='yotpo-progress-bar'])[1]");
-		public static By FIVESTARRATING = By.xpath("(//div[@aria-label='5 star rating out of 5 stars'])[1]");
+		public static By FIVESTARRATING = By.xpath("(//div[@aria-label='5 out of 5 stars'])[1]");
 	    public static By FOURSTARTIERMETER = By.xpath("(//div[@class='yotpo-progress-bar'])[2]");
-	    public static By FOURSTARRATING = By.xpath("(//div[@aria-label='4 star rating out of 5 stars'])[1]");
+	    public static By FOURSTARRATING = By.xpath("(//div[@aria-label='4 out of 5 stars'])[1]");
 		public static By THREESTARTIERMETER = By.xpath("(//div[@class='yotpo-progress-bar'])[3]");
-	    public static By THREESTARRATING = By.xpath("(//div[@aria-label='3 star rating out of 5 stars'])[1]");
+	    public static By THREESTARRATING = By.xpath("(//div[@aria-label='3 out of 5 stars'])[1]");
 		public static By TWOSTARTIERMETER = By.xpath("(//div[@class='yotpo-progress-bar'])[4]");
-	    public static By TWOSTARRATING = By.xpath("(//div[@aria-label='2 star rating out of 5 stars'])[1]");
+	    public static By TWOSTARRATING = By.xpath("(//div[@aria-label='2 out of 5 stars'])[1]");
 		public static By ONESTARTIERMETER = By.xpath("(//div[@class='yotpo-progress-bar'])[5]");
-		public static By ONESTARRATING = By.xpath("(//div[@aria-label='1 star rating out of 5 stars'])[1]");
+		public static By ONESTARRATING = By.xpath("(//div[@aria-label='1 out of 5 stars'])[1]");
 }

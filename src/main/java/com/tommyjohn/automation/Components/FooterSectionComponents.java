@@ -79,7 +79,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 
 		objGeneralMethods.clickButtonByJS(driver, SHOP_WOMEN);
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
-		wait.until(ExpectedConditions.titleContains("Women's All"));
+		wait.until(ExpectedConditions.titleContains("Shop Women's Underwear, Bras & Sleepwear | Tommy John"));
 
 		softassert.assertTrue(driver.getCurrentUrl().contains("https://www.tommyjohn.com/collections/womens-all"),
 				"Wrong page opened after Shop Women footer link clicked");
@@ -101,14 +101,16 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		System.out.println("***Validating Shop Men Footer***");
 
 		driver.navigate().back();
-		wait.until(ExpectedConditions.titleIs("Tommy John | The Most Comfortable Underwear On The Planet"));
+		System.out.println(driver.getTitle());
+		wait.until(ExpectedConditions.titleIs("Men's Underwear, Undershirts & Comfort Basics | Tommy John"));
 
 		text = driver.findElement(SHOP_MEN).getText();
 		softassert.assertTrue(text.equals("Shop Men"), "Shop Men link text is changed");
 
 		objGeneralMethods.clickButtonByJS(driver, SHOP_MEN);
 
-		wait.until(ExpectedConditions.titleContains("Men's All"));
+		System.out.println(driver.getTitle());
+		wait.until(ExpectedConditions.titleContains("Shop Men's Underwear, Apparel & Sleepwear | Tommy John"));
 
 		softassert.assertTrue(driver.getCurrentUrl().contains("https://www.tommyjohn.com/collections/mens-all"),
 				"Wrong page opened after Shop Men Footer link was clicked");
@@ -156,14 +158,15 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		System.out.println("***Validating Sale Footer***");
 
 		driver.navigate().back();
-		wait.until(ExpectedConditions.titleIs("Tommy John | The Most Comfortable Underwear On The Planet"));
+		System.out.println(driver.getTitle());
+		wait.until(ExpectedConditions.titleIs("Men's Underwear, Undershirts & Comfort Basics | Tommy John"));
 
 		text = driver.findElement(SALE).getText();
 		softassert.assertTrue(text.equals("Sale"), "Sale link text is changed");
 
 		objGeneralMethods.clickButtonByJS(driver, SALE);
-
-		wait.until(ExpectedConditions.titleContains("Men's & Women's Sale – Tommy John"));
+		System.out.println(driver.getTitle());
+		wait.until(ExpectedConditions.titleContains("Men's & Women's Underwear, Sleepwear, & Apparel Sale | Tommy John"));
 
 		softassert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase("https://www.tommyjohn.com/collections/sale-mens-womens"),
 				"Wrong page opened after Gift Cards Footer link was clicked");
@@ -184,7 +187,8 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		System.out.println("***Validating Gift Cards Footer***");
 
 		driver.navigate().back();
-		wait.until(ExpectedConditions.titleIs("Tommy John | The Most Comfortable Underwear On The Planet"));
+		System.out.println(driver.getTitle());
+		wait.until(ExpectedConditions.titleIs("Men's Underwear, Undershirts & Comfort Basics | Tommy John"));
 
 		text = driver.findElement(GIFT_CARD_LINK).getText();
 		softassert.assertTrue(text.equals("Gift Cards"), "Gift Cards link text is changed");
@@ -238,6 +242,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		softassert.assertTrue(linkText.equals("Sitewide Promotion"), "Sitewide Promotion link text is changed");
 
 		objGeneralMethods.clickButtonByJS(driver, SITEWIDE_PROMOTION_LINK);
+		System.out.println(driver.getTitle());
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
 		wait.until(ExpectedConditions.titleContains("Sitewide Promotion"));
 
@@ -262,6 +267,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		System.out.println("***Validating Military Discount Footer***");
 //		Go back to Homepage and wait for load
 		driver.navigate().back();
+		System.out.println(driver.getTitle());
 		wait.until(ExpectedConditions.titleIs("Tommy John | The Most Comfortable Underwear On The Planet"));
 
 		String originalWindow = driver.getWindowHandle();
@@ -521,7 +527,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		System.out.println("***Validating Order History Footer***");
 
 		driver.navigate().back();
-		wait.until(ExpectedConditions.titleIs("Tommy John | The Most Comfortable Underwear On The Planet"));
+		wait.until(ExpectedConditions.titleIs("Men's Underwear, Undershirts & Comfort Basics | Tommy John"));
 
 		linkText = driver.findElement(ORDER_HISTORY).getText();
 		System.out.println("Order History Link Text is : " + linkText);
@@ -705,7 +711,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 //		Check Store Locator
 		System.out.println("***Validating Store Locator Footer***");
 		driver.navigate().back();
-		wait.until(ExpectedConditions.titleIs("Tommy John | The Most Comfortable Underwear On The Planet"));
+		wait.until(ExpectedConditions.titleIs("Men's Underwear, Undershirts & Comfort Basics | Tommy John"));
 
 		linkText = driver.findElement(STORE_LOCATOR_LINK).getText();
 		softassert.assertTrue(linkText.equals("Store Locator"), "Store Locator link text is changed");
@@ -732,7 +738,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 //		Check Retailers Footer
 		System.out.println("***Validating Retailers Footer***");
 		driver.navigate().back();
-		wait.until(ExpectedConditions.titleIs("Tommy John | The Most Comfortable Underwear On The Planet"));
+		wait.until(ExpectedConditions.titleIs("Men's Underwear, Undershirts & Comfort Basics | Tommy John"));
 
 		linkText = driver.findElement(RETAILERS_LINK).getText();
 		softassert.assertTrue(linkText.equals("Retailers"), "Retailers link text is changed");
@@ -758,7 +764,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 //		Check Affiliates Footer
 		System.out.println("***Validating Affiliates Footer***");
 		driver.navigate().back();
-		wait.until(ExpectedConditions.titleIs("Tommy John | The Most Comfortable Underwear On The Planet"));
+		wait.until(ExpectedConditions.titleIs("Men's Underwear, Undershirts & Comfort Basics | Tommy John"));
 
 		linkText = driver.findElement(AFFILIATES_LINK).getText();
 		softassert.assertTrue(linkText.equals("Affiliates"), "Affiliates link text is changed");
@@ -838,7 +844,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		System.out.println("***Validating Careers Footer***");
 
 		driver.navigate().back();
-		wait.until(ExpectedConditions.titleIs("Tommy John | The Most Comfortable Underwear On The Planet"));
+		wait.until(ExpectedConditions.titleIs("Men's Underwear, Undershirts & Comfort Basics | Tommy John"));
 
 		linkText = driver.findElement(CAREERS_LINK).getText();
 
@@ -896,7 +902,7 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		System.out.println("***Validating Blog Footer***");
 
 		driver.navigate().back();
-		wait.until(ExpectedConditions.titleIs("Tommy John | The Most Comfortable Underwear On The Planet"));
+		wait.until(ExpectedConditions.titleIs("Men's Underwear, Undershirts & Comfort Basics | Tommy John"));
 
 		linkText = driver.findElement(BLOG_LINK).getText();
 
