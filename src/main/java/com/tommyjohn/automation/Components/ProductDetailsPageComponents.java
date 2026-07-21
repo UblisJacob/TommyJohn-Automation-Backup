@@ -165,6 +165,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 //		new CollectionPageComponent(driver).navigateToProductDetailsPage();
 		driver.get("https://www.tommyjohn.com/products/second-skin-deep-v-neck-stay-tucked-undershirt-3-pack?color=white&view=upsidedown");
 		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,1500)");
 		SoftAssert softAssert = new SoftAssert();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_TITLE));
 		Thread.sleep(5000);
@@ -175,8 +176,10 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			js.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//span[@class='text-sm text-text-tertiary'])[" + i + "]")));
 			SelectASize_CTA = driver.findElement(By.xpath("(//button[@class='button-secondary grow'])[1]")).getText();
 			System.out.println(SelectASize_CTA);
-
 			js.executeScript("arguments[0].click();", driver.findElement(RATING_STARS));
+			Thread.sleep(2000);
+//			WebElement Readallreviews = wait.until(ExpectedConditions.visibilityOfElementLocated(READ_ALL_REVIEWS_IN_SUMMARY));
+//			js.executeScript("arguments[0].click();", Readallreviews);
 			Thread.sleep(5000);
 			Sticky_SelectASize_CTA = driver.findElement(By.xpath("(//button[@class='button-secondary grow'])[2]")).getText();
 			System.out.println(Sticky_SelectASize_CTA);
@@ -622,8 +625,11 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_TITLE));
 		Thread.sleep(5000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(REVIEW_SUMMARY));
-		WebElement ReviewSummary = driver.findElement(REVIEW_SUMMARY);
-		js.executeScript("arguments[0].click();", driver.findElement(RATING_STARS));
+		js.executeScript("arguments[0].click();", driver.findElement(REVIEW_SUMMARY));
+		Thread.sleep(2000);
+		WebElement Readallreviews = wait.until(ExpectedConditions.visibilityOfElementLocated(READ_ALL_REVIEWS_IN_SUMMARY));
+		js.executeScript("arguments[0].click();", Readallreviews);
+		Thread.sleep(2000);
 		js.executeScript("window.scrollBy(0,-200)");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(REVIEWS_SUMMARY_IN_RATINGS_SECTION));
 		js.executeScript("arguments[0].click();", driver.findElement(REVIEWS_SUMMARY_IN_RATINGS_SECTION));
@@ -650,6 +656,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			System.out.println(SelectASize_CTA);
 
 			js.executeScript("arguments[0].click();", driver.findElement(RATING_STARS));
+			WebElement Readallreviews = wait.until(ExpectedConditions.visibilityOfElementLocated(READ_ALL_REVIEWS_IN_SUMMARY));
+			js.executeScript("arguments[0].click();", Readallreviews);
 			Thread.sleep(5000);
 			Sticky_SelectASize_CTA = driver.findElement(By.xpath("(//button[@class='button-secondary grow'])[2]")).getText();
 			System.out.println(Sticky_SelectASize_CTA);
@@ -3377,7 +3385,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		new HomePageComponents(driver).navigateToWomensBriefs();
 		new CollectionPageComponent(driver).navigateToProductDetailsPage();
 		//new AddToCartComponents(driver).selectSize();
-
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
 		Thread.sleep(3000);
 		if (driver.findElement(RATING_STARS).isDisplayed()) {
@@ -3385,6 +3393,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 			WebElement elem = driver.findElement(RATING_STARS);
 			JavascriptExecutor executor = (JavascriptExecutor) driver;
 			executor.executeScript("arguments[0].click();", elem);
+			WebElement Readallreviews = wait.until(ExpectedConditions.visibilityOfElementLocated(READ_ALL_REVIEWS_IN_SUMMARY));
+			executor.executeScript("arguments[0].click();", Readallreviews);
 			// wait for scroll it down
 			Thread.sleep(3000);
 			executor.executeScript("window.scrollBy(0, 600)");
@@ -3706,6 +3716,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		// Wait for and click the rating stars
 		WebElement ratingStars = wait.until(ExpectedConditions.visibilityOfElementLocated(RATING_STARS));
 		js.executeScript("arguments[0].click();", ratingStars);
+		WebElement Readallreviews = wait.until(ExpectedConditions.visibilityOfElementLocated(READ_ALL_REVIEWS_IN_SUMMARY));
+		js.executeScript("arguments[0].click();", Readallreviews);
 
 		// Validate each rating tier meter
 		Thread.sleep(5000);
@@ -3753,16 +3765,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		WebElement ratingstars = driver.findElement(RATING_STARS);
 		jse = (JavascriptExecutor) driver;
 		jse.executeScript("arguments[0].click();", ratingstars);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_TITLE));
-		new HomePageComponents(driver).navigateToSecondSkinMidlengthBoxerBrief();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_TITLE));
-		Reporter.log(driver.getCurrentUrl());
-		ExtentReport.extentTest.info(driver.getCurrentUrl());
-		Thread.sleep(6000);
-		WebElement ratingstars1 = driver.findElement(RATING_STARS);
-		jse = (JavascriptExecutor) driver;
-		jse.executeScript("arguments[0].click();", ratingstars1);
-		Thread.sleep(2000);
+		WebElement Readallreviews = wait.until(ExpectedConditions.visibilityOfElementLocated(READ_ALL_REVIEWS_IN_SUMMARY));
+		jse.executeScript("arguments[0].click();", Readallreviews);
 		jse.executeScript("window.scrollBy(0, 1000)");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.SHOP_THE_COLLECTION));
 		softAssert.assertTrue(driver.findElement(SHOP_THE_COLLECTION).isDisplayed(),"Shop the Collection section is not avaialable");
@@ -3799,6 +3803,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		WebElement ratingstars = driver.findElement(RATING_STARS);
 		jse = (JavascriptExecutor) driver;
 		jse.executeScript("arguments[0].click();", ratingstars);
+		WebElement Readallreviews = wait.until(ExpectedConditions.visibilityOfElementLocated(READ_ALL_REVIEWS_IN_SUMMARY));
+		jse.executeScript("arguments[0].click();", Readallreviews);
 		//ratingstars.click();
 		Thread.sleep(4000);
 //		jse.executeScript("window.scrollBy(0, 400)");
@@ -3877,6 +3883,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		WebElement ratingstars = driver.findElement(RATING_STARS);
 		jse = (JavascriptExecutor) driver;
 		jse.executeScript("arguments[0].click();", ratingstars);
+		WebElement Readallreviews = wait.until(ExpectedConditions.visibilityOfElementLocated(READ_ALL_REVIEWS_IN_SUMMARY));
+		jse.executeScript("arguments[0].click();", Readallreviews);
 
 		Thread.sleep(5000);
 		jse.executeScript("window.scrollBy(0, 800)");
@@ -3931,6 +3939,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		WebElement elem = driver.findElement(RATING_STARS);
 		JavascriptExecutor executore = (JavascriptExecutor) driver;
 		executore.executeScript("arguments[0].click();", elem);
+		WebElement Readallreviews = wait.until(ExpectedConditions.visibilityOfElementLocated(READ_ALL_REVIEWS_IN_SUMMARY));
+		executore.executeScript("arguments[0].click();", Readallreviews);
 		// wait for scroll it down
 		Thread.sleep(3000);
 		executore.executeScript("window.scrollBy(0, 650)");
@@ -3972,6 +3982,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 	public void verifyReviewFormErrorMessages() throws Exception {
 
 		SoftAssert softAssert = new SoftAssert();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		// call method to navigate to collection page
 		new HomePageComponents(driver).navigateToMensAll();
 		jse = (JavascriptExecutor) driver;
@@ -3981,6 +3992,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		WebElement elem = driver.findElement(RATING_STARS);
 
 		jse.executeScript("arguments[0].click();", elem);
+		WebElement Readallreviews = wait.until(ExpectedConditions.visibilityOfElementLocated(READ_ALL_REVIEWS_IN_SUMMARY));
+		jse.executeScript("arguments[0].click();", Readallreviews);
 		// wait for scroll it down
 		Thread.sleep(5000);
 		jse.executeScript("window.scrollBy(0, 700)");

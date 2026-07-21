@@ -14,7 +14,7 @@ public class HomePageLocators{
 	public static By PLP_HEADING = By.xpath("//span[@class='font-serif text-text-accent']");
 	public static By SHOP_NOW_LINKS = By.xpath("//a[@class='button-link-inverse mx-xs inline-block text-body-sm hocus:!decoration-current']");
 	public static By HERO_BANNER_IMAGE = By.xpath("(//div[@class='shopify-section relative'])[1]");
-	public static By UGC_MODULE = By.xpath("//div[@data-cs-override-id='nulp-four-sixty-ugc']");
+	public static By UGC_MODULE = By.xpath("//div[@data-cs-override-id='hp-four-sixty-ugc']");
     public static By FIRST_UGC_MODULE = By.xpath("(//div[@class='fs-text-container'])[1]");
     public static By SHOP_NOW_LINK = By.xpath("//div[@class='fs-has-links']");
     public static By INFLUENCER_FAVOURITE_PRODUCT_POPUP = By.xpath("//div[@class='fs-detail-container ']");
@@ -103,7 +103,7 @@ public class HomePageLocators{
 
 	public static By MEN_CATEGORY = By.xpath("(//a[contains(text(),'Men')])[2]");
 	public static By MEN_CATEGORY_COPY = By.xpath("(//a[contains(text(),'Men')])[1]");
-	public static By WOMEN_CATEGORY = By.xpath("(//a[contains(text(),'Women')])[1]");
+	public static By WOMEN_CATEGORY = By.xpath("(//a[contains(text(),'Women')])[2]");
 	public static By WOMEN_CATEGORY_COPY = By.xpath("(//a[contains(text(),'Women')])[3]");
 	public static By FINAL_SALE = By.cssSelector(".level-zero-list>.level-zero-container:nth-child(3)> .level-zero-item >a");
 
@@ -118,7 +118,7 @@ public class HomePageLocators{
 	public static By FIRST_lEVEL1_CATEGORY = By.xpath("(//a[contains(text(),'Undershirts')])[1]");
 	public static By FIRST_lEVEL1_CATEGORY_COPY = By.xpath("(//a[contains(text(),'Underwear')])[3]");
 	public static By WOMENS_FIRST_lEVEL1_CATEGORY = By.xpath("(//a[contains(text(),'Bras & Bralettes')])[1]");
-	public static By WOMENS_FIRST_lEVEL1_CATEGORY_COPY = By.xpath("(//a[contains(text(),'Intimates')])[2]");
+	public static By WOMENS_FIRST_lEVEL1_CATEGORY_COPY = By.xpath("//a[contains(text(),'Shop all Bras & Bralettes')]");
 	public static By SECOND_lEVEL1_CATEGORY = By.xpath("(//a[contains(text(),'New Arrivals')])[1]");
 	public static By THIRD_lEVEL1_CATEGORY = By.cssSelector("li.active> div:nth-child(2)> ul.level-one-list >li.level-one-container:nth-child(4) > div > .level-one-item >a");
 	public static By FOURTH_lEVEL1_CATEGORY = By.cssSelector("li.active> div:nth-child(2)> ul.level-one-list >li.level-one-container:nth-child(5) > div > .level-one-item >a");
