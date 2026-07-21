@@ -82,7 +82,7 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		executor.executeScript("arguments[0].click();", el);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PRODUCT_TITLE));
-		String RatingCountPDP = driver.findElement(By.xpath("//div[@class='yotpo-sr-bottom-line-text yotpo-sr-bottom-line-text--right-panel']")).getText();
+		String RatingCountPDP = driver.findElement(By.xpath("//span[@class='yotpo-sr-bottom-line-text yotpo-sr-bottom-line-text--right-panel']")).getText();
 		System.out.println(RatingCountPDP);
 		String RatingCountPDPWithoutParens = RatingCountPDP.replaceAll("[()]", "");
 		System.out.println(RatingCountPDPWithoutParens);
@@ -232,7 +232,8 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	public void ValidateRecsInPLP() throws InterruptedException {
 		SoftAssert softAssert = new SoftAssert();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//a[contains(text(),'Women')])[1]")));
+		//js.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//a[contains(text(),'Women')])[1]")));
+		driver.get("https://www.tommyjohn.com/collections/womens-all");
 		js.executeScript("window.scrollBy(0,10600)");
 		Thread.sleep(5000);
 		js.executeScript("window.scrollBy(0,50)");
@@ -249,15 +250,16 @@ public class CollectionPageComponent extends CollectionPageLocator {
 		catch(Exception e)
 		{
 			System.out.println("Entering catch");
-			js.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//a[contains(text(),'Women')])[1]")));
+			driver.get("https://www.tommyjohn.com/collections/womens-all");
+			//js.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//a[contains(text(),'Women')])[1]")));
 			js.executeScript("window.scrollBy(0,10600)");
 			Thread.sleep(5000);
 			js.executeScript("window.scrollBy(0,50)");
 			Thread.sleep(5000);
 			js.executeScript("scroll(0,-80);");
 			js.executeScript("window.scrollBy(0,20000)");
-			wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_RECS));
-			softAssert.assertTrue(driver.findElement(PLP_RECS).isDisplayed(), "Recs are not available in the PLP");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(PLP_RECSs));
+			softAssert.assertTrue(driver.findElement(PLP_RECSs).isDisplayed(), "Recs are not available in the PLP");
 			Reporter.log("Recs are not available in the PLP");
 			ExtentReport.extentTest.info("Recs are not available in the PLP");
 		}

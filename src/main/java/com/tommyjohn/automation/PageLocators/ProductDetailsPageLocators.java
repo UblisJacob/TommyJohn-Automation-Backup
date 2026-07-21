@@ -32,12 +32,12 @@ public class ProductDetailsPageLocators {
 	public static By FIRST_PRODUCT_REVIEW_STARS = By.cssSelector("div.mega-collection-grid__row:nth-child(3) > div:nth-child(3) > a > div");
 	//changed
 	public static By PRODUCT_TITLE = By.xpath("//h1[@class='mb-0']");
-	public static By REVIEW_SUMMARY = By.xpath("//span[@class='yotpo-star-rating-reviews-summary-text']");
-	public static By READ_ALL_REVIEWS = By.xpath("//span[@class='yotpo-summary-footer-read-all-text']");
+	public static By REVIEW_SUMMARY = By.xpath("//button[@class='yotpo-star-rating-reviews-summary-text']");
+	public static By READ_ALL_REVIEWS_IN_SUMMARY = By.xpath("//button[@class='yotpo-summary-footer-read-all-reviews']");
 	public static By FIRST_REVIEW = By.xpath("//span[@class='yotpo-reviewer-name unselectable']");
 	public static By WRITE_A_REVIEW_LINK = By.xpath("//button[@class='yotpo-new-review-btn yotpo-btn-s']");
 	public static By SHOP_PAY = By.xpath("//div[@class='grid gap-3 text-center text-text-tertiary']");
-	public static By REVIEW_SUMMARY_TITLE = By.xpath("//div[@class='yotpo-summary-header-title']");
+	public static By REVIEW_SUMMARY_TITLE = By.xpath("//h2[@class='yotpo-summary-header-title']");
 	//changed
 	public static By PRODUCT_TITLE_1 = By.xpath("//h1[@class='mb-0']");//changed
 	//	public static By PRODUCT_PRICE = By.cssSelector("div.product-info__inner-top > span > span:nth-child(2)");
@@ -189,10 +189,11 @@ public class ProductDetailsPageLocators {
 	//Reviews section
 
 
-	public static By RATING_STARS = By.xpath("//div[@class='yotpo-sr-bottom-line-text yotpo-sr-bottom-line-text--right-panel']");
+	public static By RATING_STARS = By.xpath("//span[@class='yotpo-sr-bottom-line-text yotpo-sr-bottom-line-text--right-panel']");
+	public static By READ_ALL_REVIEWS = By.xpath("//button[@class='yotpo-summary-footer-read-all-reviews']");
 	public static By RATING_NUMBER = By.xpath("//div[@class='yotpo-bottom-line-left-panel yotpo-bottom-line-score']");
 	public static By RATING_AND_REVIEWS_BOX = By.xpath("//div[@class='yotpo-header-container']");
-	public static By REVIEWS_SUMMARY_IN_RATINGS_SECTION = By.xpath("//button[@class='yotpo-icon-btn yotpo-color-fill-btn button-padding']");
+	public static By REVIEWS_SUMMARY_IN_RATINGS_SECTION = By.xpath("//button[@class='yotpo-reviews-summary-button yotpo-reviews-summary-button--style-1']");
 	public static By RATING_AND_REVIEWS_FILTER = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div:nth-child(2)>ul>li");
 	public static By RATING_AND_REVIEWS_FILTER_RATING_COUNT = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div:nth-child(2)>ul>li>div>div:nth-child(3)");
 	public static By NO_RATING_TEXT = By.cssSelector("[data-tj-qa='product-fit'],div.multi-pdp-title-wrap.desktop-view > div.product-info__price-wrap > div.yotpo-star-wrapper > div > div > span:nth-child(1)");
@@ -222,7 +223,7 @@ public class ProductDetailsPageLocators {
 	//filter ratings
 	public static By FILTER_RATINGS = By.xpath("//input[@class='yotpo-search-input']");
 	public static By FILTER_FIT = By.cssSelector("[data-tj-qa='pdp-fit-dropdown'],.yotpo-reviews-qa-header.filters>div:nth-child(3)");
-	public static By FILTER_SORTBY = By.xpath("(//div[@class='yotpo-selected-value'])[2]");
+	public static By FILTER_SORTBY = By.xpath("//span[@class='yotpo-selected-value__value']");
 	public static By FILTER_SORTBY_SECTION = By.xpath("//span[@class='yotpo-dropdown-option']");
 	
 	public static By QUESTION_TAB = By.xpath("//button[@class='ugc-storefront-widgets-tabs-container__tab']");
@@ -256,7 +257,7 @@ public class ProductDetailsPageLocators {
 	public static By NO_REVIEWS_SUBTEXT = By.cssSelector(".yotpo-no-reviews-container > .yotpo-subtext");
 	public static By NO_REVIEW_WRITE_REVIEW = By.xpath("//button[@class='yotpo-new-review-btn yotpo-btn-s']");
 	
-	public static By WRITE_REVIEW_TITLE = By.xpath("//h4[@class='yotpo-form-label' and contains(text(),'Write a review')]");
+	public static By WRITE_REVIEW_TITLE = By.xpath("//label[@class='yotpo-form-label' and contains(text(),'Write a review')]");
 	public static By WRITE_REVIEW_TEXTBOX = By.xpath("//textarea[@aria-label='Write a review']");
 	public static By NAME_TEXTBOX = By.xpath("//input[@aria-label='Your name']");
 	public static By EMAIL_TEXTBOX = By.xpath("//input[@aria-label='Your email address']");
@@ -267,11 +268,11 @@ public class ProductDetailsPageLocators {
 	public static By REVIEW_TEXTBOX = By.cssSelector("[data-tj-qa='reviews-review-input'],#yotpo_input_review_content");
 	public static By SUBMIT_BTN = By.xpath("//button[@class='yotpo-new-review-submit']");
 	
-	public static By NAME = By.xpath("//h4[@class='yotpo-form-label' and contains(text(),'Your name')]");
-	public static By EMAIL = By.xpath("//h4[@class='yotpo-form-label' and contains(text(),'Your email address')]");
+	public static By NAME = By.xpath("//label[@class='yotpo-form-label' and contains(text(),'Your name')]");
+	public static By EMAIL = By.xpath("//label[@class='yotpo-form-label' and contains(text(),'Your email address')]");
 	public static By LOCATION = By.xpath("//*[data-tj-qa='reviews-write-review-location-label'] | //label[@for = 'yotpo_input_review_location']");
 	public static By FIT = By.cssSelector("[data-tj-qa='reviews-fit-header'] , .yotpo-custom-tag-field > span");
-	public static By HEADLINE = By.xpath("//h4[@class='yotpo-form-label' and contains(text(),'Add a headline')]");
+	public static By HEADLINE = By.xpath("//label[@class='yotpo-form-label' and contains(text(),'Add a headline')]");
 	public static By REVIEW = By.xpath("//*[data-tj-qa='reviews-review-label'] | //label[@for = 'yotpo_input_review_content']");
 	public static By OVERALLRATING = By.cssSelector("[data-tj-qa='reviews-overall-fitting-label'],.overall-rating-text");
 	
