@@ -13,7 +13,7 @@
         <classes>
             <class name="TestModules.ValidateCartPage">
                 <methods>
-                    <include name="ValidateBundleTierinCartPage"/>
+                    <include name="ValidatefiveforfiftyfunctionalityinCartPage"/>
                 </methods>
             </class>
         </classes>

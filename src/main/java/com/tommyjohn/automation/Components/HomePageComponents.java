@@ -252,7 +252,9 @@ public class HomePageComponents extends HomePageLocators {
 		Thread.sleep(2000);
 		js.executeScript("window.scrollBy(0,800)");
 		Thread.sleep(2000);
-		driver.findElement(MENS_TOGGLE).click();
+		WebElement element1 = driver.findElement(MENS_TOGGLE);
+		js.executeScript("arguments[0].click();", element1);
+		//driver.findElement(MENS_TOGGLE).click();
 		js.executeScript("window.scrollBy(0,500)");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(MENS_RECS));
 		softAssert.assertTrue(driver.findElement(MENS_RECS).isDisplayed(),"Recs are not available in the Mens Toggle");
