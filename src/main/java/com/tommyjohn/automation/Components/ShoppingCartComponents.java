@@ -207,13 +207,13 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		Thread.sleep(3000);
 		String DISCOUNT_5for$50 = driver.findElement(FlyCartPageLocator.DISCOUNT_5for$50).getText().split(":")[1].trim();
 		System.out.println(DISCOUNT_5for$50);
-		softAssert.assertEquals(DISCOUNT_5for$50,"5 For $50","5 for $50 discount is not applied and not displayed in the Cart line item");
+		softAssert.assertEquals(DISCOUNT_5for$50,"5 For $60","5 for $50 discount is not applied and not displayed in the Cart line item");
 		String TOTAL = driver.findElement(FlyCartPageLocator.TOTAL).getText();
 		System.out.println(TOTAL);
-		softAssert.assertEquals(TOTAL,"$50.00","Cart Total is differ from the 5 for $65 functionality");
+		softAssert.assertEquals(TOTAL,"$60.00","Cart Total is differ from the 5 for $65 functionality");
 		softAssert.assertAll();
-		Reporter.log("5 for $50 functionality works fine in Cart page");
-		ExtentReport.extentTest.info("5 for $50 functionality works fine in Cart page");
+		Reporter.log("5 for $60 functionality works fine in Cart page");
+		ExtentReport.extentTest.info("5 for $60 functionality works fine in Cart page");
 	}
 
     public void ValidateBundleTierinCartPage() throws Exception {
