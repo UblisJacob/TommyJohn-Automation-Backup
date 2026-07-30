@@ -247,7 +247,7 @@ public class GTMComponents {
 
         // ✅ Perform Add-to-Cart Action
         new AddToCartComponents(driver).addsingleproductToCart();
-        Thread.sleep(5000); // ✅ Wait for network request
+        Thread.sleep(10000); // ✅ Wait for network request
         driver.quit();  // ✅ Close the browser
         if (!payloadMatched[0]) {
             Assert.fail("❌ Test Failed: Expected 'add-to-cart' event was NOT found or didn't match!");

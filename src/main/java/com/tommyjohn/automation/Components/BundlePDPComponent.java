@@ -480,6 +480,9 @@ public class BundlePDPComponent extends BundlePDPLocators{
 				WebElement elem = driver.findElement(RATING_STARS);
 				JavascriptExecutor executor = (JavascriptExecutor) driver;
 				executor.executeScript("arguments[0].click();", elem);
+				WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(30));
+				WebElement Readallreviews = wait.until(ExpectedConditions.visibilityOfElementLocated(READ_ALL_REVIEWS_IN_SUMMARY));
+				executor.executeScript("arguments[0].click();", Readallreviews);
 				// wait for scroll it down
 				Thread.sleep(3000);
 				executor.executeScript("window.scrollBy(0, 600)");
