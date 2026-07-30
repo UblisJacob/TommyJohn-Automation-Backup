@@ -128,7 +128,7 @@ public class BundlePDPLocators {
 	//Reviews section
 
 
-	public static By RATING_STARS = By.xpath("(//span[@class='flex items-center font-normal text-text-secondary'])[1]");
+	public static By RATING_STARS = By.xpath("//span[@class='yotpo-sr-bottom-line-text yotpo-sr-bottom-line-text--right-panel']");
 	public static By RATING_NUMBER = By.xpath("//div[@class='yotpo-bottom-line-left-panel yotpo-bottom-line-score']");
 	public static By RATING_AND_REVIEWS_BOX = By.xpath("//div[@class='yotpo-header-container']");
 	public static By RATING_AND_REVIEWS_FILTER = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div:nth-child(2)>ul>li");
@@ -141,7 +141,7 @@ public class BundlePDPLocators {
 	public static By AVG_RATING_IN_FIRST_BOX = By.xpath("//div[@class='yotpo-bottom-line-left-panel yotpo-bottom-line-score']");
 	public static By TOTAL_REVIEWS_IN_FIRST_BOX = By.xpath("//div[@class='yotpo-bottom-line-basic-text']");
 
-	public static By SECOND_BOX_IN_RATING_AND_REVIEWS = By.xpath("//div[@class='yotpo-star-distribution']");
+	public static By SECOND_BOX_IN_RATING_AND_REVIEWS = By.xpath("//ul[@class='yotpo-star-distribution']");
 	public static By RATING_LABEL_IN_SECOND_BOX = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div:nth-child(2) > ul.yotpo-revew-bottomline-list > li > .yotpo-review-bottomline-individual-ratings > .yotpo-review-bottomline-ratings-label");
 	public static By RATING_METER_IN_SECOND_BOX = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div:nth-child(2) > ul.yotpo-revew-bottomline-list > li:nth-child(3) > .yotpo-review-bottomline-individual-ratings > .yotpo-review-bottomline-individual-ratings__meter");
 	public static By RATING_COUNT_IN_SECOND_BOX = By.cssSelector(".yotpo-reviews-widget >div> div.yotpo-review-bottomline-container >div:nth-child(2) > ul.yotpo-revew-bottomline-list > li:nth-child(5) > .yotpo-review-bottomline-individual-ratings > .yotpo-review-bottomline-individual-ratings__count");
