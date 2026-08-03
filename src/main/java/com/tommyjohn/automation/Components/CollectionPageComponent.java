@@ -49,6 +49,44 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	List<WebElement> CollectionDoorways;
 	int Count;
 
+	public void ValidateAnchorLinkFunctionality() {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		SoftAssert softAssert = new SoftAssert();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		new HomePageComponents(driver).navigateToWomensUnderwear();
+
+		driver.get("https://www.tommyjohn.com/collections/womens-underwear#second-skin");
+
+		// Wait for page to finish loading
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(DYPLACEHOLDERBANNER));
+
+		// Verify URL contains the anchor
+		softAssert.assertTrue(driver.getCurrentUrl().contains("#second-skin"),
+				"URL contains the anchor #second-skin");
+
+		// Locate the Second Skin section
+		WebElement secondSkinSection = wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//h2[contains(normalize-space(),'Second Skin')]")));
+
+		// Get current scroll position
+		Long pageY = (Long) js.executeScript("return window.pageYOffset;");
+
+		// Get element position
+		Long elementY = (Long) js.executeScript(
+				"return Math.round(arguments[0].getBoundingClientRect().top + window.pageYOffset);",
+				secondSkinSection);
+
+		// Verify browser scrolled near the section
+		softAssert.assertTrue(Math.abs(pageY - elementY) < 100,
+				"Page automatically scrolled to the Second Skin section");
+
+		Reporter.log("Anchor link successfully navigated to Second Skin section.");
+		ExtentReport.extentTest.info("Anchor link successfully navigated to Second Skin section.");
+
+		softAssert.assertAll();
+	}
+
 
 	public void ValidateDyPlaceholderBannerInPLP()
 	{

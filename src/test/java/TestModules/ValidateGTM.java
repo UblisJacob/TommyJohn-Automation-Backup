@@ -43,6 +43,11 @@ public class ValidateGTM {
         new GTMValidations(driver).validatePowerfront();
     }
 
+ //   @Test
+    public void ValidatePixelForDirectMailRetargeting() throws Exception {
+        new GTMValidations(driver).ValidatePixelForDirectMailRetargeting();
+    }
+
     @Test
     public void ValidateKlaviyo() throws Exception {
         new GTMValidations(driver).validateKlaviyo();

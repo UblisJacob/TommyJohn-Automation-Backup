@@ -38,6 +38,12 @@ public class GTMValidations extends GTMComponents {
 
     }
 
+    public void ValidatePixelForDirectMailRetargeting() throws Exception
+    {
+        new GTMComponents(driver).ValidatePixelForDirectMailRetargeting();
+
+    }
+
     public void validateRudderstack() throws Exception
     {
         new GTMComponents(driver).ValidateRudderstackForPLP();

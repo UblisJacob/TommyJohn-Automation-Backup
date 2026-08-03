@@ -202,6 +202,4 @@ public class ListenerClass extends ExtentReport
 		Ffailed = Ffailed + (context.getFailedTests().size());
 		Fskipped = Fskipped + (context.getSkippedTests().size());
 	}
-
-
 }
