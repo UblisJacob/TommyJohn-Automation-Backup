@@ -26,6 +26,10 @@ public class ValidateCategoryPages {
 
 //Not worked exception
 
+	@Test
+	public void ValidateAnchorLinkFunctionality() throws Exception { new
+			CollectionPage(driver).ValidateAnchorLinkFunctionality(); }
+
 	@Test public void ValidateCollectionDoorways() throws Exception { new
 			CollectionPage(driver).ValidateCollectionDoorways(); }
 

@@ -11,13 +11,14 @@
     <test name="Tests">
         <parameter name="browser" value="chrome"/>
         <classes>
-                <class name="ADACheckModules.CollectionPageADACheck">
+                <class name="TestModules.ValidateGTM">
                 <methods>
-                    <include name=""/>
+                    <include name="ValidatePixelForDirectMailRetargeting"/>
                 </methods>
             </class>
         </classes>
     </test>
+
 
 <!--    <listeners>-->
 <!--        <listener class-name="TestScenario.ADAListenerClass"></listener>-->

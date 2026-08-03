@@ -1,6 +1,8 @@
 package com.tommyjohn.automation.Components;
 
 import com.base.ExtentReport;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tommyjohn.automation.PageLocators.HomePageLocators;
 import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
 import com.tommyjohn.automation.Pages.AccountLoginPage;
@@ -34,6 +36,8 @@ import org.testng.Reporter;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.*;
@@ -42,6 +46,8 @@ import java.util.logging.Level;
 
 import static com.tommyjohn.automation.PageLocators.CollectionPageLocator.*;
 import static com.tommyjohn.automation.PageLocators.FlyCartPageLocator.CHECKOUT_BUTTON;
+import static com.tommyjohn.automation.PageLocators.FlyCartPageLocator.VIEW_CART_LINK;
+import static com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators.CART_ICON;
 
 
 public class GTMComponents {
@@ -54,6 +60,7 @@ public class GTMComponents {
 
     public WebDriver driver;
     String searchText = "";
+    public JavascriptExecutor jse;
 
 
     public void ValidateGTMforFacetEvent() throws InterruptedException {
@@ -1301,6 +1308,182 @@ public class GTMComponents {
             System.out.println("❌ JSON Assertion Error: " + e.getMessage());
             return false;
         }
+    }
+
+
+    public void ValidatePixelForDirectMailRetargeting() throws Exception {
+        jse = (JavascriptExecutor) driver;
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--window-size=1920,1080");
+
+        ChromeDriver driver = new ChromeDriver(options);
+
+        DevTools devTools = driver.getDevTools();
+        devTools.createSession();
+
+        devTools.send(Network.enable(
+                Optional.empty(),
+                Optional.empty(),
+                Optional.empty(),
+                Optional.empty(),
+                Optional.empty()));
+
+        AtomicReference<String> encodedData = new AtomicReference<>();
+        AtomicReference<String> conversionUrl = new AtomicReference<>();
+
+        devTools.addListener(Network.requestWillBeSent(), requestSent -> {
+
+            Request request = requestSent.getRequest();
+
+            String url = request.getUrl();
+
+            if (!url.contains("datasteam"))
+                return;
+
+            System.out.println("==================================================");
+            System.out.println("DataStream Request");
+            System.out.println(url);
+
+            try {
+
+                URI uri = URI.create(url);
+
+                String query = uri.getQuery();
+
+                if (query == null)
+                    return;
+
+                for (String param : query.split("&")) {
+
+                    String decoded = URLDecoder.decode(param, StandardCharsets.UTF_8);
+
+                    if (decoded.startsWith("d=")) {
+
+                        encodedData.set(decoded.substring(2));
+
+                    }
+
+                    if (decoded.contains("conversion=true")) {
+
+                        conversionUrl.set(url);
+
+                    }
+
+                }
+
+            } catch (Exception e) {
+
+                e.printStackTrace();
+
+            }
+
+        });
+
+        // Launch site
+        driver.get("https://www.tommyjohn.com/");
+
+        // Add product
+        new AddToCartComponents(driver).addsingleproductToCart();
+        jse.executeScript("arguments[0].click();", driver.findElement(VIEW_CART_LINK));
+
+
+        Thread.sleep(10000);
+
+        Assert.assertNotNull(encodedData.get(),
+                "No DataStream CartItem request found.");
+
+        // Decode Base64
+
+        String decodedJson = new String(
+                Base64.getDecoder().decode(encodedData.get()),
+                StandardCharsets.UTF_8);
+
+        System.out.println("Decoded JSON");
+        System.out.println(decodedJson);
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        JsonNode json = mapper.readTree(decodedJson);
+
+        String event = json.get("l").asText();
+        String productName = json.get("v06").asText();
+        String productPrice = json.get("v03").asText();
+        String quantity = json.get("v08").asText();
+        String productUrl = json.get("v04").asText();
+
+        System.out.println("Event : " + event);
+        System.out.println("Product : " + productName);
+        System.out.println("Price : " + productPrice);
+        System.out.println("Qty : " + quantity);
+
+        Assert.assertEquals(event, "CartItem");
+
+        Assert.assertEquals(productName,
+                "Performance Crew Sock (3-Pack)");
+
+        Assert.assertEquals(productPrice,
+                "35.00");
+
+        Assert.assertEquals(quantity,
+                "1");
+
+        Assert.assertTrue(productUrl.contains("/products/"));
+
+        System.out.println("CartItem Validation Passed");
+
+    /*
+       COMPLETE CHECKOUT HERE
+
+       new CheckoutPage(driver).completeCheckout();
+
+       Wait until Thank You page loads
+    */
+
+        if (conversionUrl.get() != null) {
+
+            URI uri = URI.create(conversionUrl.get());
+
+            String query = uri.getQuery();
+
+            String orderId = "";
+            String orderTotal = "";
+
+            for (String param : query.split("&")) {
+
+                String[] pair = param.split("=");
+
+                if (pair.length < 2)
+                    continue;
+
+                if (pair[0].equals("orderId")) {
+
+                    orderId = pair[1];
+
+                }
+
+                if (pair[0].equals("orderTotal")) {
+
+                    orderTotal = pair[1];
+
+                }
+
+            }
+
+            System.out.println("Order Id : " + orderId);
+            System.out.println("Order Total : " + orderTotal);
+
+        /*
+            Compare against values displayed on Thank You page.
+
+            Example:
+
+            Assert.assertEquals(orderId, expectedOrderId);
+            Assert.assertEquals(orderTotal, expectedOrderTotal);
+        */
+
+        }
+
+        driver.quit();
     }
 
 

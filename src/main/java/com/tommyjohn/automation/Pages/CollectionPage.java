@@ -404,6 +404,10 @@ public class CollectionPage extends CollectionPageComponent{
 		new CollectionPageComponent(driver).ValidateRecsInPLP();
 	}
 
+	public void ValidateAnchorLinkFunctionality()  {
+		new CollectionPageComponent(driver).ValidateAnchorLinkFunctionality();
+	}
+
 	public void validateproductgrid() throws Exception {
 		// TODO Auto-generated method stub
 		new HomePageComponents(driver).navigateToNewArrivalsInMenCategory();
