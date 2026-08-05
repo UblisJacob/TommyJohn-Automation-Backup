@@ -219,13 +219,13 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
     public void ValidateBundleTierinCartPage() throws Exception {
         SoftAssert softAssert = new SoftAssert();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-        new AddToCartComponents(driver).add3for$48product();
+        new AddToCartComponents(driver).addbundletierproduct();
         driver.findElement(HomePageLocators.CART_ICON).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
         driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
         String BUNDLE_TIER_TITLE = driver.findElement(FlyCartPageLocator.BUNDLE_TIER_TITLE).getText();
         System.out.println(BUNDLE_TIER_TITLE);
-        softAssert.assertEquals(BUNDLE_TIER_TITLE,"Women's Underwear","The Bundle Tier Meter Is Not Displayed");
+        softAssert.assertEquals(BUNDLE_TIER_TITLE,"Women's Clearance","The Bundle Tier Meter Is Not Displayed");
         Reporter.log("Bundle Tier functionality works fine in Cart page");
         softAssert.assertAll();
         ExtentReport.extentTest.info("Bundle Tier functionality works fine in Cart page");

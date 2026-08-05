@@ -33,6 +33,7 @@ public class CustomUtilities {
     // Remove static WebDriver - use DriverManager below (ThreadLocal)
     public EdgeDriver edgedriver;
     public static String baseUrl = "https://www.tommyjohn.com/";
+    public static String shopify = "https://admin.shopify.com/store/tommyjohn/";
     public static BufferedReader reader;
     public static Properties properties;
     public static final String propertiesFilePath = "src/main/resources/configuration.properties";
@@ -66,10 +67,10 @@ public class CustomUtilities {
             chromeOptions.addArguments("--disable-features=TouchpadAndWheelScrollLatching");
             chromeOptions.addArguments("--force-device-scale-factor=1");
             chromeOptions.addArguments("--start-maximized");
-            chromeOptions.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
-            chromeOptions.addArguments("--disable-blink-features=AutomationControlled");
-            chromeOptions.setExperimentalOption("excludeSwitches", new String[] { "enable-automation" });
-            chromeOptions.setExperimentalOption("useAutomationExtension", false);
+       //     chromeOptions.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
+//            chromeOptions.addArguments("--disable-blink-features=AutomationControlled");
+//            chromeOptions.setExperimentalOption("excludeSwitches", new String[] { "enable-automation" });
+//            chromeOptions.setExperimentalOption("useAutomationExtension", false);
             chromeOptions.addArguments("--no-sandbox");
             chromeOptions.addArguments("--disable-dev-shm-usage");
             chromeOptions.addArguments("--aggressive-cache-discard");

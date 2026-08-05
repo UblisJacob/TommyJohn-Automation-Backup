@@ -12,6 +12,7 @@ import java.util.List;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.WheelInput;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -48,6 +49,100 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	int PLPs = 54;
 	List<WebElement> CollectionDoorways;
 	int Count;
+
+
+	public void ValidateFilterDropdownScroll() throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		new HomePageComponents(driver).navigateToMensAll();
+		WebElement collectionFilter = wait.until(
+				ExpectedConditions.elementToBeClickable(COLLECTION_FILTER_PILL));
+
+		js.executeScript("arguments[0].click();", collectionFilter);
+
+		Reporter.log("Collection Filter opened");
+		ExtentReport.extentTest.info("Collection Filter opened");
+		WebElement filterContainer = wait.until(
+				ExpectedConditions.visibilityOfElementLocated(
+						By.xpath("(//div[contains(@class,'overflow-y-auto')])[2]")));
+		Long beforeScroll = ((Number) js.executeScript(
+				"return arguments[0].scrollTop;", filterContainer)).longValue();
+
+		System.out.println("Before Scroll : " + beforeScroll);
+		Actions actions = new Actions(driver);
+
+		actions.scrollFromOrigin(
+				WheelInput.ScrollOrigin.fromElement(filterContainer),
+				0,
+				500
+		).perform();
+
+		Thread.sleep(1500);
+		Long afterScroll = ((Number) js.executeScript(
+				"return arguments[0].scrollTop;", filterContainer)).longValue();
+
+		System.out.println("After Scroll : " + afterScroll);
+
+		if (afterScroll <= beforeScroll) {
+			throw new Exception("Filter dropdown did not scroll.");
+		}
+
+		Reporter.log("Filter dropdown scrolled successfully.");
+		ExtentReport.extentTest.pass("Filter dropdown scrolled successfully.");
+	}
+
+	public void ValidatePageAutoScroll() throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		SoftAssert softAssert = new SoftAssert();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		new HomePageComponents(driver).navigateToMensAll();
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FILTER_PILLS));
+
+		softAssert.assertTrue(driver.findElement(FILTER_PILLS).isDisplayed(),
+				"Filter Pills are not displayed");
+
+		Reporter.log("Filter Pills are displayed");
+		ExtentReport.extentTest.info("Filter Pills are displayed");
+		js.executeScript("window.scrollBy(0,1200);");
+		Thread.sleep(2000);
+		Long scrollBefore = (Long) js.executeScript("return window.pageYOffset;");
+		System.out.println("Scroll Before Filter : " + scrollBefore);
+		js.executeScript("arguments[0].click();",
+				driver.findElement(COLLECTION_FILTER_PILL));
+		WebElement airFilter = wait.until(ExpectedConditions.elementToBeClickable(
+				By.xpath("//span[@class='font-medium' and contains(text(),'Air')]")));
+
+		String airFilterName = airFilter.getText();
+
+		js.executeScript("arguments[0].click();", airFilter);
+		Thread.sleep(5000);
+		Long scrollAfter = (Long) js.executeScript("return window.pageYOffset;");
+		System.out.println("Scroll After Filter : " + scrollAfter);
+
+		softAssert.assertTrue(scrollAfter < scrollBefore,
+				"Page did not scroll to the first row after applying the filter.");
+
+		Reporter.log("Page scrolled to the first row after applying the filter.");
+		ExtentReport.extentTest.info("Page scrolled to the first row after applying the filter.");
+		WebElement firstProduct = wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("(//a[contains(text(),'Air Trunk')])[1]")));
+
+		String productName = firstProduct.getText();
+
+		System.out.println(productName);
+
+		softAssert.assertTrue(productName.contains(airFilterName),
+				"Appropriate product is not displayed after selecting the filter.");
+
+		Reporter.log("Appropriate product is displayed after selecting the filter.");
+		ExtentReport.extentTest.info("Appropriate product is displayed after selecting the filter.");
+
+		softAssert.assertAll();
+	}
 
 	public void ValidateAnchorLinkFunctionality() {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));

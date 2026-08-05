@@ -24,7 +24,14 @@ public class ValidateCategoryPages {
 		}
 	}
 
-//Not worked exception
+
+	@Test
+	public void ValidateFilterDropdownScroll() throws Exception { new
+			CollectionPage(driver).ValidateFilterDropdownScroll(); }
+
+	@Test
+	public void ValidatePageAutoScroll() throws Exception { new
+			CollectionPage(driver).ValidatePageAutoScroll(); }
 
 	@Test
 	public void ValidateAnchorLinkFunctionality() throws Exception { new

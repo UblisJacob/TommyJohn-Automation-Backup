@@ -33,6 +33,12 @@ public class ValidateGiftCardFunctionality extends ExtentReport{
 	}
 
 	@Test
+	public void ValidateWishlistCTAIsNotAvailableInGiftcardPDP() throws Exception
+	{
+		new GiftCardPage(driver).ValidateWishlistCTAIsNotAvailableInGiftcardPDP();
+	}
+
+	@Test
 	public void ValidateMailIsAdded() throws Exception
 	{
 		new GiftCardPage(driver).ValidateMailIsAdded();

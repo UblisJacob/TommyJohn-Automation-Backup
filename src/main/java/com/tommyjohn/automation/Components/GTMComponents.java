@@ -912,7 +912,7 @@ public class GTMComponents {
         });
 
         driver.get("https://www.tommyjohn.com/");
- //       new AccountLoginPage(driver).loginAccount("testuserQA1@gmail.com", "Test@123");
+        new AccountLoginPage(driver).loginAccount("testuserQA1@gmail.com", "Test@123");
         new AddToCartComponents(driver).addsingleproductToCart();
 
         Thread.sleep(3000);
