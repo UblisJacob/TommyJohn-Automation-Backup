@@ -15,6 +15,10 @@ public class GiftCardPage extends GiftCardPageComponents {
 		new GiftCardPageComponents(driver).GoToOnGiftCardPage();
 	}
 
+	public void ValidateWishlistCTAIsNotAvailableInGiftcardPDP() throws Exception {
+		new GiftCardPageComponents(driver).ValidateWishlistCTAIsNotAvailableInGiftcardPDP();
+	}
+
 	public void ValidateMailIsAdded() throws Exception {
 		new GiftCardPageComponents(driver).ValidateMailIsAdded();
 	}

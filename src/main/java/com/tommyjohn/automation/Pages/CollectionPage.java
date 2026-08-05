@@ -408,6 +408,15 @@ public class CollectionPage extends CollectionPageComponent{
 		new CollectionPageComponent(driver).ValidateAnchorLinkFunctionality();
 	}
 
+
+	public void ValidatePageAutoScroll() throws Exception {
+		new CollectionPageComponent(driver).ValidatePageAutoScroll();
+	}
+
+	public void ValidateFilterDropdownScroll() throws Exception {
+		new CollectionPageComponent(driver).ValidateFilterDropdownScroll();
+	}
+
 	public void validateproductgrid() throws Exception {
 		// TODO Auto-generated method stub
 		new HomePageComponents(driver).navigateToNewArrivalsInMenCategory();

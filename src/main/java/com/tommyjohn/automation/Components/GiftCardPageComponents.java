@@ -27,6 +27,7 @@ import com.tommyjohn.automation.utils.CustomUtilities;
 import static com.tommyjohn.automation.PageLocators.CheckoutPageLocators.*;
 import static com.tommyjohn.automation.PageLocators.FlyCartPageLocator.CHECKOUT_BUTTON;
 import static com.tommyjohn.automation.PageLocators.FlyCartPageLocator.VIEW_CART_LINK;
+import static com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators.ADD_TO_WISHLIST;
 
 public class GiftCardPageComponents extends GiftCardPageLocators {
 
@@ -53,6 +54,24 @@ public class GiftCardPageComponents extends GiftCardPageLocators {
 
 	public GiftCardPageComponents(WebDriver driver) {
 		this.driver = driver;
+	}
+
+	public void ValidateWishlistCTAIsNotAvailableInGiftcardPDP() throws Exception {
+
+		new HomePageComponents(driver).navigateToGiftCard();
+
+		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+		Thread.sleep(3000);
+
+		if (driver.findElements(ADD_TO_WISHLIST).size() > 0) {
+
+			throw new Exception("Add to Wishlist CTA is displayed on the Gift Card page.");
+
+		}
+
+		Reporter.log("Add to Wishlist CTA is not available on the Gift Card page as expected.");
+		ExtentReport.extentTest.pass("Add to Wishlist CTA is not available on the Gift Card page as expected.");
 	}
 
 	public void ValidateIwantToSendThisAsAGiftRadioButton() throws Exception {
