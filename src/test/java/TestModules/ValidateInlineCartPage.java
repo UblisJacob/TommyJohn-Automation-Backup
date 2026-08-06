@@ -41,6 +41,11 @@ public class ValidateInlineCartPage extends ExtentReport {
         new FlyCartPage(driver).ValidateBundleTierinInLineCartPage();
     }
 
+//	@Test
+	public void validateOOSProductsInMiniCartRecommendations() throws Exception {
+		new FlyCartPage(driver).validateOOSProductsInMiniCartRecommendations();
+	}
+
 	@Test
 	public void ValidateSevenforthirtyfivefunctionalityinInLineCartPage() throws Exception {
 		new FlyCartPage(driver).ValidateSevenFor35InInLineCart();

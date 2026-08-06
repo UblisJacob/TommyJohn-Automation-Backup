@@ -5,6 +5,9 @@ import com.tommyjohn.automation.PageLocators.HomePageLocators;
 import com.tommyjohn.automation.PageLocators.ShopifyLocators;
 import com.tommyjohn.automation.utils.CustomUtilities;
 import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.devtools.DevTools;
+import org.openqa.selenium.devtools.v145.network.Network;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -14,6 +17,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.time.Duration;
 import java.util.List;
+import java.util.Optional;
 import java.util.Properties;
 
 import static com.tommyjohn.automation.PageLocators.AccountLoginLocators.CUSTOMER_EMAIL_INPUT;
@@ -47,180 +51,266 @@ public class ShopifyComponents extends ShopifyLocators {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
 
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
         try {
 
-            wait.until(webDriver ->
-                    ((JavascriptExecutor) webDriver)
-                            .executeScript("return document.readyState")
+            wait.until(d ->
+                    js.executeScript("return document.readyState")
                             .equals("complete"));
 
-            // ==========================
-            // Enter Email
-            // ==========================
+            //----------------------------------------------------
+            // Start Network Listener
+            //----------------------------------------------------
 
-            WebElement emailField = wait.until(
-                    ExpectedConditions.visibilityOfElementLocated(EMAIL_INPUT));
+            DevTools devTools = ((ChromeDriver) driver).getDevTools();
 
-            emailField.clear();
-            emailField.sendKeys(createdAccountEmail);
+            devTools.createSession();
 
-            ((JavascriptExecutor) driver).executeScript(
-                    "arguments[0].dispatchEvent(new Event('input',{bubbles:true}));" +
-                            "arguments[0].dispatchEvent(new Event('change',{bubbles:true}));",
-                    emailField);
+            devTools.send(org.openqa.selenium.devtools.v147.network.Network.enable(
+                    Optional.empty(),
+                    Optional.empty(),
+                    Optional.empty(),
+                    Optional.empty(),
+                    Optional.empty()
+            ));
 
-            Reporter.log("Email entered successfully");
-            ExtentReport.extentTest.info("Email entered successfully");
+            devTools.addListener(Network.requestWillBeSent(), request -> {
 
-            // ==========================
-            // Continue with Email
-            // ==========================
+                String url = request.getRequest().getUrl();
 
-            WebElement continueEmail = wait.until(
-                    ExpectedConditions.elementToBeClickable(CONTINUE_EMAIL_CTA));
+                if (url.contains("login")
+                        || url.contains("challenge")
+                        || url.contains("captcha")
+                        || url.contains("cloudflare")
+                        || url.contains("accounts.shopify")) {
 
-            continueEmail.click();
-
-            Reporter.log("Clicked Continue with Email");
-
-            // ==========================
-            // Get Started
-            // ==========================
-
-            WebElement getStarted = wait.until(
-                    ExpectedConditions.elementToBeClickable(GET_STARTED));
-
-            getStarted.click();
-
-            Reporter.log("Clicked Get Started");
-
-            // ==========================
-            // Close Windows Security Popup
-            // ==========================
-
-            dismissWindowsSecurityPopup();
-
-            // ==========================
-            // Login Using Different Method
-            // ==========================
-
-            WebElement differentMethod = wait.until(
-                    ExpectedConditions.elementToBeClickable(LOGIN_USING_DIFFERENT_METHOD));
-
-            differentMethod.click();
-
-            Reporter.log("Clicked Login using Different Method");
-
-            // ==========================
-            // Continue with Password
-            // ==========================
-
-            WebElement continuePassword = wait.until(
-                    ExpectedConditions.elementToBeClickable(CONTINUE_WITH_PASSWORD));
-
-            continuePassword.click();
-
-            Reporter.log("Clicked Continue with Password");
-
-            // ==========================
-            // Enter Password
-            // ==========================
-
-            WebElement passwordField = wait.until(
-                    ExpectedConditions.visibilityOfElementLocated(PASSWORD_INPUT));
-
-            passwordField.clear();
-            passwordField.sendKeys(password);
-
-            ((JavascriptExecutor) driver).executeScript(
-                    "arguments[0].dispatchEvent(new Event('input',{bubbles:true}));" +
-                            "arguments[0].dispatchEvent(new Event('change',{bubbles:true}));" +
-                            "arguments[0].blur();",
-                    passwordField);
-
-            Reporter.log("Password entered successfully");
-
-            // ==========================
-            // Wait for Login Button
-            // ==========================
-
-            wait.until(driver -> {
-
-                WebElement btn = driver.findElement(SHOPIFY_LOGIN_BUTTON);
-
-                String ariaDisabled = btn.getAttribute("aria-disabled");
-
-                return btn.isDisplayed()
-                        && btn.isEnabled()
-                        && (ariaDisabled == null || ariaDisabled.equals("false"));
+                    System.out.println("REQUEST : " + url);
+                }
 
             });
 
-            WebElement loginButton = driver.findElement(SHOPIFY_LOGIN_BUTTON);
+            devTools.addListener(Network.responseReceived(), response -> {
 
-            System.out.println("Enabled : " + loginButton.isEnabled());
-            System.out.println("aria-disabled : " + loginButton.getAttribute("aria-disabled"));
+                String url = response.getResponse().getUrl();
 
-            ((JavascriptExecutor) driver)
-                    .executeScript("arguments[0].scrollIntoView({block:'center'});", loginButton);
+                int status = response.getResponse().getStatus().intValue();
+
+                if (url.contains("login")
+                        || url.contains("challenge")
+                        || url.contains("captcha")
+                        || url.contains("cloudflare")
+                        || url.contains("accounts.shopify")) {
+
+                    System.out.println("RESPONSE : " + status + " -> " + url);
+                }
+
+            });
+
+            //----------------------------------------------------
+            // Email
+            //----------------------------------------------------
+
+            WebElement email = wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(EMAIL_INPUT));
+
+            email.clear();
+
+            email.sendKeys(createdAccountEmail);
+
+            Reporter.log("Email entered");
+
+            //----------------------------------------------------
+            // Continue
+            //----------------------------------------------------
+
+            wait.until(ExpectedConditions.elementToBeClickable(
+                    CONTINUE_EMAIL_CTA)).click();
+
+            Reporter.log("Continue clicked");
+
+            //----------------------------------------------------
+            // Get Started
+            //----------------------------------------------------
+
+            wait.until(ExpectedConditions.elementToBeClickable(
+                    GET_STARTED)).click();
+
+            Reporter.log("Get Started clicked");
+
+            //----------------------------------------------------
+            // Close Windows Security Popup
+            //----------------------------------------------------
+
+            dismissWindowsSecurityPopup();
+
+            //----------------------------------------------------
+            // Different Method
+            //----------------------------------------------------
+
+            wait.until(ExpectedConditions.elementToBeClickable(
+                    LOGIN_USING_DIFFERENT_METHOD)).click();
+
+            Reporter.log("Different Method clicked");
+
+            //----------------------------------------------------
+            // Continue With Password
+            //----------------------------------------------------
+
+            wait.until(ExpectedConditions.elementToBeClickable(
+                    CONTINUE_WITH_PASSWORD)).click();
+
+            Reporter.log("Continue With Password clicked");
+
+            //----------------------------------------------------
+            // Password
+            //----------------------------------------------------
+
+            WebElement passwordField = wait.until(
+                    ExpectedConditions.elementToBeClickable(PASSWORD_INPUT));
+
+            passwordField.click();
+
+            passwordField.clear();
+
+            passwordField.sendKeys(password);
 
             Thread.sleep(1000);
 
-            try {
+            System.out.println("Password Length : "
+                    + passwordField.getAttribute("value").length());
 
-                loginButton.click();
+            //----------------------------------------------------
+            // CAPTCHA Validation
+            //----------------------------------------------------
 
-            } catch (Exception ex) {
+            System.out.println("navigator.webdriver : "
+                    + js.executeScript("return navigator.webdriver"));
 
-                ((JavascriptExecutor) driver)
-                        .executeScript("arguments[0].click();", loginButton);
+            System.out.println("Current URL : "
+                    + driver.getCurrentUrl());
 
+            System.out.println("Title : "
+                    + driver.getTitle());
+
+            List<WebElement> iframes =
+                    driver.findElements(By.tagName("iframe"));
+
+            for (WebElement frame : iframes) {
+
+                String src = frame.getAttribute("src");
+
+                if (src != null) {
+
+                    System.out.println("IFRAME : " + src);
+
+                }
             }
 
-            Reporter.log("Clicked Login");
+            String source =
+                    driver.getPageSource().toLowerCase();
 
-            Thread.sleep(5000);
+            if (source.contains("captcha"))
+                System.out.println("CAPTCHA keyword detected");
 
-            String currentUrl = driver.getCurrentUrl();
+            if (source.contains("turnstile"))
+                System.out.println("Turnstile detected");
 
-            System.out.println("Current URL : " + currentUrl);
+            if (source.contains("recaptcha"))
+                System.out.println("reCAPTCHA detected");
 
-            // Retry with ENTER if Shopify returns to login page
-            if (currentUrl.contains("/login?rid=")) {
+            if (source.contains("cloudflare"))
+                System.out.println("Cloudflare detected");
 
-                System.out.println("Returned to Login page. Trying ENTER...");
+            //----------------------------------------------------
+            // Login
+            //----------------------------------------------------
 
-                passwordField.sendKeys(Keys.ENTER);
+            WebElement login = wait.until(
+                    ExpectedConditions.elementToBeClickable(
+                            SHOPIFY_LOGIN_BUTTON));
 
-                Thread.sleep(5000);
+            System.out.println("Enabled : " + login.isEnabled());
 
-                currentUrl = driver.getCurrentUrl();
+            System.out.println("Displayed : " + login.isDisplayed());
 
-                System.out.println("Retry URL : " + currentUrl);
+            login.click();
+
+            Reporter.log("Login clicked");
+
+            Thread.sleep(7000);
+
+            //----------------------------------------------------
+            // Final URL
+            //----------------------------------------------------
+
+            String url = driver.getCurrentUrl();
+
+            System.out.println("Final URL : " + url);
+
+            //----------------------------------------------------
+            // Success
+            //----------------------------------------------------
+
+            if (url.contains("admin.shopify.com")
+                    || url.contains("/store/")) {
+
+                Reporter.log("Login Successful");
+
+                ExtentReport.extentTest.pass("Login Successful");
+
+                return;
             }
 
-            // Wait for successful navigation
-            wait.until(ExpectedConditions.or(
+            //----------------------------------------------------
+            // MFA
+            //----------------------------------------------------
 
-                    ExpectedConditions.urlContains("/login/two-factor/passkey"),
+            if (url.contains("two-factor")) {
 
-                    ExpectedConditions.urlContains("admin.shopify.com"),
+                Reporter.log("Password Accepted");
 
-                    ExpectedConditions.urlContains("/store/")
+                Reporter.log("Waiting for Authentication Code");
 
-            ));
+                ExtentReport.extentTest.info(
+                        "Reached Authentication Page");
 
-            Reporter.log("Shopify Login Successful");
-            ExtentReport.extentTest.pass("Shopify Login Successful");
+                return;
+            }
 
-        } catch (Exception e) {
+            //----------------------------------------------------
+            // Returned to Login
+            //----------------------------------------------------
 
-            System.out.println("Current URL : " + driver.getCurrentUrl());
+            if (url.contains("/login")) {
 
-            System.out.println(driver.findElement(By.tagName("body")).getText());
+                System.out.println();
 
-            Reporter.log("Shopify Login Failed : " + e.getMessage());
-            ExtentReport.extentTest.fail("Shopify Login Failed : " + e.getMessage());
+                System.out.println("Returned to Login");
+
+                System.out.println(driver.findElement(
+                        By.tagName("body")).getText());
+
+                throw new Exception(
+                        "Shopify returned to Login page after clicking Login.");
+            }
+
+            throw new Exception(
+                    "Unknown Login Flow : " + url);
+
+        }
+
+        catch (Exception e) {
+
+            System.out.println("--------------------------------");
+
+            System.out.println("Current URL : "
+                    + driver.getCurrentUrl());
+
+            System.out.println(driver.findElement(
+                    By.tagName("body")).getText());
+
+            System.out.println("--------------------------------");
 
             throw e;
         }

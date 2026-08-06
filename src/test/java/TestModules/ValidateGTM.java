@@ -34,6 +34,15 @@ public class ValidateGTM {
     }
 
     @Test
+    public void ValidateGoogleTagAssistantEvents() throws Exception {
+
+        new GTMValidations(driver).validateGTMEvents();
+
+    }
+
+
+
+    @Test
     public void ValidateGTMForFredHopper() throws Exception {
         new GTMValidations(driver).validateGTMEventsForFredHopper();
     }

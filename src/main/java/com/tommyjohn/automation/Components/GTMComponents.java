@@ -31,7 +31,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.testng.Reporter;
-
+import org.testng.asserts.SoftAssert;
 
 
 import java.io.File;
@@ -61,6 +61,240 @@ public class GTMComponents {
     public WebDriver driver;
     String searchText = "";
     public JavascriptExecutor jse;
+
+
+    public void validateGTMEvents() throws Exception {
+
+        SoftAssert softAssert = new SoftAssert();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+        List<String> requests = new ArrayList<>();
+
+        //=========================================================
+        // Start DevTools
+        //=========================================================
+
+        DevTools devTools = ((ChromeDriver) driver).getDevTools();
+
+        devTools.createSession();
+
+        devTools.send(Network.enable(
+                Optional.empty(),
+                Optional.empty(),
+                Optional.empty(),
+                Optional.empty(),
+                Optional.empty()
+        ));
+
+        devTools.addListener(Network.requestWillBeSent(), request -> {
+
+            String url = request.getRequest().getUrl();
+
+            requests.add(url);
+
+            System.out.println(url);
+
+        });
+
+        Reporter.log("DevTools Network Listener Started");
+        ExtentReport.extentTest.info("DevTools Network Listener Started");
+
+        //=========================================================
+        // Navigate to Men's PLP
+        //=========================================================
+
+        new HomePageComponents(driver).navigateToMensAll();
+
+        By firstProduct =
+                By.xpath("(//a[contains(@href,'/products/')])[1]");
+
+        wait.until(ExpectedConditions.elementToBeClickable(firstProduct));
+
+        Reporter.log("Navigated to Men's All PLP");
+        ExtentReport.extentTest.info("Navigated to Men's All PLP");
+
+        //=========================================================
+        // Click First Product
+        //=========================================================
+
+        driver.findElement(firstProduct).click();
+
+        Reporter.log("Clicked First Product");
+        ExtentReport.extentTest.info("Clicked First Product");
+
+        //=========================================================
+        // Wait for PDP
+        //=========================================================
+
+        wait.until(ExpectedConditions.urlContains("/products/"));
+
+        Thread.sleep(3000);
+
+        //=========================================================
+        // Print All Requests
+        //=========================================================
+
+        System.out.println();
+        System.out.println("================ ALL NETWORK REQUESTS ================");
+
+        requests.forEach(System.out::println);
+
+        System.out.println("======================================================");
+        System.out.println();
+
+        //=========================================================
+        // Vendor Validations
+        //=========================================================
+
+        boolean facebook = isVendorTriggered(
+                requests,
+                "facebook",
+                "facebook.com",
+                "connect.facebook.net",
+                "fbevents");
+
+
+        boolean contentSquare = isVendorTriggered(
+                requests,
+                "contentsquare",
+                "c.contentsquare.net");
+
+        boolean fredhopper = isVendorTriggered(
+                requests,
+                "fredhopper",
+                "fredhopperservices",
+                "fh");
+
+        //=========================================================
+        // Print Results
+        //=========================================================
+
+        System.out.println("Facebook Fired       : " + facebook);
+        System.out.println("ContentSquare Fired  : " + contentSquare);
+        System.out.println("Fredhopper Fired     : " + fredhopper);
+
+        Reporter.log("Facebook Fired : " + facebook);
+        Reporter.log("ContentSquare Fired : " + contentSquare);
+        Reporter.log("Fredhopper Fired : " + fredhopper);
+
+        ExtentReport.extentTest.info("Facebook Fired : " + facebook);
+        ExtentReport.extentTest.info("ContentSquare Fired : " + contentSquare);
+        ExtentReport.extentTest.info("Fredhopper Fired : " + fredhopper);
+
+        //=========================================================
+        // Debug Missing Vendors
+        //=========================================================
+
+        if (!facebook)
+            printMatchingRequests(
+                    requests,
+                    "Facebook",
+                    "facebook",
+                    "fbevents");
+
+
+        if (!contentSquare)
+            printMatchingRequests(
+                    requests,
+                    "ContentSquare",
+                    "contentsquare");
+
+        if (!fredhopper)
+            printMatchingRequests(
+                    requests,
+                    "Fredhopper",
+                    "fredhopper",
+                    "fh");
+
+        //=========================================================
+        // Assertions
+        //=========================================================
+
+        softAssert.assertTrue(
+                facebook,
+                "Facebook Product View Event NOT Fired");
+
+
+        softAssert.assertTrue(
+                contentSquare,
+                "ContentSquare Event NOT Fired");
+
+        softAssert.assertTrue(
+                fredhopper,
+                "Fredhopper Product View Event NOT Fired");
+
+        //=========================================================
+        // Final Result
+        //=========================================================
+
+        try {
+
+            softAssert.assertAll();
+
+            Reporter.log("All GTM Events Fired Successfully.");
+            ExtentReport.extentTest.pass("All GTM Events Fired Successfully.");
+
+        } catch (AssertionError e) {
+
+            Reporter.log("GTM Validation Failed.");
+            ExtentReport.extentTest.fail(e.getMessage());
+
+            throw e;
+        }
+    }
+
+
+
+    private boolean isVendorTriggered(List<String> requests, String... keywords) {
+
+        return requests.stream()
+                .map(String::toLowerCase)
+                .anyMatch(url -> {
+
+                    for (String keyword : keywords) {
+
+                        if (url.contains(keyword.toLowerCase())) {
+                            return true;
+                        }
+                    }
+
+                    return false;
+                });
+    }
+
+    private void printMatchingRequests(List<String> requests,
+                                       String vendor,
+                                       String... keywords) {
+
+        System.out.println("\n========== " + vendor.toUpperCase() + " ==========");
+
+        boolean found = false;
+
+        for (String request : requests) {
+
+            for (String keyword : keywords) {
+
+                if (request.toLowerCase().contains(keyword.toLowerCase())) {
+
+                    System.out.println(request);
+                    found = true;
+                    break;
+                }
+            }
+        }
+
+        if (!found) {
+
+            System.out.println("No matching requests found for " + vendor);
+        }
+
+        System.out.println("=========================================");
+    }
+
+
+
+
 
 
     public void ValidateGTMforFacetEvent() throws InterruptedException {
