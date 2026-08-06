@@ -15,6 +15,13 @@ public class GTMValidations extends GTMComponents {
         this.driver=driver;
     }
 
+
+    public void validateGTMEvents() throws Exception {
+
+        new GTMComponents(driver).validateGTMEvents();
+
+    }
+
     public void validateGTMEventsForFredHopper() throws Exception
     {
         new GTMComponents(driver).ValidateGTMforFacetEvent();
