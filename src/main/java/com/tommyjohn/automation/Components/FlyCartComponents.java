@@ -42,6 +42,135 @@ public class FlyCartComponents extends FlyCartPageLocator{
 
 	}
 
+	public void validateOOSProductsInMiniCartRecommendations() throws Exception {
+
+		SoftAssert softAssert = new SoftAssert();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		// 1. Open Mini Cart
+		WebElement cartIcon = wait.until(ExpectedConditions.elementToBeClickable(INLINE_CART_ICON));
+		js.executeScript("arguments[0].click();", cartIcon);
+
+		// 2. Wait until recommendations are loaded
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SUGGESTION_FIRST_PRODUCT));
+
+		// 3. Wait for all Quick Shop buttons in recommendations to populate
+		List<WebElement> quickShopButtons = wait.until(
+				ExpectedConditions.presenceOfAllElementsLocatedBy(ALL_QUICK_SHOP_ATC)
+		);
+
+		int totalProducts = quickShopButtons.size();
+		System.out.println("Recommended Products Found: " + totalProducts);
+
+		if (totalProducts == 0) {
+			softAssert.fail("No mini-cart recommendations were found to validate.");
+			softAssert.assertAll();
+			return;
+		}
+
+		// 4. Iterate through EVERY recommended product
+		for (int i = 0; i < totalProducts; i++) {
+
+			try {
+				// Re-fetch the list on each iteration to prevent StaleElementReferenceException
+				List<WebElement> freshButtons = wait.until(
+						ExpectedConditions.presenceOfAllElementsLocatedBy(ALL_QUICK_SHOP_ATC)
+				);
+
+				if (i >= freshButtons.size()) {
+					System.out.println("Recommendation count changed during execution. Exiting loop safely.");
+					break;
+				}
+
+				// Open Quick Shop modal for item at index i
+				js.executeScript("arguments[0].click();", freshButtons.get(i));
+
+				wait.until(ExpectedConditions.visibilityOfElementLocated(QUICK_SHOP_SIZE_OVERLAY));
+
+				// Get all size options for this product
+				List<WebElement> sizes = driver.findElements(QUICK_SHOP_SIZE_LIST);
+
+				if (sizes.isEmpty()) {
+					System.out.println("No size variants found for product at index " + i + ". Skipping.");
+					continue;
+				}
+
+				boolean allVariantsOOS = true;
+
+				// Check the data-disabled attribute for EVERY size/variant
+				for (WebElement size : sizes) {
+					String disabledAttr = size.getAttribute("data-disabled");
+					boolean isDisabled = "true".equalsIgnoreCase(disabledAttr);
+
+					// If even one variant is available, product is NOT completely OOS
+					if (!isDisabled) {
+						allVariantsOOS = false;
+						break;
+					}
+				}
+
+				// If ALL variants are Out of Stock...
+				if (allVariantsOOS) {
+
+					// Click one of the disabled variants (first size option)
+					js.executeScript("arguments[0].click();", sizes.get(0));
+
+					// Wait for the CTA button and retrieve text
+					WebElement oosButton = wait.until(
+							ExpectedConditions.visibilityOfElementLocated(
+									By.xpath("//button[@data-cy='productFormSubmit']")
+							)
+					);
+
+					String ctaText = oosButton.getText().trim();
+					System.out.println("Product at index " + i + " CTA Text: " + ctaText);
+
+					// Verify the CTA reflects "Out of stock"
+					softAssert.assertEquals(
+							ctaText.toLowerCase(),
+							"out of stock",
+							"CTA should display 'Out of stock' when selecting a disabled variant."
+					);
+
+					// Fail the test: Fully OOS items must NOT appear in Mini Cart recommendations
+					softAssert.fail(
+							"Product with ALL variants Out of Stock displayed in Mini Cart Recommendations at index: " + i
+					);
+				}
+
+			} catch (Exception e) {
+				softAssert.fail("Exception processing recommendation at index " + i + ": " + e.getMessage());
+			} finally {
+				// Guarantee Quick Shop modal is closed before evaluating the next product
+				closeQuickShopModalSafely(wait, js);
+			}
+		}
+
+		Reporter.log("Validated Out of Stock products are not displayed in Mini Cart Recommendations");
+		if (ExtentReport.extentTest != null) {
+			ExtentReport.extentTest.info("Validated Out of Stock products are not displayed in Mini Cart Recommendations");
+		}
+
+		softAssert.assertAll();
+	}
+
+	/**
+	 * Safely closes the Quick Shop overlay after evaluating each product.
+	 */
+
+	private void closeQuickShopModalSafely(WebDriverWait wait, JavascriptExecutor js) {
+		try {
+			List<WebElement> closeBtn = driver.findElements(QUICK_SHOP_SIZE_OVERLAY_CLOSE);
+			if (!closeBtn.isEmpty() && closeBtn.get(0).isDisplayed()) {
+				js.executeScript("arguments[0].click();", closeBtn.get(0));
+				wait.until(ExpectedConditions.invisibilityOfElementLocated(QUICK_SHOP_SIZE_OVERLAY));
+			}
+		} catch (Exception ex) {
+			System.err.println("Warning: Could not close Quick Shop overlay cleanly: " + ex.getMessage());
+		}
+	}
+
     public void ValidateBundleTierinInLineCartPage() throws Exception {
         SoftAssert softAssert = new SoftAssert();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -1301,5 +1430,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 
 		//softAssert.assertAll();	
 	}
-	
+
+	public void ValidateSevenforthirtyfivefunctionalityinInLineCartPage() {
+	}
 }
