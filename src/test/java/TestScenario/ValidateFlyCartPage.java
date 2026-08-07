@@ -51,6 +51,8 @@ public class ValidateFlyCartPage {
 		new FlyCartPage(driver).VerifyFlyCartOpenWithQSAndPDP();
 	}
 
+
+
 	@AfterMethod(alwaysRun = true)
 	void tearDown() {
 

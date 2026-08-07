@@ -1,6 +1,7 @@
 package TestModules;
 
 import com.tommyjohn.automation.Components.AddToCartComponents;
+import com.tommyjohn.automation.Components.FlyCartComponents;
 import com.tommyjohn.automation.Pages.ShoppingCartPage;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
@@ -41,14 +42,14 @@ public class ValidateInlineCartPage extends ExtentReport {
         new FlyCartPage(driver).ValidateBundleTierinInLineCartPage();
     }
 
-//	@Test
+	@Test
 	public void validateOOSProductsInMiniCartRecommendations() throws Exception {
 		new FlyCartPage(driver).validateOOSProductsInMiniCartRecommendations();
 	}
 
 	@Test
 	public void ValidateSevenforthirtyfivefunctionalityinInLineCartPage() throws Exception {
-		new FlyCartPage(driver).ValidateSevenFor35InInLineCart();
+		new FlyCartPage(driver).ValidateSevenforthirtyfivefunctionalityinInLineCartPage();
 	}
 
 	@Test
@@ -93,11 +94,11 @@ public class ValidateInlineCartPage extends ExtentReport {
 
 		new FlyCartPage(driver).VerifyFlyCartOpensWithQSAndPDP();
 	}
-	
+
 //	@Test
 	public void ValidateOOSonInlinecart() throws Exception
 	{
-		new FlyCartPage(driver).validateOOSonInlinecart(); 
+		new FlyCartPage(driver).validateOOSonInlinecart();
 	}
 
 	@Test
