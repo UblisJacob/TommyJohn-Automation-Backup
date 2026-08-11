@@ -63,13 +63,348 @@ public class GTMComponents {
     public JavascriptExecutor jse;
 
 
+
+    public void validateElevarFacebookInitiateCheckout() throws Exception {
+
+        SoftAssert softAssert = new SoftAssert();
+
+        WebDriverWait wait =
+                new WebDriverWait(driver, Duration.ofSeconds(30));
+
+        // Only Facebook Pixel requests will be stored
+        List<String> facebookRequests =
+                Collections.synchronizedList(new ArrayList<>());
+
+
+        // =========================================================
+        // Start DevTools
+        // =========================================================
+
+        DevTools devTools =
+                ((ChromeDriver) driver).getDevTools();
+
+        devTools.createSession();
+
+        devTools.send(
+                Network.enable(
+                        Optional.empty(),
+                        Optional.empty(),
+                        Optional.empty(),
+                        Optional.empty(),
+                        Optional.empty()
+                )
+        );
+
+
+        // =========================================================
+        // Capture ONLY Facebook Pixel Requests
+        // =========================================================
+
+        devTools.addListener(
+                Network.requestWillBeSent(),
+                request -> {
+
+                    String url =
+                            request.getRequest().getUrl();
+
+                    String lowerCaseUrl =
+                            url.toLowerCase();
+
+
+                    // Only retrieve/store Facebook Pixel requests
+                    if (
+                            lowerCaseUrl.contains(
+                                    "facebook.com/tr"
+                            )
+                                    ||
+                                    lowerCaseUrl.contains(
+                                            "connect.facebook.net"
+                                    )
+                                    ||
+                                    lowerCaseUrl.contains(
+                                            "fbevents"
+                                    )
+                    ) {
+
+                        facebookRequests.add(url);
+
+                        System.out.println(
+                                "[FACEBOOK PIXEL] "
+                                        + url
+                        );
+                    }
+                }
+        );
+
+
+        Reporter.log(
+                "Facebook Pixel Network Listener Started"
+        );
+
+        ExtentReport.extentTest.info(
+                "Facebook Pixel Network Listener Started"
+        );
+
+
+        // =========================================================
+        // Add Product To Cart
+        // =========================================================
+
+        new AddToCartComponents(driver)
+                .addsingleproductToCart();
+
+
+        Reporter.log(
+                "Product Added To Cart"
+        );
+
+        ExtentReport.extentTest.info(
+                "Product Added To Cart"
+        );
+
+
+        // =========================================================
+        // Wait For Checkout CTA
+        // =========================================================
+
+        wait.until(
+                ExpectedConditions.presenceOfElementLocated(
+                        CHECKOUT_BUTTON
+                )
+        );
+
+
+        // =========================================================
+        // Click Checkout CTA
+        // =========================================================
+
+        JavascriptExecutor jse =
+                (JavascriptExecutor) driver;
+
+        jse.executeScript(
+                "arguments[0].click();",
+                driver.findElement(CHECKOUT_BUTTON)
+        );
+
+
+        Reporter.log(
+                "Checkout CTA Clicked"
+        );
+
+        ExtentReport.extentTest.info(
+                "Checkout CTA Clicked"
+        );
+
+
+        // =========================================================
+        // Wait For Checkout Page
+        // =========================================================
+
+        wait.until(
+                ExpectedConditions.urlContains(
+                        "/checkouts/"
+                )
+        );
+
+
+        Reporter.log(
+                "Checkout Page Loaded"
+        );
+
+        ExtentReport.extentTest.info(
+                "Checkout Page Loaded"
+        );
+
+
+        // =========================================================
+        // Wait For Facebook InitiateCheckout
+        // =========================================================
+
+        boolean facebookInitiateCheckout =
+                waitForFacebookInitiateCheckout(
+                        facebookRequests,
+                        10
+                );
+
+
+        // =========================================================
+        // Display ONLY Facebook Pixel Results
+        // =========================================================
+
+        System.out.println();
+
+        System.out.println(
+                "========== FACEBOOK PIXEL REQUESTS =========="
+        );
+
+
+        synchronized (facebookRequests) {
+
+            for (String request : facebookRequests) {
+
+                System.out.println(request);
+
+                Reporter.log(
+                        "Facebook Pixel Request: "
+                                + request
+                );
+
+                ExtentReport.extentTest.info(
+                        "Facebook Pixel Request: "
+                                + request
+                );
+            }
+        }
+
+
+        System.out.println(
+                "============================================="
+        );
+
+
+        // =========================================================
+        // Result
+        // =========================================================
+
+        System.out.println(
+                "Facebook InitiateCheckout Fired : "
+                        + facebookInitiateCheckout
+        );
+
+        Reporter.log(
+                "Facebook InitiateCheckout Fired : "
+                        + facebookInitiateCheckout
+        );
+
+        ExtentReport.extentTest.info(
+                "Facebook InitiateCheckout Fired : "
+                        + facebookInitiateCheckout
+        );
+
+
+        // =========================================================
+        // Assertion
+        // =========================================================
+
+        softAssert.assertTrue(
+                facebookInitiateCheckout,
+                "Facebook InitiateCheckout Event NOT Fired upon entering Checkout."
+        );
+
+
+        // =========================================================
+        // Final Result
+        // =========================================================
+
+        try {
+
+            softAssert.assertAll();
+
+            Reporter.log(
+                    "Facebook InitiateCheckout Event Fired Successfully."
+            );
+
+            ExtentReport.extentTest.pass(
+                    "Facebook InitiateCheckout Event Fired Successfully."
+            );
+
+        }
+        catch (AssertionError e) {
+
+            Reporter.log(
+                    "Facebook InitiateCheckout Validation Failed."
+            );
+
+            ExtentReport.extentTest.fail(
+                    e.getMessage()
+            );
+
+            throw e;
+        }
+    }
+
+    private boolean waitForFacebookInitiateCheckout(
+            List<String> facebookRequests,
+            int timeoutInSeconds) {
+
+        long endTime =
+                System.currentTimeMillis()
+                        + (timeoutInSeconds * 1000L);
+
+
+        while (
+                System.currentTimeMillis()
+                        < endTime
+        ) {
+
+            synchronized (facebookRequests) {
+
+                for (String request : facebookRequests) {
+
+                    String lowerCaseRequest =
+                            request.toLowerCase();
+
+
+                    // Facebook Pixel tracking endpoint
+                    boolean facebookPixel =
+                            lowerCaseRequest.contains(
+                                    "facebook.com/tr"
+                            );
+
+
+                    // InitiateCheckout event
+                    boolean initiateCheckout =
+                            lowerCaseRequest.contains(
+                                    "initiatecheckout"
+                            );
+
+
+                    if (
+                            facebookPixel
+                                    &&
+                                    initiateCheckout
+                    ) {
+
+                        System.out.println(
+                                "[PASS] Facebook InitiateCheckout Found"
+                        );
+
+                        System.out.println(
+                                request
+                        );
+
+                        return true;
+                    }
+                }
+            }
+
+
+            try {
+
+                Thread.sleep(500);
+
+            }
+            catch (InterruptedException e) {
+
+                Thread.currentThread()
+                        .interrupt();
+
+                return false;
+            }
+        }
+
+
+        return false;
+    }
+
     public void validateGTMEvents() throws Exception {
 
         SoftAssert softAssert = new SoftAssert();
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
-        List<String> requests = new ArrayList<>();
+        List<String> requests =
+                Collections.synchronizedList(new ArrayList<>());
 
         //=========================================================
         // Start DevTools
@@ -246,7 +581,9 @@ public class GTMComponents {
 
 
 
-    private boolean isVendorTriggered(List<String> requests, String... keywords) {
+    private boolean isVendorTriggered(
+            List<String> requests,
+            String... keywords) {
 
         return requests.stream()
                 .map(String::toLowerCase)
@@ -254,7 +591,10 @@ public class GTMComponents {
 
                     for (String keyword : keywords) {
 
-                        if (url.contains(keyword.toLowerCase())) {
+                        if (url.contains(
+                                keyword.toLowerCase()
+                        )) {
+
                             return true;
                         }
                     }
@@ -263,22 +603,35 @@ public class GTMComponents {
                 });
     }
 
-    private void printMatchingRequests(List<String> requests,
-                                       String vendor,
-                                       String... keywords) {
 
-        System.out.println("\n========== " + vendor.toUpperCase() + " ==========");
+    private void printMatchingRequests(
+            List<String> requests,
+            String vendor,
+            String... keywords) {
+
+        System.out.println(
+                "\n========== "
+                        + vendor.toUpperCase()
+                        + " =========="
+        );
 
         boolean found = false;
 
         for (String request : requests) {
 
+            String lowerCaseRequest =
+                    request.toLowerCase();
+
             for (String keyword : keywords) {
 
-                if (request.toLowerCase().contains(keyword.toLowerCase())) {
+                if (lowerCaseRequest.contains(
+                        keyword.toLowerCase()
+                )) {
 
                     System.out.println(request);
+
                     found = true;
+
                     break;
                 }
             }
@@ -286,10 +639,15 @@ public class GTMComponents {
 
         if (!found) {
 
-            System.out.println("No matching requests found for " + vendor);
+            System.out.println(
+                    "No matching requests found for "
+                            + vendor
+            );
         }
 
-        System.out.println("=========================================");
+        System.out.println(
+                "========================================="
+        );
     }
 
 
@@ -488,6 +846,7 @@ public class GTMComponents {
 
         // ✅ Perform Add-to-Cart Action
         new AddToCartComponents(driver).addsingleproductToCart();
+
         Thread.sleep(10000); // ✅ Wait for network request
         driver.quit();  // ✅ Close the browser
         if (!payloadMatched[0]) {

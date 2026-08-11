@@ -207,6 +207,134 @@ public class FlyCartComponents extends FlyCartPageLocator{
         ExtentReport.extentTest.info("5 for $65 functionality works fine in Cart page");
     }
 
+//	public void validateOOSProductsInMiniCartRecommendations() throws Exception {
+//
+//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+//		SoftAssert softAssert = new SoftAssert();
+//		JavascriptExecutor js = (JavascriptExecutor) driver;
+//
+//		js.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_ICON));
+//
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(SUGGESTION_FIRST_PRODUCT));
+//
+//		Thread.sleep(3000);
+//
+//		List<WebElement> quickShopButtons = driver.findElements(ALL_QUICK_SHOP_ATC);
+//
+//		System.out.println("Recommended Products Found : " + quickShopButtons.size());
+//
+//		Reporter.log("Recommended Products Found : " + quickShopButtons.size());
+//		ExtentReport.extentTest.info("Recommended Products Found : " + quickShopButtons.size());
+//
+//		for (int i = 0; i < quickShopButtons.size(); i++) {
+//			quickShopButtons = wait.until(
+//					ExpectedConditions.visibilityOfAllElementsLocatedBy(ALL_QUICK_SHOP_ATC));
+//
+//			WebElement quickShop = quickShopButtons.get(i);
+//
+//			js.executeScript("arguments[0].scrollIntoView({block:'center'});", quickShop);
+//			Thread.sleep(1000);
+//
+//			js.executeScript("arguments[0].click();", quickShop);
+//
+//			Reporter.log("Opened Quick Shop for Product " + (i + 1));
+//			ExtentReport.extentTest.info("Opened Quick Shop for Product " + (i + 1));
+//
+//			// Wait for Quick Shop
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(QUICK_SHOP_SIZE_OVERLAY));
+//
+//			softAssert.assertTrue(
+//					driver.findElement(QUICK_SHOP_SIZE_OVERLAY).isDisplayed(),
+//					"Quick Shop Overlay is not displayed.");
+//
+//			List<WebElement> sizes = wait.until(
+//					ExpectedConditions.visibilityOfAllElementsLocatedBy(QUICK_SHOP_SIZE_LIST));
+//
+//			int disabledCount = 0;
+//
+//			System.out.println("---------------------------------------");
+//			System.out.println("Checking Product : " + (i + 1));
+//
+//			for (WebElement size : sizes) {
+//
+//				String disabled = size.getAttribute("data-disabled");
+//
+//				System.out.println(
+//						"Size : "
+//								+ size.getAttribute("value")
+//								+ " | data-disabled = "
+//								+ disabled);
+//
+//				if ("true".equalsIgnoreCase(disabled)) {
+//					disabledCount++;
+//				}
+//			}
+//
+//			System.out.println("Disabled Sizes : " + disabledCount);
+//			System.out.println("Total Sizes : " + sizes.size());
+//
+//			if (disabledCount == sizes.size()) {
+//
+//				Reporter.log("Product " + (i + 1) + " has ALL variants Out Of Stock.");
+//				ExtentReport.extentTest.warning(
+//						"Product " + (i + 1) + " has ALL variants Out Of Stock.");
+//
+//				sizes = driver.findElements(QUICK_SHOP_SIZE_LIST);
+//
+//
+//				js.executeScript("arguments[0].click();", sizes.get(0));
+//
+//				WebElement cta = wait.until(
+//						ExpectedConditions.visibilityOfElementLocated(
+//								ADD_TO_BAG_QUICKSHOP));
+//
+//				String actualCTA = cta.getText().trim();
+//
+//				System.out.println("CTA Text : " + actualCTA);
+//
+//				Reporter.log("CTA Text : " + actualCTA);
+//				ExtentReport.extentTest.info("CTA Text : " + actualCTA);
+//
+//				softAssert.assertEquals(
+//						actualCTA,
+//						"Out of Stock",
+//						"Incorrect CTA displayed.");
+//
+//				softAssert.fail(
+//						"Mini Cart Recommendation contains a product where ALL variants are Out of Stock. Such products should not be displayed.");
+//			}
+//			else {
+//
+//				Reporter.log(
+//						"Product " + (i + 1)
+//								+ " has at least one available variant.");
+//				ExtentReport.extentTest.info(
+//						"Product " + (i + 1)
+//								+ " has at least one available variant.");
+//			}
+//
+//			wait.until(ExpectedConditions.elementToBeClickable(
+//					QUICK_SHOP_SIZE_OVERLAY_CLOSE));
+//
+//			js.executeScript(
+//					"arguments[0].click();",
+//					driver.findElement(QUICK_SHOP_SIZE_OVERLAY_CLOSE));
+//
+//			wait.until(ExpectedConditions.invisibilityOfElementLocated(
+//					QUICK_SHOP_SIZE_OVERLAY));
+//
+//			Thread.sleep(1500);
+//		}
+//
+//		Reporter.log(
+//				"Validated Mini Cart Recommendations do not contain products with all variants Out Of Stock.");
+//
+//		ExtentReport.extentTest.info(
+//				"Validated Mini Cart Recommendations do not contain products with all variants Out Of Stock.");
+//
+//		softAssert.assertAll();
+//	}
+
 	public void ValidateSevenFor35InInLineCart() throws Exception {
 		SoftAssert softAssert = new SoftAssert();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
