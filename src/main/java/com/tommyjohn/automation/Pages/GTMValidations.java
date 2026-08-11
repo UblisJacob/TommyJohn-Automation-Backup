@@ -22,6 +22,12 @@ public class GTMValidations extends GTMComponents {
 
     }
 
+    public void validateElevarFacebookInitiateCheckout() throws Exception {
+
+        new GTMComponents(driver).validateElevarFacebookInitiateCheckout();
+
+    }
+
     public void validateGTMEventsForFredHopper() throws Exception
     {
         new GTMComponents(driver).ValidateGTMforFacetEvent();

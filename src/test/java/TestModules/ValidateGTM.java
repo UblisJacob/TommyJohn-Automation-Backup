@@ -40,6 +40,13 @@ public class ValidateGTM {
 
     }
 
+    @Test
+    public void ValidateElevarFacebookInitiateCheckout() throws Exception {
+
+        new GTMValidations(driver).validateElevarFacebookInitiateCheckout();
+
+    }
+
 
 
     @Test
