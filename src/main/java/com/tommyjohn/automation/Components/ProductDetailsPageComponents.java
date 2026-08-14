@@ -71,6 +71,102 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		this.driver = driver;
 	}
 
+//	// Locators for True Fit Widget & Modal (XPath)
+//	private final By TRUE_FIT_CTA = By.xpath("//button[@data-tfc-cb] | //*[contains(@class, 'tfc-fitrec-button')] | //*[contains(@id, 'truefit')] | //*[contains(@class, 'truefit-wrapper')]");
+//	private final By TRUE_FIT_MODAL = By.xpath("//iframe[contains(@id, 'tfc')] | //iframe[contains(@src, 'truefit')] | //div[contains(@class, 'tfc-modal')] | //*[@data-tfc-modal]");
+//	private final By TRUE_FIT_MODAL_CLOSE = By.xpath("//button[@aria-label='Close'] | //*[contains(@class, 'tfc-close-button')] | //*[contains(@class, 'tfc-icon-close')]");
+
+//	public void validateTrueFitExperienceOnPDP() throws Exception {
+//		SoftAssert softAssert = new SoftAssert();
+//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+//		JavascriptExecutor js = (JavascriptExecutor) driver;
+//
+//		String targetUrl = "https://www.tommyjohn.com/products/second-skin-light-support-bra?color=shifting-sand";
+//
+//		// 1. Navigate to target PDP
+//		driver.get(targetUrl);
+//
+//		// Wait for main page container to settle
+//		wait.until(ExpectedConditions.presenceOfElementLocated(By.tagName("body")));
+//
+//		// 2. Check if True Fit CTA is present and visible
+//		List<WebElement> ctaList = driver.findElements(TRUE_FIT_CTA);
+//		boolean isCtaDisplayed = !ctaList.isEmpty() && ctaList.get(0).isDisplayed();
+//
+//		if (isCtaDisplayed) {
+//			System.out.println("✔ True Fit CTA is displayed on PDP.");
+//			Reporter.log("True Fit CTA is displayed on PDP.");
+//
+//			try {
+//				WebElement trueFitButton = ctaList.get(0);
+//
+//				// Ensure button is clickable before interaction
+//				wait.until(ExpectedConditions.elementToBeClickable(trueFitButton));
+//
+//				// 3 & 4. Click the True Fit CTA
+//				js.executeScript("arguments[0].click();", trueFitButton);
+//
+//				// 5. Verify True Fit Modal opens
+//				WebElement modal = wait.until(ExpectedConditions.visibilityOfElementLocated(TRUE_FIT_MODAL));
+//
+//				softAssert.assertTrue(
+//						modal.isDisplayed(),
+//						"True Fit CTA was clicked, but the True Fit modal iframe/container did not become visible."
+//				);
+//
+//				System.out.println("✔ True Fit modal opened successfully.");
+//				Reporter.log("True Fit modal opened successfully.");
+//
+//				if (ExtentReport.extentTest != null) {
+//					ExtentReport.extentTest.pass("True Fit CTA present and modal opened as expected.");
+//				}
+//
+//				// Clean up: Close modal if open
+//				closeTrueFitModalSafely(wait, js);
+//
+//			} catch (Exception e) {
+//				softAssert.fail("Error interacting with True Fit CTA or waiting for modal to open: " + e.getMessage());
+//			}
+//
+//		} else {
+//			// 6 & 7. Handle scenario where True Fit Experience is unavailable or disabled for variant
+//			System.out.println("⚠ True Fit CTA is not available or not loaded on this PDP variant.");
+//			Reporter.log("True Fit Experience is not available on PDP.");
+//
+//			softAssert.fail("True Fit CTA was expected to be available on PDP, but was not found or visible.");
+//
+//			if (ExtentReport.extentTest != null) {
+//				ExtentReport.extentTest.warning("True Fit CTA was not displayed on PDP: " + targetUrl);
+//			}
+//		}
+//
+//		softAssert.assertAll();
+//	}
+//
+//	/**
+//	 * Safely closes the True Fit modal if it remains open after verification.
+//	 */
+//	private void closeTrueFitModalSafely(WebDriverWait wait, JavascriptExecutor js) {
+//		try {
+//			// Switch back to default content if True Fit uses an iframe
+//			driver.switchTo().defaultContent();
+//
+//			List<WebElement> closeBtn = driver.findElements(TRUE_FIT_MODAL_CLOSE);
+//			if (!closeBtn.isEmpty() && closeBtn.get(0).isDisplayed()) {
+//				js.executeScript("arguments[0].click();", closeBtn.get(0));
+//				wait.until(ExpectedConditions.invisibilityOfElementLocated(TRUE_FIT_MODAL));
+//			}
+//		} catch (Exception ex) {
+//			System.err.println("Note: Could not close True Fit modal cleanly: " + ex.getMessage());
+//		}
+//	}
+
+
+
+
+
+
+
 
 	public void VerifyShareIconPDP() throws Exception {
 

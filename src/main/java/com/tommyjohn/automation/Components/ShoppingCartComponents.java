@@ -177,7 +177,7 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
     }
 
 
-	public void Validate5for$65functionalityinCartPage() throws Exception {
+	public void Validate5for$60functionalityinCartPage() throws Exception {
 		SoftAssert softAssert = new SoftAssert();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		new AddToCartComponents(driver).add3for$48product();
@@ -187,13 +187,13 @@ public class ShoppingCartComponents extends ShoppingCartLocators{
 		Thread.sleep(3000);
 		String DISCOUNT_5for$65 = driver.findElement(FlyCartPageLocator.DISCOUNT_5for$65).getText().split(":")[1].trim();
 		System.out.println(DISCOUNT_5for$65);
-		softAssert.assertEquals(DISCOUNT_5for$65,"5 For $65","5 for $65 discount is not applied and not displayed in the Cart line item");
+		softAssert.assertEquals(DISCOUNT_5for$65,"5 For $60","5 for $60 discount is not applied and not displayed in the Cart line item");
 		String TOTAL = driver.findElement(FlyCartPageLocator.TOTAL).getText();
 		System.out.println(TOTAL);
-		softAssert.assertEquals(TOTAL,"$65.00","Cart Total is differ from the 5 for $65 functionality");
+		softAssert.assertEquals(TOTAL,"$60.00","Cart Total is differ from the 5 for $65 functionality");
         softAssert.assertAll();
-		Reporter.log("5 for $65 functionality works fine in Cart page");
-		ExtentReport.extentTest.info("5 for $65 functionality works fine in Cart page");
+		Reporter.log("5 for $60 functionality works fine in Cart page");
+		ExtentReport.extentTest.info("5 for $60 functionality works fine in Cart page");
 
 	}
 
