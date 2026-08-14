@@ -57,6 +57,11 @@ public class ValidatePDP extends ExtentReport{
 		new ProductDetailsPage(driver).verifySelectedColorSwatchIsDisplayedInTheInlineCart();
 	}
 
+//	@Test
+//	public void ValidateTrueFitExperienceOnPDP() throws Exception {
+//		new ProductDetailsPage(driver).validateTrueFitExperienceOnPDP();
+//	}
+
     @Test
     public void VerifyPDPSectionRecs() throws Exception {
         new ProductDetailsPage(driver).VerifyPDPSectionRecs();
