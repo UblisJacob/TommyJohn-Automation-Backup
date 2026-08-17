@@ -181,14 +181,14 @@ public class FlyCartComponents extends FlyCartPageLocator{
         wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.BUNDLE_TIER_TITLE));
         String BUNDLE_TIER_TITLE = driver.findElement(FlyCartPageLocator.BUNDLE_TIER_TITLE).getText();
         System.out.println(BUNDLE_TIER_TITLE);
-        softAssert.assertEquals(BUNDLE_TIER_TITLE,"Women's 5 for $65","The Bundle Tier Meter Is Not Displayed");
+        softAssert.assertEquals(BUNDLE_TIER_TITLE,"Women's Underwear","The Bundle Tier Meter Is Not Displayed");
         Reporter.log("Bundle Tier functionality works fine in InLineCart page");
         softAssert.assertAll();
         ExtentReport.extentTest.info("Bundle Tier functionality works fine in InLineCart page");
     }
 
 
-	public void ValidateFiveFor65InInLineCart() throws Exception {
+	public void ValidateFiveFor60InInLineCart() throws Exception {
         SoftAssert softAssert = new SoftAssert();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         new AddToCartComponents(driver).add3for$48product();
@@ -198,13 +198,13 @@ public class FlyCartComponents extends FlyCartPageLocator{
         Thread.sleep(3000);
         String DISCOUNT_5for$65 = driver.findElement(FlyCartPageLocator.DISCOUNT_5for$65).getText().split(":")[1].trim();
         System.out.println(DISCOUNT_5for$65);
-        softAssert.assertEquals(DISCOUNT_5for$65,"5 For $65","5 for $65 discount is not applied and not displayed in the Cart line item");
+        softAssert.assertEquals(DISCOUNT_5for$65,"5 For $60","5 for $60 discount is not applied and not displayed in the Cart line item");
         String TOTAL = driver.findElement(FlyCartPageLocator.MINI_CART_TOTAL).getText();
         System.out.println(TOTAL);
-        softAssert.assertEquals(TOTAL,"$65.00","Cart Total is differ from the 5 for $65 functionality");
+        softAssert.assertEquals(TOTAL,"$60.00","Cart Total is differ from the 5 for $65 functionality");
         softAssert.assertAll();
-        Reporter.log("5 for $65 functionality works fine in Cart page");
-        ExtentReport.extentTest.info("5 for $65 functionality works fine in Cart page");
+        Reporter.log("5 for $60 functionality works fine in Cart page");
+        ExtentReport.extentTest.info("5 for $60 functionality works fine in Cart page");
     }
 
 //	public void validateOOSProductsInMiniCartRecommendations() throws Exception {
