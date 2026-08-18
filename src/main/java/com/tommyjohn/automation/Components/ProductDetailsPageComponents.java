@@ -71,95 +71,254 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		this.driver = driver;
 	}
 
-//	// Locators for True Fit Widget & Modal (XPath)
-//	private final By TRUE_FIT_CTA = By.xpath("//button[@data-tfc-cb] | //*[contains(@class, 'tfc-fitrec-button')] | //*[contains(@id, 'truefit')] | //*[contains(@class, 'truefit-wrapper')]");
-//	private final By TRUE_FIT_MODAL = By.xpath("//iframe[contains(@id, 'tfc')] | //iframe[contains(@src, 'truefit')] | //div[contains(@class, 'tfc-modal')] | //*[@data-tfc-modal]");
-//	private final By TRUE_FIT_MODAL_CLOSE = By.xpath("//button[@aria-label='Close'] | //*[contains(@class, 'tfc-close-button')] | //*[contains(@class, 'tfc-icon-close')]");
+	public void validateTrueFitExperienceOnPDP() throws Exception {
+		SoftAssert softAssert = new SoftAssert();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
 
-//	public void validateTrueFitExperienceOnPDP() throws Exception {
-//		SoftAssert softAssert = new SoftAssert();
-//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-//		JavascriptExecutor js = (JavascriptExecutor) driver;
-//
-//		String targetUrl = "https://www.tommyjohn.com/products/second-skin-light-support-bra?color=shifting-sand";
-//
-//		// 1. Navigate to target PDP
-//		driver.get(targetUrl);
-//
-//		// Wait for main page container to settle
-//		wait.until(ExpectedConditions.presenceOfElementLocated(By.tagName("body")));
-//
-//		// 2. Check if True Fit CTA is present and visible
-//		List<WebElement> ctaList = driver.findElements(TRUE_FIT_CTA);
-//		boolean isCtaDisplayed = !ctaList.isEmpty() && ctaList.get(0).isDisplayed();
-//
-//		if (isCtaDisplayed) {
-//			System.out.println("✔ True Fit CTA is displayed on PDP.");
-//			Reporter.log("True Fit CTA is displayed on PDP.");
-//
-//			try {
-//				WebElement trueFitButton = ctaList.get(0);
-//
-//				// Ensure button is clickable before interaction
-//				wait.until(ExpectedConditions.elementToBeClickable(trueFitButton));
-//
-//				// 3 & 4. Click the True Fit CTA
-//				js.executeScript("arguments[0].click();", trueFitButton);
-//
-//				// 5. Verify True Fit Modal opens
-//				WebElement modal = wait.until(ExpectedConditions.visibilityOfElementLocated(TRUE_FIT_MODAL));
-//
-//				softAssert.assertTrue(
-//						modal.isDisplayed(),
-//						"True Fit CTA was clicked, but the True Fit modal iframe/container did not become visible."
-//				);
-//
-//				System.out.println("✔ True Fit modal opened successfully.");
-//				Reporter.log("True Fit modal opened successfully.");
-//
-//				if (ExtentReport.extentTest != null) {
-//					ExtentReport.extentTest.pass("True Fit CTA present and modal opened as expected.");
-//				}
-//
-//				// Clean up: Close modal if open
-//				closeTrueFitModalSafely(wait, js);
-//
-//			} catch (Exception e) {
-//				softAssert.fail("Error interacting with True Fit CTA or waiting for modal to open: " + e.getMessage());
-//			}
-//
-//		} else {
-//			// 6 & 7. Handle scenario where True Fit Experience is unavailable or disabled for variant
-//			System.out.println("⚠ True Fit CTA is not available or not loaded on this PDP variant.");
-//			Reporter.log("True Fit Experience is not available on PDP.");
-//
-//			softAssert.fail("True Fit CTA was expected to be available on PDP, but was not found or visible.");
-//
-//			if (ExtentReport.extentTest != null) {
-//				ExtentReport.extentTest.warning("True Fit CTA was not displayed on PDP: " + targetUrl);
-//			}
-//		}
-//
-//		softAssert.assertAll();
-//	}
-//
-//	/**
-//	 * Safely closes the True Fit modal if it remains open after verification.
-//	 */
-//	private void closeTrueFitModalSafely(WebDriverWait wait, JavascriptExecutor js) {
-//		try {
-//			// Switch back to default content if True Fit uses an iframe
-//			driver.switchTo().defaultContent();
-//
-//			List<WebElement> closeBtn = driver.findElements(TRUE_FIT_MODAL_CLOSE);
-//			if (!closeBtn.isEmpty() && closeBtn.get(0).isDisplayed()) {
-//				js.executeScript("arguments[0].click();", closeBtn.get(0));
-//				wait.until(ExpectedConditions.invisibilityOfElementLocated(TRUE_FIT_MODAL));
-//			}
-//		} catch (Exception ex) {
-//			System.err.println("Note: Could not close True Fit modal cleanly: " + ex.getMessage());
-//		}
-//	}
+		// 1. Navigation: Hover Women's Nav Menu -> Click Bras & Bralettes
+		WebElement womenNavMenu = wait.until(ExpectedConditions.presenceOfElementLocated(WOMEN_NAV_MENU));
+		try {
+			Actions actions = new Actions(driver);
+			actions.moveToElement(womenNavMenu).perform();
+			Thread.sleep(500);
+		} catch (Exception e) {
+			js.executeScript("arguments[0].dispatchEvent(new MouseEvent('mouseover', {bubbles: true}));", womenNavMenu);
+		}
+
+		WebElement brasBralettesSubmenu = wait.until(ExpectedConditions.presenceOfElementLocated(BRAS_BRALETTES_SUBMENU));
+		js.executeScript("arguments[0].click();", brasBralettesSubmenu);
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.tagName("body")));
+
+		// 2. Select first product card on PLP
+		WebElement firstProduct = wait.until(ExpectedConditions.presenceOfElementLocated(FIRST_PRODUCT_CARD));
+		js.executeScript("arguments[0].scrollIntoView({block: 'center'});", firstProduct);
+		js.executeScript("arguments[0].click();", firstProduct);
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.tagName("body")));
+
+		Thread.sleep(2000);
+
+		// ==========================================
+		// ENTRY POINT 1: Direct PDP True Fit Link
+		// ==========================================
+		boolean pdpTrueFitValidated = false;
+		try {
+			WebElement pdpTrueFitLink = wait.until(ExpectedConditions.presenceOfElementLocated(TRUE_FIT_CTA));
+			js.executeScript("arguments[0].scrollIntoView({block: 'center'});", pdpTrueFitLink);
+			Thread.sleep(1000);
+
+			try {
+				pdpTrueFitLink.click();
+			} catch (Exception ex) {
+				js.executeScript("arguments[0].click();", pdpTrueFitLink);
+			}
+			System.out.println("✔ Clicked True Fit link directly on PDP.");
+
+			WebElement visibleModal = wait.until(ExpectedConditions.visibilityOfElementLocated(TRUE_FIT_MODAL));
+			pdpTrueFitValidated = (visibleModal != null && visibleModal.isDisplayed());
+
+			if (pdpTrueFitValidated) {
+				System.out.println("✔ True Fit modal displayed visually from PDP link.");
+				closeTrueFitModalSafely(wait, js);
+			}
+		} catch (Exception e) {
+			System.out.println("⚠ Direct PDP True Fit validation failed: " + e.getMessage());
+		}
+
+		softAssert.assertTrue(pdpTrueFitValidated, "True Fit link on PDP failed to open a visible True Fit modal.");
+
+		// Reset page state prior to Entry Point 2 execution
+		driver.navigate().refresh();
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.tagName("body")));
+		Thread.sleep(2000);
+
+		// ==========================================
+		// ENTRY POINT 2: True Fit via Size Chart Modal
+		// ==========================================
+		boolean sizeChartTrueFitValidated = false;
+		try {
+			// Click "Sizing chart" button
+			WebElement sizingChartBtn = wait.until(ExpectedConditions.presenceOfElementLocated(SIZING_CHART_TRIGGER));
+			js.executeScript("arguments[0].scrollIntoView({block: 'center'});", sizingChartBtn);
+			Thread.sleep(1000);
+
+			try {
+				sizingChartBtn.click();
+			} catch (Exception clickEx) {
+				js.executeScript("arguments[0].click();", sizingChartBtn);
+			}
+			System.out.println("✔ Clicked 'Sizing chart' button.");
+
+			// Wait for modal transition/rendering
+			Thread.sleep(1500);
+
+			// Locate and click "What's My Size?" button inside Sizing Chart modal
+			WebElement innerWhatsMySizeBtn = wait.until(ExpectedConditions.presenceOfElementLocated(MODAL_TRUE_FIT_BUTTON));
+			js.executeScript("arguments[0].scrollIntoView({block: 'center'});", innerWhatsMySizeBtn);
+			Thread.sleep(500);
+
+			try {
+				innerWhatsMySizeBtn.click();
+			} catch (Exception ex) {
+				js.executeScript("arguments[0].click();", innerWhatsMySizeBtn);
+			}
+			System.out.println("✔ Clicked 'What\'s My Size?' button inside Sizing Chart modal.");
+
+			// Verify True Fit modal appears visually
+			WebElement visibleModalFromChart = wait.until(ExpectedConditions.visibilityOfElementLocated(TRUE_FIT_MODAL));
+			sizeChartTrueFitValidated = (visibleModalFromChart != null && visibleModalFromChart.isDisplayed());
+
+			if (sizeChartTrueFitValidated) {
+				System.out.println("✔ True Fit modal displayed visually from Size Chart.");
+				closeTrueFitModalSafely(wait, js);
+			}
+		} catch (Exception e) {
+			System.out.println("⚠ Size Chart True Fit validation failed: " + e.getMessage());
+		}
+
+		softAssert.assertTrue(sizeChartTrueFitValidated, "True Fit CTA inside Size Chart failed to open a visible True Fit modal.");
+
+		softAssert.assertAll();
+	}
+
+	private void closeTrueFitModalSafely(WebDriverWait wait, JavascriptExecutor js) {
+		try {
+			WebElement closeButton = wait.until(ExpectedConditions.elementToBeClickable(TRUE_FIT_MODAL_CLOSE));
+			try {
+				closeButton.click();
+			} catch (Exception ex) {
+				js.executeScript("arguments[0].click();", closeButton);
+			}
+			System.out.println("✔ Closed True Fit modal.");
+		} catch (Exception e) {
+			System.out.println("⚠ Could not close True Fit modal automatically: " + e.getMessage());
+		}
+	}
+
+	public void validatePdpTrueFitMainButton() throws Exception {
+		SoftAssert softAssert = new SoftAssert();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		// 1. Navigation: Hover Women's Nav Menu -> Click Bras & Bralettes
+		WebElement womenNavMenu = wait.until(ExpectedConditions.presenceOfElementLocated(WOMEN_NAV_MENU));
+		try {
+			Actions actions = new Actions(driver);
+			actions.moveToElement(womenNavMenu).perform();
+			Thread.sleep(500);
+		} catch (Exception e) {
+			js.executeScript("arguments[0].dispatchEvent(new MouseEvent('mouseover', {bubbles: true}));", womenNavMenu);
+		}
+
+		WebElement brasBralettesSubmenu = wait.until(ExpectedConditions.presenceOfElementLocated(BRAS_BRALETTES_SUBMENU));
+		js.executeScript("arguments[0].click();", brasBralettesSubmenu);
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.tagName("body")));
+
+		// 2. Select first product card on PLP
+		WebElement firstProduct = wait.until(ExpectedConditions.presenceOfElementLocated(FIRST_PRODUCT_CARD));
+		js.executeScript("arguments[0].scrollIntoView({block: 'center'});", firstProduct);
+		js.executeScript("arguments[0].click();", firstProduct);
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.tagName("body")));
+
+		// ==========================================
+		// ENTRY POINT: Direct Shadow DOM Interaction
+		// ==========================================
+		boolean buttonClicked = false;
+		boolean pdpTrueFitValidated = false;
+
+		// Recursive script that searches ALL shadow roots across the entire document
+		String clickTrueFitShadowBtnScript =
+				"function searchAndClick(root) {" +
+						"    if (!root) return false;" +
+						"    var btn = root.querySelector(" +
+						"        'button[data-truefit-id=\"pdpCta.button\"], ' +" +
+						"        '[data-truefit-id=\"pdpCta.ctaText\"], ' +" +
+						"        '[data-truefit-id=\"pdpCta.buttonThemeButton\"]'" +
+						"    );" +
+						"    if (btn) {" +
+						"        var clickTarget = btn.closest('button') || btn;" +
+						"        ['pointerdown', 'mousedown', 'pointerup', 'mouseup', 'click'].forEach(function(evt) {" +
+						"            clickTarget.dispatchEvent(new MouseEvent(evt, {bubbles: true, cancelable: true, view: window}));" +
+						"        });" +
+						"        return true;" +
+						"    }" +
+						"    var allElements = root.querySelectorAll('*');" +
+						"    for (var i = 0; i < allElements.length; i++) {" +
+						"        if (allElements[i].shadowRoot) {" +
+						"            if (searchAndClick(allElements[i].shadowRoot)) return true;" +
+						"        }" +
+						"    }" +
+						"    return false;" +
+						"}" +
+						"return searchAndClick(document);";
+
+		System.out.println("⏳ Waiting for True Fit Shadow Root to mount and clicking button...");
+
+		// Poll up to 10 seconds for the web component shadow root to hydrate
+		for (int i = 0; i < 10; i++) {
+			Thread.sleep(1000);
+			Boolean result = (Boolean) js.executeScript(clickTrueFitShadowBtnScript);
+			if (Boolean.TRUE.equals(result)) {
+				buttonClicked = true;
+				System.out.println("✔ Found and clicked True Fit button inside Shadow DOM.");
+				break;
+			}
+		}
+
+		if (!buttonClicked) {
+			System.out.println("⚠ Could not locate True Fit button inside Shadow DOM after waiting.");
+		}
+
+		// Verify dialog activation inside Shadow DOM or DOM tree
+		String checkShadowDialogScript =
+				"function checkDialog(root) {" +
+						"    if (!root) return false;" +
+						"    var dialog = root.querySelector('dialog, [role=\"dialog\"], iframe[src*=\"truefit\"]');" +
+						"    if (dialog) {" +
+						"        return dialog.hasAttribute('open') || " +
+						"               window.getComputedStyle(dialog).display !== 'none' || " +
+						"               dialog.offsetWidth > 0;" +
+						"    }" +
+						"    var allElements = root.querySelectorAll('*');" +
+						"    for (var i = 0; i < allElements.length; i++) {" +
+						"        if (allElements[i].shadowRoot && checkDialog(allElements[i].shadowRoot)) return true;" +
+						"    }" +
+						"    return false;" +
+						"}" +
+						"return checkDialog(document);";
+
+		for (int i = 0; i < 10; i++) {
+			Thread.sleep(1000);
+			Boolean isModalOpen = (Boolean) js.executeScript(checkShadowDialogScript);
+			if (Boolean.TRUE.equals(isModalOpen)) {
+				pdpTrueFitValidated = true;
+				break;
+			}
+		}
+
+		if (pdpTrueFitValidated) {
+			System.out.println("✔ True Fit shadow modal verified open!");
+
+			// Attempt closing the modal inside shadow root
+			String closeShadowDialogScript =
+					"function closeDialog(root) {" +
+							"    if (!root) return false;" +
+							"    var closeBtn = root.querySelector('button[aria-label*=\"close\" i], [data-truefit-id*=\"close\" i], .tfc-close');" +
+							"    if (closeBtn) { closeBtn.click(); return true; }" +
+							"    var allElements = root.querySelectorAll('*');" +
+							"    for (var i = 0; i < allElements.length; i++) {" +
+							"        if (allElements[i].shadowRoot && closeDialog(allElements[i].shadowRoot)) return true;" +
+							"    }" +
+							"    return false;" +
+							"}" +
+							"return closeDialog(document);";
+
+			js.executeScript(closeShadowDialogScript);
+		}
+
+		softAssert.assertTrue(pdpTrueFitValidated, "What's My Size CTA button on PDP failed to open the True Fit modal dialog inside Shadow DOM.");
+		softAssert.assertAll();
+	}
 
 
 
