@@ -11,9 +11,9 @@
     <test name="Tests">
         <parameter name="browser" value="chrome"/>
         <classes>
-                <class name="TestModules.ValidateInlineCartPage">
+                <class name="TestModules.ValidateCartPage">
                 <methods>
-                    <include name="ValidateBundleTierinInLineCartPage"/>
+                    <include name="ValidateBundleTierinCartPage"/>
                 </methods>
             </class>
         </classes>
