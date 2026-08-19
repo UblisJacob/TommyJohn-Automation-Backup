@@ -4,7 +4,57 @@ import org.openqa.selenium.By;
 
 public class ProductDetailsPageLocators {
 
+// ==========================================
+// TRUE FIT EXPERIENCE & MAIN BUTTON LOCATORS
+// ==========================================
 
+	// 1. Navigation & PLP Selection (Flexible text & relative href matching)
+	public static final By WOMEN_NAV_MENU = By.xpath(
+			"(//nav | //header)//a[contains(@href, 'women') or contains(translate(normalize-space(.), 'WOMEN', 'women'), 'women')][1]"
+	);
+
+	public static final By BRAS_BRALETTES_SUBMENU = By.xpath(
+			"(//nav | //header)//a[contains(@href, 'bras') or contains(translate(normalize-space(.), 'BRAS', 'bras'), 'bra')]"
+	);
+
+	public static final By FIRST_PRODUCT_CARD = By.xpath(
+			"(//main//a[contains(@href, '/products/') and not(contains(@href, '#'))])[1]"
+	);
+
+	// 2. Entry Point 1 (PDP Direct) & Entry Point 2 (Sizing Chart Modal Trigger)
+	public static final By TRUE_FIT_CTA = By.xpath(
+			"//*[contains(@class, 'tfc') or contains(@id, 'tfc') or contains(@data-truefit-id, 'pdpCta')]"
+	);
+
+	// Sizing Chart Trigger (Targets the exact <button> containing "Sizing chart")
+	public static final By SIZING_CHART_TRIGGER = By.xpath(
+			"//button[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'sizing chart') or contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'size chart')]"
+	);
+
+	// Target the <button> containing the "What's My Size?" text or secondary button style
+	public static final By MODAL_TRUE_FIT_BUTTON = By.xpath(
+			"//button[contains(@class, 'button-secondary') and .//p[contains(text(), \"What's My Size?\")]] | //button[.//p[contains(text(), \"What's My Size?\")]]"
+	);
+
+	// 3. Shadow DOM String Constants
+	public static final String TFC_SHADOW_HOST_TAG = "tfc-recommendation";
+	public static final String SHADOW_TRUE_FIT_BUTTON_CSS = "button[data-truefit-id=\"pdpCta.button\"], [data-truefit-id=\"pdpCta.ctaText\"], [data-truefit-id=\"pdpCta.buttonThemeButton\"]";
+	public static final String SHADOW_TRUE_FIT_DIALOG_CSS = "dialog, [role=\"dialog\"], iframe[src*=\"truefit\"]";
+	public static final String SHADOW_TRUE_FIT_CLOSE_CSS = "button[aria-label*=\"close\" i], [data-truefit-id*=\"close\" i], .tfc-close";
+
+	// 4. Modal Verification & Clean Close Elements
+	public static final By TRUE_FIT_MODAL = By.xpath(
+			"//iframe[contains(@src, 'truefit') or contains(@id, 'tfc') or contains(@class, 'tfc')] | //div[contains(@class, 'tfc-modal') or contains(@class, 'tfc-fitrec') or contains(@id, 'tfc')] | //div[@role='dialog' or @role='region'][contains(@aria-label, 'True Fit') or contains(@class, 'tfc')] | //*[contains(@id, 'tfc-modal') or contains(@class, 'tfc-container')]"
+	);
+
+	public static final By TRUE_FIT_MODAL_CLOSE = By.xpath(
+			"//button[contains(@class, 'close') or contains(@aria-label, 'close') or contains(@id, 'close')][ancestor::*[contains(@class, 'tfc') or contains(@id, 'tfc')]]"
+	);
+
+
+	// 4. Modal Verification & Clean Close Elements
+//	public static final By TRUE_FIT_MODAL = By.xpath("//iframe[contains(@src, 'truefit') or contains(@id, 'tfc') or contains(@class, 'tfc')] | //div[contains(@class, 'tfc-modal') or contains(@class, 'tfc-fitrec') or contains(@id, 'tfc')] | //div[@role='dialog' or @role='region'][contains(@aria-label, 'True Fit') or contains(@class, 'tfc')] | //*[contains(@id, 'tfc-modal') or contains(@class, 'tfc-container')]");
+//	public static final By TRUE_FIT_MODAL_CLOSE = By.xpath("//button[contains(@class, 'close') or contains(@aria-label, 'close') or contains(@id, 'close')][ancestor::*[contains(@class, 'tfc') or contains(@id, 'tfc')]]");
 	//Multipacks Sections
 	public static By PDP_TABS = By.xpath("//span[@class='text-sm text-text-tertiary']");
 	public static By PDP_PRODUCT_SETS = By.xpath("//div[@class='grid grid-flow-col']//span");

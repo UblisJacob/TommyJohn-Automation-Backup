@@ -175,10 +175,11 @@ public class ListenerClass extends ExtentReport
 
 		Set<ITestResult> failedTests = context.getFailedTests().getAllResults();
 		Set<ITestResult> skippedTests = context.getSkippedTests().getAllResults();
+
 		for (ITestResult temp : failedTests) {
 			ITestNGMethod method = temp.getMethod();
-//			System.out.println(context.getFailedTests().size());
-//			System.out.println(context.getPassedTests().size());
+			System.out.println(context.getFailedTests().size());
+			System.out.println(context.getPassedTests().size());
 			if (context.getFailedTests().getResults(method).size() > 1) {
 				failedTests.remove(temp);
 			} else {
@@ -187,6 +188,7 @@ public class ListenerClass extends ExtentReport
 				}
 			}
 		}
+
 		for (ITestResult temp : skippedTests) {
 			ITestNGMethod method = temp.getMethod();
 			if (context.getSkippedTests().getResults(method).size() > 0) {
@@ -201,5 +203,7 @@ public class ListenerClass extends ExtentReport
 		Fpassed = Fpassed + (context.getPassedTests().size());
 		Ffailed = Ffailed + (context.getFailedTests().size());
 		Fskipped = Fskipped + (context.getSkippedTests().size());
-	}
-}
+
+	} // Closes onFinish method
+
+ }
