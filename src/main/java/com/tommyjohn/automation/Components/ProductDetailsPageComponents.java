@@ -1366,6 +1366,8 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 
 			WebElement elem = driver.findElement(RATING_STARS);
 			executor.executeScript("arguments[0].click();", elem);
+			WebElement elems = driver.findElement(READ_ALL_REVIEWS);
+			executor.executeScript("arguments[0].click();", elems);
 			Thread.sleep(2000);
 			// wait for scroll it down
 			executor.executeScript("window.scrollBy(0,750)", "");
