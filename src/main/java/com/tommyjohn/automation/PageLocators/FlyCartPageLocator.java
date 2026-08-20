@@ -7,6 +7,7 @@ public class FlyCartPageLocator {
 	public static By INLINE_CART_ICON = By.xpath("//span[@class='icon block icon-cart']");
 	public static By INLINE_CART_CLOSE_BUTTON = By.xpath("//span[@class='icon block size-5 icon-arrow-left']");
 	public static By VIEW_CART_LINK = By.xpath("//a[@class='button-link text-body sm:text-body-sm']");
+	public static By INLINE_BUNDLE_TIER_TITLE = By.xpath("//div[@class='flex items-center justify-between text-body-md sm:text-body-sm']//span");
     public static By BUNDLE_TIER_TITLE = By.xpath("//div[@class='flex items-center justify-between text-body']//span");
     public static By PRODUCTS = By.xpath("//div[@class='mt-2 text-body-sm leading-[18px] text-text-secondary']");
 	public static By INLINE_CART_TITLE = By.xpath("//h2[contains(text(),'Your Cart')]");

@@ -173,13 +173,15 @@ public class FlyCartComponents extends FlyCartPageLocator{
 
     public void ValidateBundleTierinInLineCartPage() throws Exception {
         SoftAssert softAssert = new SoftAssert();
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-        new AddToCartComponents(driver).add3for$48product();
-        driver.findElement(HomePageLocators.CART_ICON).click();
+        new AddToCartComponents(driver).add3for$48productforbundletiercheck();
+//		jse.executeScript("arguments[0].click();", driver.findElement(CART_ICON));
+     //   driver.findElement(HomePageLocators.CART_ICON).click();
 //        wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 //        driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.BUNDLE_TIER_TITLE));
-        String BUNDLE_TIER_TITLE = driver.findElement(FlyCartPageLocator.BUNDLE_TIER_TITLE).getText();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.INLINE_BUNDLE_TIER_TITLE));
+        String BUNDLE_TIER_TITLE = driver.findElement(FlyCartPageLocator.INLINE_BUNDLE_TIER_TITLE).getText();
         System.out.println(BUNDLE_TIER_TITLE);
         softAssert.assertEquals(BUNDLE_TIER_TITLE,"Women's Underwear","The Bundle Tier Meter Is Not Displayed");
         Reporter.log("Bundle Tier functionality works fine in InLineCart page");
