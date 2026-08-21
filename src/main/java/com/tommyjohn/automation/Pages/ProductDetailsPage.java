@@ -139,12 +139,17 @@ public class ProductDetailsPage extends ProductDetailsPageComponents{
 
     }
 
-//	public void validateTrueFitExperienceOnPDP() throws Exception {
-//
-//
-//		new ProductDetailsPageComponents(driver).validateTrueFitExperienceOnPDP();
-//
-//	}
+	public void validateTrueFitExperienceOnPDP() throws Exception {
+
+		new ProductDetailsPageComponents(driver).validateTrueFitExperienceOnPDP();
+
+	}
+
+	public void validatePdpTrueFitMainButton() throws Exception {
+
+		new ProductDetailsPageComponents(driver).validatePdpTrueFitMainButton();
+
+	}
 
 	public void VerifyAddToWishlist() throws Exception {
 
