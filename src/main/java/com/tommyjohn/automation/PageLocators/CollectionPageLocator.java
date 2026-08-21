@@ -5,6 +5,10 @@ import org.openqa.selenium.By;
 public class CollectionPageLocator {
 
 
+	// Finds the '5 For $60' text element and moves up to the clickable product container/link
+	public static final By FIRST_PRODUCT_WITH_BUNDLE_OFFER = By.xpath("(//*[contains(text(),'5 For $60') or contains(text(),'5 for $60')]/following::a[contains(@href,'/products/')])[1]");
+
+
 	public static By DYPLACEHOLDERBANNER = By.xpath("//div[@class='flex overflow-y-hidden items-end scrim max-sm:my-2xs sm:h-[90px]  scrim-none max-sm:aspect-video']");
 	public static By SHOPNOWCTAINDYPLACEHOLDERBANNER = By.xpath("//a[@aria-label='Shop Now']");
 	public static By FILTER_PILLS = By.xpath("//div[@class='flex-1 min-w-0 h-10 relative z-10 my-md']");

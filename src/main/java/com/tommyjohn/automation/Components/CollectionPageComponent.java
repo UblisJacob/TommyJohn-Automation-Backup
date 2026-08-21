@@ -51,6 +51,23 @@ public class CollectionPageComponent extends CollectionPageLocator {
 	int Count;
 
 
+
+	public void clickFirstBundleOfferProduct() throws Exception {
+		// Navigate directly to the Women's Underwear collection page
+		driver.get("https://tommyjohn.com/collections/womens-underwear");
+
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		WebElement offerProduct = wait.until(ExpectedConditions.elementToBeClickable(FIRST_PRODUCT_WITH_BUNDLE_OFFER));
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView(true);", offerProduct);
+		js.executeScript("arguments[0].click();", offerProduct);
+	}
+
+
+
+
+
 	public void ValidateFilterDropdownScroll() throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));

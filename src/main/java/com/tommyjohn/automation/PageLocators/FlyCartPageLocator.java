@@ -7,6 +7,7 @@ public class FlyCartPageLocator {
 	public static By INLINE_CART_ICON = By.xpath("//span[@class='icon block icon-cart']");
 	public static By INLINE_CART_CLOSE_BUTTON = By.xpath("//span[@class='icon block size-5 icon-arrow-left']");
 	public static By VIEW_CART_LINK = By.xpath("//a[@class='button-link text-body sm:text-body-sm']");
+	public static By INLINE_BUNDLE_TIER_TITLE = By.xpath("//div[@class='flex items-center justify-between text-body-md sm:text-body-sm']//span");
     public static By BUNDLE_TIER_TITLE = By.xpath("//div[@class='flex items-center justify-between text-body']//span");
     public static By PRODUCTS = By.xpath("//div[@class='mt-2 text-body-sm leading-[18px] text-text-secondary']");
 	public static By INLINE_CART_TITLE = By.xpath("//h2[contains(text(),'Your Cart')]");
@@ -136,6 +137,17 @@ public class FlyCartPageLocator {
 	public static By PRODUCT_LINE_ITEM_OPTION = By.cssSelector("[data-tj-qa='cart-line-item-option'],div.line-item__summary > div.line-item__option");
 	public static By PRODUCT_AMOUNT_ON_FLYCART = By.cssSelector("[data-tj-qa='cart-line-item-sale-price'],.line-item__price>span");
 
+	// Target size label dynamically
+	public static By SIZE_S_LABEL = By.xpath("//label[contains(translate(text(), 'S', 's'), 's')]");
+
+	// Target Add to Bag CTA
+	public static By ADD_TO_BAG_BUTTON = By.xpath("//button[contains(@class, 'add-to-cart') or contains(@id, 'AddToCart')]");
+
+	// Quantity input field on main cart page
+	public static By CART_PAGE_QUANTITY_INPUT = By.xpath("//input[contains(@class, 'cart-item__quantity') or contains(@name, 'updates[]')]");
+
+	// Offer locator matching both fly cart and main cart page variations
+	public static By DISCOUNT_7for$65 = By.xpath("//*[contains(@class,'text-functional-sale') and (contains(translate(text(), 'FOR', 'for'), '7 for') or contains(text(), '7 For') or contains(text(), '7 FOR'))]");
 
 
 }

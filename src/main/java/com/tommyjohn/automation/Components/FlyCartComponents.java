@@ -42,6 +42,167 @@ public class FlyCartComponents extends FlyCartPageLocator{
 
 	}
 
+
+	// Helper method to set quantity directly in the Fly Cart input field
+	private void setFlyCartQuantityDirectly(int targetQuantity) throws Exception {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		// Locate input field using your exact locator: FlyCartPageLocator.MINICART_QUANTITY_INPUT
+		WebElement qtyInput = wait.until(ExpectedConditions.presenceOfElementLocated(FlyCartPageLocator.MINICART_QUANTITY_INPUT));
+
+		// JS execution to set value AND fire React's native value setter & change events
+		String script =
+				"var input = arguments[0];" +
+						"var val = arguments[1];" +
+						"var nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;" +
+						"nativeInputValueSetter.call(input, val);" +
+						"input.dispatchEvent(new Event('input', { bubbles: true }));" +
+						"input.dispatchEvent(new Event('change', { bubbles: true }));" +
+						"input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', keyCode: 13, bubbles: true }));";
+
+		js.executeScript(script, qtyInput, String.valueOf(targetQuantity));
+		Thread.sleep(2500); // Allow Shopify cart state to recalculate totals
+	}
+
+	// Helper method to update main cart page quantity input directly
+	private void setCartPageQuantityDirectly(int targetQuantity) throws Exception {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		WebElement qtyInput = wait.until(ExpectedConditions.presenceOfElementLocated(FlyCartPageLocator.CART_PAGE_QUANTITY_INPUT));
+
+		String script =
+				"var input = arguments[0];" +
+						"var val = arguments[1];" +
+						"var nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;" +
+						"nativeInputValueSetter.call(input, val);" +
+						"input.dispatchEvent(new Event('input', { bubbles: true }));" +
+						"input.dispatchEvent(new Event('change', { bubbles: true }));" +
+						"input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', keyCode: 13, bubbles: true }));";
+
+		js.executeScript(script, qtyInput, String.valueOf(targetQuantity));
+		Thread.sleep(2500); // Allow Shopify cart recalculation on main cart page
+	}
+
+	public void addItemToBagFromPDP() throws Exception {
+		if (driver.getCurrentUrl().equals("https://tommyjohn.com/") || driver.getCurrentUrl().endsWith("tommyjohn.com")) {
+			driver.get("https://tommyjohn.com/products/womens-second-skin-brief");
+		}
+
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		// 1. Select Size (Uses SIZE_S_LABEL from FlyCartPageLocator)
+		WebElement sizePill = wait.until(ExpectedConditions.elementToBeClickable(FlyCartPageLocator.SIZE_S_LABEL));
+		js.executeScript("arguments[0].click();", sizePill);
+
+		// 2. Click Add to Bag
+		WebElement addToBag = wait.until(ExpectedConditions.elementToBeClickable(FlyCartPageLocator.ADD_TO_BAG_BUTTON));
+		js.executeScript("arguments[0].click();", addToBag);
+
+		// 3. Ensure Side Cart is open by verifying input presence or opening via icon
+		try {
+			wait.until(ExpectedConditions.presenceOfElementLocated(FlyCartPageLocator.MINICART_QUANTITY_INPUT));
+		} catch (Exception e) {
+			WebElement cartIcon = wait.until(ExpectedConditions.elementToBeClickable(FlyCartPageLocator.INLINE_CART_ICON));
+			js.executeScript("arguments[0].click();", cartIcon);
+			wait.until(ExpectedConditions.presenceOfElementLocated(FlyCartPageLocator.MINICART_QUANTITY_INPUT));
+		}
+	}
+
+	public void validate5For60BundleOffer() throws Exception {
+		addItemToBagFromPDP();
+
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		// 1. Directly set quantity to 5 in side cart
+		setFlyCartQuantityDirectly(5);
+
+		// 2. Validate offer banner
+		WebElement offerMsg = wait.until(ExpectedConditions.presenceOfElementLocated(FlyCartPageLocator.DISCOUNT_5for$65));
+		wait.until(ExpectedConditions.visibilityOf(offerMsg));
+
+		// 3. Decrease quantity to 4
+		setFlyCartQuantityDirectly(4);
+
+		// Verify offer disappears
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(FlyCartPageLocator.DISCOUNT_5for$65));
+
+		// 4. Increase quantity back to 5
+		setFlyCartQuantityDirectly(5);
+
+		// Verify offer reappears
+		offerMsg = wait.until(ExpectedConditions.presenceOfElementLocated(FlyCartPageLocator.DISCOUNT_5for$65));
+		wait.until(ExpectedConditions.visibilityOf(offerMsg));
+
+		// 5. Click View Cart CTA
+		WebElement viewCartLink = wait.until(ExpectedConditions.elementToBeClickable(FlyCartPageLocator.VIEW_CART_LINK));
+		js.executeScript("arguments[0].click();", viewCartLink);
+
+		wait.until(ExpectedConditions.urlContains("/cart"));
+
+		// 1. Verify offer is present upon arrival on /cart page (qty is 5)
+		offerMsg = wait.until(ExpectedConditions.presenceOfElementLocated(FlyCartPageLocator.DISCOUNT_5for$65));
+		wait.until(ExpectedConditions.visibilityOf(offerMsg));
+
+		// 2. Decrease quantity to 4 on /cart page
+		setCartPageQuantityDirectly(4);
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(FlyCartPageLocator.DISCOUNT_5for$65));
+
+		// 3. Increase quantity back to 5 on /cart page
+		setCartPageQuantityDirectly(5);
+		offerMsg = wait.until(ExpectedConditions.presenceOfElementLocated(FlyCartPageLocator.DISCOUNT_5for$65));
+		wait.until(ExpectedConditions.visibilityOf(offerMsg));
+	}
+
+	public void validate7For65BundleOffer() throws Exception {
+		addItemToBagFromPDP();
+
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		// 1. Directly set quantity to 7 in side cart
+		setFlyCartQuantityDirectly(7);
+
+		// 2. Validate offer banner
+		WebElement offerMsg = wait.until(ExpectedConditions.presenceOfElementLocated(FlyCartPageLocator.DISCOUNT_7for$65));
+		wait.until(ExpectedConditions.visibilityOf(offerMsg));
+
+		// 3. Decrease quantity to 6
+		setFlyCartQuantityDirectly(6);
+
+		// Verify offer disappears
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(FlyCartPageLocator.DISCOUNT_7for$65));
+
+		// 4. Increase quantity back to 7
+		setFlyCartQuantityDirectly(7);
+
+		// Verify offer reappears
+		offerMsg = wait.until(ExpectedConditions.presenceOfElementLocated(FlyCartPageLocator.DISCOUNT_7for$65));
+		wait.until(ExpectedConditions.visibilityOf(offerMsg));
+
+		// 5. Click View Cart CTA
+		WebElement viewCartLink = wait.until(ExpectedConditions.elementToBeClickable(FlyCartPageLocator.VIEW_CART_LINK));
+		js.executeScript("arguments[0].click();", viewCartLink);
+
+		wait.until(ExpectedConditions.urlContains("/cart"));
+
+		// 1. Verify offer is present upon arrival on /cart page (qty is 7)
+		offerMsg = wait.until(ExpectedConditions.presenceOfElementLocated(FlyCartPageLocator.DISCOUNT_7for$65));
+		wait.until(ExpectedConditions.visibilityOf(offerMsg));
+
+		// 2. Decrease quantity to 6 on /cart page
+		setCartPageQuantityDirectly(6);
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(FlyCartPageLocator.DISCOUNT_7for$65));
+
+		// 3. Increase quantity back to 7 on /cart page
+		setCartPageQuantityDirectly(7);
+		offerMsg = wait.until(ExpectedConditions.presenceOfElementLocated(FlyCartPageLocator.DISCOUNT_7for$65));
+		wait.until(ExpectedConditions.visibilityOf(offerMsg));
+	}
+
 	public void validateOOSProductsInMiniCartRecommendations() throws Exception {
 
 		SoftAssert softAssert = new SoftAssert();
@@ -173,13 +334,15 @@ public class FlyCartComponents extends FlyCartPageLocator{
 
     public void ValidateBundleTierinInLineCartPage() throws Exception {
         SoftAssert softAssert = new SoftAssert();
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-        new AddToCartComponents(driver).add3for$48product();
-        driver.findElement(HomePageLocators.CART_ICON).click();
+        new AddToCartComponents(driver).add3for$48productforbundletiercheck();
+//		jse.executeScript("arguments[0].click();", driver.findElement(CART_ICON));
+     //   driver.findElement(HomePageLocators.CART_ICON).click();
 //        wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 //        driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.BUNDLE_TIER_TITLE));
-        String BUNDLE_TIER_TITLE = driver.findElement(FlyCartPageLocator.BUNDLE_TIER_TITLE).getText();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.INLINE_BUNDLE_TIER_TITLE));
+        String BUNDLE_TIER_TITLE = driver.findElement(FlyCartPageLocator.INLINE_BUNDLE_TIER_TITLE).getText();
         System.out.println(BUNDLE_TIER_TITLE);
         softAssert.assertEquals(BUNDLE_TIER_TITLE,"Women's Underwear","The Bundle Tier Meter Is Not Displayed");
         Reporter.log("Bundle Tier functionality works fine in InLineCart page");
