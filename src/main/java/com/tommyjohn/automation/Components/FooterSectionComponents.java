@@ -988,9 +988,10 @@ public class FooterSectionComponents extends FooterSectionLocators {
 		element = driver.findElement(FACEBOOK_ICON);
 //		hrefLink = driver.findElement(FACEBOOK_LINK).getAttribute("href");
 
+		Thread.sleep(2000);
 		objGeneralMethods.clickButtonByJS(driver, element);
 
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 
 //		list = driver.findElements(LEAVE_SITE_POPUP);
 //

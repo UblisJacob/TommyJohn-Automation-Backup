@@ -1350,15 +1350,17 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		if (!driver.findElement(SIZEGUIDE_TITLE).isDisplayed())
 			throw new Exception("Sizes chart overlay is not displayed after Size guide button was clicked");
 		Reporter.log("Size guide is Displayed :: Clickable");
-		try {
-			WebElement close_icon = driver.findElement(By.xpath("(//span[@class='icon size-5 icon-x'])[3]"));
-			executor.executeScript("arguments[0].click();", close_icon);
-		}
-		catch(Exception ex)
-		{
-			WebElement close_icon = driver.findElement(By.xpath("(//span[@class='icon size-5 icon-x'])[1]"));
-			executor.executeScript("arguments[0].click();", close_icon);
-		}
+//		try {
+////			WebElement close_icon = driver.findElement(By.xpath("(//button[@aria-label='Close modal'])[4]"));
+////			executor.executeScript("arguments[0].click();", close_icon);
+//			driver.findElement(By.xpath("(//button[@aria-label='Close modal'])[4]")).click();
+//		}
+//		catch(Exception ex)
+//		{
+//			WebElement close_icon = driver.findElement(By.xpath("(//span[@class='icon size-5 icon-x'])[4]"));
+//			executor.executeScript("arguments[0].click();", close_icon);
+//		}
+		driver.get("https://www.tommyjohn.com/products/second-skin-trunk-4-1?color=della-robbia-blue");
 		//check rating n reviews
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(RATING_STARS));

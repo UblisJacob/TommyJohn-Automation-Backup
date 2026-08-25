@@ -6,6 +6,7 @@ import java.util.Properties;
 
 import com.base.ExtentReport;
 import com.tommyjohn.automation.PageLocators.HomePageLocators;
+import com.tommyjohn.automation.PageLocators.ShoppingCartLocators;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -43,6 +44,18 @@ public class AddToCartComponents extends AddToCartLocators{
 	List<WebElement> Tabs;
 
 	String allClasses = null;
+
+	// Checks if the specified offer messaging is visible on the full /cart page
+	public boolean isCartPageOfferMessagingDisplayed(String offerText) {
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+			By locator = ShoppingCartLocators.getCartPageOfferMessageLocator(offerText);
+			WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+			return element.isDisplayed();
+		} catch (Exception e) {
+			return false;
+		}
+	}
 
 	public void AddSingleProduct() throws Exception {
 		new HomePageComponents(driver).navigateToAllPantiesInWomenCategory();

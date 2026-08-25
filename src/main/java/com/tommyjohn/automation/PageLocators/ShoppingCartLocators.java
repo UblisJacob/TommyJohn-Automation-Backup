@@ -20,6 +20,14 @@ public class ShoppingCartLocators {
 	 * CANCEL_PROMO_CODE
 	 */
 
+
+	// Dynamic locator for offer messaging on the main /cart page
+	public static By getCartPageOfferMessageLocator(String offerText) {
+		return By.xpath("//main//span[contains(text(), '" + offerText + "')] | //form[@id='cart']//span[contains(text(), '" + offerText + "')]");
+	}
+
+
+
 	public static By CART_TITLE = By.xpath("//h1[contains(text(),'Your Cart')]");
 	public static By EMPTY_CART_MESSAGE = By.xpath("//p[contains(text(),'Your cart is currently empty.')]");
 	public static By START_SHOPPING_BUTTON = By.xpath("//a[@class='button mt-6']");

@@ -1,10 +1,13 @@
 package TestScenario;
 
+import com.tommyjohn.automation.Components.CollectionPageComponent;
+import com.tommyjohn.automation.Components.FlyCartComponents;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+
 
 import com.tommyjohn.automation.Pages.FlyCartPage;
 import com.tommyjohn.automation.utils.CustomUtilities;
@@ -26,6 +29,19 @@ public class ValidateFlyCartPage {
 	}
 
 
+
+
+	@Test
+	public void TC_Validate5For60BundleOffer() throws Exception {
+		new CollectionPageComponent(driver).clickFirstBundleOfferProduct();
+		new FlyCartComponents(driver).validate5For60BundleOffer();
+	}
+
+	@Test
+	public void TC_Validate7For65BundleOffer() throws Exception {
+		new CollectionPageComponent(driver).clickFirstBundleOfferProduct();
+		new FlyCartComponents(driver).validate7For65BundleOffer();
+	}
 
 	@Test
 	public void TC_ValidateEmptyFlyCart() throws Exception 
