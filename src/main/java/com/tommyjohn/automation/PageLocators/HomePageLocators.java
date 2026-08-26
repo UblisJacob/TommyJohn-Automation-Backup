@@ -14,7 +14,7 @@ public class HomePageLocators{
 	public static By PLP_HEADING = By.xpath("//span[@class='font-serif text-text-accent']");
 	public static By SHOP_NOW_LINKS = By.xpath("//a[@class='button-link-inverse mx-xs inline-block text-body-sm hocus:!decoration-current']");
 	public static By HERO_BANNER_IMAGE = By.xpath("(//div[@class='shopify-section relative'])[1]");
-	public static By UGC_MODULE = By.xpath("//div[@data-cs-override-id='nulp-four-sixty-ugc']");
+	public static By UGC_MODULE = By.xpath("//div[@data-cs-override-id='hp-four-sixty-ugc']");
     public static By FIRST_UGC_MODULE = By.xpath("(//div[@class='fs-text-container'])[1]");
     public static By SHOP_NOW_LINK = By.xpath("//div[@class='fs-has-links']");
     public static By INFLUENCER_FAVOURITE_PRODUCT_POPUP = By.xpath("//div[@class='fs-detail-container ']");

@@ -1723,5 +1723,6 @@ public class FlyCartComponents extends FlyCartPageLocator{
 	}
 
 	public void ValidateSevenforthirtyfivefunctionalityinInLineCartPage() {
+
 	}
 }
