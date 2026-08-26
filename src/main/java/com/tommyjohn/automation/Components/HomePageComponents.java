@@ -169,8 +169,7 @@ public class HomePageComponents extends HomePageLocators {
         SoftAssert softAssert = new SoftAssert();
         Actions action = new Actions(driver);
         JavascriptExecutor js = (JavascriptExecutor) driver;
-		driver.get("https://www.tommyjohn.com/?toggle_content=men");
-        js.executeScript("window.scrollBy(0,6000)");
+        js.executeScript("window.scrollBy(0,5000)");
         wait.until(ExpectedConditions.visibilityOfElementLocated(UGC_MODULE));
         Thread.sleep(2000);
         softAssert.assertTrue(driver.findElement(UGC_MODULE).isDisplayed(), "UGC_MODULE is not available");
