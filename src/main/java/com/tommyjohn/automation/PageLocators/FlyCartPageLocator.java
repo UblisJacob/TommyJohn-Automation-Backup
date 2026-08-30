@@ -137,14 +137,17 @@ public class FlyCartPageLocator {
 	public static By PRODUCT_LINE_ITEM_OPTION = By.cssSelector("[data-tj-qa='cart-line-item-option'],div.line-item__summary > div.line-item__option");
 	public static By PRODUCT_AMOUNT_ON_FLYCART = By.cssSelector("[data-tj-qa='cart-line-item-sale-price'],.line-item__price>span");
 
-	// Target size label dynamically
-	public static By SIZE_S_LABEL = By.xpath("//label[contains(translate(text(), 'S', 's'), 's')]");
+	// Exact target for Size S pill using label aria-label and nested span content
+	public static By SIZE_S_LABEL = By.xpath("//label[starts-with(@aria-label, 'S ') or @aria-label='S' or contains(translate(., 'S', 's'), 's (')]");
 
-	// Target Add to Bag CTA
-	public static By ADD_TO_BAG_BUTTON = By.xpath("//button[contains(@class, 'add-to-cart') or contains(@id, 'AddToCart')]");
+	// Exact target for PDP Add to Bag CTA button using unique ID and Cypress data attribute
+	public static By ADD_TO_BAG_BUTTON = By.xpath("//button[@id='ProductForm-Add' or @data-cy='productFormSubmit']");
 
-	// Quantity input field on main cart page
-	public static By CART_PAGE_QUANTITY_INPUT = By.xpath("//input[contains(@class, 'cart-item__quantity') or contains(@name, 'updates[]')]");
+	// Target quantity inputs across full cart page variations (/cart)
+	public static By CART_PAGE_QUANTITY_INPUT = By.xpath("//input[contains(@id, 'Quantity') or contains(@id, 'updates') or contains(@name, 'updates') or contains(@class, 'quantity__input')]");
+
+	// Offer locator matching 5 for $60 variations
+	public static By DISCOUNT_5for$60 = By.xpath("//*[contains(@class,'text-functional-sale') and (contains(translate(text(), 'FOR', 'for'), '5 for') or contains(text(), '5 For') or contains(text(), '5 FOR'))]");
 
 	// Offer locator matching both fly cart and main cart page variations
 	public static By DISCOUNT_7for$65 = By.xpath("//*[contains(@class,'text-functional-sale') and (contains(translate(text(), 'FOR', 'for'), '7 for') or contains(text(), '7 For') or contains(text(), '7 FOR'))]");
