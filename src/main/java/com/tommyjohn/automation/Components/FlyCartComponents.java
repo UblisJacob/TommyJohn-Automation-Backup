@@ -86,26 +86,28 @@ public class FlyCartComponents extends FlyCartPageLocator{
 	}
 
 	public void addItemToBagFromPDP() throws Exception {
-		if (driver.getCurrentUrl().equals("https://tommyjohn.com/") || driver.getCurrentUrl().endsWith("tommyjohn.com")) {
+		if (!driver.getCurrentUrl().contains("/products/womens-second-skin-brief")) {
 			driver.get("https://tommyjohn.com/products/womens-second-skin-brief");
 		}
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 
-		// 1. Select Size (Uses SIZE_S_LABEL from FlyCartPageLocator)
-		WebElement sizePill = wait.until(ExpectedConditions.elementToBeClickable(FlyCartPageLocator.SIZE_S_LABEL));
+		// 1. Select Size S
+		WebElement sizePill = wait.until(ExpectedConditions.presenceOfElementLocated(FlyCartPageLocator.SIZE_S_LABEL));
+		js.executeScript("arguments[0].scrollIntoView({block: 'center'});", sizePill);
 		js.executeScript("arguments[0].click();", sizePill);
 
-		// 2. Click Add to Bag
-		WebElement addToBag = wait.until(ExpectedConditions.elementToBeClickable(FlyCartPageLocator.ADD_TO_BAG_BUTTON));
+		// 2. Click Add to Bag CTA
+		WebElement addToBag = wait.until(ExpectedConditions.presenceOfElementLocated(FlyCartPageLocator.ADD_TO_BAG_BUTTON));
+		js.executeScript("arguments[0].scrollIntoView({block: 'center'});", addToBag);
 		js.executeScript("arguments[0].click();", addToBag);
 
-		// 3. Ensure Side Cart is open by verifying input presence or opening via icon
+		// 3. Ensure Fly Cart opens
 		try {
 			wait.until(ExpectedConditions.presenceOfElementLocated(FlyCartPageLocator.MINICART_QUANTITY_INPUT));
 		} catch (Exception e) {
-			WebElement cartIcon = wait.until(ExpectedConditions.elementToBeClickable(FlyCartPageLocator.INLINE_CART_ICON));
+			WebElement cartIcon = wait.until(ExpectedConditions.presenceOfElementLocated(FlyCartPageLocator.INLINE_CART_ICON));
 			js.executeScript("arguments[0].click();", cartIcon);
 			wait.until(ExpectedConditions.presenceOfElementLocated(FlyCartPageLocator.MINICART_QUANTITY_INPUT));
 		}
@@ -121,20 +123,20 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		setFlyCartQuantityDirectly(5);
 
 		// 2. Validate offer banner
-		WebElement offerMsg = wait.until(ExpectedConditions.presenceOfElementLocated(FlyCartPageLocator.DISCOUNT_5for$65));
+		WebElement offerMsg = wait.until(ExpectedConditions.presenceOfElementLocated(FlyCartPageLocator.DISCOUNT_5for$60));
 		wait.until(ExpectedConditions.visibilityOf(offerMsg));
 
 		// 3. Decrease quantity to 4
 		setFlyCartQuantityDirectly(4);
 
 		// Verify offer disappears
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(FlyCartPageLocator.DISCOUNT_5for$65));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(FlyCartPageLocator.DISCOUNT_5for$60));
 
 		// 4. Increase quantity back to 5
 		setFlyCartQuantityDirectly(5);
 
 		// Verify offer reappears
-		offerMsg = wait.until(ExpectedConditions.presenceOfElementLocated(FlyCartPageLocator.DISCOUNT_5for$65));
+		offerMsg = wait.until(ExpectedConditions.presenceOfElementLocated(FlyCartPageLocator.DISCOUNT_5for$60));
 		wait.until(ExpectedConditions.visibilityOf(offerMsg));
 
 		// 5. Click View Cart CTA
@@ -144,16 +146,16 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		wait.until(ExpectedConditions.urlContains("/cart"));
 
 		// 1. Verify offer is present upon arrival on /cart page (qty is 5)
-		offerMsg = wait.until(ExpectedConditions.presenceOfElementLocated(FlyCartPageLocator.DISCOUNT_5for$65));
+		offerMsg = wait.until(ExpectedConditions.presenceOfElementLocated(FlyCartPageLocator.DISCOUNT_5for$60));
 		wait.until(ExpectedConditions.visibilityOf(offerMsg));
 
 		// 2. Decrease quantity to 4 on /cart page
 		setCartPageQuantityDirectly(4);
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(FlyCartPageLocator.DISCOUNT_5for$65));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(FlyCartPageLocator.DISCOUNT_5for$60));
 
 		// 3. Increase quantity back to 5 on /cart page
 		setCartPageQuantityDirectly(5);
-		offerMsg = wait.until(ExpectedConditions.presenceOfElementLocated(FlyCartPageLocator.DISCOUNT_5for$65));
+		offerMsg = wait.until(ExpectedConditions.presenceOfElementLocated(FlyCartPageLocator.DISCOUNT_5for$60));
 		wait.until(ExpectedConditions.visibilityOf(offerMsg));
 	}
 
