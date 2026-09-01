@@ -688,6 +688,9 @@ public class AddToCartComponents extends AddToCartLocators{
 			}
 
 			driver.get("https://www.tommyjohn.com/");
+			Thread.sleep(20000);
+			jse.executeScript("arguments[0].click();", driver.findElement(CART_ICON));
+			driver.get("https://www.tommyjohn.com/");
 
 		}
 		return text;
@@ -698,13 +701,13 @@ public class AddToCartComponents extends AddToCartLocators{
 
 		int count =0;
 		// call method to navigate to collection page
-		new HomePageComponents(driver).navigateToAllUnderwearInMenCategory();
+		new HomePageComponents(driver).navigateToMensAllUnderwear();
 		jse = (JavascriptExecutor) driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		// call method to navigate product details page
 		text = new CollectionPageComponent(driver).navigateToPDP();
 
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 
 		jse.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//span[@class='text-sm text-text-tertiary'])[1]")));
 
@@ -779,6 +782,9 @@ public class AddToCartComponents extends AddToCartLocators{
 				}
 			}
 
+			driver.get("https://www.tommyjohn.com/");
+			Thread.sleep(20000);
+			jse.executeScript("arguments[0].click();", driver.findElement(CART_ICON));
 			driver.get("https://www.tommyjohn.com/");
 
 		}

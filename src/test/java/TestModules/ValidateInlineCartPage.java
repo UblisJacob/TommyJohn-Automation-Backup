@@ -1,6 +1,7 @@
 package TestModules;
 
 import com.tommyjohn.automation.Components.AddToCartComponents;
+import com.tommyjohn.automation.Components.CollectionPageComponent;
 import com.tommyjohn.automation.Components.FlyCartComponents;
 import com.tommyjohn.automation.Pages.ShoppingCartPage;
 import org.openqa.selenium.WebDriver;
@@ -29,7 +30,17 @@ public class ValidateInlineCartPage extends ExtentReport {
 		}
 	}
 
+	@Test
+	public void TC_Validate5For60BundleOffer() throws Exception {
+		new CollectionPageComponent(driver).clickFirstBundleOfferProduct();
+		new FlyCartComponents(driver).validate5For60BundleOffer();
+	}
 
+	@Test
+	public void TC_Validate7For65BundleOffer() throws Exception {
+		new CollectionPageComponent(driver).clickFirstBundleOfferProduct();
+		new FlyCartComponents(driver).validate7For65BundleOffer();
+	}
 
     @Test
     public void ValidatefiveforsixtyfunctionalityinInLineCartPage() throws Exception {
@@ -47,7 +58,7 @@ public class ValidateInlineCartPage extends ExtentReport {
 		new FlyCartPage(driver).validateOOSProductsInMiniCartRecommendations();
 	}
 
-	@Test
+	// @Test
 	public void ValidateSevenforthirtyfivefunctionalityinInLineCartPage() throws Exception {
 		new FlyCartPage(driver).ValidateSevenforthirtyfivefunctionalityinInLineCartPage();
 	}

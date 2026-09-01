@@ -1113,7 +1113,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		//new HomePageComponents(driver).navigateToSales();
 		SoftAssert softAssert = new SoftAssert();
 		//new CollectionPageComponent(driver).navigateToProductDetailsPage();
-		driver.get("https://www.tommyjohn.com/products/womens-cool-cotton-brief-3-pack-12?color=rosewater-oil-green-chintz-rose-varsity-stripe");
+		driver.get("https://www.tommyjohn.com/products/womens-second-skin-brief?color=rosewater");
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PDP_PROMOBANNER));
 		softAssert.assertTrue(driver.findElement(PDP_PROMOBANNER).isDisplayed(),"Promo Banner is not available in the PDP");

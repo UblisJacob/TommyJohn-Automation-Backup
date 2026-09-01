@@ -26,6 +26,7 @@ import com.tommyjohn.automation.utils.CustomUtilities;
 
 import static com.tommyjohn.automation.PageLocators.FlyCartPageLocator.CHECKOUT_BUTTON;
 import static com.tommyjohn.automation.PageLocators.HomePageLocators.PRODUCT_NAME;
+import static com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators.CART_ICON;
 
 public class CheckoutPageComponents extends CheckoutPageLocators {
 
@@ -110,7 +111,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 //		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
-		Thread.sleep(5000);
+		Thread.sleep(10000);
 		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
 		Reporter.log("Checkout page displayed");
 		ExtentReport.extentTest.info("Checkout page displayed");
@@ -152,7 +153,8 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		SoftAssert softAssert = new SoftAssert();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HomePageLocators.CART_ICON));
-		driver.findElement(HomePageLocators.CART_ICON).click();
+		Thread.sleep(20000);
+		jse.executeScript("arguments[0].click();", driver.findElement(CART_ICON));
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 //		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
 		Thread.sleep(10000);
@@ -1209,7 +1211,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 //		jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
 ////		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
-
+		Thread.sleep(5000);
 		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
 		Reporter.log("Checkout page displayed");
 		ExtentReport.extentTest.info("Checkout page displayed");
@@ -1451,8 +1453,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 //		jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
 ////		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
-
-		
+		Thread.sleep(5000);
 		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
 		Reporter.log("Checkout page displayed");
 		ExtentReport.extentTest.info("Checkout page displayed");
