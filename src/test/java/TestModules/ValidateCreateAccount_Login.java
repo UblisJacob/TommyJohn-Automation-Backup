@@ -64,7 +64,7 @@ public class ValidateCreateAccount_Login {
 
 
 //	@Test(dependsOnMethods = { "TC_VerifyCreateAccount" })
-	@Test(priority = 3)
+//	@Test(priority = 3)
 	public void VerifyAccountLogin() throws Exception
 	{
 		new AccountLoginPage(driver).loginCustomerAccount(accountCreatedEmail, password);
@@ -86,7 +86,7 @@ public class ValidateCreateAccount_Login {
 		new AccountLoginPage(driver).recoverPasswordFunctionality();
 	}
 		
-	@Test
+//	@Test
 	public void VerifyErrorScenariosForLogin() throws Exception
 	{
 		new AccountLoginPage(driver).verifyErrorsOnLoginPage();

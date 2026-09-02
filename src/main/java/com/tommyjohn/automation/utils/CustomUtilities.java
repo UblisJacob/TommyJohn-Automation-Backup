@@ -24,7 +24,7 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
-import org.openqa.selenium.devtools.v147.emulation.Emulation;
+import org.openqa.selenium.devtools.v152.emulation.Emulation;
 import org.testng.ITestContext;
 import org.testng.Reporter;
 

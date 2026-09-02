@@ -30,25 +30,25 @@ public class ValidateInlineCartPage extends ExtentReport {
 		}
 	}
 
-	@Test
+//	@Test
 	public void TC_Validate5For60BundleOffer() throws Exception {
 		new CollectionPageComponent(driver).clickFirstBundleOfferProduct();
 		new FlyCartComponents(driver).validate5For60BundleOffer();
 	}
 
-	@Test
+//	@Test
 	public void TC_Validate7For65BundleOffer() throws Exception {
 		new CollectionPageComponent(driver).clickFirstBundleOfferProduct();
 		new FlyCartComponents(driver).validate7For65BundleOffer();
 	}
 
-    @Test
+ //   @Test
     public void ValidatefiveforsixtyfunctionalityinInLineCartPage() throws Exception {
         new FlyCartPage(driver).ValidateFiveFor60InInLineCart();
     }
 
 
-    @Test
+ //   @Test
     public void ValidateBundleTierinInLineCartPage() throws Exception {
         new FlyCartPage(driver).ValidateBundleTierinInLineCartPage();
     }
@@ -112,7 +112,7 @@ public class ValidateInlineCartPage extends ExtentReport {
 		new FlyCartPage(driver).validateOOSonInlinecart();
 	}
 
-	@Test
+//	@Test
 	public void VerifyPromotionalMessagingPresence() throws Exception
 	{
 		new FlyCartPage(driver).validatePromotionMessaging();

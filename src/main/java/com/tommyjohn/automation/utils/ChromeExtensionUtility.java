@@ -66,7 +66,7 @@ public class ChromeExtensionUtility {
 
 		LoggingPreferences logPrefs = new LoggingPreferences();
 		logPrefs.enable(LogType.BROWSER, Level.ALL);
-		logPrefs.enable(LogType.CLIENT, Level.ALL);
+		logPrefs.enable(LogType.DRIVER, Level.ALL);
 		logPrefs.enable(LogType.DRIVER, Level.ALL);
 
 		chromeOptions.setCapability("goog:loggingPrefs", logPrefs);

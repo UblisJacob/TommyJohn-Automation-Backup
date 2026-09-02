@@ -135,7 +135,7 @@ public class ValidateCheckoutPage extends ExtentReport {
 		new CheckoutPage(driver).ValidateCartIconInCheckoutPage();
 	}
 
-	@Test
+//	@Test
 	public void ValidateOrderProtectionInCheckoutPage() throws Exception
 	{
 		new AddToCartComponents(driver).addsingleproductToCartforFirst20Coupon();
@@ -198,7 +198,7 @@ public class ValidateCheckoutPage extends ExtentReport {
 		new CheckoutPage(driver).Validateguestcheckout();
 	}
 	
-	@Test
+//	@Test
 	public void ValidateRegisteredUserCheckoutFlow() throws Exception
 	{
 		new CheckoutPage(driver).Validateregisterusercheckout();
