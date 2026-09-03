@@ -102,7 +102,7 @@ public class HomePageLocators{
 	public static By EXPLORE_LEVEL_ONE_LINKS = By.cssSelector("li[arial-label='open Explore menu'] ul[class='nav-item__list level-one-list alternate']>li[class='level-one-container alternate image-column']");
 
 	public static By MEN_CATEGORY = By.xpath("(//a[contains(text(),'Men')])[2]");
-	public static By MEN_CATEGORY_COPY = By.xpath("(//a[contains(text(),'Men')])[1]");
+	public static By MEN_CATEGORY_COPY = By.xpath("(//a[contains(text(),'Men')])[3]");
 	public static By WOMEN_CATEGORY = By.xpath("(//a[contains(text(),'Women')])[2]");
 	public static By WOMEN_CATEGORY_COPY = By.xpath("(//a[contains(text(),'Women')])[3]");
 	public static By FINAL_SALE = By.cssSelector(".level-zero-list>.level-zero-container:nth-child(3)> .level-zero-item >a");
@@ -115,8 +115,8 @@ public class HomePageLocators{
 	public static By HEADER_RIGHT_SIDE_SPECIFIC_ELEMENT = By.xpath("(//div[@class='flex gap-x-8']//span[@aria-hidden='true'])[1]");
 
 
-	public static By FIRST_lEVEL1_CATEGORY = By.xpath("(//a[contains(text(),'Undershirts')])[1]");
-	public static By FIRST_lEVEL1_CATEGORY_COPY = By.xpath("(//a[contains(text(),'Underwear')])[3]");
+	public static By FIRST_lEVEL1_CATEGORY = By.xpath("(//li[@class='group/level2 group']//a[contains(text(),'Undershirts')])");
+	public static By FIRST_lEVEL1_CATEGORY_COPY = By.xpath("(//a[contains(text(),'Underwear')])[1]");
 	public static By WOMENS_FIRST_lEVEL1_CATEGORY = By.xpath("(//a[contains(text(),'Bras & Bralettes')])[1]");
 	public static By WOMENS_FIRST_lEVEL1_CATEGORY_COPY = By.xpath("//a[contains(text(),'Shop all Bras & Bralettes')]");
 	public static By SECOND_lEVEL1_CATEGORY = By.xpath("(//a[contains(text(),'New Arrivals')])[1]");

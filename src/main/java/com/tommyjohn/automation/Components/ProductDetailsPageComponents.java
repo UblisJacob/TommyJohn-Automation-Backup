@@ -4026,7 +4026,7 @@ public class ProductDetailsPageComponents extends ProductDetailsPageLocators {
 		jse.executeScript("arguments[0].click();", ratingstars);
 		WebElement Readallreviews = wait.until(ExpectedConditions.visibilityOfElementLocated(READ_ALL_REVIEWS_IN_SUMMARY));
 		jse.executeScript("arguments[0].click();", Readallreviews);
-		jse.executeScript("window.scrollBy(0, 3000)");
+		jse.executeScript("window.scrollBy(0, 6000)");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.SHOP_THE_COLLECTION));
 		softAssert.assertTrue(driver.findElement(SHOP_THE_COLLECTION).isDisplayed(),"Shop the Collection section is not avaialable");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageLocators.PEOPLE_ALSO_BOUGHT));

@@ -126,7 +126,7 @@ public class CheckoutPageLocators {
 	public static By STATE = By.xpath("(//select[@name='zone'])[2]"); //(//select[@name='zone'])[2]
 	public static By ZIPCODE = By.xpath("(//input[@name='postalCode'])[3]"); //(//input[@name='postalCode'])[3]
 
-		public static By PHONE = By.xpath("(//input[@name='phone'])[3]"); //(//input[@name='phone'])[3]
+		public static By PHONE = By.xpath("(//input[@name='phone'])"); //(//input[@name='phone'])[3]
 	public static By SAVE_MY_INFORMATION = By.xpath("//input[@id='RememberMe-RememberMeCheckbox']");
 
 	public static By BILLING_TEXT = By.xpath("//h3[contains(text(),'Billing address')]"); //(//h3[contains(text(),'Billing address')])

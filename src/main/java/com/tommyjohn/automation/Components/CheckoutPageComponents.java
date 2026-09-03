@@ -1369,7 +1369,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		Thread.sleep(5000);
 		driver.findElement(CARDNAME_CLEAR).click();
 		driver.findElement(COMPLETE_ORDER_BUTTON).click();
-		Thread.sleep(5000);
+		Thread.sleep(10000);
 		softAssert.assertTrue(driver.findElement(CARDNUMBER_ERROR).isDisplayed(), "CardNumber Field Error Message is not displayed");
 		Reporter.log("Error Message displayed for CardNumber field");
 		ExtentReport.extentTest.info("Error Message displayed for CardNumber field");
