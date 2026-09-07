@@ -1286,7 +1286,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 				driver.findElement(COMPLETE_ORDER_BUTTON).click();
 			//	((JavascriptExecutor) driver).executeScript("arguments[0].click();", Continue_shipping);
 
-				Thread.sleep(5000);
+				Thread.sleep(10000);
 				softAssert.assertTrue(driver.findElement(EMAIL_ERROR).isDisplayed(), "Email Field Error Message is not displayed");
 				Reporter.log("Error Message displayed for Email field");
 				ExtentReport.extentTest.info("Error Message displayed for Email field");

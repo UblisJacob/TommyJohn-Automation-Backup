@@ -74,7 +74,7 @@ public class ImagesComponents {
 
     public void VerifyAltText() {
 
-        String csvPath = "C:\\Users\\admin\\IdeaProjects\\TJDesktop\\CSV\\homepage_report.csv";
+        String csvPath = "C:\\Users\\UTI\\IdeaProjects\\TJ_Automation\\CSV\\homepage_report.csv";
         CSVWriter writer;
 
         boolean hasFailures = false;
@@ -187,7 +187,7 @@ public class ImagesComponents {
 
         SoftAssert softAssert = new SoftAssert();
 
-        String csvPath = "C:\\Users\\admin\\IdeaProjects\\TJDesktop\\CSV\\PLP_report.csv";
+        String csvPath = "C:\\Users\\UTI\\IdeaProjects\\TJ_Automation\\CSV\\PLP_report.csv";
         CSVWriter writer;
         boolean hasFailures = false;
 
@@ -370,7 +370,7 @@ public class ImagesComponents {
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
         String pdpCsvPath = "src/main/resources/ImagePDP.csv";
-        String reportCsvPath = "C:\\Users\\admin\\IdeaProjects\\TJDesktop\\CSV\\PDP_report.csv";
+        String reportCsvPath = "C:\\Users\\UTI\\IdeaProjects\\TJ_Automation\\CSV\\PDP_report.csv";
 
         CSVWriter writer = new CSVWriter(new FileWriter(reportCsvPath, false));
         writer.writeNext(new String[]{"Status", "ALT Text", "SRC", "URL"});
