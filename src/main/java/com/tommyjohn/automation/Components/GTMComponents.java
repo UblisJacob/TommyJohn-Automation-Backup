@@ -20,6 +20,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.devtools.DevTools;
+import org.openqa.selenium.devtools.HasDevTools;
 import org.openqa.selenium.devtools.v152.network.Network;
 import org.openqa.selenium.devtools.v152.network.model.Request;
 import org.openqa.selenium.logging.LogEntries;
@@ -32,6 +33,7 @@ import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
+
 
 
 import java.io.File;
@@ -71,17 +73,16 @@ public class GTMComponents {
         WebDriverWait wait =
                 new WebDriverWait(driver, Duration.ofSeconds(30));
 
-        // Only Facebook Pixel requests will be stored
+        // =========================================================
+        // Store Facebook Pixel related requests
+        // =========================================================
         List<String> facebookRequests =
                 Collections.synchronizedList(new ArrayList<>());
-
 
         // =========================================================
         // Start DevTools
         // =========================================================
-
-        DevTools devTools =
-                ((ChromeDriver) driver).getDevTools();
+        DevTools devTools = ((HasDevTools) driver).getDevTools();
 
         devTools.createSession();
 
@@ -92,310 +93,489 @@ public class GTMComponents {
                         Optional.empty(),
                         Optional.empty(),
                         Optional.empty()
-                )
+                ));
+
+        Reporter.log("DevTools Network monitoring started.", true);
+        ExtentReport.extentTest.info(
+                "DevTools Network monitoring started."
         );
 
-
         // =========================================================
-        // Capture ONLY Facebook Pixel Requests
+        // Capture Facebook / Pixel requests
         // =========================================================
-
         devTools.addListener(
                 Network.requestWillBeSent(),
                 request -> {
 
-                    String url =
-                            request.getRequest().getUrl();
+                    String requestUrl = request.getRequest().getUrl();
 
-                    String lowerCaseUrl =
-                            url.toLowerCase();
+                    if (requestUrl == null || requestUrl.isEmpty()) {
+                        return;
+                    }
 
+                    String lowerUrl = requestUrl.toLowerCase();
 
-                    // Only retrieve/store Facebook Pixel requests
-                    if (
-                            lowerCaseUrl.contains(
-                                    "facebook.com/tr"
-                            )
-                                    ||
-                                    lowerCaseUrl.contains(
-                                            "connect.facebook.net"
-                                    )
-                                    ||
-                                    lowerCaseUrl.contains(
-                                            "fbevents"
-                                    )
-                    ) {
+                    /*
+                     * Capture Facebook Pixel related requests.
+                     *
+                     * Examples:
+                     * connect.facebook.net
+                     * facebook.com/tr
+                     * fbevents.js
+                     */
+                    if (lowerUrl.contains("facebook.com")
+                            || lowerUrl.contains("connect.facebook.net")
+                            || lowerUrl.contains("fbevents")
+                            || lowerUrl.contains("facebook")) {
 
-                        facebookRequests.add(url);
+                        facebookRequests.add(requestUrl);
 
                         System.out.println(
-                                "[FACEBOOK PIXEL] "
-                                        + url
+                                "[Facebook Request Captured] "
+                                        + requestUrl
+                        );
+                    }
+
+                    // =====================================================
+                    // Immediately check whether InitiateCheckout is present
+                    // =====================================================
+                    try {
+
+                        String decodedUrl = URLDecoder.decode(
+                                requestUrl,
+                                StandardCharsets.UTF_8
+                        );
+
+                        String decodedLowerUrl =
+                                decodedUrl.toLowerCase();
+
+                        if (decodedLowerUrl.contains("initiatecheckout")
+                                || decodedLowerUrl.contains("initiate_checkout")
+                                || decodedLowerUrl.contains("initiate%20checkout")) {
+
+                            System.out.println(
+                                    "================================================="
+                            );
+
+                            System.out.println(
+                                    "[SUCCESS] Facebook InitiateCheckout detected!"
+                            );
+
+                            System.out.println(
+                                    "[InitiateCheckout Request] "
+                                            + decodedUrl
+                            );
+
+                            System.out.println(
+                                    "================================================="
+                            );
+                        }
+
+                    } catch (Exception e) {
+
+                        System.out.println(
+                                "Unable to decode Facebook request URL: "
+                                        + e.getMessage()
                         );
                     }
                 }
         );
 
+        try {
 
-        Reporter.log(
-                "Facebook Pixel Network Listener Started"
-        );
+            // =========================================================
+            // Navigate to PLP
+            // =========================================================
 
-        ExtentReport.extentTest.info(
-                "Facebook Pixel Network Listener Started"
-        );
+            Reporter.log("Navigating to Men's PLP...", true);
+            ExtentReport.extentTest.info(
+                    "Navigating to Men's PLP."
+            );
 
+            driver.get(
+                    "https://www.tommyjohn.com/collections/mens-underwear"
+            );
 
-        // =========================================================
-        // Add Product To Cart
-        // =========================================================
+            wait.until(
+                    ExpectedConditions.presenceOfElementLocated(
+                            By.xpath("(//a[contains(@href,'/products/')])[1]")
+                    )
+            );
 
-        new AddToCartComponents(driver)
-                .addsingleproductToCart();
+            Reporter.log("Men's PLP loaded successfully.", true);
+            ExtentReport.extentTest.info(
+                    "Men's PLP loaded successfully."
+            );
 
+            // =========================================================
+            // Click first product
+            // =========================================================
 
-        Reporter.log(
-                "Product Added To Cart"
-        );
+            WebElement firstProduct =
+                    wait.until(
+                            ExpectedConditions.elementToBeClickable(
+                                    By.xpath(
+                                            "(//a[contains(@href,'/products/')])[1]"
+                                    )
+                            )
+                    );
 
-        ExtentReport.extentTest.info(
-                "Product Added To Cart"
-        );
+            ((JavascriptExecutor) driver)
+                    .executeScript(
+                            "arguments[0].click();",
+                            firstProduct
+                    );
 
+            wait.until(
+                    ExpectedConditions.urlContains("/products/")
+            );
 
-        // =========================================================
-        // Wait For Checkout CTA
-        // =========================================================
+            Reporter.log("Navigated to PDP.", true);
+            ExtentReport.extentTest.info(
+                    "Navigated to PDP."
+            );
 
-        wait.until(
-                ExpectedConditions.presenceOfElementLocated(
-                        CHECKOUT_BUTTON
-                )
-        );
+            // =========================================================
+            // Add product to cart
+            // =========================================================
 
+            Reporter.log("Adding product to cart...", true);
+            ExtentReport.extentTest.info(
+                    "Adding product to cart."
+            );
 
-        // =========================================================
-        // Click Checkout CTA
-        // =========================================================
+            AddToCartComponents addToCartComponents =
+                    new AddToCartComponents(driver);
 
-        JavascriptExecutor jse =
-                (JavascriptExecutor) driver;
+            addToCartComponents.addsingleproductToCart();
 
-        jse.executeScript(
-                "arguments[0].click();",
-                driver.findElement(CHECKOUT_BUTTON)
-        );
+            Reporter.log(
+                    "Product added to cart successfully.",
+                    true
+            );
 
+            ExtentReport.extentTest.info(
+                    "Product added to cart successfully."
+            );
 
-        Reporter.log(
-                "Checkout CTA Clicked"
-        );
+            // =========================================================
+            // Wait for Checkout button
+            // =========================================================
 
-        ExtentReport.extentTest.info(
-                "Checkout CTA Clicked"
-        );
+            WebElement checkoutButton =
+                    wait.until(
+                            ExpectedConditions.elementToBeClickable(
+                                    CHECKOUT_BUTTON
+                            )
+                    );
 
+            Reporter.log(
+                    "Checkout button is available.",
+                    true
+            );
 
-        // =========================================================
-        // Wait For Checkout Page
-        // =========================================================
+            ExtentReport.extentTest.info(
+                    "Checkout button is available."
+            );
 
-        wait.until(
-                ExpectedConditions.urlContains(
-                        "/checkouts/"
-                )
-        );
+            // =========================================================
+            // Clear previously captured Facebook requests
+            // =========================================================
 
+            synchronized (facebookRequests) {
+                facebookRequests.clear();
+            }
 
-        Reporter.log(
-                "Checkout Page Loaded"
-        );
+            Reporter.log(
+                    "Previous Facebook requests cleared.",
+                    true
+            );
 
-        ExtentReport.extentTest.info(
-                "Checkout Page Loaded"
-        );
+            ExtentReport.extentTest.info(
+                    "Previous Facebook requests cleared."
+            );
 
+            // =========================================================
+            // Click Checkout
+            // =========================================================
 
-        // =========================================================
-        // Wait For Facebook InitiateCheckout
-        // =========================================================
+            Reporter.log(
+                    "Clicking Checkout button...",
+                    true
+            );
 
-        boolean facebookInitiateCheckout =
-                waitForFacebookInitiateCheckout(
-                        facebookRequests,
-                        10
-                );
+            ExtentReport.extentTest.info(
+                    "Clicking Checkout button."
+            );
 
+            ((JavascriptExecutor) driver)
+                    .executeScript(
+                            "arguments[0].click();",
+                            checkoutButton
+                    );
 
-        // =========================================================
-        // Display ONLY Facebook Pixel Results
-        // =========================================================
+            // =========================================================
+            // Wait for Checkout page
+            // =========================================================
 
-        System.out.println();
+            wait.until(
+                    ExpectedConditions.urlContains("/checkouts/")
+            );
 
-        System.out.println(
-                "========== FACEBOOK PIXEL REQUESTS =========="
-        );
+            Reporter.log(
+                    "Checkout page loaded successfully.",
+                    true
+            );
 
+            ExtentReport.extentTest.info(
+                    "Checkout page loaded successfully."
+            );
 
-        synchronized (facebookRequests) {
+            // =========================================================
+            // Allow Checkout analytics/pixel scripts to initialize
+            // =========================================================
 
-            for (String request : facebookRequests) {
+            Reporter.log(
+                    "Waiting 3 seconds for Checkout analytics to initialize...",
+                    true
+            );
 
-                System.out.println(request);
+            ExtentReport.extentTest.info(
+                    "Waiting 3 seconds for Checkout analytics to initialize."
+            );
+
+            Thread.sleep(3000);
+
+            // =========================================================
+            // Wait for Facebook InitiateCheckout
+            // =========================================================
+
+            Reporter.log(
+                    "Waiting up to 30 seconds for Facebook InitiateCheckout...",
+                    true
+            );
+
+            ExtentReport.extentTest.info(
+                    "Waiting up to 30 seconds for Facebook InitiateCheckout."
+            );
+
+            boolean initiateCheckoutFired =
+                    waitForFacebookInitiateCheckout(
+                            facebookRequests,
+                            30
+                    );
+
+            // =========================================================
+            // Print captured Facebook requests
+            // =========================================================
+
+            System.out.println(
+                    "\n================================================="
+            );
+
+            System.out.println(
+                    "CAPTURED FACEBOOK REQUESTS"
+            );
+
+            System.out.println(
+                    "================================================="
+            );
+
+            synchronized (facebookRequests) {
+
+                if (facebookRequests.isEmpty()) {
+
+                    System.out.println(
+                            "No Facebook requests captured."
+                    );
+
+                } else {
+
+                    for (String requestUrl : facebookRequests) {
+
+                        System.out.println(
+                                "[Facebook] " + requestUrl
+                        );
+                    }
+                }
+            }
+
+            System.out.println(
+                    "=================================================\n"
+            );
+
+            // =========================================================
+            // Validate result
+            // =========================================================
+
+            if (initiateCheckoutFired) {
 
                 Reporter.log(
-                        "Facebook Pixel Request: "
-                                + request
+                        "[PASS] Facebook InitiateCheckout Fired.",
+                        true
                 );
 
-                ExtentReport.extentTest.info(
-                        "Facebook Pixel Request: "
-                                + request
+                ExtentReport.extentTest.pass(
+                        "Facebook InitiateCheckout event fired upon entering Checkout."
+                );
+
+            } else {
+
+                Reporter.log(
+                        "[FAIL] Facebook InitiateCheckout NOT Found.",
+                        true
+                );
+
+                ExtentReport.extentTest.fail(
+                        "Facebook InitiateCheckout event was NOT detected upon entering Checkout."
                 );
             }
-        }
 
+            System.out.println(
+                    "Facebook InitiateCheckout Fired : "
+                            + initiateCheckoutFired
+            );
 
-        System.out.println(
-                "============================================="
-        );
+            softAssert.assertTrue(
+                    initiateCheckoutFired,
+                    "Facebook InitiateCheckout Event NOT Fired upon entering Checkout."
+            );
 
-
-        // =========================================================
-        // Result
-        // =========================================================
-
-        System.out.println(
-                "Facebook InitiateCheckout Fired : "
-                        + facebookInitiateCheckout
-        );
-
-        Reporter.log(
-                "Facebook InitiateCheckout Fired : "
-                        + facebookInitiateCheckout
-        );
-
-        ExtentReport.extentTest.info(
-                "Facebook InitiateCheckout Fired : "
-                        + facebookInitiateCheckout
-        );
-
-
-        // =========================================================
-        // Assertion
-        // =========================================================
-
-        softAssert.assertTrue(
-                facebookInitiateCheckout,
-                "Facebook InitiateCheckout Event NOT Fired upon entering Checkout."
-        );
-
-
-        // =========================================================
-        // Final Result
-        // =========================================================
-
-        try {
+            // =========================================================
+            // Assert all
+            // =========================================================
 
             softAssert.assertAll();
 
-            Reporter.log(
-                    "Facebook InitiateCheckout Event Fired Successfully."
-            );
-
-            ExtentReport.extentTest.pass(
-                    "Facebook InitiateCheckout Event Fired Successfully."
-            );
-
-        }
-        catch (AssertionError e) {
+        } catch (AssertionError e) {
 
             Reporter.log(
-                    "Facebook InitiateCheckout Validation Failed."
+                    "[FAIL] Facebook InitiateCheckout validation failed.",
+                    true
             );
 
             ExtentReport.extentTest.fail(
-                    e.getMessage()
+                    "Facebook InitiateCheckout validation failed: "
+                            + e.getMessage()
+            );
+
+            throw e;
+
+        } catch (Exception e) {
+
+            Reporter.log(
+                    "[ERROR] Exception while validating Facebook InitiateCheckout: "
+                            + e.getMessage(),
+                    true
+            );
+
+            ExtentReport.extentTest.fail(
+                    "Exception while validating Facebook InitiateCheckout: "
+                            + e.getMessage()
             );
 
             throw e;
         }
     }
 
+
+    /**
+     * Waits for Facebook InitiateCheckout event.
+     *
+     * The method continuously checks the captured Facebook
+     * requests for up to the specified timeout.
+     */
     private boolean waitForFacebookInitiateCheckout(
             List<String> facebookRequests,
-            int timeoutInSeconds) {
+            int timeoutSeconds) {
 
         long endTime =
                 System.currentTimeMillis()
-                        + (timeoutInSeconds * 1000L);
+                        + (timeoutSeconds * 1000L);
 
-
-        while (
-                System.currentTimeMillis()
-                        < endTime
-        ) {
+        while (System.currentTimeMillis() < endTime) {
 
             synchronized (facebookRequests) {
 
-                for (String request : facebookRequests) {
+                for (String requestUrl : facebookRequests) {
 
-                    String lowerCaseRequest =
-                            request.toLowerCase();
+                    if (requestUrl == null) {
+                        continue;
+                    }
 
+                    try {
 
-                    // Facebook Pixel tracking endpoint
-                    boolean facebookPixel =
-                            lowerCaseRequest.contains(
-                                    "facebook.com/tr"
+                        // Decode URL
+                        String decodedUrl =
+                                URLDecoder.decode(
+                                        requestUrl,
+                                        StandardCharsets.UTF_8
+                                );
+
+                        String lowerUrl =
+                                decodedUrl.toLowerCase();
+
+                        // =================================================
+                        // Check InitiateCheckout
+                        // =================================================
+
+                        if (lowerUrl.contains("initiatecheckout")
+                                || lowerUrl.contains("initiate_checkout")
+                                || lowerUrl.contains("initiate checkout")) {
+
+                            System.out.println(
+                                    "[PASS] InitiateCheckout detected:"
                             );
 
-
-                    // InitiateCheckout event
-                    boolean initiateCheckout =
-                            lowerCaseRequest.contains(
-                                    "initiatecheckout"
+                            System.out.println(
+                                    decodedUrl
                             );
 
+                            return true;
+                        }
 
-                    if (
-                            facebookPixel
-                                    &&
-                                    initiateCheckout
-                    ) {
+                    } catch (Exception e) {
 
                         System.out.println(
-                                "[PASS] Facebook InitiateCheckout Found"
+                                "Error decoding Facebook request: "
+                                        + e.getMessage()
                         );
 
-                        System.out.println(
-                                request
-                        );
+                        // Fallback to original URL
+                        String lowerUrl =
+                                requestUrl.toLowerCase();
 
-                        return true;
+                        if (lowerUrl.contains("initiatecheckout")
+                                || lowerUrl.contains("initiate_checkout")) {
+
+                            return true;
+                        }
                     }
                 }
             }
 
-
+            // Check every 500 ms
             try {
 
                 Thread.sleep(500);
 
-            }
-            catch (InterruptedException e) {
+            } catch (InterruptedException e) {
 
-                Thread.currentThread()
-                        .interrupt();
+                Thread.currentThread().interrupt();
 
                 return false;
             }
         }
 
+        System.out.println(
+                "[FAIL] InitiateCheckout was not detected within "
+                        + timeoutSeconds
+                        + " seconds."
+        );
 
         return false;
     }
+
 
     public void validateGTMEvents() throws Exception {
 
