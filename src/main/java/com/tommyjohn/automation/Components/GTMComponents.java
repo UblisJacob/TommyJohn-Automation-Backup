@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tommyjohn.automation.PageLocators.HomePageLocators;
 import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
 import com.tommyjohn.automation.Pages.AccountLoginPage;
+import com.tommyjohn.automation.Pages.CheckoutPage;
 import com.tommyjohn.automation.commonMethods.GeneralMethods;
 import junit.framework.Assert;
 import net.lightbody.bmp.BrowserMobProxy;
@@ -64,6 +65,723 @@ public class GTMComponents {
     String searchText = "";
     public JavascriptExecutor jse;
 
+
+    public void validateLWDPixel() throws Exception {
+
+        SoftAssert softAssert = new SoftAssert();
+
+        WebDriverWait wait =
+                new WebDriverWait(driver, Duration.ofSeconds(30));
+
+        JavascriptExecutor jse =
+                (JavascriptExecutor) driver;
+
+        // =========================================================
+        // LWD REQUEST STORAGE
+        // =========================================================
+
+        List<String> lwdPixelRequests =
+                Collections.synchronizedList(new ArrayList<>());
+
+        // =========================================================
+        // STEP 1 - ADD PRODUCT
+        // =========================================================
+
+        System.out.println();
+        System.out.println("=================================================");
+        System.out.println("STEP 1 - ADD PRODUCT TO CART");
+        System.out.println("=================================================");
+
+        new AddToCartComponents(driver)
+                .addmultipleproductToCartforFreeOrder();
+
+        System.out.println(
+                "Product added to cart."
+        );
+
+        // =========================================================
+        // STEP 2 - GO TO CHECKOUT
+        // =========================================================
+
+        System.out.println();
+        System.out.println("=================================================");
+        System.out.println("STEP 2 - GO TO CHECKOUT");
+        System.out.println("=================================================");
+
+        new CheckoutPageComponents(driver)
+                .validateFreeOrder();
+
+        System.out.println(
+                "Checkout page reached."
+        );
+
+        // =========================================================
+        // STEP 3 - APPLY PROMO
+        //
+        // IMPORTANT:
+        // This method must NOT click Complete Order.
+        // =========================================================
+
+        System.out.println();
+        System.out.println("=================================================");
+        System.out.println("STEP 3 - APPLY PROMO / DISABLE ORDER PROTECTION");
+        System.out.println("=================================================");
+
+        new CheckoutPageComponents(driver)
+                .CheckFreeOrderpromo("TECH TEST");
+
+        System.out.println(
+                "Promo applied and Order Protection handled."
+        );
+
+        // =========================================================
+        // STEP 4 - START NETWORK MONITORING
+        //
+        // THIS IS THE IMPORTANT CHANGE.
+        //
+        // Network monitoring starts immediately BEFORE
+        // Complete Order is clicked.
+        // =========================================================
+
+        System.out.println();
+        System.out.println("=================================================");
+        System.out.println("STEP 4 - START LWD NETWORK MONITORING");
+        System.out.println("=================================================");
+
+        DevTools devTools =
+                ((HasDevTools) driver).getDevTools();
+
+        devTools.createSession();
+
+        System.out.println(
+                "DevTools session created."
+        );
+
+        // =========================================================
+        // REGISTER REQUEST LISTENER
+        // =========================================================
+
+        devTools.addListener(
+                Network.requestWillBeSent(),
+                request -> {
+
+                    try {
+
+                        String requestUrl =
+                                request.getRequest().getUrl();
+
+                        if (requestUrl == null) {
+                            return;
+                        }
+
+                        String lowerCaseUrl =
+                                requestUrl.toLowerCase();
+
+                        // =================================================
+                        // TEMPORARY DEBUG
+                        // Print requests containing tracking keywords.
+                        // =================================================
+
+                        if (lowerCaseUrl.contains("lw")
+                                || lowerCaseUrl.contains("trackingpixel")
+                                || lowerCaseUrl.contains("pixel")) {
+
+                            System.out.println();
+                            System.out.println(
+                                    "NETWORK TRACKING REQUEST :: "
+                                            + requestUrl
+                            );
+                        }
+
+                        // =================================================
+                        // LWD FILTER
+                        // =================================================
+
+                        boolean isLWDRequest =
+                                lowerCaseUrl.contains("lw_pixel")
+                                        || lowerCaseUrl.contains("lw_pixel_id")
+                                        || lowerCaseUrl.contains("trackingpixelprocessing")
+                                        || lowerCaseUrl.contains("trackingpixel");
+
+                        if (isLWDRequest) {
+
+                            System.out.println();
+                            System.out.println(
+                                    "*************************************************"
+                            );
+
+                            System.out.println(
+                                    "LWD PIXEL REQUEST CAPTURED"
+                            );
+
+                            System.out.println(
+                                    "*************************************************"
+                            );
+
+                            System.out.println(
+                                    "LWD URL :: "
+                                            + requestUrl
+                            );
+
+                            System.out.println(
+                                    "*************************************************"
+                            );
+
+                            lwdPixelRequests.add(
+                                    requestUrl
+                            );
+
+                            // =============================================
+                            // PRINT PAYLOAD
+                            // =============================================
+
+                            Map<String, String> parameters =
+                                    extractQueryParameters(
+                                            requestUrl
+                                    );
+
+                            System.out.println();
+                            System.out.println(
+                                    "----- LWD PAYLOAD -----"
+                            );
+
+                            for (Map.Entry<String, String> entry :
+                                    parameters.entrySet()) {
+
+                                System.out.println(
+                                        entry.getKey()
+                                                + " = "
+                                                + entry.getValue()
+                                );
+                            }
+
+                            System.out.println(
+                                    "-----------------------"
+                            );
+                        }
+
+                    } catch (Exception e) {
+
+                        System.out.println(
+                                "Error while processing network request."
+                        );
+
+                        e.printStackTrace();
+                    }
+                }
+        );
+
+        // =========================================================
+        // ENABLE NETWORK
+        // =========================================================
+
+        devTools.send(
+                Network.enable(
+                        Optional.empty(),
+                        Optional.empty(),
+                        Optional.empty(),
+                        Optional.empty(),
+                        Optional.empty()
+                )
+        );
+
+        System.out.println(
+                "LWD Network monitoring ENABLED."
+        );
+
+        // =========================================================
+        // STEP 5 - CLICK COMPLETE ORDER
+        // =========================================================
+
+        System.out.println();
+        System.out.println("=================================================");
+        System.out.println("STEP 5 - CLICK COMPLETE ORDER");
+        System.out.println("=================================================");
+
+        WebElement completeOrder =
+                wait.until(
+                        ExpectedConditions.elementToBeClickable(
+                                CheckoutPageComponents.COMPLETE_ORDER
+                        )
+                );
+
+        // Scroll to Complete Order
+
+        jse.executeScript(
+                "arguments[0].scrollIntoView({block:'center'});",
+                completeOrder
+        );
+
+        Thread.sleep(500);
+
+        try {
+
+            completeOrder.click();
+
+            System.out.println(
+                    "Complete Order clicked."
+            );
+
+        } catch (Exception e) {
+
+            System.out.println(
+                    "Normal click failed."
+            );
+
+            System.out.println(
+                    "Trying JavaScript click..."
+            );
+
+            jse.executeScript(
+                    "arguments[0].click();",
+                    completeOrder
+            );
+
+            System.out.println(
+                    "Complete Order clicked using JavaScript."
+            );
+        }
+
+        // =========================================================
+        // STEP 6 - WAIT FOR ORDER CONFIRMATION
+        // =========================================================
+
+        System.out.println();
+        System.out.println("=================================================");
+        System.out.println("STEP 6 - WAIT FOR ORDER CONFIRMATION");
+        System.out.println("=================================================");
+
+        try {
+
+            wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(
+                            CheckoutPageComponents.ORDER_CONFIRMATION
+                    )
+            );
+
+            System.out.println(
+                    "Order Confirmation displayed."
+            );
+
+        } catch (Exception e) {
+
+            System.out.println(
+                    "Order Confirmation element was not detected."
+            );
+
+            System.out.println(
+                    "Current URL :: "
+                            + driver.getCurrentUrl()
+            );
+        }
+
+        // =========================================================
+        // STEP 7 - WAIT FOR LWD REQUEST
+        // =========================================================
+
+        System.out.println();
+        System.out.println("=================================================");
+        System.out.println("STEP 7 - WAIT FOR LWD PIXEL");
+        System.out.println("=================================================");
+
+        try {
+
+            new WebDriverWait(
+                    driver,
+                    Duration.ofSeconds(30)
+            ).until(
+                    driver ->
+                            !lwdPixelRequests.isEmpty()
+            );
+
+        } catch (Exception e) {
+
+            System.out.println(
+                    "No LWD request detected during 30 second wait."
+            );
+        }
+
+        // =========================================================
+        // ADDITIONAL WAIT
+        // =========================================================
+
+        Thread.sleep(5000);
+
+        // =========================================================
+        // STEP 8 - VALIDATION RESULT
+        // =========================================================
+
+        System.out.println();
+        System.out.println("=================================================");
+        System.out.println("LWD PIXEL VALIDATION RESULT");
+        System.out.println("=================================================");
+
+        System.out.println(
+                "Total LWD Pixel Requests Captured :: "
+                        + lwdPixelRequests.size()
+        );
+
+        // =========================================================
+        // NO REQUEST
+        // =========================================================
+
+        if (lwdPixelRequests.isEmpty()) {
+
+            System.out.println();
+            System.out.println(
+                    "*************************************************"
+            );
+
+            System.out.println(
+                    "LWD PIXEL VALIDATION FAILED"
+            );
+
+            System.out.println(
+                    "No request containing:"
+            );
+
+            System.out.println(
+                    "lw_pixel / lw_pixel_id / trackingPixelProcessing"
+            );
+
+            System.out.println(
+                    "was captured."
+            );
+
+            System.out.println(
+                    "*************************************************"
+            );
+
+            softAssert.fail(
+                    "LWD Pixel request was NOT captured after placing the order."
+            );
+
+        } else {
+
+            // =====================================================
+            // REQUEST FOUND
+            // =====================================================
+
+            System.out.println();
+            System.out.println(
+                    "*************************************************"
+            );
+
+            System.out.println(
+                    "LWD PIXEL VALIDATION PASSED"
+            );
+
+            System.out.println(
+                    "*************************************************"
+            );
+
+            // =====================================================
+            // PROCESS EACH LWD REQUEST
+            // =====================================================
+
+            int requestNumber = 1;
+
+            for (String requestUrl :
+                    lwdPixelRequests) {
+
+                System.out.println();
+                System.out.println(
+                        "================================================="
+                );
+
+                System.out.println(
+                        "LWD REQUEST #" + requestNumber
+                );
+
+                System.out.println(
+                        "================================================="
+                );
+
+                System.out.println(
+                        "URL :: "
+                                + requestUrl
+                );
+
+                // =================================================
+                // EXTRACT PAYLOAD
+                // =================================================
+
+                Map<String, String> parameters =
+                        extractQueryParameters(
+                                requestUrl
+                        );
+
+                // =================================================
+                // REQUIRED VALUES
+                // =================================================
+
+                String pixelId =
+                        parameters.get("lw_pixel_id");
+
+                String clientId =
+                        parameters.get("lw_clientID");
+
+                String sessionId =
+                        parameters.get("lw_sessionID");
+
+                String event =
+                        parameters.get("lw_event");
+
+                String eventValue =
+                        parameters.get("lw_event_value");
+
+                String eventOrderValue =
+                        parameters.get(
+                                "lw_event_order_value"
+                        );
+
+                String medium =
+                        parameters.get("lw_medium");
+
+                String source =
+                        parameters.get("lw_source");
+
+                String campaign =
+                        parameters.get("lw_campaign");
+
+                String pagePath =
+                        parameters.get("lw_pagepath");
+
+                String referrer =
+                        parameters.get("lw_referrer");
+
+                // =================================================
+                // PRINT PAYLOAD
+                // =================================================
+
+                System.out.println();
+                System.out.println(
+                        "----- LWD PAYLOAD -----"
+                );
+
+                System.out.println(
+                        "lw_pixel_id          :: "
+                                + pixelId
+                );
+
+                System.out.println(
+                        "lw_clientID          :: "
+                                + clientId
+                );
+
+                System.out.println(
+                        "lw_sessionID         :: "
+                                + sessionId
+                );
+
+                System.out.println(
+                        "lw_event             :: "
+                                + event
+                );
+
+                System.out.println(
+                        "lw_event_value       :: "
+                                + eventValue
+                );
+
+                System.out.println(
+                        "lw_event_order_value :: "
+                                + eventOrderValue
+                );
+
+                System.out.println(
+                        "lw_medium            :: "
+                                + medium
+                );
+
+                System.out.println(
+                        "lw_source            :: "
+                                + source
+                );
+
+                System.out.println(
+                        "lw_campaign          :: "
+                                + campaign
+                );
+
+                System.out.println(
+                        "lw_pagepath          :: "
+                                + pagePath
+                );
+
+                System.out.println(
+                        "lw_referrer          :: "
+                                + referrer
+                );
+
+                System.out.println(
+                        "-----------------------"
+                );
+
+                // =================================================
+                // VALIDATE REQUIRED VALUES
+                // =================================================
+
+                softAssert.assertNotNull(
+                        pixelId,
+                        "lw_pixel_id is missing."
+                );
+
+                softAssert.assertFalse(
+                        pixelId == null
+                                || pixelId.trim().isEmpty(),
+                        "lw_pixel_id is empty."
+                );
+
+                softAssert.assertNotNull(
+                        clientId,
+                        "lw_clientID is missing."
+                );
+
+                softAssert.assertFalse(
+                        clientId == null
+                                || clientId.trim().isEmpty(),
+                        "lw_clientID is empty."
+                );
+
+                softAssert.assertNotNull(
+                        sessionId,
+                        "lw_sessionID is missing."
+                );
+
+                softAssert.assertFalse(
+                        sessionId == null
+                                || sessionId.trim().isEmpty(),
+                        "lw_sessionID is empty."
+                );
+
+                softAssert.assertNotNull(
+                        event,
+                        "lw_event is missing."
+                );
+
+                softAssert.assertFalse(
+                        event == null
+                                || event.trim().isEmpty(),
+                        "lw_event is empty."
+                );
+
+                requestNumber++;
+            }
+        }
+
+        // =========================================================
+        // FINAL INFORMATION
+        // =========================================================
+
+        System.out.println();
+        System.out.println(
+                "Final URL :: "
+                        + driver.getCurrentUrl()
+        );
+
+        // =========================================================
+        // CLEAR LISTENERS
+        // =========================================================
+
+        try {
+
+            devTools.clearListeners();
+
+            System.out.println(
+                    "DevTools listeners cleared."
+            );
+
+        } catch (Exception e) {
+
+            System.out.println(
+                    "Unable to clear DevTools listeners."
+            );
+        }
+
+        // =========================================================
+        // FINAL ASSERTION
+        // =========================================================
+
+        softAssert.assertAll();
+
+        Reporter.log(
+                "LWD Pixel validation completed."
+        );
+
+        ExtentReport.extentTest.info(
+                "LWD Pixel validation completed."
+        );
+    }
+
+    private Map<String, String> extractQueryParameters(
+            String requestUrl) {
+
+        Map<String, String> parameters =
+                new LinkedHashMap<>();
+
+        try {
+
+            URI uri =
+                    new URI(requestUrl);
+
+            String query =
+                    uri.getRawQuery();
+
+            if (query == null || query.isEmpty()) {
+                return parameters;
+            }
+
+            String[] pairs =
+                    query.split("&");
+
+            for (String pair : pairs) {
+
+                if (pair == null || pair.isEmpty()) {
+                    continue;
+                }
+
+                String[] keyValue =
+                        pair.split("=", 2);
+
+                String key =
+                        URLDecoder.decode(
+                                keyValue[0],
+                                StandardCharsets.UTF_8
+                        );
+
+                String value = "";
+
+                if (keyValue.length > 1) {
+
+                    value =
+                            URLDecoder.decode(
+                                    keyValue[1],
+                                    StandardCharsets.UTF_8
+                            );
+                }
+
+                parameters.put(
+                        key,
+                        value
+                );
+            }
+
+        } catch (Exception e) {
+
+            System.out.println(
+                    "Unable to parse LWD Pixel URL:"
+            );
+
+            System.out.println(
+                    requestUrl
+            );
+
+            e.printStackTrace();
+        }
+
+        return parameters;
+    }
 
 
     public void validateElevarFacebookInitiateCheckout() throws Exception {

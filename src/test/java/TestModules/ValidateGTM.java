@@ -39,6 +39,12 @@ public class ValidateGTM {
         new GTMValidations(driver).validateGTMEvents();
 
     }
+ //   @Test
+    public void ValidateLWDPixel() throws Exception {
+
+        new GTMValidations(driver).validateLWDPixel();
+
+    }
 
     @Test
     public void ValidateElevarFacebookInitiateCheckout() throws Exception {

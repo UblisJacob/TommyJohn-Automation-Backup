@@ -5,7 +5,9 @@ import org.openqa.selenium.By;
 
 public class CheckoutPageLocators {
 
-	//	                                       INFO
+	//
+	public static By COMPLETE_ORDER = By.xpath("//button[@id='checkout-pay-button']");
+	public static By ORDER_CONFIRMATION = By.xpath("//h2[contains(text(),'Thank you')]");
 	public static By CHECKOUTPAGE_CART_ICON = By.xpath("(//a[@id='cart-link'])[2]");
 	public static By LIST_OF_ITEM_IN_PAYMENT_PAGE = By.cssSelector(".product-table>tbody>tr.product");
 	public static By CART_LINK = By.cssSelector(".breadcrumb > li > a");
@@ -13,8 +15,9 @@ public class CheckoutPageLocators {
 	public static By PAYPAL_BUTTON = By.cssSelector(".paypal-button");
 	public static By GPAY_BUTTON = By.xpath("//div[@data-testid = 'GooglePay-button']");
 	public static By AMZ_PAY = By.xpath("//form[@action = 'https://payments.amazon.com/checkout/signin'] /button" );
-	public static By SHOP_PAY = By.xpath("//div[@data-testid='ShopifyPay-button']" );
-	public static By ORDER_PROTECTION = By.xpath("//img[@alt='Order Protection']" );
+	public static By SHOP_PAY = By.xpath("//div[@data-testid='ShopifyPay-button']");
+	public static By ORDER_PROTECTION = By.xpath("//img[@alt='Order Protection']");
+	public static By ORDER_PROTECTION_CHECKBOX = By.xpath("(//input[@class='i6e6fx8 i6e6fx7 _1fragemws _1fragem12y _1fragem5u _1fragemze _1fragem4q _1fragem11j i6e6fxb i6e6fx9 _1fragemyd'])");
 	public static By BREADCRUMB_LINK_CART = By.xpath("//a[contains(text(),'Cart')]");
 	public static By ShipAndPaymentPage_BREADCRUMB_LINK_INFORMATION = By.xpath("(//nav[@class='_1fragem1y _1fragemlo']//div)[2]");
 	public static By BREADCRUMB_LINK_INFORMATION = By.xpath("(//nav[@aria-label='Breadcrumb']//div)[3]");

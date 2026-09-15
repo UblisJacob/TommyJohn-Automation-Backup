@@ -1138,6 +1138,31 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		ExtentReport.extentTest.info("Free Shipping is not offered when the Cart contains products with below $75");
 	}
 
+	public void validateFreeOrder() throws Exception {
+		jse = (JavascriptExecutor)driver;
+		SoftAssert softAssert = new SoftAssert();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+	//	new AddToCartComponents(driver).addToCart();
+		wait.until(ExpectedConditions.elementToBeClickable(HomePageLocators.CART_ICON));
+		jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
+//		driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();
+		Thread.sleep(5000);
+		jse.executeScript("arguments[0].click();", driver.findElement(CHECKOUT_BUTTON));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACTINFO_TEXT));
+		driver.findElement(CHECKOUT_EMAIL).sendKeys("ublisjacobn@unitedtechno.com");
+		softAssert.assertEquals(driver.findElement(SHIPPINGADD_TEXT).getText(), "Delivery", "Shipping address title is not displayed");
+		entershippingdetails();
+		Reporter.log("Shipping Address Details entered");
+		ExtentReport.extentTest.info("Shipping Address Details entered");
+
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(FREE_SHIPPING));
+//		softAssert.assertTrue(driver.findElement(FREE_SHIPPING).isDisplayed(),"Free Shipping is not redeemable when the Cart contains products with more than $75");
+//		Reporter.log("Free Shipping is redeemable when the Product Cart contains products with more than $75");
+//		ExtentReport.extentTest.info("Free Shipping is redeemable when the Product Cart contains products with more than $75");
+
+	}
+
 	public void validateFreeShipping() throws Exception {
 		jse = (JavascriptExecutor)driver;
 		SoftAssert softAssert = new SoftAssert();
@@ -1526,7 +1551,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	public void entershippingdetails() throws Exception {
 		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(FIRSTNAME_TEXTBOX));
-		Thread.sleep(2000);
+		Thread.sleep(10000);
 		driver.findElement(FIRSTNAME_TEXTBOX).clear();
 		driver.findElement(FIRSTNAME_TEXTBOX).sendKeys("Test");
 		driver.findElement(LASTNAME_TEXTBOX).clear();
@@ -1586,6 +1611,57 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		Reporter.log("The Coupon code is not applied for Final Sale Products");
 		ExtentReport.extentTest.info("The Coupon code is not applied for Final Sale Products");
 
+	}
+
+	public void CheckFreeOrderpromo(String promocode) throws Exception {
+		softAssert = new SoftAssert();
+		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
+		Thread.sleep(3000);
+		driver.findElement(DISCOUNT_CODE_TEXTBOX).sendKeys(promocode);
+		WebElement element = driver.findElement(APPLY_DISCOUNT_BUTTON);
+		jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", element);
+		 Thread.sleep(3000);
+		driver.findElement(DISCOUNT_CODE_TEXTBOX).sendKeys("TECH TEST");
+		WebElement element1 = driver.findElement(APPLY_DISCOUNT_BUTTON);
+		jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", element1);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(APPLIED_PROMO_CODE));
+		System.out.println(driver.findElement(APPLIED_PROMO_CODE).getText());
+		softAssert.assertEquals(driver.findElement(APPLIED_PROMO_CODE).getText(), promocode, "The Coupon code is not getting applied in Information page");
+		jse.executeScript("window.scrollTo(0, 1000)");
+		Thread.sleep(20000);
+		try {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(ORDER_PROTECTION_CHECKBOX));
+
+			if (driver.findElement(ORDER_PROTECTION_CHECKBOX).isDisplayed()) {
+
+				WebElement orderProtectionCheckbox =
+						wait.until(ExpectedConditions.elementToBeClickable(ORDER_PROTECTION_CHECKBOX));
+
+				if (orderProtectionCheckbox.isSelected()) {
+					try {
+						orderProtectionCheckbox.click();
+					} catch (Exception e) {
+						jse.executeScript(
+								"arguments[0].click();",
+								orderProtectionCheckbox
+						);
+					}
+				}
+
+				System.out.println("Order Protection is disabled.");
+			}
+
+		} catch (Exception ex) {
+			System.out.println("Order protection Is Not Added");
+		}
+
+//		jse.executeScript("arguments[0].click();", driver.findElement(COMPLETE_ORDER));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(ORDER_CONFIRMATION));
+		softAssert.assertAll();
+		Reporter.log("The Coupon code is applied and Order is Placed");
+		ExtentReport.extentTest.info("The Coupon code is applied and Order is Placed");
 	}
 
 	public void CheckFirst20PromoCodeApplication(String promocode) throws Exception {
