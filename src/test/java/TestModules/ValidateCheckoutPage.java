@@ -96,6 +96,12 @@ public class ValidateCheckoutPage extends ExtentReport {
 	}
 
 	@Test
+	public void ValidateExtensibilityUpgrade() throws Exception
+	{
+		new CheckoutPage(driver).validateExtensibilityUpgrade();
+	}
+
+	@Test
 	public void validateFreeShipping() throws Exception
 	{
 		new CheckoutPage(driver).validateFreeShipping();

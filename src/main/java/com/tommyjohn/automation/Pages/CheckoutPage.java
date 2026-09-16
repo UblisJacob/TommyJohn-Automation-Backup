@@ -78,6 +78,12 @@ public class CheckoutPage extends CheckoutPageComponents {
 
 	}
 
+	public void validateExtensibilityUpgrade() throws Exception
+	{
+		new CheckoutPageComponents(driver).validateExtensibilityUpgrade();
+
+	}
+
 
 	public void ValidatePromoCodeErrorScenarioInShippingPage() throws Exception
 	{

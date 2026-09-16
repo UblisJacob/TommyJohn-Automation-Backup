@@ -46,6 +46,110 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	String text;
 	SoftAssert softAssert = new SoftAssert();
 
+
+	public void validateExtensibilityUpgrade() throws Exception {
+		jse = (JavascriptExecutor) driver;
+		SoftAssert softAssert = new SoftAssert();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		new AddToCartComponents(driver).addmultipleproductToCartforFreeOrder();
+		new CheckoutPageComponents(driver).validateFreeOrder();
+		new CheckoutPageComponents(driver).CheckFreeOrderpromo("TECH TEST");
+		try {
+
+			WebElement completeOrderButton =
+					wait.until(
+							ExpectedConditions.elementToBeClickable(
+									COMPLETE_ORDER
+							)
+					);
+
+
+			completeOrderButton.click();
+
+
+			System.out.println();
+			System.out.println(
+					"Complete Order clicked normally."
+			);
+
+		} catch (Exception e) {
+
+			System.out.println();
+			System.out.println(
+					"Normal Complete Order click failed."
+			);
+
+			System.out.println(
+					"Using JavaScript click..."
+			);
+
+
+			WebElement completeOrderButton =
+					wait.until(
+							ExpectedConditions.presenceOfElementLocated(
+									COMPLETE_ORDER
+							)
+					);
+
+
+			jse.executeScript(
+					"arguments[0].click();",
+					completeOrderButton
+			);
+
+
+			System.out.println(
+					"Complete Order clicked using JavaScript."
+			);
+		}
+
+
+		/*
+		 * ============================================================
+		 * WAIT FOR ORDER CONFIRMATION
+		 * ============================================================
+		 *
+		 * We don't use this as the trigger for LWD.
+		 *
+		 * LWD requests are captured by the listener independently.
+		 * ============================================================
+		 */
+
+		try {
+
+			wait.until(
+					ExpectedConditions.visibilityOfElementLocated(
+							ORDER_CONFIRMATION
+					)
+			);
+
+			System.out.println();
+			System.out.println(
+					"Order confirmation displayed."
+			);
+
+		} catch (Exception e) {
+
+			System.out.println();
+			System.out.println(
+					"WARNING: Order confirmation locator "
+							+ "was not detected."
+			);
+
+			System.out.println(
+					"Current URL :: "
+							+ driver.getCurrentUrl()
+			);
+		}
+		wait.until(ExpectedConditions.elementToBeClickable(CheckoutPageLocators.OTHER));
+		driver.findElement(OTHER).sendKeys("ublisjacobn@unitedtechno.com");
+		Thread.sleep(4000);
+		jse.executeScript("arguments[0].click();", driver.findElement(SUBMIT_RESPONSE));
+		wait.until(ExpectedConditions.elementToBeClickable(CheckoutPageLocators.THANK_YOU_FOR_REPLY));
+		softAssert.assertTrue(driver.findElement(THANK_YOU_FOR_REPLY).isDisplayed(),"Extensibility Upgrade validation failed");
+		Reporter.log("Extensibility Upgrade validation successful");
+		ExtentReport.extentTest.info("Extensibility Upgrade validation successful");
+	}
 	public void NonFreeShippingWithUnderwearOffer() throws Exception {
 		jse = (JavascriptExecutor)driver;
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -1632,33 +1736,87 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		jse.executeScript("window.scrollTo(0, 1000)");
 		Thread.sleep(20000);
 		try {
-			wait.until(ExpectedConditions.visibilityOfElementLocated(ORDER_PROTECTION_CHECKBOX));
 
-			if (driver.findElement(ORDER_PROTECTION_CHECKBOX).isDisplayed()) {
+			System.out.println("Checking Order Protection...");
 
-				WebElement orderProtectionCheckbox =
-						wait.until(ExpectedConditions.elementToBeClickable(ORDER_PROTECTION_CHECKBOX));
+			WebElement orderProtectionCheckbox =
+					wait.until(
+							ExpectedConditions.presenceOfElementLocated(
+									ORDER_PROTECTION_CHECKBOX
+							)
+					);
 
-				if (orderProtectionCheckbox.isSelected()) {
-					try {
-						orderProtectionCheckbox.click();
-					} catch (Exception e) {
-						jse.executeScript(
-								"arguments[0].click();",
-								orderProtectionCheckbox
-						);
-					}
+			boolean checked =
+					orderProtectionCheckbox.isSelected();
+
+			System.out.println(
+					"Order Protection checkbox checked :: "
+							+ checked
+			);
+
+			if (checked) {
+
+				System.out.println(
+						"Order Protection is ENABLED."
+				);
+
+				try {
+
+					jse.executeScript(
+							"arguments[0].scrollIntoView({block:'center'});",
+							orderProtectionCheckbox
+					);
+
+					Thread.sleep(500);
+
+					orderProtectionCheckbox.click();
+
+				} catch (Exception e) {
+
+					System.out.println(
+							"Normal checkbox click failed."
+					);
+
+					jse.executeScript(
+							"arguments[0].click();",
+							orderProtectionCheckbox
+					);
 				}
 
-				System.out.println("Order Protection is disabled.");
+				Thread.sleep(1000);
+
+				System.out.println(
+						"Order Protection is now DISABLED."
+				);
+
+			} else {
+
+				System.out.println(
+						"Order Protection is already DISABLED."
+				);
 			}
 
-		} catch (Exception ex) {
-			System.out.println("Order protection Is Not Added");
+		} catch (Exception e) {
+
+			System.out.println(
+					"Order Protection checkbox was not found."
+			);
+
+			System.out.println(
+					"Continuing with order placement."
+			);
 		}
 
-//		jse.executeScript("arguments[0].click();", driver.findElement(COMPLETE_ORDER));
-//		wait.until(ExpectedConditions.visibilityOfElementLocated(ORDER_CONFIRMATION));
+
+		/*
+		 * IMPORTANT:
+		 * DO NOT CLICK COMPLETE_ORDER HERE.
+		 */
+
+		System.out.println(
+				"Ready to place the order."
+		);
+
 		softAssert.assertAll();
 		Reporter.log("The Coupon code is applied and Order is Placed");
 		ExtentReport.extentTest.info("The Coupon code is applied and Order is Placed");

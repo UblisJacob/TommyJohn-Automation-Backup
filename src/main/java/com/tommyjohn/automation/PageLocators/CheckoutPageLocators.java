@@ -8,6 +8,9 @@ public class CheckoutPageLocators {
 	//
 	public static By COMPLETE_ORDER = By.xpath("//button[@id='checkout-pay-button']");
 	public static By ORDER_CONFIRMATION = By.xpath("//h2[contains(text(),'Thank you')]");
+	public static By OTHER = By.xpath("//input[@placeholder='Other']");
+	public static By THANK_YOU_FOR_REPLY = By.xpath("//h2[contains(text(),'Thank you for your reply!')]");
+	public static By SUBMIT_RESPONSE = By.xpath("//button[@aria-label='Submit response']");
 	public static By CHECKOUTPAGE_CART_ICON = By.xpath("(//a[@id='cart-link'])[2]");
 	public static By LIST_OF_ITEM_IN_PAYMENT_PAGE = By.cssSelector(".product-table>tbody>tr.product");
 	public static By CART_LINK = By.cssSelector(".breadcrumb > li > a");

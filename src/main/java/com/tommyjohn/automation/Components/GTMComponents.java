@@ -3,6 +3,9 @@ package com.tommyjohn.automation.Components;
 import com.base.ExtentReport;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.tommyjohn.automation.PageLocators.HomePageLocators;
 import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
 import com.tommyjohn.automation.Pages.AccountLoginPage;
@@ -24,6 +27,7 @@ import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.HasDevTools;
 import org.openqa.selenium.devtools.v152.network.Network;
 import org.openqa.selenium.devtools.v152.network.model.Request;
+import org.openqa.selenium.devtools.v152.network.model.ResourceType;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.logging.LogType;
@@ -44,9 +48,12 @@ import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.logging.Level;
 
+import static com.tommyjohn.automation.PageLocators.CheckoutPageLocators.COMPLETE_ORDER;
+import static com.tommyjohn.automation.PageLocators.CheckoutPageLocators.ORDER_CONFIRMATION;
 import static com.tommyjohn.automation.PageLocators.CollectionPageLocator.*;
 import static com.tommyjohn.automation.PageLocators.FlyCartPageLocator.CHECKOUT_BUTTON;
 import static com.tommyjohn.automation.PageLocators.FlyCartPageLocator.VIEW_CART_LINK;
@@ -65,215 +72,44 @@ public class GTMComponents {
     String searchText = "";
     public JavascriptExecutor jse;
 
-
-    public void validateLWDPixel() throws Exception {
+    public void validateDataSteamEvents() throws Exception {
 
         SoftAssert softAssert = new SoftAssert();
 
         WebDriverWait wait =
                 new WebDriverWait(driver, Duration.ofSeconds(30));
 
-        JavascriptExecutor jse =
-                (JavascriptExecutor) driver;
 
         // =========================================================
-        // LWD REQUEST STORAGE
+        // DATASTEAM REQUEST LIST
         // =========================================================
 
-        List<String> lwdPixelRequests =
+        List<DataSteamRequestData> dataSteamRequests =
                 Collections.synchronizedList(new ArrayList<>());
 
-        // =========================================================
-        // STEP 1 - ADD PRODUCT
-        // =========================================================
-
-        System.out.println();
-        System.out.println("=================================================");
-        System.out.println("STEP 1 - ADD PRODUCT TO CART");
-        System.out.println("=================================================");
-
-        new AddToCartComponents(driver)
-                .addmultipleproductToCartforFreeOrder();
-
-        System.out.println(
-                "Product added to cart."
-        );
 
         // =========================================================
-        // STEP 2 - GO TO CHECKOUT
+        // EVENT FLAGS
         // =========================================================
 
-        System.out.println();
-        System.out.println("=================================================");
-        System.out.println("STEP 2 - GO TO CHECKOUT");
-        System.out.println("=================================================");
+        boolean validDataSteamRequest = false;
 
-        new CheckoutPageComponents(driver)
-                .validateFreeOrder();
+        boolean categoryEventFound = false;
 
-        System.out.println(
-                "Checkout page reached."
-        );
+        boolean actionEventFound = false;
+
+        boolean cartClickEventFound = false;
+
 
         // =========================================================
-        // STEP 3 - APPLY PROMO
-        //
-        // IMPORTANT:
-        // This method must NOT click Complete Order.
+        // START DEVTOOLS
         // =========================================================
-
-        System.out.println();
-        System.out.println("=================================================");
-        System.out.println("STEP 3 - APPLY PROMO / DISABLE ORDER PROTECTION");
-        System.out.println("=================================================");
-
-        new CheckoutPageComponents(driver)
-                .CheckFreeOrderpromo("TECH TEST");
-
-        System.out.println(
-                "Promo applied and Order Protection handled."
-        );
-
-        // =========================================================
-        // STEP 4 - START NETWORK MONITORING
-        //
-        // THIS IS THE IMPORTANT CHANGE.
-        //
-        // Network monitoring starts immediately BEFORE
-        // Complete Order is clicked.
-        // =========================================================
-
-        System.out.println();
-        System.out.println("=================================================");
-        System.out.println("STEP 4 - START LWD NETWORK MONITORING");
-        System.out.println("=================================================");
 
         DevTools devTools =
                 ((HasDevTools) driver).getDevTools();
 
         devTools.createSession();
 
-        System.out.println(
-                "DevTools session created."
-        );
-
-        // =========================================================
-        // REGISTER REQUEST LISTENER
-        // =========================================================
-
-        devTools.addListener(
-                Network.requestWillBeSent(),
-                request -> {
-
-                    try {
-
-                        String requestUrl =
-                                request.getRequest().getUrl();
-
-                        if (requestUrl == null) {
-                            return;
-                        }
-
-                        String lowerCaseUrl =
-                                requestUrl.toLowerCase();
-
-                        // =================================================
-                        // TEMPORARY DEBUG
-                        // Print requests containing tracking keywords.
-                        // =================================================
-
-                        if (lowerCaseUrl.contains("lw")
-                                || lowerCaseUrl.contains("trackingpixel")
-                                || lowerCaseUrl.contains("pixel")) {
-
-                            System.out.println();
-                            System.out.println(
-                                    "NETWORK TRACKING REQUEST :: "
-                                            + requestUrl
-                            );
-                        }
-
-                        // =================================================
-                        // LWD FILTER
-                        // =================================================
-
-                        boolean isLWDRequest =
-                                lowerCaseUrl.contains("lw_pixel")
-                                        || lowerCaseUrl.contains("lw_pixel_id")
-                                        || lowerCaseUrl.contains("trackingpixelprocessing")
-                                        || lowerCaseUrl.contains("trackingpixel");
-
-                        if (isLWDRequest) {
-
-                            System.out.println();
-                            System.out.println(
-                                    "*************************************************"
-                            );
-
-                            System.out.println(
-                                    "LWD PIXEL REQUEST CAPTURED"
-                            );
-
-                            System.out.println(
-                                    "*************************************************"
-                            );
-
-                            System.out.println(
-                                    "LWD URL :: "
-                                            + requestUrl
-                            );
-
-                            System.out.println(
-                                    "*************************************************"
-                            );
-
-                            lwdPixelRequests.add(
-                                    requestUrl
-                            );
-
-                            // =============================================
-                            // PRINT PAYLOAD
-                            // =============================================
-
-                            Map<String, String> parameters =
-                                    extractQueryParameters(
-                                            requestUrl
-                                    );
-
-                            System.out.println();
-                            System.out.println(
-                                    "----- LWD PAYLOAD -----"
-                            );
-
-                            for (Map.Entry<String, String> entry :
-                                    parameters.entrySet()) {
-
-                                System.out.println(
-                                        entry.getKey()
-                                                + " = "
-                                                + entry.getValue()
-                                );
-                            }
-
-                            System.out.println(
-                                    "-----------------------"
-                            );
-                        }
-
-                    } catch (Exception e) {
-
-                        System.out.println(
-                                "Error while processing network request."
-                        );
-
-                        e.printStackTrace();
-                    }
-                }
-        );
-
-        // =========================================================
-        // ENABLE NETWORK
-        // =========================================================
 
         devTools.send(
                 Network.enable(
@@ -285,212 +121,346 @@ public class GTMComponents {
                 )
         );
 
+
+        // =========================================================
+        // CAPTURE DATASSTEAM NETWORK REQUESTS
+        // =========================================================
+
+        devTools.addListener(
+                Network.requestWillBeSent(),
+                requestWillBeSent -> {
+
+                    Request request =
+                            requestWillBeSent.getRequest();
+
+                    String requestUrl =
+                            request.getUrl();
+
+                    String postData =
+                            request.getPostData().orElse("");
+
+                    String resourceType =
+                            requestWillBeSent
+                                    .getType()
+                                    .toString();
+
+
+                    String requestContent =
+                            (requestUrl + " " + postData)
+                                    .toLowerCase();
+
+
+                    // -------------------------------------------------
+                    // FILTER DATASTEAM REQUEST
+                    // -------------------------------------------------
+
+                    if (requestContent.contains("datasteam")) {
+
+                        DataSteamRequestData data =
+                                new DataSteamRequestData(
+                                        request.getMethod(),
+                                        requestUrl,
+                                        postData,
+                                        resourceType
+                                );
+
+                        dataSteamRequests.add(data);
+
+
+                        System.out.println();
+
+                        System.out.println(
+                                "=============================================="
+                        );
+
+                        System.out.println(
+                                "DataSteam Request Captured"
+                        );
+
+                        System.out.println(
+                                "URL :: " + requestUrl
+                        );
+
+                        System.out.println(
+                                "=============================================="
+                        );
+                    }
+                }
+        );
+
+
+        // =========================================================
+        // ADD PRODUCT TO CART
+        // =========================================================
+
+        System.out.println();
+
         System.out.println(
-                "LWD Network monitoring ENABLED."
+                "Adding product to cart..."
         );
 
-        // =========================================================
-        // STEP 5 - CLICK COMPLETE ORDER
-        // =========================================================
 
-        System.out.println();
-        System.out.println("=================================================");
-        System.out.println("STEP 5 - CLICK COMPLETE ORDER");
-        System.out.println("=================================================");
+        new AddToCartComponents(driver)
+                .addsingleproductToCart();
 
-        WebElement completeOrder =
-                wait.until(
-                        ExpectedConditions.elementToBeClickable(
-                                CheckoutPageComponents.COMPLETE_ORDER
-                        )
-                );
 
-        // Scroll to Complete Order
-
-        jse.executeScript(
-                "arguments[0].scrollIntoView({block:'center'});",
-                completeOrder
-        );
-
-        Thread.sleep(500);
-
-        try {
-
-            completeOrder.click();
-
-            System.out.println(
-                    "Complete Order clicked."
-            );
-
-        } catch (Exception e) {
-
-            System.out.println(
-                    "Normal click failed."
-            );
-
-            System.out.println(
-                    "Trying JavaScript click..."
-            );
-
-            jse.executeScript(
-                    "arguments[0].click();",
-                    completeOrder
-            );
-
-            System.out.println(
-                    "Complete Order clicked using JavaScript."
-            );
-        }
+        JavascriptExecutor jse =
+                (JavascriptExecutor) driver;
+        jse.executeScript("arguments[0].click();", driver.findElement(VIEW_CART_LINK));
 
         // =========================================================
-        // STEP 6 - WAIT FOR ORDER CONFIRMATION
+        // WAIT FOR CART PAGE
         // =========================================================
-
-        System.out.println();
-        System.out.println("=================================================");
-        System.out.println("STEP 6 - WAIT FOR ORDER CONFIRMATION");
-        System.out.println("=================================================");
 
         try {
 
             wait.until(
-                    ExpectedConditions.visibilityOfElementLocated(
-                            CheckoutPageComponents.ORDER_CONFIRMATION
-                    )
+                    ExpectedConditions.urlContains("/cart")
             );
+
+            System.out.println();
 
             System.out.println(
-                    "Order Confirmation displayed."
+                    "Cart page reached successfully."
             );
 
-        } catch (Exception e) {
+        } catch (TimeoutException e) {
 
-            System.out.println(
-                    "Order Confirmation element was not detected."
+            softAssert.fail(
+                    "Cart page was not reached after adding product."
             );
 
-            System.out.println(
-                    "Current URL :: "
-                            + driver.getCurrentUrl()
-            );
+            softAssert.assertAll();
+
+            return;
         }
 
-        // =========================================================
-        // STEP 7 - WAIT FOR LWD REQUEST
-        // =========================================================
 
-        System.out.println();
-        System.out.println("=================================================");
-        System.out.println("STEP 7 - WAIT FOR LWD PIXEL");
-        System.out.println("=================================================");
+        // =========================================================
+        // WAIT FOR DATASTEAM REQUEST
+        // =========================================================
 
         try {
 
-            new WebDriverWait(
-                    driver,
-                    Duration.ofSeconds(30)
-            ).until(
+            wait.until(
                     driver ->
-                            !lwdPixelRequests.isEmpty()
+                            !dataSteamRequests.isEmpty()
             );
 
-        } catch (Exception e) {
-
-            System.out.println(
-                    "No LWD request detected during 30 second wait."
-            );
-        }
-
-        // =========================================================
-        // ADDITIONAL WAIT
-        // =========================================================
-
-        Thread.sleep(5000);
-
-        // =========================================================
-        // STEP 8 - VALIDATION RESULT
-        // =========================================================
-
-        System.out.println();
-        System.out.println("=================================================");
-        System.out.println("LWD PIXEL VALIDATION RESULT");
-        System.out.println("=================================================");
-
-        System.out.println(
-                "Total LWD Pixel Requests Captured :: "
-                        + lwdPixelRequests.size()
-        );
-
-        // =========================================================
-        // NO REQUEST
-        // =========================================================
-
-        if (lwdPixelRequests.isEmpty()) {
+        } catch (TimeoutException e) {
 
             System.out.println();
+
             System.out.println(
-                    "*************************************************"
+                    "================================================="
             );
 
             System.out.println(
-                    "LWD PIXEL VALIDATION FAILED"
+                    "DATASTEAM PIXEL VALIDATION FAILED"
             );
 
             System.out.println(
-                    "No request containing:"
+                    "No DataSteam request was captured."
             );
 
             System.out.println(
-                    "lw_pixel / lw_pixel_id / trackingPixelProcessing"
+                    "================================================="
             );
 
-            System.out.println(
-                    "was captured."
-            );
-
-            System.out.println(
-                    "*************************************************"
-            );
 
             softAssert.fail(
-                    "LWD Pixel request was NOT captured after placing the order."
+                    "No DataSteam request was captured after adding product to cart."
             );
 
-        } else {
+            softAssert.assertAll();
 
-            // =====================================================
-            // REQUEST FOUND
-            // =====================================================
+            return;
+        }
+
+
+        // =========================================================
+        // PROCESS ALL DATASTEAM REQUESTS
+        // =========================================================
+
+        for (DataSteamRequestData data :
+                dataSteamRequests) {
+
+
+            String requestUrl =
+                    data.getUrl();
+
+
+            // -----------------------------------------------------
+            // ONLY API.DATASTEAM.IO
+            // -----------------------------------------------------
+
+            if (!requestUrl.contains(
+                    "api.datasteam.io")) {
+
+                continue;
+            }
+
+
+            // -----------------------------------------------------
+            // ONLY RAW DATA EVENTS
+            // -----------------------------------------------------
+
+            if (!requestUrl
+                    .toLowerCase()
+                    .contains("/rawdata/")) {
+
+                continue;
+            }
+
+
+            validDataSteamRequest = true;
+
 
             System.out.println();
+
             System.out.println(
-                    "*************************************************"
+                    "================================================="
             );
 
             System.out.println(
-                    "LWD PIXEL VALIDATION PASSED"
+                    "VALID DATASTEAM EVENT FOUND"
             );
 
             System.out.println(
-                    "*************************************************"
+                    "================================================="
             );
+
+            System.out.println(
+                    "URL :: " + requestUrl
+            );
+
 
             // =====================================================
-            // PROCESS EACH LWD REQUEST
+            // EXTRACT QUERY PARAMETERS
             // =====================================================
 
-            int requestNumber = 1;
+            Map<String, String> parameters =
+                    extractQueryParameters(
+                            requestUrl
+                    );
 
-            for (String requestUrl :
-                    lwdPixelRequests) {
+
+            String version =
+                    parameters.get("v");
+
+            String sessionEvent =
+                    parameters.get("se");
+
+            String dataPayload =
+                    parameters.get("d");
+
+            String callback =
+                    parameters.get("callback");
+
+
+            System.out.println();
+
+            System.out.println(
+                    "DataSteam Query Parameters"
+            );
+
+            System.out.println(
+                    "---------------------------------------------"
+            );
+
+            System.out.println(
+                    "v :: " + version
+            );
+
+            System.out.println(
+                    "se :: " + sessionEvent
+            );
+
+
+            if (dataPayload != null) {
+
+                System.out.println(
+                        "d :: [Payload - "
+                                + dataPayload.length()
+                                + " characters]"
+                );
+
+            } else {
+
+                System.out.println(
+                        "d :: NULL"
+                );
+            }
+
+
+            System.out.println(
+                    "callback :: " + callback
+            );
+
+
+            System.out.println();
+
+            System.out.println(
+                    "DataSteam v :: " + version
+            );
+
+            System.out.println(
+                    "DataSteam se :: " + sessionEvent
+            );
+
+
+            // =====================================================
+            // VALIDATE QUERY PARAMETERS
+            // =====================================================
+
+            softAssert.assertNotNull(
+                    version,
+                    "DataSteam 'v' query parameter is missing."
+            );
+
+
+            softAssert.assertNotNull(
+                    sessionEvent,
+                    "DataSteam 'se' query parameter is missing."
+            );
+
+
+            softAssert.assertNotNull(
+                    dataPayload,
+                    "DataSteam 'd' query parameter is missing."
+            );
+
+
+            if (dataPayload == null ||
+                    dataPayload.isEmpty()) {
+
+                continue;
+            }
+
+
+            // =====================================================
+            // DECODE BASE64 PAYLOAD
+            // =====================================================
+
+            try {
+
+                String decodedPayload =
+                        new String(
+                                Base64.getDecoder().decode(
+                                        dataPayload
+                                ),
+                                StandardCharsets.UTF_8
+                        );
+
 
                 System.out.println();
+
                 System.out.println(
                         "================================================="
                 );
 
                 System.out.println(
-                        "LWD REQUEST #" + requestNumber
+                        "DECODED DATASTEAM PAYLOAD"
                 );
 
                 System.out.println(
@@ -498,220 +468,514 @@ public class GTMComponents {
                 );
 
                 System.out.println(
-                        "URL :: "
-                                + requestUrl
+                        decodedPayload
                 );
 
+
                 // =================================================
-                // EXTRACT PAYLOAD
+                // PARSE JSON
                 // =================================================
 
-                Map<String, String> parameters =
-                        extractQueryParameters(
-                                requestUrl
+                JsonObject jsonPayload =
+                        JsonParser
+                                .parseString(
+                                        decodedPayload
+                                )
+                                .getAsJsonObject();
+
+
+                // =================================================
+                // GET COMMON PAYLOAD VALUES
+                // =================================================
+
+                String payloadVersion =
+                        getJsonValue(
+                                jsonPayload,
+                                "v"
                         );
 
-                // =================================================
-                // REQUIRED VALUES
-                // =================================================
 
-                String pixelId =
-                        parameters.get("lw_pixel_id");
-
-                String clientId =
-                        parameters.get("lw_clientID");
-
-                String sessionId =
-                        parameters.get("lw_sessionID");
-
-                String event =
-                        parameters.get("lw_event");
-
-                String eventValue =
-                        parameters.get("lw_event_value");
-
-                String eventOrderValue =
-                        parameters.get(
-                                "lw_event_order_value"
+                String payloadSession =
+                        getJsonValue(
+                                jsonPayload,
+                                "se"
                         );
 
-                String medium =
-                        parameters.get("lw_medium");
 
-                String source =
-                        parameters.get("lw_source");
+                String pageUrl =
+                        getJsonValue(
+                                jsonPayload,
+                                "u"
+                        );
 
-                String campaign =
-                        parameters.get("lw_campaign");
 
-                String pagePath =
-                        parameters.get("lw_pagepath");
+                String pageName =
+                        getJsonValue(
+                                jsonPayload,
+                                "pn"
+                        );
 
-                String referrer =
-                        parameters.get("lw_referrer");
+
+                String pageTitle =
+                        getJsonValue(
+                                jsonPayload,
+                                "t"
+                        );
+
+
+                String productId =
+                        getJsonValue(
+                                jsonPayload,
+                                "pr"
+                        );
+
+
+                String eventSequence =
+                        getJsonValue(
+                                jsonPayload,
+                                "s"
+                        );
+
+
+                String eventType =
+                        getJsonValue(
+                                jsonPayload,
+                                "l"
+                        );
+
+
+                String variable01 =
+                        getJsonValue(
+                                jsonPayload,
+                                "v01"
+                        );
+
+
+                String variable02 =
+                        getJsonValue(
+                                jsonPayload,
+                                "v02"
+                        );
+
+
+                String variable03 =
+                        getJsonValue(
+                                jsonPayload,
+                                "v03"
+                        );
+
+
+                String variable04 =
+                        getJsonValue(
+                                jsonPayload,
+                                "v04"
+                        );
+
 
                 // =================================================
-                // PRINT PAYLOAD
+                // PRINT PAYLOAD VALUES
                 // =================================================
 
                 System.out.println();
+
                 System.out.println(
-                        "----- LWD PAYLOAD -----"
+                        "DataSteam Payload Fields"
                 );
 
                 System.out.println(
-                        "lw_pixel_id          :: "
-                                + pixelId
+                        "---------------------------------------------"
                 );
 
                 System.out.println(
-                        "lw_clientID          :: "
-                                + clientId
+                        "v    :: " + payloadVersion
                 );
 
                 System.out.println(
-                        "lw_sessionID         :: "
-                                + sessionId
+                        "se   :: " + payloadSession
                 );
 
                 System.out.println(
-                        "lw_event             :: "
-                                + event
+                        "u    :: " + pageUrl
                 );
 
                 System.out.println(
-                        "lw_event_value       :: "
-                                + eventValue
+                        "pn   :: " + pageName
                 );
 
                 System.out.println(
-                        "lw_event_order_value :: "
-                                + eventOrderValue
+                        "t    :: " + pageTitle
                 );
 
                 System.out.println(
-                        "lw_medium            :: "
-                                + medium
+                        "pr   :: " + productId
                 );
 
                 System.out.println(
-                        "lw_source            :: "
-                                + source
+                        "s    :: " + eventSequence
                 );
 
                 System.out.println(
-                        "lw_campaign          :: "
-                                + campaign
+                        "l    :: " + eventType
                 );
 
                 System.out.println(
-                        "lw_pagepath          :: "
-                                + pagePath
+                        "v01  :: " + variable01
                 );
 
                 System.out.println(
-                        "lw_referrer          :: "
-                                + referrer
+                        "v02  :: " + variable02
                 );
 
                 System.out.println(
-                        "-----------------------"
+                        "v03  :: " + variable03
                 );
+
+                System.out.println(
+                        "v04  :: " + variable04
+                );
+
 
                 // =================================================
-                // VALIDATE REQUIRED VALUES
+                // COMMON PAYLOAD VALIDATION
                 // =================================================
 
-                softAssert.assertNotNull(
-                        pixelId,
-                        "lw_pixel_id is missing."
+                softAssert.assertFalse(
+                        isNullOrEmpty(payloadVersion),
+                        "DataSteam payload 'v' should not be empty."
                 );
+
 
                 softAssert.assertFalse(
-                        pixelId == null
-                                || pixelId.trim().isEmpty(),
-                        "lw_pixel_id is empty."
+                        isNullOrEmpty(payloadSession),
+                        "DataSteam payload 'se' should not be empty."
                 );
 
-                softAssert.assertNotNull(
-                        clientId,
-                        "lw_clientID is missing."
-                );
 
                 softAssert.assertFalse(
-                        clientId == null
-                                || clientId.trim().isEmpty(),
-                        "lw_clientID is empty."
+                        isNullOrEmpty(eventType),
+                        "DataSteam payload event type 'l' should not be empty."
                 );
 
-                softAssert.assertNotNull(
-                        sessionId,
-                        "lw_sessionID is missing."
+
+                // =================================================
+                // CATEGORY EVENT
+                // =================================================
+
+                if ("Category".equalsIgnoreCase(
+                        eventType)) {
+
+                    categoryEventFound = true;
+
+
+                    System.out.println();
+
+                    System.out.println(
+                            "DataSteam Category Event Found"
+                    );
+
+
+                    // ---------------------------------------------
+                    // Validate Category page URL
+                    // ---------------------------------------------
+
+                    softAssert.assertFalse(
+                            isNullOrEmpty(pageUrl),
+                            "DataSteam Category event should contain page URL 'u'."
+                    );
+
+
+                    // ---------------------------------------------
+                    // Validate Category page title
+                    // ---------------------------------------------
+
+                    softAssert.assertFalse(
+                            isNullOrEmpty(pageTitle),
+                            "DataSteam Category event should contain page title 't'."
+                    );
+
+
+                    // ---------------------------------------------
+                    // Validate Category sequence
+                    // ---------------------------------------------
+
+                    softAssert.assertFalse(
+                            isNullOrEmpty(eventSequence),
+                            "DataSteam Category event should contain sequence 's'."
+                    );
+
+
+                    System.out.println();
+
+                    System.out.println(
+                            "Category Event Validation Passed"
+                    );
+                }
+
+
+                // =================================================
+                // ACTION EVENT
+                // =================================================
+
+                if ("Action".equalsIgnoreCase(
+                        eventType)) {
+
+                    actionEventFound = true;
+
+
+                    System.out.println();
+
+                    System.out.println(
+                            "DataSteam Action Event Found"
+                    );
+
+
+                    System.out.println(
+                            "v01 :: " + variable01
+                    );
+
+                    System.out.println(
+                            "v03 :: " + variable03
+                    );
+
+                    System.out.println(
+                            "v04 :: " + variable04
+                    );
+
+
+                    // ---------------------------------------------
+                    // Action sequence
+                    // ---------------------------------------------
+
+                    softAssert.assertFalse(
+                            isNullOrEmpty(eventSequence),
+                            "DataSteam Action event should contain sequence 's'."
+                    );
+
+
+                    // =================================================
+                    // IDENTIFY CART CLICK EVENT
+                    // =================================================
+
+                    boolean isCartClickEvent =
+
+                            "Click".equalsIgnoreCase(
+                                    variable01
+                            )
+
+                                    &&
+
+                                    "Click".equalsIgnoreCase(
+                                            variable03
+                                    )
+
+                                    &&
+
+                                    variable04 != null
+
+                                    &&
+
+                                    variable04
+                                            .toLowerCase()
+                                            .contains("/cart");
+
+
+                    if (isCartClickEvent) {
+
+                        cartClickEventFound = true;
+
+
+                        System.out.println();
+
+                        System.out.println(
+                                "DataSteam Cart Click Event Found"
+                        );
+
+
+                        System.out.println(
+                                "v01 :: " + variable01
+                        );
+
+                        System.out.println(
+                                "v03 :: " + variable03
+                        );
+
+                        System.out.println(
+                                "v04 :: " + variable04
+                        );
+
+
+                        System.out.println();
+
+                        System.out.println(
+                                "DataSteam Cart Click Event Validation Passed"
+                        );
+                    }
+                }
+
+
+            } catch (IllegalArgumentException e) {
+
+                softAssert.fail(
+                        "Unable to Base64 decode DataSteam payload. "
+                                + "Error: "
+                                + e.getMessage()
                 );
 
-                softAssert.assertFalse(
-                        sessionId == null
-                                || sessionId.trim().isEmpty(),
-                        "lw_sessionID is empty."
-                );
 
-                softAssert.assertNotNull(
-                        event,
-                        "lw_event is missing."
-                );
+            } catch (Exception e) {
 
-                softAssert.assertFalse(
-                        event == null
-                                || event.trim().isEmpty(),
-                        "lw_event is empty."
+                softAssert.fail(
+                        "Unable to parse DataSteam payload. "
+                                + "Error: "
+                                + e.getMessage()
                 );
-
-                requestNumber++;
             }
         }
 
+
         // =========================================================
-        // FINAL INFORMATION
+        // FINAL VALIDATIONS
+        // =========================================================
+
+        softAssert.assertTrue(
+                validDataSteamRequest,
+                "No valid DataSteam RawData request was captured."
+        );
+
+
+        softAssert.assertTrue(
+                categoryEventFound,
+                "DataSteam Category event was not captured."
+        );
+
+
+        softAssert.assertTrue(
+                actionEventFound,
+                "DataSteam Action event was not captured."
+        );
+
+
+        softAssert.assertTrue(
+                cartClickEventFound,
+                "DataSteam Cart Click event was not captured."
+        );
+
+
+        // =========================================================
+        // FINAL RESULT
         // =========================================================
 
         System.out.println();
+
         System.out.println(
-                "Final URL :: "
-                        + driver.getCurrentUrl()
+                "================================================="
         );
 
-        // =========================================================
-        // CLEAR LISTENERS
-        // =========================================================
+        System.out.println(
+                "DATASTEAM PIXEL VALIDATION"
+        );
 
-        try {
+        System.out.println(
+                "================================================="
+        );
 
-            devTools.clearListeners();
+        System.out.println(
+                "Total DataSteam Events :: "
+                        + dataSteamRequests.size()
+        );
+
+        System.out.println(
+                "Valid RawData Request  :: "
+                        + validDataSteamRequest
+        );
+
+        System.out.println(
+                "Category Event Found   :: "
+                        + categoryEventFound
+        );
+
+        System.out.println(
+                "Action Event Found     :: "
+                        + actionEventFound
+        );
+
+        System.out.println(
+                "Cart Click Event Found :: "
+                        + cartClickEventFound
+        );
+
+
+        if (validDataSteamRequest
+                && categoryEventFound
+                && actionEventFound
+                && cartClickEventFound) {
+
+            System.out.println();
 
             System.out.println(
-                    "DevTools listeners cleared."
+                    "================================================="
             );
 
-        } catch (Exception e) {
+            System.out.println(
+                    "DATASTEAM PIXEL VALIDATION PASSED"
+            );
 
             System.out.println(
-                    "Unable to clear DevTools listeners."
+                    "DataSteam events were captured successfully."
+            );
+
+            System.out.println(
+                    "================================================="
             );
         }
 
+
         // =========================================================
-        // FINAL ASSERTION
+        // ASSERT ALL
         // =========================================================
 
         softAssert.assertAll();
+    }
 
-        Reporter.log(
-                "LWD Pixel validation completed."
-        );
+    private static class DataSteamRequestData {
 
-        ExtentReport.extentTest.info(
-                "LWD Pixel validation completed."
-        );
+        private final String method;
+        private final String url;
+        private final String postData;
+        private final String resourceType;
+
+
+        public DataSteamRequestData(
+                String method,
+                String url,
+                String postData,
+                String resourceType) {
+
+            this.method = method;
+            this.url = url;
+            this.postData = postData;
+            this.resourceType = resourceType;
+        }
+
+
+        public String getMethod() {
+            return method;
+        }
+
+
+        public String getUrl() {
+            return url;
+        }
+
+
+        public String getPostData() {
+            return postData;
+        }
+
+
+        public String getResourceType() {
+            return resourceType;
+        }
     }
 
     private Map<String, String> extractQueryParameters(
@@ -728,21 +992,1435 @@ public class GTMComponents {
             String query =
                     uri.getRawQuery();
 
-            if (query == null || query.isEmpty()) {
+            if (query == null ||
+                    query.isEmpty()) {
+
                 return parameters;
             }
 
+
+            for (String parameter :
+                    query.split("&")) {
+
+                String[] pair =
+                        parameter.split("=", 2);
+
+
+                String key =
+                        URLDecoder.decode(
+                                pair[0],
+                                StandardCharsets.UTF_8
+                        );
+
+
+                String value = "";
+
+
+                if (pair.length > 1) {
+
+                    value =
+                            URLDecoder.decode(
+                                    pair[1],
+                                    StandardCharsets.UTF_8
+                            );
+                }
+
+
+                parameters.put(
+                        key,
+                        value
+                );
+            }
+
+
+        } catch (Exception e) {
+
+            System.out.println(
+                    "Error extracting DataSteam parameters: "
+                            + e.getMessage()
+            );
+        }
+
+
+        return parameters;
+
+    }
+
+
+    private void validateDataSteamField(
+            JsonObject dataObject,
+            String fieldName,
+            SoftAssert softAssert) {
+
+        boolean exists =
+                dataObject.has(fieldName);
+
+
+        String value =
+                getJsonValue(
+                        dataObject,
+                        fieldName
+                );
+
+
+        System.out.println(
+                fieldName
+                        + " :: "
+                        + value
+        );
+
+
+        softAssert.assertTrue(
+                exists,
+                "DataSteam field is missing: "
+                        + fieldName
+        );
+
+
+        if (exists) {
+
+            softAssert.assertFalse(
+                    value == null
+                            || value.trim().isEmpty(),
+                    "DataSteam field is empty: "
+                            + fieldName
+            );
+        }
+    }
+
+    private String getJsonValue(
+            JsonObject jsonObject,
+            String fieldName) {
+
+        if (jsonObject == null) {
+            return null;
+        }
+
+        if (!jsonObject.has(fieldName)) {
+            return null;
+        }
+
+        if (jsonObject.get(fieldName).isJsonNull()) {
+            return null;
+        }
+
+        return jsonObject
+                .get(fieldName)
+                .getAsString();
+    }
+
+    private boolean isNullOrEmpty(
+            String value) {
+
+        return value == null ||
+                value.trim().isEmpty();
+    }
+
+    private void printJsonField(
+            JsonObject jsonObject,
+            String fieldName) {
+
+        String value =
+                getJsonValue(
+                        jsonObject,
+                        fieldName
+                );
+
+        System.out.println(
+                fieldName
+                        + " :: "
+                        + value
+        );
+    }
+
+
+
+
+
+    private static class LWDRequestData {
+
+        private final String method;
+        private final String url;
+        private final String postData;
+        private final String resourceType;
+
+        public LWDRequestData(
+                String method,
+                String url,
+                String postData,
+                String resourceType) {
+
+            this.method = method;
+            this.url = url;
+            this.postData = postData;
+            this.resourceType = resourceType;
+        }
+
+        public String getMethod() {
+            return method;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public String getPostData() {
+            return postData;
+        }
+
+        public String getResourceType() {
+            return resourceType;
+        }
+    }
+
+
+    /**
+     * ================================================================
+     * VALIDATE LWD PIXEL
+     *
+     * Manual flow:
+     *
+     * 1. Add product
+     * 2. Go to Checkout
+     * 3. Network tab -> filter "lw_pixel"
+     * 4. Click Complete Order
+     * 5. Capture LWD events
+     *
+     * Events expected:
+     *
+     * - Page View
+     * - SKU
+     * - Purchase
+     *
+     * LWD information can be present in:
+     *
+     * - Request URL
+     * - POST Payload
+     *
+     * ================================================================
+     */
+    public void validateLWDPixel() throws Exception {
+
+        SoftAssert softAssert = new SoftAssert();
+
+        WebDriverWait wait =
+                new WebDriverWait(
+                        driver,
+                        Duration.ofSeconds(30)
+                );
+
+        JavascriptExecutor jse =
+                (JavascriptExecutor) driver;
+
+
+        /*
+         * ============================================================
+         * LWD REQUEST STORAGE
+         * ============================================================
+         */
+
+        List<LWDRequestData> lwdPixelRequests =
+                Collections.synchronizedList(
+                        new ArrayList<>()
+                );
+
+
+        /*
+         * ============================================================
+         * ALL NETWORK REQUESTS
+         *
+         * Used only for debugging if no lw_pixel request is found.
+         * ============================================================
+         */
+
+        List<String> networkRequests =
+                Collections.synchronizedList(
+                        new ArrayList<>()
+                );
+
+
+        /*
+         * ============================================================
+         * DEVTOOLS SETUP
+         *
+         * Start BEFORE the test flow.
+         *
+         * This is important because we want to behave like:
+         *
+         * Network -> filter lw_pixel
+         *
+         * before clicking Complete Order.
+         * ============================================================
+         */
+
+        DevTools devTools =
+                ((HasDevTools) driver).getDevTools();
+
+        devTools.createSession();
+
+        devTools.send(
+                Network.enable(
+                        Optional.empty(),
+                        Optional.empty(),
+                        Optional.empty(),
+                        Optional.empty(),
+                        Optional.empty()
+                )
+        );
+
+
+        System.out.println();
+        System.out.println(
+                "================================================"
+        );
+
+        System.out.println(
+                "CHROME NETWORK MONITORING ENABLED"
+        );
+
+        System.out.println(
+                "Network Filter :: lw_pixel"
+        );
+
+        System.out.println(
+                "================================================"
+        );
+
+
+        /*
+         * ============================================================
+         * NETWORK REQUEST LISTENER
+         * ============================================================
+         *
+         * Equivalent to manually entering:
+         *
+         * Network -> Filter -> lw_pixel
+         *
+         * We search both:
+         *
+         * 1. Request URL
+         * 2. POST Payload
+         *
+         * ============================================================
+         */
+
+        devTools.addListener(
+                Network.requestWillBeSent(),
+                request -> {
+
+                    try {
+
+                        String requestUrl =
+                                request.getRequest().getUrl();
+
+
+                        /*
+                         * Ignore invalid URLs.
+                         */
+
+                        if (requestUrl == null ||
+                                requestUrl.trim().isEmpty()) {
+
+                            return;
+                        }
+
+
+                        /*
+                         * =================================================
+                         * REQUEST METHOD
+                         * =================================================
+                         */
+
+                        String requestMethod =
+                                request.getRequest().getMethod();
+
+
+                        /*
+                         * =================================================
+                         * RESOURCE TYPE
+                         * =================================================
+                         */
+
+                        String requestType =
+                                String.valueOf(
+                                        request.getType()
+                                );
+
+
+                        /*
+                         * =================================================
+                         * GET POST DATA / PAYLOAD
+                         * =================================================
+                         */
+
+                        String postData = "";
+
+                        try {
+
+                            if (request.getRequest()
+                                    .getPostData()
+                                    .isPresent()) {
+
+                                postData =
+                                        request.getRequest()
+                                                .getPostData()
+                                                .get();
+                            }
+
+                        } catch (Exception payloadException) {
+
+                            System.out.println(
+                                    "Unable to read request payload."
+                            );
+
+                            System.out.println(
+                                    "URL :: "
+                                            + requestUrl
+                            );
+                        }
+
+
+                        /*
+                         * =================================================
+                         * STORE GENERAL NETWORK REQUEST
+                         *
+                         * Useful for debugging.
+                         * =================================================
+                         */
+
+                        synchronized (networkRequests) {
+
+                            if (networkRequests.size() < 500) {
+
+                                networkRequests.add(
+                                        requestMethod
+                                                + " | "
+                                                + requestType
+                                                + " | "
+                                                + requestUrl
+                                );
+                            }
+                        }
+
+
+                        /*
+                         * =================================================
+                         * SEARCH URL + PAYLOAD
+                         *
+                         * Equivalent to:
+                         *
+                         * Network -> Filter -> lw_pixel
+                         * =================================================
+                         */
+
+                        String searchableContent =
+                                (
+                                        requestUrl
+                                                + " "
+                                                + postData
+                                ).toLowerCase(
+                                        Locale.ROOT
+                                );
+
+
+                        /*
+                         * =================================================
+                         * LWD FILTER
+                         * =================================================
+                         */
+
+                        boolean isLWDRequest =
+                                searchableContent.contains(
+                                        "lw_pixel"
+                                );
+
+
+                        /*
+                         * Not an LWD request.
+                         */
+
+                        if (!isLWDRequest) {
+
+                            return;
+                        }
+
+
+                        /*
+                         * =================================================
+                         * STORE LWD REQUEST
+                         * =================================================
+                         */
+
+                        LWDRequestData lwdRequest =
+                                new LWDRequestData(
+                                        requestMethod,
+                                        requestUrl,
+                                        postData,
+                                        requestType
+                                );
+
+                        lwdPixelRequests.add(
+                                lwdRequest
+                        );
+
+
+                        /*
+                         * =================================================
+                         * PRINT LWD REQUEST
+                         * =================================================
+                         */
+
+                        System.out.println();
+
+                        System.out.println(
+                                "================================================"
+                        );
+
+                        System.out.println(
+                                "************ LWD PIXEL FOUND ************"
+                        );
+
+                        System.out.println(
+                                "TYPE   :: "
+                                        + requestType
+                        );
+
+                        System.out.println(
+                                "METHOD :: "
+                                        + requestMethod
+                        );
+
+                        System.out.println(
+                                "URL    :: "
+                                        + requestUrl
+                        );
+
+
+                        if (postData != null &&
+                                !postData.trim().isEmpty()) {
+
+                            System.out.println();
+
+                            System.out.println(
+                                    "PAYLOAD ::"
+                            );
+
+                            System.out.println(
+                                    postData
+                            );
+                        }
+
+
+                        System.out.println(
+                                "****************************************"
+                        );
+
+                        System.out.println(
+                                "================================================"
+                        );
+
+                    } catch (Exception listenerException) {
+
+                        System.out.println(
+                                "Error while processing network request:"
+                        );
+
+                        listenerException.printStackTrace();
+                    }
+                }
+        );
+
+
+        /*
+         * ============================================================
+         * RESPONSE LISTENER
+         *
+         * Diagnostic only.
+         * ============================================================
+         */
+
+        devTools.addListener(
+                Network.responseReceived(),
+                response -> {
+
+                    try {
+
+                        String responseUrl =
+                                response.getResponse().getUrl();
+
+
+                        if (responseUrl == null ||
+                                responseUrl.trim().isEmpty()) {
+
+                            return;
+                        }
+
+
+                        if (responseUrl
+                                .toLowerCase(Locale.ROOT)
+                                .contains("lw_pixel")) {
+
+                            System.out.println();
+
+                            System.out.println(
+                                    "************ LWD RESPONSE ************"
+                            );
+
+                            System.out.println(
+                                    "URL :: "
+                                            + responseUrl
+                            );
+
+                            System.out.println(
+                                    "STATUS :: "
+                                            + response.getResponse()
+                                            .getStatus()
+                            );
+
+                            System.out.println(
+                                    "**************************************"
+                            );
+                        }
+
+                    } catch (Exception responseException) {
+
+                        System.out.println(
+                                "Error while processing LWD response."
+                        );
+                    }
+                }
+        );
+
+
+        /*
+         * ============================================================
+         * STEP 1
+         * ADD PRODUCT TO CART
+         * ============================================================
+         */
+
+        System.out.println();
+        System.out.println(
+                "STEP 1 :: Adding product to cart..."
+        );
+
+        new AddToCartComponents(driver)
+                .addmultipleproductToCartforFreeOrder();
+
+
+        /*
+         * ============================================================
+         * STEP 2
+         * GO TO CHECKOUT
+         * ============================================================
+         */
+
+        System.out.println();
+        System.out.println(
+                "STEP 2 :: Navigating to Checkout..."
+        );
+
+        new CheckoutPageComponents(driver)
+                .validateFreeOrder();
+
+
+        /*
+         * ============================================================
+         * APPLY PROMO
+         * ============================================================
+         */
+
+        System.out.println();
+        System.out.println(
+                "Applying promo code..."
+        );
+
+        new CheckoutPageComponents(driver)
+                .CheckFreeOrderpromo("TECH TEST");
+
+
+        /*
+         * ============================================================
+         * READY TO COMPLETE ORDER
+         * ============================================================
+         */
+
+        System.out.println();
+        System.out.println(
+                "================================================"
+        );
+
+        System.out.println(
+                "STEP 3 :: Ready to click Complete Order"
+        );
+
+        System.out.println(
+                "LWD Network monitoring is ACTIVE."
+        );
+
+        System.out.println(
+                "================================================"
+        );
+
+
+        /*
+         * ============================================================
+         * CLICK COMPLETE ORDER
+         * ============================================================
+         */
+
+        try {
+
+            WebElement completeOrderButton =
+                    wait.until(
+                            ExpectedConditions.elementToBeClickable(
+                                    COMPLETE_ORDER
+                            )
+                    );
+
+
+            completeOrderButton.click();
+
+
+            System.out.println();
+            System.out.println(
+                    "Complete Order clicked normally."
+            );
+
+        } catch (Exception e) {
+
+            System.out.println();
+            System.out.println(
+                    "Normal Complete Order click failed."
+            );
+
+            System.out.println(
+                    "Using JavaScript click..."
+            );
+
+
+            WebElement completeOrderButton =
+                    wait.until(
+                            ExpectedConditions.presenceOfElementLocated(
+                                    COMPLETE_ORDER
+                            )
+                    );
+
+
+            jse.executeScript(
+                    "arguments[0].click();",
+                    completeOrderButton
+            );
+
+
+            System.out.println(
+                    "Complete Order clicked using JavaScript."
+            );
+        }
+
+
+        /*
+         * ============================================================
+         * WAIT FOR ORDER CONFIRMATION
+         * ============================================================
+         *
+         * We don't use this as the trigger for LWD.
+         *
+         * LWD requests are captured by the listener independently.
+         * ============================================================
+         */
+
+        try {
+
+            wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(
+                            ORDER_CONFIRMATION
+                    )
+            );
+
+            System.out.println();
+            System.out.println(
+                    "Order confirmation displayed."
+            );
+
+        } catch (Exception e) {
+
+            System.out.println();
+            System.out.println(
+                    "WARNING: Order confirmation locator "
+                            + "was not detected."
+            );
+
+            System.out.println(
+                    "Current URL :: "
+                            + driver.getCurrentUrl()
+            );
+        }
+
+
+        /*
+         * ============================================================
+         * WAIT FOR LWD EVENTS
+         *
+         * Purchase / SKU events may fire during:
+         *
+         * /processing
+         * /thank-you
+         *
+         * Give them enough time.
+         * ============================================================
+         */
+
+        System.out.println();
+        System.out.println(
+                "Waiting for LWD events..."
+        );
+
+
+        long timeoutInSeconds = 60;
+
+        long startTime =
+                System.currentTimeMillis();
+
+
+        while (
+                (System.currentTimeMillis() - startTime)
+                        < timeoutInSeconds * 1000
+        ) {
+
+            Thread.sleep(2000);
+
+
+            boolean purchaseFound =
+                    containsLWDEvent(
+                            lwdPixelRequests,
+                            "Purchase"
+                    );
+
+
+            if (purchaseFound) {
+
+                System.out.println();
+                System.out.println(
+                        "Purchase LWD event captured."
+                );
+
+                /*
+                 * Purchase is the final event we definitely
+                 * expect after Complete Order.
+                 *
+                 * Break once it is found.
+                 */
+
+                break;
+            }
+
+
+            long elapsedSeconds =
+                    (
+                            System.currentTimeMillis()
+                                    - startTime
+                    ) / 1000;
+
+
+            System.out.println(
+                    "Waiting for LWD events... "
+                            + elapsedSeconds
+                            + " seconds"
+            );
+        }
+
+
+        /*
+         * ============================================================
+         * NO LWD REQUEST FOUND
+         * ============================================================
+         */
+
+        if (lwdPixelRequests.isEmpty()) {
+
+            System.out.println();
+            System.out.println(
+                    "================================================"
+            );
+
+            System.out.println(
+                    "LWD PIXEL VALIDATION FAILED"
+            );
+
+            System.out.println(
+                    "No request containing 'lw_pixel' was captured."
+            );
+
+            System.out.println(
+                    "================================================"
+            );
+
+
+            System.out.println();
+            System.out.println(
+                    "Current Browser URL:"
+            );
+
+            System.out.println(
+                    driver.getCurrentUrl()
+            );
+
+
+            /*
+             * ========================================================
+             * DEBUG NETWORK REQUESTS
+             * ========================================================
+             */
+
+            System.out.println();
+
+            System.out.println(
+                    "================================================"
+            );
+
+            System.out.println(
+                    "NETWORK REQUESTS"
+            );
+
+            System.out.println(
+                    "================================================"
+            );
+
+
+            synchronized (networkRequests) {
+
+                for (String request :
+                        networkRequests) {
+
+                    System.out.println(
+                            request
+                    );
+                }
+            }
+
+
+            System.out.println(
+                    "================================================"
+            );
+
+
+            softAssert.fail(
+                    "No network request containing "
+                            + "'lw_pixel' was captured."
+            );
+
+            softAssert.assertAll();
+
+            return;
+        }
+
+
+        /*
+         * ============================================================
+         * PROCESS LWD REQUESTS
+         * ============================================================
+         */
+
+        int purchaseCount = 0;
+
+        int skuCount = 0;
+
+        int pageViewCount = 0;
+
+
+        System.out.println();
+
+        System.out.println(
+                "================================================"
+        );
+
+        System.out.println(
+                "LWD PIXEL REQUESTS CAPTURED"
+        );
+
+        System.out.println(
+                "Total Requests :: "
+                        + lwdPixelRequests.size()
+        );
+
+        System.out.println(
+                "================================================"
+        );
+
+
+        /*
+         * ============================================================
+         * PROCESS EACH REQUEST
+         * ============================================================
+         */
+
+        for (LWDRequestData request :
+                lwdPixelRequests) {
+
+
+            System.out.println();
+
+            System.out.println(
+                    "================================================"
+            );
+
+            System.out.println(
+                    "LWD REQUEST"
+            );
+
+            System.out.println(
+                    "TYPE   :: "
+                            + request.getResourceType()
+            );
+
+            System.out.println(
+                    "METHOD :: "
+                            + request.getMethod()
+            );
+
+            System.out.println(
+                    "URL    :: "
+                            + request.getUrl()
+            );
+
+
+            if (request.getPostData() != null &&
+                    !request.getPostData().trim().isEmpty()) {
+
+                System.out.println();
+
+                System.out.println(
+                        "PAYLOAD ::"
+                );
+
+                System.out.println(
+                        request.getPostData()
+                );
+            }
+
+
+            /*
+             * ========================================================
+             * EXTRACT URL PARAMETERS
+             * ========================================================
+             */
+
+            String requestUrl =
+                    request.getUrl();
+
+            Map<String, String> parameters =
+                    extractQueryParameters(
+                            requestUrl
+                    );
+
+
+            /*
+             * ========================================================
+             * EXTRACT PAYLOAD PARAMETERS
+             *
+             * Important:
+             *
+             * If the LWD event data is in the Payload,
+             * extract it as well.
+             * ========================================================
+             */
+
+            String postData =
+                    request.getPostData();
+
+
+            if (postData != null &&
+                    !postData.trim().isEmpty()) {
+
+                Map<String, String> postParameters =
+                        extractQueryParametersFromPayload(
+                                postData
+                        );
+
+
+                parameters.putAll(
+                        postParameters
+                );
+            }
+
+
+            /*
+             * ========================================================
+             * PRINT PARAMETERS
+             * ========================================================
+             */
+
+            System.out.println();
+
+            System.out.println(
+                    "--------------- LWD PARAMETERS ---------------"
+            );
+
+
+            for (Map.Entry<String, String> entry :
+                    parameters.entrySet()) {
+
+                System.out.println(
+                        entry.getKey()
+                                + " :: "
+                                + entry.getValue()
+                );
+            }
+
+
+            System.out.println(
+                    "----------------------------------------------"
+            );
+
+
+            /*
+             * ========================================================
+             * GET EVENT
+             * ========================================================
+             */
+
+            String event =
+                    getParameterIgnoreCase(
+                            parameters,
+                            "lw_event"
+                    );
+
+
+            if (event == null ||
+                    event.trim().isEmpty()) {
+
+                System.out.println(
+                        "WARNING: lw_event was not found."
+                );
+
+                continue;
+            }
+
+
+            String normalizedEvent =
+                    event.trim()
+                            .toLowerCase(
+                                    Locale.ROOT
+                            );
+
+
+            /*
+             * ========================================================
+             * PURCHASE / TRANSACTION
+             * ========================================================
+             */
+
+            if (normalizedEvent.equals("purchase")
+                    ||
+                    normalizedEvent.equals("transaction")) {
+
+                purchaseCount++;
+
+
+                System.out.println();
+
+                System.out.println(
+                        "******** LWD TRANSACTION ********"
+                );
+
+                System.out.println(
+                        "Event :: "
+                                + event
+                );
+
+                System.out.println(
+                        "*********************************"
+                );
+            }
+
+
+            /*
+             * ========================================================
+             * SKU
+             * ========================================================
+             */
+
+            else if (
+                    normalizedEvent.equals("sku")
+            ) {
+
+                skuCount++;
+
+
+                System.out.println();
+
+                System.out.println(
+                        "******** LWD SKU EVENT ********"
+                );
+
+                System.out.println(
+                        "SKU Event Number :: "
+                                + skuCount
+                );
+
+                System.out.println(
+                        "Event :: "
+                                + event
+                );
+
+                System.out.println(
+                        "********************************"
+                );
+            }
+
+
+            /*
+             * ========================================================
+             * PAGE VIEW
+             * ========================================================
+             */
+
+            else if (
+                    normalizedEvent.equals("page view")
+                            ||
+                            normalizedEvent.equals("pageview")
+            ) {
+
+                pageViewCount++;
+
+
+                System.out.println();
+
+                System.out.println(
+                        "******** LWD PAGE VIEW ********"
+                );
+
+                System.out.println(
+                        "Event :: "
+                                + event
+                );
+
+                System.out.println(
+                        "********************************"
+                );
+            }
+        }
+
+
+        /*
+         * ============================================================
+         * EVENT SUMMARY
+         * ============================================================
+         */
+
+        System.out.println();
+
+        System.out.println(
+                "================================================"
+        );
+
+        System.out.println(
+                "LWD PIXEL EVENT SUMMARY"
+        );
+
+        System.out.println(
+                "================================================"
+        );
+
+        System.out.println(
+                "Total LWD Requests :: "
+                        + lwdPixelRequests.size()
+        );
+
+        System.out.println(
+                "Transactions       :: "
+                        + purchaseCount
+        );
+
+        System.out.println(
+                "SKU Events         :: "
+                        + skuCount
+        );
+
+        System.out.println(
+                "Page View Events   :: "
+                        + pageViewCount
+        );
+
+        System.out.println(
+                "================================================"
+        );
+
+
+        /*
+         * ============================================================
+         * VALIDATIONS
+         * ============================================================
+         */
+
+        softAssert.assertTrue(
+                purchaseCount > 0,
+                "LWD Purchase/Transaction event was NOT captured."
+        );
+
+
+        softAssert.assertTrue(
+                skuCount > 0,
+                "LWD SKU event was NOT captured."
+        );
+
+
+        softAssert.assertTrue(
+                pageViewCount > 0,
+                "LWD Page View event was NOT captured."
+        );
+
+
+        /*
+         * ============================================================
+         * FINAL ASSERTIONS
+         * ============================================================
+         */
+
+        softAssert.assertAll();
+    }
+
+
+    /**
+     * ================================================================
+     * EXTRACT URL QUERY PARAMETERS
+     * ================================================================
+     */
+//    private Map<String, String> extractQueryParameters(
+//            String requestUrl) {
+//
+//        Map<String, String> parameters =
+//                new LinkedHashMap<>();
+//
+//        if (requestUrl == null ||
+//                requestUrl.trim().isEmpty()) {
+//
+//            return parameters;
+//        }
+//
+//
+//        try {
+//
+//            URI uri =
+//                    new URI(requestUrl);
+//
+//            String query =
+//                    uri.getRawQuery();
+//
+//
+//            if (query == null ||
+//                    query.isEmpty()) {
+//
+//                return parameters;
+//            }
+//
+//
+//            String[] pairs =
+//                    query.split("&");
+//
+//
+//            for (String pair : pairs) {
+//
+//                if (pair == null ||
+//                        pair.isEmpty()) {
+//
+//                    continue;
+//                }
+//
+//
+//                String[] keyValue =
+//                        pair.split("=", 2);
+//
+//
+//                String key =
+//                        URLDecoder.decode(
+//                                keyValue[0],
+//                                StandardCharsets.UTF_8
+//                        );
+//
+//
+//                String value = "";
+//
+//
+//                if (keyValue.length > 1) {
+//
+//                    value =
+//                            URLDecoder.decode(
+//                                    keyValue[1],
+//                                    StandardCharsets.UTF_8
+//                            );
+//                }
+//
+//
+//                parameters.put(
+//                        key,
+//                        value
+//                );
+//            }
+//
+//
+//        } catch (Exception e) {
+//
+//            System.out.println(
+//                    "Unable to parse LWD Pixel URL:"
+//            );
+//
+//            System.out.println(
+//                    requestUrl
+//            );
+//
+//            e.printStackTrace();
+//        }
+//
+//
+//        return parameters;
+//    }
+
+
+    /**
+     * ================================================================
+     * EXTRACT POST PAYLOAD PARAMETERS
+     * ================================================================
+     */
+    private Map<String, String> extractQueryParametersFromPayload(
+            String payload) {
+
+        Map<String, String> parameters =
+                new LinkedHashMap<>();
+
+
+        if (payload == null ||
+                payload.trim().isEmpty()) {
+
+            return parameters;
+        }
+
+
+        try {
+
+            String cleanPayload =
+                    payload.startsWith("?")
+                            ? payload.substring(1)
+                            : payload;
+
+
             String[] pairs =
-                    query.split("&");
+                    cleanPayload.split("&");
+
 
             for (String pair : pairs) {
 
-                if (pair == null || pair.isEmpty()) {
+                if (pair == null ||
+                        pair.trim().isEmpty()) {
+
                     continue;
                 }
 
+
                 String[] keyValue =
                         pair.split("=", 2);
+
 
                 String key =
                         URLDecoder.decode(
@@ -750,7 +2428,9 @@ public class GTMComponents {
                                 StandardCharsets.UTF_8
                         );
 
+
                 String value = "";
+
 
                 if (keyValue.length > 1) {
 
@@ -761,30 +2441,138 @@ public class GTMComponents {
                             );
                 }
 
+
                 parameters.put(
                         key,
                         value
                 );
             }
 
+
         } catch (Exception e) {
 
             System.out.println(
-                    "Unable to parse LWD Pixel URL:"
+                    "Unable to parse LWD POST payload:"
             );
 
             System.out.println(
-                    requestUrl
+                    payload
             );
 
             e.printStackTrace();
         }
 
+
         return parameters;
     }
 
 
-    public void validateElevarFacebookInitiateCheckout() throws Exception {
+    /**
+     * ================================================================
+     * GET PARAMETER IGNORING CASE
+     *
+     * Handles:
+     *
+     * lw_clientID
+     * lw_clientid
+     * LW_CLIENTID
+     *
+     * ================================================================
+     */
+    private String getParameterIgnoreCase(
+            Map<String, String> parameters,
+            String parameterName) {
+
+        if (parameters == null ||
+                parameterName == null) {
+
+            return null;
+        }
+
+
+        for (Map.Entry<String, String> entry :
+                parameters.entrySet()) {
+
+            if (entry.getKey()
+                    .equalsIgnoreCase(parameterName)) {
+
+                return entry.getValue();
+            }
+        }
+
+
+        return null;
+    }
+
+
+    /**
+     * ================================================================
+     * CHECK WHETHER AN LWD EVENT WAS CAPTURED
+     * ================================================================
+     */
+    private boolean containsLWDEvent(
+            List<LWDRequestData> requests,
+            String expectedEvent) {
+
+        if (requests == null ||
+                requests.isEmpty()) {
+
+            return false;
+        }
+
+
+        for (LWDRequestData request :
+                requests) {
+
+            Map<String, String> parameters =
+                    extractQueryParameters(
+                            request.getUrl()
+                    );
+
+
+            /*
+             * Add POST payload parameters.
+             */
+
+            if (request.getPostData() != null &&
+                    !request.getPostData()
+                            .trim()
+                            .isEmpty()) {
+
+                Map<String, String> postParameters =
+                        extractQueryParametersFromPayload(
+                                request.getPostData()
+                        );
+
+
+                parameters.putAll(
+                        postParameters
+                );
+            }
+
+
+            String event =
+                    getParameterIgnoreCase(
+                            parameters,
+                            "lw_event"
+                    );
+
+
+            if (event != null &&
+                    event.trim()
+                            .equalsIgnoreCase(
+                                    expectedEvent
+                            )) {
+
+                return true;
+            }
+        }
+
+
+        return false;
+    }
+
+        public void validateElevarFacebookInitiateCheckout() throws Exception {
 
         SoftAssert softAssert = new SoftAssert();
 

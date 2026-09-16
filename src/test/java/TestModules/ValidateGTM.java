@@ -39,6 +39,14 @@ public class ValidateGTM {
         new GTMValidations(driver).validateGTMEvents();
 
     }
+
+    @Test
+    public void ValidateDataSteamEvents() throws Exception {
+
+        new GTMValidations(driver).validateDataSteamEvents();
+
+    }
+
  //   @Test
     public void ValidateLWDPixel() throws Exception {
 
