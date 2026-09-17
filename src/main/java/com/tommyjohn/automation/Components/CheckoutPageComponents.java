@@ -1737,7 +1737,9 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 		Thread.sleep(20000);
 		try {
 
+			System.out.println("==============================================");
 			System.out.println("Checking Order Protection...");
+			System.out.println("==============================================");
 
 			WebElement orderProtectionCheckbox =
 					wait.until(
@@ -1746,30 +1748,63 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 							)
 					);
 
+			// ---------------------------------------------------------
+			// Scroll checkbox into view
+			// ---------------------------------------------------------
+
+			jse.executeScript(
+					"arguments[0].scrollIntoView({block:'center', inline:'center'});",
+					orderProtectionCheckbox
+			);
+
+			Thread.sleep(1000);
+
+			// ---------------------------------------------------------
+			// Check current state
+			// ---------------------------------------------------------
+
 			boolean checked =
 					orderProtectionCheckbox.isSelected();
 
 			System.out.println(
-					"Order Protection checkbox checked :: "
-							+ checked
+					"Order Protection checkbox checked :: " + checked
 			);
 
-			if (checked) {
+			// ---------------------------------------------------------
+			// If already disabled, do nothing
+			// ---------------------------------------------------------
+
+			if (!checked) {
+
+				System.out.println(
+						"Order Protection is already DISABLED."
+				);
+
+			} else {
 
 				System.out.println(
 						"Order Protection is ENABLED."
 				);
 
+				// -----------------------------------------------------
+				// Attempt 1 - normal Selenium click
+				// -----------------------------------------------------
+
 				try {
 
-					jse.executeScript(
-							"arguments[0].scrollIntoView({block:'center'});",
-							orderProtectionCheckbox
+					wait.until(
+							ExpectedConditions.elementToBeClickable(
+									orderProtectionCheckbox
+							)
 					);
 
-					Thread.sleep(500);
-
 					orderProtectionCheckbox.click();
+
+					Thread.sleep(1000);
+
+					System.out.println(
+							"Normal click performed."
+					);
 
 				} catch (Exception e) {
 
@@ -1777,35 +1812,143 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 							"Normal checkbox click failed."
 					);
 
-					jse.executeScript(
-							"arguments[0].click();",
-							orderProtectionCheckbox
-					);
+					// -------------------------------------------------
+					// Attempt 2 - JavaScript click on input
+					// -------------------------------------------------
+
+					try {
+
+						jse.executeScript(
+								"arguments[0].click();",
+								orderProtectionCheckbox
+						);
+
+						Thread.sleep(1000);
+
+						System.out.println(
+								"JavaScript click performed."
+						);
+
+					} catch (Exception jsException) {
+
+						System.out.println(
+								"JavaScript input click failed."
+						);
+					}
 				}
 
-				Thread.sleep(1000);
+				// -----------------------------------------------------
+				// Verify after click
+				// -----------------------------------------------------
+
+				boolean checkedAfterClick =
+						orderProtectionCheckbox.isSelected();
 
 				System.out.println(
-						"Order Protection is now DISABLED."
+						"Order Protection checkbox checked after click :: "
+								+ checkedAfterClick
 				);
 
-			} else {
+				// -----------------------------------------------------
+				// Attempt 3 - click associated label
+				// -----------------------------------------------------
+
+				if (checkedAfterClick) {
+
+					System.out.println(
+							"Checkbox is still ENABLED."
+					);
+
+					System.out.println(
+							"Trying associated label/wrapper..."
+					);
+
+					try {
+
+						jse.executeScript(
+								"""
+                                var checkbox = arguments[0];
+        
+                                var label = checkbox.closest('label');
+        
+                                if (label) {
+                                    label.click();
+                                    return;
+                                }
+        
+                                var parent = checkbox.parentElement;
+        
+                                if (parent) {
+                                    parent.click();
+                                    return;
+                                }
+        
+                                checkbox.click();
+                                """,
+								orderProtectionCheckbox
+						);
+
+						Thread.sleep(1000);
+
+					} catch (Exception labelException) {
+
+						System.out.println(
+								"Unable to click checkbox label/wrapper."
+						);
+					}
+				}
+
+				// -----------------------------------------------------
+				// Final verification
+				// -----------------------------------------------------
+
+				boolean finalCheckedState =
+						orderProtectionCheckbox.isSelected();
 
 				System.out.println(
-						"Order Protection is already DISABLED."
+						"Final Order Protection checkbox state :: "
+								+ finalCheckedState
 				);
+
+				if (finalCheckedState) {
+
+					System.out.println(
+							"WARNING: Order Protection is STILL ENABLED."
+					);
+
+				} else {
+
+					System.out.println(
+							"Order Protection is now DISABLED."
+					);
+				}
 			}
 
-		} catch (Exception e) {
+		} catch (TimeoutException e) {
 
 			System.out.println(
-					"Order Protection checkbox was not found."
+					"Order Protection checkbox was not found "
+							+ "within the wait time."
 			);
 
 			System.out.println(
 					"Continuing with order placement."
 			);
+
+		} catch (Exception e) {
+
+			System.out.println(
+					"Unexpected error while handling "
+							+ "Order Protection."
+			);
+
+			e.printStackTrace();
+
+			System.out.println(
+					"Continuing with order placement."
+			);
 		}
+
 
 
 		/*

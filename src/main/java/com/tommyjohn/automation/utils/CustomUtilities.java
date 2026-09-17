@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.Properties;
+import java.util.logging.Level;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Dimension;
@@ -21,6 +22,8 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.logging.LogType;
+import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
@@ -45,6 +48,12 @@ public class CustomUtilities {
     @SuppressWarnings({})
     public WebDriver launchtj(String browser) throws Exception {
 
+
+        LoggingPreferences logPrefs = new LoggingPreferences();
+        logPrefs.enable(LogType.PERFORMANCE, Level.ALL);
+
+
+
         // load properties file
         loadPropertiesFile();
 
@@ -52,6 +61,7 @@ public class CustomUtilities {
 
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions chromeOptions = new ChromeOptions();
+            chromeOptions.setCapability("goog:loggingPrefs", logPrefs);
             chromeOptions.addArguments("--use-fake-ui-for-media-stream");
             chromeOptions.addArguments("--use-fake-device-for-media-stream");
             chromeOptions.addArguments("--unsafely-treat-insecure-origin-as-secure=http:// 192.168.5.37");

@@ -710,6 +710,9 @@ public class AddToCartComponents extends AddToCartLocators{
 
 		jse.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//span[@class='text-sm text-text-tertiary'])[1]")));
 
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ProductDetailsPageComponents.COLOR_VARIANT));
+
 		allElements = driver.findElements(ProductDetailsPageComponents.COLOR_VARIANT);
 
 		elementsCount = allElements.size();
