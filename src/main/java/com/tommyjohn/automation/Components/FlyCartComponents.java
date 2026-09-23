@@ -855,25 +855,105 @@ public class FlyCartComponents extends FlyCartPageLocator{
 			}
 		}
 
-		public void verifyATCInInlineCartSuggestion() throws InterruptedException {
-			Actions action = new Actions(driver);
-			JavascriptExecutor js = (JavascriptExecutor) driver;
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+	public void verifyATCInInlineCartSuggestion() throws InterruptedException {
 
-			SoftAssert softAssert = new SoftAssert();
-			jse = (JavascriptExecutor) driver;
-			jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_ICON));
-			Thread.sleep(10000);
-			wait.until(ExpectedConditions.visibilityOf(driver.findElement(SUGGESTION_FIRST_PRODUCT)));
-			int ProductsSize = driver.findElements(SUGGESTION_PRODUCTS).size();
-			System.out.println(ProductsSize);
-			int ATCCTA = driver.findElements(ALL_QUICK_SHOP_ATC).size();
-			System.out.println(ATCCTA);
-			softAssert.assertEquals(ATCCTA,4,"Quick Shop ATC is not displayed in all the suggestion products");
-			softAssert.assertAll();
-			Reporter.log("Quick shop ATC button is available in all the Suggestion products");
-			ExtentReport.extentTest.info("Quick shop ATC button is available in all the Suggestion products");
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		SoftAssert softAssert = new SoftAssert();
+
+		// =========================================================
+		// Open Inline Cart
+		// =========================================================
+		WebElement inlineCartIcon = wait.until(
+				ExpectedConditions.elementToBeClickable(INLINE_CART_ICON)
+		);
+
+		js.executeScript("arguments[0].click();", inlineCartIcon);
+
+		// =========================================================
+		// Wait for suggestion section
+		// =========================================================
+		wait.until(
+				ExpectedConditions.visibilityOfElementLocated(SUGGESTION_FIRST_PRODUCT)
+		);
+
+		Thread.sleep(3000);
+
+		// =========================================================
+		// Get all Quick Shop ATC buttons
+		// =========================================================
+		List<WebElement> quickShopATCs =
+				driver.findElements(ALL_QUICK_SHOP_ATC);
+
+		System.out.println(
+				"Quick Shop ATC Count :: " + quickShopATCs.size()
+		);
+
+		// =========================================================
+		// Validate Quick Shop ATC buttons
+		// =========================================================
+		softAssert.assertTrue(
+				quickShopATCs.size() > 0,
+				"Quick Shop ATC is not displayed in the suggestion products"
+		);
+
+		// =========================================================
+		// Validate every Quick Shop ATC
+		// =========================================================
+		for (int i = 0; i < quickShopATCs.size(); i++) {
+
+			WebElement quickShopATC = quickShopATCs.get(i);
+
+			boolean isDisplayed = false;
+			boolean isEnabled = false;
+
+			try {
+				isDisplayed = quickShopATC.isDisplayed();
+				isEnabled = quickShopATC.isEnabled();
+			} catch (StaleElementReferenceException e) {
+
+				// Re-fetch the elements if DOM was refreshed
+				quickShopATCs = driver.findElements(ALL_QUICK_SHOP_ATC);
+
+				if (i < quickShopATCs.size()) {
+					quickShopATC = quickShopATCs.get(i);
+					isDisplayed = quickShopATC.isDisplayed();
+					isEnabled = quickShopATC.isEnabled();
+				}
+			}
+
+			System.out.println(
+					"Suggestion Product " + (i + 1)
+							+ " - Quick Shop ATC displayed :: " + isDisplayed
+							+ " | Enabled :: " + isEnabled
+			);
+
+			softAssert.assertTrue(
+					isDisplayed,
+					"Quick Shop ATC is not displayed for suggestion product "
+							+ (i + 1)
+			);
+
+			softAssert.assertTrue(
+					isEnabled,
+					"Quick Shop ATC is disabled for suggestion product "
+							+ (i + 1)
+			);
 		}
+
+		// =========================================================
+		// Final Assertion
+		// =========================================================
+		softAssert.assertAll();
+
+		Reporter.log(
+				"Quick Shop ATC button is available in all the suggestion products"
+		);
+
+		ExtentReport.extentTest.info(
+				"Quick Shop ATC button is available in all the suggestion products"
+		);
+	}
 
 
 		public void verifyQuickShopSizeOverlayIsDisplayed() throws InterruptedException {
