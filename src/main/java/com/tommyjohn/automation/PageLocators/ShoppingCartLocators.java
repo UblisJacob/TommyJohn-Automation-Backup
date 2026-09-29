@@ -59,7 +59,7 @@ public class ShoppingCartLocators {
 	public static By ESTIMATED_TOTAL_SUBTITLE_ORIGINAL = By.cssSelector("div[data-original-subtotal-div]>small[data-tj-qa='cart-estimated-total-subtitle']");
 	public static By ESTIMATED_TOTAL_SUBTITLE_DISCOUNTED = By.cssSelector("div[data-discounted-subtotal-div]>small[data-tj-qa='cart-estimated-total-subtitle']");
 	
-	public static By CART_TOTAL = By.cssSelector("div[data-original-subtotal-div] span[data-tj-qa='cart-estimated-total-price'], .main-content > .cart.container > div.cart__content.content > div.cart__outer > .cart__summary >.cart__summary-inner-div> .inline-cart__summary:nth-child(2) > div > span:nth-child(2)");
+	public static By CART_TOTAL = By.xpath("(//div[@class='mt-8 flex justify-between gap-4 border-t border-stroke-primary-subtle pt-6 text-body-lg font-medium sm:pt-8 sm:text-heading-sm']//span)[2]");
 	public static By ESTIMATE_TOTAL_PRICE = By.cssSelector("div[data-original-subtotal-div] span[data-tj-qa='cart-estimated-total-price'], .inline-cart__subtotal>#total_price_money");
 	public static By ESTIMATE_TOTAL_PRICE_ORIGINAL = By.cssSelector("div[data-original-subtotal-div] span[data-tj-qa='cart-estimated-total-price'], .inline-cart__subtotal>#total_price_money");
 	public static By ESTIMATE_TOTAL_PRICE_DISCOUTED = By.cssSelector("div[data-discounted-subtotal-div] span[data-tj-qa='cart-estimated-total-price']");

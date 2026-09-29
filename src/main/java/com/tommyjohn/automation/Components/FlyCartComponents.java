@@ -86,31 +86,297 @@ public class FlyCartComponents extends FlyCartPageLocator{
 	}
 
 	public void addItemToBagFromPDP() throws Exception {
-		if (!driver.getCurrentUrl().contains("/products/womens-second-skin-brief")) {
-			driver.get("https://tommyjohn.com/products/womens-second-skin-brief");
+
+		// =========================================================
+		// OPEN PRODUCT
+		// =========================================================
+
+		String productUrl =
+				"https://tommyjohn.com/products/womens-second-skin-brief";
+
+		if (!driver.getCurrentUrl().contains(
+				"/products/womens-second-skin-brief")) {
+
+			driver.get(productUrl);
 		}
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-		JavascriptExecutor js = (JavascriptExecutor) driver;
+		WebDriverWait wait =
+				new WebDriverWait(
+						driver,
+						Duration.ofSeconds(20)
+				);
 
-		// 1. Select Size S
-		WebElement sizePill = wait.until(ExpectedConditions.presenceOfElementLocated(FlyCartPageLocator.SIZE_S_LABEL));
-		js.executeScript("arguments[0].scrollIntoView({block: 'center'});", sizePill);
-		js.executeScript("arguments[0].click();", sizePill);
+		JavascriptExecutor js =
+				(JavascriptExecutor) driver;
 
-		// 2. Click Add to Bag CTA
-		WebElement addToBag = wait.until(ExpectedConditions.presenceOfElementLocated(FlyCartPageLocator.ADD_TO_BAG_BUTTON));
-		js.executeScript("arguments[0].scrollIntoView({block: 'center'});", addToBag);
-		js.executeScript("arguments[0].click();", addToBag);
+		System.out.println(
+				"================================================="
+		);
 
-		// 3. Ensure Fly Cart opens
-		try {
-			wait.until(ExpectedConditions.presenceOfElementLocated(FlyCartPageLocator.MINICART_QUANTITY_INPUT));
-		} catch (Exception e) {
-			WebElement cartIcon = wait.until(ExpectedConditions.presenceOfElementLocated(FlyCartPageLocator.INLINE_CART_ICON));
-			js.executeScript("arguments[0].click();", cartIcon);
-			wait.until(ExpectedConditions.presenceOfElementLocated(FlyCartPageLocator.MINICART_QUANTITY_INPUT));
+		System.out.println(
+				"Selecting Available Product Variant"
+		);
+
+		System.out.println(
+				"================================================="
+		);
+
+		// =========================================================
+		// GET ALL SIZE OPTIONS
+		// =========================================================
+
+		By sizeLocator =
+				By.xpath(
+						"//input[@name='option[Size]']"
+				);
+
+		List<WebElement> sizes =
+				driver.findElements(sizeLocator);
+
+		System.out.println(
+				"Sizes Found :: "
+						+ sizes.size()
+		);
+
+		if (sizes.isEmpty()) {
+
+			throw new AssertionError(
+					"No size options found on PDP."
+			);
 		}
+
+		boolean productAdded = false;
+
+		// =========================================================
+		// TRY EACH SIZE
+		// =========================================================
+
+		for (int i = 0;
+			 i < sizes.size();
+			 i++) {
+
+			try {
+
+				// Re-fetch after every selection because
+				// Shopify can refresh the variant DOM.
+
+				sizes =
+						driver.findElements(sizeLocator);
+
+				if (i >= sizes.size()) {
+					break;
+				}
+
+				WebElement size =
+						sizes.get(i);
+
+				String sizeValue =
+						size.getAttribute("value");
+
+				System.out.println(
+						"\n-----------------------------------------------"
+				);
+
+				System.out.println(
+						"Trying Size :: "
+								+ sizeValue
+				);
+
+				System.out.println(
+						"-----------------------------------------------"
+				);
+
+				// =================================================
+				// SELECT SIZE
+				// =================================================
+
+				js.executeScript(
+						"arguments[0].scrollIntoView({block:'center'});",
+						size
+				);
+
+				js.executeScript(
+						"arguments[0].click();",
+						size
+				);
+
+				// Give Shopify time to update the selected variant.
+				Thread.sleep(700);
+
+				// =================================================
+				// GET ADD TO BAG BUTTON
+				// =================================================
+
+				WebElement addToBag =
+						wait.until(
+								ExpectedConditions.presenceOfElementLocated(
+										FlyCartPageLocator.ADD_TO_BAG_BUTTON
+								)
+						);
+
+				// =================================================
+				// READ BUTTON TEXT
+				// =================================================
+
+				String buttonText =
+						addToBag.getText()
+								.trim()
+								.toLowerCase();
+
+				System.out.println(
+						"Add To Bag Button Text :: "
+								+ buttonText
+				);
+
+				// =================================================
+				// CHECK OOS / WAITLIST
+				// =================================================
+
+				if (buttonText.contains("out of stock")
+						|| buttonText.contains("sold out")
+						|| buttonText.contains("unavailable")
+						|| buttonText.contains("join the waitlist")
+						|| buttonText.contains("waitlist")
+						|| buttonText.contains("notify me")) {
+
+					System.out.println(
+							"Size "
+									+ sizeValue
+									+ " is NOT available."
+					);
+
+					System.out.println(
+							"Trying next size..."
+					);
+
+					continue;
+				}
+
+				// =================================================
+				// VERIFY ADD TO BAG BUTTON
+				// =================================================
+
+				if (!buttonText.contains("add to bag")
+						&& !buttonText.contains("add to cart")) {
+
+					System.out.println(
+							"Size "
+									+ sizeValue
+									+ " cannot be purchased."
+					);
+
+					System.out.println(
+							"Button text :: "
+									+ buttonText
+					);
+
+					continue;
+				}
+
+				// =================================================
+				// CLICK ADD TO BAG
+				// =================================================
+
+				js.executeScript(
+						"arguments[0].scrollIntoView({block:'center'});",
+						addToBag
+				);
+
+				Thread.sleep(300);
+
+				js.executeScript(
+						"arguments[0].click();",
+						addToBag
+				);
+
+				System.out.println(
+						"Add To Bag clicked for Size :: "
+								+ sizeValue
+				);
+
+				// =================================================
+				// WAIT FOR MINI CART
+				// =================================================
+
+				try {
+
+					wait.until(
+							ExpectedConditions.visibilityOfElementLocated(
+									FlyCartPageLocator.MINICART_QUANTITY_INPUT
+							)
+					);
+
+					System.out.println(
+							"Mini Cart opened successfully."
+					);
+
+					System.out.println(
+							"Selected Size :: "
+									+ sizeValue
+					);
+
+					productAdded = true;
+
+					break;
+
+				} catch (TimeoutException e) {
+
+					System.out.println(
+							"Mini Cart did not open for Size :: "
+									+ sizeValue
+					);
+
+					System.out.println(
+							"Trying next size..."
+					);
+				}
+
+			} catch (StaleElementReferenceException e) {
+
+				System.out.println(
+						"Size element became stale."
+				);
+
+				System.out.println(
+						"Trying next size..."
+				);
+
+			} catch (TimeoutException e) {
+
+				System.out.println(
+						"Timeout while checking Size."
+				);
+
+				System.out.println(
+						"Trying next size..."
+				);
+			}
+		}
+
+		// =========================================================
+		// NO AVAILABLE SIZE FOUND
+		// =========================================================
+
+		if (!productAdded) {
+
+			throw new AssertionError(
+					"All available sizes were checked, "
+							+ "but no purchasable variant was found "
+							+ "for Women's Second Skin Brief."
+			);
+		}
+
+		System.out.println(
+				"================================================="
+		);
+
+		System.out.println(
+				"Product successfully added to Fly Cart."
+		);
+
+		System.out.println(
+				"================================================="
+		);
 	}
 
 	public void validate5For60BundleOffer() throws Exception {
@@ -160,49 +426,139 @@ public class FlyCartComponents extends FlyCartPageLocator{
 	}
 
 	public void validate7For65BundleOffer() throws Exception {
+
 		addItemToBagFromPDP();
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-		JavascriptExecutor js = (JavascriptExecutor) driver;
+		WebDriverWait wait =
+				new WebDriverWait(
+						driver,
+						Duration.ofSeconds(20)
+				);
 
-		// 1. Directly set quantity to 7 in side cart
+		JavascriptExecutor js =
+				(JavascriptExecutor) driver;
+
+		// =========================================================
+		// FLY CART - SET QUANTITY TO 7
+		// =========================================================
+
 		setFlyCartQuantityDirectly(7);
 
-		// 2. Validate offer banner
-		WebElement offerMsg = wait.until(ExpectedConditions.presenceOfElementLocated(FlyCartPageLocator.DISCOUNT_7for$65));
-		wait.until(ExpectedConditions.visibilityOf(offerMsg));
+		// =========================================================
+		// VERIFY 7 FOR $65 OFFER IS DISPLAYED
+		// =========================================================
 
-		// 3. Decrease quantity to 6
+		WebElement offerMsg =
+				wait.until(
+						ExpectedConditions.visibilityOfElementLocated(
+								FlyCartPageLocator.DISCOUNT_7for$65
+						)
+				);
+
+		System.out.println(
+				"7 for $65 offer displayed in Fly Cart."
+		);
+
+		// =========================================================
+		// DECREASE QUANTITY TO 6
+		// =========================================================
+
 		setFlyCartQuantityDirectly(6);
 
-		// Verify offer disappears
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(FlyCartPageLocator.DISCOUNT_7for$65));
+		wait.until(
+				ExpectedConditions.invisibilityOfElementLocated(
+						FlyCartPageLocator.DISCOUNT_7for$65
+				)
+		);
 
-		// 4. Increase quantity back to 7
+		System.out.println(
+				"7 for $65 offer disappeared at quantity 6."
+		);
+
+		// =========================================================
+		// INCREASE QUANTITY BACK TO 7
+		// =========================================================
+
 		setFlyCartQuantityDirectly(7);
 
-		// Verify offer reappears
-		offerMsg = wait.until(ExpectedConditions.presenceOfElementLocated(FlyCartPageLocator.DISCOUNT_7for$65));
-		wait.until(ExpectedConditions.visibilityOf(offerMsg));
+		offerMsg =
+				wait.until(
+						ExpectedConditions.visibilityOfElementLocated(
+								FlyCartPageLocator.DISCOUNT_7for$65
+						)
+				);
 
-		// 5. Click View Cart CTA
-		WebElement viewCartLink = wait.until(ExpectedConditions.elementToBeClickable(FlyCartPageLocator.VIEW_CART_LINK));
-		js.executeScript("arguments[0].click();", viewCartLink);
+		System.out.println(
+				"7 for $65 offer reappeared at quantity 7."
+		);
 
-		wait.until(ExpectedConditions.urlContains("/cart"));
+		// =========================================================
+		// CLICK VIEW CART
+		// =========================================================
 
-		// 1. Verify offer is present upon arrival on /cart page (qty is 7)
-		offerMsg = wait.until(ExpectedConditions.presenceOfElementLocated(FlyCartPageLocator.DISCOUNT_7for$65));
-		wait.until(ExpectedConditions.visibilityOf(offerMsg));
+		WebElement viewCartLink =
+				wait.until(
+						ExpectedConditions.elementToBeClickable(
+								FlyCartPageLocator.VIEW_CART_LINK
+						)
+				);
 
-		// 2. Decrease quantity to 6 on /cart page
+		js.executeScript(
+				"arguments[0].click();",
+				viewCartLink
+		);
+
+		wait.until(
+				ExpectedConditions.urlContains("/cart")
+		);
+
+		// =========================================================
+		// CART PAGE - VERIFY OFFER
+		// =========================================================
+
+		offerMsg =
+				wait.until(
+						ExpectedConditions.visibilityOfElementLocated(
+								FlyCartPageLocator.DISCOUNT_7for$65
+						)
+				);
+
+		System.out.println(
+				"7 for $65 offer displayed on Cart page."
+		);
+
+		// =========================================================
+		// CART PAGE - DECREASE TO 6
+		// =========================================================
+
 		setCartPageQuantityDirectly(6);
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(FlyCartPageLocator.DISCOUNT_7for$65));
 
-		// 3. Increase quantity back to 7 on /cart page
+		wait.until(
+				ExpectedConditions.invisibilityOfElementLocated(
+						FlyCartPageLocator.DISCOUNT_7for$65
+				)
+		);
+
+		System.out.println(
+				"7 for $65 offer disappeared at quantity 6 on Cart."
+		);
+
+		// =========================================================
+		// CART PAGE - INCREASE TO 7
+		// =========================================================
+
 		setCartPageQuantityDirectly(7);
-		offerMsg = wait.until(ExpectedConditions.presenceOfElementLocated(FlyCartPageLocator.DISCOUNT_7for$65));
-		wait.until(ExpectedConditions.visibilityOf(offerMsg));
+
+		offerMsg =
+				wait.until(
+						ExpectedConditions.visibilityOfElementLocated(
+								FlyCartPageLocator.DISCOUNT_7for$65
+						)
+				);
+
+		System.out.println(
+				"7 for $65 offer reappeared at quantity 7 on Cart."
+		);
 	}
 
 	public void validateOOSProductsInMiniCartRecommendations() throws Exception {

@@ -1,10 +1,10 @@
 package com.tommyjohn.automation.Components;
 
 import java.time.Duration;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 import java.util.NoSuchElementException;
-import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -45,6 +45,1363 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	String price;
 	String text;
 	SoftAssert softAssert = new SoftAssert();
+
+	public void GWPValidation() throws Exception {
+
+		softAssert = new SoftAssert();
+
+		JavascriptExecutor jse =
+				(JavascriptExecutor) driver;
+
+		WebDriverWait wait =
+				new WebDriverWait(driver, Duration.ofSeconds(60));
+
+		final double TARGET_TOTAL = 2000.00;
+		final int MINIMUM_QUANTITY = 50;
+
+		boolean targetReached = false;
+
+		// =========================================================
+		// STEP 1: Navigate to Men's Underwear
+		// =========================================================
+
+		System.out.println("=================================================");
+		System.out.println("Navigating to Men's Underwear");
+		System.out.println("=================================================");
+
+		new HomePageComponents(driver)
+				.navigateToAllUnderwearInMenCategory();
+
+		wait.until(
+				ExpectedConditions.presenceOfElementLocated(
+						By.xpath("//a[contains(@href,'/products/')]")
+				)
+		);
+
+		// =========================================================
+		// STEP 2: Collect Unique PDP URLs
+		// =========================================================
+
+		Set<String> productUrls =
+				new LinkedHashSet<>();
+
+		List<WebElement> productLinks =
+				driver.findElements(
+						By.xpath("//a[contains(@href,'/products/')]")
+				);
+
+		for (WebElement productLink : productLinks) {
+
+			try {
+
+				String href =
+						productLink.getAttribute("href");
+
+				if (href != null &&
+						href.contains("/products/")) {
+
+					String productUrl =
+							normalizeProductUrl(href);
+
+					if (productUrl != null &&
+							!productUrl.isBlank()) {
+
+						productUrls.add(productUrl);
+					}
+				}
+
+			} catch (StaleElementReferenceException e) {
+
+				System.out.println(
+						"Product link became stale. Skipping."
+				);
+			}
+		}
+
+		System.out.println(
+				"Unique PDP URLs Found :: "
+						+ productUrls.size()
+		);
+
+		// =========================================================
+		// STEP 3: Loop Through PDPs
+		// =========================================================
+
+		for (String productUrl : productUrls) {
+
+			if (targetReached) {
+				break;
+			}
+
+			System.out.println(
+					"\n================================================="
+			);
+
+			System.out.println(
+					"Opening PDP :: "
+							+ productUrl
+			);
+
+			System.out.println(
+					"================================================="
+			);
+
+			driver.get(productUrl);
+
+			wait.until(
+					ExpectedConditions.presenceOfElementLocated(
+							By.tagName("body")
+					)
+			);
+
+			boolean productProcessed = false;
+
+			double unitPrice = 0.0;
+
+			// =====================================================
+			// STEP 4: GROUP
+			// =====================================================
+
+			List<WebElement> groups =
+					driver.findElements(
+							By.xpath(
+									"//fieldset[.//input[@name='group']]//input[@name='group']"
+							)
+					);
+
+			System.out.println(
+					"Product Groups Found :: "
+							+ groups.size()
+			);
+
+			for (int groupIndex = 0;
+				 groupIndex < groups.size() && !productProcessed;
+				 groupIndex++) {
+
+				try {
+
+					groups =
+							driver.findElements(
+									By.xpath(
+											"//fieldset[.//input[@name='group']]//input[@name='group']"
+									)
+							);
+
+					if (groupIndex >= groups.size()) {
+						break;
+					}
+
+					WebElement group =
+							groups.get(groupIndex);
+
+					String groupValue =
+							group.getAttribute("value");
+
+					System.out.println(
+							"Selecting Group :: "
+									+ groupValue
+					);
+
+					jse.executeScript(
+							"arguments[0].click();",
+							group
+					);
+
+					Thread.sleep(400);
+
+					// =================================================
+					// STEP 5: COLOR
+					// =================================================
+
+					List<WebElement> colors =
+							driver.findElements(
+									ProductDetailsPageComponents.COLOR_VARIANT
+							);
+
+					System.out.println(
+							"Colors Found :: "
+									+ colors.size()
+					);
+
+					for (int colorIndex = 0;
+						 colorIndex < colors.size() && !productProcessed;
+						 colorIndex++) {
+
+						try {
+
+							colors =
+									driver.findElements(
+											ProductDetailsPageComponents.COLOR_VARIANT
+									);
+
+							if (colorIndex >= colors.size()) {
+								break;
+							}
+
+							WebElement color =
+									colors.get(colorIndex);
+
+							String colorName =
+									color.getAttribute("value");
+
+							System.out.println(
+									"Selecting Color :: "
+											+ colorName
+							);
+
+							jse.executeScript(
+									"arguments[0].click();",
+									color
+							);
+
+							Thread.sleep(400);
+
+							// =================================================
+							// STEP 6: SIZE
+							// =================================================
+
+							List<WebElement> sizes =
+									driver.findElements(
+											By.xpath(
+													"//input[@name='option[Size]']"
+											)
+									);
+
+							System.out.println(
+									"Sizes Found :: "
+											+ sizes.size()
+							);
+
+							for (int sizeIndex = 0;
+								 sizeIndex < sizes.size() && !productProcessed;
+								 sizeIndex++) {
+
+								try {
+
+									sizes =
+											driver.findElements(
+													By.xpath(
+															"//input[@name='option[Size]']"
+													)
+											);
+
+									if (sizeIndex >= sizes.size()) {
+										break;
+									}
+
+									WebElement size =
+											sizes.get(sizeIndex);
+
+									String sizeValue =
+											size.getAttribute("value");
+
+									System.out.println(
+											"Selecting Size :: "
+													+ sizeValue
+									);
+
+									// IMPORTANT:
+									// Select Size before checking OOS.
+
+									jse.executeScript(
+											"arguments[0].click();",
+											size
+									);
+
+									Thread.sleep(700);
+
+									// =================================================
+									// STEP 7: ADD TO CART BUTTON
+									// =================================================
+
+									List<WebElement> addToCartButtons =
+											driver.findElements(
+													ProductDetailsPageComponents.ADD_TO_CART_BUTTON
+											);
+
+									if (addToCartButtons.isEmpty()) {
+
+										System.out.println(
+												"ATC button not found. "
+														+ "Trying next size."
+										);
+
+										continue;
+									}
+
+									WebElement addToCartButton =
+											addToCartButtons.get(0);
+
+									String buttonText =
+											addToCartButton
+													.getText()
+													.trim()
+													.toLowerCase();
+
+									System.out.println(
+											"ATC Button Text :: "
+													+ buttonText
+									);
+
+									// =================================================
+									// STEP 8: OOS CHECK
+									// =================================================
+
+									if (buttonText.contains("join the waitlist")
+											|| buttonText.contains("out of stock")
+											|| buttonText.contains("sold out")
+											|| buttonText.contains("unavailable")) {
+
+										System.out.println(
+												"Variant OOS :: "
+														+ groupValue
+														+ " | "
+														+ colorName
+														+ " | "
+														+ sizeValue
+										);
+
+										continue;
+									}
+
+									if (!buttonText.contains("add to bag")
+											&& !buttonText.contains("add to cart")) {
+
+										System.out.println(
+												"Variant is not purchasable."
+										);
+
+										continue;
+									}
+
+									// =================================================
+									// STEP 9: GET UNIT PRICE
+									// =================================================
+
+									unitPrice =
+											extractPriceFromText(
+													addToCartButton.getText()
+											);
+
+									if (unitPrice <= 0) {
+
+										System.out.println(
+												"Unable to determine unit price."
+										);
+
+										continue;
+									}
+
+									System.out.println(
+											"Unit Price :: $"
+													+ unitPrice
+									);
+
+									// =================================================
+									// STEP 10:
+									// Capture Cart Quantity IDs BEFORE Add
+									// =================================================
+
+									Set<String> quantityIdsBeforeAdd =
+											getCartQuantityInputIds();
+
+									System.out.println(
+											"Quantity IDs Before Add :: "
+													+ quantityIdsBeforeAdd
+									);
+
+									// =================================================
+									// STEP 11: ADD TO CART
+									// =================================================
+
+									System.out.println(
+											"Adding Product To Cart..."
+									);
+
+									jse.executeScript(
+											"arguments[0].click();",
+											addToCartButton
+									);
+
+									Thread.sleep(1200);
+
+									System.out.println(
+											"Product Added Successfully."
+									);
+
+									// =================================================
+									// STEP 12: Navigate To Cart
+									// =================================================
+
+									navigateToCartForGWP(
+											wait
+									);
+
+									// =================================================
+									// STEP 13:
+									// Wait For Cart Quantity Inputs
+									// =================================================
+
+									wait.until(
+											ExpectedConditions.presenceOfElementLocated(
+													By.xpath(
+															"//input[contains(@id,'CartForm-Quantity-')]"
+													)
+											)
+									);
+
+									// =================================================
+									// STEP 14:
+									// Find NEW Quantity Input
+									// =================================================
+
+									String newQuantityInputId =
+											findNewQuantityInputId(
+													quantityIdsBeforeAdd,
+													wait
+											);
+
+									// =================================================
+									// Shopify merged product with existing line
+									// =================================================
+
+									if (newQuantityInputId == null) {
+
+										System.out.println(
+												"================================================="
+										);
+
+										System.out.println(
+												"NO NEW CART LINE CREATED"
+										);
+
+										System.out.println(
+												"Product was merged with an existing Cart line."
+										);
+
+										System.out.println(
+												"Skipping this variant."
+										);
+
+										System.out.println(
+												"================================================="
+										);
+
+										continue;
+									}
+
+									System.out.println(
+											"New Quantity Input ID :: "
+													+ newQuantityInputId
+									);
+
+									// =================================================
+									// STEP 15: Get Current Cart Total
+									// =================================================
+
+									double currentCartTotal =
+											getCurrentCartTotal();
+
+									System.out.println(
+											"Current Cart Total :: $"
+													+ currentCartTotal
+									);
+
+									// =================================================
+									// STEP 16:
+									// Increase ONLY New Product
+									// =================================================
+
+									while (currentCartTotal <
+											TARGET_TOTAL) {
+
+										WebElement quantityInput =
+												wait.until(
+														ExpectedConditions.presenceOfElementLocated(
+																By.id(
+																		newQuantityInputId
+																)
+														)
+												);
+
+										int currentQuantity =
+												Integer.parseInt(
+														quantityInput
+																.getAttribute("value")
+																.trim()
+												);
+
+										int maxQuantity =
+												getMaxQuantity(
+														quantityInput
+												);
+
+										System.out.println(
+												"\n-------------------------------------------------"
+										);
+
+										System.out.println(
+												"New Product Quantity :: "
+														+ currentQuantity
+										);
+
+										System.out.println(
+												"Maximum Quantity :: "
+														+ maxQuantity
+										);
+
+										System.out.println(
+												"Current Cart Total :: $"
+														+ currentCartTotal
+										);
+
+										System.out.println(
+												"-------------------------------------------------"
+										);
+
+										// =================================================
+										// MAX REACHED
+										// =================================================
+
+										if (currentQuantity >=
+												maxQuantity) {
+
+											System.out.println(
+													"Maximum quantity reached."
+											);
+
+											break;
+										}
+
+										// =================================================
+										// Calculate Quantity
+										// =================================================
+
+										double remainingAmount =
+												TARGET_TOTAL
+														- currentCartTotal;
+
+										int calculatedQuantity =
+												currentQuantity
+														+ (int) Math.ceil(
+														remainingAmount
+																/ unitPrice
+												);
+
+										/*
+										 * Minimum 50.
+										 *
+										 * If calculated = 9:
+										 *     use 50
+										 *
+										 * If calculated = 75:
+										 *     use 75
+										 */
+
+										int quantityToSet =
+												Math.max(
+														MINIMUM_QUANTITY,
+														calculatedQuantity
+												);
+
+										/*
+										 * Never exceed Shopify max.
+										 */
+
+										quantityToSet =
+												Math.min(
+														quantityToSet,
+														maxQuantity
+												);
+
+										System.out.println(
+												"Calculated Quantity :: "
+														+ calculatedQuantity
+										);
+
+										System.out.println(
+												"Quantity To Set :: "
+														+ quantityToSet
+										);
+
+										// =================================================
+										// Cannot increase
+										// =================================================
+
+										if (quantityToSet <=
+												currentQuantity) {
+
+											System.out.println(
+													"Cannot increase quantity further."
+											);
+
+											break;
+										}
+
+										// =================================================
+										// UPDATE ONLY NEW LINE
+										// =================================================
+
+										updateGWPQuantity(
+												newQuantityInputId,
+												quantityToSet
+										);
+
+										// =================================================
+										// WAIT FOR TOTAL UPDATE
+										// =================================================
+
+										double previousCartTotal =
+												currentCartTotal;
+
+										currentCartTotal =
+												waitForGWPValidationCartTotalChange(
+														previousCartTotal
+												);
+
+										System.out.println(
+												"Updated Cart Total :: $"
+														+ currentCartTotal
+										);
+
+										// =================================================
+										// TARGET REACHED
+										// =================================================
+
+										if (currentCartTotal >=
+												TARGET_TOTAL) {
+
+											targetReached = true;
+
+											System.out.println(
+													"\n================================================="
+											);
+
+											System.out.println(
+													"TARGET REACHED :: $"
+															+ currentCartTotal
+											);
+
+											System.out.println(
+													"================================================="
+											);
+
+											break;
+										}
+
+										// =================================================
+										// Check Updated Quantity
+										// =================================================
+
+										WebElement updatedQuantityInput =
+												wait.until(
+														ExpectedConditions.presenceOfElementLocated(
+																By.id(
+																		newQuantityInputId
+																)
+														)
+												);
+
+										int updatedQuantity =
+												Integer.parseInt(
+														updatedQuantityInput
+																.getAttribute("value")
+																.trim()
+												);
+
+										System.out.println(
+												"Updated Quantity :: "
+														+ updatedQuantity
+										);
+
+										if (updatedQuantity >=
+												maxQuantity) {
+
+											System.out.println(
+													"Maximum quantity reached "
+															+ "for this product."
+											);
+
+											break;
+										}
+									}
+
+									// =================================================
+									// STEP 17: Final Total For This Product
+									// =================================================
+
+									currentCartTotal =
+											getCurrentCartTotal();
+
+									System.out.println(
+											"Cart Total After Product :: $"
+													+ currentCartTotal
+									);
+
+									if (currentCartTotal >=
+											TARGET_TOTAL) {
+
+										targetReached = true;
+									}
+
+									/*
+									 * This PDP has been processed.
+									 * Move to next PDP only if needed.
+									 */
+
+									productProcessed = true;
+
+								} catch (
+										StaleElementReferenceException e) {
+
+									System.out.println(
+											"Size became stale. "
+													+ "Trying next size."
+									);
+
+								} catch (Exception e) {
+
+									System.out.println(
+											"Error while processing size :: "
+													+ e.getMessage()
+									);
+								}
+							}
+
+						} catch (
+								StaleElementReferenceException e) {
+
+							System.out.println(
+									"Color became stale. "
+											+ "Trying next color."
+							);
+						}
+					}
+
+				} catch (
+						StaleElementReferenceException e) {
+
+					System.out.println(
+							"Group became stale. "
+									+ "Trying next group."
+					);
+				}
+			}
+
+			// =========================================================
+			// STEP 18: Stop If $2000 Reached
+			// =========================================================
+
+			if (targetReached) {
+				break;
+			}
+
+			System.out.println(
+					"Cart is still below $"
+							+ TARGET_TOTAL
+			);
+
+			System.out.println(
+					"Moving to next PDP..."
+			);
+		}
+
+		// =========================================================
+		// STEP 19: Final Cart Total
+		// =========================================================
+
+		double finalCartTotal =
+				getCurrentCartTotal();
+
+		System.out.println(
+				"\n================================================="
+		);
+
+		System.out.println(
+				"FINAL CART TOTAL :: $"
+						+ finalCartTotal
+		);
+
+		System.out.println(
+				"================================================="
+		);
+
+		// =========================================================
+		// STEP 20: Failed To Reach Threshold
+		// =========================================================
+
+		if (finalCartTotal < TARGET_TOTAL) {
+
+			softAssert.fail(
+					"Unable to reach $"
+							+ TARGET_TOTAL
+							+ ". Final Cart Total = $"
+							+ finalCartTotal
+			);
+
+			softAssert.assertAll();
+
+			return;
+		}
+
+		// =========================================================
+// CHECKOUT
+// =========================================================
+
+		System.out.println(
+				"Cart total reached $2000."
+		);
+
+		System.out.println(
+				"Navigating to Checkout..."
+		);
+
+		WebElement checkoutButton =
+				wait.until(
+						ExpectedConditions.elementToBeClickable(
+								CHECKOUT_BUTTON
+						)
+				);
+
+		jse.executeScript(
+				"arguments[0].click();",
+				checkoutButton
+		);
+
+		wait.until(
+				ExpectedConditions.urlContains("checkouts")
+		);
+
+		System.out.println(
+				"Checkout Page Loaded :: "
+						+ driver.getCurrentUrl()
+		);
+
+// =========================================================
+// CONTACT INFORMATION
+// =========================================================
+
+		wait.until(
+				ExpectedConditions.visibilityOfElementLocated(
+						CONTACTINFO_TEXT
+				)
+		);
+
+		driver.findElement(CHECKOUT_EMAIL)
+				.sendKeys(
+						CustomUtilities.properties
+								.getProperty("checkoutemail")
+				);
+
+		softAssert.assertEquals(
+				driver.findElement(SHIPPINGADD_TEXT).getText(),
+				"Delivery",
+				"Shipping address title is not displayed"
+		);
+
+// =========================================================
+// SHIPPING DETAILS
+// =========================================================
+
+		entershippingdetails();
+
+		Reporter.log(
+				"Shipping Address Details entered"
+		);
+
+		ExtentReport.extentTest.info(
+				"Shipping Address Details entered"
+		);
+
+// =========================================================
+// GWP VALIDATION - POUCH
+// =========================================================
+
+		By GWP_POUCH =
+				By.xpath(
+						"//p[normalize-space()='Pouch']"
+				);
+
+		try {
+
+			WebElement pouch =
+					wait.until(
+							ExpectedConditions.visibilityOfElementLocated(
+									GWP_POUCH
+							)
+					);
+
+			softAssert.assertTrue(
+					pouch.isDisplayed(),
+					"GWP Pouch is displayed in Checkout"
+			);
+
+			System.out.println(
+					"================================================="
+			);
+
+			System.out.println(
+					"GWP VALIDATION PASSED"
+			);
+
+			System.out.println(
+					"GWP Product :: "
+							+ pouch.getText().trim()
+			);
+
+			System.out.println(
+					"================================================="
+			);
+
+			Reporter.log(
+					"GWP Product Pouch is displayed in Checkout"
+			);
+
+			ExtentReport.extentTest.pass(
+					"GWP Product Pouch is displayed in Checkout"
+			);
+
+		} catch (TimeoutException e) {
+
+			System.out.println(
+					"================================================="
+			);
+
+			System.out.println(
+					"GWP VALIDATION FAILED"
+			);
+
+			System.out.println(
+					"GWP Product Pouch is not displayed in Checkout"
+			);
+
+			System.out.println(
+					"================================================="
+			);
+
+			Reporter.log(
+					"GWP Product Pouch is NOT displayed in Checkout"
+			);
+
+			ExtentReport.extentTest.fail(
+					"GWP Product Pouch is NOT displayed in Checkout"
+			);
+
+			softAssert.fail(
+					"GWP Product Pouch is not displayed in Checkout"
+			);
+		}
+
+		softAssert.assertAll();
+	}
+
+	private Set<String> getCartQuantityInputIds() {
+
+		Set<String> quantityInputIds =
+				new LinkedHashSet<>();
+
+		List<WebElement> quantityInputs =
+				driver.findElements(
+						By.xpath(
+								"//input[contains(@id,'CartForm-Quantity-')]"
+						)
+				);
+
+		for (WebElement input : quantityInputs) {
+
+			try {
+
+				String id =
+						input.getAttribute("id");
+
+				if (id != null &&
+						!id.isBlank()) {
+
+					quantityInputIds.add(id);
+				}
+
+			} catch (StaleElementReferenceException e) {
+
+				// Ignore stale input
+			}
+		}
+
+		return quantityInputIds;
+	}
+
+	private String findNewQuantityInputId(
+			Set<String> quantityIdsBeforeAdd,
+			WebDriverWait wait) {
+
+		By quantityInputLocator =
+				By.xpath(
+						"//input[contains(@id,'CartForm-Quantity-')]"
+				);
+
+		try {
+
+			return wait.until(driver -> {
+
+				List<WebElement> quantityInputs =
+						driver.findElements(
+								quantityInputLocator
+						);
+
+				for (WebElement input : quantityInputs) {
+
+					try {
+
+						String id =
+								input.getAttribute("id");
+
+						if (id == null ||
+								id.isBlank()) {
+
+							continue;
+						}
+
+						if (!quantityIdsBeforeAdd.contains(id)) {
+
+							return id;
+						}
+
+					} catch (StaleElementReferenceException e) {
+
+						// Retry
+					}
+				}
+
+				return null;
+			});
+
+		} catch (TimeoutException e) {
+
+			return null;
+		}
+	}
+
+	private void navigateToCartForGWP(
+			WebDriverWait wait) {
+
+		if (driver.getCurrentUrl().contains("/cart")) {
+
+			return;
+		}
+
+		By viewCartLocator =
+				By.xpath(
+						"//a[contains(@href,'/cart') "
+								+ "and contains("
+								+ "translate(normalize-space(.),"
+								+ "'ABCDEFGHIJKLMNOPQRSTUVWXYZ',"
+								+ "'abcdefghijklmnopqrstuvwxyz'),"
+								+ "'view cart')]"
+				);
+
+		try {
+
+			WebElement viewCart =
+					new WebDriverWait(
+							driver,
+							Duration.ofSeconds(10)
+					).until(
+							ExpectedConditions.elementToBeClickable(
+									viewCartLocator
+							)
+					);
+
+			((JavascriptExecutor) driver)
+					.executeScript(
+							"arguments[0].click();",
+							viewCart
+					);
+
+		} catch (TimeoutException e) {
+
+			System.out.println(
+					"View Cart link not found."
+			);
+
+			System.out.println(
+					"Opening Cart directly."
+			);
+
+			driver.get(
+					"https://www.tommyjohn.com/cart"
+			);
+		}
+
+		wait.until(
+				ExpectedConditions.urlContains("/cart")
+		);
+	}
+
+	private int getMaxQuantity(
+			WebElement quantityInput) {
+
+		String maxAttribute =
+				quantityInput.getAttribute("max");
+
+		if (maxAttribute == null ||
+				maxAttribute.isBlank()) {
+
+			return 9999;
+		}
+
+		try {
+
+			return Integer.parseInt(
+					maxAttribute.trim()
+			);
+
+		} catch (NumberFormatException e) {
+
+			return 9999;
+		}
+	}
+
+	private void updateGWPQuantity(
+			String quantityInputId,
+			int quantity) throws Exception {
+
+		JavascriptExecutor jse =
+				(JavascriptExecutor) driver;
+
+		WebDriverWait wait =
+				new WebDriverWait(
+						driver,
+						Duration.ofSeconds(30)
+				);
+
+		By quantityLocator =
+				By.id(quantityInputId);
+
+		WebElement quantityInput =
+				wait.until(
+						ExpectedConditions.presenceOfElementLocated(
+								quantityLocator
+						)
+				);
+
+		System.out.println(
+				"Updating Cart Line Quantity :: "
+						+ quantity
+		);
+
+		jse.executeScript(
+				"arguments[0].scrollIntoView({block:'center'});",
+				quantityInput
+		);
+
+		Thread.sleep(300);
+
+		quantityInput.click();
+
+		quantityInput.sendKeys(
+				Keys.CONTROL + "a"
+		);
+
+		quantityInput.sendKeys(
+				String.valueOf(quantity)
+		);
+
+		jse.executeScript(
+				"""
+                arguments[0].dispatchEvent(
+                    new Event('input', {bubbles:true})
+                );
+    
+                arguments[0].dispatchEvent(
+                    new Event('change', {bubbles:true})
+                );
+                """,
+				quantityInput
+		);
+
+		Thread.sleep(500);
+
+		quantityInput.sendKeys(
+				Keys.ENTER
+		);
+
+		wait.until(driver -> {
+
+			try {
+
+				WebElement updatedInput =
+						driver.findElement(
+								quantityLocator
+						);
+
+				String value =
+						updatedInput.getAttribute(
+								"value"
+						);
+
+				return String.valueOf(quantity)
+						.equals(value);
+
+			} catch (StaleElementReferenceException |
+					 NoSuchElementException e) {
+
+				return false;
+			}
+		});
+
+		System.out.println(
+				"Cart Line Quantity Updated Successfully :: "
+						+ quantity
+		);
+	}
+
+
+
+
+
+	private double waitForGWPValidationCartTotalChange(
+			double previousTotal) throws Exception {
+
+		WebDriverWait wait =
+				new WebDriverWait(
+						driver,
+						Duration.ofSeconds(30)
+				);
+
+		final double[] latestTotal =
+				{previousTotal};
+
+		try {
+
+			wait.until(driver -> {
+
+				try {
+
+					latestTotal[0] =
+							getCurrentCartTotal();
+
+					System.out.println(
+							"Waiting For Cart Total Update :: $"
+									+ latestTotal[0]
+					);
+
+					return Math.abs(
+							latestTotal[0]
+									- previousTotal
+					) > 0.009;
+
+				} catch (Exception e) {
+
+					return false;
+				}
+			});
+
+		} catch (TimeoutException e) {
+
+			latestTotal[0] =
+					getCurrentCartTotal();
+		}
+
+		return latestTotal[0];
+	}
+
+
+
+	private String normalizeProductUrl(String url) {
+
+		if (url == null) {
+			return "";
+		}
+
+		// Remove query parameters
+		url = url.split("\\?")[0];
+
+		// Remove #Reviews, etc.
+		url = url.split("#")[0];
+
+		// Remove trailing slash
+		if (url.endsWith("/")) {
+			url = url.substring(
+					0,
+					url.length() - 1
+			);
+		}
+
+		return url;
+	}
+
+	private double extractPriceFromText(String text) {
+
+		if (text == null || text.isBlank()) {
+			return 0.0;
+		}
+
+		Pattern pattern =
+				Pattern.compile(
+						"\\$\\s*([0-9,]+(?:\\.\\d{1,2})?)"
+				);
+
+		Matcher matcher =
+				pattern.matcher(text);
+
+		if (matcher.find()) {
+
+			String price =
+					matcher.group(1)
+							.replace(",", "");
+
+			return Double.parseDouble(price);
+		}
+
+		return 0.0;
+	}
+
+	private double getCurrentCartTotal() {
+
+		try {
+
+			String bodyText =
+					driver.findElement(
+							By.tagName("body")
+					).getText();
+
+			Pattern pattern =
+					Pattern.compile(
+							"(?i)\\bTotal\\s*\\$\\s*([0-9,]+(?:\\.\\d{1,2})?)"
+					);
+
+			Matcher matcher =
+					pattern.matcher(bodyText);
+
+			double total = 0.0;
+
+			while (matcher.find()) {
+
+				total = Double.parseDouble(
+						matcher.group(1)
+								.replace(",", "")
+				);
+			}
+
+			return total;
+
+		} catch (Exception e) {
+
+			System.out.println(
+					"Unable to get cart total :: "
+							+ e.getMessage()
+			);
+
+			return 0.0;
+		}
+	}
+
+
+
+
+
+
+
+
 
 
 	public void validateExtensibilityUpgrade() throws Exception {

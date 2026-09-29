@@ -1,16 +1,15 @@
 package com.tommyjohn.automation.Components;
 
 import java.time.Duration;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Properties;
+import java.util.Set;
 
 import com.base.ExtentReport;
-import com.tommyjohn.automation.PageLocators.HomePageLocators;
-import com.tommyjohn.automation.PageLocators.ShoppingCartLocators;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import com.tommyjohn.automation.PageLocators.*;
+import com.tommyjohn.automation.Pages.ShoppingCartPage;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -18,13 +17,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 
 
-import com.tommyjohn.automation.PageLocators.AddToCartLocators;
-import com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators;
 import com.tommyjohn.automation.utils.CustomUtilities;
 
 import static com.tommyjohn.automation.ADACheck.ADACheckMethods.softAssert;
 import static com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators.CART_ICON;
 import static com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators.PDP_TABS;
+import static com.tommyjohn.automation.PageLocators.ShoppingCartLocators.CART_TOTAL;
+import static com.tommyjohn.automation.PageLocators.ShoppingCartLocators.QUANTITY_INPUT;
 
 public class AddToCartComponents extends AddToCartLocators{
 
@@ -44,6 +43,959 @@ public class AddToCartComponents extends AddToCartLocators{
 	List<WebElement> Tabs;
 
 	String allClasses = null;
+
+	public void addProductsForGWP() throws Exception {
+
+		WebDriverWait wait =
+				new WebDriverWait(driver, Duration.ofSeconds(60));
+
+		JavascriptExecutor jse =
+				(JavascriptExecutor) driver;
+
+		double targetAmount = 2000.00;
+		double cartTotal = 0.00;
+		double productUnitPrice = 0.00;
+
+		int maxProducts = 15;
+		int productsAttempted = 0;
+
+		// =============================================================
+		// Store PDP URLs which were already attempted
+		// =============================================================
+
+		Set<String> attemptedProducts =
+				new HashSet<>();
+
+		System.out.println("==============================================");
+		System.out.println("Starting GWP Product Addition");
+		System.out.println("Target Cart Total :: $" + targetAmount);
+		System.out.println("==============================================");
+
+		while (cartTotal < targetAmount &&
+				productsAttempted < maxProducts) {
+
+			productUnitPrice = 0.00;
+
+			// =========================================================
+			// STEP 1: Navigate to Men's Underwear PLP
+			// =========================================================
+
+			System.out.println(
+					"Navigating to Men's Underwear PLP..."
+			);
+
+			new HomePageComponents(driver)
+					.navigateToAllUnderwearInMenCategory();
+
+			Thread.sleep(3000);
+
+			// =========================================================
+			// STEP 2: Find Product Links on PLP
+			// =========================================================
+
+			List<WebElement> productLinks =
+					driver.findElements(
+							By.xpath(
+									"//a[contains(@href,'/products/')]"
+							)
+					);
+
+			System.out.println(
+					"Product Links Found :: " +
+							productLinks.size()
+			);
+
+			if (productLinks.isEmpty()) {
+
+				throw new AssertionError(
+						"No product links found on Men's Underwear PLP."
+				);
+			}
+
+			boolean productSelected = false;
+
+			// =========================================================
+			// STEP 3: Select NEXT Unattempted Product
+			// =========================================================
+
+			for (WebElement productLink : productLinks) {
+
+				try {
+
+					String productUrl =
+							productLink.getAttribute("href");
+
+					if (productUrl == null ||
+							productUrl.trim().isEmpty()) {
+
+						continue;
+					}
+
+					// -------------------------------------------------
+					// Remove query parameters
+					// -------------------------------------------------
+
+					productUrl =
+							productUrl.split("\\?")[0];
+
+					// -------------------------------------------------
+					// Skip already attempted product
+					// -------------------------------------------------
+
+					if (attemptedProducts.contains(productUrl)) {
+
+						continue;
+					}
+
+					System.out.println(
+							"Selecting New Product :: " +
+									productUrl
+					);
+
+					// -------------------------------------------------
+					// Mark product as attempted
+					// -------------------------------------------------
+
+					attemptedProducts.add(
+							productUrl
+					);
+
+					// -------------------------------------------------
+					// Navigate directly to PDP
+					// -------------------------------------------------
+
+					driver.get(productUrl);
+
+					Thread.sleep(3000);
+
+					productSelected = true;
+
+					break;
+
+				} catch (Exception e) {
+
+					System.out.println(
+							"Unable to select product link."
+					);
+				}
+			}
+
+			// =========================================================
+			// STEP 4: No New Product Available
+			// =========================================================
+
+			if (!productSelected) {
+
+				System.out.println(
+						"=============================================="
+				);
+
+				System.out.println(
+						"No new products available to try."
+				);
+
+				System.out.println(
+						"Products Attempted :: " +
+								attemptedProducts.size()
+				);
+
+				System.out.println(
+						"=============================================="
+				);
+
+				break;
+			}
+
+			productsAttempted++;
+
+			System.out.println(
+					"Products Attempted :: " +
+							productsAttempted
+			);
+
+			// =========================================================
+			// STEP 5: Find Color Variants
+			// =========================================================
+
+			List<WebElement> colorVariants =
+					driver.findElements(
+							ProductDetailsPageComponents.COLOR_VARIANT
+					);
+
+			System.out.println(
+					"Color Element count :: " +
+							colorVariants.size()
+			);
+
+			boolean productAdded = false;
+
+			// =========================================================
+			// STEP 6: Find Available Color + Size
+			// =========================================================
+
+			if (!colorVariants.isEmpty()) {
+
+				for (int colorIndex = 1;
+					 colorIndex <= colorVariants.size() &&
+							 !productAdded;
+					 colorIndex++) {
+
+					try {
+
+						WebElement colorElement =
+								driver.findElement(
+										By.xpath(
+												"(//div[@class='space-y-lg']//input[@class='sr-only peer'])[" +
+														colorIndex +
+														"]"
+										)
+								);
+
+						jse.executeScript(
+								"arguments[0].click();",
+								colorElement
+						);
+
+						Thread.sleep(1500);
+
+						// -------------------------------------------------
+						// Get Sizes
+						// -------------------------------------------------
+
+						List<WebElement> sizeElements =
+								driver.findElements(
+										By.xpath(
+												"//input[@name='option[Size]']"
+										)
+								);
+
+						System.out.println(
+								"Size Element count :: " +
+										sizeElements.size()
+						);
+
+						for (int sizeIndex = 1;
+							 sizeIndex <= sizeElements.size();
+							 sizeIndex++) {
+
+							try {
+
+								WebElement sizeElement =
+										driver.findElement(
+												By.xpath(
+														"(//input[@name='option[Size]'])[" +
+																sizeIndex +
+																"]"
+												)
+										);
+
+								jse.executeScript(
+										"arguments[0].click();",
+										sizeElement
+								);
+
+								Thread.sleep(1200);
+
+								// -------------------------------------------------
+								// Get ATC Button
+								// -------------------------------------------------
+
+								WebElement addToCartButton =
+										wait.until(
+												ExpectedConditions
+														.visibilityOfElementLocated(
+																ProductDetailsPageComponents.ADD_TO_CART_BUTTON
+														)
+										);
+
+								String buttonText =
+										addToCartButton
+												.getText()
+												.trim();
+
+								System.out.println(
+										"ATC Button Text :: " +
+												buttonText
+								);
+
+								// =================================================
+								// Extract Price From ATC Button
+								// =================================================
+
+								productUnitPrice = 0.00;
+
+								if (buttonText != null &&
+										buttonText.contains("$")) {
+
+									try {
+
+										String priceText =
+												buttonText.substring(
+														buttonText.lastIndexOf("$") + 1
+												).trim();
+
+										productUnitPrice =
+												Double.parseDouble(
+														priceText.replaceAll(
+																"[^0-9.]",
+																""
+														)
+												);
+
+										System.out.println(
+												"Product Unit Price From ATC :: $" +
+														productUnitPrice
+										);
+
+									} catch (Exception e) {
+
+										System.out.println(
+												"Unable to extract product price."
+										);
+									}
+								}
+
+								// =================================================
+								// Check Available Product
+								// =================================================
+
+								if (buttonText != null &&
+										buttonText
+												.toLowerCase()
+												.contains("add to bag") &&
+										!buttonText
+												.toLowerCase()
+												.contains("out of stock") &&
+										productUnitPrice > 0) {
+
+									System.out.println(
+											"Available product variant found."
+									);
+
+									System.out.println(
+											"Color Index :: " +
+													colorIndex
+									);
+
+									System.out.println(
+											"Size Index :: " +
+													sizeIndex
+									);
+
+									// -------------------------------------------------
+									// Add Product
+									// -------------------------------------------------
+
+									jse.executeScript(
+											"arguments[0].click();",
+											addToCartButton
+									);
+
+									Thread.sleep(3000);
+
+									System.out.println(
+											"Product successfully added to cart."
+									);
+
+									productAdded = true;
+
+									break;
+								}
+
+							} catch (Exception e) {
+
+								System.out.println(
+										"Size " +
+												sizeIndex +
+												" unavailable."
+								);
+							}
+						}
+
+					} catch (Exception e) {
+
+						System.out.println(
+								"Color " +
+										colorIndex +
+										" unavailable."
+						);
+					}
+				}
+			}
+
+			// =========================================================
+			// STEP 7: Product Could Not Be Added
+			// =========================================================
+
+			if (!productAdded) {
+
+				System.out.println(
+						"No available variant found for this product."
+				);
+
+				System.out.println(
+						"Trying next product..."
+				);
+
+				driver.get(
+						"https://www.tommyjohn.com/"
+				);
+
+				Thread.sleep(3000);
+
+				continue;
+			}
+
+			// =========================================================
+			// STEP 8: Open Cart
+			// =========================================================
+
+			System.out.println(
+					"Opening cart..."
+			);
+
+			driver.get(
+					"https://www.tommyjohn.com/"
+			);
+
+			Thread.sleep(3000);
+
+			WebElement cartIcon =
+					wait.until(
+							ExpectedConditions
+									.elementToBeClickable(
+											CART_ICON
+									)
+					);
+
+			jse.executeScript(
+					"arguments[0].click();",
+					cartIcon
+			);
+
+			WebElement viewCartLink =
+					wait.until(
+							ExpectedConditions
+									.elementToBeClickable(
+											FlyCartPageLocator.VIEW_CART_LINK
+									)
+					);
+
+			jse.executeScript(
+					"arguments[0].click();",
+					viewCartLink
+			);
+
+			Thread.sleep(4000);
+
+			// =========================================================
+			// STEP 9: Get Current Cart Total
+			// =========================================================
+
+			cartTotal =
+					getCurrentCartTotal(wait);
+
+			System.out.println(
+					"Current Cart Total :: $" +
+							cartTotal
+			);
+
+			// =========================================================
+			// STEP 10: Check Threshold
+			// =========================================================
+
+			if (cartTotal >= targetAmount) {
+
+				System.out.println(
+						"=============================================="
+				);
+
+				System.out.println(
+						"GWP THRESHOLD REACHED"
+				);
+
+				System.out.println(
+						"Cart Total :: $" +
+								cartTotal
+				);
+
+				System.out.println(
+						"=============================================="
+				);
+
+				break;
+			}
+
+			// =========================================================
+			// STEP 11: Get Quantity Input
+			// =========================================================
+
+			try {
+
+				WebElement quantityInput =
+						wait.until(
+								ExpectedConditions
+										.visibilityOfElementLocated(
+												QUANTITY_INPUT
+										)
+						);
+
+				// ---------------------------------------------------------
+				// Current Quantity
+				// ---------------------------------------------------------
+
+				int currentQuantity =
+						Integer.parseInt(
+								jse.executeScript(
+												"return arguments[0].value;",
+												quantityInput
+										)
+										.toString()
+										.trim()
+						);
+
+				System.out.println(
+						"Current Quantity :: " +
+								currentQuantity
+				);
+
+				// =========================================================
+				// STEP 12: Read Maximum Quantity
+				// =========================================================
+
+				String maxAttribute =
+						quantityInput.getAttribute("max");
+
+				int maxQuantity = 1450;
+
+				if (maxAttribute != null &&
+						!maxAttribute.trim().isEmpty()) {
+
+					try {
+
+						maxQuantity =
+								Integer.parseInt(
+										maxAttribute.trim()
+								);
+
+					} catch (NumberFormatException ignored) {
+
+						System.out.println(
+								"Unable to parse max quantity."
+						);
+					}
+				}
+
+				System.out.println(
+						"Maximum Quantity Allowed :: " +
+								maxQuantity
+				);
+
+				// =========================================================
+				// STEP 13: Calculate Remaining Amount
+				// =========================================================
+
+				double remainingAmount =
+						targetAmount - cartTotal;
+
+				System.out.println(
+						"Remaining Amount Required :: $" +
+								remainingAmount
+				);
+
+				// =========================================================
+				// STEP 14: Calculate Additional Quantity
+				// =========================================================
+
+				int additionalQuantity =
+						(int) Math.ceil(
+								remainingAmount /
+										productUnitPrice
+						);
+
+				System.out.println(
+						"Additional Quantity Required :: " +
+								additionalQuantity
+				);
+
+				// =========================================================
+				// STEP 15: Calculate Final Quantity
+				// =========================================================
+
+				int requiredQuantity =
+						currentQuantity +
+								additionalQuantity;
+
+				System.out.println(
+						"Final Quantity Required :: " +
+								requiredQuantity
+				);
+
+				// =========================================================
+				// STEP 16: Check Maximum Quantity
+				// =========================================================
+
+				if (requiredQuantity > maxQuantity) {
+
+					System.out.println(
+							"Required quantity " +
+									requiredQuantity +
+									" exceeds maximum allowed quantity " +
+									maxQuantity
+					);
+
+					System.out.println(
+							"This product cannot reach the GWP threshold."
+					);
+
+					System.out.println(
+							"Keeping this product in cart."
+					);
+
+					System.out.println(
+							"Trying another product..."
+					);
+
+					// -----------------------------------------------------
+					// DO NOT clear the cart.
+					// Go to PLP and select a different product.
+					// -----------------------------------------------------
+
+					driver.get(
+							"https://www.tommyjohn.com/"
+					);
+
+					Thread.sleep(3000);
+
+					continue;
+				}
+
+				// =========================================================
+				// STEP 17: Set Quantity
+				// =========================================================
+
+				System.out.println(
+						"Setting Quantity To :: " +
+								requiredQuantity
+				);
+
+				quantityInput.click();
+
+				quantityInput.sendKeys(
+						Keys.CONTROL,
+						"a"
+				);
+
+				quantityInput.sendKeys(
+						String.valueOf(requiredQuantity)
+				);
+
+				// =========================================================
+				// STEP 18: Trigger Events
+				// =========================================================
+
+				jse.executeScript(
+						"""
+                        arguments[0].dispatchEvent(
+                            new Event('input', {
+                                bubbles: true
+                            })
+                        );
+    
+                        arguments[0].dispatchEvent(
+                            new Event('change', {
+                                bubbles: true
+                            })
+                        );
+    
+                        arguments[0].blur();
+                        """,
+						quantityInput
+				);
+
+				Thread.sleep(5000);
+
+				// =========================================================
+				// STEP 19: Verify Quantity
+				// =========================================================
+
+				WebElement updatedQuantityInput =
+						wait.until(
+								ExpectedConditions
+										.visibilityOfElementLocated(
+												QUANTITY_INPUT
+										)
+						);
+
+				int updatedQuantity =
+						Integer.parseInt(
+								jse.executeScript(
+												"return arguments[0].value;",
+												updatedQuantityInput
+										)
+										.toString()
+										.trim()
+						);
+
+				System.out.println(
+						"Updated Quantity :: " +
+								updatedQuantity
+				);
+
+				// =========================================================
+				// STEP 20: Quantity Not Accepted
+				// =========================================================
+
+				if (updatedQuantity < requiredQuantity) {
+
+					System.out.println(
+							"Requested quantity " +
+									requiredQuantity +
+									" was not accepted."
+					);
+
+					System.out.println(
+							"Actual Quantity :: " +
+									updatedQuantity
+					);
+
+					System.out.println(
+							"Trying another product..."
+					);
+
+					driver.get(
+							"https://www.tommyjohn.com/"
+					);
+
+					Thread.sleep(3000);
+
+					continue;
+				}
+
+				// =========================================================
+				// STEP 21: Get Updated Cart Total
+				// =========================================================
+
+				Thread.sleep(3000);
+
+				cartTotal =
+						getCurrentCartTotal(wait);
+
+				System.out.println(
+						"Updated Cart Total :: $" +
+								cartTotal
+				);
+
+			} catch (Exception e) {
+
+				System.out.println(
+						"Unable to update product quantity."
+				);
+
+				e.printStackTrace();
+
+				System.out.println(
+						"Trying another product..."
+				);
+
+				driver.get(
+						"https://www.tommyjohn.com/"
+				);
+
+				Thread.sleep(3000);
+
+				continue;
+			}
+
+			// =========================================================
+			// STEP 22: Check Threshold
+			// =========================================================
+
+			if (cartTotal >= targetAmount) {
+
+				System.out.println(
+						"=============================================="
+				);
+
+				System.out.println(
+						"GWP THRESHOLD REACHED"
+				);
+
+				System.out.println(
+						"Final Cart Total :: $" +
+								cartTotal
+				);
+
+				System.out.println(
+						"=============================================="
+				);
+
+				break;
+			}
+
+			// =========================================================
+			// STEP 23: Continue With Another Product
+			// =========================================================
+
+			System.out.println(
+					"Cart total is still below $2000."
+			);
+
+			System.out.println(
+					"Current Cart Total :: $" +
+							cartTotal
+			);
+
+			System.out.println(
+					"Navigating to PLP for another product..."
+			);
+
+			driver.get(
+					"https://www.tommyjohn.com/"
+			);
+
+			Thread.sleep(3000);
+		}
+
+		// =============================================================
+		// FINAL VALIDATION
+		// =============================================================
+
+		if (cartTotal < targetAmount) {
+
+			throw new AssertionError(
+					"Unable to reach GWP threshold of $2000. " +
+							"Final Cart Total :: $" +
+							cartTotal +
+							". Products Attempted :: " +
+							attemptedProducts.size()
+			);
+		}
+
+		System.out.println(
+				"=============================================="
+		);
+
+		System.out.println(
+				"FINAL GWP CART TOTAL :: $" +
+						cartTotal
+		);
+
+		System.out.println(
+				"GWP Threshold $2000 Successfully Reached."
+		);
+
+		System.out.println(
+				"Products Attempted :: " +
+						attemptedProducts.size()
+		);
+
+		System.out.println(
+				"=============================================="
+		);
+	}
+
+	private double getCurrentCartTotal(WebDriverWait wait) {
+
+		try {
+
+			WebElement cartTotalElement =
+					wait.until(
+							ExpectedConditions
+									.visibilityOfElementLocated(
+											CART_TOTAL
+									)
+					);
+
+			String totalText =
+					cartTotalElement
+							.getText()
+							.trim();
+
+			System.out.println(
+					"Cart Total Text :: " +
+							totalText
+			);
+
+			String numericTotal =
+					totalText.replaceAll(
+							"[^0-9.]",
+							""
+					);
+
+			return Double.parseDouble(
+					numericTotal
+			);
+
+		} catch (Exception e) {
+
+			System.out.println(
+					"Unable to read cart total."
+			);
+
+			e.printStackTrace();
+
+			return 0.00;
+		}
+	}
+
+	private double getCartLineItemUnitPrice() {
+
+		try {
+
+			By unitPriceLocator =
+					By.xpath(
+							"//span[normalize-space()='Regular price']/following-sibling::span[1]"
+					);
+
+			WebElement priceElement =
+					new WebDriverWait(
+							driver,
+							Duration.ofSeconds(30)
+					).until(
+							ExpectedConditions
+									.visibilityOfElementLocated(
+											unitPriceLocator
+									)
+					);
+
+			String priceText =
+					priceElement.getText().trim();
+
+			System.out.println(
+					"Unit Price Text :: " +
+							priceText
+			);
+
+			String numericPrice =
+					priceText.replaceAll(
+							"[^0-9.]",
+							""
+					);
+
+			double unitPrice =
+					Double.parseDouble(
+							numericPrice
+					);
+
+			System.out.println(
+					"Unit Price :: $" +
+							unitPrice
+			);
+
+			return unitPrice;
+
+		} catch (Exception e) {
+
+			System.out.println(
+					"Unable to get cart line-item unit price."
+			);
+
+			e.printStackTrace();
+
+			return 0.00;
+		}
+	}
 
 	// Checks if the specified offer messaging is visible on the full /cart page
 	public boolean isCartPageOfferMessagingDisplayed(String offerText) {

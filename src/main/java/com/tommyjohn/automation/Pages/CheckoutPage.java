@@ -18,6 +18,10 @@ public class CheckoutPage extends CheckoutPageComponents {
 		new CheckoutPageComponents(driver).expresscheckout();
 	}
 
+	public void ValidateGWP() throws Exception {
+		new CheckoutPageComponents(driver).GWPValidation();
+
+	}
 
 	public void VerifyGCFraudDisclosureInCheckoutPage() throws InterruptedException {
 		new CheckoutPageComponents(driver).VerifyGCFraudDisclosureInCheckoutPage();
