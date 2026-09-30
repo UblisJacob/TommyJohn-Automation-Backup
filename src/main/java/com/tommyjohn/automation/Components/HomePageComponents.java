@@ -3092,7 +3092,7 @@ public class HomePageComponents extends HomePageLocators {
 		jse.executeScript("window.scrollBy(0,250)");
 	}
 	public void navigateToMultipackBundleProduct() throws Exception {
-		driver.get("https://www.tommyjohn.com/products/second-skin-trunk-4-3-pack-49?variant=33953798258733");
+		driver.get("https://www.tommyjohn.com/products/womens-second-skin-sleep-pocket-tee-pant-set-9");
 		Thread.sleep(5000);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		jse.executeScript("window.scrollBy(0,250)");
