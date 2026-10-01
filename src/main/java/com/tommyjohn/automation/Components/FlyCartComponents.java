@@ -92,10 +92,10 @@ public class FlyCartComponents extends FlyCartPageLocator{
 		// =========================================================
 
 		String productUrl =
-				"https://tommyjohn.com/products/womens-second-skin-brief";
+				"https://www.tommyjohn.com/products/womens-second-skin-high-rise-brief?variant=8188415705133";
 
 		if (!driver.getCurrentUrl().contains(
-				"/products/womens-second-skin-brief")) {
+				"/products/womens-second-skin-high-rise-brief")) {
 
 			driver.get(productUrl);
 		}

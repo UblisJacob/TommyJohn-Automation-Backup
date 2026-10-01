@@ -2833,11 +2833,11 @@ public class AddToCartComponents extends AddToCartLocators{
 //							jse.executeScript("arguments[0].click();", driver.findElement(INLINE_CART_CLOSE));
 //							break;
 //
-					if (count == 5){
+					if (count == 10){
 					break;	}
 				}
 
-				if(count==5){
+				if(count==10){
 					break;
 				}
 

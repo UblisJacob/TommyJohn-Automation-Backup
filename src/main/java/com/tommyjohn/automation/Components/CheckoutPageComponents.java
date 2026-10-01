@@ -1509,7 +1509,7 @@ public class CheckoutPageComponents extends CheckoutPageLocators {
 	}
 	public void NonFreeShippingWithUnderwearOffer() throws Exception {
 		jse = (JavascriptExecutor)driver;
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 //		new AddToCartComponents(driver).NonFreeShippingAddToCart();
 		wait.until(ExpectedConditions.elementToBeClickable(HomePageLocators.CART_ICON));
 		jse.executeScript("arguments[0].click();", driver.findElement(HomePageLocators.CART_ICON));

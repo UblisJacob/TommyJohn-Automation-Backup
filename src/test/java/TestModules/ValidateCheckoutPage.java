@@ -38,7 +38,7 @@ public class ValidateCheckoutPage extends ExtentReport {
 
 
 
-	//	@Test
+		@Test
 	public void ValidateNonFreeShippingWithUnderwearOffer() throws Exception
 	{
 		new AddToCartComponents(driver).add3for$48product();
@@ -53,7 +53,7 @@ public class ValidateCheckoutPage extends ExtentReport {
 		//new CheckoutPage(driver).ValidateExpressCheckoutOptions();
 //	}
 
-//	@Test
+	@Test
 	public void ValidatePromoCodeNotAppliedForFinalSaleProducts() throws Exception
 	{
 		new AddToCartComponents(driver).addFinalSaleProducts();
