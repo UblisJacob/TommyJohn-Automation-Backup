@@ -712,7 +712,7 @@ public class FlyCartComponents extends FlyCartPageLocator{
 	public void ValidateFiveFor60InInLineCart() throws Exception {
         SoftAssert softAssert = new SoftAssert();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-        new AddToCartComponents(driver).add3for$48product();
+        new AddToCartComponents(driver).add5for$60product();
         driver.findElement(HomePageLocators.CART_ICON).click();
 //        wait.until(ExpectedConditions.visibilityOfElementLocated(FlyCartPageLocator.VIEW_CART_LINK));
 //        driver.findElement(FlyCartPageLocator.VIEW_CART_LINK).click();

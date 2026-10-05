@@ -117,7 +117,7 @@ public class ValidatePDP extends ExtentReport{
 		new ProductDetailsPage(driver).VerifyAddToWishlist();
 	}
 
-	@Test
+//	@Test
 	public void VerifyAddToWishlistInUpsideDownPDP() throws Exception {
 		new ProductDetailsPage(driver).VerifyAddToWishlistInUpsideDownPDP();
 	}

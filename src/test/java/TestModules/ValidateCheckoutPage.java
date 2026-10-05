@@ -41,7 +41,7 @@ public class ValidateCheckoutPage extends ExtentReport {
 		@Test
 	public void ValidateNonFreeShippingWithUnderwearOffer() throws Exception
 	{
-		new AddToCartComponents(driver).add3for$48product();
+		new AddToCartComponents(driver).add5for$60product();
 		new CheckoutPage(driver).ValidateNonFreeShippingWithUnderwearOffer();
 	}
 

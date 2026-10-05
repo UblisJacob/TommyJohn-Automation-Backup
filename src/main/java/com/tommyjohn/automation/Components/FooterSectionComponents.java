@@ -504,11 +504,11 @@ public class FooterSectionComponents extends FooterSectionLocators {
 
 		objGeneralMethods.clickButtonByJS(driver, SIGN_IN_FOOTER_LINK);
 		wait = new WebDriverWait(driver,Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.titleContains("Account"));
+		wait.until(ExpectedConditions.titleContains("Sign in - Tommy John"));
 
 		softassert.assertTrue(
 				driver.getCurrentUrl()
-						.equalsIgnoreCase("https://www.tommyjohn.com/account/login?return_url=%2Faccount"),
+						.contains("https://shopify.com/authentication/"),
 				"Wrong page opened after Sign In footer link clicked");
 
 		try{
@@ -536,11 +536,10 @@ public class FooterSectionComponents extends FooterSectionLocators {
 
 		objGeneralMethods.clickButtonByJS(driver, ORDER_HISTORY);
 
-		wait.until(ExpectedConditions.titleContains("Account"));
+		wait.until(ExpectedConditions.titleContains("Sign in - Tommy John"));
 
 		softassert.assertTrue(
-				driver.getCurrentUrl()
-						.equalsIgnoreCase("https://www.tommyjohn.com/account/login?return_url=%2Faccount"),
+				driver.getCurrentUrl().contains("https://shopify.com/authentication/"),
 				"Wrong page opened after Order History footer link clicked");
 
 		try{

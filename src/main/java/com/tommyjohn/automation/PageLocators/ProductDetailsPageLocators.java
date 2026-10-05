@@ -164,8 +164,8 @@ public class ProductDetailsPageLocators {
     public static By PDP_SECTION_RECS = By.xpath("(//h2[contains(text(),'Bought Together')]//following::div[@class='relative aspect-tile'])[1]");
     public static By LIST_PDP_SECTION_RECS = By.xpath("//h2[contains(text(),'Bought Together')]//following::div[@class='relative aspect-tile']");
     public static By UPSIDEDOWN_SECTIONS = By.xpath("//div[@class='relative w-full px-lg md:mt-14 md:max-w-content lg:mt-28']");
-	public static By ADD_TO_WISHLIST = By.xpath("//span[@class='wk-text']");
-	public static By SHARE_ICON = By.xpath("//span[@class='border-b border-stroke-primary-subtle']");
+	public static By ADD_TO_WISHLIST = By.xpath("//span[@class='border-b border-stroke-primary-subtle leading-none']");
+	public static By SHARE_ICON = By.xpath("//span[@class='border-b border-stroke-primary-subtle leading-none group-hover/share:border-current']");
     public static By UPSIDE_DOWN_PROGRESS_BAR = By.xpath("//div[@class='flex flex-col gap-1']");
 	public static By LOGIN_DRAWER = By.xpath("//section[@class='flex flex-col justify-between h-full']");
 	public static By SIZEGUIDE = By.xpath("//button[@class='button-link text-body-sm text-text-tertiary mr-6 md:mr-0']");

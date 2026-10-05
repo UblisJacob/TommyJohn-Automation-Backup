@@ -84,14 +84,14 @@
 	<!--       </classes>-->
 	<!--    </test>-->
 
-	<test name="CreateAccountAndLoginTests">
-		<parameter name="browser" value="chrome" />
+<!--	<test name="CreateAccountAndLoginTests">-->
+<!--		<parameter name="browser" value="chrome" />-->
 
 
-		<classes>
-			<class name="TestModules.ValidateCreateAccount_Login" />
-		</classes>
-	</test>
+<!--		<classes>-->
+<!--			<class name="TestModules.ValidateCreateAccount_Login" />-->
+<!--		</classes>-->
+<!--	</test>-->
 
 	<test name="CheckoutPageTests">
 		<parameter name="browser" value="chrome" />

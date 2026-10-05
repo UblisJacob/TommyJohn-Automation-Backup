@@ -1823,7 +1823,7 @@ public class HomePageComponents extends HomePageLocators {
 		element=driver.findElement(ACCOUNT_NAV_DROPDOWN);
 		((JavascriptExecutor)driver).executeScript("arguments[0].click();", element);
 		Thread.sleep(5000);
-		if(!driver.getCurrentUrl().contains("https://www.tommyjohn.com/account/login?return_url=%2Faccount"))
+		if(!driver.getCurrentUrl().contains("https://shopify.com/authentication/"))
 			throw new Exception("Wrong page opened after clicked on Account Icon");
 		Reporter.log("Account Icon is Displayed :: Clickable");
 		ExtentReport.extentTest.info("Account Icon is Displayed :: Clickable");
