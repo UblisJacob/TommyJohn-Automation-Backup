@@ -70,7 +70,7 @@ public class CustomUtilities {
             chromeOptions.addArguments("--ignore-certificate-errors");
             chromeOptions.addArguments("--disable-gpu");
             // remove headless if you need visual debugging; keep if CI
-            chromeOptions.addArguments("--headless=new");
+//            chromeOptions.addArguments("--headless=new");
             chromeOptions.addArguments("--window-size=1920,1080");
             chromeOptions.addArguments("--disable-touch-events");
             chromeOptions.addArguments("--force-device-scale-factor=1");

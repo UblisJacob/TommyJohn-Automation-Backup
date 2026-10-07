@@ -27,6 +27,14 @@ public class ValidateCheckoutPage extends ExtentReport {
 		}
 	}
 
+
+	@Test
+	public void VerifySplitBundleProductUsingQuickShop() throws Exception
+	{
+		new AddToCartComponents(driver).AddBundleProductFromPLP("womens-second-skin-sleep-pocket-tee-pant-set-9");
+		new CheckoutPage(driver).ValidateSplitBundleProductUsingQuickShop();
+	}
+
 	@Test
 	public void ValidateGWP() throws Exception
 	{

@@ -97,7 +97,8 @@ public class FlyCartPageLocator {
 	public static By AFTERPAY_FLYCART = By.cssSelector(".afterpay-incart-container > p > span");
 
 	public static By QUICK_SHOP_SIZE_LIST = By.xpath("//input[@name='option[Size]']");
-
+	public static By QUICK_SHOP_SIZE_TOP_LIST = By.xpath("//input[@name='option[Top Size]']");
+	public static By QUICK_SHOP_SIZE_BOTTOM_LIST = By.xpath("//input[@name='option[Bottom Size]']");
 	public static By TIERED_METER_TITLE = By.cssSelector("p[data-tj-qa='tier-message-hit'],p#tier-message-reached-cart");
 	public static By TIERED_METER = By.cssSelector("//div[@class='relative h-0.5 bg-surface-secondary']");
 	public static By PROMOTIONAL_MESSAGE = By.xpath("//p[contains(text(),'Congratulations! You have earned free shipping!')]");

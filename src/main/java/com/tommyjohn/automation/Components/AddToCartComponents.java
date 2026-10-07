@@ -18,8 +18,14 @@ import org.testng.Reporter;
 
 
 import com.tommyjohn.automation.utils.CustomUtilities;
+import org.testng.asserts.SoftAssert;
 
 import static com.tommyjohn.automation.ADACheck.ADACheckMethods.softAssert;
+import static com.tommyjohn.automation.PageLocators.CollectionPageLocator.ADD_TO_BAG_QUICKSHOP;
+import static com.tommyjohn.automation.PageLocators.CollectionPageLocator.PRODUCT_TITLE_ON_COLLECTION;
+import static com.tommyjohn.automation.PageLocators.FlyCartPageLocator.*;
+import static com.tommyjohn.automation.PageLocators.HomePageLocators.SEARCH_ICON;
+import static com.tommyjohn.automation.PageLocators.HomePageLocators.SEARCH_ICON_INPUT;
 import static com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators.CART_ICON;
 import static com.tommyjohn.automation.PageLocators.ProductDetailsPageLocators.PDP_TABS;
 import static com.tommyjohn.automation.PageLocators.ShoppingCartLocators.CART_TOTAL;
@@ -43,6 +49,193 @@ public class AddToCartComponents extends AddToCartLocators{
 	List<WebElement> Tabs;
 
 	String allClasses = null;
+
+
+
+
+	public void AddBundleProductFromPLP(String SearchText) throws Exception {
+
+		SoftAssert softAssert = new SoftAssert();
+		action = new Actions(driver);
+
+		WebElement element = driver.findElement(SEARCH_ICON);
+
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		executor.executeScript("arguments[0].click();", element);
+
+		driver.findElement(SEARCH_ICON_INPUT)
+				.sendKeys(SearchText + Keys.ENTER);
+
+		Actions action = new Actions(driver);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		Thread.sleep(8000);
+
+		WebDriverWait wait =
+				new WebDriverWait(driver, Duration.ofSeconds(30));
+
+		js.executeScript("window.scrollBy(0,450)");
+
+		int count = 0;
+
+		wait.until(ExpectedConditions.presenceOfElementLocated(
+				CollectionPageLocator.FIRST_PRODUCT_IMAGE));
+
+		element = driver.findElement(
+				CollectionPageLocator.FIRST_PRODUCT_IMAGE);
+
+		Thread.sleep(15000);
+
+		action.moveToElement(element).build().perform();
+
+		Thread.sleep(15000);
+
+		if (driver.findElement(
+				CollectionPageLocator.QUICK_SHOP_ATC).isDisplayed()) {
+
+			Thread.sleep(10000);
+
+			element = driver.findElement(
+					CollectionPageLocator.QUICK_SHOP_ATC);
+
+			js.executeScript("arguments[0].click();", element);
+
+			Thread.sleep(5000);
+
+			// Select sizes from Quick Shop
+			List<WebElement> allElements =
+					driver.findElements(QUICK_SHOP_SIZE_TOP_LIST);
+
+			List<WebElement> allElementsbottom =
+					driver.findElements(QUICK_SHOP_SIZE_BOTTOM_LIST);
+
+			System.out.println(
+					"All Top sizes list :: " + allElements.size());
+
+			System.out.println(
+					"All Bottom sizes list :: " + allElementsbottom.size());
+
+			elementsCount = allElements.size();
+
+			System.out.println(
+					"Top Size count :: " + elementsCount);
+
+			if (elementsCount > 1) {
+
+				for (int j = 1; j <= allElements.size(); j++) {
+
+					WebElement elements = driver.findElement(
+							By.xpath(
+									"(//input[@name='option[Top Size]'])[" +
+											j + "]"));
+
+					js.executeScript(
+							"arguments[0].click();",
+							elements);
+
+					Thread.sleep(1000);
+
+					// =================================================
+					// BOTTOM SIZE LOOP
+					// =================================================
+
+					for (int k = 1; k <= allElementsbottom.size(); k++) {
+
+						WebElement elements1 = driver.findElement(
+								By.xpath(
+										"(//input[@name='option[Bottom Size]'])[" +
+												k + "]"));
+
+						js.executeScript(
+								"arguments[0].click();",
+								elements1);
+
+						Thread.sleep(1000);
+
+						try {
+
+							String addToBagText =
+									driver.findElement(
+													By.xpath(
+															"//button[@class='button grow']"))
+											.getText()
+											.split(" -")[0]
+											.trim();
+
+							System.out.println(
+									"Add to Bag CTA :: " + addToBagText);
+
+
+							if (addToBagText.equalsIgnoreCase("Add to bag")) {
+
+								System.out.println(
+										driver.findElement(
+														PRODUCT_TITLE_ON_COLLECTION)
+												.getText()
+												+ " - Product is available");
+
+								Thread.sleep(2000);
+
+								// Click Add to Bag
+								js.executeScript(
+										"arguments[0].click();",
+										driver.findElement(
+												ADD_TO_BAG_QUICKSHOP));
+
+								Thread.sleep(3000);
+
+								count++;
+
+
+								break;
+							}
+
+						} catch (Exception ex) {
+
+							System.out.println(
+									"Top Size " + j +
+											" / Bottom Size " + k +
+											" combination is OOS.");
+						}
+					}
+
+
+
+					if (count == 1) {
+						break;
+					}
+				}
+			}
+
+			if (count == 0) {
+				throw new Exception(
+						"Unable to add bundle product. " +
+								"No available Top/Bottom Size combination found.");
+			}
+
+			wait.until(
+					ExpectedConditions.visibilityOfElementLocated(
+							INLINE_CART_TITLE));
+
+			softAssert.assertTrue(
+					driver.findElement(
+							INLINE_CART_TITLE).isDisplayed(),
+					"Flyout cart is not opened with QuickShop");
+
+			Reporter.log(
+					"Validated Flyout cart opens with QuickShop");
+
+			ExtentReport.extentTest.info(
+					"Validated Flyout cart opens with QuickShop");
+
+		} else {
+
+			throw new Exception(
+					"Quick Shop ATC button is not displayed on hover.");
+		}
+
+		softAssert.assertAll();
+	}
 
 	public void addProductsForGWP() throws Exception {
 

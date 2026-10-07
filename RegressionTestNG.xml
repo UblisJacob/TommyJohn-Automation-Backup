@@ -135,8 +135,6 @@
 		</classes>
 	</test>
 
-
-
 	<test name="BundlePageTests">
 		<parameter name="browser" value="chrome" />
 		<classes>
